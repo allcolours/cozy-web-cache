@@ -1,0 +1,1 @@
+GRANT SELECT, INSERT, UPDATE ON public.email_unsubscribe_tokens TO service_role;
