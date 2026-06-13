@@ -2,7 +2,6 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { SiteLayout } from "../components/SiteLayout";
 import { useSiteSettings } from "../hooks/useSiteSettings";
-import { supabase } from "../integrations/supabase/client";
 import ctaAsset from "../assets/portfolio/cta-bg.jpg.asset.json";
 
 export const Route = createFileRoute("/contact")({
