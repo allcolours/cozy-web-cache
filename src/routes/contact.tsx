@@ -11,8 +11,11 @@ export const Route = createFileRoute("/contact")({
       { name: "description", content: "Request a free painting & decorating quote. Call, email, or send us a message." },
       { property: "og:title", content: "Contact All Colours Painting" },
       { property: "og:description", content: "Request a free painting & decorating quote." },
+      { property: "og:url", content: "https://allcolourspainter.com/contact" },
+      { property: "og:type", content: "website" },
       { property: "og:image", content: ctaAsset.url },
     ],
+    links: [{ rel: "canonical", href: "https://allcolourspainter.com/contact" }],
   }),
   component: Contact,
 });
@@ -111,8 +114,8 @@ function Contact() {
                   <Field label="Email" name="email" type="email" required />
                   <Field label="Postcode" name="postcode" />
                   <div>
-                    <label className="font-display text-xs font-bold uppercase tracking-wider text-[oklch(0.2_0_0)]">Project details</label>
-                    <textarea name="message" required rows={5} className="mt-2 w-full border border-input bg-background px-3 py-2 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/20" />
+                    <label htmlFor="project-details" className="font-display text-xs font-bold uppercase tracking-wider text-[oklch(0.2_0_0)]">Project details</label>
+                    <textarea id="project-details" name="message" required rows={5} className="mt-2 w-full border border-input bg-background px-3 py-2 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/20" />
                   </div>
                   {error && <p className="text-sm text-destructive">{error}</p>}
                   <button type="submit" disabled={submitting} className="w-full rounded-sm bg-primary px-6 py-3 font-display text-xs font-bold uppercase tracking-wider text-primary-foreground transition-colors hover:bg-[oklch(0.62_0.17_158)] disabled:opacity-50 sm:w-auto">

@@ -10,8 +10,11 @@ export const Route = createFileRoute("/about")({
       { name: "description", content: "Painters & decorators with over 20 years of experience. Family-run, fully insured, and committed to quality finishes." },
       { property: "og:title", content: "About All Colours Painting" },
       { property: "og:description", content: "Family-run painting & decorating company with 20+ years of experience." },
+      { property: "og:url", content: "https://allcolourspainter.com/about" },
+      { property: "og:type", content: "website" },
       { property: "og:image", content: aboutAsset.url },
     ],
+    links: [{ rel: "canonical", href: "https://allcolourspainter.com/about" }],
   }),
   component: About,
 });

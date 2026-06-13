@@ -14,7 +14,39 @@ export const Route = createFileRoute("/services")({
       { name: "description", content: "Interior, exterior, commercial painting, wallpapering, plastering, spray finishing and industrial floor coatings." },
       { property: "og:title", content: "Painting & Decorating Services" },
       { property: "og:description", content: "Full painting & decorating service for homes and businesses." },
+      { property: "og:url", content: "https://allcolourspainter.com/services" },
+      { property: "og:type", content: "website" },
       { property: "og:image", content: commercialAsset.url },
+    ],
+    links: [{ rel: "canonical", href: "https://allcolourspainter.com/services" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Service",
+          serviceType: "Painting & Decorating",
+          provider: {
+            "@type": "LocalBusiness",
+            name: "All Colours Painting Contractor Limited",
+            url: "https://allcolourspainter.com/",
+            telephone: "+353 85 821 1870",
+          },
+          areaServed: "Dublin & surrounding areas",
+          hasOfferCatalog: {
+            "@type": "OfferCatalog",
+            name: "Painting & Decorating Services",
+            itemListElement: [
+              "Residential interior & exterior painting",
+              "Commercial fit-out painting",
+              "Industrial floor coatings & line-marking",
+              "Wallpapering",
+              "Spray finishing",
+              "Plastering & repairs",
+            ].map((n) => ({ "@type": "Offer", itemOffered: { "@type": "Service", name: n } })),
+          },
+        }),
+      },
     ],
   }),
   component: Services,
@@ -67,7 +99,7 @@ function Services() {
             {headline.map((s) => (
               <article key={s.title} className="flex flex-col bg-card">
                 <div className="aspect-[4/3] overflow-hidden">
-                  <img src={s.img} alt={s.title} loading="lazy" width={1000} height={750} className="h-full w-full object-cover transition-transform duration-700 hover:scale-105" />
+                  <img src={s.img} alt={`${s.title} painting services`} loading="lazy" width={1000} height={750} className="h-full w-full object-cover transition-transform duration-700 hover:scale-105" />
                 </div>
                 <div className="flex flex-1 flex-col border-b-[3px] border-primary p-8">
                   <h3 className="font-display text-xl font-bold uppercase tracking-wide text-[oklch(0.2_0_0)]">{s.title}</h3>
@@ -100,7 +132,7 @@ function Services() {
             {more.map((s) => (
               <div key={s.title} className="group overflow-hidden bg-card">
                 <div className="aspect-[16/10] overflow-hidden">
-                  <img src={s.img} alt={s.title} loading="lazy" width={800} height={500} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                  <img src={s.img} alt={`${s.title} — ${s.desc.split(".")[0]}`} loading="lazy" width={800} height={500} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
                 </div>
                 <div className="p-6">
                   <h3 className="font-display text-base font-bold uppercase tracking-wide text-[oklch(0.2_0_0)]">{s.title}</h3>
