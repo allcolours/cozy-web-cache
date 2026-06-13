@@ -35,6 +35,47 @@ function getRetryAfterSeconds(error: unknown): number {
   return 60
 }
 
+function generateToken(): string {
+  const bytes = new Uint8Array(32)
+  crypto.getRandomValues(bytes)
+  return Array.from(bytes)
+    .map((b) => b.toString(16).padStart(2, '0'))
+    .join('')
+}
+
+async function getOrCreateUnsubscribeToken(
+  supabase: SupabaseClient<any, any>,
+  email: string
+): Promise<string> {
+  const normalizedEmail = email.toLowerCase()
+  const { data: existingToken, error: lookupError } = await supabase
+    .from('email_unsubscribe_tokens')
+    .select('token, used_at')
+    .eq('email', normalizedEmail)
+    .maybeSingle()
+
+  if (lookupError) throw lookupError
+  if (existingToken && !existingToken.used_at) return existingToken.token
+
+  const token = generateToken()
+  const { error: upsertError } = await supabase
+    .from('email_unsubscribe_tokens')
+    .upsert(
+      { token, email: normalizedEmail },
+      { onConflict: 'email', ignoreDuplicates: true }
+    )
+  if (upsertError) throw upsertError
+
+  const { data: storedToken, error: readBackError } = await supabase
+    .from('email_unsubscribe_tokens')
+    .select('token')
+    .eq('email', normalizedEmail)
+    .maybeSingle()
+
+  if (readBackError) throw readBackError
+  return storedToken?.token ?? token
+}
+
 async function moveToDlq(
   supabase: SupabaseClient<any, any>,
   queue: string,
@@ -221,6 +262,19 @@ export const Route = createFileRoute("/lovable/email/queue/process")({
             }
 
             try {
+              if (
+                queue === 'transactional_emails' &&
+                payload.purpose === 'transactional' &&
+                !payload.unsubscribe_token &&
+                typeof payload.to === 'string' &&
+                payload.to.includes('@')
+              ) {
+                payload.unsubscribe_token = await getOrCreateUnsubscribeToken(
+                  supabase,
+                  payload.to
+                )
+              }
+
               await sendLovableEmail(
                 {
                   run_id: payload.run_id,
