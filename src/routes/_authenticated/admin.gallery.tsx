@@ -74,7 +74,7 @@ function GalleryAdmin() {
     }
   }
 
-  async function updateRow(id: string, patch: Partial<Row>) {
+  async function updateRow(id: string, patch: { title?: string; tag?: string | null; sort_order?: number }) {
     await supabase.from("gallery_images").update(patch).eq("id", id);
     qc.invalidateQueries({ queryKey: ["admin-gallery"] });
   }

@@ -4,13 +4,13 @@ import { supabase } from "@/integrations/supabase/client";
 import { useIsAdmin } from "@/hooks/useIsAdmin";
 import { useQueryClient } from "@tanstack/react-query";
 
-const NAV = [
+const NAV: { to: string; label: string; exact?: boolean }[] = [
   { to: "/admin", label: "Dashboard", exact: true },
   { to: "/admin/gallery", label: "Gallery" },
   { to: "/admin/inquiries", label: "Inquiries" },
   { to: "/admin/content", label: "Content" },
   { to: "/admin/analytics", label: "Analytics" },
-] as const;
+];
 
 export function AdminShell({ children, title }: { children: ReactNode; title: string }) {
   const { data: isAdmin, isLoading } = useIsAdmin();
