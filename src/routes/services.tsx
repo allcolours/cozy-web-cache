@@ -1,5 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout } from "../components/SiteLayout";
+import { ProcessSteps } from "../components/ProcessSteps";
+import { FaqAccordion } from "../components/FaqAccordion";
+import { FAQS } from "../data/faqs";
 import heroAsset from "../assets/portfolio/hero-house.webp.asset.json";
 import commercialAsset from "../assets/portfolio/service-commercial.jpg.asset.json";
 import industrialAsset from "../assets/portfolio/service-industrial.jpg.asset.json";
