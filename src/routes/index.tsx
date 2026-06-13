@@ -13,7 +13,7 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "All Colours Painting Contractor Limited | Painters & Decorators" },
-      { name: "description", content: "Professional interior, exterior and commercial painting & decorating across London. Quality finishes, tidy workmanship, fully insured. Free quotes." },
+      { name: "description", content: "Professional interior, exterior and commercial painting & decorating across Dublin. Quality finishes, tidy workmanship, fully insured. Free quotes." },
       { property: "og:title", content: "All Colours Painting Contractor Limited" },
       { property: "og:description", content: "Professional painters & decorators. Interior, exterior, commercial." },
       { property: "og:image", content: heroAsset.url },
