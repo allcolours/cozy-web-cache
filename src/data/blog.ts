@@ -17,6 +17,76 @@ export interface BlogPost {
 
 export const BLOG_POSTS: BlogPost[] = [
   {
+    slug: "how-to-repaint-your-front-door",
+    title: "How to Repaint Your Front Door (Without Regretting It a Year Later)",
+    excerpt:
+      "A front door takes more weather than any other surface on the house. Here's the prep, the paint and the timing we use on ours — so yours still looks sharp two winters from now.",
+    cover: exteriorAsset.url,
+    date: "2026-06-01",
+    readTime: "6 min read",
+    category: "Exterior",
+    author: "All Colours Painting",
+    body: [
+      {
+        paragraphs: [
+          "A freshly painted front door is the single best-value upgrade we know. A morning's work, one tin of paint, and the whole house looks ten years younger from the kerb. But it's also the surface we get called back to most often when someone has done it themselves in a rush — usually 12–18 months later when the paint has cracked along the panel edges or peeled off the bottom rail. Here's the process we use on our own doors so it actually lasts.",
+        ],
+      },
+      {
+        heading: "1. Pick the right day, not just any dry day",
+        paragraphs: [
+          "Two coats of paint plus drying time means the door is open or in-and-out for most of a day. You need 8–22°C, low humidity, and no rain forecast for 24 hours after the final coat. In Ireland that's most reliably April through September, ideally a still, dry day after a dry week. Painting in November because you finally have a Saturday free is exactly how you end up with paint that won't cure properly.",
+        ],
+      },
+      {
+        heading: "2. Take the door off if you possibly can",
+        paragraphs: [
+          "Painting a door flat on trestles gives a dramatically better finish than painting it hung — no runs, no sags, and you can do the top and bottom edges (where water gets in) properly. If lifting it off isn't realistic, at least take the handle, letterbox and knocker off. Masking around ironmongery never looks as crisp as removing it.",
+        ],
+      },
+      {
+        heading: "3. Prep is 80% of the job",
+        paragraphs: [
+          "Sand the whole door with 120-grit, then 180-grit. You're not trying to take the old paint off — just to give the new coat something to grip and to flatten any rough spots. Fill any dings with a flexible exterior filler, sand flush. Wipe everything down with a tack cloth and white spirit. Any flaking areas get sanded back to a sound edge and spot-primed.",
+          "Bare timber and any filler need a coat of exterior wood primer before topcoat. Skipping this is the single most common reason a door fails early — the topcoat has nothing chemical to bond to and lifts off in sheets.",
+        ],
+      },
+      {
+        heading: "4. Choose paint built for an exterior door",
+        paragraphs: [
+          "A front door is not interior woodwork. You want a flexible, water-based exterior gloss or satin — Dulux Weathershield Exterior Gloss, Sandtex Exterior Satinwood, or Little Greene Intelligent Exterior Eggshell are all excellent. They flex with the timber through wet-and-dry cycles instead of cracking like the old oil-based glosses did.",
+          "For colour, anything dark and south-facing (deep blue, oxblood, black) gets seriously hot in summer sun and moves the timber more — go for a paint specifically rated for dark exterior colours, or accept you'll be repainting more often.",
+        ],
+      },
+      {
+        heading: "5. Two thin coats, brushed properly",
+        paragraphs: [
+          "Use a good 2-inch synthetic brush — a cheap brush sheds bristles into the finish and they're a misery to pick out. Cut in the panels first (mouldings, recessed panels), then do the rails (horizontals), then the stiles (verticals), always finishing your strokes top-to-bottom in the direction of the grain.",
+          "Thin coats. Two thin coats look better than one thick one and dry without sagging. Let the first coat dry the full time the tin says — usually 4–6 hours — sand very lightly with 240-grit, dust off, and apply the second.",
+        ],
+      },
+      {
+        heading: "6. Don't forget the edges and the bottom",
+        paragraphs: [
+          "Water gets into a front door through the top and bottom edges, and through the bottom rail where it meets the threshold. These are usually the first places paint fails. Every coat should go right onto the top edge and the bottom edge — that's why we lift the door off where possible. If you can't lift it, at least open it fully and paint as much of the bottom edge as you can reach.",
+        ],
+      },
+      {
+        heading: "7. Re-hang carefully and leave it alone",
+        paragraphs: [
+          "Re-fit the ironmongery only when the paint is touch-dry (usually 2–4 hours after the second coat). Don't close the door fully overnight on the same day — the still-curing paint can stick to the frame. By morning it's almost always fine, but a tiny gap saves heartbreak.",
+        ],
+      },
+      {
+        heading: "If you'd rather we did it",
+        paragraphs: [
+          "We repaint front doors all over Dublin as small standalone jobs — usually a half-day, often combined with a touch-up of the porch or window cills. Drop us a photo on WhatsApp and we'll come back with a price the same day.",
+        ],
+      },
+    ],
+  },
+
+  {
     slug: "how-to-choose-the-right-paint-finish",
     title: "Matt, Eggshell or Satin? A Painter's Honest Guide to Choosing a Finish",
     excerpt:

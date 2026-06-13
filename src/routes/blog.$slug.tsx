@@ -22,10 +22,47 @@ export const Route = createFileRoute("/blog/$slug")({
         { property: "og:type", content: "article" },
         { property: "og:image", content: p.cover },
         { property: "article:published_time", content: p.date },
+        { property: "article:author", content: p.author },
+        { property: "article:section", content: p.category },
       ],
       links: [{ rel: "canonical", href: url }],
+      scripts: [
+        {
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Article",
+            headline: p.title,
+            description: p.excerpt,
+            image: p.cover,
+            datePublished: p.date,
+            dateModified: p.date,
+            author: { "@type": "Organization", name: p.author },
+            publisher: {
+              "@type": "Organization",
+              name: "All Colours Painting Contractor Limited",
+              logo: { "@type": "ImageObject", url: "https://allcolourspainter.com/favicon.ico" },
+            },
+            mainEntityOfPage: { "@type": "WebPage", "@id": url },
+            articleSection: p.category,
+          }),
+        },
+        {
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "Home", item: "https://allcolourspainter.com/" },
+              { "@type": "ListItem", position: 2, name: "Blog", item: "https://allcolourspainter.com/blog" },
+              { "@type": "ListItem", position: 3, name: p.title, item: url },
+            ],
+          }),
+        },
+      ],
     };
   },
+
   notFoundComponent: () => (
     <SiteLayout>
       <div className="mx-auto max-w-3xl px-4 py-32 text-center md:px-8">
