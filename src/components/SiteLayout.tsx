@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useState, type ReactNode } from "react";
 import logo from "../assets/logo.png";
+import { useSiteSettings } from "../hooks/useSiteSettings";
 
 const NAV = [
   { to: "/", label: "Home" },
@@ -10,6 +11,7 @@ const NAV = [
   { to: "/contact", label: "Contact" },
 ] as const;
 
+// Static brand info (not editable from admin)
 export const COMPANY = {
   name: "All Colours Painting Contractor Limited",
   shortName: "All Colours Painting",
@@ -22,6 +24,11 @@ export const COMPANY = {
 
 export function SiteLayout({ children }: { children: ReactNode }) {
   const [open, setOpen] = useState(false);
+  const settings = useSiteSettings();
+  const phone = settings.phone || COMPANY.phone;
+  const email = settings.email || COMPANY.email;
+  const area = settings.area || COMPANY.area;
+  const hours = settings.hours || COMPANY.hours;
 
   return (
     <div className="flex min-h-screen flex-col bg-background text-foreground">
