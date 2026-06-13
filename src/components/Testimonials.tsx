@@ -52,6 +52,17 @@ export function TestimonialsSection({ limit, title = "What our clients say", eye
             <TestimonialCard key={t.name + t.location} t={t} />
           ))}
         </div>
+        <div className="mt-10 flex flex-wrap items-center gap-3">
+          <a
+            href="https://www.facebook.com/profile.php?id=61561664309105&sk=reviews"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center rounded-sm border-[2px] border-primary px-6 py-3 font-display text-xs font-bold uppercase tracking-wider text-primary hover:bg-primary hover:text-primary-foreground"
+          >
+            Read more reviews on Facebook →
+          </a>
+          <span className="text-xs text-foreground/70">All reviews verified — sourced from our Facebook page.</span>
+        </div>
       </div>
     </section>
   );
