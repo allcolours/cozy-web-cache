@@ -25,10 +25,10 @@ export const COMPANY = {
 export function SiteLayout({ children }: { children: ReactNode }) {
   const [open, setOpen] = useState(false);
   const settings = useSiteSettings();
-  const phone = settings.phone || phone;
-  const email = settings.email || email;
-  const area = settings.area || area;
-  const hours = settings.hours || hours;
+  const phone = settings.phone || COMPANY.phone;
+  const email = settings.email || COMPANY.email;
+  const area = settings.area || COMPANY.area;
+  const hours = settings.hours || COMPANY.hours;
 
   return (
     <div className="flex min-h-screen flex-col bg-background text-foreground">
