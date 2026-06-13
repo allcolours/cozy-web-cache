@@ -130,6 +130,35 @@ function Home() {
         </div>
       </section>
 
+      {/* Our promise — 4 values */}
+      <section className="bg-background">
+        <div className="mx-auto max-w-7xl px-4 pb-4 pt-20 md:px-8 md:pb-8 md:pt-28">
+          <div className="flex flex-col items-start gap-2">
+            <span className="eyebrow">Why we're worth it</span>
+            <h2 className="section-title text-3xl md:text-4xl">Our work comes with a promise</h2>
+            <hr className="section-rule" />
+            <p className="mt-6 max-w-2xl text-base text-foreground">
+              Four things every client gets from us — every single job, no exceptions.
+            </p>
+          </div>
+
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              { t: "Professional", d: "We don't cut corners. We listen to what you need and deliver it on time, every time." },
+              { t: "Efficient", d: "Modern techniques, the best tools on the market. We're in, the job is done, and we're gone." },
+              { t: "Reliable", d: "We say what we'll do — and we do what we say. Honest quotes, honest timelines." },
+              { t: "Clean", d: "Floors, furniture and belongings fully protected. Dust-controlled sanding, spotless handover." },
+            ].map((v, i) => (
+              <div key={v.t} className="border-t-[3px] border-primary bg-card p-7">
+                <div className="font-display text-xs font-bold uppercase tracking-[0.18em] text-primary">0{i + 1}</div>
+                <h3 className="mt-3 font-display text-lg font-bold uppercase tracking-wide text-[oklch(0.2_0_0)]">{v.t}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-foreground">{v.d}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Stats */}
       <section className="border-y border-border bg-secondary">
         <div className="mx-auto grid max-w-7xl grid-cols-2 gap-6 px-4 py-12 md:grid-cols-4 md:px-8">
