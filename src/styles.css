@@ -169,7 +169,7 @@
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
     letter-spacing: -0.01em;
-    color: oklch(0.2 0 0);
+    color: inherit;
   }
 }
 
@@ -179,8 +179,7 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.01em;
-  color: oklch(0.2 0 0);
-  position: relative;
+  color: oklch(0.18 0 0);
 }
 
 @utility section-rule {
