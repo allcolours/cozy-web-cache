@@ -40,8 +40,18 @@ function Contact() {
       setSubmitting(false);
       return;
     }
-    const { error: insErr } = await supabase.from("contact_submissions").insert(payload);
-    if (insErr) {
+    try {
+      const res = await fetch("/api/public/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      if (!res.ok) {
+        setError("Sorry, we couldn't send that. Please try again or call us directly.");
+        setSubmitting(false);
+        return;
+      }
+    } catch {
       setError("Sorry, we couldn't send that. Please try again or call us directly.");
       setSubmitting(false);
       return;
