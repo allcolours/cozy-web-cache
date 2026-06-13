@@ -78,10 +78,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "All Colours Painting Contractor Limited" },
-      { name: "description", content: "Professional painters & decorators in London. Interior, exterior and commercial painting." },
+      { name: "description", content: "Professional painters & decorators in Dublin, Ireland. Interior, exterior and commercial painting." },
       { name: "author", content: "All Colours Painting Contractor Limited" },
       { property: "og:title", content: "All Colours Painting Contractor Limited" },
-      { property: "og:description", content: "Professional painters & decorators in London." },
+      { property: "og:description", content: "Professional painters & decorators in Dublin, Ireland." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
 
