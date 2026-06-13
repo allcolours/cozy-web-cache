@@ -18,8 +18,11 @@ export const Route = createFileRoute("/gallery")({
       { name: "description", content: "Recent painting and decorating projects — interior, exterior, commercial and industrial." },
       { property: "og:title", content: "Project Gallery" },
       { property: "og:description", content: "A selection of our recent painting & decorating work." },
+      { property: "og:url", content: "https://allcolourspainter.com/gallery" },
+      { property: "og:type", content: "website" },
       { property: "og:image", content: heroAsset.url },
     ],
+    links: [{ rel: "canonical", href: "https://allcolourspainter.com/gallery" }],
   }),
   component: Gallery,
 });
