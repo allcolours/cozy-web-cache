@@ -7,7 +7,10 @@ const NAV = [
   { to: "/", label: "Home" },
   { to: "/about", label: "About" },
   { to: "/services", label: "Services" },
+  { to: "/case-studies", label: "Case Studies" },
   { to: "/gallery", label: "Gallery" },
+  { to: "/blog", label: "Blog" },
+  { to: "/faq", label: "FAQ" },
   { to: "/contact", label: "Contact" },
 ] as const;
 
@@ -59,12 +62,12 @@ export function SiteLayout({ children }: { children: ReactNode }) {
             </span>
           </Link>
 
-          <nav className="hidden items-center gap-7 md:flex">
+          <nav className="hidden items-center gap-5 md:flex lg:gap-6">
             {NAV.map((n) => (
               <Link
                 key={n.to}
                 to={n.to}
-                className="font-display text-[13px] font-semibold uppercase tracking-wider text-[oklch(0.3_0_0)] transition-colors hover:text-primary"
+                className="font-display text-[12px] font-semibold uppercase tracking-wider text-[oklch(0.3_0_0)] transition-colors hover:text-primary lg:text-[13px]"
                 activeProps={{ className: "text-primary" }}
                 activeOptions={{ exact: n.to === "/" }}
               >
