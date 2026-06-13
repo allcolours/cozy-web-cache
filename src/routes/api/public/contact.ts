@@ -89,7 +89,38 @@ export const Route = createFileRoute('/api/public/contact')({
               : template.subject
 
           const recipient = template.to!
+          const normalizedRecipient = recipient.toLowerCase()
           const messageId = `contact-${inserted.id}`
+
+          // Get or create unsubscribe token (required by email API)
+          let unsubscribeToken: string
+          const { data: existingToken } = await supabase
+            .from('email_unsubscribe_tokens')
+            .select('token, used_at')
+            .eq('email', normalizedRecipient)
+            .maybeSingle()
+
+          if (existingToken && !existingToken.used_at) {
+            unsubscribeToken = existingToken.token
+          } else {
+            const bytes = new Uint8Array(32)
+            crypto.getRandomValues(bytes)
+            const newToken = Array.from(bytes)
+              .map((b) => b.toString(16).padStart(2, '0'))
+              .join('')
+            await supabase
+              .from('email_unsubscribe_tokens')
+              .upsert(
+                { token: newToken, email: normalizedRecipient },
+                { onConflict: 'email', ignoreDuplicates: true },
+              )
+            const { data: storedToken } = await supabase
+              .from('email_unsubscribe_tokens')
+              .select('token')
+              .eq('email', normalizedRecipient)
+              .maybeSingle()
+            unsubscribeToken = storedToken?.token ?? newToken
+          }
 
           await supabase.from('email_send_log').insert({
             message_id: messageId,
@@ -112,9 +143,11 @@ export const Route = createFileRoute('/api/public/contact')({
               purpose: 'transactional',
               label: 'contact-inquiry',
               idempotency_key: messageId,
+              unsubscribe_token: unsubscribeToken,
               queued_at: new Date().toISOString(),
             },
           })
+
 
           if (enqueueError) {
             console.error('Failed to enqueue contact email', enqueueError)
