@@ -11,8 +11,11 @@ export const Route = createFileRoute("/contact")({
       { name: "description", content: "Request a free painting & decorating quote. Call, email, or send us a message." },
       { property: "og:title", content: "Contact All Colours Painting" },
       { property: "og:description", content: "Request a free painting & decorating quote." },
+      { property: "og:url", content: "https://allcolourspainter.com/contact" },
+      { property: "og:type", content: "website" },
       { property: "og:image", content: ctaAsset.url },
     ],
+    links: [{ rel: "canonical", href: "https://allcolourspainter.com/contact" }],
   }),
   component: Contact,
 });
