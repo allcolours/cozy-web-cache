@@ -262,6 +262,19 @@ export const Route = createFileRoute("/lovable/email/queue/process")({
             }
 
             try {
+              if (
+                queue === 'transactional_emails' &&
+                payload.purpose === 'transactional' &&
+                !payload.unsubscribe_token &&
+                typeof payload.to === 'string' &&
+                payload.to.includes('@')
+              ) {
+                payload.unsubscribe_token = await getOrCreateUnsubscribeToken(
+                  supabase,
+                  payload.to
+                )
+              }
+
               await sendLovableEmail(
                 {
                   run_id: payload.run_id,
