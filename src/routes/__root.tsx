@@ -124,8 +124,25 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+      <PageViewTracker />
       <Outlet />
     </QueryClientProvider>
   );
+}
+
+function PageViewTracker() {
+  const router = useRouter();
+  const path = router.state.location.pathname;
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    if (path.startsWith("/admin") || path.startsWith("/auth")) return;
+    import("../integrations/supabase/client").then(({ supabase }) => {
+      void supabase.from("page_views").insert({
+        path,
+        referrer: document.referrer || null,
+        user_agent: navigator.userAgent.slice(0, 500),
+      });
+    });
+  }, [path]);
+  return null;
 }

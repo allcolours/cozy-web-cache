@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useState, type ReactNode } from "react";
 import logo from "../assets/logo.png";
+import { useSiteSettings } from "../hooks/useSiteSettings";
 
 const NAV = [
   { to: "/", label: "Home" },
@@ -10,6 +11,7 @@ const NAV = [
   { to: "/contact", label: "Contact" },
 ] as const;
 
+// Static brand info (not editable from admin)
 export const COMPANY = {
   name: "All Colours Painting Contractor Limited",
   shortName: "All Colours Painting",
@@ -22,6 +24,11 @@ export const COMPANY = {
 
 export function SiteLayout({ children }: { children: ReactNode }) {
   const [open, setOpen] = useState(false);
+  const settings = useSiteSettings();
+  const phone = settings.phone || COMPANY.phone;
+  const email = settings.email || COMPANY.email;
+  const area = settings.area || COMPANY.area;
+  const hours = settings.hours || COMPANY.hours;
 
   return (
     <div className="flex min-h-screen flex-col bg-background text-foreground">
@@ -29,16 +36,16 @@ export function SiteLayout({ children }: { children: ReactNode }) {
       <div className="hidden bg-[var(--color-surface-dark)] text-[var(--color-surface-dark-foreground)] md:block">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 text-xs md:px-8">
           <div className="flex items-center gap-6">
-            <a href={`tel:${COMPANY.phone.replace(/\s/g, "")}`} className="flex items-center gap-2 text-white/80 hover:text-primary">
+            <a href={`tel:${phone.replace(/\s/g, "")}`} className="flex items-center gap-2 text-white/80 hover:text-primary">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92Z" /></svg>
-              {COMPANY.phone}
+              {phone}
             </a>
-            <a href={`mailto:${COMPANY.email}`} className="flex items-center gap-2 text-white/80 hover:text-primary">
+            <a href={`mailto:${email}`} className="flex items-center gap-2 text-white/80 hover:text-primary">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="M3 7l9 6 9-6" /></svg>
-              {COMPANY.email}
+              {email}
             </a>
           </div>
-          <div className="text-white/60">{COMPANY.hours}</div>
+          <div className="text-white/60">{hours}</div>
         </div>
       </div>
 
@@ -99,10 +106,10 @@ export function SiteLayout({ children }: { children: ReactNode }) {
                 </Link>
               ))}
               <a
-                href={`tel:${COMPANY.phone.replace(/\s/g, "")}`}
+                href={`tel:${phone.replace(/\s/g, "")}`}
                 className="mt-3 inline-flex items-center justify-center rounded-sm bg-primary px-5 py-3 font-display text-xs font-bold uppercase tracking-wider text-primary-foreground"
               >
-                Call {COMPANY.phone}
+                Call {phone}
               </a>
             </nav>
           </div>
@@ -122,7 +129,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
               </span>
             </div>
             <p className="mt-5 max-w-md text-sm leading-relaxed text-white/65">
-              Professional interior, exterior and commercial painting & decorating across {COMPANY.area}.
+              Professional interior, exterior and commercial painting & decorating across {area}.
               Quality finishes, tidy workmanship, fully insured — backed by a written workmanship guarantee.
             </p>
             <div className="mt-5 h-[3px] w-16 bg-primary" />
@@ -144,10 +151,10 @@ export function SiteLayout({ children }: { children: ReactNode }) {
             <h4 className="font-display text-sm font-bold uppercase tracking-wider text-white">Contact</h4>
             <div className="mt-3 h-[2px] w-10 bg-primary" />
             <ul className="mt-4 space-y-2 text-sm text-white/65">
-              <li><a href={`tel:${COMPANY.phone.replace(/\s/g, "")}`} className="hover:text-primary">{COMPANY.phone}</a></li>
-              <li><a href={`mailto:${COMPANY.email}`} className="hover:text-primary">{COMPANY.email}</a></li>
-              <li>{COMPANY.area}</li>
-              <li>{COMPANY.hours}</li>
+              <li><a href={`tel:${phone.replace(/\s/g, "")}`} className="hover:text-primary">{phone}</a></li>
+              <li><a href={`mailto:${email}`} className="hover:text-primary">{email}</a></li>
+              <li>{area}</li>
+              <li>{hours}</li>
             </ul>
           </div>
         </div>
