@@ -13,9 +13,9 @@ const NAV = [
 export const COMPANY = {
   name: "All Colours Painting Contractor Limited",
   shortName: "All Colours Painting",
-  phone: "020 1234 5678",
-  email: "info@allcolourspainting.co.uk",
-  area: "London & surrounding areas",
+  phone: "01 234 5678",
+  email: "info@allcolourspainting.ie",
+  area: "Dublin & surrounding areas",
   hours: "Mon–Sat · 8:00 – 18:00",
   tagline: "Painting & decorating, done properly.",
 };

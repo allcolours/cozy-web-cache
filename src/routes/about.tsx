@@ -26,7 +26,7 @@ const values = [
   { t: "Quality first", d: "Dulux, Farrow & Ball, Little Greene and Sandtex — properly prepared, properly applied." },
   { t: "Tidy on site", d: "Daily clean-down, full dust sheeting and respect for your home or workplace." },
   { t: "Honest pricing", d: "Detailed written quotes with no surprises — what you're quoted is what you pay." },
-  { t: "Fully insured", d: "£5m public liability cover and a written workmanship guarantee on every job." },
+  { t: "Fully insured", d: "€5m public liability cover and a written workmanship guarantee on every job." },
 ];
 
 function About() {
