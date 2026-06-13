@@ -192,7 +192,7 @@ function Home() {
         <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-6 px-4 py-20 md:flex-row md:items-center md:px-8">
           <div className="text-white">
             <span className="eyebrow text-accent">Free quotes</span>
-            <h2 className="mt-2 font-display text-3xl font-extrabold uppercase tracking-tight md:text-4xl">Ready to transform your space?</h2>
+            <h2 className="mt-2 font-display text-3xl font-extrabold uppercase tracking-tight text-white md:text-4xl">Ready to transform your space?</h2>
             <p className="mt-3 max-w-2xl text-white/80">No-obligation site visits and detailed written quotes across {COMPANY.area}.</p>
           </div>
           <div className="flex flex-wrap gap-3">
