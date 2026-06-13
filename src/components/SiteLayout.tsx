@@ -91,7 +91,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
         <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 md:grid-cols-4 md:px-8">
           <div className="md:col-span-2">
             <div className="flex items-center gap-3">
-              <img src={logo} alt="" width={56} height={56} className="h-14 w-14 object-contain brightness-0 invert" />
+              <img src={logo} alt="" width={56} height={56} className="h-14 w-14 object-contain" />
               <span className="text-lg font-semibold">{COMPANY.shortName}</span>
             </div>
             <p className="mt-4 max-w-md text-sm text-primary-foreground/70">
