@@ -1,12 +1,15 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout, COMPANY } from "../components/SiteLayout";
+import { TestimonialsSection } from "../components/Testimonials";
+import { ProcessSteps } from "../components/ProcessSteps";
+import { FaqAccordion } from "../components/FaqAccordion";
+import { FAQS } from "../data/faqs";
+import { CASE_STUDIES } from "../data/caseStudies";
 import heroAsset from "../assets/portfolio/hero-house.webp.asset.json";
 import aboutAsset from "../assets/portfolio/about-architecture.jpg.asset.json";
 import sCommercialAsset from "../assets/portfolio/service-commercial.jpg.asset.json";
 import sIndustrialAsset from "../assets/portfolio/service-industrial.jpg.asset.json";
 import sHospitalityAsset from "../assets/portfolio/service-hospitality.jpg.asset.json";
-import pExteriorAsset from "../assets/portfolio/portfolio-exterior-1.jpg.asset.json";
-import pCommercialFloorAsset from "../assets/portfolio/portfolio-commercial-floor.jpg.asset.json";
 import ctaAsset from "../assets/portfolio/cta-bg.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
@@ -66,12 +69,7 @@ const services = [
   },
 ];
 
-const portfolio = [
-  { img: heroAsset.url, title: "Sage Country Home", tag: "Exterior · Residential" },
-  { img: pExteriorAsset.url, title: "Modern Family Villa", tag: "Exterior · Residential" },
-  { img: pCommercialFloorAsset.url, title: "Warehouse Floor Coating", tag: "Industrial · Commercial" },
-  { img: sCommercialAsset.url, title: "Open-Plan Office Repaint", tag: "Commercial · Offices" },
-];
+const portfolio = CASE_STUDIES.slice(0, 4).map((c) => ({ img: c.cover, title: c.title, tag: `${c.sector} · ${c.location}`, slug: c.slug }));
 
 const stats = [
   { k: "20+", v: "Years experience" },
@@ -178,29 +176,53 @@ function Home() {
         </div>
       </section>
 
-      {/* Recent projects */}
+      {/* Recent case studies */}
       <section className="bg-secondary">
         <div className="mx-auto max-w-7xl px-4 py-20 md:px-8 md:py-28">
           <div className="flex flex-wrap items-end justify-between gap-6">
             <div>
               <span className="eyebrow">Our work</span>
-              <h2 className="section-title mt-3 text-3xl md:text-4xl">Recent projects</h2>
+              <h2 className="section-title mt-3 text-3xl md:text-4xl">Recent case studies</h2>
               <hr className="section-rule" />
+              <p className="mt-6 max-w-2xl text-base text-foreground">The brief, the prep, the materials, the result. The honest version of how each job actually went.</p>
             </div>
-            <Link to="/gallery" className="font-display text-xs font-bold uppercase tracking-wider text-primary hover:text-[oklch(0.2_0_0)]">See full gallery →</Link>
+            <Link to="/case-studies" className="font-display text-xs font-bold uppercase tracking-wider text-primary hover:text-[oklch(0.2_0_0)]">All case studies →</Link>
           </div>
           <div className="mt-12 grid gap-6 sm:grid-cols-2">
             {portfolio.map((p) => (
-              <figure key={p.title} className="group relative overflow-hidden bg-card">
+              <Link key={p.slug} to="/case-studies/$slug" params={{ slug: p.slug }} className="group relative block overflow-hidden bg-card">
                 <div className="aspect-[16/11] overflow-hidden">
                   <img src={p.img} alt={p.title} loading="lazy" width={1200} height={825} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
                 </div>
-                <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent p-6 text-white">
+                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent p-6 text-white">
                   <p className="text-[11px] uppercase tracking-[0.18em] text-accent">{p.tag}</p>
                   <h3 className="mt-1 font-display text-lg font-bold uppercase tracking-wide">{p.title}</h3>
-                </figcaption>
-              </figure>
+                </div>
+              </Link>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Process */}
+      <ProcessSteps background="background" />
+
+      {/* Testimonials */}
+      <TestimonialsSection limit={3} />
+
+      {/* FAQ teaser */}
+      <section className="bg-secondary">
+        <div className="mx-auto max-w-5xl px-4 py-20 md:px-8 md:py-28">
+          <div className="flex flex-wrap items-end justify-between gap-6">
+            <div>
+              <span className="eyebrow">Questions, answered</span>
+              <h2 className="section-title mt-3 text-3xl md:text-4xl">Before you book</h2>
+              <hr className="section-rule" />
+            </div>
+            <Link to="/faq" className="font-display text-xs font-bold uppercase tracking-wider text-primary hover:text-[oklch(0.2_0_0)]">Read all FAQs →</Link>
+          </div>
+          <div className="mt-10">
+            <FaqAccordion items={FAQS.slice(0, 5)} />
           </div>
         </div>
       </section>
