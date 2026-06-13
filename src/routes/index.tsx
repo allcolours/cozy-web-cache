@@ -31,20 +31,51 @@ export const Route = createFileRoute("/")({
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": ["Organization", "LocalBusiness", "Painter"],
+          "@id": "https://allcolourspainter.com/#business",
           name: "All Colours Painting Contractor Limited",
+          alternateName: "All Colours Painting",
           url: "https://allcolourspainter.com/",
           telephone: "+353 85 821 1870",
           email: "info@allcolourspainter.com",
           description: "Professional painters & decorators in Dublin. Interior, exterior, commercial & industrial painting.",
-          areaServed: "Dublin & surrounding areas",
           image: heroAsset.url,
-          openingHours: ["Mo-Sa 08:00-18:00"],
+          logo: "https://allcolourspainter.com/favicon.ico",
+          priceRange: "€€",
+          address: {
+            "@type": "PostalAddress",
+            addressLocality: "Dublin",
+            addressRegion: "Leinster",
+            addressCountry: "IE",
+          },
+          areaServed: [
+            { "@type": "City", name: "Dublin" },
+            { "@type": "AdministrativeArea", name: "Wicklow" },
+            { "@type": "AdministrativeArea", name: "Kildare" },
+            { "@type": "AdministrativeArea", name: "Meath" },
+          ],
+          openingHoursSpecification: [
+            {
+              "@type": "OpeningHoursSpecification",
+              dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+              opens: "08:00",
+              closes: "18:00",
+            },
+          ],
+          sameAs: ["https://www.facebook.com/profile.php?id=61561664309105"],
+          aggregateRating: {
+            "@type": "AggregateRating",
+            ratingValue: "5.0",
+            reviewCount: "7",
+            bestRating: "5",
+            worstRating: "1",
+          },
         }),
       },
     ],
   }),
   component: Home,
 });
+
 
 const services = [
   {
