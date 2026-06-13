@@ -13,12 +13,17 @@ import { Route as UnsubscribeRouteImport } from './routes/unsubscribe'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as GalleryRouteImport } from './routes/gallery'
+import { Route as FaqRouteImport } from './routes/faq'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as CaseStudiesRouteImport } from './routes/case-studies'
+import { Route as BlogRouteImport } from './routes/blog'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as EmailUnsubscribeRouteImport } from './routes/email/unsubscribe'
+import { Route as CaseStudiesSlugRouteImport } from './routes/case-studies.$slug'
+import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated/admin.index'
 import { Route as LovableEmailSuppressionRouteImport } from './routes/lovable/email/suppression'
@@ -53,9 +58,24 @@ const GalleryRoute = GalleryRouteImport.update({
   path: '/gallery',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FaqRoute = FaqRouteImport.update({
+  id: '/faq',
+  path: '/faq',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CaseStudiesRoute = CaseStudiesRouteImport.update({
+  id: '/case-studies',
+  path: '/case-studies',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogRoute = BlogRouteImport.update({
+  id: '/blog',
+  path: '/blog',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthRoute = AuthRouteImport.update({
@@ -81,6 +101,16 @@ const EmailUnsubscribeRoute = EmailUnsubscribeRouteImport.update({
   id: '/email/unsubscribe',
   path: '/email/unsubscribe',
   getParentRoute: () => rootRouteImport,
+} as any)
+const CaseStudiesSlugRoute = CaseStudiesSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => CaseStudiesRoute,
+} as any)
+const BlogSlugRoute = BlogSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => BlogRoute,
 } as any)
 const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
   id: '/admin',
@@ -159,12 +189,17 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/auth': typeof AuthRoute
+  '/blog': typeof BlogRouteWithChildren
+  '/case-studies': typeof CaseStudiesRouteWithChildren
   '/contact': typeof ContactRoute
+  '/faq': typeof FaqRoute
   '/gallery': typeof GalleryRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/unsubscribe': typeof UnsubscribeRoute
   '/admin': typeof AuthenticatedAdminRouteWithChildren
+  '/blog/$slug': typeof BlogSlugRoute
+  '/case-studies/$slug': typeof CaseStudiesSlugRoute
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
   '/admin/analytics': typeof AuthenticatedAdminAnalyticsRoute
   '/admin/content': typeof AuthenticatedAdminContentRoute
@@ -183,11 +218,16 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/auth': typeof AuthRoute
+  '/blog': typeof BlogRouteWithChildren
+  '/case-studies': typeof CaseStudiesRouteWithChildren
   '/contact': typeof ContactRoute
+  '/faq': typeof FaqRoute
   '/gallery': typeof GalleryRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/unsubscribe': typeof UnsubscribeRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/case-studies/$slug': typeof CaseStudiesSlugRoute
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
   '/admin/analytics': typeof AuthenticatedAdminAnalyticsRoute
   '/admin/content': typeof AuthenticatedAdminContentRoute
@@ -208,12 +248,17 @@ export interface FileRoutesById {
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/about': typeof AboutRoute
   '/auth': typeof AuthRoute
+  '/blog': typeof BlogRouteWithChildren
+  '/case-studies': typeof CaseStudiesRouteWithChildren
   '/contact': typeof ContactRoute
+  '/faq': typeof FaqRoute
   '/gallery': typeof GalleryRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/unsubscribe': typeof UnsubscribeRoute
   '/_authenticated/admin': typeof AuthenticatedAdminRouteWithChildren
+  '/blog/$slug': typeof BlogSlugRoute
+  '/case-studies/$slug': typeof CaseStudiesSlugRoute
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
   '/_authenticated/admin/analytics': typeof AuthenticatedAdminAnalyticsRoute
   '/_authenticated/admin/content': typeof AuthenticatedAdminContentRoute
@@ -234,12 +279,17 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/auth'
+    | '/blog'
+    | '/case-studies'
     | '/contact'
+    | '/faq'
     | '/gallery'
     | '/services'
     | '/sitemap.xml'
     | '/unsubscribe'
     | '/admin'
+    | '/blog/$slug'
+    | '/case-studies/$slug'
     | '/email/unsubscribe'
     | '/admin/analytics'
     | '/admin/content'
@@ -258,11 +308,16 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/auth'
+    | '/blog'
+    | '/case-studies'
     | '/contact'
+    | '/faq'
     | '/gallery'
     | '/services'
     | '/sitemap.xml'
     | '/unsubscribe'
+    | '/blog/$slug'
+    | '/case-studies/$slug'
     | '/email/unsubscribe'
     | '/admin/analytics'
     | '/admin/content'
@@ -282,12 +337,17 @@ export interface FileRouteTypes {
     | '/_authenticated'
     | '/about'
     | '/auth'
+    | '/blog'
+    | '/case-studies'
     | '/contact'
+    | '/faq'
     | '/gallery'
     | '/services'
     | '/sitemap.xml'
     | '/unsubscribe'
     | '/_authenticated/admin'
+    | '/blog/$slug'
+    | '/case-studies/$slug'
     | '/email/unsubscribe'
     | '/_authenticated/admin/analytics'
     | '/_authenticated/admin/content'
@@ -308,7 +368,10 @@ export interface RootRouteChildren {
   AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
   AboutRoute: typeof AboutRoute
   AuthRoute: typeof AuthRoute
+  BlogRoute: typeof BlogRouteWithChildren
+  CaseStudiesRoute: typeof CaseStudiesRouteWithChildren
   ContactRoute: typeof ContactRoute
+  FaqRoute: typeof FaqRoute
   GalleryRoute: typeof GalleryRoute
   ServicesRoute: typeof ServicesRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
@@ -353,11 +416,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GalleryRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/faq': {
+      id: '/faq'
+      path: '/faq'
+      fullPath: '/faq'
+      preLoaderRoute: typeof FaqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/contact': {
       id: '/contact'
       path: '/contact'
       fullPath: '/contact'
       preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/case-studies': {
+      id: '/case-studies'
+      path: '/case-studies'
+      fullPath: '/case-studies'
+      preLoaderRoute: typeof CaseStudiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog': {
+      id: '/blog'
+      path: '/blog'
+      fullPath: '/blog'
+      preLoaderRoute: typeof BlogRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/auth': {
@@ -394,6 +478,20 @@ declare module '@tanstack/react-router' {
       fullPath: '/email/unsubscribe'
       preLoaderRoute: typeof EmailUnsubscribeRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/case-studies/$slug': {
+      id: '/case-studies/$slug'
+      path: '/$slug'
+      fullPath: '/case-studies/$slug'
+      preLoaderRoute: typeof CaseStudiesSlugRouteImport
+      parentRoute: typeof CaseStudiesRoute
+    }
+    '/blog/$slug': {
+      id: '/blog/$slug'
+      path: '/$slug'
+      fullPath: '/blog/$slug'
+      preLoaderRoute: typeof BlogSlugRouteImport
+      parentRoute: typeof BlogRoute
     }
     '/_authenticated/admin': {
       id: '/_authenticated/admin'
@@ -519,12 +617,37 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
 const AuthenticatedRouteRouteWithChildren =
   AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
 
+interface BlogRouteChildren {
+  BlogSlugRoute: typeof BlogSlugRoute
+}
+
+const BlogRouteChildren: BlogRouteChildren = {
+  BlogSlugRoute: BlogSlugRoute,
+}
+
+const BlogRouteWithChildren = BlogRoute._addFileChildren(BlogRouteChildren)
+
+interface CaseStudiesRouteChildren {
+  CaseStudiesSlugRoute: typeof CaseStudiesSlugRoute
+}
+
+const CaseStudiesRouteChildren: CaseStudiesRouteChildren = {
+  CaseStudiesSlugRoute: CaseStudiesSlugRoute,
+}
+
+const CaseStudiesRouteWithChildren = CaseStudiesRoute._addFileChildren(
+  CaseStudiesRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
   AboutRoute: AboutRoute,
   AuthRoute: AuthRoute,
+  BlogRoute: BlogRouteWithChildren,
+  CaseStudiesRoute: CaseStudiesRouteWithChildren,
   ContactRoute: ContactRoute,
+  FaqRoute: FaqRoute,
   GalleryRoute: GalleryRoute,
   ServicesRoute: ServicesRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
