@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout, COMPANY } from "../components/SiteLayout";
+import { TestimonialsSection } from "../components/Testimonials";
 import aboutAsset from "../assets/portfolio/about-architecture.jpg.asset.json";
 import heroAsset from "../assets/portfolio/hero-house.webp.asset.json";
 
@@ -91,6 +92,56 @@ function About() {
           </div>
         </div>
       </section>
+
+      {/* Timeline */}
+      <section className="bg-background">
+        <div className="mx-auto max-w-7xl px-4 py-20 md:px-8 md:py-28">
+          <div className="max-w-2xl">
+            <span className="eyebrow">Our story so far</span>
+            <h2 className="section-title mt-3 text-3xl md:text-4xl">Twenty-plus years, one ladder at a time</h2>
+            <hr className="section-rule" />
+          </div>
+          <ol className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+            {[
+              { y: "2003", t: "First brush", d: "Started out as a two-man team painting family homes around south Dublin — most of those first clients are still on the books today." },
+              { y: "2010", t: "Going commercial", d: "Trusted by our first hotel and office clients, learning to schedule jobs around live businesses without shutting them down." },
+              { y: "2017", t: "Industrial coatings", d: "Trained and certified on heavy-duty epoxy floor and protective steel systems — opening the door to warehouse and plant-room work." },
+              { y: "2024", t: "Twenty years on", d: "Still family-run, still answering our own phone, still treating every job the way we'd want our own home painted." },
+            ].map((s) => (
+              <li key={s.y} className="border-t-[3px] border-primary bg-card p-7">
+                <div className="font-display text-3xl font-extrabold text-primary">{s.y}</div>
+                <h3 className="mt-3 font-display text-lg font-bold uppercase tracking-wide text-[oklch(0.2_0_0)]">{s.t}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-foreground">{s.d}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      {/* A note from the team */}
+      <section className="bg-secondary">
+        <div className="mx-auto grid max-w-7xl gap-12 px-4 py-20 md:grid-cols-[1fr_1.2fr] md:gap-16 md:px-8 md:py-28">
+          <div className="relative">
+            <img src={heroAsset.url} alt="On site" width={900} height={1100} className="aspect-[4/5] w-full object-cover" />
+            <div className="absolute -bottom-6 -left-6 hidden h-32 w-32 border-[6px] border-accent md:block" />
+          </div>
+          <div>
+            <span className="eyebrow">A note from us</span>
+            <h2 className="section-title mt-3 text-3xl md:text-4xl">It's still personal</h2>
+            <hr className="section-rule" />
+            <div className="mt-8 space-y-5 text-base leading-relaxed text-foreground md:text-lg">
+              <p>We're a small team. The person who quotes the job is on site for the job. The phone is answered by someone who's actually been up a ladder this week. That's not marketing — it's just how a family-run trade business works when it cares about its reputation.</p>
+              <p>Every client we've ever had has come through word of mouth or repeat business. We've never paid for a single advert. The day that changes is the day we've stopped doing the job properly.</p>
+              <p>If you're trusting us with your home or your premises, you should know who's coming through the door. That's why every quote we send includes the name of the lead painter who'll be on your job — and you'll meet them at the site visit, not on day one.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <TestimonialsSection limit={6} title="What clients say about working with us" eyebrow="In their own words" />
+
+
 
       {/* Values */}
       <section className="bg-background">
