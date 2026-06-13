@@ -153,6 +153,57 @@ function Services() {
           </div>
         </div>
       </section>
+
+      {/* Process */}
+      <ProcessSteps background="background" />
+
+      {/* Materials & finishes */}
+      <section className="bg-secondary">
+        <div className="mx-auto max-w-7xl px-4 py-20 md:px-8 md:py-28">
+          <div className="max-w-2xl">
+            <span className="eyebrow">What we paint with</span>
+            <h2 className="section-title mt-3 text-3xl md:text-4xl">Trade-grade materials, picked for the job</h2>
+            <hr className="section-rule" />
+            <p className="mt-6 text-base text-foreground">
+              We don't pick paint by the colour on the lid. Every job gets the system that's right for the surface, the use, and the conditions.
+            </p>
+          </div>
+          <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+            {[
+              { brand: "Farrow & Ball", use: "Premium interior walls and woodwork — pigment-rich colour, beautiful matt depth." },
+              { brand: "Little Greene", use: "Period and heritage colours, intelligent durable matt and eggshell ranges." },
+              { brand: "Dulux Trade", use: "Workhorse trade emulsions, scrubbable diamond matt, kitchen & bathroom systems." },
+              { brand: "Sandtex / Weathershield", use: "Long-life exterior masonry and woodwork systems for Irish weather." },
+              { brand: "Tikkurila Helmi", use: "Water-based satin and eggshell for skirting, doors and joinery — non-yellowing." },
+              { brand: "Sikafloor Epoxy", use: "Industrial floor coatings — anti-slip, chemical-resistant, fast-cure." },
+              { brand: "Allback Linseed", use: "Heritage and conservation work — traditional linseed paints and putty." },
+              { brand: "Zinsser Primers", use: "Stain block, BIN, Bullseye — primer for every problem surface we meet." },
+            ].map((m) => (
+              <div key={m.brand} className="border-t-[3px] border-primary bg-card p-6">
+                <div className="font-display text-base font-bold uppercase tracking-wide text-[oklch(0.2_0_0)]">{m.brand}</div>
+                <p className="mt-3 text-sm leading-relaxed text-foreground">{m.use}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Services FAQ */}
+      <section className="bg-background">
+        <div className="mx-auto max-w-5xl px-4 py-20 md:px-8 md:py-28">
+          <div className="max-w-2xl">
+            <span className="eyebrow">Common questions</span>
+            <h2 className="section-title mt-3 text-3xl md:text-4xl">Before you book a painter</h2>
+            <hr className="section-rule" />
+          </div>
+          <div className="mt-10">
+            <FaqAccordion items={FAQS.filter((f) => f.category === "Process" || f.category === "Pricing").slice(0, 6)} />
+          </div>
+          <div className="mt-10">
+            <Link to="/faq" className="font-display text-xs font-bold uppercase tracking-wider text-primary hover:text-[oklch(0.2_0_0)]">All FAQs →</Link>
+          </div>
+        </div>
+      </section>
     </SiteLayout>
   );
 }
