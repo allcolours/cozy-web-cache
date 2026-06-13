@@ -1,11 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout } from "../components/SiteLayout";
 import heroAsset from "../assets/portfolio/hero-house.webp.asset.json";
-import commercialAsset from "../assets/portfolio/service-commercial.webp.asset.json";
-import industrialAsset from "../assets/portfolio/service-industrial.webp.asset.json";
-import hospitalityAsset from "../assets/portfolio/service-hospitality.webp.asset.json";
-import floorAsset from "../assets/portfolio/portfolio-commercial-floor.webp.asset.json";
-import exteriorAsset from "../assets/portfolio/portfolio-exterior-1.webp.asset.json";
+import commercialAsset from "../assets/portfolio/service-commercial.jpg.asset.json";
+import industrialAsset from "../assets/portfolio/service-industrial.jpg.asset.json";
+import hospitalityAsset from "../assets/portfolio/service-hospitality.jpg.asset.json";
+import floorAsset from "../assets/portfolio/portfolio-commercial-floor.jpg.asset.json";
+import exteriorAsset from "../assets/portfolio/portfolio-exterior-1.jpg.asset.json";
 
 export const Route = createFileRoute("/services")({
   head: () => ({

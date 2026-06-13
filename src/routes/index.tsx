@@ -2,11 +2,11 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout, COMPANY } from "../components/SiteLayout";
 import heroAsset from "../assets/portfolio/hero-house.webp.asset.json";
 import aboutAsset from "../assets/portfolio/about-architecture.jpg.asset.json";
-import sCommercialAsset from "../assets/portfolio/service-commercial.webp.asset.json";
-import sIndustrialAsset from "../assets/portfolio/service-industrial.webp.asset.json";
-import sHospitalityAsset from "../assets/portfolio/service-hospitality.webp.asset.json";
-import pExteriorAsset from "../assets/portfolio/portfolio-exterior-1.webp.asset.json";
-import pCommercialFloorAsset from "../assets/portfolio/portfolio-commercial-floor.webp.asset.json";
+import sCommercialAsset from "../assets/portfolio/service-commercial.jpg.asset.json";
+import sIndustrialAsset from "../assets/portfolio/service-industrial.jpg.asset.json";
+import sHospitalityAsset from "../assets/portfolio/service-hospitality.jpg.asset.json";
+import pExteriorAsset from "../assets/portfolio/portfolio-exterior-1.jpg.asset.json";
+import pCommercialFloorAsset from "../assets/portfolio/portfolio-commercial-floor.jpg.asset.json";
 import ctaAsset from "../assets/portfolio/cta-bg.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
