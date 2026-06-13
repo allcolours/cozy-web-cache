@@ -1,6 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { SiteLayout, COMPANY } from "../components/SiteLayout";
+import { SiteLayout } from "../components/SiteLayout";
+import { useSiteSettings } from "../hooks/useSiteSettings";
+import { supabase } from "../integrations/supabase/client";
 import ctaAsset from "../assets/portfolio/cta-bg.jpg.asset.json";
 
 export const Route = createFileRoute("/contact")({
@@ -17,11 +19,40 @@ export const Route = createFileRoute("/contact")({
 });
 
 function Contact() {
+  const settings = useSiteSettings();
   const [sent, setSent] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setSubmitting(true);
+    setError(null);
+    const form = new FormData(e.currentTarget);
+    const payload = {
+      name: String(form.get("name") || "").trim().slice(0, 100),
+      email: String(form.get("email") || "").trim().slice(0, 255),
+      phone: String(form.get("phone") || "").trim().slice(0, 50) || null,
+      postcode: String(form.get("postcode") || "").trim().slice(0, 50) || null,
+      message: String(form.get("message") || "").trim().slice(0, 4000),
+    };
+    if (!payload.name || !payload.email || !payload.message) {
+      setError("Please fill in your name, email, and a short message.");
+      setSubmitting(false);
+      return;
+    }
+    const { error: insErr } = await supabase.from("contact_submissions").insert(payload);
+    if (insErr) {
+      setError("Sorry, we couldn't send that. Please try again or call us directly.");
+      setSubmitting(false);
+      return;
+    }
+    setSent(true);
+    setSubmitting(false);
+  }
 
   return (
     <SiteLayout>
-      {/* Hero band */}
       <section className="relative isolate overflow-hidden">
         <img src={ctaAsset.url} alt="" width={1920} height={900} className="absolute inset-0 -z-10 h-full w-full object-cover" />
         <div className="absolute inset-0 -z-10 bg-[oklch(0.2_0_0)]/80" />
@@ -37,7 +68,6 @@ function Contact() {
         </div>
       </section>
 
-      {/* Form + details */}
       <section className="bg-background">
         <div className="mx-auto max-w-7xl px-4 py-20 md:px-8 md:py-28">
           <div className="grid gap-12 md:grid-cols-5">
@@ -46,15 +76,15 @@ function Contact() {
               <h2 className="section-title mt-3 text-3xl">Free, no-obligation quotes</h2>
               <hr className="section-rule" />
               <dl className="mt-8 space-y-6 text-sm">
-                <ContactRow label="Phone" value={COMPANY.phone} href={`tel:${COMPANY.phone.replace(/\s/g, "")}`} icon="phone" />
-                <ContactRow label="Email" value={COMPANY.email} href={`mailto:${COMPANY.email}`} icon="mail" />
-                <ContactRow label="Service area" value={COMPANY.area} icon="pin" />
-                <ContactRow label="Hours" value={COMPANY.hours} icon="clock" />
+                <ContactRow label="Phone" value={settings.phone} href={`tel:${settings.phone.replace(/\s/g, "")}`} icon="phone" />
+                <ContactRow label="Email" value={settings.email} href={`mailto:${settings.email}`} icon="mail" />
+                <ContactRow label="Service area" value={settings.area} icon="pin" />
+                <ContactRow label="Hours" value={settings.hours} icon="clock" />
               </dl>
             </div>
 
             <form
-              onSubmit={(e) => { e.preventDefault(); setSent(true); }}
+              onSubmit={handleSubmit}
               className="space-y-4 border-t-[3px] border-primary bg-card p-6 md:col-span-3 md:p-10"
             >
               {sent ? (
@@ -73,10 +103,11 @@ function Contact() {
                   <Field label="Postcode" name="postcode" />
                   <div>
                     <label className="font-display text-xs font-bold uppercase tracking-wider text-[oklch(0.2_0_0)]">Project details</label>
-                    <textarea required rows={5} className="mt-2 w-full border border-input bg-background px-3 py-2 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/20" />
+                    <textarea name="message" required rows={5} className="mt-2 w-full border border-input bg-background px-3 py-2 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/20" />
                   </div>
-                  <button type="submit" className="w-full rounded-sm bg-primary px-6 py-3 font-display text-xs font-bold uppercase tracking-wider text-primary-foreground transition-colors hover:bg-[oklch(0.62_0.17_158)] sm:w-auto">
-                    Request my free quote
+                  {error && <p className="text-sm text-destructive">{error}</p>}
+                  <button type="submit" disabled={submitting} className="w-full rounded-sm bg-primary px-6 py-3 font-display text-xs font-bold uppercase tracking-wider text-primary-foreground transition-colors hover:bg-[oklch(0.62_0.17_158)] disabled:opacity-50 sm:w-auto">
+                    {submitting ? "Sending…" : "Request my free quote"}
                   </button>
                 </>
               )}
