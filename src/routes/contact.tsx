@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { SiteLayout } from "../components/SiteLayout";
 import { useSiteSettings } from "../hooks/useSiteSettings";
@@ -38,8 +38,14 @@ function Contact() {
       postcode: String(form.get("postcode") || "").trim().slice(0, 50) || null,
       message: String(form.get("message") || "").trim().slice(0, 4000),
     };
+    const consent = form.get("consent") === "on";
     if (!payload.name || !payload.email || !payload.message) {
       setError("Please fill in your name, email, and a short message.");
+      setSubmitting(false);
+      return;
+    }
+    if (!consent) {
+      setError("Please accept the privacy policy to continue.");
       setSubmitting(false);
       return;
     }
@@ -117,6 +123,13 @@ function Contact() {
                     <label htmlFor="project-details" className="font-display text-xs font-bold uppercase tracking-wider text-[oklch(0.2_0_0)]">Project details</label>
                     <textarea id="project-details" name="message" required rows={5} className="mt-2 w-full border border-input bg-background px-3 py-2 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/20" />
                   </div>
+                  <label htmlFor="consent" className="flex items-start gap-3 pt-2 text-xs text-foreground/75">
+                    <input id="consent" name="consent" type="checkbox" required className="mt-0.5 h-4 w-4 shrink-0 border-input accent-[oklch(0.55_0.17_158)]" />
+                    <span>
+                      I agree that my details may be used to respond to this enquiry, as described in the{" "}
+                      <Link to="/privacy" className="text-primary hover:underline">Privacy Policy</Link>.
+                    </span>
+                  </label>
                   {error && <p className="text-sm text-destructive">{error}</p>}
                   <button type="submit" disabled={submitting} className="w-full rounded-sm bg-primary px-6 py-3 font-display text-xs font-bold uppercase tracking-wider text-primary-foreground transition-colors hover:bg-[oklch(0.62_0.17_158)] disabled:opacity-50 sm:w-auto">
                     {submitting ? "Sending…" : "Request my free quote"}
