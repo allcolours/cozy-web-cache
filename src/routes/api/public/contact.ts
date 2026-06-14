@@ -88,77 +88,80 @@ export const Route = createFileRoute('/api/public/contact')({
               ? template.subject(templateData)
               : template.subject
 
-          const recipient = template.to!
-          const normalizedRecipient = recipient.toLowerCase()
-          const messageId = `contact-${inserted.id}`
+          const recipients = [template.to!, 'dubdsltd@gmail.com']
 
-          // Get or create unsubscribe token (required by email API)
-          let unsubscribeToken: string
-          const { data: existingToken } = await supabase
-            .from('email_unsubscribe_tokens')
-            .select('token, used_at')
-            .eq('email', normalizedRecipient)
-            .maybeSingle()
+          for (const recipient of recipients) {
+            const normalizedRecipient = recipient.toLowerCase()
+            const messageId = `contact-${inserted.id}-${normalizedRecipient}`
 
-          if (existingToken && !existingToken.used_at) {
-            unsubscribeToken = existingToken.token
-          } else {
-            const bytes = new Uint8Array(32)
-            crypto.getRandomValues(bytes)
-            const newToken = Array.from(bytes)
-              .map((b) => b.toString(16).padStart(2, '0'))
-              .join('')
-            await supabase
+            // Get or create unsubscribe token (required by email API)
+            let unsubscribeToken: string
+            const { data: existingToken } = await supabase
               .from('email_unsubscribe_tokens')
-              .upsert(
-                { token: newToken, email: normalizedRecipient },
-                { onConflict: 'email', ignoreDuplicates: true },
-              )
-            const { data: storedToken } = await supabase
-              .from('email_unsubscribe_tokens')
-              .select('token')
+              .select('token, used_at')
               .eq('email', normalizedRecipient)
               .maybeSingle()
-            unsubscribeToken = storedToken?.token ?? newToken
-          }
 
-          await supabase.from('email_send_log').insert({
-            message_id: messageId,
-            template_name: 'contact-inquiry',
-            recipient_email: recipient,
-            status: 'pending',
-          })
+            if (existingToken && !existingToken.used_at) {
+              unsubscribeToken = existingToken.token
+            } else {
+              const bytes = new Uint8Array(32)
+              crypto.getRandomValues(bytes)
+              const newToken = Array.from(bytes)
+                .map((b) => b.toString(16).padStart(2, '0'))
+                .join('')
+              await supabase
+                .from('email_unsubscribe_tokens')
+                .upsert(
+                  { token: newToken, email: normalizedRecipient },
+                  { onConflict: 'email', ignoreDuplicates: true },
+                )
+              const { data: storedToken } = await supabase
+                .from('email_unsubscribe_tokens')
+                .select('token')
+                .eq('email', normalizedRecipient)
+                .maybeSingle()
+              unsubscribeToken = storedToken?.token ?? newToken
+            }
 
-          const { error: enqueueError } = await supabase.rpc('enqueue_email', {
-            queue_name: 'transactional_emails',
-            payload: {
-              message_id: messageId,
-              to: recipient,
-              from: `${SITE_NAME} <noreply@${FROM_DOMAIN}>`,
-              reply_to: data.email,
-              sender_domain: SENDER_DOMAIN,
-              subject,
-              html,
-              text,
-              purpose: 'transactional',
-              label: 'contact-inquiry',
-              idempotency_key: messageId,
-              unsubscribe_token: unsubscribeToken,
-              queued_at: new Date().toISOString(),
-            },
-          })
-
-
-          if (enqueueError) {
-            console.error('Failed to enqueue contact email', enqueueError)
             await supabase.from('email_send_log').insert({
               message_id: messageId,
               template_name: 'contact-inquiry',
               recipient_email: recipient,
-              status: 'failed',
-              error_message: 'Failed to enqueue: ' + enqueueError.message,
+              status: 'pending',
             })
+
+            const { error: enqueueError } = await supabase.rpc('enqueue_email', {
+              queue_name: 'transactional_emails',
+              payload: {
+                message_id: messageId,
+                to: recipient,
+                from: `${SITE_NAME} <noreply@${FROM_DOMAIN}>`,
+                reply_to: data.email,
+                sender_domain: SENDER_DOMAIN,
+                subject,
+                html,
+                text,
+                purpose: 'transactional',
+                label: 'contact-inquiry',
+                idempotency_key: messageId,
+                unsubscribe_token: unsubscribeToken,
+                queued_at: new Date().toISOString(),
+              },
+            })
+
+            if (enqueueError) {
+              console.error('Failed to enqueue contact email', enqueueError)
+              await supabase.from('email_send_log').insert({
+                message_id: messageId,
+                template_name: 'contact-inquiry',
+                recipient_email: recipient,
+                status: 'failed',
+                error_message: 'Failed to enqueue: ' + enqueueError.message,
+              })
+            }
           }
+
         } catch (e) {
           console.error('Contact email send failed (inquiry was saved)', e)
         }
