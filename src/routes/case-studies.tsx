@@ -7,7 +7,7 @@ export const Route = createFileRoute("/case-studies")({
   head: () => ({
     meta: [
       { title: "Case Studies | All Colours Painting Contractor Limited" },
-      { name: "description", content: "Detailed before-and-after painting & decorating projects across Dublin — residential repaints, heritage sash restoration, commercial fit-outs and industrial floor coatings." },
+      { name: "description", content: "Before-and-after painting & decorating projects across Dublin — residential, commercial, industrial and heritage." },
       { property: "og:title", content: "Painting & Decorating Case Studies — Dublin" },
       { property: "og:description", content: "Real projects, real materials, real timelines. See how we approach residential, commercial, industrial and heritage painting jobs." },
       { property: "og:url", content: "https://allcolourspainter.com/case-studies" },

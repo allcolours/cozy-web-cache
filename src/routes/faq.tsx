@@ -10,7 +10,7 @@ export const Route = createFileRoute("/faq")({
   head: () => ({
     meta: [
       { title: "FAQ | All Colours Painting Contractor Limited" },
-      { name: "description", content: "Honest answers to the questions Dublin homeowners and businesses actually ask before hiring painters & decorators — quotes, timelines, materials, guarantees." },
+      { name: "description", content: "Honest answers to questions Dublin homeowners ask before hiring painters & decorators — quotes, timelines, materials, guarantees." },
       { property: "og:title", content: "Painting & Decorating FAQ — Dublin" },
       { property: "og:description", content: "Everything you wanted to know before booking a painter — answered straight." },
       { property: "og:url", content: "https://allcolourspainter.com/faq" },

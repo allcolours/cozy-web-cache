@@ -18,7 +18,7 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "Painter Dublin | Interior & Exterior Painting & Decorating" },
-      { name: "description", content: "Painter and decorator in Dublin for houses & apartments. Interior, exterior, kitchen painting, floor painting, epoxy floors, spray painting, furniture painting, railings painting, dash & pebbledash painting in Ballsbridge, Donnybrook, Stillorgan, Dún Laoghaire, Rathmines, Sandyford, Dundrum, Blackrock & more. Free quotes." },
+      { name: "description", content: "Painter and decorator in Dublin. Interior, exterior, kitchen & floor painting, epoxy floors, spray painting for houses & apartments across South Dublin. Free quotes." },
       { name: "keywords", content: "painter dublin, painter and decorator dublin, painter near me, painter company near me, painting contractors dublin, master painters, painting and decorating dublin, interior painter near me, interior painting dublin, exterior painting dublin, apartment painting dublin, house painting, renovation painting, ceiling painting, hallway painting, staircase painting, stairs painting, bedroom painting, bathroom painting, living room painting, nursery painters near me, georgian house painting, period property painting, office painters dublin, commercial painting contractors, industrial premises painting, painting dash, painting pebbledash, floor painting, two-pack floor paints, twopack paints, epoxy floors, epoxy floor painting, epoxy painting, water based paint, oil based paint, railings painting, furniture painting, kitchen painting, kitchen cabinet painting, repainting kitchen cabinets, hand-painted kitchen, kitchen respraying, spray finish, spray painting, varnish painting, wallpapering dublin, wallpaper hanging, wall decorating, dust-free sanding, vacuum sanding, painter ballsbridge, painter donnybrook, painter stillorgan, painter dun laoghaire, painter rathfarnham, painter sandyford, painter rathmines, painter milltown, painter dundrum, painter roebuck, painter goatstown, painter ballinteer, painter leopardstown, painter harolds cross, painter cabinteely, painter foxrock, painter glenageary, painter dalkey, painter monkstown, painter sandymount, painter mount merrion, painter blackrock, painter ranelagh" },
       { property: "og:title", content: "Painter Dublin — All Colours Painting & Decorating" },
       { property: "og:description", content: "Professional painter & decorator in Dublin. Interior, exterior, apartments & houses across South Dublin." },
@@ -177,7 +177,7 @@ function Home() {
             </Link>
           </div>
           <div className="relative">
-            <img src={aboutAsset.url} alt="Architectural project" width={1200} height={800} className="aspect-[4/5] w-full object-cover" />
+            <img src={aboutAsset.url} alt="Close-up of clean architectural painting detail on interior moulding" width={1200} height={800} className="aspect-[4/5] w-full object-cover" />
             <div className="absolute -bottom-6 -left-6 hidden h-32 w-32 border-[6px] border-accent md:block" />
           </div>
         </div>
