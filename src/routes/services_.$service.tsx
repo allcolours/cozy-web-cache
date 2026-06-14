@@ -6,7 +6,7 @@ import { SERVICES } from "../data/services";
 import { TESTIMONIALS } from "../data/testimonials";
 import heroAsset from "../assets/portfolio/hero-house.webp.asset.json";
 
-export const Route = createFileRoute("/services/$service")({
+export const Route = createFileRoute("/services_/$service")({
   loader: ({ params }) => {
     const service = SERVICES.find((s) => s.slug === params.service);
     if (!service) throw notFound();
