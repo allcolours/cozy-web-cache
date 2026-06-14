@@ -155,6 +155,8 @@ export function SiteLayout({ children }: { children: ReactNode }) {
                   <Link to={n.to} className="hover:text-primary">{n.label}</Link>
                 </li>
               ))}
+              <li><Link to="/painters" className="hover:text-primary">Areas We Cover</Link></li>
+              <li><Link to="/pricing-guide" className="hover:text-primary">Pricing Guide</Link></li>
             </ul>
           </div>
 
