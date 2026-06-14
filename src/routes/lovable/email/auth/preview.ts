@@ -57,6 +57,7 @@ const SAMPLE_DATA: Record<string, object> = {
   },
   reauthentication: {
     token: '123456',
+    siteName: SITE_NAME,
   },
 }
 
