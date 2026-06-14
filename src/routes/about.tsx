@@ -8,9 +8,9 @@ export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
       { title: "About | All Colours Painting Contractor Limited" },
-      { name: "description", content: "Painters & decorators with over 20 years of experience. Family-run, fully insured, and committed to quality finishes." },
+      { name: "description", content: "Painters & decorators with over 10 years of experience. Fully insured and committed to quality finishes." },
       { property: "og:title", content: "About All Colours Painting" },
-      { property: "og:description", content: "Family-run painting & decorating company with 20+ years of experience." },
+      { property: "og:description", content: "Painting & decorating company with 10+ years of experience across Dublin." },
       { property: "og:url", content: "https://allcolourspainter.com/about" },
       { property: "og:type", content: "website" },
       { property: "og:image", content: aboutAsset.url },
