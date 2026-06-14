@@ -175,12 +175,14 @@ function Home() {
             </p>
           </div>
 
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {[
               { t: "Professional", d: "We don't cut corners. We listen to what you need and deliver it on time, every time." },
-              { t: "Efficient", d: "Modern techniques, the best tools on the market. We're in, the job is done, and we're gone." },
+              { t: "Fast & Efficient", d: "Modern techniques, the best tools on the market. We're in, the job is done, and we're gone." },
               { t: "Reliable", d: "We say what we'll do — and we do what we say. Honest quotes, honest timelines." },
-              { t: "Clean", d: "Floors, furniture and belongings fully protected. Dust-controlled sanding, spotless handover." },
+              { t: "Clean & Dust-Free", d: "Floors, furniture and belongings fully protected. Vacuum sanding keeps dust out of your home." },
+              { t: "Fully Insured", d: "Public liability insured and tax-compliant. Every job covered from first prep to final coat." },
+              { t: "12-Month Warranty", d: "If anything's not right within 12 months of completion, we come back and put it right — no quibble." },
             ].map((v, i) => (
               <div key={v.t} className="border-t-[3px] border-primary bg-card p-7">
                 <div className="font-display text-xs font-bold uppercase tracking-[0.18em] text-primary">0{i + 1}</div>
