@@ -148,7 +148,7 @@ function About() {
               </li>
             ))}
           </ul>
-          <p className="mt-8 text-sm text-foreground/70">…and many more across residential, hospitality, healthcare and commercial sectors.</p>
+          <p className="mt-8 text-sm text-foreground/70">…and many more across residential, hospitality, healthcare and commercial sectors. <Link to="/projects" className="font-semibold text-primary underline-offset-4 hover:underline">See the full project list →</Link></p>
         </div>
       </section>
 
