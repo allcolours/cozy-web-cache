@@ -98,15 +98,15 @@ function About() {
         <div className="mx-auto max-w-7xl px-4 py-20 md:px-8 md:py-28">
           <div className="max-w-2xl">
             <span className="eyebrow">Our story so far</span>
-            <h2 className="section-title mt-3 text-3xl md:text-4xl">Twenty-plus years, one ladder at a time</h2>
+            <h2 className="section-title mt-3 text-3xl md:text-4xl">Ten years, one ladder at a time</h2>
             <hr className="section-rule" />
           </div>
           <ol className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
             {[
-              { y: "2003", t: "First brush", d: "Started out as a two-man team painting family homes around south Dublin — most of those first clients are still on the books today." },
-              { y: "2010", t: "Going commercial", d: "Trusted by our first hotel and office clients, learning to schedule jobs around live businesses without shutting them down." },
-              { y: "2017", t: "Industrial coatings", d: "Trained and certified on heavy-duty epoxy floor and protective steel systems — opening the door to warehouse and plant-room work." },
-              { y: "2024", t: "Twenty years on", d: "Still family-run, still answering our own phone, still treating every job the way we'd want our own home painted." },
+              { y: "2015", t: "First brush", d: "Started out painting family homes around south Dublin — most of those first clients are still on the books today." },
+              { y: "2018", t: "Going commercial", d: "Trusted by our first hotel and office clients, learning to schedule jobs around live businesses without shutting them down." },
+              { y: "2021", t: "Large-scale sites", d: "Joined major Dublin construction projects as a specialist painting subcontractor — apartments, student housing, hotels and healthcare." },
+              { y: "2025", t: "A decade on", d: "Still answering our own phone, still treating every job the way we'd want our own home painted." },
             ].map((s) => (
               <li key={s.y} className="border-t-[3px] border-primary bg-card p-7">
                 <div className="font-display text-3xl font-extrabold text-primary">{s.y}</div>
