@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { useState, type ReactNode } from "react";
 import logo from "../assets/logo.png";
 import { useSiteSettings } from "../hooks/useSiteSettings";
+import { FloatingContact } from "./FloatingContact";
 
 const NAV = [
   { to: "/", label: "Home" },
