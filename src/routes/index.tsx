@@ -39,7 +39,7 @@ export const Route = createFileRoute("/")({
           url: "https://allcolourspainter.com/",
           telephone: "+353 85 821 1870",
           email: "info@allcolourspainter.com",
-          description: "Professional painters & decorators in Dublin. Interior, exterior, commercial & industrial painting.",
+          description: "Professional painters & decorators in Dublin. Interior, exterior, kitchen painting, floor painting, epoxy floors, spray painting, furniture painting, railings painting, varnish painting, commercial & industrial painting.",
           image: heroAsset.url,
           logo: "https://allcolourspainter.com/favicon.ico",
           priceRange: "€€",
