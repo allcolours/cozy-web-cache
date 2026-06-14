@@ -61,7 +61,7 @@ export const TESTIMONIALS: Testimonial[] = [
     role: "Repeat client",
     rating: 5,
     quote:
-      "I have used Ika and his team for several painting projects in my home, and I can say, without a doubt, that they are professionals who provide quality work with attention to detail and customer care — all that and affordable pricing too. Thank you!",
+      "I have used All Colours for several painting projects in my home, and I can say, without a doubt, that Ika and his team are professionals who provide quality work with attention to detail and Customer Care… All that and affordable pricing too. Thank you!",
     project: "Multiple repeat projects",
   },
   {
