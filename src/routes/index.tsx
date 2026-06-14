@@ -288,6 +288,36 @@ function Home() {
         </div>
       </section>
 
+      {/* Areas we cover */}
+      <section className="bg-background">
+        <div className="mx-auto max-w-7xl px-4 py-20 md:px-8 md:py-24">
+          <div className="flex flex-col items-start gap-2">
+            <span className="eyebrow">Where we work</span>
+            <h2 className="section-title text-3xl md:text-4xl">Painter & decorator across Dublin</h2>
+            <hr className="section-rule" />
+            <p className="mt-6 max-w-3xl text-base text-foreground">
+              Looking for a <strong>painter near me</strong> in Dublin? We cover interior painting, exterior painting, dash and pebbledash repaints for houses and apartments across South Dublin and surrounding areas.
+            </p>
+          </div>
+
+          <ul className="mt-10 grid grid-cols-2 gap-x-6 gap-y-3 text-sm text-foreground sm:grid-cols-3 lg:grid-cols-4">
+            {[
+              "Painter Ballsbridge","Painter Donnybrook","Painter Stillorgan","Painter Dún Laoghaire",
+              "Painter Rathfarnham","Painter Sandyford","Painter Rathmines","Painter Milltown",
+              "Painter Dundrum","Painter Roebuck","Painter Goatstown","Painter Ballinteer",
+              "Painter Leopardstown","Painter Harold's Cross","Painter Cabinteely","Painter Foxrock",
+              "Painter Glenageary","Painter Dalkey","Painter Monkstown","Painter Sandymount",
+              "Painter Mount Merrion","Painter Blackrock","Painter Ranelagh",
+            ].map((a) => (
+              <li key={a} className="flex items-center gap-2 border-l-2 border-primary/70 pl-3">
+                <span className="font-medium text-[oklch(0.2_0_0)]">{a}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+
       {/* CTA band */}
       <section className="relative isolate overflow-hidden">
         <img src={ctaAsset.url} alt="" width={1920} height={600} className="absolute inset-0 -z-10 h-full w-full object-cover" />
