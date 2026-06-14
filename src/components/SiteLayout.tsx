@@ -62,7 +62,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 md:px-8">
           <Link to="/" className="flex shrink-0 items-center gap-3" onClick={() => setOpen(false)}>
             <img src={logo} alt={COMPANY.name} width={56} height={56} className="h-12 w-12 shrink-0 object-contain sm:h-14 sm:w-14" />
-            <span className="hidden whitespace-nowrap font-display text-sm font-bold uppercase tracking-wide text-[oklch(0.25_0_0)] sm:block lg:hidden xl:block">
+            <span className="hidden whitespace-nowrap font-display text-sm font-bold uppercase tracking-wide text-[oklch(0.25_0_0)] sm:block">
               {COMPANY.shortName}
             </span>
           </Link>
