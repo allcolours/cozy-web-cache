@@ -92,7 +92,7 @@ const services = [
   },
   {
     title: "Industrial",
-    desc: "Floor coatings, line-marking, warehouse repaints and heavy-traffic protective systems.",
+    desc: "Epoxy floor painting, floor coatings, line-marking, warehouse repaints and heavy-traffic protective systems using twopack paints.",
     img: sIndustrialAsset.url,
   },
   {
