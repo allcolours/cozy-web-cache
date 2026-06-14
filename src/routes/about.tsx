@@ -57,7 +57,7 @@ function About() {
             <h2 className="section-title mt-3 text-3xl md:text-4xl">A craft built on detail</h2>
             <hr className="section-rule" />
             <div className="mt-8 space-y-5 text-base leading-relaxed text-foreground">
-              <p>{COMPANY.name} is a family-run painting and decorating company serving {COMPANY.area} for over 20 years. We've grown almost entirely by word of mouth — most of our work comes from clients who've used us before, or from architects and interior designers who trust us to finish their projects properly.</p>
+              <p>{COMPANY.name} is a painting and decorating company serving {COMPANY.area} for over 10 years. We've grown almost entirely by word of mouth — most of our work comes from clients who've used us before, or from architects and interior designers who trust us to finish their projects properly.</p>
               <p>From a single feature wall in a city flat to full repaints of period townhouses and commercial fit-outs, we treat every job the same: prepare meticulously, paint cleanly, leave the site spotless.</p>
               <p>If you're after a contractor who takes pride in straight lines, sharp cut-ins and a finish that lasts, you're in the right place.</p>
             </div>
