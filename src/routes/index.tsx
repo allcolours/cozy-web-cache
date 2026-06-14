@@ -128,10 +128,12 @@ const stats = [
   { k: "30+", v: "Painters available" },
   { k: "1,200+", v: "Projects completed" },
   { k: "10+", v: "Years experience" },
+  { k: "5★", v: "Average client rating" },
   { k: "Commercial & Residential", v: "All property types" },
   { k: "New-Build Specialists", v: "Developers welcome" },
   { k: "Dublin Based", v: "Fully insured" },
   { k: "Large Developments", v: "Managed across Dublin" },
+  { k: "Free Quotes", v: "No obligation" },
 ];
 
 function Home() {
@@ -219,7 +221,7 @@ function Home() {
 
       {/* Stats */}
       <section className="border-y border-border bg-secondary">
-        <div className="mx-auto grid max-w-7xl grid-cols-2 gap-6 px-4 py-12 md:grid-cols-4 md:px-8">
+        <div className="mx-auto grid max-w-7xl grid-cols-2 gap-6 px-4 py-12 md:grid-cols-3 md:px-8">
           {stats.map((s) => (
             <div key={s.v} className="text-center">
               <div className="font-display text-2xl font-extrabold text-primary md:text-3xl">{s.k}</div>
