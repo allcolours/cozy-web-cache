@@ -329,6 +329,12 @@ function EstimatePage() {
               </div>
             </div>
           </div>
+
+          <div className="mx-auto max-w-7xl px-4 md:px-8">
+            <p className="border-t border-border pt-6 text-center text-xs uppercase tracking-[0.12em] text-muted-foreground">
+              Prices shown are indicative and may vary. The final price will be confirmed and agreed upon during the on-site assessment visit.
+            </p>
+          </div>
         </div>
       </section>
 
