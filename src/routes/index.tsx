@@ -125,10 +125,12 @@ const services = [
 const portfolio = CASE_STUDIES.slice(0, 4).map((c) => ({ img: c.cover, title: c.title, tag: `${c.sector} · ${c.location}`, slug: c.slug }));
 
 const stats = [
-  { k: "10+", v: "Years experience" },
+  { k: "30+", v: "Painters available" },
   { k: "1,200+", v: "Projects completed" },
-  { k: "100%", v: "Insured & guaranteed" },
-  { k: "5★", v: "Average client rating" },
+  { k: "10+", v: "Years experience" },
+  { k: "Commercial & Residential", v: "All property types" },
+  { k: "New-Build Specialists", v: "Developers welcome" },
+  { k: "Dublin Based", v: "Fully insured" },
 ];
 
 function Home() {
@@ -216,10 +218,10 @@ function Home() {
 
       {/* Stats */}
       <section className="border-y border-border bg-secondary">
-        <div className="mx-auto grid max-w-7xl grid-cols-2 gap-6 px-4 py-12 md:grid-cols-4 md:px-8">
+        <div className="mx-auto grid max-w-7xl grid-cols-2 gap-6 px-4 py-12 md:grid-cols-3 lg:grid-cols-6 md:px-8">
           {stats.map((s) => (
             <div key={s.v} className="text-center">
-              <div className="font-display text-3xl font-extrabold text-primary md:text-5xl">{s.k}</div>
+              <div className="font-display text-2xl font-extrabold text-primary md:text-3xl">{s.k}</div>
               <div className="mt-2 text-[11px] uppercase tracking-[0.18em] text-foreground">{s.v}</div>
             </div>
           ))}
