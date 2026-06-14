@@ -52,7 +52,7 @@ export const TESTIMONIALS: Testimonial[] = [
     role: "Homeowner",
     rating: 5,
     quote:
-      "I used Ika and his team to paint a garden wall and large trellises. Ika and his team are very reliable, work to a very high standard and are punctual. I will definitely use them again.",
+      "I used IKA and his team to paint a garden wall and large trellises. IKA and his team are very reliable, work to a very high standard and are reliable and punctual. I will definitely use them again.",
     project: "Garden wall & trellises",
   },
   {
