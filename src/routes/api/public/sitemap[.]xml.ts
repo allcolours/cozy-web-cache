@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import type {} from "@tanstack/react-start";
-import { CASE_STUDIES } from "../data/caseStudies";
-import { BLOG_POSTS } from "../data/blog";
+import { CASE_STUDIES } from "../../../data/caseStudies";
+import { BLOG_POSTS } from "../../../data/blog";
 
 const BASE_URL = "https://allcolourspainter.com";
 
@@ -11,7 +10,7 @@ interface SitemapEntry {
   priority?: string;
 }
 
-export const Route = createFileRoute("/sitemap.xml")({
+export const Route = createFileRoute("/api/public/sitemap.xml")({
   server: {
     handlers: {
       GET: async () => {
@@ -36,12 +35,10 @@ export const Route = createFileRoute("/sitemap.xml")({
         );
         const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.join("\n")}\n</urlset>`;
         return new Response(xml, {
-          status: 200,
-          headers: new Headers({
+          headers: {
             "Content-Type": "application/xml; charset=utf-8",
             "Cache-Control": "public, max-age=3600",
-            "X-Content-Type-Options": "nosniff",
-          }),
+          },
         });
       },
     },
