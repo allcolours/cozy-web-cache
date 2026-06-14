@@ -29,7 +29,7 @@ export const Route = createFileRoute("/")({
     ],
     links: [
       { rel: "canonical", href: "https://allcolourspainter.com/" },
-      { rel: "preload", as: "image", href: heroAsset.url, fetchpriority: "high" },
+      { rel: "preload", as: "image", href: heroAsset.url, fetchPriority: "high" },
     ],
     scripts: [
       {
