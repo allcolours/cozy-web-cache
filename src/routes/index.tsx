@@ -15,10 +15,11 @@ import ctaAsset from "../assets/portfolio/cta-bg.jpg.asset.json";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "All Colours Painting | Professional Painters & Decorators" },
-      { name: "description", content: "Professional interior, exterior and commercial painting & decorating across Dublin. Quality finishes, tidy workmanship, fully insured. Free quotes." },
-      { property: "og:title", content: "All Colours Painting — Professional Painters & Decorators Dublin" },
-      { property: "og:description", content: "Professional painters & decorators. Interior, exterior, commercial. Dublin & surrounding areas." },
+      { title: "Painter Dublin | Interior & Exterior Painting & Decorating" },
+      { name: "description", content: "Painter and decorator in Dublin for houses & apartments. Interior, exterior, dash & pebbledash painting in Ballsbridge, Donnybrook, Stillorgan, Dún Laoghaire, Rathmines, Sandyford, Dundrum, Blackrock & more. Free quotes." },
+      { name: "keywords", content: "painter dublin, painter and decorator dublin, painter near me, interior painting dublin, exterior painting dublin, painting apartment, painting house, painting dash, painting pebbledash, painter ballsbridge, painter donnybrook, painter stillorgan, painter dun laoghaire, painter rathfarnham, painter sandyford, painter rathmines, painter milltown, painter dundrum, painter roebuck, painter goatstown, painter ballinteer, painter leopardstown, painter harolds cross, painter cabinteely, painter foxrock, painter glenageary, painter dalkey, painter monkstown, painter sandymount, painter mount merrion, painter blackrock, painter ranelagh" },
+      { property: "og:title", content: "Painter Dublin — All Colours Painting & Decorating" },
+      { property: "og:description", content: "Professional painter & decorator in Dublin. Interior, exterior, apartments & houses across South Dublin." },
       { property: "og:url", content: "https://allcolourspainter.com/" },
       { property: "og:type", content: "website" },
       { property: "og:image", content: heroAsset.url },
@@ -286,6 +287,36 @@ function Home() {
           </div>
         </div>
       </section>
+
+      {/* Areas we cover */}
+      <section className="bg-background">
+        <div className="mx-auto max-w-7xl px-4 py-20 md:px-8 md:py-24">
+          <div className="flex flex-col items-start gap-2">
+            <span className="eyebrow">Where we work</span>
+            <h2 className="section-title text-3xl md:text-4xl">Painter & decorator across Dublin</h2>
+            <hr className="section-rule" />
+            <p className="mt-6 max-w-3xl text-base text-foreground">
+              Looking for a <strong>painter near me</strong> in Dublin? We cover interior painting, exterior painting, dash and pebbledash repaints for houses and apartments across South Dublin and surrounding areas.
+            </p>
+          </div>
+
+          <ul className="mt-10 grid grid-cols-2 gap-x-6 gap-y-3 text-sm text-foreground sm:grid-cols-3 lg:grid-cols-4">
+            {[
+              "Painter Ballsbridge","Painter Donnybrook","Painter Stillorgan","Painter Dún Laoghaire",
+              "Painter Rathfarnham","Painter Sandyford","Painter Rathmines","Painter Milltown",
+              "Painter Dundrum","Painter Roebuck","Painter Goatstown","Painter Ballinteer",
+              "Painter Leopardstown","Painter Harold's Cross","Painter Cabinteely","Painter Foxrock",
+              "Painter Glenageary","Painter Dalkey","Painter Monkstown","Painter Sandymount",
+              "Painter Mount Merrion","Painter Blackrock","Painter Ranelagh",
+            ].map((a) => (
+              <li key={a} className="flex items-center gap-2 border-l-2 border-primary/70 pl-3">
+                <span className="font-medium text-[oklch(0.2_0_0)]">{a}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
 
       {/* CTA band */}
       <section className="relative isolate overflow-hidden">
