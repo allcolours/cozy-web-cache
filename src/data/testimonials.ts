@@ -16,7 +16,7 @@ export const TESTIMONIALS: Testimonial[] = [
     role: "Homeowner",
     rating: 5,
     quote:
-      "We hired Ika and his team to paint our house (very old) and couldn't be happier with the results. They were incredibly professional, offering a high standard of work at a very reasonable price. Communication was seamless, making the entire process stress-free. Very tidy and worked through the evening until the job was done.",
+      "We hired Ika and his team to paint our house (very old) and couldn't be happier with the results. They were incredibly professional, offering a high standard of work at a very reasonable price. Communication was seamless, making the entire process stress-free. Very tidy and worked through the evening until job was done.",
     project: "Full repaint of a period home",
   },
   {
