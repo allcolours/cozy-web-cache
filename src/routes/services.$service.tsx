@@ -25,8 +25,8 @@ export const Route = createFileRoute("/services/$service")({
         { property: "og:description", content: description },
         { property: "og:url", content: url },
         { property: "og:type", content: "website" },
-        { property: "og:image", content: heroAsset.url },
-        { property: "twitter:image", content: heroAsset.url },
+        { property: "og:image", content: `https://allcolourspainter.com${heroAsset.url}` },
+        { property: "twitter:image", content: `https://allcolourspainter.com${heroAsset.url}` },
       ],
       links: [{ rel: "canonical", href: url }],
       scripts: [

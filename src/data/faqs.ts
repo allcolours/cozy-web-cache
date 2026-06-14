@@ -63,7 +63,7 @@ export const FAQS: Faq[] = [
   {
     category: "Aftercare",
     q: "What guarantee do you offer?",
-    a: "A 2-year written workmanship guarantee on every job. If a properly prepared surface fails — flaking, peeling, blistering — we come back and fix it free of charge. We also carry €5 million public liability insurance and full employer's liability.",
+    a: "A 12-month written workmanship guarantee on every job. If a properly prepared surface fails — flaking, peeling, blistering — we come back and fix it free of charge. We also carry €5 million public liability insurance and full employer's liability.",
   },
   {
     category: "Aftercare",
