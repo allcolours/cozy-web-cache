@@ -360,16 +360,19 @@ function Home() {
 
           <div className="mt-12 grid gap-10 md:grid-cols-5 md:gap-12">
             <div className="md:col-span-3">
-              <img
-                src={serviceAreaMap.url}
-                alt="Map of South Dublin service area covered by All Colours Painting — Ballsbridge, Donnybrook, Rathmines, Dundrum, Sandyford, Dún Laoghaire, Blackrock and surrounding areas"
-                width={920}
-                height={680}
-                loading="lazy"
-                className="w-full border border-border bg-secondary"
-              />
+              <div className="relative w-full overflow-hidden border border-border bg-secondary" style={{ aspectRatio: "920 / 680" }}>
+                <iframe
+                  title="Map of County Dublin — All Colours Painting service area"
+                  src="https://www.google.com/maps?q=County+Dublin,+Ireland&z=10&output=embed"
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="absolute inset-0 h-full w-full"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                />
+              </div>
               <p className="mt-3 text-xs uppercase tracking-[0.18em] text-muted-foreground">
-                Our primary service area — South Dublin
+                We cover all of County Dublin
               </p>
             </div>
 
