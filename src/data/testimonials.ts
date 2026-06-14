@@ -34,7 +34,7 @@ export const TESTIMONIALS: Testimonial[] = [
     role: "Homeowner",
     rating: 5,
     quote:
-      "I hired Ika and his team to paint an extension of my house for me. They did early starts and were quick, really clean and efficient with zero fuss. They also did any repairs that were required to be done on the walls before painting.",
+      "I hired Ika and his team to paint an extension of my house for me. They did early starts and were quick, really clean and efficient with zero fuss. They also did any repairs that were required to be done on the walls before painting. The finished job was excellent! I highly recommend Ika and his team for any job.",
     project: "House extension repaint",
   },
   {
