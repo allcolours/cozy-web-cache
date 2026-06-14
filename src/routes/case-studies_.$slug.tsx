@@ -2,7 +2,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { SiteLayout } from "../components/SiteLayout";
 import { CASE_STUDIES, getCaseStudy } from "../data/caseStudies";
 
-export const Route = createFileRoute("/case-studies/$slug")({
+export const Route = createFileRoute("/case-studies_/$slug")({
   loader: ({ params }) => {
     const study = getCaseStudy(params.slug);
     if (!study) throw notFound();
