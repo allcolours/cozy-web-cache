@@ -262,7 +262,7 @@ function EstimatePage() {
 
                     {(result.generalBumped || result.floorsBumped) && (
                       <div className="mt-4 space-y-1 text-xs text-muted-foreground">
-                        {result.generalBumped && <p>Minimum order: €250.</p>}
+                        {result.generalBumped && <p>Minimum order: €300.</p>}
                         {result.floorsBumped && <p>Minimum floor order: €750.</p>}
                       </div>
                     )}
