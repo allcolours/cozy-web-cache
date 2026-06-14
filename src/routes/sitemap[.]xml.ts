@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { CASE_STUDIES } from "../data/caseStudies";
 import { BLOG_POSTS } from "../data/blog";
+import { AREAS } from "../data/areas";
 
 const BASE_URL = "https://allcolourspainter.com";
 
@@ -24,8 +25,11 @@ export const Route = createFileRoute("/sitemap.xml")({
           { path: "/blog", changefreq: "weekly", priority: "0.8" },
           { path: "/faq", changefreq: "monthly", priority: "0.7" },
           { path: "/contact", changefreq: "yearly", priority: "0.6" },
+          { path: "/pricing-guide", changefreq: "monthly", priority: "0.9" },
+          { path: "/painters", changefreq: "monthly", priority: "0.9" },
           { path: "/privacy", changefreq: "yearly", priority: "0.3" },
           { path: "/terms", changefreq: "yearly", priority: "0.3" },
+          ...AREAS.map((a) => ({ path: `/painters/${a.slug}`, changefreq: "monthly" as const, priority: "0.8" })),
           ...CASE_STUDIES.map((c) => ({ path: `/case-studies/${c.slug}`, changefreq: "monthly" as const, priority: "0.7" })),
           ...BLOG_POSTS.map((b) => ({ path: `/blog/${b.slug}`, changefreq: "monthly" as const, priority: "0.6" })),
         ];
