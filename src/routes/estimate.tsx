@@ -338,7 +338,7 @@ function EstimatePage() {
           estimateMin={result.min}
           estimateMax={result.max}
           condition={CONDITION[condition].label + ` (×${CONDITION[condition].mult})`}
-          mode={mode === "per_room" ? "By room" : "By element"}
+          mode={modeLabel(mode)}
           lineItems={result.lines}
         />
       )}
