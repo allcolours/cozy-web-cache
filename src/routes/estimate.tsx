@@ -1,5 +1,5 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { useMemo, useState } from "react";
+import { createFileRoute } from "@tanstack/react-router";
+import { useEffect, useMemo, useState } from "react";
 
 export const Route = createFileRoute("/estimate")({
   head: () => ({
@@ -288,12 +288,14 @@ function EstimatePage() {
                   </p>
                 </div>
 
-                <Link
-                  to="/contact"
-                  className="mt-6 inline-flex w-full items-center justify-center bg-primary px-6 py-3 font-display text-sm font-bold uppercase tracking-wider text-primary-foreground transition-colors hover:bg-primary/90"
+                <button
+                  type="button"
+                  disabled={!result.hasAny}
+                  onClick={() => setRequestOpen(true)}
+                  className="mt-6 inline-flex w-full items-center justify-center bg-primary px-6 py-3 font-display text-sm font-bold uppercase tracking-wider text-primary-foreground transition-colors hover:bg-primary/90 disabled:cursor-not-allowed disabled:opacity-50"
                 >
-                  Request an exact quote
-                </Link>
+                  Send this request
+                </button>
                 <a
                   href="tel:0858211870"
                   className="mt-3 inline-flex w-full items-center justify-center border border-border bg-background px-6 py-3 font-display text-sm font-bold uppercase tracking-wider text-[oklch(0.2_0_0)] transition-colors hover:border-primary hover:text-primary"

@@ -36,6 +36,7 @@ import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/
 import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated/admin.index'
 import { Route as LovableEmailSuppressionRouteImport } from './routes/lovable/email/suppression'
 import { Route as ApiPublicSitemapDotxmlRouteImport } from './routes/api/public/sitemap[.]xml'
+import { Route as ApiPublicEstimateRouteImport } from './routes/api/public/estimate'
 import { Route as ApiPublicContactRouteImport } from './routes/api/public/contact'
 import { Route as AuthenticatedAdminInquiriesRouteImport } from './routes/_authenticated/admin.inquiries'
 import { Route as AuthenticatedAdminGalleryRouteImport } from './routes/_authenticated/admin.gallery'
@@ -181,6 +182,11 @@ const ApiPublicSitemapDotxmlRoute = ApiPublicSitemapDotxmlRouteImport.update({
   path: '/api/public/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicEstimateRoute = ApiPublicEstimateRouteImport.update({
+  id: '/api/public/estimate',
+  path: '/api/public/estimate',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiPublicContactRoute = ApiPublicContactRouteImport.update({
   id: '/api/public/contact',
   path: '/api/public/contact',
@@ -268,6 +274,7 @@ export interface FileRoutesByFullPath {
   '/admin/gallery': typeof AuthenticatedAdminGalleryRoute
   '/admin/inquiries': typeof AuthenticatedAdminInquiriesRoute
   '/api/public/contact': typeof ApiPublicContactRoute
+  '/api/public/estimate': typeof ApiPublicEstimateRoute
   '/api/public/sitemap.xml': typeof ApiPublicSitemapDotxmlRoute
   '/lovable/email/suppression': typeof LovableEmailSuppressionRoute
   '/admin/': typeof AuthenticatedAdminIndexRoute
@@ -305,6 +312,7 @@ export interface FileRoutesByTo {
   '/admin/gallery': typeof AuthenticatedAdminGalleryRoute
   '/admin/inquiries': typeof AuthenticatedAdminInquiriesRoute
   '/api/public/contact': typeof ApiPublicContactRoute
+  '/api/public/estimate': typeof ApiPublicEstimateRoute
   '/api/public/sitemap.xml': typeof ApiPublicSitemapDotxmlRoute
   '/lovable/email/suppression': typeof LovableEmailSuppressionRoute
   '/admin': typeof AuthenticatedAdminIndexRoute
@@ -345,6 +353,7 @@ export interface FileRoutesById {
   '/_authenticated/admin/gallery': typeof AuthenticatedAdminGalleryRoute
   '/_authenticated/admin/inquiries': typeof AuthenticatedAdminInquiriesRoute
   '/api/public/contact': typeof ApiPublicContactRoute
+  '/api/public/estimate': typeof ApiPublicEstimateRoute
   '/api/public/sitemap.xml': typeof ApiPublicSitemapDotxmlRoute
   '/lovable/email/suppression': typeof LovableEmailSuppressionRoute
   '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
@@ -385,6 +394,7 @@ export interface FileRouteTypes {
     | '/admin/gallery'
     | '/admin/inquiries'
     | '/api/public/contact'
+    | '/api/public/estimate'
     | '/api/public/sitemap.xml'
     | '/lovable/email/suppression'
     | '/admin/'
@@ -422,6 +432,7 @@ export interface FileRouteTypes {
     | '/admin/gallery'
     | '/admin/inquiries'
     | '/api/public/contact'
+    | '/api/public/estimate'
     | '/api/public/sitemap.xml'
     | '/lovable/email/suppression'
     | '/admin'
@@ -461,6 +472,7 @@ export interface FileRouteTypes {
     | '/_authenticated/admin/gallery'
     | '/_authenticated/admin/inquiries'
     | '/api/public/contact'
+    | '/api/public/estimate'
     | '/api/public/sitemap.xml'
     | '/lovable/email/suppression'
     | '/_authenticated/admin/'
@@ -493,6 +505,7 @@ export interface RootRouteChildren {
   PaintersAreaRoute: typeof PaintersAreaRoute
   PaintersIndexRoute: typeof PaintersIndexRoute
   ApiPublicContactRoute: typeof ApiPublicContactRoute
+  ApiPublicEstimateRoute: typeof ApiPublicEstimateRoute
   ApiPublicSitemapDotxmlRoute: typeof ApiPublicSitemapDotxmlRoute
   LovableEmailSuppressionRoute: typeof LovableEmailSuppressionRoute
   LovableEmailAuthPreviewRoute: typeof LovableEmailAuthPreviewRoute
@@ -693,6 +706,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiPublicSitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/estimate': {
+      id: '/api/public/estimate'
+      path: '/api/public/estimate'
+      fullPath: '/api/public/estimate'
+      preLoaderRoute: typeof ApiPublicEstimateRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/public/contact': {
       id: '/api/public/contact'
       path: '/api/public/contact'
@@ -852,6 +872,7 @@ const rootRouteChildren: RootRouteChildren = {
   PaintersAreaRoute: PaintersAreaRoute,
   PaintersIndexRoute: PaintersIndexRoute,
   ApiPublicContactRoute: ApiPublicContactRoute,
+  ApiPublicEstimateRoute: ApiPublicEstimateRoute,
   ApiPublicSitemapDotxmlRoute: ApiPublicSitemapDotxmlRoute,
   LovableEmailSuppressionRoute: LovableEmailSuppressionRoute,
   LovableEmailAuthPreviewRoute: LovableEmailAuthPreviewRoute,
