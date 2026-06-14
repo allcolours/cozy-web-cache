@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout } from "../components/SiteLayout";
+import { SERVICES } from "../data/services";
 import { ProcessSteps } from "../components/ProcessSteps";
 import { FaqAccordion } from "../components/FaqAccordion";
 import { FAQS } from "../data/faqs";
