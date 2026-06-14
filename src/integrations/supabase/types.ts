@@ -134,6 +134,54 @@ export type Database = {
         }
         Relationships: []
       }
+      estimate_requests: {
+        Row: {
+          address: string
+          condition: string
+          created_at: string
+          description: string
+          email: string
+          estimate_max: number
+          estimate_min: number
+          id: string
+          is_read: boolean
+          line_items: Json
+          mode: string
+          name: string
+          phone: string
+        }
+        Insert: {
+          address: string
+          condition: string
+          created_at?: string
+          description: string
+          email: string
+          estimate_max: number
+          estimate_min: number
+          id?: string
+          is_read?: boolean
+          line_items?: Json
+          mode: string
+          name: string
+          phone: string
+        }
+        Update: {
+          address?: string
+          condition?: string
+          created_at?: string
+          description?: string
+          email?: string
+          estimate_max?: number
+          estimate_min?: number
+          id?: string
+          is_read?: boolean
+          line_items?: Json
+          mode?: string
+          name?: string
+          phone?: string
+        }
+        Relationships: []
+      }
       gallery_images: {
         Row: {
           created_at: string
