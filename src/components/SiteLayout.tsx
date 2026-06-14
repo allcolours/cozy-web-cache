@@ -3,6 +3,7 @@ import { useState, type ReactNode } from "react";
 import logo from "../assets/logo.png";
 import { useSiteSettings } from "../hooks/useSiteSettings";
 import { FloatingContact } from "./FloatingContact";
+import { FooterCTA } from "./FooterCTA";
 
 const NAV = [
   { to: "/", label: "Home" },
@@ -125,6 +126,8 @@ export function SiteLayout({ children }: { children: ReactNode }) {
       </header>
 
       <main className="flex-1">{children}</main>
+
+      <FooterCTA />
 
       {/* Footer */}
       <footer className="bg-[var(--color-surface-dark)] text-[var(--color-surface-dark-foreground)]">
