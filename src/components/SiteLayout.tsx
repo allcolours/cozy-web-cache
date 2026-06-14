@@ -38,7 +38,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
   return (
     <div className="flex min-h-screen flex-col bg-background text-foreground">
       {/* Top contact bar */}
-      <div className="hidden bg-[var(--color-surface-dark)] text-[var(--color-surface-dark-foreground)] md:block">
+      <div className="hidden bg-[var(--color-surface-dark)] text-[var(--color-surface-dark-foreground)] lg:block">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 text-xs md:px-8">
           <div className="flex items-center gap-6">
             <a href={`tel:${phone.replace(/\s/g, "")}`} className="flex items-center gap-2 text-white/80 hover:text-primary">
@@ -56,20 +56,20 @@ export function SiteLayout({ children }: { children: ReactNode }) {
 
       {/* Header */}
       <header className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/85">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 md:px-8">
-          <Link to="/" className="flex items-center gap-3" onClick={() => setOpen(false)}>
-            <img src={logo} alt={COMPANY.name} width={56} height={56} className="h-14 w-14 object-contain" />
-            <span className="hidden font-display text-base font-bold uppercase tracking-wide text-[oklch(0.2_0_0)] sm:block">
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 md:px-8">
+          <Link to="/" className="flex min-w-0 items-center gap-3" onClick={() => setOpen(false)}>
+            <img src={logo} alt={COMPANY.name} width={56} height={56} className="h-12 w-12 shrink-0 object-contain sm:h-14 sm:w-14" />
+            <span className="hidden truncate font-display text-sm font-bold uppercase tracking-wide text-[oklch(0.2_0_0)] sm:block md:text-base">
               {COMPANY.shortName}
             </span>
           </Link>
 
-          <nav className="hidden items-center gap-5 md:flex lg:gap-6">
+          <nav className="hidden items-center gap-5 lg:flex xl:gap-6">
             {NAV.map((n) => (
               <Link
                 key={n.to}
                 to={n.to}
-                className="font-display text-[12px] font-semibold uppercase tracking-wider text-[oklch(0.3_0_0)] transition-colors hover:text-primary lg:text-[13px]"
+                className="font-display text-[12px] font-semibold uppercase tracking-wider text-[oklch(0.3_0_0)] transition-colors hover:text-primary xl:text-[13px]"
                 activeProps={{ className: "text-primary" }}
                 activeOptions={{ exact: n.to === "/" }}
               >
@@ -85,7 +85,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
           </nav>
 
           <button
-            className="inline-flex items-center justify-center rounded-sm p-2 text-[oklch(0.2_0_0)] md:hidden"
+            className="inline-flex shrink-0 items-center justify-center rounded-sm p-2 text-[oklch(0.2_0_0)] lg:hidden"
             onClick={() => setOpen((v) => !v)}
             aria-label="Toggle menu"
           >
@@ -96,7 +96,8 @@ export function SiteLayout({ children }: { children: ReactNode }) {
         </div>
 
         {open && (
-          <div className="border-t border-border md:hidden">
+          <div className="border-t border-border lg:hidden">
+
             <nav className="mx-auto flex max-w-7xl flex-col gap-1 px-4 py-4">
               {NAV.map((n) => (
                 <Link
