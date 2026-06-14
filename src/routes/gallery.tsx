@@ -14,7 +14,6 @@ import livingRoomAsset from "../assets/portfolio/gen-living-room.jpg.asset.json"
 import georgianAsset from "../assets/portfolio/gen-georgian.jpg.asset.json";
 import kitchenAsset from "../assets/portfolio/gen-kitchen.jpg.asset.json";
 import bedroomAsset from "../assets/portfolio/gen-bedroom.jpg.asset.json";
-import painterWorkAsset from "../assets/portfolio/gen-painter-work.jpg.asset.json";
 import hallwayAsset from "../assets/portfolio/gen-hallway.jpg.asset.json";
 import featureWallAsset from "../assets/portfolio/gen-feature-wall.jpg.asset.json";
 import exteriorModernAsset from "../assets/portfolio/gen-exterior-modern.jpg.asset.json";
