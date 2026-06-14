@@ -127,6 +127,8 @@ export function SiteLayout({ children }: { children: ReactNode }) {
 
       <main className="flex-1">{children}</main>
 
+      <FooterCTA />
+
       {/* Footer */}
       <footer className="bg-[var(--color-surface-dark)] text-[var(--color-surface-dark-foreground)]">
         <div className="mx-auto grid max-w-7xl gap-10 px-4 py-16 md:grid-cols-4 md:px-8">
