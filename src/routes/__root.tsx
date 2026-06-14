@@ -84,8 +84,46 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:title", content: "Painter Dublin | All Colours Painting & Decorating" },
       { property: "og:description", content: "Painter & decorator in Dublin — interior, exterior, houses & apartments. Free quotes across South Dublin." },
       { property: "og:type", content: "website" },
+      { property: "og:site_name", content: "All Colours Painting" },
+      { property: "og:locale", content: "en_IE" },
       { name: "twitter:card", content: "summary_large_image" },
-
+      { name: "twitter:title", content: "Painter Dublin | All Colours Painting & Decorating" },
+      { name: "twitter:description", content: "Painter & decorator in Dublin — interior, exterior, houses & apartments." },
+      { name: "theme-color", content: "#1f9d55" },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "PaintingService",
+          name: "All Colours Painting Contractor Limited",
+          alternateName: "All Colours Painting",
+          url: "https://allcolourspainter.com",
+          telephone: "+353 85 821 1870",
+          email: "info@painterdublin.eu",
+          image: "https://allcolourspainter.com/logo.png",
+          priceRange: "€€",
+          areaServed: [
+            { "@type": "City", name: "Dublin" },
+            { "@type": "AdministrativeArea", name: "County Dublin" },
+          ],
+          address: {
+            "@type": "PostalAddress",
+            addressLocality: "Dublin",
+            addressCountry: "IE",
+          },
+          openingHoursSpecification: [
+            {
+              "@type": "OpeningHoursSpecification",
+              dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+              opens: "08:00",
+              closes: "18:00",
+            },
+          ],
+          sameAs: ["https://allcolourspainter.com"],
+        }),
+      },
     ],
     links: [
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
