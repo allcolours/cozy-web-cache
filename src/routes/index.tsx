@@ -18,7 +18,7 @@ export const Route = createFileRoute("/")({
     meta: [
       { title: "Painter Dublin | Interior & Exterior Painting & Decorating" },
       { name: "description", content: "Painter and decorator in Dublin for houses & apartments. Interior, exterior, kitchen painting, floor painting, epoxy floors, spray painting, furniture painting, railings painting, dash & pebbledash painting in Ballsbridge, Donnybrook, Stillorgan, Dún Laoghaire, Rathmines, Sandyford, Dundrum, Blackrock & more. Free quotes." },
-      { name: "keywords", content: "painter dublin, painter and decorator dublin, painter near me, interior painting dublin, exterior painting dublin, painting apartment, painting house, painting dash, painting pebbledash, floor painting, two-pack floor paints, twopack paints, epoxy floors, epoxy floor painting, epoxy painting, water based paint, oil based paint, railings painting, furniture painting, kitchen painting, spray finish, spray painting, varnish painting, painter ballsbridge, painter donnybrook, painter stillorgan, painter dun laoghaire, painter rathfarnham, painter sandyford, painter rathmines, painter milltown, painter dundrum, painter roebuck, painter goatstown, painter ballinteer, painter leopardstown, painter harolds cross, painter cabinteely, painter foxrock, painter glenageary, painter dalkey, painter monkstown, painter sandymount, painter mount merrion, painter blackrock, painter ranelagh" },
+      { name: "keywords", content: "painter dublin, painter and decorator dublin, painter near me, painter company near me, painting contractors dublin, master painters, painting and decorating dublin, interior painter near me, interior painting dublin, exterior painting dublin, apartment painting dublin, house painting, renovation painting, ceiling painting, hallway painting, staircase painting, stairs painting, bedroom painting, bathroom painting, living room painting, nursery painters near me, georgian house painting, period property painting, office painters dublin, commercial painting contractors, industrial premises painting, painting dash, painting pebbledash, floor painting, two-pack floor paints, twopack paints, epoxy floors, epoxy floor painting, epoxy painting, water based paint, oil based paint, railings painting, furniture painting, kitchen painting, kitchen cabinet painting, repainting kitchen cabinets, hand-painted kitchen, kitchen respraying, spray finish, spray painting, varnish painting, wallpapering dublin, wallpaper hanging, wall decorating, dust-free sanding, vacuum sanding, painter ballsbridge, painter donnybrook, painter stillorgan, painter dun laoghaire, painter rathfarnham, painter sandyford, painter rathmines, painter milltown, painter dundrum, painter roebuck, painter goatstown, painter ballinteer, painter leopardstown, painter harolds cross, painter cabinteely, painter foxrock, painter glenageary, painter dalkey, painter monkstown, painter sandymount, painter mount merrion, painter blackrock, painter ranelagh" },
       { property: "og:title", content: "Painter Dublin — All Colours Painting & Decorating" },
       { property: "og:description", content: "Professional painter & decorator in Dublin. Interior, exterior, apartments & houses across South Dublin." },
       { property: "og:url", content: "https://allcolourspainter.com/" },
@@ -175,12 +175,14 @@ function Home() {
             </p>
           </div>
 
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {[
               { t: "Professional", d: "We don't cut corners. We listen to what you need and deliver it on time, every time." },
-              { t: "Efficient", d: "Modern techniques, the best tools on the market. We're in, the job is done, and we're gone." },
+              { t: "Fast & Efficient", d: "Modern techniques, the best tools on the market. We're in, the job is done, and we're gone." },
               { t: "Reliable", d: "We say what we'll do — and we do what we say. Honest quotes, honest timelines." },
-              { t: "Clean", d: "Floors, furniture and belongings fully protected. Dust-controlled sanding, spotless handover." },
+              { t: "Clean & Dust-Free", d: "Floors, furniture and belongings fully protected. Vacuum sanding keeps dust out of your home." },
+              { t: "Fully Insured", d: "Public liability insured and tax-compliant. Every job covered from first prep to final coat." },
+              { t: "12-Month Warranty", d: "If anything's not right within 12 months of completion, we come back and put it right — no quibble." },
             ].map((v, i) => (
               <div key={v.t} className="border-t-[3px] border-primary bg-card p-7">
                 <div className="font-display text-xs font-bold uppercase tracking-[0.18em] text-primary">0{i + 1}</div>
@@ -289,8 +291,39 @@ function Home() {
         </div>
       </section>
 
-      {/* Areas we cover */}
+      {/* Rooms & specialities — SEO long-tail */}
       <section className="bg-background">
+        <div className="mx-auto max-w-7xl px-4 py-20 md:px-8 md:py-24">
+          <div className="flex flex-col items-start gap-2">
+            <span className="eyebrow">Rooms & specialities</span>
+            <h2 className="section-title text-3xl md:text-4xl">Every room, every surface</h2>
+            <hr className="section-rule" />
+            <p className="mt-6 max-w-3xl text-base text-foreground">
+              From a single <strong>bedroom painting</strong> refresh to full <strong>apartment painting</strong>, <strong>kitchen cabinet painting</strong>, <strong>hallway and staircase painting</strong>, <strong>ceiling painting</strong>, <strong>wallpapering</strong> and <strong>Georgian house painting</strong> — we cover it all across Dublin.
+            </p>
+          </div>
+
+          <ul className="mt-10 grid grid-cols-2 gap-3 text-sm sm:grid-cols-3 lg:grid-cols-4">
+            {[
+              "Kitchen painting","Kitchen cabinet respraying","Hand-painted kitchens",
+              "Bedroom painting","Bathroom painting","Living room painting",
+              "Nursery painting","Hallway & staircase painting","Ceiling painting",
+              "Apartment painting","House painting","Renovation repaints",
+              "Wallpapering & wall decorating","Furniture painting","Varnish painting",
+              "Spray painting & spray finish","Railings & gates painting","Exterior render & masonry",
+              "Dash & pebbledash painting","Epoxy floor painting","Two-pack floor paints",
+              "Georgian & period homes","Office & commercial painting","Industrial premises painting",
+            ].map((s) => (
+              <li key={s} className="border-l-2 border-primary/70 bg-card px-3 py-2 font-medium text-[oklch(0.2_0_0)]">
+                {s}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* Areas we cover */}
+      <section className="bg-secondary">
         <div className="mx-auto max-w-7xl px-4 py-20 md:px-8 md:py-24">
           <div className="flex flex-col items-start gap-2">
             <span className="eyebrow">Where we work</span>
