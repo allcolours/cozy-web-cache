@@ -206,7 +206,7 @@ function Home() {
               { t: "Reliable", d: "We say what we'll do — and we do what we say. Honest quotes, honest timelines." },
               { t: "Clean & Dust-Free", d: "Floors, furniture and belongings fully protected. Vacuum sanding keeps dust out of your home." },
               { t: "Fully Insured", d: "Public liability insured and tax-compliant. Every job covered from first prep to final coat." },
-              { t: "2-Year Warranty", d: "If anything's not right within 2 years of completion, we come back and put it right — no quibble. Written workmanship guarantee on every job." },
+              { t: "12-Month Warranty", d: "If anything's not right within 12 months of completion, we come back and put it right — no quibble. Written workmanship guarantee on every job." },
             ].map((v, i) => (
               <div key={v.t} className="border-t-[3px] border-primary bg-card p-7">
                 <div className="font-display text-xs font-bold uppercase tracking-[0.18em] text-primary">0{i + 1}</div>

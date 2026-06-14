@@ -141,7 +141,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
             </div>
             <p className="mt-5 max-w-md text-sm leading-relaxed text-white/65">
               Professional interior, exterior and commercial painting & decorating across {area}.
-              Quality finishes, tidy workmanship, fully insured — backed by a 2-year written workmanship guarantee.
+              Quality finishes, tidy workmanship, fully insured — backed by a 12-month written workmanship guarantee.
             </p>
             <div className="mt-5 h-[3px] w-16 bg-primary" />
           </div>
