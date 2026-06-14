@@ -26,6 +26,7 @@ export const Route = createFileRoute("/")({
       { property: "og:type", content: "website" },
       { property: "og:image", content: heroAsset.url },
       { property: "twitter:image", content: heroAsset.url },
+      { name: "google-site-verification", content: "TpNVR-l0heZM7pJ-asHG3AOc33fsISO-tctP4ns_Z5w" },
     ],
     links: [{ rel: "canonical", href: "https://allcolourspainter.com/" }],
     scripts: [
