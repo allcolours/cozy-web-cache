@@ -232,7 +232,7 @@ function EstimatePage() {
                 <h2 className="font-display text-lg font-bold uppercase tracking-wide text-[oklch(0.2_0_0)]">
                   5. Floors
                 </h2>
-                <p className="mt-2 text-xs text-muted-foreground">Minimum floor order: €900.</p>
+                <p className="mt-2 text-xs text-muted-foreground">Minimum floor order: €750.</p>
                 <div className="mt-6 space-y-5">{sectionItems("floors").map(renderField)}</div>
               </div>
             </div>
@@ -262,8 +262,8 @@ function EstimatePage() {
 
                     {(result.generalBumped || result.floorsBumped) && (
                       <div className="mt-4 space-y-1 text-xs text-muted-foreground">
-                        {result.generalBumped && <p>Minimum order: €300.</p>}
-                        {result.floorsBumped && <p>Minimum floor order: €900.</p>}
+                        {result.generalBumped && <p>Minimum order: €250.</p>}
+                        {result.floorsBumped && <p>Minimum floor order: €750.</p>}
                       </div>
                     )}
 
