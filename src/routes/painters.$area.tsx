@@ -148,7 +148,7 @@ function AreaPage() {
               completed projects across the city.
             </p>
             <ul className="mt-6 space-y-3">
-              {area.highlights.map((h) => (
+              {area.highlights.map((h: string) => (
                 <li key={h} className="flex items-start gap-3 text-sm text-foreground">
                   <span className="mt-1 inline-block h-2 w-2 shrink-0 rounded-full bg-primary" />
                   <span>{h}</span>
