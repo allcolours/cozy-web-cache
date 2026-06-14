@@ -65,6 +65,7 @@ function EstimatePage() {
   const [qty, setQty] = useState<Record<string, string>>({});
   const [condition, setCondition] = useState<Condition>("average");
   const [mode, setMode] = useState<Mode>("per_element");
+  const [requestOpen, setRequestOpen] = useState(false);
 
   const result = useMemo(() => {
     const mult = CONDITION[condition].mult;
@@ -307,6 +308,194 @@ function EstimatePage() {
           </div>
         </div>
       </section>
+
+      {requestOpen && (
+        <RequestModal
+          onClose={() => setRequestOpen(false)}
+          estimateMin={result.min}
+          estimateMax={result.max}
+          condition={CONDITION[condition].label + ` (×${CONDITION[condition].mult})`}
+          mode={mode === "per_room" ? "By room" : "By element"}
+          lineItems={result.lines}
+        />
+      )}
     </>
+  );
+}
+
+function RequestModal({
+  onClose,
+  estimateMin,
+  estimateMax,
+  condition,
+  mode,
+  lineItems,
+}: {
+  onClose: () => void;
+  estimateMin: number;
+  estimateMax: number;
+  condition: string;
+  mode: string;
+  lineItems: { label: string; min: number; max: number }[];
+}) {
+  const [submitting, setSubmitting] = useState(false);
+  const [sent, setSent] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
+    document.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [onClose]);
+
+  const fmt = (n: number) =>
+    new Intl.NumberFormat("en-IE", { style: "currency", currency: "EUR", maximumFractionDigits: 0 }).format(n);
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setSubmitting(true);
+    setError(null);
+    const form = new FormData(e.currentTarget);
+    const payload = {
+      name: String(form.get("name") || "").trim().slice(0, 100),
+      email: String(form.get("email") || "").trim().slice(0, 255),
+      phone: String(form.get("phone") || "").trim().slice(0, 50),
+      address: String(form.get("address") || "").trim().slice(0, 255),
+      description: String(form.get("description") || "").trim().slice(0, 4000),
+      estimateMin,
+      estimateMax,
+      condition,
+      mode,
+      lineItems,
+    };
+    const consent = form.get("consent") === "on";
+    if (!payload.name || !payload.email || !payload.phone || !payload.address || !payload.description) {
+      setError("Please fill in all required fields.");
+      setSubmitting(false);
+      return;
+    }
+    if (!consent) {
+      setError("Please accept the privacy policy to continue.");
+      setSubmitting(false);
+      return;
+    }
+    try {
+      const res = await fetch("/api/public/estimate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      if (!res.ok) {
+        setError("Sorry, we couldn't send that. Please try again or call us directly.");
+        setSubmitting(false);
+        return;
+      }
+    } catch {
+      setError("Sorry, we couldn't send that. Please try again or call us directly.");
+      setSubmitting(false);
+      return;
+    }
+    setSent(true);
+    setSubmitting(false);
+  }
+
+  return (
+    <div
+      className="fixed inset-0 z-50 flex items-end justify-center bg-black/60 p-0 sm:items-center sm:p-4"
+      onClick={onClose}
+      role="dialog"
+      aria-modal="true"
+    >
+      <div
+        className="relative max-h-[95vh] w-full max-w-xl overflow-y-auto border-t-[3px] border-primary bg-card p-6 shadow-xl md:p-8"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <button
+          type="button"
+          onClick={onClose}
+          aria-label="Close"
+          className="absolute right-3 top-3 inline-flex h-9 w-9 items-center justify-center text-foreground hover:text-primary"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <path d="M6 6l12 12M18 6L6 18" />
+          </svg>
+        </button>
+
+        {sent ? (
+          <div className="py-6 text-center">
+            <h3 className="font-display text-xl font-bold uppercase tracking-wide text-[oklch(0.2_0_0)]">
+              Thanks — request sent
+            </h3>
+            <p className="mt-3 text-sm text-foreground">
+              We'll be in touch within one working day to arrange a free on-site visit. A confirmation has been sent to your email.
+            </p>
+            <button
+              type="button"
+              onClick={onClose}
+              className="mt-6 inline-flex items-center justify-center bg-primary px-6 py-3 font-display text-xs font-bold uppercase tracking-wider text-primary-foreground hover:bg-primary/90"
+            >
+              Close
+            </button>
+          </div>
+        ) : (
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <span className="eyebrow text-primary">Send this request</span>
+            <h3 className="font-display text-xl font-bold uppercase tracking-wide text-[oklch(0.2_0_0)]">
+              Your details
+            </h3>
+            <p className="text-sm text-muted-foreground">
+              Estimate range: <strong className="text-foreground">{fmt(estimateMin)} – {fmt(estimateMax)}</strong>. We'll come back within one working day to arrange a free on-site visit.
+            </p>
+
+            <div className="grid gap-4 sm:grid-cols-2">
+              <ModalField label="Name" name="name" required />
+              <ModalField label="Phone" name="phone" type="tel" required />
+            </div>
+            <ModalField label="Email" name="email" type="email" required />
+            <ModalField label="Address of the property" name="address" required />
+            <div>
+              <label htmlFor="description" className="font-display text-xs font-bold uppercase tracking-wider text-[oklch(0.2_0_0)]">
+                Description *
+              </label>
+              <textarea
+                id="description"
+                name="description"
+                required
+                rows={4}
+                placeholder="Tell us about the property and the work — rooms, surfaces, timing, colour preferences…"
+                className="mt-2 w-full border border-input bg-background px-3 py-2 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
+              />
+            </div>
+            <label htmlFor="consent" className="flex items-start gap-3 pt-1 text-xs text-foreground/75">
+              <input id="consent" name="consent" type="checkbox" required className="mt-0.5 h-4 w-4 shrink-0 border-input accent-[oklch(0.55_0.17_158)]" />
+              <span>I agree that my details may be used to respond to this enquiry, as described in the Privacy Policy.</span>
+            </label>
+            {error && <p className="text-sm text-destructive">{error}</p>}
+            <button
+              type="submit"
+              disabled={submitting}
+              className="w-full bg-primary px-6 py-3 font-display text-sm font-bold uppercase tracking-wider text-primary-foreground transition-colors hover:bg-primary/90 disabled:opacity-50"
+            >
+              {submitting ? "Sending…" : "Send request"}
+            </button>
+          </form>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function ModalField({ label, name, type = "text", required }: { label: string; name: string; type?: string; required?: boolean }) {
+  return (
+    <div>
+      <label htmlFor={name} className="font-display text-xs font-bold uppercase tracking-wider text-[oklch(0.2_0_0)]">
+        {label}{required && " *"}
+      </label>
+      <input id={name} name={name} type={type} required={required} className="mt-2 w-full border border-input bg-background px-3 py-2 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/20" />
+    </div>
   );
 }
