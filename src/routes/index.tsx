@@ -19,13 +19,12 @@ export const Route = createFileRoute("/")({
     meta: [
       { title: "Painter Dublin | Interior & Exterior Painting & Decorating" },
       { name: "description", content: "Painter and decorator in Dublin. Interior, exterior, kitchen & floor painting, epoxy floors, spray painting for houses & apartments across South Dublin. Free quotes." },
-      { name: "keywords", content: "painter dublin, painter and decorator dublin, painter near me, painter company near me, painting contractors dublin, master painters, painting and decorating dublin, interior painter near me, interior painting dublin, exterior painting dublin, apartment painting dublin, house painting, renovation painting, ceiling painting, hallway painting, staircase painting, stairs painting, bedroom painting, bathroom painting, living room painting, nursery painters near me, georgian house painting, period property painting, office painters dublin, commercial painting contractors, industrial premises painting, painting dash, painting pebbledash, floor painting, two-pack floor paints, twopack paints, epoxy floors, epoxy floor painting, epoxy painting, water based paint, oil based paint, railings painting, furniture painting, kitchen painting, kitchen cabinet painting, repainting kitchen cabinets, hand-painted kitchen, kitchen respraying, spray finish, spray painting, varnish painting, wallpapering dublin, wallpaper hanging, wall decorating, dust-free sanding, vacuum sanding, painter ballsbridge, painter donnybrook, painter stillorgan, painter dun laoghaire, painter rathfarnham, painter sandyford, painter rathmines, painter milltown, painter dundrum, painter roebuck, painter goatstown, painter ballinteer, painter leopardstown, painter harolds cross, painter cabinteely, painter foxrock, painter glenageary, painter dalkey, painter monkstown, painter sandymount, painter mount merrion, painter blackrock, painter ranelagh" },
       { property: "og:title", content: "Painter Dublin — All Colours Painting & Decorating" },
       { property: "og:description", content: "Professional painter & decorator in Dublin. Interior, exterior, apartments & houses across South Dublin." },
       { property: "og:url", content: "https://allcolourspainter.com/" },
       { property: "og:type", content: "website" },
-      { property: "og:image", content: heroAsset.url },
-      { property: "twitter:image", content: heroAsset.url },
+      { property: "og:image", content: `https://allcolourspainter.com${heroAsset.url}` },
+      { name: "twitter:image", content: `https://allcolourspainter.com${heroAsset.url}` },
       { name: "google-site-verification", content: "TpNVR-l0heZM7pJ-asHG3AOc33fsISO-tctP4ns_Z5w" },
     ],
     links: [
@@ -112,7 +111,7 @@ const services = [
   },
   {
     title: "Industrial",
-    desc: "Epoxy floor painting, floor coatings, line-marking, warehouse repaints and heavy-traffic protective systems using twopack paints.",
+    desc: "Epoxy floor painting, floor coatings, line-marking, warehouse repaints and heavy-traffic protective systems using two-pack paints.",
     img: sIndustrialAsset.url,
   },
   {
@@ -141,7 +140,7 @@ function Home() {
     <SiteLayout>
       {/* Hero */}
       <section className="relative isolate overflow-hidden">
-        <img src={heroAsset.url} alt="" width={1920} height={1280} fetchPriority="high" decoding="async" className="absolute inset-0 -z-10 h-full w-full object-cover" />
+        <img src={heroAsset.url} alt="Freshly painted Dublin home exterior by All Colours Painting" width={1920} height={1280} fetchPriority="high" decoding="async" className="absolute inset-0 -z-10 h-full w-full object-cover" />
         <div className="absolute inset-0 -z-10 bg-gradient-to-r from-black/70 via-black/45 to-black/10" />
         <div className="mx-auto max-w-7xl px-4 py-28 md:px-8 md:py-44">
           <div className="max-w-2xl text-white">
@@ -196,7 +195,7 @@ function Home() {
             <h2 className="section-title text-3xl md:text-4xl">Our work comes with a promise</h2>
             <hr className="section-rule" />
             <p className="mt-6 max-w-2xl text-base text-foreground">
-              Four things every client gets from us — every single job, no exceptions.
+              Six things every client gets from us — every single job, no exceptions.
             </p>
           </div>
 
@@ -207,7 +206,7 @@ function Home() {
               { t: "Reliable", d: "We say what we'll do — and we do what we say. Honest quotes, honest timelines." },
               { t: "Clean & Dust-Free", d: "Floors, furniture and belongings fully protected. Vacuum sanding keeps dust out of your home." },
               { t: "Fully Insured", d: "Public liability insured and tax-compliant. Every job covered from first prep to final coat." },
-              { t: "12-Month Warranty", d: "If anything's not right within 12 months of completion, we come back and put it right — no quibble." },
+              { t: "2-Year Warranty", d: "If anything's not right within 2 years of completion, we come back and put it right — no quibble. Written workmanship guarantee on every job." },
             ].map((v, i) => (
               <div key={v.t} className="border-t-[3px] border-primary bg-card p-7">
                 <div className="font-display text-xs font-bold uppercase tracking-[0.18em] text-primary">0{i + 1}</div>
@@ -247,7 +246,7 @@ function Home() {
             {services.map((s) => (
               <div key={s.title} className="group overflow-hidden bg-card">
                 <div className="aspect-[4/3] overflow-hidden">
-                  <img src={s.img} alt="" loading="lazy" width={800} height={600} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                  <img src={s.img} alt={`${s.title} painting & decorating in Dublin`} loading="lazy" width={800} height={600} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
                 </div>
                 <div className="border-b-[3px] border-primary p-6">
                   <h3 className="font-display text-base font-bold uppercase tracking-wide text-[oklch(0.2_0_0)]">{s.title}</h3>
