@@ -3,7 +3,7 @@ import { supabase } from "@/integrations/supabase/client";
 
 export const SETTING_DEFAULTS: Record<string, string> = {
   phone: "085 821 1870",
-  email: "info@painterdublin.eu",
+  email: "info@allcolourspainter.com",
   area: "Dublin & surrounding areas",
   hours: "Mon–Sat · 8:00 – 18:00",
   tagline: "Painting & decorating, done properly.",

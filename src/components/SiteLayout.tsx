@@ -20,11 +20,12 @@ export const COMPANY = {
   name: "All Colours Painting Contractor Limited",
   shortName: "All Colours Painting",
   phone: "085 821 1870",
-  email: "info@painterdublin.eu",
+  email: "info@allcolourspainter.com",
   area: "Dublin & surrounding areas",
   hours: "Mon–Sat · 8:00 – 18:00",
   tagline: "Painting & decorating, done properly.",
 };
+
 
 export function SiteLayout({ children }: { children: ReactNode }) {
   const [open, setOpen] = useState(false);
