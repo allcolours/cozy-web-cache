@@ -15,7 +15,8 @@ export const Route = createFileRoute("/faq")({
       { property: "og:description", content: "Everything you wanted to know before booking a painter — answered straight." },
       { property: "og:url", content: "https://allcolourspainter.com/faq" },
       { property: "og:type", content: "website" },
-      { property: "og:image", content: heroAsset.url },
+      { property: "og:image", content: `https://allcolourspainter.com${heroAsset.url}` },
+      { name: "twitter:image", content: `https://allcolourspainter.com${heroAsset.url}` },
     ],
     links: [{ rel: "canonical", href: "https://allcolourspainter.com/faq" }],
     scripts: [
@@ -40,7 +41,7 @@ function FaqPage() {
   return (
     <SiteLayout>
       <section className="relative isolate overflow-hidden">
-        <img src={heroAsset.url} alt="" width={1920} height={900} className="absolute inset-0 -z-10 h-full w-full object-cover" />
+        <img src={heroAsset.url} alt="Interior painting and decorating by All Colours Painting Dublin" width={1920} height={900} className="absolute inset-0 -z-10 h-full w-full object-cover" />
         <div className="absolute inset-0 -z-10 bg-[oklch(0.2_0_0)]/75" />
         <div className="mx-auto max-w-7xl px-4 py-24 md:px-8 md:py-32">
           <span className="eyebrow text-accent">Straight answers</span>

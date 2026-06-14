@@ -16,12 +16,12 @@ export const Route = createFileRoute("/services")({
     meta: [
       { title: "Services | All Colours Painting Contractor Limited" },
       { name: "description", content: "Interior, exterior, kitchen & floor painting, epoxy floors, spray painting, wallpapering and plastering for homes and businesses in Dublin." },
-      { name: "keywords", content: "painter dublin, floor painting, two-pack floor paints, twopack paints, epoxy floors, epoxy floor painting, epoxy painting, water based paint, oil based paint, railings painting, furniture painting, kitchen painting, spray finish, spray painting, varnish painting, interior painting, exterior painting" },
       { property: "og:title", content: "Painting & Decorating Services Dublin" },
       { property: "og:description", content: "Full painting & decorating service for homes and businesses." },
       { property: "og:url", content: "https://allcolourspainter.com/services" },
       { property: "og:type", content: "website" },
-      { property: "og:image", content: commercialAsset.url },
+      { property: "og:image", content: `https://allcolourspainter.com${commercialAsset.url}` },
+      { name: "twitter:image", content: `https://allcolourspainter.com${commercialAsset.url}` },
     ],
     links: [{ rel: "canonical", href: "https://allcolourspainter.com/services" }],
     scripts: [
@@ -64,7 +64,7 @@ export const Route = createFileRoute("/services")({
 const headline = [
   { title: "Residential", img: heroAsset.url, desc: "Period townhouses, family homes and apartments — interior, exterior, sash windows and feature walls.", bullets: ["Interior repaints", "Exterior render & masonry", "Sash window restoration", "Feature walls & wallpapering"] },
   { title: "Commercial", img: commercialAsset.url, desc: "Offices, retail, hospitality and education — scheduled out of hours so your business never stops.", bullets: ["Office repaints", "Retail & hospitality fit-out", "Out-of-hours scheduling", "Insurance & compliance"] },
-  { title: "Industrial", img: industrialAsset.url, desc: "Warehouse floors, epoxy floors, line-marking, plant-room repaints and heavy-traffic protective coatings with twopack paints.", bullets: ["Epoxy floor coatings", "Line marking", "Warehouse repaints", "Anti-slip systems"] },
+  { title: "Industrial", img: industrialAsset.url, desc: "Warehouse floors, epoxy floors, line-marking, plant-room repaints and heavy-traffic protective coatings with two-pack paints.", bullets: ["Epoxy floor coatings", "Line marking", "Warehouse repaints", "Anti-slip systems"] },
 ];
 
 const more = [
@@ -88,7 +88,7 @@ function Services() {
     <SiteLayout>
       {/* Hero band */}
       <section className="relative isolate overflow-hidden">
-        <img src={commercialAsset.url} alt="" width={1920} height={900} className="absolute inset-0 -z-10 h-full w-full object-cover" />
+        <img src={commercialAsset.url} alt="Commercial painting and decorating in Dublin" width={1920} height={900} className="absolute inset-0 -z-10 h-full w-full object-cover" />
         <div className="absolute inset-0 -z-10 bg-[oklch(0.2_0_0)]/75" />
         <div className="mx-auto max-w-7xl px-4 py-24 md:px-8 md:py-36">
           <span className="eyebrow text-accent">What we offer</span>
