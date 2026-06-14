@@ -61,8 +61,8 @@ export function SiteLayout({ children }: { children: ReactNode }) {
       <header className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/85">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 md:px-8">
           <Link to="/" className="flex shrink-0 items-center gap-3" onClick={() => setOpen(false)}>
-            <img src={logo} alt={COMPANY.name} width={76} height={76} className="h-16 w-16 shrink-0 object-contain sm:h-[76px] sm:w-[76px]" />
-            <span className="sr-only">
+            <img src={logo} alt={COMPANY.name} width={56} height={56} className="h-12 w-12 shrink-0 object-contain sm:h-14 sm:w-14" />
+            <span className="hidden truncate font-display text-base font-bold uppercase tracking-wide text-[oklch(0.25_0_0)] sm:block lg:hidden xl:block">
               {COMPANY.shortName}
             </span>
           </Link>
