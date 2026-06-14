@@ -170,7 +170,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
           </div>
         </div>
         <div className="border-t border-white/10">
-          <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-4 py-5 text-xs text-white/45 md:flex-row md:px-8">
+          <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-4 py-5 text-xs text-white/75 md:flex-row md:px-8">
             <div>© {new Date().getFullYear()} {COMPANY.name}. All rights reserved.</div>
             <div className="flex items-center gap-4">
               <Link to="/privacy" className="hover:text-primary">Privacy</Link>
