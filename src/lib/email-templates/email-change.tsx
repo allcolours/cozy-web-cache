@@ -10,7 +10,6 @@ import {
   Link,
   Preview,
   Text,
-  Section,
 } from '@react-email/components'
 
 interface EmailChangeEmailProps {
@@ -36,10 +35,6 @@ export const EmailChangeEmail = ({
     <Preview>Confirm your email change for {siteName}</Preview>
     <Body style={main}>
       <Container style={container}>
-        <Section style={header}>
-          <Text style={brandName}>{siteName}</Text>
-          <div style={accentBar} />
-        </Section>
         <Heading style={h1}>Confirm your email change</Heading>
         <Text style={text}>
           You requested to change your email address for {siteName} from{' '}
@@ -69,53 +64,27 @@ export const EmailChangeEmail = ({
 
 export default EmailChangeEmail
 
-const main = { backgroundColor: '#ffffff', fontFamily: '"Hind", Arial, sans-serif' }
-const container = { padding: '0', maxWidth: '580px' }
-const header = { padding: '24px 25px 0' }
-const brandName = {
-  fontFamily: '"Montserrat", Arial, sans-serif',
-  fontSize: '18px',
-  fontWeight: 700,
-  color: '#1c1c1c',
-  margin: '0 0 12px',
-  letterSpacing: '-0.01em',
-}
-const accentBar = {
-  height: '3px',
-  width: '60px',
-  backgroundColor: '#18b26f',
-}
+const main = { backgroundColor: '#ffffff', fontFamily: 'Arial, sans-serif' }
+const container = { padding: '20px 25px' }
 const h1 = {
-  fontFamily: '"Montserrat", Arial, sans-serif',
   fontSize: '22px',
-  fontWeight: 700,
-  color: '#1c1c1c',
-  margin: '24px 0 20px',
-  padding: '0 25px',
+  fontWeight: 'bold' as const,
+  color: '#000000',
+  margin: '0 0 20px',
 }
 const text = {
   fontSize: '14px',
-  color: '#5e5e5e',
-  lineHeight: '1.6',
-  margin: '0 0 20px',
-  padding: '0 25px',
+  color: '#55575d',
+  lineHeight: '1.5',
+  margin: '0 0 25px',
 }
-const link = { color: '#18b26f', textDecoration: 'underline' }
+const link = { color: 'inherit', textDecoration: 'underline' }
 const button = {
-  backgroundColor: '#18b26f',
+  backgroundColor: '#000000',
   color: '#ffffff',
-  fontFamily: '"Montserrat", Arial, sans-serif',
   fontSize: '14px',
-  fontWeight: 600,
-  borderRadius: '4px',
-  padding: '12px 24px',
+  borderRadius: '8px',
+  padding: '12px 20px',
   textDecoration: 'none',
-  display: 'inline-block',
-  margin: '0 25px 20px',
 }
-const footer = {
-  fontSize: '12px',
-  color: '#999999',
-  margin: '20px 0 24px',
-  padding: '0 25px',
-}
+const footer = { fontSize: '12px', color: '#999999', margin: '30px 0 0' }
