@@ -28,7 +28,10 @@ export const Route = createFileRoute("/")({
       { property: "twitter:image", content: heroAsset.url },
       { name: "google-site-verification", content: "TpNVR-l0heZM7pJ-asHG3AOc33fsISO-tctP4ns_Z5w" },
     ],
-    links: [{ rel: "canonical", href: "https://allcolourspainter.com/" }],
+    links: [
+      { rel: "canonical", href: "https://allcolourspainter.com/" },
+      { rel: "preload", as: "image", href: heroAsset.url, fetchpriority: "high" },
+    ],
     scripts: [
       {
         type: "application/ld+json",
@@ -133,7 +136,7 @@ function Home() {
     <SiteLayout>
       {/* Hero */}
       <section className="relative isolate overflow-hidden">
-        <img src={heroAsset.url} alt="" width={1920} height={1280} className="absolute inset-0 -z-10 h-full w-full object-cover" />
+        <img src={heroAsset.url} alt="" width={1920} height={1280} fetchPriority="high" decoding="async" className="absolute inset-0 -z-10 h-full w-full object-cover" />
         <div className="absolute inset-0 -z-10 bg-gradient-to-r from-black/70 via-black/45 to-black/10" />
         <div className="mx-auto max-w-7xl px-4 py-28 md:px-8 md:py-44">
           <div className="max-w-2xl text-white">
