@@ -292,7 +292,7 @@ function Home() {
       <ProcessSteps background="background" />
 
       {/* Testimonials */}
-      <TestimonialsSection limit={3} />
+      <TestimonialsSection />
 
       {/* FAQ teaser */}
       <section className="bg-secondary">
