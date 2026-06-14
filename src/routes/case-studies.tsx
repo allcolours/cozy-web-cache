@@ -15,6 +15,25 @@ export const Route = createFileRoute("/case-studies")({
       { property: "og:image", content: heroAsset.url },
     ],
     links: [{ rel: "canonical", href: "https://allcolourspainter.com/case-studies" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          name: "Case Studies",
+          description: "Before-and-after painting & decorating projects across Dublin.",
+          url: "https://allcolourspainter.com/case-studies",
+          hasPart: CASE_STUDIES.map((c) => ({
+            "@type": "Article",
+            headline: c.title,
+            url: `https://allcolourspainter.com/case-studies/${c.slug}`,
+            image: c.cover,
+            description: c.summary,
+          })),
+        }),
+      },
+    ],
   }),
   component: CaseStudiesIndex,
 });

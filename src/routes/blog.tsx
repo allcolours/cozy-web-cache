@@ -15,6 +15,26 @@ export const Route = createFileRoute("/blog")({
       { property: "og:image", content: heroAsset.url },
     ],
     links: [{ rel: "canonical", href: "https://allcolourspainter.com/blog" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Blog",
+          name: "The Painters' Notebook",
+          description: "Honest, hands-on painting & decorating advice for Dublin homes.",
+          url: "https://allcolourspainter.com/blog",
+          blogPost: BLOG_POSTS.map((p) => ({
+            "@type": "BlogPosting",
+            headline: p.title,
+            url: `https://allcolourspainter.com/blog/${p.slug}`,
+            image: p.cover,
+            datePublished: p.date,
+            description: p.excerpt,
+          })),
+        }),
+      },
+    ],
   }),
   component: BlogIndex,
 });

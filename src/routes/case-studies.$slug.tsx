@@ -23,6 +23,37 @@ export const Route = createFileRoute("/case-studies/$slug")({
         { property: "og:image", content: s.cover },
       ],
       links: [{ rel: "canonical", href: url }],
+      scripts: [
+        {
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Article",
+            headline: s.title,
+            description: s.summary,
+            image: s.cover,
+            author: { "@type": "Organization", name: "All Colours Painting Contractor Limited" },
+            publisher: {
+              "@type": "Organization",
+              name: "All Colours Painting Contractor Limited",
+              logo: { "@type": "ImageObject", url: "https://allcolourspainter.com/favicon.ico" },
+            },
+            mainEntityOfPage: { "@type": "WebPage", "@id": url },
+          }),
+        },
+        {
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "Home", item: "https://allcolourspainter.com/" },
+              { "@type": "ListItem", position: 2, name: "Case Studies", item: "https://allcolourspainter.com/case-studies" },
+              { "@type": "ListItem", position: 3, name: s.title, item: url },
+            ],
+          }),
+        },
+      ],
     };
   },
   notFoundComponent: () => (
