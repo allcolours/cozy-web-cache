@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { CASE_STUDIES } from "../data/caseStudies";
 import { BLOG_POSTS } from "../data/blog";
 import { AREAS } from "../data/areas";
+import { SERVICES } from "../data/services";
 
 const BASE_URL = "https://allcolourspainter.com";
 
