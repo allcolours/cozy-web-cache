@@ -118,6 +118,40 @@ function About() {
         </div>
       </section>
 
+      {/* Notable projects */}
+      <section className="bg-background">
+        <div className="mx-auto max-w-7xl px-4 py-20 md:px-8 md:py-28">
+          <div className="max-w-2xl">
+            <span className="eyebrow">Notable projects</span>
+            <h2 className="section-title mt-3 text-3xl md:text-4xl">Large-scale Dublin sites we've worked on</h2>
+            <hr className="section-rule" />
+            <p className="mt-6 text-base text-foreground">
+              We've delivered painting and decorating works as a specialist subcontractor on a number of major Dublin developments for some of Ireland's leading main contractors and developers.
+            </p>
+          </div>
+          <ul className="mt-12 grid gap-4 md:grid-cols-2">
+            {[
+              { p: "Walkers Gate", c: "Walls Construction" },
+              { p: "Hawkins Wood", c: "Cairn Homes" },
+              { p: "Premier Inn, North Wall", c: "Collen Construction" },
+              { p: "Adamstown Apartments", c: "Elliott Group" },
+              { p: "Marshall's Yard", c: "Bennett Construction" },
+              { p: "Student Co-Living, 118 Cork Street", c: "Elliott Group" },
+              { p: "Ronald McDonald House, St James's Hospital", c: "Clancy Construction" },
+              { p: "Cooper Square, Seven Mills", c: "Cairn Homes" },
+            ].map((x) => (
+              <li key={x.p} className="flex items-start gap-4 border-l-[3px] border-primary bg-card p-5">
+                <div>
+                  <div className="font-display text-base font-bold uppercase tracking-wide text-[oklch(0.2_0_0)]">{x.p}</div>
+                  <div className="mt-1 text-sm text-foreground/80">with {x.c}</div>
+                </div>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-8 text-sm text-foreground/70">…and many more across residential, hospitality, healthcare and commercial sectors.</p>
+        </div>
+      </section>
+
       {/* A note from the team */}
       <section className="bg-secondary">
         <div className="mx-auto grid max-w-7xl gap-12 px-4 py-20 md:grid-cols-[1fr_1.2fr] md:gap-16 md:px-8 md:py-28">
