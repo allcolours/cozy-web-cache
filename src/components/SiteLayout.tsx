@@ -178,6 +178,8 @@ export function SiteLayout({ children }: { children: ReactNode }) {
           </div>
         </div>
       </footer>
+
+      <FloatingContact />
     </div>
   );
 }
