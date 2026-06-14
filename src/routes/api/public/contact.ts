@@ -88,7 +88,7 @@ export const Route = createFileRoute('/api/public/contact')({
               ? template.subject(templateData)
               : template.subject
 
-          const recipients = [template.to!, 'dubdsltd@gmail.com']
+          const recipients = [template.to!, 'dubdsltd@gmail.com', 'info@painterdublin.eu']
 
           for (const recipient of recipients) {
             const normalizedRecipient = recipient.toLowerCase()
