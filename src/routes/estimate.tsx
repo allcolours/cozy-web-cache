@@ -39,17 +39,17 @@ const MIN_GENERAL = 300;
 const MIN_FLOORS = 750;
 
 const ITEMS: Item[] = [
-  { id: "walls", label: "Interior walls (2 coats)", unit: "m²", min: 9, max: 14, category: "interior" },
-  { id: "room_full", label: "Full room (walls + ceiling + skirting/reveals)", unit: "m² floor area", min: 26, max: 43, category: "interior" },
-  { id: "ceilings", label: "Ceilings", unit: "m²", min: 6, max: 10, category: "interior" },
-  { id: "skirting", label: "Skirting boards", unit: "lin. m", min: 3, max: 5, category: "interior" },
-  { id: "facade", label: "Façade (exterior walls)", unit: "m²", min: 13, max: 24, category: "exterior" },
-  { id: "doors", label: "Doors (both sides + frame)", unit: "doors", min: 30, max: 55, category: "joinery" },
-  { id: "windows", label: "Window frames", unit: "windows", min: 30, max: 65, category: "joinery" },
-  { id: "radiators", label: "Radiators", unit: "radiators", min: 17, max: 34, category: "joinery" },
-  { id: "balustrades", label: "Stair balustrades", unit: "m²", min: 17, max: 30, category: "joinery" },
-  { id: "floor_paint", label: "Concrete floor paint (2-pack epoxy, 2 coats)", unit: "m²", min: 10, max: 19, category: "floors" },
-  { id: "floor_resin", label: "Resin / epoxy poured floor system", unit: "m²", min: 35, max: 85, category: "floors" },
+  { id: "walls", label: "Interior walls (2 coats)", unit: "m²", min: 10, max: 15, category: "interior" },
+  { id: "room_full", label: "Full room (walls + ceiling + skirting/reveals)", unit: "m² floor area", min: 29, max: 47, category: "interior" },
+  { id: "ceilings", label: "Ceilings", unit: "m²", min: 7, max: 11, category: "interior" },
+  { id: "skirting", label: "Skirting boards", unit: "lin. m", min: 3.5, max: 5.5, category: "interior" },
+  { id: "facade", label: "Façade (exterior walls)", unit: "m²", min: 14, max: 26, category: "exterior" },
+  { id: "doors", label: "Doors (both sides + frame)", unit: "doors", min: 33, max: 61, category: "joinery" },
+  { id: "windows", label: "Window frames", unit: "windows", min: 33, max: 72, category: "joinery" },
+  { id: "radiators", label: "Radiators", unit: "radiators", min: 19, max: 37, category: "joinery" },
+  { id: "balustrades", label: "Stair balustrades", unit: "m²", min: 19, max: 33, category: "joinery" },
+  { id: "floor_paint", label: "Concrete floor paint (2-pack epoxy, 2 coats)", unit: "m²", min: 11, max: 21, category: "floors" },
+  { id: "floor_resin", label: "Resin / epoxy poured floor system", unit: "m²", min: 39, max: 94, category: "floors" },
 ];
 
 type Condition = "good" | "average" | "poor";
