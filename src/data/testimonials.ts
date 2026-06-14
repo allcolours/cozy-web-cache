@@ -73,4 +73,13 @@ export const TESTIMONIALS: Testimonial[] = [
       "They are very good and experienced painters. They work diligently. I recommend them any day anytime.",
     project: "Residential painting",
   },
+  {
+    name: "Trish Duane",
+    location: "Dublin",
+    role: "Homeowner",
+    rating: 5,
+    quote:
+      "I have highly recommended Ika and his team to friends. Super painting of house exterior and deck removed and replaced.",
+    project: "Exterior painting & deck replacement",
+  },
 ];
