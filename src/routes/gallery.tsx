@@ -10,6 +10,14 @@ import commercialAsset from "../assets/portfolio/service-commercial.jpg.asset.js
 import industrialAsset from "../assets/portfolio/service-industrial.jpg.asset.json";
 import hospitalityAsset from "../assets/portfolio/service-hospitality.jpg.asset.json";
 import aboutAsset from "../assets/portfolio/about-architecture.jpg.asset.json";
+import livingRoomAsset from "../assets/portfolio/gen-living-room.jpg.asset.json";
+import georgianAsset from "../assets/portfolio/gen-georgian.jpg.asset.json";
+import kitchenAsset from "../assets/portfolio/gen-kitchen.jpg.asset.json";
+import bedroomAsset from "../assets/portfolio/gen-bedroom.jpg.asset.json";
+import painterWorkAsset from "../assets/portfolio/gen-painter-work.jpg.asset.json";
+import hallwayAsset from "../assets/portfolio/gen-hallway.jpg.asset.json";
+import featureWallAsset from "../assets/portfolio/gen-feature-wall.jpg.asset.json";
+import exteriorModernAsset from "../assets/portfolio/gen-exterior-modern.jpg.asset.json";
 
 export const Route = createFileRoute("/gallery")({
   head: () => ({
@@ -29,12 +37,20 @@ export const Route = createFileRoute("/gallery")({
 
 const fallback = [
   { id: "f1", image_url: heroAsset.url, title: "Sage Country House", tag: "Exterior · Residential" },
-  { id: "f2", image_url: exteriorAsset.url, title: "Modern Family Villa", tag: "Exterior · Residential" },
-  { id: "f3", image_url: floorAsset.url, title: "Warehouse Floor Coating", tag: "Industrial · Floor systems" },
-  { id: "f4", image_url: commercialAsset.url, title: "Open-Plan Office Repaint", tag: "Commercial · Offices" },
-  { id: "f5", image_url: hospitalityAsset.url, title: "Restaurant & Bar Fit-Out", tag: "Hospitality · Interiors" },
-  { id: "f6", image_url: industrialAsset.url, title: "Distribution Centre", tag: "Industrial · Repaint" },
-  { id: "f7", image_url: aboutAsset.url, title: "Architectural Detail", tag: "Bespoke · Exterior" },
+  { id: "f2", image_url: livingRoomAsset.url, title: "Bright Living Room Repaint", tag: "Interior · Residential" },
+  { id: "f3", image_url: georgianAsset.url, title: "Georgian Townhouse Front", tag: "Exterior · Period property" },
+  { id: "f4", image_url: kitchenAsset.url, title: "Sage Kitchen Cabinet Respray", tag: "Interior · Kitchen respray" },
+  { id: "f5", image_url: bedroomAsset.url, title: "Master Bedroom Refresh", tag: "Interior · Residential" },
+  { id: "f6", image_url: hallwayAsset.url, title: "Hallway & Staircase", tag: "Interior · Period property" },
+  { id: "f7", image_url: featureWallAsset.url, title: "Navy Feature Wall", tag: "Interior · Feature wall" },
+  { id: "f8", image_url: exteriorModernAsset.url, title: "Modern Family Home Exterior", tag: "Exterior · Residential" },
+  { id: "f9", image_url: exteriorAsset.url, title: "Modern Family Villa", tag: "Exterior · Residential" },
+  { id: "f10", image_url: painterWorkAsset.url, title: "On-site Decorating", tag: "Process · Interior" },
+  { id: "f11", image_url: floorAsset.url, title: "Warehouse Floor Coating", tag: "Industrial · Floor systems" },
+  { id: "f12", image_url: commercialAsset.url, title: "Open-Plan Office Repaint", tag: "Commercial · Offices" },
+  { id: "f13", image_url: hospitalityAsset.url, title: "Restaurant & Bar Fit-Out", tag: "Hospitality · Interiors" },
+  { id: "f14", image_url: industrialAsset.url, title: "Distribution Centre", tag: "Industrial · Repaint" },
+  { id: "f15", image_url: aboutAsset.url, title: "Architectural Detail", tag: "Bespoke · Exterior" },
 ];
 
 function Gallery() {
