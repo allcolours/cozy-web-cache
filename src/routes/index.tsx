@@ -15,10 +15,11 @@ import ctaAsset from "../assets/portfolio/cta-bg.jpg.asset.json";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "All Colours Painting | Professional Painters & Decorators" },
-      { name: "description", content: "Professional interior, exterior and commercial painting & decorating across Dublin. Quality finishes, tidy workmanship, fully insured. Free quotes." },
-      { property: "og:title", content: "All Colours Painting — Professional Painters & Decorators Dublin" },
-      { property: "og:description", content: "Professional painters & decorators. Interior, exterior, commercial. Dublin & surrounding areas." },
+      { title: "Painter Dublin | Interior & Exterior Painting & Decorating" },
+      { name: "description", content: "Painter and decorator in Dublin for houses & apartments. Interior, exterior, dash & pebbledash painting in Ballsbridge, Donnybrook, Stillorgan, Dún Laoghaire, Rathmines, Sandyford, Dundrum, Blackrock & more. Free quotes." },
+      { name: "keywords", content: "painter dublin, painter and decorator dublin, painter near me, interior painting dublin, exterior painting dublin, painting apartment, painting house, painting dash, painting pebbledash, painter ballsbridge, painter donnybrook, painter stillorgan, painter dun laoghaire, painter rathfarnham, painter sandyford, painter rathmines, painter milltown, painter dundrum, painter roebuck, painter goatstown, painter ballinteer, painter leopardstown, painter harolds cross, painter cabinteely, painter foxrock, painter glenageary, painter dalkey, painter monkstown, painter sandymount, painter mount merrion, painter blackrock, painter ranelagh" },
+      { property: "og:title", content: "Painter Dublin — All Colours Painting & Decorating" },
+      { property: "og:description", content: "Professional painter & decorator in Dublin. Interior, exterior, apartments & houses across South Dublin." },
       { property: "og:url", content: "https://allcolourspainter.com/" },
       { property: "og:type", content: "website" },
       { property: "og:image", content: heroAsset.url },
