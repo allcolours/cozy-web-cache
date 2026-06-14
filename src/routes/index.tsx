@@ -11,6 +11,7 @@ import sCommercialAsset from "../assets/portfolio/service-commercial.jpg.asset.j
 import sIndustrialAsset from "../assets/portfolio/service-industrial.jpg.asset.json";
 import sHospitalityAsset from "../assets/portfolio/service-hospitality.jpg.asset.json";
 import ctaAsset from "../assets/portfolio/cta-bg.jpg.asset.json";
+import serviceAreaMap from "../assets/service-area-map.png.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -300,22 +301,39 @@ function Home() {
             </p>
           </div>
 
-          <ul className="mt-10 grid grid-cols-2 gap-x-6 gap-y-3 text-sm text-foreground sm:grid-cols-3 lg:grid-cols-4">
-            {[
-              "Painter Ballsbridge","Painter Donnybrook","Painter Stillorgan","Painter Dún Laoghaire",
-              "Painter Rathfarnham","Painter Sandyford","Painter Rathmines","Painter Milltown",
-              "Painter Dundrum","Painter Roebuck","Painter Goatstown","Painter Ballinteer",
-              "Painter Leopardstown","Painter Harold's Cross","Painter Cabinteely","Painter Foxrock",
-              "Painter Glenageary","Painter Dalkey","Painter Monkstown","Painter Sandymount",
-              "Painter Mount Merrion","Painter Blackrock","Painter Ranelagh",
-            ].map((a) => (
-              <li key={a} className="flex items-center gap-2 border-l-2 border-primary/70 pl-3">
-                <span className="font-medium text-[oklch(0.2_0_0)]">{a}</span>
-              </li>
-            ))}
-          </ul>
+          <div className="mt-12 grid gap-10 md:grid-cols-5 md:gap-12">
+            <div className="md:col-span-3">
+              <img
+                src={serviceAreaMap.url}
+                alt="Map of South Dublin service area covered by All Colours Painting — Ballsbridge, Donnybrook, Rathmines, Dundrum, Sandyford, Dún Laoghaire, Blackrock and surrounding areas"
+                width={920}
+                height={680}
+                loading="lazy"
+                className="w-full border border-border bg-secondary"
+              />
+              <p className="mt-3 text-xs uppercase tracking-[0.18em] text-muted-foreground">
+                Our primary service area — South Dublin
+              </p>
+            </div>
+
+            <ul className="grid grid-cols-2 gap-x-4 gap-y-3 self-start text-sm text-foreground md:col-span-2">
+              {[
+                "Painter Ballsbridge","Painter Donnybrook","Painter Stillorgan","Painter Dún Laoghaire",
+                "Painter Rathfarnham","Painter Sandyford","Painter Rathmines","Painter Milltown",
+                "Painter Dundrum","Painter Roebuck","Painter Goatstown","Painter Ballinteer",
+                "Painter Leopardstown","Painter Harold's Cross","Painter Cabinteely","Painter Foxrock",
+                "Painter Glenageary","Painter Dalkey","Painter Monkstown","Painter Sandymount",
+                "Painter Mount Merrion","Painter Blackrock","Painter Ranelagh",
+              ].map((a) => (
+                <li key={a} className="flex items-center gap-2 border-l-2 border-primary/70 pl-3">
+                  <span className="font-medium text-[oklch(0.2_0_0)]">{a}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </section>
+
 
 
       {/* CTA band */}
