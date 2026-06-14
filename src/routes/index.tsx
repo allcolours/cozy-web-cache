@@ -5,6 +5,7 @@ import { ProcessSteps } from "../components/ProcessSteps";
 import { FaqAccordion } from "../components/FaqAccordion";
 import { FAQS } from "../data/faqs";
 import { CASE_STUDIES } from "../data/caseStudies";
+import { TESTIMONIALS } from "../data/testimonials";
 import heroAsset from "../assets/portfolio/hero-house.webp.asset.json";
 import aboutAsset from "../assets/portfolio/about-architecture.jpg.asset.json";
 import sCommercialAsset from "../assets/portfolio/service-commercial.jpg.asset.json";
@@ -41,7 +42,7 @@ export const Route = createFileRoute("/")({
           email: "info@allcolourspainter.com",
           description: "Professional painters & decorators in Dublin. Interior, exterior, kitchen painting, floor painting, epoxy floors, spray painting, furniture painting, railings painting, varnish painting, commercial & industrial painting.",
           image: heroAsset.url,
-          logo: "https://allcolourspainter.com/favicon.ico",
+          logo: heroAsset.url,
           priceRange: "€€",
           address: {
             "@type": "PostalAddress",
@@ -67,10 +68,25 @@ export const Route = createFileRoute("/")({
           aggregateRating: {
             "@type": "AggregateRating",
             ratingValue: "5.0",
-            reviewCount: "7",
+            reviewCount: String(TESTIMONIALS.length),
             bestRating: "5",
             worstRating: "1",
           },
+          review: TESTIMONIALS.map((t) => ({
+            "@type": "Review",
+            author: { "@type": "Person", name: t.name },
+            reviewRating: {
+              "@type": "Rating",
+              ratingValue: String(t.rating),
+              bestRating: "5",
+              worstRating: "1",
+            },
+            reviewBody: t.quote,
+            itemReviewed: {
+              "@type": "LocalBusiness",
+              name: "All Colours Painting Contractor Limited",
+            },
+          })),
         }),
       },
     ],
