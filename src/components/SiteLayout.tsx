@@ -59,17 +59,17 @@ export function SiteLayout({ children }: { children: ReactNode }) {
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 md:px-8">
           <Link to="/" className="flex min-w-0 items-center gap-3" onClick={() => setOpen(false)}>
             <img src={logo} alt={COMPANY.name} width={56} height={56} className="h-12 w-12 shrink-0 object-contain sm:h-14 sm:w-14" />
-            <span className="hidden truncate font-display text-sm font-bold uppercase tracking-wide text-[oklch(0.2_0_0)] sm:block md:text-base">
+            <span className="hidden truncate font-display text-sm font-bold uppercase tracking-wide text-[oklch(0.2_0_0)] sm:block lg:hidden xl:block xl:text-base">
               {COMPANY.shortName}
             </span>
           </Link>
 
-          <nav className="hidden items-center gap-5 lg:flex xl:gap-6">
+          <nav className="hidden items-center gap-4 lg:flex xl:gap-6">
             {NAV.map((n) => (
               <Link
                 key={n.to}
                 to={n.to}
-                className="font-display text-[12px] font-semibold uppercase tracking-wider text-[oklch(0.3_0_0)] transition-colors hover:text-primary xl:text-[13px]"
+                className="whitespace-nowrap font-display text-[12px] font-semibold uppercase tracking-wider text-[oklch(0.3_0_0)] transition-colors hover:text-primary xl:text-[13px]"
                 activeProps={{ className: "text-primary" }}
                 activeOptions={{ exact: n.to === "/" }}
               >
@@ -78,11 +78,12 @@ export function SiteLayout({ children }: { children: ReactNode }) {
             ))}
             <Link
               to="/contact"
-              className="ml-2 inline-flex items-center rounded-sm bg-primary px-5 py-2.5 font-display text-xs font-bold uppercase tracking-wider text-primary-foreground transition-colors hover:bg-[oklch(0.62_0.17_158)]"
+              className="ml-2 inline-flex items-center whitespace-nowrap rounded-sm bg-primary px-5 py-2.5 font-display text-xs font-bold uppercase tracking-wider text-primary-foreground transition-colors hover:bg-[oklch(0.62_0.17_158)]"
             >
               Get a Quote
             </Link>
           </nav>
+
 
           <button
             className="inline-flex shrink-0 items-center justify-center rounded-sm p-2 text-[oklch(0.2_0_0)] lg:hidden"
