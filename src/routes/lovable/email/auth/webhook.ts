@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { renderAsync } from '@react-email/components'
+import { render } from '@react-email/components'
 import { parseEmailWebhookPayload } from '@lovable.dev/email-js'
 import { WebhookError, verifyWebhookRequest } from '@lovable.dev/webhooks-js'
 import { createClient } from '@supabase/supabase-js'
@@ -31,7 +31,7 @@ const EMAIL_TEMPLATES: Record<string, React.ComponentType<any>> = {
 }
 
 // Configuration
-const SITE_NAME = "cozy-web-cache"
+const SITE_NAME = "All Colours Painting"
 const SENDER_DOMAIN = "notify.allcolourspainter.com"
 const ROOT_DOMAIN = "allcolourspainter.com"
 const FROM_DOMAIN = "notify.allcolourspainter.com"
