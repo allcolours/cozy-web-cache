@@ -8,9 +8,9 @@ export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
       { title: "About | All Colours Painting Contractor Limited" },
-      { name: "description", content: "Painters & decorators with over 20 years of experience. Family-run, fully insured, and committed to quality finishes." },
+      { name: "description", content: "Painters & decorators with over 10 years of experience. Fully insured and committed to quality finishes." },
       { property: "og:title", content: "About All Colours Painting" },
-      { property: "og:description", content: "Family-run painting & decorating company with 20+ years of experience." },
+      { property: "og:description", content: "Painting & decorating company with 10+ years of experience across Dublin." },
       { property: "og:url", content: "https://allcolourspainter.com/about" },
       { property: "og:type", content: "website" },
       { property: "og:image", content: aboutAsset.url },
@@ -43,7 +43,7 @@ function About() {
         <div className="mx-auto max-w-7xl px-4 py-24 md:px-8 md:py-36">
           <span className="eyebrow text-accent">About us</span>
           <h1 className="mt-3 max-w-3xl font-display text-4xl font-extrabold uppercase leading-[1.1] tracking-tight text-white md:text-6xl">
-            Two decades of brushes, rollers & craftsmanship
+            A decade of brushes, rollers & craftsmanship
           </h1>
           <div className="mt-6 h-[3px] w-[170px] bg-primary" />
         </div>
@@ -57,7 +57,7 @@ function About() {
             <h2 className="section-title mt-3 text-3xl md:text-4xl">A craft built on detail</h2>
             <hr className="section-rule" />
             <div className="mt-8 space-y-5 text-base leading-relaxed text-foreground">
-              <p>{COMPANY.name} is a family-run painting and decorating company serving {COMPANY.area} for over 20 years. We've grown almost entirely by word of mouth — most of our work comes from clients who've used us before, or from architects and interior designers who trust us to finish their projects properly.</p>
+              <p>{COMPANY.name} is a painting and decorating company serving {COMPANY.area} for over 10 years. We've grown almost entirely by word of mouth — most of our work comes from clients who've used us before, or from architects and interior designers who trust us to finish their projects properly.</p>
               <p>From a single feature wall in a city flat to full repaints of period townhouses and commercial fit-outs, we treat every job the same: prepare meticulously, paint cleanly, leave the site spotless.</p>
               <p>If you're after a contractor who takes pride in straight lines, sharp cut-ins and a finish that lasts, you're in the right place.</p>
             </div>
@@ -98,15 +98,15 @@ function About() {
         <div className="mx-auto max-w-7xl px-4 py-20 md:px-8 md:py-28">
           <div className="max-w-2xl">
             <span className="eyebrow">Our story so far</span>
-            <h2 className="section-title mt-3 text-3xl md:text-4xl">Twenty-plus years, one ladder at a time</h2>
+            <h2 className="section-title mt-3 text-3xl md:text-4xl">Ten years, one ladder at a time</h2>
             <hr className="section-rule" />
           </div>
           <ol className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
             {[
-              { y: "2003", t: "First brush", d: "Started out as a two-man team painting family homes around south Dublin — most of those first clients are still on the books today." },
-              { y: "2010", t: "Going commercial", d: "Trusted by our first hotel and office clients, learning to schedule jobs around live businesses without shutting them down." },
-              { y: "2017", t: "Industrial coatings", d: "Trained and certified on heavy-duty epoxy floor and protective steel systems — opening the door to warehouse and plant-room work." },
-              { y: "2024", t: "Twenty years on", d: "Still family-run, still answering our own phone, still treating every job the way we'd want our own home painted." },
+              { y: "2015", t: "First brush", d: "Started out painting family homes around south Dublin — most of those first clients are still on the books today." },
+              { y: "2018", t: "Going commercial", d: "Trusted by our first hotel and office clients, learning to schedule jobs around live businesses without shutting them down." },
+              { y: "2021", t: "Large-scale sites", d: "Joined major Dublin construction projects as a specialist painting subcontractor — apartments, student housing, hotels and healthcare." },
+              { y: "2025", t: "A decade on", d: "Still answering our own phone, still treating every job the way we'd want our own home painted." },
             ].map((s) => (
               <li key={s.y} className="border-t-[3px] border-primary bg-card p-7">
                 <div className="font-display text-3xl font-extrabold text-primary">{s.y}</div>
@@ -115,6 +115,40 @@ function About() {
               </li>
             ))}
           </ol>
+        </div>
+      </section>
+
+      {/* Notable projects */}
+      <section className="bg-background">
+        <div className="mx-auto max-w-7xl px-4 py-20 md:px-8 md:py-28">
+          <div className="max-w-2xl">
+            <span className="eyebrow">Notable projects</span>
+            <h2 className="section-title mt-3 text-3xl md:text-4xl">Large-scale Dublin sites we've worked on</h2>
+            <hr className="section-rule" />
+            <p className="mt-6 text-base text-foreground">
+              We've delivered painting and decorating works as a specialist subcontractor on a number of major Dublin developments for some of Ireland's leading main contractors and developers.
+            </p>
+          </div>
+          <ul className="mt-12 grid gap-4 md:grid-cols-2">
+            {[
+              { p: "Walkers Gate", c: "Walls Construction" },
+              { p: "Hawkins Wood", c: "Cairn Homes" },
+              { p: "Premier Inn, North Wall", c: "Collen Construction" },
+              { p: "Adamstown Apartments", c: "Elliott Group" },
+              { p: "Marshall's Yard", c: "Bennett Construction" },
+              { p: "Student Co-Living, 118 Cork Street", c: "Elliott Group" },
+              { p: "Ronald McDonald House, St James's Hospital", c: "Clancy Construction" },
+              { p: "Cooper Square, Seven Mills", c: "Cairn Homes" },
+            ].map((x) => (
+              <li key={x.p} className="flex items-start gap-4 border-l-[3px] border-primary bg-card p-5">
+                <div>
+                  <div className="font-display text-base font-bold uppercase tracking-wide text-[oklch(0.2_0_0)]">{x.p}</div>
+                  <div className="mt-1 text-sm text-foreground/80">with {x.c}</div>
+                </div>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-8 text-sm text-foreground/70">…and many more across residential, hospitality, healthcare and commercial sectors.</p>
         </div>
       </section>
 
@@ -130,7 +164,7 @@ function About() {
             <h2 className="section-title mt-3 text-3xl md:text-4xl">It's still personal</h2>
             <hr className="section-rule" />
             <div className="mt-8 space-y-5 text-base leading-relaxed text-foreground md:text-lg">
-              <p>We're a small team. The person who quotes the job is on site for the job. The phone is answered by someone who's actually been up a ladder this week. That's not marketing — it's just how a family-run trade business works when it cares about its reputation.</p>
+              <p>We're a small team. The person who quotes the job is on site for the job. The phone is answered by someone who's actually been up a ladder this week. That's not marketing — it's just how a small trade business works when it cares about its reputation.</p>
               <p>Every client we've ever had has come through word of mouth or repeat business. We've never paid for a single advert. The day that changes is the day we've stopped doing the job properly.</p>
               <p>If you're trusting us with your home or your premises, you should know who's coming through the door. That's why every quote we send includes the name of the lead painter who'll be on your job — and you'll meet them at the site visit, not on day one.</p>
             </div>

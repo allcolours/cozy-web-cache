@@ -1,13 +1,13 @@
 # All Colours Painting Contractor Limited
 
-> Family-run painters & decorators in Dublin, Ireland. Interior, exterior, commercial, industrial and heritage painting — over 20 years, fully insured, written workmanship guarantee.
+> Painters & decorators in Dublin, Ireland. Interior, exterior, commercial, industrial and heritage painting — over 10 years, fully insured, written workmanship guarantee.
 
-All Colours Painting is a family-run painting and decorating contractor based in Dublin. We deliver high-quality finishes for residential, commercial, industrial and heritage clients across Dublin and surrounding areas. Every quote includes a free site visit, every job is backed by a 2-year written workmanship guarantee, and the person who quotes the job is on site for it.
+All Colours Painting is a painting and decorating contractor based in Dublin. We deliver high-quality finishes for residential, commercial, industrial and heritage clients across Dublin and surrounding areas. Every quote includes a free site visit, every job is backed by a 2-year written workmanship guarantee, and the person who quotes the job is on site for it.
 
 ## Pages
 
 - [Home](/): Overview, services, recent case studies, process and testimonials.
-- [About](/about): Company story, 20+ year timeline, values and approach.
+- [About](/about): Company story, 10+ year timeline, values and approach.
 - [Services](/services): Residential, commercial, industrial, heritage painting, wallpapering, spray finishing, plastering, floor coatings, materials and process.
 - [Case Studies](/case-studies): Detailed project breakdowns — brief, prep, materials and results.
 - [Gallery](/gallery): Recent project photography.

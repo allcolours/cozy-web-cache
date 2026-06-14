@@ -105,7 +105,7 @@ const services = [
 const portfolio = CASE_STUDIES.slice(0, 4).map((c) => ({ img: c.cover, title: c.title, tag: `${c.sector} · ${c.location}`, slug: c.slug }));
 
 const stats = [
-  { k: "20+", v: "Years experience" },
+  { k: "10+", v: "Years experience" },
   { k: "1,200+", v: "Projects completed" },
   { k: "100%", v: "Insured & guaranteed" },
   { k: "5★", v: "Average client rating" },
