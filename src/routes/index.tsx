@@ -291,8 +291,39 @@ function Home() {
         </div>
       </section>
 
-      {/* Areas we cover */}
+      {/* Rooms & specialities — SEO long-tail */}
       <section className="bg-background">
+        <div className="mx-auto max-w-7xl px-4 py-20 md:px-8 md:py-24">
+          <div className="flex flex-col items-start gap-2">
+            <span className="eyebrow">Rooms & specialities</span>
+            <h2 className="section-title text-3xl md:text-4xl">Every room, every surface</h2>
+            <hr className="section-rule" />
+            <p className="mt-6 max-w-3xl text-base text-foreground">
+              From a single <strong>bedroom painting</strong> refresh to full <strong>apartment painting</strong>, <strong>kitchen cabinet painting</strong>, <strong>hallway and staircase painting</strong>, <strong>ceiling painting</strong>, <strong>wallpapering</strong> and <strong>Georgian house painting</strong> — we cover it all across Dublin.
+            </p>
+          </div>
+
+          <ul className="mt-10 grid grid-cols-2 gap-3 text-sm sm:grid-cols-3 lg:grid-cols-4">
+            {[
+              "Kitchen painting","Kitchen cabinet respraying","Hand-painted kitchens",
+              "Bedroom painting","Bathroom painting","Living room painting",
+              "Nursery painting","Hallway & staircase painting","Ceiling painting",
+              "Apartment painting","House painting","Renovation repaints",
+              "Wallpapering & wall decorating","Furniture painting","Varnish painting",
+              "Spray painting & spray finish","Railings & gates painting","Exterior render & masonry",
+              "Dash & pebbledash painting","Epoxy floor painting","Two-pack floor paints",
+              "Georgian & period homes","Office & commercial painting","Industrial premises painting",
+            ].map((s) => (
+              <li key={s} className="border-l-2 border-primary/70 bg-card px-3 py-2 font-medium text-[oklch(0.2_0_0)]">
+                {s}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* Areas we cover */}
+      <section className="bg-secondary">
         <div className="mx-auto max-w-7xl px-4 py-20 md:px-8 md:py-24">
           <div className="flex flex-col items-start gap-2">
             <span className="eyebrow">Where we work</span>
