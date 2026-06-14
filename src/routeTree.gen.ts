@@ -27,7 +27,7 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as PaintersIndexRouteImport } from './routes/painters.index'
-import { Route as ServicesServiceRouteImport } from './routes/services.$service'
+import { Route as ServicesServiceRouteImport } from './routes/services_.$service'
 import { Route as PaintersAreaRouteImport } from './routes/painters.$area'
 import { Route as EmailUnsubscribeRouteImport } from './routes/email/unsubscribe'
 import { Route as CaseStudiesSlugRouteImport } from './routes/case-studies.$slug'
@@ -138,9 +138,9 @@ const PaintersIndexRoute = PaintersIndexRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const ServicesServiceRoute = ServicesServiceRouteImport.update({
-  id: '/$service',
-  path: '/$service',
-  getParentRoute: () => ServicesRoute,
+  id: '/services_/$service',
+  path: '/services/$service',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const PaintersAreaRoute = PaintersAreaRouteImport.update({
   id: '/painters/$area',
@@ -258,7 +258,7 @@ export interface FileRoutesByFullPath {
   '/pricing-guide': typeof PricingGuideRoute
   '/privacy': typeof PrivacyRoute
   '/projects': typeof ProjectsRoute
-  '/services': typeof ServicesRouteWithChildren
+  '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/unsubscribe': typeof UnsubscribeRoute
@@ -297,7 +297,7 @@ export interface FileRoutesByTo {
   '/pricing-guide': typeof PricingGuideRoute
   '/privacy': typeof PrivacyRoute
   '/projects': typeof ProjectsRoute
-  '/services': typeof ServicesRouteWithChildren
+  '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/unsubscribe': typeof UnsubscribeRoute
@@ -337,7 +337,7 @@ export interface FileRoutesById {
   '/pricing-guide': typeof PricingGuideRoute
   '/privacy': typeof PrivacyRoute
   '/projects': typeof ProjectsRoute
-  '/services': typeof ServicesRouteWithChildren
+  '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/unsubscribe': typeof UnsubscribeRoute
@@ -346,7 +346,7 @@ export interface FileRoutesById {
   '/case-studies/$slug': typeof CaseStudiesSlugRoute
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
   '/painters/$area': typeof PaintersAreaRoute
-  '/services/$service': typeof ServicesServiceRoute
+  '/services_/$service': typeof ServicesServiceRoute
   '/painters/': typeof PaintersIndexRoute
   '/_authenticated/admin/analytics': typeof AuthenticatedAdminAnalyticsRoute
   '/_authenticated/admin/content': typeof AuthenticatedAdminContentRoute
@@ -465,7 +465,7 @@ export interface FileRouteTypes {
     | '/case-studies/$slug'
     | '/email/unsubscribe'
     | '/painters/$area'
-    | '/services/$service'
+    | '/services_/$service'
     | '/painters/'
     | '/_authenticated/admin/analytics'
     | '/_authenticated/admin/content'
@@ -497,12 +497,13 @@ export interface RootRouteChildren {
   PricingGuideRoute: typeof PricingGuideRoute
   PrivacyRoute: typeof PrivacyRoute
   ProjectsRoute: typeof ProjectsRoute
-  ServicesRoute: typeof ServicesRouteWithChildren
+  ServicesRoute: typeof ServicesRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TermsRoute: typeof TermsRoute
   UnsubscribeRoute: typeof UnsubscribeRoute
   EmailUnsubscribeRoute: typeof EmailUnsubscribeRoute
   PaintersAreaRoute: typeof PaintersAreaRoute
+  ServicesServiceRoute: typeof ServicesServiceRoute
   PaintersIndexRoute: typeof PaintersIndexRoute
   ApiPublicContactRoute: typeof ApiPublicContactRoute
   ApiPublicEstimateRoute: typeof ApiPublicEstimateRoute
@@ -643,12 +644,12 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PaintersIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/services/$service': {
-      id: '/services/$service'
-      path: '/$service'
+    '/services_/$service': {
+      id: '/services_/$service'
+      path: '/services/$service'
       fullPath: '/services/$service'
       preLoaderRoute: typeof ServicesServiceRouteImport
-      parentRoute: typeof ServicesRoute
+      parentRoute: typeof rootRouteImport
     }
     '/painters/$area': {
       id: '/painters/$area'
@@ -838,18 +839,6 @@ const CaseStudiesRouteWithChildren = CaseStudiesRoute._addFileChildren(
   CaseStudiesRouteChildren,
 )
 
-interface ServicesRouteChildren {
-  ServicesServiceRoute: typeof ServicesServiceRoute
-}
-
-const ServicesRouteChildren: ServicesRouteChildren = {
-  ServicesServiceRoute: ServicesServiceRoute,
-}
-
-const ServicesRouteWithChildren = ServicesRoute._addFileChildren(
-  ServicesRouteChildren,
-)
-
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
@@ -864,12 +853,13 @@ const rootRouteChildren: RootRouteChildren = {
   PricingGuideRoute: PricingGuideRoute,
   PrivacyRoute: PrivacyRoute,
   ProjectsRoute: ProjectsRoute,
-  ServicesRoute: ServicesRouteWithChildren,
+  ServicesRoute: ServicesRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TermsRoute: TermsRoute,
   UnsubscribeRoute: UnsubscribeRoute,
   EmailUnsubscribeRoute: EmailUnsubscribeRoute,
   PaintersAreaRoute: PaintersAreaRoute,
+  ServicesServiceRoute: ServicesServiceRoute,
   PaintersIndexRoute: PaintersIndexRoute,
   ApiPublicContactRoute: ApiPublicContactRoute,
   ApiPublicEstimateRoute: ApiPublicEstimateRoute,
