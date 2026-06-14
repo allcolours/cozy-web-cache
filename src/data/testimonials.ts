@@ -70,7 +70,7 @@ export const TESTIMONIALS: Testimonial[] = [
     role: "Homeowner",
     rating: 5,
     quote:
-      "They are very good and experienced painters. They work diligently. I recommend them any day, anytime.",
+      "They are very good and experienced painters. They work diligently. I recommend them any day anytime.",
     project: "Residential painting",
   },
 ];
