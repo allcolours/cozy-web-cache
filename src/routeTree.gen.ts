@@ -30,6 +30,7 @@ import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated/admin.index'
 import { Route as LovableEmailSuppressionRouteImport } from './routes/lovable/email/suppression'
+import { Route as ApiPublicSitemapDotxmlRouteImport } from './routes/api/public/sitemap[.]xml'
 import { Route as ApiPublicContactRouteImport } from './routes/api/public/contact'
 import { Route as AuthenticatedAdminInquiriesRouteImport } from './routes/_authenticated/admin.inquiries'
 import { Route as AuthenticatedAdminGalleryRouteImport } from './routes/_authenticated/admin.gallery'
@@ -145,6 +146,11 @@ const LovableEmailSuppressionRoute = LovableEmailSuppressionRouteImport.update({
   path: '/lovable/email/suppression',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicSitemapDotxmlRoute = ApiPublicSitemapDotxmlRouteImport.update({
+  id: '/api/public/sitemap.xml',
+  path: '/api/public/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiPublicContactRoute = ApiPublicContactRouteImport.update({
   id: '/api/public/contact',
   path: '/api/public/contact',
@@ -227,6 +233,7 @@ export interface FileRoutesByFullPath {
   '/admin/gallery': typeof AuthenticatedAdminGalleryRoute
   '/admin/inquiries': typeof AuthenticatedAdminInquiriesRoute
   '/api/public/contact': typeof ApiPublicContactRoute
+  '/api/public/sitemap.xml': typeof ApiPublicSitemapDotxmlRoute
   '/lovable/email/suppression': typeof LovableEmailSuppressionRoute
   '/admin/': typeof AuthenticatedAdminIndexRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
@@ -258,6 +265,7 @@ export interface FileRoutesByTo {
   '/admin/gallery': typeof AuthenticatedAdminGalleryRoute
   '/admin/inquiries': typeof AuthenticatedAdminInquiriesRoute
   '/api/public/contact': typeof ApiPublicContactRoute
+  '/api/public/sitemap.xml': typeof ApiPublicSitemapDotxmlRoute
   '/lovable/email/suppression': typeof LovableEmailSuppressionRoute
   '/admin': typeof AuthenticatedAdminIndexRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
@@ -292,6 +300,7 @@ export interface FileRoutesById {
   '/_authenticated/admin/gallery': typeof AuthenticatedAdminGalleryRoute
   '/_authenticated/admin/inquiries': typeof AuthenticatedAdminInquiriesRoute
   '/api/public/contact': typeof ApiPublicContactRoute
+  '/api/public/sitemap.xml': typeof ApiPublicSitemapDotxmlRoute
   '/lovable/email/suppression': typeof LovableEmailSuppressionRoute
   '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
@@ -326,6 +335,7 @@ export interface FileRouteTypes {
     | '/admin/gallery'
     | '/admin/inquiries'
     | '/api/public/contact'
+    | '/api/public/sitemap.xml'
     | '/lovable/email/suppression'
     | '/admin/'
     | '/lovable/email/auth/preview'
@@ -357,6 +367,7 @@ export interface FileRouteTypes {
     | '/admin/gallery'
     | '/admin/inquiries'
     | '/api/public/contact'
+    | '/api/public/sitemap.xml'
     | '/lovable/email/suppression'
     | '/admin'
     | '/lovable/email/auth/preview'
@@ -390,6 +401,7 @@ export interface FileRouteTypes {
     | '/_authenticated/admin/gallery'
     | '/_authenticated/admin/inquiries'
     | '/api/public/contact'
+    | '/api/public/sitemap.xml'
     | '/lovable/email/suppression'
     | '/_authenticated/admin/'
     | '/lovable/email/auth/preview'
@@ -417,6 +429,7 @@ export interface RootRouteChildren {
   UnsubscribeRoute: typeof UnsubscribeRoute
   EmailUnsubscribeRoute: typeof EmailUnsubscribeRoute
   ApiPublicContactRoute: typeof ApiPublicContactRoute
+  ApiPublicSitemapDotxmlRoute: typeof ApiPublicSitemapDotxmlRoute
   LovableEmailSuppressionRoute: typeof LovableEmailSuppressionRoute
   LovableEmailAuthPreviewRoute: typeof LovableEmailAuthPreviewRoute
   LovableEmailAuthWebhookRoute: typeof LovableEmailAuthWebhookRoute
@@ -574,6 +587,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LovableEmailSuppressionRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/sitemap.xml': {
+      id: '/api/public/sitemap.xml'
+      path: '/api/public/sitemap.xml'
+      fullPath: '/api/public/sitemap.xml'
+      preLoaderRoute: typeof ApiPublicSitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/public/contact': {
       id: '/api/public/contact'
       path: '/api/public/contact'
@@ -717,6 +737,7 @@ const rootRouteChildren: RootRouteChildren = {
   UnsubscribeRoute: UnsubscribeRoute,
   EmailUnsubscribeRoute: EmailUnsubscribeRoute,
   ApiPublicContactRoute: ApiPublicContactRoute,
+  ApiPublicSitemapDotxmlRoute: ApiPublicSitemapDotxmlRoute,
   LovableEmailSuppressionRoute: LovableEmailSuppressionRoute,
   LovableEmailAuthPreviewRoute: LovableEmailAuthPreviewRoute,
   LovableEmailAuthWebhookRoute: LovableEmailAuthWebhookRoute,
