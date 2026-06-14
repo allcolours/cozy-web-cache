@@ -25,6 +25,7 @@ export const Route = createFileRoute("/estimate")({
 });
 
 type Category = "interior" | "exterior" | "joinery" | "floors";
+type Mode = "by_room" | "by_element" | "by_floor_area";
 type Item = {
   id: string;
   label: string;
@@ -32,6 +33,8 @@ type Item = {
   min: number;
   max: number;
   category: Category;
+  /** Which interior mode this item belongs to. Non-interior items leave blank. */
+  interiorMode?: Mode;
   note?: string;
 };
 
@@ -39,10 +42,28 @@ const MIN_GENERAL = 300;
 const MIN_FLOORS = 750;
 
 const ITEMS: Item[] = [
-  { id: "walls", label: "Interior walls (2 coats)", unit: "m²", min: 10.5, max: 16, category: "interior" },
-  { id: "room_full", label: "Full room (walls + ceiling + skirting/reveals)", unit: "m² floor area", min: 30.5, max: 49.5, category: "interior" },
-  { id: "ceilings", label: "Ceilings", unit: "m²", min: 7.5, max: 11.5, category: "interior" },
-  { id: "skirting", label: "Skirting boards", unit: "lin. m", min: 3.5, max: 5.5, category: "interior" },
+  // ─── By room (count-based, per finished room incl. walls + ceiling + skirting) ───
+  { id: "room_bedroom", label: "Bedrooms", unit: "rooms", min: 340, max: 580, category: "interior", interiorMode: "by_room" },
+  { id: "room_master", label: "Master bedroom", unit: "rooms", min: 420, max: 720, category: "interior", interiorMode: "by_room" },
+  { id: "room_kitchen", label: "Kitchen", unit: "rooms", min: 480, max: 820, category: "interior", interiorMode: "by_room" },
+  { id: "room_living", label: "Living room", unit: "rooms", min: 540, max: 940, category: "interior", interiorMode: "by_room" },
+  { id: "room_dining", label: "Dining room", unit: "rooms", min: 400, max: 720, category: "interior", interiorMode: "by_room" },
+  { id: "room_hall", label: "Hall", unit: "rooms", min: 300, max: 560, category: "interior", interiorMode: "by_room" },
+  { id: "room_landing", label: "Landing", unit: "rooms", min: 240, max: 440, category: "interior", interiorMode: "by_room" },
+  { id: "room_utility", label: "Utility room", unit: "rooms", min: 220, max: 400, category: "interior", interiorMode: "by_room" },
+  { id: "room_bathroom", label: "Bathrooms", unit: "rooms", min: 260, max: 460, category: "interior", interiorMode: "by_room" },
+  { id: "room_ensuite", label: "En-suite", unit: "rooms", min: 220, max: 380, category: "interior", interiorMode: "by_room" },
+  { id: "room_office", label: "Office / study", unit: "rooms", min: 340, max: 580, category: "interior", interiorMode: "by_room" },
+
+  // ─── By element ───
+  { id: "walls", label: "Interior walls (2 coats)", unit: "m²", min: 10.5, max: 16, category: "interior", interiorMode: "by_element" },
+  { id: "ceilings", label: "Ceilings", unit: "m²", min: 7.5, max: 11.5, category: "interior", interiorMode: "by_element" },
+  { id: "skirting", label: "Skirting boards", unit: "lin. m", min: 3.5, max: 5.5, category: "interior", interiorMode: "by_element" },
+
+  // ─── By floor area (whole property) ───
+  { id: "floor_area_total", label: "Total interior floor area (whole property)", unit: "m² floor area", min: 30.5, max: 49.5, category: "interior", interiorMode: "by_floor_area" },
+
+  // ─── Always shown ───
   { id: "facade", label: "Façade (exterior walls)", unit: "m²", min: 14.5, max: 27, category: "exterior" },
   { id: "doors", label: "Doors (both sides + frame)", unit: "doors", min: 35, max: 64, category: "joinery" },
   { id: "windows", label: "Window frames", unit: "windows", min: 35, max: 76, category: "joinery" },
@@ -59,13 +80,16 @@ const CONDITION: Record<Condition, { label: string; mult: number; desc: string }
   poor: { label: "Poor", mult: 1.5, desc: "Old paint, cracks, damp, heavy prep." },
 };
 
-type Mode = "per_room" | "per_element";
-
 function EstimatePage() {
   const [qty, setQty] = useState<Record<string, string>>({});
   const [condition, setCondition] = useState<Condition>("average");
-  const [mode, setMode] = useState<Mode>("per_element");
+  const [mode, setMode] = useState<Mode>("by_element");
   const [requestOpen, setRequestOpen] = useState(false);
+
+  const isVisible = (it: Item) => {
+    if (it.category !== "interior") return true;
+    return it.interiorMode === mode;
+  };
 
   const result = useMemo(() => {
     const mult = CONDITION[condition].mult;
@@ -74,15 +98,12 @@ function EstimatePage() {
     const lines: { label: string; min: number; max: number }[] = [];
 
     for (const it of ITEMS) {
-      // Hide based on mode
-      if (mode === "per_room" && (it.id === "walls" || it.id === "ceilings" || it.id === "skirting")) continue;
-      if (mode === "per_element" && it.id === "room_full") continue;
-
+      if (!isVisible(it)) continue;
       const n = parseFloat(qty[it.id] ?? "");
       if (!isFinite(n) || n <= 0) continue;
       const lo = Math.round(n * it.min * mult);
       const hi = Math.round(n * it.max * mult);
-      lines.push({ label: it.label, min: lo, max: hi });
+      lines.push({ label: it.label + (it.unit === "rooms" && n > 1 ? ` ×${n}` : ""), min: lo, max: hi });
       if (it.category === "floors") {
         floorsMin += lo; floorsMax += hi;
       } else {
@@ -108,35 +129,35 @@ function EstimatePage() {
   const fmt = (n: number) =>
     new Intl.NumberFormat("en-IE", { style: "currency", currency: "EUR", maximumFractionDigits: 0 }).format(n);
 
-  const sectionItems = (cat: Category) =>
-    ITEMS.filter((i) => {
-      if (i.category !== cat) return false;
-      if (mode === "per_room" && (i.id === "walls" || i.id === "ceilings" || i.id === "skirting")) return false;
-      if (mode === "per_element" && i.id === "room_full") return false;
-      return true;
-    });
+  const sectionItems = (cat: Category) => ITEMS.filter((i) => i.category === cat && isVisible(i));
 
-  const renderField = (it: Item) => (
-    <div key={it.id} className="grid gap-2 sm:grid-cols-[1fr_160px] sm:items-center">
-      <label htmlFor={it.id} className="font-display text-sm font-semibold uppercase tracking-wide text-[oklch(0.25_0_0)]">
-        {it.label}
-      </label>
-      <div className="flex items-center gap-2">
-        <input
-          id={it.id}
-          type="number"
-          inputMode="decimal"
-          min={0}
-          step={it.unit.includes("m²") || it.unit.includes("lin") ? "0.5" : "1"}
-          placeholder="0"
-          value={qty[it.id] ?? ""}
-          onChange={(e) => setQty((q) => ({ ...q, [it.id]: e.target.value }))}
-          className="w-full border border-border bg-background px-3 py-2 text-right text-sm focus:border-primary focus:outline-none"
-        />
-        <span className="whitespace-nowrap text-xs uppercase tracking-wider text-muted-foreground">{it.unit}</span>
+  const renderField = (it: Item) => {
+    const isInt = it.unit === "rooms" || it.unit === "doors" || it.unit === "windows" || it.unit === "radiators";
+    return (
+      <div key={it.id} className="grid gap-2 sm:grid-cols-[1fr_160px] sm:items-center">
+        <label htmlFor={it.id} className="font-display text-sm font-semibold uppercase tracking-wide text-[oklch(0.25_0_0)]">
+          {it.label}
+        </label>
+        <div className="flex items-center gap-2">
+          <input
+            id={it.id}
+            type="number"
+            inputMode={isInt ? "numeric" : "decimal"}
+            min={0}
+            step={isInt ? "1" : "0.5"}
+            placeholder="0"
+            value={qty[it.id] ?? ""}
+            onChange={(e) => setQty((q) => ({ ...q, [it.id]: e.target.value }))}
+            className="w-full border border-border bg-background px-3 py-2 text-right text-sm focus:border-primary focus:outline-none"
+          />
+          <span className="whitespace-nowrap text-xs uppercase tracking-wider text-muted-foreground">{it.unit}</span>
+        </div>
       </div>
-    </div>
-  );
+    );
+  };
+
+  const modeLabel = (m: Mode) =>
+    m === "by_room" ? "By room" : m === "by_element" ? "By element" : "By floor area";
 
   return (
     <>
@@ -191,8 +212,8 @@ function EstimatePage() {
                   <h2 className="font-display text-lg font-bold uppercase tracking-wide text-[oklch(0.2_0_0)]">
                     2. Interior
                   </h2>
-                  <div className="inline-flex border border-border">
-                    {(["per_room", "per_element"] as Mode[]).map((m) => (
+                  <div className="inline-flex flex-wrap border border-border">
+                    {(["by_room", "by_element", "by_floor_area"] as Mode[]).map((m) => (
                       <button
                         key={m}
                         type="button"
@@ -201,15 +222,17 @@ function EstimatePage() {
                           mode === m ? "bg-primary text-primary-foreground" : "bg-background text-foreground hover:bg-primary/10"
                         }`}
                       >
-                        {m === "per_room" ? "By room" : "By element"}
+                        {modeLabel(m)}
                       </button>
                     ))}
                   </div>
                 </div>
                 <p className="mt-2 text-xs text-muted-foreground">
-                  {mode === "per_room"
-                    ? "Enter the floor area of each room — covers walls, ceiling and skirting."
-                    : "Enter walls, ceilings and skirting separately."}
+                  {mode === "by_room"
+                    ? "Enter how many of each room type — each includes walls, ceiling and skirting."
+                    : mode === "by_element"
+                      ? "Enter walls, ceilings and skirting separately."
+                      : "Enter the total interior floor area of the whole property. Typical 3-bed two-storey ≈ 100 m²."}
                 </p>
                 <div className="mt-6 space-y-5">{sectionItems("interior").map(renderField)}</div>
               </div>
