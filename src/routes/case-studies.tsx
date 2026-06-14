@@ -7,7 +7,7 @@ export const Route = createFileRoute("/case-studies")({
   head: () => ({
     meta: [
       { title: "Case Studies | All Colours Painting Contractor Limited" },
-      { name: "description", content: "Detailed before-and-after painting & decorating projects across Dublin — residential repaints, heritage sash restoration, commercial fit-outs and industrial floor coatings." },
+      { name: "description", content: "Before-and-after painting & decorating projects across Dublin — residential, commercial, industrial and heritage." },
       { property: "og:title", content: "Painting & Decorating Case Studies — Dublin" },
       { property: "og:description", content: "Real projects, real materials, real timelines. See how we approach residential, commercial, industrial and heritage painting jobs." },
       { property: "og:url", content: "https://allcolourspainter.com/case-studies" },
@@ -15,6 +15,25 @@ export const Route = createFileRoute("/case-studies")({
       { property: "og:image", content: heroAsset.url },
     ],
     links: [{ rel: "canonical", href: "https://allcolourspainter.com/case-studies" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          name: "Case Studies",
+          description: "Before-and-after painting & decorating projects across Dublin.",
+          url: "https://allcolourspainter.com/case-studies",
+          hasPart: CASE_STUDIES.map((c) => ({
+            "@type": "Article",
+            headline: c.title,
+            url: `https://allcolourspainter.com/case-studies/${c.slug}`,
+            image: c.cover,
+            description: c.summary,
+          })),
+        }),
+      },
+    ],
   }),
   component: CaseStudiesIndex,
 });

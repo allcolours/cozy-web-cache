@@ -14,7 +14,7 @@ export const Route = createFileRoute("/services")({
   head: () => ({
     meta: [
       { title: "Services | All Colours Painting Contractor Limited" },
-      { name: "description", content: "Interior, exterior, kitchen painting, floor painting, epoxy floors, spray painting, spray finish, railings painting, furniture painting, varnish painting, wallpapering, plastering, and industrial floor coatings. Water based and oil based paint systems." },
+      { name: "description", content: "Interior, exterior, kitchen & floor painting, epoxy floors, spray painting, wallpapering and plastering for homes and businesses in Dublin." },
       { name: "keywords", content: "painter dublin, floor painting, two-pack floor paints, twopack paints, epoxy floors, epoxy floor painting, epoxy painting, water based paint, oil based paint, railings painting, furniture painting, kitchen painting, spray finish, spray painting, varnish painting, interior painting, exterior painting" },
       { property: "og:title", content: "Painting & Decorating Services Dublin" },
       { property: "og:description", content: "Full painting & decorating service for homes and businesses." },
