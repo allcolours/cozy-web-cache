@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { CASE_STUDIES } from "../../data/caseStudies";
-import { BLOG_POSTS } from "../../data/blog";
+import { CASE_STUDIES } from "../data/caseStudies";
+import { BLOG_POSTS } from "../data/blog";
 
 const BASE_URL = "https://allcolourspainter.com";
 
