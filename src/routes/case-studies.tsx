@@ -12,7 +12,8 @@ export const Route = createFileRoute("/case-studies")({
       { property: "og:description", content: "Real projects, real materials, real timelines. See how we approach residential, commercial, industrial and heritage painting jobs." },
       { property: "og:url", content: "https://allcolourspainter.com/case-studies" },
       { property: "og:type", content: "website" },
-      { property: "og:image", content: heroAsset.url },
+      { property: "og:image", content: `https://allcolourspainter.com${heroAsset.url}` },
+      { name: "twitter:image", content: `https://allcolourspainter.com${heroAsset.url}` },
     ],
     links: [{ rel: "canonical", href: "https://allcolourspainter.com/case-studies" }],
     scripts: [

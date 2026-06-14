@@ -20,7 +20,8 @@ export const Route = createFileRoute("/case-studies/$slug")({
         { property: "og:description", content: s.summary },
         { property: "og:url", content: url },
         { property: "og:type", content: "article" },
-        { property: "og:image", content: s.cover },
+        { property: "og:image", content: s.cover?.startsWith("http") ? s.cover : `https://allcolourspainter.com${s.cover}` },
+        { name: "twitter:image", content: s.cover?.startsWith("http") ? s.cover : `https://allcolourspainter.com${s.cover}` },
       ],
       links: [{ rel: "canonical", href: url }],
       scripts: [

@@ -12,7 +12,8 @@ export const Route = createFileRoute("/blog")({
       { property: "og:description", content: "Honest, hands-on painting & decorating advice for Dublin homes." },
       { property: "og:url", content: "https://allcolourspainter.com/blog" },
       { property: "og:type", content: "website" },
-      { property: "og:image", content: heroAsset.url },
+      { property: "og:image", content: `https://allcolourspainter.com${heroAsset.url}` },
+      { name: "twitter:image", content: `https://allcolourspainter.com${heroAsset.url}` },
     ],
     links: [{ rel: "canonical", href: "https://allcolourspainter.com/blog" }],
     scripts: [
