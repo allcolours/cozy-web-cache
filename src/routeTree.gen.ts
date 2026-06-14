@@ -30,8 +30,8 @@ import { Route as PaintersIndexRouteImport } from './routes/painters.index'
 import { Route as ServicesServiceRouteImport } from './routes/services_.$service'
 import { Route as PaintersAreaRouteImport } from './routes/painters.$area'
 import { Route as EmailUnsubscribeRouteImport } from './routes/email/unsubscribe'
-import { Route as CaseStudiesSlugRouteImport } from './routes/case-studies.$slug'
-import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
+import { Route as CaseStudiesSlugRouteImport } from './routes/case-studies_.$slug'
+import { Route as BlogSlugRouteImport } from './routes/blog_.$slug'
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated/admin.index'
 import { Route as LovableEmailSuppressionRouteImport } from './routes/lovable/email/suppression'
@@ -153,14 +153,14 @@ const EmailUnsubscribeRoute = EmailUnsubscribeRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const CaseStudiesSlugRoute = CaseStudiesSlugRouteImport.update({
-  id: '/$slug',
-  path: '/$slug',
-  getParentRoute: () => CaseStudiesRoute,
+  id: '/case-studies_/$slug',
+  path: '/case-studies/$slug',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const BlogSlugRoute = BlogSlugRouteImport.update({
-  id: '/$slug',
-  path: '/$slug',
-  getParentRoute: () => BlogRoute,
+  id: '/blog_/$slug',
+  path: '/blog/$slug',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
   id: '/admin',
@@ -249,8 +249,8 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/auth': typeof AuthRoute
-  '/blog': typeof BlogRouteWithChildren
-  '/case-studies': typeof CaseStudiesRouteWithChildren
+  '/blog': typeof BlogRoute
+  '/case-studies': typeof CaseStudiesRoute
   '/contact': typeof ContactRoute
   '/estimate': typeof EstimateRoute
   '/faq': typeof FaqRoute
@@ -288,8 +288,8 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/auth': typeof AuthRoute
-  '/blog': typeof BlogRouteWithChildren
-  '/case-studies': typeof CaseStudiesRouteWithChildren
+  '/blog': typeof BlogRoute
+  '/case-studies': typeof CaseStudiesRoute
   '/contact': typeof ContactRoute
   '/estimate': typeof EstimateRoute
   '/faq': typeof FaqRoute
@@ -328,8 +328,8 @@ export interface FileRoutesById {
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/about': typeof AboutRoute
   '/auth': typeof AuthRoute
-  '/blog': typeof BlogRouteWithChildren
-  '/case-studies': typeof CaseStudiesRouteWithChildren
+  '/blog': typeof BlogRoute
+  '/case-studies': typeof CaseStudiesRoute
   '/contact': typeof ContactRoute
   '/estimate': typeof EstimateRoute
   '/faq': typeof FaqRoute
@@ -342,8 +342,8 @@ export interface FileRoutesById {
   '/terms': typeof TermsRoute
   '/unsubscribe': typeof UnsubscribeRoute
   '/_authenticated/admin': typeof AuthenticatedAdminRouteWithChildren
-  '/blog/$slug': typeof BlogSlugRoute
-  '/case-studies/$slug': typeof CaseStudiesSlugRoute
+  '/blog_/$slug': typeof BlogSlugRoute
+  '/case-studies_/$slug': typeof CaseStudiesSlugRoute
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
   '/painters/$area': typeof PaintersAreaRoute
   '/services_/$service': typeof ServicesServiceRoute
@@ -461,8 +461,8 @@ export interface FileRouteTypes {
     | '/terms'
     | '/unsubscribe'
     | '/_authenticated/admin'
-    | '/blog/$slug'
-    | '/case-studies/$slug'
+    | '/blog_/$slug'
+    | '/case-studies_/$slug'
     | '/email/unsubscribe'
     | '/painters/$area'
     | '/services_/$service'
@@ -488,8 +488,8 @@ export interface RootRouteChildren {
   AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
   AboutRoute: typeof AboutRoute
   AuthRoute: typeof AuthRoute
-  BlogRoute: typeof BlogRouteWithChildren
-  CaseStudiesRoute: typeof CaseStudiesRouteWithChildren
+  BlogRoute: typeof BlogRoute
+  CaseStudiesRoute: typeof CaseStudiesRoute
   ContactRoute: typeof ContactRoute
   EstimateRoute: typeof EstimateRoute
   FaqRoute: typeof FaqRoute
@@ -501,6 +501,8 @@ export interface RootRouteChildren {
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TermsRoute: typeof TermsRoute
   UnsubscribeRoute: typeof UnsubscribeRoute
+  BlogSlugRoute: typeof BlogSlugRoute
+  CaseStudiesSlugRoute: typeof CaseStudiesSlugRoute
   EmailUnsubscribeRoute: typeof EmailUnsubscribeRoute
   PaintersAreaRoute: typeof PaintersAreaRoute
   ServicesServiceRoute: typeof ServicesServiceRoute
@@ -665,19 +667,19 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EmailUnsubscribeRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/case-studies/$slug': {
-      id: '/case-studies/$slug'
-      path: '/$slug'
+    '/case-studies_/$slug': {
+      id: '/case-studies_/$slug'
+      path: '/case-studies/$slug'
       fullPath: '/case-studies/$slug'
       preLoaderRoute: typeof CaseStudiesSlugRouteImport
-      parentRoute: typeof CaseStudiesRoute
+      parentRoute: typeof rootRouteImport
     }
-    '/blog/$slug': {
-      id: '/blog/$slug'
-      path: '/$slug'
+    '/blog_/$slug': {
+      id: '/blog_/$slug'
+      path: '/blog/$slug'
       fullPath: '/blog/$slug'
       preLoaderRoute: typeof BlogSlugRouteImport
-      parentRoute: typeof BlogRoute
+      parentRoute: typeof rootRouteImport
     }
     '/_authenticated/admin': {
       id: '/_authenticated/admin'
@@ -817,35 +819,13 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
 const AuthenticatedRouteRouteWithChildren =
   AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
 
-interface BlogRouteChildren {
-  BlogSlugRoute: typeof BlogSlugRoute
-}
-
-const BlogRouteChildren: BlogRouteChildren = {
-  BlogSlugRoute: BlogSlugRoute,
-}
-
-const BlogRouteWithChildren = BlogRoute._addFileChildren(BlogRouteChildren)
-
-interface CaseStudiesRouteChildren {
-  CaseStudiesSlugRoute: typeof CaseStudiesSlugRoute
-}
-
-const CaseStudiesRouteChildren: CaseStudiesRouteChildren = {
-  CaseStudiesSlugRoute: CaseStudiesSlugRoute,
-}
-
-const CaseStudiesRouteWithChildren = CaseStudiesRoute._addFileChildren(
-  CaseStudiesRouteChildren,
-)
-
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
   AboutRoute: AboutRoute,
   AuthRoute: AuthRoute,
-  BlogRoute: BlogRouteWithChildren,
-  CaseStudiesRoute: CaseStudiesRouteWithChildren,
+  BlogRoute: BlogRoute,
+  CaseStudiesRoute: CaseStudiesRoute,
   ContactRoute: ContactRoute,
   EstimateRoute: EstimateRoute,
   FaqRoute: FaqRoute,
@@ -857,6 +837,8 @@ const rootRouteChildren: RootRouteChildren = {
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TermsRoute: TermsRoute,
   UnsubscribeRoute: UnsubscribeRoute,
+  BlogSlugRoute: BlogSlugRoute,
+  CaseStudiesSlugRoute: CaseStudiesSlugRoute,
   EmailUnsubscribeRoute: EmailUnsubscribeRoute,
   PaintersAreaRoute: PaintersAreaRoute,
   ServicesServiceRoute: ServicesServiceRoute,
