@@ -89,7 +89,7 @@ function Services() {
           </h1>
           <div className="mt-6 h-[3px] w-[170px] bg-primary" />
           <p className="mt-6 max-w-2xl text-base text-white/80 md:text-lg">
-            From a single feature wall to a full commercial fit-out, we deliver clean lines and durable finishes — first time.
+            From kitchen painting and furniture painting to epoxy floor painting and spray painting — we deliver clean lines and durable finishes, first time.
           </p>
         </div>
       </section>
