@@ -77,11 +77,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "All Colours Painting Contractor Limited" },
-      { name: "description", content: "Professional painters & decorators in Dublin, Ireland. Interior, exterior and commercial painting." },
+      { title: "Painter Dublin | All Colours Painting & Decorating" },
+      { name: "description", content: "Painter & decorator in Dublin. Interior & exterior painting for houses and apartments across Ballsbridge, Donnybrook, Stillorgan, Dún Laoghaire, Rathmines, Sandyford and more." },
+      { name: "keywords", content: "painter dublin, painter and decorator, painter near me, interior painting, exterior painting, painting dash, pebbledash painting, painter ballsbridge, painter donnybrook, painter stillorgan, painter dun laoghaire, painter rathfarnham, painter sandyford, painter rathmines, painter milltown, painter dundrum, painter roebuck, painter goatstown, painter ballinteer, painter leopardstown, painter harolds cross, painter cabinteely, painter foxrock, painter glenageary, painter dalkey, painter monkstown, painter sandymount, painter mount merrion, painter blackrock, painter ranelagh" },
       { name: "author", content: "All Colours Painting Contractor Limited" },
-      { property: "og:title", content: "All Colours Painting Contractor Limited" },
-      { property: "og:description", content: "Professional painters & decorators in Dublin, Ireland." },
+      { property: "og:title", content: "Painter Dublin | All Colours Painting & Decorating" },
+      { property: "og:description", content: "Painter & decorator in Dublin — interior, exterior, houses & apartments. Free quotes across South Dublin." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
 
