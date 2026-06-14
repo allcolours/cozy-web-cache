@@ -18,6 +18,7 @@ import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as PricingGuideRouteImport } from './routes/pricing-guide'
 import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as FaqRouteImport } from './routes/faq'
+import { Route as EstimateRouteImport } from './routes/estimate'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CaseStudiesRouteImport } from './routes/case-studies'
 import { Route as BlogRouteImport } from './routes/blog'
@@ -89,6 +90,11 @@ const GalleryRoute = GalleryRouteImport.update({
 const FaqRoute = FaqRouteImport.update({
   id: '/faq',
   path: '/faq',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EstimateRoute = EstimateRouteImport.update({
+  id: '/estimate',
+  path: '/estimate',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -240,6 +246,7 @@ export interface FileRoutesByFullPath {
   '/blog': typeof BlogRouteWithChildren
   '/case-studies': typeof CaseStudiesRouteWithChildren
   '/contact': typeof ContactRoute
+  '/estimate': typeof EstimateRoute
   '/faq': typeof FaqRoute
   '/gallery': typeof GalleryRoute
   '/pricing-guide': typeof PricingGuideRoute
@@ -277,6 +284,7 @@ export interface FileRoutesByTo {
   '/blog': typeof BlogRouteWithChildren
   '/case-studies': typeof CaseStudiesRouteWithChildren
   '/contact': typeof ContactRoute
+  '/estimate': typeof EstimateRoute
   '/faq': typeof FaqRoute
   '/gallery': typeof GalleryRoute
   '/pricing-guide': typeof PricingGuideRoute
@@ -315,6 +323,7 @@ export interface FileRoutesById {
   '/blog': typeof BlogRouteWithChildren
   '/case-studies': typeof CaseStudiesRouteWithChildren
   '/contact': typeof ContactRoute
+  '/estimate': typeof EstimateRoute
   '/faq': typeof FaqRoute
   '/gallery': typeof GalleryRoute
   '/pricing-guide': typeof PricingGuideRoute
@@ -354,6 +363,7 @@ export interface FileRouteTypes {
     | '/blog'
     | '/case-studies'
     | '/contact'
+    | '/estimate'
     | '/faq'
     | '/gallery'
     | '/pricing-guide'
@@ -391,6 +401,7 @@ export interface FileRouteTypes {
     | '/blog'
     | '/case-studies'
     | '/contact'
+    | '/estimate'
     | '/faq'
     | '/gallery'
     | '/pricing-guide'
@@ -428,6 +439,7 @@ export interface FileRouteTypes {
     | '/blog'
     | '/case-studies'
     | '/contact'
+    | '/estimate'
     | '/faq'
     | '/gallery'
     | '/pricing-guide'
@@ -467,6 +479,7 @@ export interface RootRouteChildren {
   BlogRoute: typeof BlogRouteWithChildren
   CaseStudiesRoute: typeof CaseStudiesRouteWithChildren
   ContactRoute: typeof ContactRoute
+  EstimateRoute: typeof EstimateRoute
   FaqRoute: typeof FaqRoute
   GalleryRoute: typeof GalleryRoute
   PricingGuideRoute: typeof PricingGuideRoute
@@ -552,6 +565,13 @@ declare module '@tanstack/react-router' {
       path: '/faq'
       fullPath: '/faq'
       preLoaderRoute: typeof FaqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/estimate': {
+      id: '/estimate'
+      path: '/estimate'
+      fullPath: '/estimate'
+      preLoaderRoute: typeof EstimateRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -818,6 +838,7 @@ const rootRouteChildren: RootRouteChildren = {
   BlogRoute: BlogRouteWithChildren,
   CaseStudiesRoute: CaseStudiesRouteWithChildren,
   ContactRoute: ContactRoute,
+  EstimateRoute: EstimateRoute,
   FaqRoute: FaqRoute,
   GalleryRoute: GalleryRoute,
   PricingGuideRoute: PricingGuideRoute,
