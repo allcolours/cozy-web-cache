@@ -17,8 +17,8 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "Painter Dublin | Interior & Exterior Painting & Decorating" },
-      { name: "description", content: "Painter and decorator in Dublin for houses & apartments. Interior, exterior, dash & pebbledash painting in Ballsbridge, Donnybrook, Stillorgan, Dún Laoghaire, Rathmines, Sandyford, Dundrum, Blackrock & more. Free quotes." },
-      { name: "keywords", content: "painter dublin, painter and decorator dublin, painter near me, interior painting dublin, exterior painting dublin, painting apartment, painting house, painting dash, painting pebbledash, painter ballsbridge, painter donnybrook, painter stillorgan, painter dun laoghaire, painter rathfarnham, painter sandyford, painter rathmines, painter milltown, painter dundrum, painter roebuck, painter goatstown, painter ballinteer, painter leopardstown, painter harolds cross, painter cabinteely, painter foxrock, painter glenageary, painter dalkey, painter monkstown, painter sandymount, painter mount merrion, painter blackrock, painter ranelagh" },
+      { name: "description", content: "Painter and decorator in Dublin for houses & apartments. Interior, exterior, kitchen painting, floor painting, epoxy floors, spray painting, furniture painting, railings painting, dash & pebbledash painting in Ballsbridge, Donnybrook, Stillorgan, Dún Laoghaire, Rathmines, Sandyford, Dundrum, Blackrock & more. Free quotes." },
+      { name: "keywords", content: "painter dublin, painter and decorator dublin, painter near me, interior painting dublin, exterior painting dublin, painting apartment, painting house, painting dash, painting pebbledash, floor painting, two-pack floor paints, twopack paints, epoxy floors, epoxy floor painting, epoxy painting, water based paint, oil based paint, railings painting, furniture painting, kitchen painting, spray finish, spray painting, varnish painting, painter ballsbridge, painter donnybrook, painter stillorgan, painter dun laoghaire, painter rathfarnham, painter sandyford, painter rathmines, painter milltown, painter dundrum, painter roebuck, painter goatstown, painter ballinteer, painter leopardstown, painter harolds cross, painter cabinteely, painter foxrock, painter glenageary, painter dalkey, painter monkstown, painter sandymount, painter mount merrion, painter blackrock, painter ranelagh" },
       { property: "og:title", content: "Painter Dublin — All Colours Painting & Decorating" },
       { property: "og:description", content: "Professional painter & decorator in Dublin. Interior, exterior, apartments & houses across South Dublin." },
       { property: "og:url", content: "https://allcolourspainter.com/" },
@@ -39,7 +39,7 @@ export const Route = createFileRoute("/")({
           url: "https://allcolourspainter.com/",
           telephone: "+353 85 821 1870",
           email: "info@allcolourspainter.com",
-          description: "Professional painters & decorators in Dublin. Interior, exterior, commercial & industrial painting.",
+          description: "Professional painters & decorators in Dublin. Interior, exterior, kitchen painting, floor painting, epoxy floors, spray painting, furniture painting, railings painting, varnish painting, commercial & industrial painting.",
           image: heroAsset.url,
           logo: "https://allcolourspainter.com/favicon.ico",
           priceRange: "€€",
@@ -92,12 +92,12 @@ const services = [
   },
   {
     title: "Industrial",
-    desc: "Floor coatings, line-marking, warehouse repaints and heavy-traffic protective systems.",
+    desc: "Epoxy floor painting, floor coatings, line-marking, warehouse repaints and heavy-traffic protective systems using twopack paints.",
     img: sIndustrialAsset.url,
   },
   {
     title: "Bespoke Finishes",
-    desc: "Spray-finished joinery, wallpapering, plaster repairs and specialist coatings on request.",
+    desc: "Kitchen painting, furniture painting, railings painting, spray-finished joinery, varnish painting, wallpapering and specialist coatings on request.",
     img: sHospitalityAsset.url,
   },
 ];

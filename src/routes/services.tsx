@@ -14,8 +14,9 @@ export const Route = createFileRoute("/services")({
   head: () => ({
     meta: [
       { title: "Services | All Colours Painting Contractor Limited" },
-      { name: "description", content: "Interior, exterior, commercial painting, wallpapering, plastering, spray finishing and industrial floor coatings." },
-      { property: "og:title", content: "Painting & Decorating Services" },
+      { name: "description", content: "Interior, exterior, kitchen painting, floor painting, epoxy floors, spray painting, spray finish, railings painting, furniture painting, varnish painting, wallpapering, plastering, and industrial floor coatings. Water based and oil based paint systems." },
+      { name: "keywords", content: "painter dublin, floor painting, two-pack floor paints, twopack paints, epoxy floors, epoxy floor painting, epoxy painting, water based paint, oil based paint, railings painting, furniture painting, kitchen painting, spray finish, spray painting, varnish painting, interior painting, exterior painting" },
+      { property: "og:title", content: "Painting & Decorating Services Dublin" },
       { property: "og:description", content: "Full painting & decorating service for homes and businesses." },
       { property: "og:url", content: "https://allcolourspainter.com/services" },
       { property: "og:type", content: "website" },
@@ -43,8 +44,12 @@ export const Route = createFileRoute("/services")({
               "Residential interior & exterior painting",
               "Commercial fit-out painting",
               "Industrial floor coatings & line-marking",
+              "Epoxy floor painting",
+              "Kitchen painting & cabinet refinishing",
+              "Spray painting & spray finish",
+              "Furniture painting & varnish painting",
+              "Railings painting",
               "Wallpapering",
-              "Spray finishing",
               "Plastering & repairs",
             ].map((n) => ({ "@type": "Offer", itemOffered: { "@type": "Service", name: n } })),
           },
@@ -58,14 +63,18 @@ export const Route = createFileRoute("/services")({
 const headline = [
   { title: "Residential", img: heroAsset.url, desc: "Period townhouses, family homes and apartments — interior, exterior, sash windows and feature walls.", bullets: ["Interior repaints", "Exterior render & masonry", "Sash window restoration", "Feature walls & wallpapering"] },
   { title: "Commercial", img: commercialAsset.url, desc: "Offices, retail, hospitality and education — scheduled out of hours so your business never stops.", bullets: ["Office repaints", "Retail & hospitality fit-out", "Out-of-hours scheduling", "Insurance & compliance"] },
-  { title: "Industrial", img: industrialAsset.url, desc: "Warehouse floors, line-marking, plant-room repaints and heavy-traffic protective coatings.", bullets: ["Epoxy floor coatings", "Line marking", "Warehouse repaints", "Anti-slip systems"] },
+  { title: "Industrial", img: industrialAsset.url, desc: "Warehouse floors, epoxy floors, line-marking, plant-room repaints and heavy-traffic protective coatings with twopack paints.", bullets: ["Epoxy floor coatings", "Line marking", "Warehouse repaints", "Anti-slip systems"] },
 ];
 
 const more = [
-  { title: "Interior Painting", img: heroAsset.url, desc: "Walls, ceilings, woodwork and skirting in premium emulsion, eggshell and satin finishes." },
+  { title: "Interior Painting", img: heroAsset.url, desc: "Walls, ceilings, woodwork and skirting in premium emulsion, eggshell and satin finishes. Water based and oil based paint systems available." },
   { title: "Exterior Painting", img: exteriorAsset.url, desc: "Render, masonry, brick, soffits and fascias with weatherproof Sandtex and Dulux Weathershield systems." },
+  { title: "Kitchen Painting", img: commercialAsset.url, desc: "Cabinet refinishing, kitchen spraying and hand-painting with durable kitchen-grade finishes." },
+  { title: "Spray Painting", img: floorAsset.url, desc: "Airless and HVLP spray painting for kitchens, doors, joinery and ceilings — factory-grade spray finish on site." },
+  { title: "Floor Painting", img: industrialAsset.url, desc: "Epoxy floor painting, two-pack floor paints and industrial floor coatings for warehouses, garages and commercial spaces." },
+  { title: "Furniture Painting", img: hospitalityAsset.url, desc: "Bespoke furniture painting and varnish painting for tables, chairs, built-ins and cabinetry." },
+  { title: "Railings Painting", img: exteriorAsset.url, desc: "Metal railings, gates and wrought-iron painting with rust-inhibiting primers and long-life top coats." },
   { title: "Wallpapering", img: hospitalityAsset.url, desc: "Lining paper, standard wallcoverings, hand-printed and feature wall installs with mitre-perfect seams." },
-  { title: "Spray Finishing", img: floorAsset.url, desc: "Airless and HVLP spray finishing for kitchens, doors, joinery and ceilings — factory-grade on site." },
   { title: "Plastering & Repairs", img: commercialAsset.url, desc: "Skim, patch and full re-plasters, crack stitching and surface prep so every finish has a flawless base." },
   { title: "Property Maintenance", img: industrialAsset.url, desc: "Annual repaint contracts for landlords, letting agents and managed property portfolios." },
 ];
@@ -84,7 +93,7 @@ function Services() {
           </h1>
           <div className="mt-6 h-[3px] w-[170px] bg-primary" />
           <p className="mt-6 max-w-2xl text-base text-white/80 md:text-lg">
-            From a single feature wall to a full commercial fit-out, we deliver clean lines and durable finishes — first time.
+            From kitchen painting and furniture painting to epoxy floor painting and spray painting — we deliver clean lines and durable finishes, first time.
           </p>
         </div>
       </section>
