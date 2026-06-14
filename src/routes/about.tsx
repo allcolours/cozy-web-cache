@@ -43,7 +43,7 @@ function About() {
         <div className="mx-auto max-w-7xl px-4 py-24 md:px-8 md:py-36">
           <span className="eyebrow text-accent">About us</span>
           <h1 className="mt-3 max-w-3xl font-display text-4xl font-extrabold uppercase leading-[1.1] tracking-tight text-white md:text-6xl">
-            Two decades of brushes, rollers & craftsmanship
+            A decade of brushes, rollers & craftsmanship
           </h1>
           <div className="mt-6 h-[3px] w-[170px] bg-primary" />
         </div>
