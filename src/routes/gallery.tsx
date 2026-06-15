@@ -5,18 +5,19 @@ import { SiteLayout } from "../components/SiteLayout";
 import { listPublicGallery } from "../lib/gallery.functions";
 import heroAsset from "../assets/portfolio/hero-house.webp.asset.json";
 import exteriorAsset from "../assets/portfolio/portfolio-exterior-1.jpg.asset.json";
-import floorAsset from "../assets/portfolio/portfolio-commercial-floor.jpg.asset.json";
-import commercialAsset from "../assets/portfolio/service-commercial.jpg.asset.json";
-import industrialAsset from "../assets/portfolio/service-industrial.jpg.asset.json";
-import hospitalityAsset from "../assets/portfolio/service-hospitality.jpg.asset.json";
-import aboutAsset from "../assets/portfolio/about-architecture.jpg.asset.json";
-import livingRoomAsset from "../assets/portfolio/gen-living-room.jpg.asset.json";
-import georgianAsset from "../assets/portfolio/gen-georgian.jpg.asset.json";
-import kitchenAsset from "../assets/portfolio/gen-kitchen.jpg.asset.json";
-import bedroomAsset from "../assets/portfolio/gen-bedroom.jpg.asset.json";
-import hallwayAsset from "../assets/portfolio/gen-hallway.jpg.asset.json";
-import featureWallAsset from "../assets/portfolio/gen-feature-wall.jpg.asset.json";
-import exteriorModernAsset from "../assets/portfolio/gen-exterior-modern.jpg.asset.json";
+
+// Auto-generated gallery imports
+const galleryModules = import.meta.glob<{ default: { url: string } }>(
+  "../assets/gallery/*.webp.asset.json",
+  { eager: true },
+);
+const GALLERY_PHOTOS = Object.entries(galleryModules)
+  .sort(([a], [b]) => a.localeCompare(b))
+  .map(([path, mod], i) => ({
+    id: path,
+    image_url: mod.default.url,
+    title: `Project ${String(i + 1).padStart(2, "0")}`,
+  }));
 
 export const Route = createFileRoute("/gallery")({
   head: () => ({
@@ -35,30 +36,13 @@ export const Route = createFileRoute("/gallery")({
   component: Gallery,
 });
 
-const fallback = [
-  { id: "f1", image_url: heroAsset.url, title: "Sage Country House", tag: "Exterior · Residential" },
-  { id: "f2", image_url: livingRoomAsset.url, title: "Bright Living Room Repaint", tag: "Interior · Residential" },
-  { id: "f3", image_url: georgianAsset.url, title: "Georgian Townhouse Front", tag: "Exterior · Period property" },
-  { id: "f4", image_url: kitchenAsset.url, title: "Sage Kitchen Cabinet Respray", tag: "Interior · Kitchen respray" },
-  { id: "f5", image_url: bedroomAsset.url, title: "Master Bedroom Refresh", tag: "Interior · Residential" },
-  { id: "f6", image_url: hallwayAsset.url, title: "Hallway & Staircase", tag: "Interior · Period property" },
-  { id: "f7", image_url: featureWallAsset.url, title: "Navy Feature Wall", tag: "Interior · Feature wall" },
-  { id: "f8", image_url: exteriorModernAsset.url, title: "Modern Family Home Exterior", tag: "Exterior · Residential" },
-  { id: "f9", image_url: exteriorAsset.url, title: "Modern Family Villa", tag: "Exterior · Residential" },
-  { id: "f10", image_url: floorAsset.url, title: "Warehouse Floor Coating", tag: "Industrial · Floor systems" },
-  { id: "f11", image_url: commercialAsset.url, title: "Open-Plan Office Repaint", tag: "Commercial · Offices" },
-  { id: "f12", image_url: hospitalityAsset.url, title: "Restaurant & Bar Fit-Out", tag: "Hospitality · Interiors" },
-  { id: "f13", image_url: industrialAsset.url, title: "Distribution Centre", tag: "Industrial · Repaint" },
-  { id: "f14", image_url: aboutAsset.url, title: "Architectural Detail", tag: "Bespoke · Exterior" },
-];
-
 function Gallery() {
   const fetchGallery = useServerFn(listPublicGallery);
   const { data } = useQuery({
     queryKey: ["public-gallery"],
     queryFn: () => fetchGallery(),
   });
-  const projects = data && data.length > 0 ? data : fallback;
+  const projects = data && data.length > 0 ? data : GALLERY_PHOTOS;
 
   return (
     <SiteLayout>
@@ -79,16 +63,13 @@ function Gallery() {
 
       <section className="bg-background">
         <div className="mx-auto max-w-7xl px-4 py-20 md:px-8 md:py-28">
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 md:gap-4">
             {projects.map((p) => (
               <figure key={p.id} className="group relative overflow-hidden bg-card">
-                <div className="aspect-[4/3] overflow-hidden">
-                  <img src={p.image_url} alt={p.title} loading="lazy" width={1200} height={900} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                <div className="aspect-square overflow-hidden">
+                  <img src={p.image_url} alt={p.title ?? "Painting project"} loading="lazy" width={1200} height={1200} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
                 </div>
-                <figcaption className="absolute inset-x-0 bottom-0 translate-y-2 bg-gradient-to-t from-black/85 via-black/40 to-transparent p-6 text-white opacity-95 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-                  {p.tag && <p className="text-[11px] uppercase tracking-[0.18em] text-accent">{p.tag}</p>}
-                  <h3 className="mt-1 font-display text-base font-bold uppercase tracking-wide">{p.title}</h3>
-                </figcaption>
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                 <div className="pointer-events-none absolute inset-0 border-b-[3px] border-primary opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
               </figure>
             ))}
@@ -98,3 +79,4 @@ function Gallery() {
     </SiteLayout>
   );
 }
+

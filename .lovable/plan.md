@@ -1,46 +1,34 @@
-## Goal
-Rebuild the current Lovable site to match the visual style of the backed-up Painterdublin (Avada) WordPress site. Keep the existing **logo** and company name **"All Colours Painting Contractor Limited"** — only the look, structure, and copy framing will mirror the old site.
+## План обновления галереи
 
-## What the old site looks like (from the backup)
-- Brand colors: green primary `#18b26f`, warm yellow accent `#ffe979` / `#fbe12e`, charcoal text `#5e5e5e`, white backgrounds
-- Big uppercase section titles with a thick green underline accent
-- Full-width hero with photo + overlay text + CTA
-- Two-column "image + text" intro blocks
-- Service icon grid (3-4 columns)
-- Portfolio / "Our Work" grid (2-col image cards)
-- Testimonials / counters strip
-- Footer on dark charcoal with green accents
+### 1. Обработка фотографий (всего 65 шт.)
+- **Источники:** 57 фото из Bark + 8 фото из Houzz, лежат в `/mnt/documents/bark-gallery/` и `/mnt/documents/houzz-gallery/`.
+- **Стиль:** премиум-каталог — единая тёплая/нейтральная гамма, повышенная насыщенность, чистая коррекция теней/светов, уверенный контраст. Унификация баланса белого, чтобы серия выглядела цельной.
+- **Кадрирование:** 1:1 (квадрат), `cover`-кроп с центром по композиции.
+- **Размер:** ~1200×1200 px, оптимизация в `.webp` (быстрая загрузка).
+- **Отсев:** уберу дубликаты, фото низкого качества/превью аватарок (напр. `d393ba23064db595_3-6674.jpg` — это лого, не работа). Целевое финальное число ≈ 50–55 фото.
 
-## Pages to rebuild (replacing current placeholder content)
-1. **Home** (`/`) — hero, "Who We Are" intro, services teaser, portfolio strip, CTA band, testimonials
-2. **About** (`/about`) — story (DubDesign-style framing rewritten for All Colours), three-pillar block (Protection / Preparation / Finish), team/values
-3. **Services** (`/services`) — overview + grid of Residential, Commercial, Architecture/Bespoke, Landscape, Engineering/Repairs
-4. **Gallery** (`/gallery`) — portfolio grid with project images pulled from the backup uploads
-5. **Contact** (`/contact`) — hero band with form + contact details
+### 2. Загрузка в проект
+- Обработанные `.webp` → `src/assets/gallery/work-001.webp` … `work-NN.webp`
+- Для каждого файла → `lovable-assets create` → `.webp.asset.json` в той же папке
+- Оригинальные `.webp` удаляются после создания CDN-пойнтеров (по правилам assets).
 
-## Assets
-- Reuse 8–15 representative project photos from `/tmp/sitebak/.../uploads/2024/10/` and `2025/*` (interiors, exteriors, commercial spaces). Upload to Lovable Assets CDN.
-- Keep existing `src/assets/logo.png` as-is.
+### 3. Обновление `src/routes/gallery.tsx`
+- Заменить массив `fallback` на новый список — 50+ объектов с `image_url` из новых asset.json.
+- **Без фильтров и категорий** — одна общая сетка.
+- Сетка: квадраты 1:1 (`aspect-square` вместо `aspect-[4/3]`), `md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4` для более плотной премиум-сетки.
+- Hover-эффект и оверлей оставить как сейчас, но без `tag`/`title` (или с минималистичным мелким номером — обсудим, если нужно).
+- Hero-секция остаётся без изменений.
 
-## Design tokens (src/styles.css)
-- Replace navy/coral palette with:
-  - `--primary`: green `oklch(~0.66 0.17 155)` (~#18b26f)
-  - `--accent`: yellow `oklch(~0.92 0.17 95)` (~#ffe979)
-  - `--foreground`: charcoal `oklch(0.4 0 0)` (~#5e5e5e)
-  - Footer dark surface
-- Add a uppercase "section title + underline" utility pattern.
+### 4. Технические детали
+- Обработка изображений: `imagegen--edit_image` для премиум-цветокоррекции каждой фото пачкой (или через ImageMagick для базовой коррекции + кропа, если AI-обработка избыточна по стоимости). Уточню в начале выполнения — если 65 AI-правок слишком дорого, использую ImageMagick (`-modulate`, `-auto-level`, `-unsharp`, crop 1:1) для единой пресетной обработки.
+- Все изображения подгружаются через CDN-ассеты Lovable.
+- Lazy loading сохраняется.
 
-## Layout
-- Update `SiteLayout.tsx` header: logo left, horizontal nav (Home / About / Services / Gallery / Contact), green CTA "Get a Quote" button
-- Update footer: dark charcoal, three columns (About blurb, Quick links, Contact), copyright row
+### 5. Что НЕ меняется
+- Структура страницы, hero, текст
+- Backend-функция `listPublicGallery` (fallback просто становится богаче)
+- Другие страницы сайта
 
-## Out of scope (skip unless you ask)
-- News/blog, sub-service pages (Residential / Commercial / Architecture / Landscape / Engineering as separate routes), portfolio detail pages, contact form backend wiring
-- No new dependencies, no Lovable Cloud changes
+---
 
-## Technical notes
-- All edits in React/TanStack route files + `SiteLayout.tsx` + `styles.css`
-- Images uploaded via `lovable-assets create` and referenced by CDN URL
-- Each route keeps its own `head()` meta (title, description, og)
-
-Reply **approve** and I'll start, or tell me what to change (e.g. drop a page, swap a color, add the sub-service pages).
+После подтверждения плана — начну с обработки фото (ImageMagick-пресет под "премиум" стиль для скорости и единообразия), затем загрузка ассетов и обновление компонента.
