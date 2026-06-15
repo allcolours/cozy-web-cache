@@ -1,8 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useQuery } from "@tanstack/react-query";
-import { useServerFn } from "@tanstack/react-start";
 import { SiteLayout } from "../components/SiteLayout";
-import { listPublicGallery } from "../lib/gallery.functions";
 import heroAsset from "../assets/portfolio/hero-house.webp.asset.json";
 import exteriorAsset from "../assets/portfolio/portfolio-exterior-1.jpg.asset.json";
 
@@ -37,12 +34,8 @@ export const Route = createFileRoute("/gallery")({
 });
 
 function Gallery() {
-  const fetchGallery = useServerFn(listPublicGallery);
-  const { data } = useQuery({
-    queryKey: ["public-gallery"],
-    queryFn: () => fetchGallery(),
-  });
-  const projects = data && data.length > 0 ? data : GALLERY_PHOTOS;
+  const projects = GALLERY_PHOTOS;
+
 
   return (
     <SiteLayout>
