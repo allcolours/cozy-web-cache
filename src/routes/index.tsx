@@ -398,7 +398,7 @@ function Home() {
 
       {/* CTA band */}
       <section className="relative isolate overflow-hidden">
-        <img src={ctaAsset.url} alt="" width={1920} height={600} className="absolute inset-0 -z-10 h-full w-full object-cover" />
+        <img src={ctaAsset.url} alt="Freshly painted Dublin home exterior" width={1920} height={600} className="absolute inset-0 -z-10 h-full w-full object-cover" />
         <div className="absolute inset-0 -z-10 bg-[oklch(0.2_0_0)]/85" />
         <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-6 px-4 py-20 md:flex-row md:items-center md:px-8">
           <div className="text-white">

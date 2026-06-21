@@ -91,7 +91,7 @@ function BlogPostPage() {
     <SiteLayout>
       <article>
         <section className="relative isolate overflow-hidden">
-          <img src={p.cover} alt="" width={1920} height={900} className="absolute inset-0 -z-10 h-full w-full object-cover" />
+          <img src={p.cover} alt={p.title} width={1920} height={900} className="absolute inset-0 -z-10 h-full w-full object-cover" />
           <div className="absolute inset-0 -z-10 bg-[oklch(0.2_0_0)]/75" />
           <div className="mx-auto max-w-4xl px-4 py-24 md:px-8 md:py-32">
             <Link to="/blog" className="font-display text-xs font-bold uppercase tracking-wider text-accent hover:text-white">← Back to blog</Link>
