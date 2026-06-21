@@ -141,6 +141,27 @@ function Contact() {
           </div>
         </div>
       </section>
+
+      <section className="bg-[var(--color-surface)]">
+        <div className="mx-auto max-w-7xl px-4 py-16 md:px-8 md:py-20">
+          <span className="eyebrow">Where we work</span>
+          <h2 className="section-title mt-3 text-3xl">Serving Dublin & surrounding areas</h2>
+          <hr className="section-rule" />
+          <p className="mt-4 max-w-2xl text-sm text-foreground/80">
+            We cover all of Dublin city and county — including Ballsbridge, Donnybrook, Rathmines, Ranelagh, Dundrum, Dún Laoghaire and Blackrock — plus parts of Wicklow, Kildare and Meath.
+          </p>
+          <div className="mt-8 aspect-[16/9] w-full overflow-hidden border-t-[3px] border-primary bg-card">
+            <iframe
+              title="All Colours Painting service area — Dublin"
+              src="https://www.google.com/maps?q=Dublin,Ireland&z=11&output=embed"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              className="h-full w-full border-0"
+              allowFullScreen
+            />
+          </div>
+        </div>
+      </section>
     </SiteLayout>
   );
 }
