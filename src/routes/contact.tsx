@@ -73,7 +73,7 @@ function Contact() {
   return (
     <SiteLayout>
       <section className="relative isolate overflow-hidden">
-        <img src={ctaAsset.url} alt="" width={1920} height={900} className="absolute inset-0 -z-10 h-full w-full object-cover" />
+        <img src={ctaAsset.url} alt="Freshly painted Dublin home exterior by All Colours Painting" width={1920} height={900} className="absolute inset-0 -z-10 h-full w-full object-cover" />
         <div className="absolute inset-0 -z-10 bg-[oklch(0.2_0_0)]/80" />
         <div className="mx-auto max-w-7xl px-4 py-24 md:px-8 md:py-36">
           <span className="eyebrow text-accent">Contact us</span>
@@ -138,6 +138,27 @@ function Contact() {
                 </>
               )}
             </form>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-[var(--color-surface)]">
+        <div className="mx-auto max-w-7xl px-4 py-16 md:px-8 md:py-20">
+          <span className="eyebrow">Where we work</span>
+          <h2 className="section-title mt-3 text-3xl">Serving Dublin & surrounding areas</h2>
+          <hr className="section-rule" />
+          <p className="mt-4 max-w-2xl text-sm text-foreground/80">
+            We cover all of Dublin city and county — including Ballsbridge, Donnybrook, Rathmines, Ranelagh, Dundrum, Dún Laoghaire and Blackrock — plus parts of Wicklow, Kildare and Meath.
+          </p>
+          <div className="mt-8 aspect-[16/9] w-full overflow-hidden border-t-[3px] border-primary bg-card">
+            <iframe
+              title="All Colours Painting service area — Dublin"
+              src="https://www.google.com/maps?q=Dublin,Ireland&z=11&output=embed"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              className="h-full w-full border-0"
+              allowFullScreen
+            />
           </div>
         </div>
       </section>

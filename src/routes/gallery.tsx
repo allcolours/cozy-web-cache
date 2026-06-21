@@ -40,7 +40,7 @@ function Gallery() {
   return (
     <SiteLayout>
       <section className="relative isolate overflow-hidden">
-        <img src={exteriorAsset.url} alt="" width={1920} height={900} className="absolute inset-0 -z-10 h-full w-full object-cover" />
+        <img src={exteriorAsset.url} alt="Gallery of painting & decorating projects completed across Dublin" width={1920} height={900} className="absolute inset-0 -z-10 h-full w-full object-cover" />
         <div className="absolute inset-0 -z-10 bg-[oklch(0.2_0_0)]/75" />
         <div className="mx-auto max-w-7xl px-4 py-24 md:px-8 md:py-36">
           <span className="eyebrow text-accent">Our work</span>
