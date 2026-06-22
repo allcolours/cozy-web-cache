@@ -13,6 +13,7 @@ import sCommercialAsset from "../assets/portfolio/service-commercial.jpg.asset.j
 import sIndustrialAsset from "../assets/portfolio/service-industrial.jpg.asset.json";
 import sHospitalityAsset from "../assets/portfolio/service-hospitality.jpg.asset.json";
 import ctaAsset from "../assets/portfolio/cta-bg.jpg.asset.json";
+import { supabase } from "@/integrations/supabase/client";
 
 
 export const Route = createFileRoute("/")({
@@ -147,6 +148,8 @@ const NEED_OPTIONS = [
 
 function LeadCaptureForm() {
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   if (submitted) {
     return (
@@ -159,9 +162,30 @@ function LeadCaptureForm() {
 
   return (
     <form
-      onSubmit={(e) => {
+      onSubmit={async (e) => {
         e.preventDefault();
+        setSubmitting(true);
+        setError(null);
+        const fd = new FormData(e.currentTarget);
+        const payload = {
+          name: String(fd.get("name") || "").trim().slice(0, 100),
+          phone: String(fd.get("phone") || "").trim().slice(0, 50),
+          service_type: String(fd.get("need") || "").trim().slice(0, 100),
+          source: "homepage_form",
+        };
+        if (!payload.name || !payload.phone || !payload.service_type) {
+          setError("Please fill in all fields.");
+          setSubmitting(false);
+          return;
+        }
+        const { error: insErr } = await supabase.from("leads").insert(payload);
+        if (insErr) {
+          setError("Sorry, something went wrong. Please call us directly.");
+          setSubmitting(false);
+          return;
+        }
         setSubmitted(true);
+        setSubmitting(false);
       }}
       className="mx-auto grid max-w-3xl gap-4 rounded-sm border border-white/10 bg-white/10 p-5 backdrop-blur sm:grid-cols-2 md:grid-cols-4 md:p-6"
     >
@@ -192,10 +216,12 @@ function LeadCaptureForm() {
       </select>
       <button
         type="submit"
-        className="inline-flex w-full items-center justify-center rounded-sm bg-primary px-5 py-3 font-display text-xs font-bold uppercase tracking-wider text-primary-foreground transition-colors hover:bg-[oklch(0.62_0.17_158)] sm:col-span-2 md:col-span-4"
+        disabled={submitting}
+        className="inline-flex w-full items-center justify-center rounded-sm bg-primary px-5 py-3 font-display text-xs font-bold uppercase tracking-wider text-primary-foreground transition-colors hover:bg-[oklch(0.62_0.17_158)] disabled:opacity-50 sm:col-span-2 md:col-span-4"
       >
-        Request a Free Quote →
+        {submitting ? "Sending…" : "Request a Free Quote →"}
       </button>
+      {error && <p className="text-xs text-red-200 sm:col-span-2 md:col-span-4">{error}</p>}
     </form>
   );
 }

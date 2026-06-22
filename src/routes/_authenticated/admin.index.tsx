@@ -11,7 +11,7 @@ function Dashboard() {
   const { data } = useQuery({
     queryKey: ["admin-dashboard"],
     queryFn: async () => {
-      const [inquiries, unread, gallery, testimonials, posts, studies, views] = await Promise.all([
+      const [inquiries, unread, gallery, testimonials, posts, studies, views, newLeads] = await Promise.all([
         supabase.from("contact_submissions").select("*", { count: "exact", head: true }),
         supabase.from("contact_submissions").select("*", { count: "exact", head: true }).eq("is_read", false),
         supabase.from("gallery_projects").select("*", { count: "exact", head: true }),
@@ -19,6 +19,7 @@ function Dashboard() {
         supabase.from("blog_posts").select("*", { count: "exact", head: true }),
         supabase.from("case_studies").select("*", { count: "exact", head: true }),
         supabase.from("page_views").select("*", { count: "exact", head: true }).gte("created_at", new Date(Date.now() - 7 * 86400_000).toISOString()),
+        supabase.from("leads").select("*", { count: "exact", head: true }).eq("status", "new"),
       ]);
       return {
         inquiries: inquiries.count ?? 0,
@@ -28,11 +29,13 @@ function Dashboard() {
         posts: posts.count ?? 0,
         studies: studies.count ?? 0,
         views7d: views.count ?? 0,
+        newLeads: newLeads.count ?? 0,
       };
     },
   });
 
   const tiles = [
+    { label: "New Leads", value: data?.newLeads ?? "—", to: "/admin/leads" as const, highlight: (data?.newLeads ?? 0) > 0 },
     { label: "Gallery Projects", value: data?.gallery ?? "—", to: "/admin/gallery" as const },
     { label: "Testimonials", value: data?.testimonials ?? "—", to: "/admin/testimonials" as const },
     { label: "Blog Posts", value: data?.posts ?? "—", to: "/admin/blog" as const },

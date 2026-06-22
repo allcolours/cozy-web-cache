@@ -411,6 +411,48 @@ export type Database = {
         }
         Relationships: []
       }
+      leads: {
+        Row: {
+          created_at: string
+          email: string | null
+          id: string
+          message: string | null
+          name: string | null
+          notes: string | null
+          phone: string | null
+          service_type: string | null
+          source: string | null
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          email?: string | null
+          id?: string
+          message?: string | null
+          name?: string | null
+          notes?: string | null
+          phone?: string | null
+          service_type?: string | null
+          source?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          email?: string | null
+          id?: string
+          message?: string | null
+          name?: string | null
+          notes?: string | null
+          phone?: string | null
+          service_type?: string | null
+          source?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       page_views: {
         Row: {
           created_at: string

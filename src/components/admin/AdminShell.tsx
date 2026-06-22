@@ -2,10 +2,11 @@ import { Link, useNavigate, useRouterState } from "@tanstack/react-router";
 import { type ReactNode } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useIsAdmin } from "@/hooks/useIsAdmin";
-import { useQueryClient } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 
-const NAV: { to: string; label: string; exact?: boolean }[] = [
+const NAV: { to: string; label: string; exact?: boolean; badgeKey?: "leads" }[] = [
   { to: "/admin", label: "Dashboard", exact: true },
+  { to: "/admin/leads", label: "Leads", badgeKey: "leads" },
   { to: "/admin/gallery", label: "Gallery" },
   { to: "/admin/testimonials", label: "Testimonials" },
   { to: "/admin/blog", label: "Blog" },
@@ -20,6 +21,18 @@ export function AdminShell({ children, title }: { children: ReactNode; title: st
   const navigate = useNavigate();
   const qc = useQueryClient();
   const path = useRouterState({ select: (s) => s.location.pathname });
+
+  const { data: newLeadsCount = 0 } = useQuery({
+    queryKey: ["admin-new-leads-count"],
+    enabled: !!isAdmin,
+    queryFn: async () => {
+      const { count } = await supabase
+        .from("leads")
+        .select("*", { count: "exact", head: true })
+        .eq("status", "new");
+      return count ?? 0;
+    },
+  });
 
   async function signOut() {
     await qc.cancelQueries();
@@ -53,15 +66,21 @@ export function AdminShell({ children, title }: { children: ReactNode; title: st
         <nav className="flex gap-1 overflow-x-auto px-3 pb-3 md:flex-col md:gap-0 md:px-0 md:pb-0">
           {NAV.map((n) => {
             const active = n.exact ? path === n.to : path.startsWith(n.to);
+            const badge = n.badgeKey === "leads" ? newLeadsCount : 0;
             return (
               <Link
                 key={n.to}
                 to={n.to}
-                className={`whitespace-nowrap px-4 py-2 font-display text-xs font-bold uppercase tracking-wider transition-colors md:py-3 ${
+                className={`flex items-center justify-between gap-2 whitespace-nowrap px-4 py-2 font-display text-xs font-bold uppercase tracking-wider transition-colors md:py-3 ${
                   active ? "bg-primary text-primary-foreground" : "text-white/70 hover:bg-white/5 hover:text-white"
                 }`}
               >
-                {n.label}
+                <span>{n.label}</span>
+                {badge > 0 && (
+                  <span className={`inline-flex min-w-[20px] items-center justify-center rounded-full px-1.5 py-0.5 text-[10px] font-bold ${active ? "bg-white/20 text-white" : "bg-primary text-primary-foreground"}`}>
+                    {badge}
+                  </span>
+                )}
               </Link>
             );
           })}
