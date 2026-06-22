@@ -173,7 +173,7 @@ function EditProject() {
       setSavedMsg("Saved");
       qc.invalidateQueries({ queryKey: ["admin-project", projectId] });
       qc.invalidateQueries({ queryKey: ["admin-gallery-projects"] });
-      setTimeout(() => setSavedMsg(null), 2000);
+      setTimeout(() => setSavedMsg(null), 5000);
     }
   }
 
@@ -198,6 +198,11 @@ function EditProject() {
           <p className="font-bold uppercase tracking-wider">Error saving project</p>
           <p className="mt-2 whitespace-pre-wrap break-words">{error}</p>
           <p className="mt-2 text-xs opacity-75">If this mentions "row-level security" or permissions, your user account is missing the admin role.</p>
+        </div>
+      )}
+      {savedMsg && (
+        <div role="status" className="mb-6 rounded-md border-2 border-[#16a34a] bg-[#16a34a]/10 p-4 text-sm font-bold uppercase tracking-wider text-[#16a34a]">
+          ✓ {savedMsg}
         </div>
       )}
 
