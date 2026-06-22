@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { useState, type ReactNode } from "react";
 import logo from "../assets/logo.png";
 import { useSiteSettings } from "../hooks/useSiteSettings";
+import { CookieBanner } from "./CookieBanner";
 import { FloatingContact } from "./FloatingContact";
 import { FooterCTA } from "./FooterCTA";
 import { MobileBottomBar } from "./MobileBottomBar";
