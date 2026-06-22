@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useState } from "react";
 import { SiteLayout, COMPANY } from "../components/SiteLayout";
 import { TestimonialsSection } from "../components/Testimonials";
 import { ProcessSteps } from "../components/ProcessSteps";
@@ -134,6 +135,70 @@ const stats = [
   { k: "Large Developments", v: "Managed across Dublin" },
   { k: "Free Quotes", v: "No obligation" },
 ];
+
+const NEED_OPTIONS = [
+  "Interior painting",
+  "Exterior painting",
+  "Full house repaint",
+  "Commercial painting",
+  "Epoxy floor",
+  "Other",
+];
+
+function LeadCaptureForm() {
+  const [submitted, setSubmitted] = useState(false);
+
+  if (submitted) {
+    return (
+      <div className="rounded-sm border border-white/10 bg-white/10 px-6 py-10 backdrop-blur">
+        <h3 className="font-display text-xl font-bold uppercase text-primary">Thanks! We'll be in touch within 24 hours.</h3>
+        <p className="mt-2 text-sm text-white/80">One of our team will call or email to arrange your free site visit.</p>
+      </div>
+    );
+  }
+
+  return (
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        setSubmitted(true);
+      }}
+      className="mx-auto grid max-w-3xl gap-4 rounded-sm border border-white/10 bg-white/10 p-5 backdrop-blur sm:grid-cols-2 md:grid-cols-4 md:p-6"
+    >
+      <input
+        type="text"
+        name="name"
+        placeholder="Your name"
+        required
+        className="w-full rounded-sm border border-white/20 bg-white px-3 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none"
+      />
+      <input
+        type="tel"
+        name="phone"
+        placeholder="Your phone number"
+        required
+        className="w-full rounded-sm border border-white/20 bg-white px-3 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none"
+      />
+      <select
+        name="need"
+        required
+        defaultValue=""
+        className="w-full rounded-sm border border-white/20 bg-white px-3 py-3 text-sm text-foreground focus:border-primary focus:outline-none sm:col-span-2 md:col-span-1"
+      >
+        <option value="" disabled>What do you need?</option>
+        {NEED_OPTIONS.map((o) => (
+          <option key={o} value={o}>{o}</option>
+        ))}
+      </select>
+      <button
+        type="submit"
+        className="inline-flex w-full items-center justify-center rounded-sm bg-primary px-5 py-3 font-display text-xs font-bold uppercase tracking-wider text-primary-foreground transition-colors hover:bg-[oklch(0.62_0.17_158)] sm:col-span-2 md:col-span-4"
+      >
+        Request a Free Quote →
+      </button>
+    </form>
+  );
+}
 
 function Home() {
   return (
@@ -396,19 +461,26 @@ function Home() {
 
 
 
-      {/* CTA band */}
+      {/* Lead capture — Get a Free Quote */}
       <section className="relative isolate overflow-hidden">
         <img src={ctaAsset.url} alt="Freshly painted Dublin home exterior" width={1920} height={600} className="absolute inset-0 -z-10 h-full w-full object-cover" />
         <div className="absolute inset-0 -z-10 bg-[oklch(0.2_0_0)]/85" />
-        <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-6 px-4 py-20 md:flex-row md:items-center md:px-8">
-          <div className="text-white">
-            <span className="eyebrow text-accent">Free quotes</span>
-            <h2 className="mt-2 font-display text-3xl font-extrabold uppercase tracking-tight text-white md:text-4xl">Ready to transform your space?</h2>
-            <p className="mt-3 max-w-2xl text-white/80">No-obligation site visits and detailed written quotes across {COMPANY.area}.</p>
+        <div className="mx-auto max-w-5xl px-4 py-20 text-center md:px-8 md:py-28">
+          <span className="eyebrow text-accent">Free quotes</span>
+          <h2 className="mt-3 font-display text-3xl font-extrabold uppercase tracking-tight text-white md:text-5xl">
+            Ready to get started?
+          </h2>
+          <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-white/80 md:text-lg">
+            Tell us about your project and we'll visit, measure up and send a written quote within 48 hours.
+            No obligation, no pressure.
+          </p>
+          <div className="mt-10">
+            <LeadCaptureForm />
           </div>
-          <div className="flex flex-wrap gap-3">
-            <Link to="/contact" className="inline-flex items-center rounded-sm bg-primary px-6 py-3 font-display text-xs font-bold uppercase tracking-wider text-primary-foreground hover:bg-[oklch(0.62_0.17_158)]">Request a quote</Link>
-            <a href={`tel:${COMPANY.phone.replace(/\s/g, "")}`} className="inline-flex items-center rounded-sm border border-white/40 bg-white/10 px-6 py-3 font-display text-xs font-bold uppercase tracking-wider text-white backdrop-blur hover:bg-white/20">{COMPANY.phone}</a>
+          <div className="mt-10 flex flex-wrap justify-center gap-6 text-sm text-white/80 md:gap-10">
+            <span className="flex items-center gap-2">✓ Free site visit</span>
+            <span className="flex items-center gap-2">✓ Written quote in 48hrs</span>
+            <span className="flex items-center gap-2">✓ 12-month guarantee</span>
           </div>
         </div>
       </section>
