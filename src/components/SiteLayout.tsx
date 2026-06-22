@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { useState, type ReactNode } from "react";
+import { useState, useRef, useEffect, type ReactNode } from "react";
 import logo from "../assets/logo.png";
 import { useSiteSettings } from "../hooks/useSiteSettings";
 import { CookieBanner } from "./CookieBanner";
@@ -31,6 +31,14 @@ const DESKTOP_NAV = [
   { to: "/faq", label: "FAQ" },
 ] as const;
 
+const MORE_NAV = [
+  { to: "/painter-dublin", label: "Painter Dublin" },
+  { to: "/commercial-painting-dublin", label: "Commercial" },
+  { to: "/projects", label: "Projects" },
+  { to: "/estimate", label: "Get Estimate" },
+  { to: "/contact", label: "Contact" },
+] as const;
+
 const MOBILE_NAV = [
   { to: "/", label: "Home" },
   { to: "/services", label: "Services" },
@@ -53,11 +61,23 @@ export const COMPANY = {
 
 export function SiteLayout({ children }: { children: ReactNode }) {
   const [open, setOpen] = useState(false);
+  const [moreOpen, setMoreOpen] = useState(false);
+  const moreRef = useRef<HTMLDivElement>(null);
   const settings = useSiteSettings();
   const phone = settings.phone || COMPANY.phone;
   const email = settings.email || COMPANY.email;
   const area = settings.area || COMPANY.area;
   const hours = settings.hours || COMPANY.hours;
+
+  useEffect(() => {
+    function handleClick(e: MouseEvent) {
+      if (moreRef.current && !moreRef.current.contains(e.target as Node)) {
+        setMoreOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClick);
+    return () => document.removeEventListener("mousedown", handleClick);
+  }, []);
 
   return (
     <div className="flex min-h-screen flex-col bg-background text-foreground pb-16 md:pb-0">
@@ -100,6 +120,28 @@ export function SiteLayout({ children }: { children: ReactNode }) {
                 {n.label}
               </Link>
             ))}
+            <div ref={moreRef} className="relative">
+              <button
+                onClick={() => setMoreOpen((v) => !v)}
+                className="flex items-center gap-1 whitespace-nowrap font-display text-[11px] font-semibold uppercase tracking-wider text-[oklch(0.3_0_0)] transition-colors hover:text-primary xl:text-[12px]"
+              >
+                More <span className={`transition-transform ${moreOpen ? "rotate-180" : ""}`}>▾</span>
+              </button>
+              {moreOpen && (
+                <div className="absolute left-0 top-full z-50 mt-2 min-w-[180px] rounded-md border border-border bg-background py-1 shadow-lg">
+                  {MORE_NAV.map((n) => (
+                    <Link
+                      key={n.to}
+                      to={n.to}
+                      onClick={() => setMoreOpen(false)}
+                      className="block px-4 py-2 font-display text-[11px] font-semibold uppercase tracking-wider text-[oklch(0.3_0_0)] hover:bg-secondary hover:text-primary"
+                    >
+                      {n.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
             <Link
               to="/contact"
               className="ml-2 inline-flex items-center whitespace-nowrap rounded-sm bg-primary px-5 py-2.5 font-display text-xs font-bold uppercase tracking-wider text-primary-foreground transition-colors hover:bg-[oklch(0.62_0.17_158)]"
