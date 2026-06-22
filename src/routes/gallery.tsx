@@ -173,6 +173,9 @@ function Gallery() {
             ))}
           </div>
 
+          <h2 className="sr-only">Recent painting & decorating projects</h2>
+
+
           {isLoading ? (
             <div className="columns-1 gap-4 md:columns-2 lg:columns-3">
               {Array.from({ length: 9 }).map((_, i) => (
