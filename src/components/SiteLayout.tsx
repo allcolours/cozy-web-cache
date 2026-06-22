@@ -31,6 +31,14 @@ const DESKTOP_NAV = [
   { to: "/faq", label: "FAQ" },
 ] as const;
 
+const MORE_NAV = [
+  { to: "/painter-dublin", label: "Painter Dublin" },
+  { to: "/commercial-painting-dublin", label: "Commercial" },
+  { to: "/projects", label: "Projects" },
+  { to: "/estimate", label: "Get Estimate" },
+  { to: "/contact", label: "Contact" },
+] as const;
+
 const MOBILE_NAV = [
   { to: "/", label: "Home" },
   { to: "/services", label: "Services" },
