@@ -58,6 +58,38 @@ export const Route = createFileRoute("/blog_/$slug")({
         ...(p.category ? [{ property: "article:section", content: p.category }] : []),
       ],
       links: [{ rel: "canonical", href: url }],
+      scripts: [
+        {
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Article",
+            headline: p.title,
+            description: p.excerpt ?? p.intro ?? "",
+            image: p.cover_image_url
+              ? (p.cover_image_url.startsWith("http") ? p.cover_image_url : `https://allcolourspainter.com${p.cover_image_url}`)
+              : "https://allcolourspainter.com/__l5e/assets-v1/2a395495-c4ec-4903-a41b-667de034b2ab/hero-house.webp",
+            author: {
+              "@type": "Organization",
+              name: "All Colours Painting Contractor Limited",
+              url: "https://allcolourspainter.com",
+            },
+            publisher: {
+              "@type": "Organization",
+              name: "All Colours Painting Contractor Limited",
+              logo: {
+                "@type": "ImageObject",
+                url: "https://allcolourspainter.com/assets/logo-BAonhOi1.png",
+              },
+            },
+            ...(p.published_at ? { datePublished: p.published_at } : {}),
+            mainEntityOfPage: {
+              "@type": "WebPage",
+              "@id": url,
+            },
+          }),
+        },
+      ],
     };
   },
   notFoundComponent: () => (
