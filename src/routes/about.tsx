@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout, COMPANY } from "../components/SiteLayout";
 import { TestimonialsSection } from "../components/Testimonials";
-import aboutAsset from "../assets/portfolio/about-architecture.jpg.asset.json";
+
 import heroAsset from "../assets/portfolio/hero-house.webp.asset.json";
 
 export const Route = createFileRoute("/about")({
@@ -39,7 +39,7 @@ function About() {
     <SiteLayout>
       {/* Hero band */}
       <section className="relative isolate overflow-hidden">
-        <img src={aboutAsset.url} alt="Georgian Dublin architecture — All Colours Painting heritage and restoration work" loading="lazy" width={1920} height={900} className="absolute inset-0 -z-10 h-full w-full object-cover" />
+        <img src="/images/01-georgian-manor-house-sage-green-exterior-dublin.jpg" alt="Georgian manor house exterior painting in sage green, Dublin" fetchPriority="high" decoding="async" width={1920} height={900} className="absolute inset-0 -z-10 h-full w-full object-cover" />
         <div className="absolute inset-0 -z-10 bg-[oklch(0.2_0_0)]/75" />
         <div className="mx-auto max-w-7xl px-4 py-24 md:px-8 md:py-36">
           <span className="eyebrow text-accent">About us</span>
