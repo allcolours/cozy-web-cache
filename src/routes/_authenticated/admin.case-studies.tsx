@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { AdminShell } from "@/components/admin/AdminShell";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
@@ -8,6 +8,7 @@ export const Route = createFileRoute("/_authenticated/admin/case-studies")({
 });
 
 function CaseStudiesAdmin() {
+  const navigate = useNavigate();
   const qc = useQueryClient();
   const { data, isLoading } = useQuery({
     queryKey: ["admin-case-studies"],
@@ -54,7 +55,11 @@ function CaseStudiesAdmin() {
             </thead>
             <tbody>
               {data.map((c) => (
-                <tr key={c.id} className="border-b border-border last:border-0">
+                <tr
+                  key={c.id}
+                  onClick={() => navigate({ to: "/admin/case-studies/$studyId", params: { studyId: c.id } })}
+                  className="cursor-pointer border-b border-border last:border-0 hover:bg-secondary/50"
+                >
                   <td className="px-3 py-2">
                     {c.cover_image_url ? (
                       <img src={c.cover_image_url} alt="" className="h-10 w-14 rounded object-cover" />
@@ -69,12 +74,17 @@ function CaseStudiesAdmin() {
                   <td className="px-3 py-3 text-muted-foreground">{c.location ?? "—"}</td>
                   <td className="px-3 py-3 text-muted-foreground">{c.category ?? "—"}</td>
                   <td className="px-3 py-3">
-                    <button onClick={() => toggle.mutate({ id: c.id, visible: !!c.visible })} className={`relative inline-flex h-5 w-9 items-center rounded-full ${c.visible ? "bg-[#16a34a]" : "bg-muted-foreground/30"}`} aria-label="Toggle visible">
+                    <button onClick={(e) => { e.stopPropagation(); toggle.mutate({ id: c.id, visible: !!c.visible }); }} className={`relative inline-flex h-5 w-9 items-center rounded-full ${c.visible ? "bg-[#16a34a]" : "bg-muted-foreground/30"}`} aria-label="Toggle visible">
                       <span className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${c.visible ? "translate-x-4" : "translate-x-0.5"}`} />
                     </button>
                   </td>
                   <td className="px-3 py-3 text-right">
-                    <Link to="/admin/case-studies/$studyId" params={{ studyId: c.id }} className="text-xs font-bold uppercase tracking-wider text-primary hover:underline">Edit</Link>
+                    <button
+                      onClick={(e) => { e.stopPropagation(); navigate({ to: "/admin/case-studies/$studyId", params: { studyId: c.id } }); }}
+                      className="text-xs font-bold uppercase tracking-wider text-primary hover:underline"
+                    >
+                      Edit
+                    </button>
                   </td>
                 </tr>
               ))}
