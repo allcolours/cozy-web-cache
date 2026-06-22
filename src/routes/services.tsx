@@ -63,7 +63,7 @@ export const Route = createFileRoute("/services")({
 const headline = [
   { title: "Residential", img: heroAsset.url, desc: "Period townhouses, family homes and apartments — interior, exterior, sash windows and feature walls.", bullets: ["Interior repaints", "Exterior render & masonry", "Sash window restoration", "Feature walls & wallpapering"] },
   { title: "Commercial", img: commercialAsset.url, desc: "Offices, retail, hospitality and education — scheduled out of hours so your business never stops.", bullets: ["Office repaints", "Retail & hospitality fit-out", "Out-of-hours scheduling", "Insurance & compliance"] },
-  { title: "Industrial", img: industrialAsset.url, desc: "Warehouse floors, epoxy floors, line-marking, plant-room repaints and heavy-traffic protective coatings with two-pack paints.", bullets: ["Epoxy floor coatings", "Line marking", "Warehouse repaints", "Anti-slip systems"] },
+  { title: "Industrial", img: "/images/08-storage-facility-epoxy-floor-yellow-doors-low-angle-dublin.jpg", desc: "Warehouse floors, epoxy floors, line-marking, plant-room repaints and heavy-traffic protective coatings with two-pack paints.", bullets: ["Epoxy floor coatings", "Line marking", "Warehouse repaints", "Anti-slip systems"] },
 ];
 
 const more = [
