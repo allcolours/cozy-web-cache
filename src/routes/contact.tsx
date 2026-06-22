@@ -3,7 +3,7 @@ import { useState } from "react";
 import { SiteLayout } from "../components/SiteLayout";
 import { useSiteSettings } from "../hooks/useSiteSettings";
 import ctaAsset from "../assets/portfolio/cta-bg.jpg.asset.json";
-import { supabase } from "@/integrations/supabase/client";
+
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
