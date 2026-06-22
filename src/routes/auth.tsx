@@ -18,7 +18,7 @@ function AuthPage() {
 
   useEffect(() => {
     supabase.auth.getUser().then(({ data }) => {
-      if (data.user) navigate({ to: "/admin" });
+      if (data.user) navigate({ to: "/admin/gallery" });
     });
   }, [navigate]);
 
@@ -40,7 +40,7 @@ function AuthPage() {
       } else {
         const { error } = await supabase.auth.signInWithPassword({ email, password });
         if (error) throw error;
-        navigate({ to: "/admin" });
+        navigate({ to: "/admin/gallery" });
       }
     } catch (err) {
       setError(err instanceof Error ? err.message : "Authentication failed");
