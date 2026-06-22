@@ -2,10 +2,11 @@ import { Link, useNavigate, useRouterState } from "@tanstack/react-router";
 import { type ReactNode } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useIsAdmin } from "@/hooks/useIsAdmin";
-import { useQueryClient } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 
-const NAV: { to: string; label: string; exact?: boolean }[] = [
+const NAV: { to: string; label: string; exact?: boolean; badgeKey?: "leads" }[] = [
   { to: "/admin", label: "Dashboard", exact: true },
+  { to: "/admin/leads", label: "Leads", badgeKey: "leads" },
   { to: "/admin/gallery", label: "Gallery" },
   { to: "/admin/testimonials", label: "Testimonials" },
   { to: "/admin/blog", label: "Blog" },
