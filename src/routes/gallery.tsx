@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { SiteLayout } from "../components/SiteLayout";
 import { cn } from "../lib/utils";
 import heroAsset from "../assets/portfolio/hero-house.webp.asset.json";
@@ -10,16 +10,14 @@ const CATEGORIES = [
   { value: "residential", label: "Residential" },
   { value: "commercial", label: "Commercial" },
   { value: "industrial", label: "Industrial" },
-  { value: "floors", label: "Floors" },
-  { value: "before-after", label: "Before & After" },
+  { value: "bespoke", label: "Bespoke" },
 ];
 
 function getCategory(index: number) {
   if (index < 20) return "residential";
-  if (index < 35) return "commercial";
-  if (index < 50) return "industrial";
-  if (index < 65) return "floors";
-  return "before-after";
+  if (index < 40) return "commercial";
+  if (index < 55) return "industrial";
+  return "bespoke";
 }
 
 // Auto-generated gallery imports
@@ -56,6 +54,7 @@ export const Route = createFileRoute("/gallery")({
 function Gallery() {
   const projects = GALLERY_PHOTOS;
   const [activeFilter, setActiveFilter] = useState("all");
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
   const filteredProjects =
     activeFilter === "all"
@@ -69,6 +68,40 @@ function Gallery() {
         ? projects.length
         : projects.filter((p) => p.category === cat.value).length,
   }));
+
+  const closeLightbox = useCallback(() => setLightboxIndex(null), []);
+  const goNext = useCallback(() => {
+    if (lightboxIndex === null) return;
+    setLightboxIndex((lightboxIndex + 1) % filteredProjects.length);
+  }, [lightboxIndex, filteredProjects.length]);
+  const goPrev = useCallback(() => {
+    if (lightboxIndex === null) return;
+    setLightboxIndex((lightboxIndex - 1 + filteredProjects.length) % filteredProjects.length);
+  }, [lightboxIndex, filteredProjects.length]);
+
+  useEffect(() => {
+    if (lightboxIndex === null) return;
+    if (lightboxIndex >= filteredProjects.length) {
+      setLightboxIndex(null);
+    }
+  }, [filteredProjects.length, lightboxIndex]);
+
+  useEffect(() => {
+    if (lightboxIndex === null) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") closeLightbox();
+      if (e.key === "ArrowRight") goNext();
+      if (e.key === "ArrowLeft") goPrev();
+    };
+    document.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [lightboxIndex, closeLightbox, goNext, goPrev]);
+
+  const activePhoto = lightboxIndex !== null ? filteredProjects[lightboxIndex] : null;
 
   return (
     <SiteLayout>
@@ -89,14 +122,14 @@ function Gallery() {
 
       <section className="bg-background">
         <div className="mx-auto max-w-7xl px-4 py-20 md:px-8 md:py-28">
-          <div className="mb-10 flex flex-wrap gap-2">
+          <div className="-mx-4 mb-10 flex gap-2 overflow-x-auto px-4 pb-2 scrollbar-hide md:mx-0 md:flex-wrap md:overflow-visible md:px-0">
             {counts.map((cat) => (
               <button
                 key={cat.value}
                 type="button"
                 onClick={() => setActiveFilter(cat.value)}
                 className={cn(
-                  "inline-flex items-center gap-2 rounded-sm px-4 py-2.5 font-display text-[11px] font-bold uppercase tracking-wider transition-colors duration-200",
+                  "inline-flex flex-shrink-0 items-center gap-2 rounded-full px-4 py-2.5 font-display text-[11px] font-bold uppercase tracking-wider transition-colors duration-200",
                   activeFilter === cat.value
                     ? "bg-primary text-primary-foreground"
                     : "bg-card text-foreground ring-1 ring-border hover:bg-primary hover:text-primary-foreground"
@@ -118,19 +151,87 @@ function Gallery() {
           </div>
 
           <div key={activeFilter} className="animate-fade-in grid gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 md:gap-4">
-            {filteredProjects.map((p) => (
-              <figure key={p.id} className="group relative overflow-hidden bg-card">
+            {filteredProjects.map((p, i) => (
+              <figure
+                key={p.id}
+                className="group relative cursor-pointer overflow-hidden bg-card"
+                onClick={() => setLightboxIndex(i)}
+                role="button"
+                tabIndex={0}
+                aria-label={`Open ${p.title} in lightbox`}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    setLightboxIndex(i);
+                  }
+                }}
+              >
                 <div className="aspect-square overflow-hidden">
-                  <img src={p.image_url} alt={p.title ?? "Painting project"} loading="lazy" width={1200} height={1200} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                  <img src={p.image_url} alt={p.title} loading="lazy" width={1200} height={1200} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
                 </div>
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                 <div className="pointer-events-none absolute inset-0 border-b-[3px] border-primary opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                <div className="pointer-events-none absolute bottom-0 left-0 right-0 p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                  <p className="font-display text-sm font-bold text-white">{p.title}</p>
+                  <p className="text-xs uppercase tracking-wider text-white/80">{CATEGORIES.find((c) => c.value === p.category)?.label}</p>
+                </div>
               </figure>
             ))}
           </div>
         </div>
       </section>
+
+      {activePhoto && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 p-4"
+          onClick={closeLightbox}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Image lightbox"
+        >
+          <button
+            type="button"
+            onClick={closeLightbox}
+            className="absolute right-4 top-4 rounded-full bg-white/10 p-2 text-white backdrop-blur-sm transition-colors hover:bg-white/20"
+            aria-label="Close lightbox"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg>
+          </button>
+
+          {filteredProjects.length > 1 && (
+            <>
+              <button
+                type="button"
+                onClick={(e) => { e.stopPropagation(); goPrev(); }}
+                className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-white/10 p-3 text-white backdrop-blur-sm transition-colors hover:bg-white/20 md:left-6"
+                aria-label="Previous image"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6" /></svg>
+              </button>
+              <button
+                type="button"
+                onClick={(e) => { e.stopPropagation(); goNext(); }}
+                className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-white/10 p-3 text-white backdrop-blur-sm transition-colors hover:bg-white/20 md:right-6"
+                aria-label="Next image"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6" /></svg>
+              </button>
+            </>
+          )}
+
+          <div className="max-h-full max-w-full" onClick={(e) => e.stopPropagation()}>
+            <img
+              src={activePhoto.image_url}
+              alt={activePhoto.title}
+              className="max-h-[85vh] max-w-full rounded-sm object-contain shadow-2xl"
+            />
+            <div className="mt-3 text-center">
+              <p className="font-display text-lg font-bold text-white">{activePhoto.title}</p>
+              <p className="text-sm uppercase tracking-wider text-white/70">{CATEGORIES.find((c) => c.value === activePhoto.category)?.label}</p>
+            </div>
+          </div>
+        </div>
+      )}
     </SiteLayout>
   );
 }
-
