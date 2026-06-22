@@ -1,7 +1,26 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
 import { SiteLayout } from "../components/SiteLayout";
+import { cn } from "../lib/utils";
 import heroAsset from "../assets/portfolio/hero-house.webp.asset.json";
 import exteriorAsset from "../assets/portfolio/portfolio-exterior-1.jpg.asset.json";
+
+const CATEGORIES = [
+  { value: "all", label: "All" },
+  { value: "residential", label: "Residential" },
+  { value: "commercial", label: "Commercial" },
+  { value: "industrial", label: "Industrial" },
+  { value: "floors", label: "Floors" },
+  { value: "before-after", label: "Before & After" },
+];
+
+function getCategory(index: number) {
+  if (index < 20) return "residential";
+  if (index < 35) return "commercial";
+  if (index < 50) return "industrial";
+  if (index < 65) return "floors";
+  return "before-after";
+}
 
 // Auto-generated gallery imports
 const galleryModules = import.meta.glob<{ default: { url: string } }>(
@@ -14,6 +33,7 @@ const GALLERY_PHOTOS = Object.entries(galleryModules)
     id: path,
     image_url: mod.default.url,
     title: `Project ${String(i + 1).padStart(2, "0")}`,
+    category: getCategory(i),
   }));
 
 export const Route = createFileRoute("/gallery")({
@@ -35,7 +55,20 @@ export const Route = createFileRoute("/gallery")({
 
 function Gallery() {
   const projects = GALLERY_PHOTOS;
+  const [activeFilter, setActiveFilter] = useState("all");
 
+  const filteredProjects =
+    activeFilter === "all"
+      ? projects
+      : projects.filter((p) => p.category === activeFilter);
+
+  const counts = CATEGORIES.map((cat) => ({
+    ...cat,
+    count:
+      cat.value === "all"
+        ? projects.length
+        : projects.filter((p) => p.category === cat.value).length,
+  }));
 
   return (
     <SiteLayout>
@@ -56,8 +89,36 @@ function Gallery() {
 
       <section className="bg-background">
         <div className="mx-auto max-w-7xl px-4 py-20 md:px-8 md:py-28">
-          <div className="grid gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 md:gap-4">
-            {projects.map((p) => (
+          <div className="mb-10 flex flex-wrap gap-2">
+            {counts.map((cat) => (
+              <button
+                key={cat.value}
+                type="button"
+                onClick={() => setActiveFilter(cat.value)}
+                className={cn(
+                  "inline-flex items-center gap-2 rounded-sm px-4 py-2.5 font-display text-[11px] font-bold uppercase tracking-wider transition-colors duration-200",
+                  activeFilter === cat.value
+                    ? "bg-primary text-primary-foreground"
+                    : "bg-card text-foreground ring-1 ring-border hover:bg-primary hover:text-primary-foreground"
+                )}
+              >
+                {cat.label}
+                <span
+                  className={cn(
+                    "rounded-full px-2 py-0.5 text-[10px] font-semibold",
+                    activeFilter === cat.value
+                      ? "bg-white/20 text-white"
+                      : "bg-muted text-muted-foreground"
+                  )}
+                >
+                  {cat.count}
+                </span>
+              </button>
+            ))}
+          </div>
+
+          <div key={activeFilter} className="animate-fade-in grid gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 md:gap-4">
+            {filteredProjects.map((p) => (
               <figure key={p.id} className="group relative overflow-hidden bg-card">
                 <div className="aspect-square overflow-hidden">
                   <img src={p.image_url} alt={p.title ?? "Painting project"} loading="lazy" width={1200} height={1200} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
