@@ -4,6 +4,7 @@ import logo from "../assets/logo.png";
 import { useSiteSettings } from "../hooks/useSiteSettings";
 import { FloatingContact } from "./FloatingContact";
 import { FooterCTA } from "./FooterCTA";
+import { MobileBottomBar } from "./MobileBottomBar";
 import { WhatsAppButton } from "./WhatsAppButton";
 
 const NAV = [
@@ -62,7 +63,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
   const hours = settings.hours || COMPANY.hours;
 
   return (
-    <div className="flex min-h-screen flex-col bg-background text-foreground">
+    <div className="flex min-h-screen flex-col bg-background text-foreground pb-16 md:pb-0">
       {/* Top contact bar */}
       <div className="hidden bg-[var(--color-surface-dark)] text-[var(--color-surface-dark-foreground)] lg:block">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 text-xs md:px-8">
@@ -212,6 +213,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
 
       <FloatingContact />
       <WhatsAppButton />
+      <MobileBottomBar />
     </div>
   );
 }

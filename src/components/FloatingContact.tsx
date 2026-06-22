@@ -27,7 +27,7 @@ export function FloatingContact() {
   const waHref = `https://wa.me/${waNumber}?text=${waMsg}`;
 
   return (
-    <div className="fixed bottom-4 right-4 z-40 flex flex-col items-end gap-3 sm:bottom-6 sm:right-6">
+    <div className="fixed bottom-4 right-4 z-40 hidden flex-col items-end gap-3 md:flex sm:bottom-6 sm:right-6">
       {open && (
         <div className="flex flex-col gap-2 animate-in fade-in slide-in-from-bottom-2 duration-200">
           <a
