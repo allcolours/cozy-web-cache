@@ -6,9 +6,11 @@ import { FaqAccordion } from "../components/FaqAccordion";
 import { FAQS } from "../data/faqs";
 import heroAsset from "../assets/portfolio/hero-house.webp.asset.json";
 import commercialAsset from "../assets/portfolio/service-commercial.jpg.asset.json";
-import industrialAsset from "../assets/portfolio/service-industrial.jpg.asset.json";
 import hospitalityAsset from "../assets/portfolio/service-hospitality.jpg.asset.json";
 import exteriorAsset from "../assets/portfolio/portfolio-exterior-1.jpg.asset.json";
+
+const servicesHeroImg = "/images/13-georgian-door-white-portico-columns-grey-paint-gold-dublin.jpg";
+const epoxyFloorImg = "/images/08-storage-facility-epoxy-floor-yellow-doors-low-angle-dublin.jpg";
 
 export const Route = createFileRoute("/services")({
   head: () => ({
