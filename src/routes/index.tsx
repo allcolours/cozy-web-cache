@@ -13,6 +13,7 @@ import sCommercialAsset from "../assets/portfolio/service-commercial.jpg.asset.j
 import sIndustrialAsset from "../assets/portfolio/service-industrial.jpg.asset.json";
 import sHospitalityAsset from "../assets/portfolio/service-hospitality.jpg.asset.json";
 import ctaAsset from "../assets/portfolio/cta-bg.jpg.asset.json";
+import { supabase } from "@/integrations/supabase/client";
 
 
 export const Route = createFileRoute("/")({
