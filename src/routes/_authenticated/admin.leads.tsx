@@ -89,11 +89,10 @@ function LeadsAdmin() {
                 <th className="px-4 py-3"></th>
               </tr>
             </thead>
-            <tbody>
-              {leads.map((lead) => {
+            {leads.map((lead) => {
                 const isOpen = expanded === lead.id;
                 return (
-                  <tbody key={lead.id} className="contents">
+                  <tbody key={lead.id}>
                     <tr
                       onClick={() => setExpanded(isOpen ? null : lead.id)}
                       className={`cursor-pointer border-b border-border transition-colors hover:bg-secondary/50 ${isOpen ? "bg-secondary/50" : ""}`}
@@ -114,7 +113,7 @@ function LeadsAdmin() {
                       <td className="px-4 py-3 text-right text-xs text-muted-foreground">{isOpen ? "▴" : "▾"}</td>
                     </tr>
                     {isOpen && (
-                      <tr key={`${lead.id}-detail`} className="border-b border-border bg-secondary/30">
+                      <tr className="border-b border-border bg-secondary/30">
                         <td colSpan={6} className="px-4 py-5">
                           <div className="grid gap-5 md:grid-cols-2">
                             <div className="space-y-3 text-sm">
@@ -168,10 +167,9 @@ function LeadsAdmin() {
                         </td>
                       </tr>
                     )}
-                  </>
+                  </tbody>
                 );
               })}
-            </tbody>
           </table>
         </div>
       )}
