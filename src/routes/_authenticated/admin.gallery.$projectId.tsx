@@ -146,7 +146,8 @@ function EditProject() {
       .eq("id", projectId);
     setSaving(false);
     if (upErr) {
-      setError(upErr.message);
+      console.error("[admin.gallery saveProject] update failed:", upErr);
+      setError(`${upErr.message}${upErr.code ? ` (code: ${upErr.code})` : ""}${upErr.details ? ` — ${upErr.details}` : ""}${upErr.hint ? ` — hint: ${upErr.hint}` : ""}`);
     } else {
       setSavedMsg("Saved");
       qc.invalidateQueries({ queryKey: ["admin-project", projectId] });
@@ -170,6 +171,14 @@ function EditProject() {
       <div className="mb-6 flex items-center justify-between">
         <Link to="/admin/gallery" className="text-xs font-bold uppercase tracking-wider text-muted-foreground hover:text-foreground">← Back to projects</Link>
       </div>
+
+      {error && (
+        <div role="alert" className="mb-6 rounded-md border-2 border-destructive bg-destructive/10 p-4 text-sm text-destructive">
+          <p className="font-bold uppercase tracking-wider">Error saving project</p>
+          <p className="mt-2 whitespace-pre-wrap break-words">{error}</p>
+          <p className="mt-2 text-xs opacity-75">If this mentions "row-level security" or permissions, your user account is missing the admin role.</p>
+        </div>
+      )}
 
       <div className="grid gap-6 lg:grid-cols-[minmax(0,320px)_1fr]">
         <form onSubmit={saveProject} className="space-y-5 rounded-md border border-border bg-background p-6">
