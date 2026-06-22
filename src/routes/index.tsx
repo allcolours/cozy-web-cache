@@ -246,7 +246,7 @@ function Home() {
             </Link>
           </div>
           <div className="relative">
-            <img src={aboutAsset.url} alt="Close-up of clean architectural painting detail on interior moulding" width={1200} height={800} className="aspect-[4/5] w-full object-cover" />
+            <img src={aboutAsset.url} alt="Close-up of clean architectural painting detail on interior moulding" loading="lazy" width={1200} height={800} className="aspect-[4/5] w-full object-cover" />
             <div className="absolute -bottom-6 -left-6 hidden h-32 w-32 border-[6px] border-accent md:block" />
           </div>
         </div>
@@ -463,7 +463,7 @@ function Home() {
 
       {/* Lead capture — Get a Free Quote */}
       <section className="relative isolate overflow-hidden">
-        <img src={ctaAsset.url} alt="Freshly painted Dublin home exterior" width={1920} height={600} className="absolute inset-0 -z-10 h-full w-full object-cover" />
+        <img src={ctaAsset.url} alt="Freshly painted Dublin home exterior" loading="lazy" width={1920} height={600} className="absolute inset-0 -z-10 h-full w-full object-cover" />
         <div className="absolute inset-0 -z-10 bg-[oklch(0.2_0_0)]/85" />
         <div className="mx-auto max-w-5xl px-4 py-20 text-center md:px-8 md:py-28">
           <span className="eyebrow text-accent">Free quotes</span>

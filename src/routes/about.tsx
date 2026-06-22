@@ -64,7 +64,7 @@ function About() {
             </div>
           </div>
           <div className="relative">
-            <img src={heroAsset.url} alt="Painted country home" width={1200} height={800} className="aspect-[4/5] w-full object-cover" />
+            <img src={heroAsset.url} alt="Painted country home" loading="lazy" width={1200} height={800} className="aspect-[4/5] w-full object-cover" />
             <div className="absolute -bottom-6 -right-6 hidden h-32 w-32 border-[6px] border-primary md:block" />
           </div>
         </div>
@@ -157,7 +157,7 @@ function About() {
       <section className="bg-secondary">
         <div className="mx-auto grid max-w-7xl gap-12 px-4 py-20 md:grid-cols-[1fr_1.2fr] md:gap-16 md:px-8 md:py-28">
           <div className="relative">
-            <img src={heroAsset.url} alt="All Colours Painting team member preparing a residential interior for painting" width={900} height={1100} className="aspect-[4/5] w-full object-cover" />
+            <img src={heroAsset.url} alt="All Colours Painting team member preparing a residential interior for painting" loading="lazy" width={900} height={1100} className="aspect-[4/5] w-full object-cover" />
             <div className="absolute -bottom-6 -left-6 hidden h-32 w-32 border-[6px] border-accent md:block" />
           </div>
           <div>
