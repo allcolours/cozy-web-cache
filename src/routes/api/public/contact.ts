@@ -65,6 +65,21 @@ export const Route = createFileRoute('/api/public/contact')({
           return Response.json({ error: 'Failed to save inquiry' }, { status: 500 })
         }
 
+        // Also record as a lead in the CRM (best-effort)
+        try {
+          await supabase.from('leads').insert({
+            name: data.name,
+            email: data.email,
+            phone: data.phone || null,
+            message: data.message,
+            service_type: data.service_type || null,
+            source: data.source || 'contact_form',
+            status: 'new',
+          })
+        } catch (e) {
+          console.error('Failed to insert lead', e)
+        }
+
         // 2. Build & enqueue admin notification email (best-effort — inquiry already saved)
         try {
           const template = TEMPLATES['contact-inquiry']
