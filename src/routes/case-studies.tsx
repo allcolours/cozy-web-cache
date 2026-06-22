@@ -51,7 +51,7 @@ function CaseStudiesIndex() {
   return (
     <SiteLayout>
       <section className="relative isolate overflow-hidden">
-        <img src={heroAsset.url} alt="Repainted Dublin house exterior — All Colours Painting case study" width={1920} height={900} className="absolute inset-0 -z-10 h-full w-full object-cover" />
+        <img src={heroAsset.url} alt="Repainted Dublin house exterior — All Colours Painting case study" loading="lazy" width={1920} height={900} className="absolute inset-0 -z-10 h-full w-full object-cover" />
         <div className="absolute inset-0 -z-10 bg-[oklch(0.2_0_0)]/75" />
         <div className="mx-auto max-w-7xl px-4 py-24 md:px-8 md:py-36">
           <span className="eyebrow text-accent">Recent projects</span>
@@ -80,7 +80,7 @@ function CaseStudiesIndex() {
                 >
                   {c.cover_image_url && (
                     <div className="aspect-[16/10] overflow-hidden">
-                      <img src={c.cover_image_url} alt={c.title} loading="lazy" width={1200} height={750} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                      <img src={c.cover_image_url} alt={c.title} loading="lazy" loading="lazy" width={1200} height={750} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
                     </div>
                   )}
                   <div className="border-b-[3px] border-primary p-7 md:p-8">

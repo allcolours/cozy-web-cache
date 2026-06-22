@@ -81,7 +81,7 @@ function Contact() {
   return (
     <SiteLayout>
       <section className="relative isolate overflow-hidden">
-        <img src={ctaAsset.url} alt="Freshly painted Dublin home exterior by All Colours Painting" width={1920} height={900} className="absolute inset-0 -z-10 h-full w-full object-cover" />
+        <img src={ctaAsset.url} alt="Freshly painted Dublin home exterior by All Colours Painting" loading="lazy" width={1920} height={900} className="absolute inset-0 -z-10 h-full w-full object-cover" />
         <div className="absolute inset-0 -z-10 bg-[oklch(0.2_0_0)]/80" />
         <div className="mx-auto max-w-7xl px-4 py-24 md:px-8 md:py-36">
           <span className="eyebrow text-accent">Contact us</span>

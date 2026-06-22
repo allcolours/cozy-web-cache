@@ -87,7 +87,7 @@ function BlogPostPage() {
     <SiteLayout>
       <article>
         <section className="relative isolate overflow-hidden">
-          {p.cover_image_url && <img src={p.cover_image_url} alt={p.title} width={1920} height={900} className="absolute inset-0 -z-10 h-full w-full object-cover" />}
+          {p.cover_image_url && <img src={p.cover_image_url} alt={p.title} loading="lazy" width={1920} height={900} className="absolute inset-0 -z-10 h-full w-full object-cover" />}
           <div className="absolute inset-0 -z-10 bg-[oklch(0.2_0_0)]/75" />
           <div className="mx-auto max-w-4xl px-4 py-24 md:px-8 md:py-32">
             <Link to="/blog" className="font-display text-xs font-bold uppercase tracking-wider text-accent hover:text-white">← Back to blog</Link>
@@ -137,7 +137,7 @@ function BlogPostPage() {
                   <Link key={o.id} to="/blog/$slug" params={{ slug: o.slug }} className="group block bg-card">
                     {o.cover_image_url && (
                       <div className="aspect-[4/3] overflow-hidden">
-                        <img src={o.cover_image_url} alt={o.title} loading="lazy" width={800} height={600} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                        <img src={o.cover_image_url} alt={o.title} loading="lazy" loading="lazy" width={800} height={600} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
                       </div>
                     )}
                     <div className="border-b-[3px] border-primary p-5">

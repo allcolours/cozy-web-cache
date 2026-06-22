@@ -87,7 +87,7 @@ function CaseStudyPage() {
   return (
     <SiteLayout>
       <section className="relative isolate overflow-hidden">
-        {s.cover_image_url && <img src={s.cover_image_url} alt={`${s.title} — case study`} width={1920} height={900} className="absolute inset-0 -z-10 h-full w-full object-cover" />}
+        {s.cover_image_url && <img src={s.cover_image_url} alt={`${s.title} — case study`} loading="lazy" width={1920} height={900} className="absolute inset-0 -z-10 h-full w-full object-cover" />}
         <div className="absolute inset-0 -z-10 bg-[oklch(0.2_0_0)]/75" />
         <div className="mx-auto max-w-7xl px-4 py-24 md:px-8 md:py-36">
           <Link to="/case-studies" className="font-display text-xs font-bold uppercase tracking-wider text-accent hover:text-white">← All case studies</Link>
@@ -216,7 +216,7 @@ function CaseStudyPage() {
                 <Link key={c.id} to="/case-studies/$slug" params={{ slug: c.slug }} className="group block bg-card">
                   {c.cover_image_url && (
                     <div className="aspect-[4/3] overflow-hidden">
-                      <img src={c.cover_image_url} alt={c.title} loading="lazy" width={800} height={600} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                      <img src={c.cover_image_url} alt={c.title} loading="lazy" loading="lazy" width={800} height={600} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
                     </div>
                   )}
                   <div className="border-b-[3px] border-primary p-5">
