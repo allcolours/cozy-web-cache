@@ -24,6 +24,7 @@ const DESKTOP_NAV = [
   { to: "/", label: "Home" },
   { to: "/about", label: "About" },
   { to: "/services", label: "Services" },
+  { to: "/painter-dublin", label: "Painter Dublin" },
   { to: "/commercial-painting-dublin", label: "Commercial" },
   { to: "/estimate", label: "Get Estimate" },
   { to: "/case-studies", label: "Case Studies" },
