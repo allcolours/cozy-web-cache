@@ -187,6 +187,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
       </footer>
 
       <FloatingContact />
+      <WhatsAppButton />
     </div>
   );
 }
