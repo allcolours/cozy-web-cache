@@ -50,12 +50,11 @@ export function SchemaOrg() {
     "aggregateRating": {
       "@type": "AggregateRating",
       "ratingValue": "5.0",
-      "reviewCount": "47",
+      "reviewCount": "8",
       "bestRating": "5"
     },
     "sameAs": [
-      "https://www.facebook.com/allcolourspainting",
-      "https://www.instagram.com/allcolourspainting"
+      "https://www.facebook.com/profile.php?id=61561664309105"
     ]
   };
 
