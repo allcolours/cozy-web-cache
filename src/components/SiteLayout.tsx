@@ -25,15 +25,10 @@ const DESKTOP_NAV = [
   { to: "/", label: "Home" },
   { to: "/about", label: "About" },
   { to: "/services", label: "Services" },
-  { to: "/painter-dublin", label: "Painter Dublin" },
-  { to: "/commercial-painting-dublin", label: "Commercial" },
-  { to: "/estimate", label: "Get Estimate" },
-  { to: "/case-studies", label: "Case Studies" },
-  { to: "/projects", label: "Projects" },
   { to: "/gallery", label: "Gallery" },
+  { to: "/case-studies", label: "Case Studies" },
   { to: "/blog", label: "Blog" },
   { to: "/faq", label: "FAQ" },
-  { to: "/contact", label: "Contact" },
 ] as const;
 
 const MOBILE_NAV = [
@@ -93,12 +88,12 @@ export function SiteLayout({ children }: { children: ReactNode }) {
             </span>
           </Link>
 
-          <nav className="hidden items-center gap-4 lg:flex xl:gap-5">
+          <nav className="hidden items-center gap-3 lg:flex xl:gap-4">
             {DESKTOP_NAV.map((n) => (
               <Link
                 key={n.to}
                 to={n.to}
-                className="whitespace-nowrap font-display text-[12px] font-semibold uppercase tracking-wider text-[oklch(0.3_0_0)] transition-colors hover:text-primary xl:text-[13px]"
+                className="whitespace-nowrap font-display text-[11px] font-semibold uppercase tracking-wider text-[oklch(0.3_0_0)] transition-colors hover:text-primary xl:text-[12px]"
                 activeProps={{ className: "text-primary" }}
                 activeOptions={{ exact: n.to === "/" }}
               >

@@ -56,8 +56,7 @@ function CaseStudiesAdmin() {
               {data.map((c) => (
                 <tr
                   key={c.id}
-                  onClick={() => { window.location.href = `/admin/case-studies/${c.id}`; }}
-                  className="cursor-pointer border-b border-border last:border-0 hover:bg-secondary/50"
+                  className="border-b border-border last:border-0 hover:bg-secondary/50"
                 >
                   <td className="px-3 py-2">
                     {c.cover_image_url ? (
@@ -78,12 +77,7 @@ function CaseStudiesAdmin() {
                     </button>
                   </td>
                   <td className="px-3 py-3 text-right">
-                    <button
-                      onClick={(e) => { e.stopPropagation(); window.location.href = `/admin/case-studies/${c.id}`; }}
-                      className="text-xs font-bold uppercase tracking-wider text-primary hover:underline"
-                    >
-                      Edit
-                    </button>
+                    <a href={`/admin/case-studies/${c.id}`} className="text-xs font-bold uppercase tracking-wider text-primary hover:underline">Edit</a>
                   </td>
                 </tr>
               ))}
