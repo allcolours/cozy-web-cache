@@ -3,12 +3,20 @@
 // Works in two modes:
 //   - Static: parses src/routes/sitemap[.]xml.ts ENTRIES and builds XML in-process.
 //   - HTTP (optional): SITEMAP_URL=<url> node scripts/validate-sitemap.mjs
-import { readFileSync, existsSync } from "node:fs";
+//
+// Caching: skipped when the cache key (hash of inputs + script + SITEMAP_URL)
+// matches a previous successful run. Deploy branches always revalidate.
+// Disable with NO_CACHE=1.
+import { readFileSync, existsSync, mkdirSync, writeFileSync } from "node:fs";
+import { createHash } from "node:crypto";
 import { XMLParser, XMLValidator } from "fast-xml-parser";
 
 const ROBOTS_PATH = "public/robots.txt";
 const SITEMAP_ROUTE = "src/routes/sitemap[.]xml.ts";
 const BASE_URL = "https://allcolourspainter.com";
+const CACHE_DIR = "node_modules/.cache/validate-sitemap";
+const CACHE_FILE = `${CACHE_DIR}/last-ok`;
+const DEPLOY_BRANCHES = new Set(["main", "master", "production", "prod", "release"]);
 
 function fail(msg) {
   console.error(`✗ ${msg}`);
@@ -17,6 +25,40 @@ function fail(msg) {
 function ok(msg) {
   console.log(`✓ ${msg}`);
 }
+
+function currentBranch() {
+  return (
+    process.env.VERCEL_GIT_COMMIT_REF ||
+    process.env.CF_PAGES_BRANCH ||
+    process.env.GITHUB_REF_NAME ||
+    process.env.BRANCH ||
+    ""
+  );
+}
+
+function computeCacheKey() {
+  const h = createHash("sha256");
+  h.update("v1");
+  h.update(process.env.SITEMAP_URL || "");
+  for (const p of [SITEMAP_ROUTE, ROBOTS_PATH, "scripts/validate-sitemap.mjs"]) {
+    h.update(p);
+    h.update(existsSync(p) ? readFileSync(p) : Buffer.from("missing"));
+  }
+  return h.digest("hex");
+}
+
+const isDeployBranch = DEPLOY_BRANCHES.has(currentBranch());
+const cacheKey = computeCacheKey();
+if (!process.env.NO_CACHE && !isDeployBranch && existsSync(CACHE_FILE)) {
+  try {
+    if (readFileSync(CACHE_FILE, "utf8").trim() === cacheKey) {
+      console.log("✓ Sitemap validation cached (inputs unchanged) — skipping");
+      process.exit(0);
+    }
+  } catch {}
+}
+if (isDeployBranch) console.log(`(deploy branch "${currentBranch()}" — cache bypassed)`);
+
 
 // 1. robots.txt
 if (!existsSync(ROBOTS_PATH)) {
@@ -107,4 +149,9 @@ if (process.exitCode) {
   console.error("\nSitemap validation FAILED");
   process.exit(1);
 }
+try {
+  mkdirSync(CACHE_DIR, { recursive: true });
+  writeFileSync(CACHE_FILE, cacheKey);
+} catch {}
 console.log("\nSitemap validation passed");
+
