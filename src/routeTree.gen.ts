@@ -28,6 +28,7 @@ import { Route as FaqRouteImport } from './routes/faq'
 import { Route as EstimateRouteImport } from './routes/estimate'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CommercialPaintingDublinRouteImport } from './routes/commercial-painting-dublin'
+import { Route as CommercialContractorsRouteImport } from './routes/commercial-contractors'
 import { Route as CaseStudiesRouteImport } from './routes/case-studies'
 import { Route as BlogRouteImport } from './routes/blog'
 import { Route as AuthRouteImport } from './routes/auth'
@@ -152,6 +153,11 @@ const CommercialPaintingDublinRoute =
     path: '/commercial-painting-dublin',
     getParentRoute: () => rootRouteImport,
   } as any)
+const CommercialContractorsRoute = CommercialContractorsRouteImport.update({
+  id: '/commercial-contractors',
+  path: '/commercial-contractors',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CaseStudiesRoute = CaseStudiesRouteImport.update({
   id: '/case-studies',
   path: '/case-studies',
@@ -300,6 +306,7 @@ export interface FileRoutesByFullPath {
   '/auth': typeof AuthRoute
   '/blog': typeof BlogRoute
   '/case-studies': typeof CaseStudiesRoute
+  '/commercial-contractors': typeof CommercialContractorsRoute
   '/commercial-painting-dublin': typeof CommercialPaintingDublinRoute
   '/contact': typeof ContactRoute
   '/estimate': typeof EstimateRoute
@@ -347,6 +354,7 @@ export interface FileRoutesByTo {
   '/auth': typeof AuthRoute
   '/blog': typeof BlogRoute
   '/case-studies': typeof CaseStudiesRoute
+  '/commercial-contractors': typeof CommercialContractorsRoute
   '/commercial-painting-dublin': typeof CommercialPaintingDublinRoute
   '/contact': typeof ContactRoute
   '/estimate': typeof EstimateRoute
@@ -395,6 +403,7 @@ export interface FileRoutesById {
   '/auth': typeof AuthRoute
   '/blog': typeof BlogRoute
   '/case-studies': typeof CaseStudiesRoute
+  '/commercial-contractors': typeof CommercialContractorsRoute
   '/commercial-painting-dublin': typeof CommercialPaintingDublinRoute
   '/contact': typeof ContactRoute
   '/estimate': typeof EstimateRoute
@@ -444,6 +453,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/blog'
     | '/case-studies'
+    | '/commercial-contractors'
     | '/commercial-painting-dublin'
     | '/contact'
     | '/estimate'
@@ -491,6 +501,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/blog'
     | '/case-studies'
+    | '/commercial-contractors'
     | '/commercial-painting-dublin'
     | '/contact'
     | '/estimate'
@@ -538,6 +549,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/blog'
     | '/case-studies'
+    | '/commercial-contractors'
     | '/commercial-painting-dublin'
     | '/contact'
     | '/estimate'
@@ -587,6 +599,7 @@ export interface RootRouteChildren {
   AuthRoute: typeof AuthRoute
   BlogRoute: typeof BlogRoute
   CaseStudiesRoute: typeof CaseStudiesRoute
+  CommercialContractorsRoute: typeof CommercialContractorsRoute
   CommercialPaintingDublinRoute: typeof CommercialPaintingDublinRoute
   ContactRoute: typeof ContactRoute
   EstimateRoute: typeof EstimateRoute
@@ -756,6 +769,13 @@ declare module '@tanstack/react-router' {
       path: '/commercial-painting-dublin'
       fullPath: '/commercial-painting-dublin'
       preLoaderRoute: typeof CommercialPaintingDublinRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/commercial-contractors': {
+      id: '/commercial-contractors'
+      path: '/commercial-contractors'
+      fullPath: '/commercial-contractors'
+      preLoaderRoute: typeof CommercialContractorsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/case-studies': {
@@ -987,6 +1007,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthRoute: AuthRoute,
   BlogRoute: BlogRoute,
   CaseStudiesRoute: CaseStudiesRoute,
+  CommercialContractorsRoute: CommercialContractorsRoute,
   CommercialPaintingDublinRoute: CommercialPaintingDublinRoute,
   ContactRoute: ContactRoute,
   EstimateRoute: EstimateRoute,
