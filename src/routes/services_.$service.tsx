@@ -6,6 +6,19 @@ import { SERVICES } from "../data/services";
 import { TESTIMONIALS } from "../data/testimonials";
 import heroAsset from "../assets/portfolio/hero-house.webp.asset.json";
 
+function serviceHeroImage(service?: { slug: string; name: string }) {
+  if (service?.slug === "new-build-painting") {
+    return {
+      src: "/images/10-new-build-exterior-white-render-anthracite-windows-dublin.jpg",
+      alt: "New build exterior painting white render anthracite windows Dublin",
+    };
+  }
+  return {
+    src: heroAsset.url,
+    alt: `${service?.name ?? "Painting service"} in Dublin — All Colours Painting`,
+  };
+}
+
 export const Route = createFileRoute("/services_/$service")({
   loader: ({ params }) => {
     const service = SERVICES.find((s) => s.slug === params.service);
@@ -25,8 +38,8 @@ export const Route = createFileRoute("/services_/$service")({
         { property: "og:description", content: description },
         { property: "og:url", content: url },
         { property: "og:type", content: "website" },
-        { property: "og:image", content: `https://allcolourspainter.com${heroAsset.url}` },
-        { property: "twitter:image", content: `https://allcolourspainter.com${heroAsset.url}` },
+        { property: "og:image", content: `https://allcolourspainter.com${serviceHeroImage(service).src}` },
+        { property: "twitter:image", content: `https://allcolourspainter.com${serviceHeroImage(service).src}` },
       ],
       links: [{ rel: "canonical", href: url }],
       scripts: [
@@ -78,10 +91,7 @@ export const Route = createFileRoute("/services_/$service")({
 function ServicePage() {
   const service = Route.useLoaderData();
 
-  const heroImage =
-    service.slug === "new-build-painting"
-      ? { src: "/images/10-new-build-exterior-white-render-anthracite-windows-dublin.jpg", alt: "New build exterior painting with white render and anthracite windows, Dublin" }
-      : { src: heroAsset.url, alt: `${service.name} in Dublin — All Colours Painting` };
+  const heroImage = serviceHeroImage(service);
 
   return (
     <SiteLayout>

@@ -6,9 +6,11 @@ import { FaqAccordion } from "../components/FaqAccordion";
 import { FAQS } from "../data/faqs";
 import heroAsset from "../assets/portfolio/hero-house.webp.asset.json";
 import commercialAsset from "../assets/portfolio/service-commercial.jpg.asset.json";
-import industrialAsset from "../assets/portfolio/service-industrial.jpg.asset.json";
 import hospitalityAsset from "../assets/portfolio/service-hospitality.jpg.asset.json";
 import exteriorAsset from "../assets/portfolio/portfolio-exterior-1.jpg.asset.json";
+
+const servicesHeroImg = "/images/13-georgian-door-white-portico-columns-grey-paint-gold-dublin.jpg";
+const epoxyFloorImg = "/images/08-storage-facility-epoxy-floor-yellow-doors-low-angle-dublin.jpg";
 
 export const Route = createFileRoute("/services")({
   head: () => ({
@@ -19,8 +21,8 @@ export const Route = createFileRoute("/services")({
       { property: "og:description", content: "Full range of painting services in Dublin: interior, exterior, commercial, industrial epoxy floors, kitchen painting, spray finishing and wallpapering. Free estimates." },
       { property: "og:url", content: "https://allcolourspainter.com/services" },
       { property: "og:type", content: "website" },
-      { property: "og:image", content: `https://allcolourspainter.com${commercialAsset.url}` },
-      { name: "twitter:image", content: `https://allcolourspainter.com${commercialAsset.url}` },
+      { property: "og:image", content: `https://allcolourspainter.com${servicesHeroImg}` },
+      { name: "twitter:image", content: `https://allcolourspainter.com${servicesHeroImg}` },
     ],
     links: [{ rel: "canonical", href: "https://allcolourspainter.com/services" }],
     scripts: [
@@ -63,7 +65,7 @@ export const Route = createFileRoute("/services")({
 const headline = [
   { title: "Residential", img: heroAsset.url, desc: "Period townhouses, family homes and apartments — interior, exterior, sash windows and feature walls.", bullets: ["Interior repaints", "Exterior render & masonry", "Sash window restoration", "Feature walls & wallpapering"] },
   { title: "Commercial", img: commercialAsset.url, desc: "Offices, retail, hospitality and education — scheduled out of hours so your business never stops.", bullets: ["Office repaints", "Retail & hospitality fit-out", "Out-of-hours scheduling", "Insurance & compliance"] },
-  { title: "Industrial", img: "/images/08-storage-facility-epoxy-floor-yellow-doors-low-angle-dublin.jpg", desc: "Warehouse floors, epoxy floors, line-marking, plant-room repaints and heavy-traffic protective coatings with two-pack paints.", bullets: ["Epoxy floor coatings", "Line marking", "Warehouse repaints", "Anti-slip systems"] },
+  { title: "Industrial", img: epoxyFloorImg, alt: "Industrial epoxy floor coating Dublin storage facility", desc: "Warehouse floors, epoxy floors, line-marking, plant-room repaints and heavy-traffic protective coatings with two-pack paints.", bullets: ["Epoxy floor coatings", "Line marking", "Warehouse repaints", "Anti-slip systems"] },
 ];
 
 const more = [
@@ -71,12 +73,12 @@ const more = [
   { title: "Exterior Painting", img: exteriorAsset.url, desc: "Render, masonry, brick, soffits and fascias with weatherproof Sandtex and Dulux Weathershield systems." },
   { title: "Kitchen Painting", img: heroAsset.url, desc: "Cabinet refinishing, kitchen spraying and hand-painting with durable kitchen-grade finishes." },
   { title: "Spray Painting", img: heroAsset.url, desc: "Airless and HVLP spray painting for kitchens, doors, joinery and ceilings — factory-grade spray finish on site." },
-  { title: "Floor Painting", img: "/images/08-storage-facility-epoxy-floor-yellow-doors-low-angle-dublin.jpg", desc: "Epoxy floor painting, two-pack floor paints and industrial floor coatings for warehouses, garages and commercial spaces." },
+  { title: "Floor Painting", img: epoxyFloorImg, alt: "Industrial epoxy floor coating Dublin storage facility", desc: "Epoxy floor painting, two-pack floor paints and industrial floor coatings for warehouses, garages and commercial spaces." },
   { title: "Furniture Painting", img: hospitalityAsset.url, desc: "Bespoke furniture painting and varnish painting for tables, chairs, built-ins and cabinetry." },
   { title: "Railings Painting", img: exteriorAsset.url, desc: "Metal railings, gates and wrought-iron painting with rust-inhibiting primers and long-life top coats." },
   { title: "Wallpapering", img: hospitalityAsset.url, desc: "Lining paper, standard wallcoverings, hand-printed and feature wall installs with mitre-perfect seams." },
   { title: "Plastering & Repairs", img: commercialAsset.url, desc: "Skim, patch and full re-plasters, crack stitching and surface prep so every finish has a flawless base." },
-  { title: "Property Maintenance", img: industrialAsset.url, desc: "Annual repaint contracts for landlords, letting agents and managed property portfolios." },
+  { title: "Property Maintenance", img: heroAsset.url, desc: "Annual repaint contracts for landlords, letting agents and managed property portfolios." },
   { title: "Apartment Painting", img: heroAsset.url, desc: "Full apartment repaints across Dublin city and South Dublin — fast turnaround for owners, tenants and lettings." },
   { title: "Ceiling & Hallway Painting", img: heroAsset.url, desc: "Ceiling painting, hallway and staircase repaints — covered, dust-controlled and finished without splatter." },
   { title: "Period & Georgian Homes", img: exteriorAsset.url, desc: "Georgian house painting, sash windows, cornicing and heritage colour systems for period properties in Dublin." },
@@ -87,7 +89,7 @@ function Services() {
     <SiteLayout>
       {/* Hero band */}
       <section className="relative isolate overflow-hidden">
-        <img src="/images/13-georgian-door-white-portico-columns-grey-paint-gold-dublin.jpg" alt="Georgian door painting in grey with gold hardware, Dublin 4" fetchPriority="high" decoding="async" width={1920} height={900} className="absolute inset-0 -z-10 h-full w-full object-cover" />
+        <img src="/images/13-georgian-door-white-portico-columns-grey-paint-gold-dublin.jpg" alt="Georgian door painting grey with gold hardware, Dublin 4" fetchPriority="high" decoding="async" width={1920} height={900} className="absolute inset-0 -z-10 h-full w-full object-cover" />
         <div className="absolute inset-0 -z-10 bg-[oklch(0.2_0_0)]/75" />
         <div className="mx-auto max-w-7xl px-4 py-24 md:px-8 md:py-36">
           <span className="eyebrow text-accent">What we offer</span>
@@ -135,7 +137,7 @@ function Services() {
             {headline.map((s) => (
               <article key={s.title} className="flex flex-col bg-card">
                 <div className="aspect-[4/3] overflow-hidden">
-                  <img src={s.img} alt={`${s.title} painting services`} loading="lazy" width={1000} height={750} className="h-full w-full object-cover transition-transform duration-700 hover:scale-105" />
+                  <img src={s.img} alt={s.alt ?? `${s.title} painting services`} loading="lazy" width={1000} height={750} className="h-full w-full object-cover transition-transform duration-700 hover:scale-105" />
                 </div>
                 <div className="flex flex-1 flex-col border-b-[3px] border-primary p-8">
                   <h3 className="font-display text-xl font-bold uppercase tracking-wide text-[oklch(0.2_0_0)]">{s.title}</h3>
@@ -168,7 +170,7 @@ function Services() {
             {more.map((s) => (
               <div key={s.title} className="group overflow-hidden bg-card">
                 <div className="aspect-[16/10] overflow-hidden">
-                  <img src={s.img} alt={`${s.title} — ${s.desc.split(".")[0]}`} loading="lazy" width={800} height={500} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                  <img src={s.img} alt={s.alt ?? `${s.title} — ${s.desc.split(".")[0]}`} loading="lazy" width={800} height={500} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
                 </div>
                 <div className="p-6">
                   <h3 className="font-display text-base font-bold uppercase tracking-wide text-[oklch(0.2_0_0)]">{s.title}</h3>
