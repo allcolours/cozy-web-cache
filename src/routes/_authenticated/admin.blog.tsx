@@ -45,8 +45,7 @@ function BlogAdmin() {
               {data.map((p) => (
                 <tr
                   key={p.id}
-                  onClick={() => { window.location.href = `/admin/blog/${p.id}`; }}
-                  className="cursor-pointer border-b border-border last:border-0 hover:bg-secondary/50"
+                  className="border-b border-border last:border-0 hover:bg-secondary/50"
                 >
                   <td className="px-3 py-3">
                     <div className="font-medium">{p.title}</div>
@@ -62,12 +61,7 @@ function BlogAdmin() {
                   </td>
                   <td className="px-3 py-3 text-xs text-muted-foreground">{p.updated_at ? new Date(p.updated_at).toLocaleDateString() : "—"}</td>
                   <td className="px-3 py-3 text-right">
-                    <button
-                      onClick={(e) => { e.stopPropagation(); window.location.href = `/admin/blog/${p.id}`; }}
-                      className="text-xs font-bold uppercase tracking-wider text-primary hover:underline"
-                    >
-                      Edit
-                    </button>
+                    <a href={`/admin/blog/${p.id}`} className="text-xs font-bold uppercase tracking-wider text-primary hover:underline">Edit</a>
                   </td>
                 </tr>
               ))}
