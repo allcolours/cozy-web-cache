@@ -87,7 +87,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
       <header className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/85">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 md:px-8">
           <Link to="/" className="flex shrink-0 items-center gap-3" onClick={() => setOpen(false)}>
-            <img src={logo} alt={COMPANY.name} width={56} height={56} className="h-12 w-12 shrink-0 object-contain sm:h-14 sm:w-14" />
+            <img src={logo} alt={COMPANY.name} width={56} height={56} loading="eager" className="h-12 w-12 shrink-0 object-contain sm:h-14 sm:w-14" />
             <span className="hidden whitespace-nowrap font-display text-sm font-bold uppercase tracking-wide text-[oklch(0.25_0_0)] sm:block">
               {COMPANY.shortName}
             </span>
@@ -162,7 +162,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
         <div className="mx-auto grid max-w-7xl gap-10 px-4 py-16 md:grid-cols-6 md:px-8">
           <div className="md:col-span-2">
             <div className="flex items-center gap-3">
-              <img src={logo} alt={`${COMPANY.shortName} logo`} width={64} height={64} className="h-16 w-16 object-contain" />
+              <img src={logo} alt={`${COMPANY.shortName} logo`} width={64} height={64} loading="lazy" className="h-16 w-16 object-contain" />
               <span className="font-display text-lg font-bold uppercase tracking-wide text-white">
                 {COMPANY.shortName}
               </span>

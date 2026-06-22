@@ -16,6 +16,8 @@ export const Route = createFileRoute("/painters/")({
         { property: "og:description", content: description },
         { property: "og:url", content: url },
         { property: "og:type", content: "website" },
+        { property: "og:image", content: "https://allcolourspainter.com/__l5e/assets-v1/2a395495-c4ec-4903-a41b-667de034b2ab/hero-house.webp" },
+        { name: "twitter:image", content: "https://allcolourspainter.com/__l5e/assets-v1/2a395495-c4ec-4903-a41b-667de034b2ab/hero-house.webp" },
       ],
       links: [{ rel: "canonical", href: url }],
     };

@@ -109,6 +109,7 @@ function CommercialPage() {
         <img
           src={commercialAsset.url}
           alt="Commercial painting crew working on a Dublin office block"
+          loading="lazy"
           width={1920}
           height={900}
           className="absolute inset-0 -z-10 h-full w-full object-cover"

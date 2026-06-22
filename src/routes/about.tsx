@@ -13,8 +13,8 @@ export const Route = createFileRoute("/about")({
       { property: "og:description", content: "Meet the team behind All Colours Painting. 10+ years experience, 1,200+ projects completed, fully insured with 12-month workmanship guarantee across Dublin." },
       { property: "og:url", content: "https://allcolourspainter.com/about" },
       { property: "og:type", content: "website" },
-      { property: "og:image", content: `https://allcolourspainter.com${aboutAsset.url}` },
-      { name: "twitter:image", content: `https://allcolourspainter.com${aboutAsset.url}` },
+      { property: "og:image", content: "https://allcolourspainter.com/__l5e/assets-v1/2ee395b5-21f4-44ff-a55d-c1587ab9b2a8/about-architecture.jpg" },
+      { name: "twitter:image", content: "https://allcolourspainter.com/__l5e/assets-v1/2ee395b5-21f4-44ff-a55d-c1587ab9b2a8/about-architecture.jpg" },
     ],
     links: [{ rel: "canonical", href: "https://allcolourspainter.com/about" }],
   }),
@@ -39,7 +39,7 @@ function About() {
     <SiteLayout>
       {/* Hero band */}
       <section className="relative isolate overflow-hidden">
-        <img src={aboutAsset.url} alt="Georgian Dublin architecture — All Colours Painting heritage and restoration work" width={1920} height={900} className="absolute inset-0 -z-10 h-full w-full object-cover" />
+        <img src={aboutAsset.url} alt="Georgian Dublin architecture — All Colours Painting heritage and restoration work" loading="lazy" width={1920} height={900} className="absolute inset-0 -z-10 h-full w-full object-cover" />
         <div className="absolute inset-0 -z-10 bg-[oklch(0.2_0_0)]/75" />
         <div className="mx-auto max-w-7xl px-4 py-24 md:px-8 md:py-36">
           <span className="eyebrow text-accent">About us</span>
