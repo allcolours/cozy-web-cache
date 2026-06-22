@@ -216,10 +216,12 @@ function LeadCaptureForm() {
       </select>
       <button
         type="submit"
-        className="inline-flex w-full items-center justify-center rounded-sm bg-primary px-5 py-3 font-display text-xs font-bold uppercase tracking-wider text-primary-foreground transition-colors hover:bg-[oklch(0.62_0.17_158)] sm:col-span-2 md:col-span-4"
+        disabled={submitting}
+        className="inline-flex w-full items-center justify-center rounded-sm bg-primary px-5 py-3 font-display text-xs font-bold uppercase tracking-wider text-primary-foreground transition-colors hover:bg-[oklch(0.62_0.17_158)] disabled:opacity-50 sm:col-span-2 md:col-span-4"
       >
-        Request a Free Quote →
+        {submitting ? "Sending…" : "Request a Free Quote →"}
       </button>
+      {error && <p className="text-xs text-red-200 sm:col-span-2 md:col-span-4">{error}</p>}
     </form>
   );
 }
