@@ -4,6 +4,7 @@ import logo from "../assets/logo.png";
 import { useSiteSettings } from "../hooks/useSiteSettings";
 import { FloatingContact } from "./FloatingContact";
 import { FooterCTA } from "./FooterCTA";
+import { WhatsAppButton } from "./WhatsAppButton";
 
 const NAV = [
   { to: "/", label: "Home" },
