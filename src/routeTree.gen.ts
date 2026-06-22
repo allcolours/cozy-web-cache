@@ -16,6 +16,13 @@ import { Route as ServicesRouteImport } from './routes/services'
 import { Route as ProjectsRouteImport } from './routes/projects'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as PricingGuideRouteImport } from './routes/pricing-guide'
+import { Route as PainterStillorganRouteImport } from './routes/painter-stillorgan'
+import { Route as PainterSandyfordRouteImport } from './routes/painter-sandyford'
+import { Route as PainterRathfarnhamRouteImport } from './routes/painter-rathfarnham'
+import { Route as PainterRanelaghRouteImport } from './routes/painter-ranelagh'
+import { Route as PainterDunLaoghaireRouteImport } from './routes/painter-dun-laoghaire'
+import { Route as PainterClondalkinRouteImport } from './routes/painter-clondalkin'
+import { Route as PainterBlackrockRouteImport } from './routes/painter-blackrock'
 import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as EstimateRouteImport } from './routes/estimate'
@@ -82,6 +89,41 @@ const PrivacyRoute = PrivacyRouteImport.update({
 const PricingGuideRoute = PricingGuideRouteImport.update({
   id: '/pricing-guide',
   path: '/pricing-guide',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PainterStillorganRoute = PainterStillorganRouteImport.update({
+  id: '/painter-stillorgan',
+  path: '/painter-stillorgan',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PainterSandyfordRoute = PainterSandyfordRouteImport.update({
+  id: '/painter-sandyford',
+  path: '/painter-sandyford',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PainterRathfarnhamRoute = PainterRathfarnhamRouteImport.update({
+  id: '/painter-rathfarnham',
+  path: '/painter-rathfarnham',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PainterRanelaghRoute = PainterRanelaghRouteImport.update({
+  id: '/painter-ranelagh',
+  path: '/painter-ranelagh',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PainterDunLaoghaireRoute = PainterDunLaoghaireRouteImport.update({
+  id: '/painter-dun-laoghaire',
+  path: '/painter-dun-laoghaire',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PainterClondalkinRoute = PainterClondalkinRouteImport.update({
+  id: '/painter-clondalkin',
+  path: '/painter-clondalkin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PainterBlackrockRoute = PainterBlackrockRouteImport.update({
+  id: '/painter-blackrock',
+  path: '/painter-blackrock',
   getParentRoute: () => rootRouteImport,
 } as any)
 const GalleryRoute = GalleryRouteImport.update({
@@ -263,6 +305,13 @@ export interface FileRoutesByFullPath {
   '/estimate': typeof EstimateRoute
   '/faq': typeof FaqRoute
   '/gallery': typeof GalleryRoute
+  '/painter-blackrock': typeof PainterBlackrockRoute
+  '/painter-clondalkin': typeof PainterClondalkinRoute
+  '/painter-dun-laoghaire': typeof PainterDunLaoghaireRoute
+  '/painter-ranelagh': typeof PainterRanelaghRoute
+  '/painter-rathfarnham': typeof PainterRathfarnhamRoute
+  '/painter-sandyford': typeof PainterSandyfordRoute
+  '/painter-stillorgan': typeof PainterStillorganRoute
   '/pricing-guide': typeof PricingGuideRoute
   '/privacy': typeof PrivacyRoute
   '/projects': typeof ProjectsRoute
@@ -303,6 +352,13 @@ export interface FileRoutesByTo {
   '/estimate': typeof EstimateRoute
   '/faq': typeof FaqRoute
   '/gallery': typeof GalleryRoute
+  '/painter-blackrock': typeof PainterBlackrockRoute
+  '/painter-clondalkin': typeof PainterClondalkinRoute
+  '/painter-dun-laoghaire': typeof PainterDunLaoghaireRoute
+  '/painter-ranelagh': typeof PainterRanelaghRoute
+  '/painter-rathfarnham': typeof PainterRathfarnhamRoute
+  '/painter-sandyford': typeof PainterSandyfordRoute
+  '/painter-stillorgan': typeof PainterStillorganRoute
   '/pricing-guide': typeof PricingGuideRoute
   '/privacy': typeof PrivacyRoute
   '/projects': typeof ProjectsRoute
@@ -344,6 +400,13 @@ export interface FileRoutesById {
   '/estimate': typeof EstimateRoute
   '/faq': typeof FaqRoute
   '/gallery': typeof GalleryRoute
+  '/painter-blackrock': typeof PainterBlackrockRoute
+  '/painter-clondalkin': typeof PainterClondalkinRoute
+  '/painter-dun-laoghaire': typeof PainterDunLaoghaireRoute
+  '/painter-ranelagh': typeof PainterRanelaghRoute
+  '/painter-rathfarnham': typeof PainterRathfarnhamRoute
+  '/painter-sandyford': typeof PainterSandyfordRoute
+  '/painter-stillorgan': typeof PainterStillorganRoute
   '/pricing-guide': typeof PricingGuideRoute
   '/privacy': typeof PrivacyRoute
   '/projects': typeof ProjectsRoute
@@ -386,6 +449,13 @@ export interface FileRouteTypes {
     | '/estimate'
     | '/faq'
     | '/gallery'
+    | '/painter-blackrock'
+    | '/painter-clondalkin'
+    | '/painter-dun-laoghaire'
+    | '/painter-ranelagh'
+    | '/painter-rathfarnham'
+    | '/painter-sandyford'
+    | '/painter-stillorgan'
     | '/pricing-guide'
     | '/privacy'
     | '/projects'
@@ -426,6 +496,13 @@ export interface FileRouteTypes {
     | '/estimate'
     | '/faq'
     | '/gallery'
+    | '/painter-blackrock'
+    | '/painter-clondalkin'
+    | '/painter-dun-laoghaire'
+    | '/painter-ranelagh'
+    | '/painter-rathfarnham'
+    | '/painter-sandyford'
+    | '/painter-stillorgan'
     | '/pricing-guide'
     | '/privacy'
     | '/projects'
@@ -466,6 +543,13 @@ export interface FileRouteTypes {
     | '/estimate'
     | '/faq'
     | '/gallery'
+    | '/painter-blackrock'
+    | '/painter-clondalkin'
+    | '/painter-dun-laoghaire'
+    | '/painter-ranelagh'
+    | '/painter-rathfarnham'
+    | '/painter-sandyford'
+    | '/painter-stillorgan'
     | '/pricing-guide'
     | '/privacy'
     | '/projects'
@@ -508,6 +592,13 @@ export interface RootRouteChildren {
   EstimateRoute: typeof EstimateRoute
   FaqRoute: typeof FaqRoute
   GalleryRoute: typeof GalleryRoute
+  PainterBlackrockRoute: typeof PainterBlackrockRoute
+  PainterClondalkinRoute: typeof PainterClondalkinRoute
+  PainterDunLaoghaireRoute: typeof PainterDunLaoghaireRoute
+  PainterRanelaghRoute: typeof PainterRanelaghRoute
+  PainterRathfarnhamRoute: typeof PainterRathfarnhamRoute
+  PainterSandyfordRoute: typeof PainterSandyfordRoute
+  PainterStillorganRoute: typeof PainterStillorganRoute
   PricingGuideRoute: typeof PricingGuideRoute
   PrivacyRoute: typeof PrivacyRoute
   ProjectsRoute: typeof ProjectsRoute
@@ -581,6 +672,55 @@ declare module '@tanstack/react-router' {
       path: '/pricing-guide'
       fullPath: '/pricing-guide'
       preLoaderRoute: typeof PricingGuideRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/painter-stillorgan': {
+      id: '/painter-stillorgan'
+      path: '/painter-stillorgan'
+      fullPath: '/painter-stillorgan'
+      preLoaderRoute: typeof PainterStillorganRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/painter-sandyford': {
+      id: '/painter-sandyford'
+      path: '/painter-sandyford'
+      fullPath: '/painter-sandyford'
+      preLoaderRoute: typeof PainterSandyfordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/painter-rathfarnham': {
+      id: '/painter-rathfarnham'
+      path: '/painter-rathfarnham'
+      fullPath: '/painter-rathfarnham'
+      preLoaderRoute: typeof PainterRathfarnhamRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/painter-ranelagh': {
+      id: '/painter-ranelagh'
+      path: '/painter-ranelagh'
+      fullPath: '/painter-ranelagh'
+      preLoaderRoute: typeof PainterRanelaghRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/painter-dun-laoghaire': {
+      id: '/painter-dun-laoghaire'
+      path: '/painter-dun-laoghaire'
+      fullPath: '/painter-dun-laoghaire'
+      preLoaderRoute: typeof PainterDunLaoghaireRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/painter-clondalkin': {
+      id: '/painter-clondalkin'
+      path: '/painter-clondalkin'
+      fullPath: '/painter-clondalkin'
+      preLoaderRoute: typeof PainterClondalkinRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/painter-blackrock': {
+      id: '/painter-blackrock'
+      path: '/painter-blackrock'
+      fullPath: '/painter-blackrock'
+      preLoaderRoute: typeof PainterBlackrockRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/gallery': {
@@ -852,6 +992,13 @@ const rootRouteChildren: RootRouteChildren = {
   EstimateRoute: EstimateRoute,
   FaqRoute: FaqRoute,
   GalleryRoute: GalleryRoute,
+  PainterBlackrockRoute: PainterBlackrockRoute,
+  PainterClondalkinRoute: PainterClondalkinRoute,
+  PainterDunLaoghaireRoute: PainterDunLaoghaireRoute,
+  PainterRanelaghRoute: PainterRanelaghRoute,
+  PainterRathfarnhamRoute: PainterRathfarnhamRoute,
+  PainterSandyfordRoute: PainterSandyfordRoute,
+  PainterStillorganRoute: PainterStillorganRoute,
   PricingGuideRoute: PricingGuideRoute,
   PrivacyRoute: PrivacyRoute,
   ProjectsRoute: ProjectsRoute,
