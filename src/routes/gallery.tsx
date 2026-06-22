@@ -33,6 +33,7 @@ const GALLERY_PHOTOS = Object.entries(galleryModules)
     id: path,
     image_url: mod.default.url,
     title: `Project ${String(i + 1).padStart(2, "0")}`,
+    category: getCategory(i),
   }));
 
 export const Route = createFileRoute("/gallery")({
