@@ -17,6 +17,181 @@ export interface BlogPost {
 
 export const BLOG_POSTS: BlogPost[] = [
   {
+    slug: "cost-to-paint-house-dublin-2025",
+    title: "How Much Does It Cost to Paint a House in Dublin in 2025?",
+    excerpt:
+      "Realistic pricing guide for house painting in Dublin 2025. Includes room-by-room breakdown, what affects price, and how to get an accurate quote.",
+    cover: heroAsset.url,
+    date: "2025-09-12",
+    readTime: "7 min read",
+    category: "Pricing",
+    author: "All Colours Painting",
+    body: [
+      {
+        paragraphs: [
+          "Every week we get the same first message: 'roughly, what would it cost to paint our house?' It's a fair question, and a hard one to answer without seeing the place. But after thousands of Dublin quotes, here's an honest 2025 guide to what you should expect to pay — and why two quotes for the same house can be a thousand euro apart and both be reasonable.",
+        ],
+      },
+      {
+        heading: "Room-by-room interior pricing (2025)",
+        paragraphs: [
+          "Standard bedroom (walls and ceiling, light prep, one colour): €300–€500. Add €80–€150 if the woodwork (skirting, architrave, door) is being painted too.",
+          "Living or dining room: €400–€700. Bigger surface area, usually more prep, often two colours and a feature wall.",
+          "Kitchen walls and ceiling (excluding cabinets): €350–€600. Cabinet spraying is a separate job and starts around €900 for a small kitchen.",
+          "Hallway, stairs and landing: €600–€1,100. The hardest interior job in any house — high walls, awkward access, lots of cutting in around spindles.",
+          "Bathroom: €250–€400 with a proper moisture-resistant paint.",
+          "Full three-bed semi interior repaint (walls, ceilings, woodwork, two coats): typically €3,500–€5,500.",
+        ],
+      },
+      {
+        heading: "Exterior pricing (2025)",
+        paragraphs: [
+          "Front door repaint: €180–€280 done properly (off the hinges, sanded, primed, two coats).",
+          "Render and pebbledash, three-bed semi, full exterior: €2,000–€4,500 depending on prep, scaffolding and number of coats. A detached house with awkward access can be €5,000–€8,000.",
+          "Fascias, soffits and gutters (front and back): €450–€900.",
+          "Window frames (timber, full prep and repaint): €80–€140 per window.",
+        ],
+      },
+      {
+        heading: "What actually moves the price",
+        paragraphs: [
+          "Prep work is the single biggest variable. A house with sound, well-maintained surfaces might need an hour of filling and sanding per room. A house that hasn't been touched in 15 years can need a full day per room before any paint comes out. Honest quotes price this in; cheap quotes skip it and the finish shows within a year.",
+          "Paint quality matters more than people think. Trade Dulux Diamond or Little Greene Intelligent Matt cost two to three times what a basic contract emulsion does, but they cover better (often saving a coat) and last years longer. We default to mid-trade products and price accordingly.",
+          "Access changes everything outside. A bungalow with grass right up to the walls is a ladder job. A four-storey Georgian with railings out front needs scaffolding, and scaffolding alone can be €800–€2,000 of the quote before any paint is bought.",
+          "Colour changes — particularly going from a dark colour to a light one, or vice versa — often need an extra coat. Two coats become three. Factor 25–35% extra time.",
+        ],
+      },
+      {
+        heading: "What should be in a proper quote",
+        paragraphs: [
+          "A written quote that itemises labour, materials and prep separately. Specific paint brands and finishes named (not just 'two coats of emulsion'). Number of coats specified. Surfaces included and excluded listed. Start date, expected duration and payment terms. Public liability insurance details. A clear price for change-of-scope work if you decide to add a room mid-job.",
+        ],
+      },
+      {
+        heading: "Red flags to walk away from",
+        paragraphs: [
+          "Cash-only with no written quote. A price that's 40% below everyone else (almost always one coat, no prep, and they'll be unreachable when it fails). No insurance details. No fixed address or VAT number. Pressure to pay a large deposit up front — a normal deposit for materials is 20–25%, paid against an invoice, not 50% in cash.",
+        ],
+      },
+      {
+        heading: "Get an accurate quote",
+        paragraphs: [
+          "Photos on WhatsApp are usually enough for a ballpark within 10%. For a fixed price we'll come out, measure, and put a written quote in your inbox within 48 hours — no obligation, no pressure. Use the form on our contact page or send a few photos and we'll come back the same day.",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "best-exterior-paint-ireland",
+    title: "Best Exterior Paint for Irish Weather — What Actually Lasts",
+    excerpt:
+      "What exterior paints actually survive Irish rain and damp? Painters with 10 years Dublin experience share what works — and what doesn't.",
+    cover: exteriorAsset.url,
+    date: "2025-08-20",
+    readTime: "6 min read",
+    category: "Materials",
+    author: "All Colours Painting",
+    body: [
+      {
+        paragraphs: [
+          "Irish weather punishes exterior paint in a way most paint marketing doesn't account for. Wind-driven rain hits walls horizontally for weeks at a time. Damp sits in render through winter. South-facing elevations bake one afternoon and freeze that night. After a decade of repainting Dublin houses, here are the products we actually trust — and the ones we've stopped using.",
+        ],
+      },
+      {
+        heading: "What Irish weather does to paint",
+        paragraphs: [
+          "Three things kill exterior paint here. First, persistent moisture: render absorbs water and the paint film has to breathe it back out or it blisters. Second, freeze-thaw: water sitting in micro-cracks expands when it freezes and lifts the paint. Third, UV on the few bright days, which breaks down cheap binders within a year or two. A paint that handles dry Spanish heat brilliantly can fail in two winters here.",
+        ],
+      },
+      {
+        heading: "Masonry: Sandtex and Dulux Weathershield are the safe bets",
+        paragraphs: [
+          "Sandtex Ultra Smooth Masonry has been the workhorse on Dublin pebbledash and render for thirty years for a reason. It's a high-build, flexible, microporous paint — it lets moisture escape but stops it getting in. Expect 8–10 years on a properly prepped wall.",
+          "Dulux Weathershield Smooth Masonry is the closest direct competitor and arguably has a better colour range. Same performance bracket. Either is fine; we usually pick by colour match.",
+          "Both want a stabilising primer on chalky or previously painted render. Skip the primer and you've wasted the topcoat — it'll peel off in flakes the first wet winter.",
+        ],
+      },
+      {
+        heading: "Exterior woodwork: Tikkurila and Sadolin lead",
+        paragraphs: [
+          "For windows, doors, fascias and any exterior timber, we've moved almost entirely to water-based flexible systems. Tikkurila Unica Super and Sadolin Superdec both flex with the timber through wet-dry cycles instead of cracking like the old oil glosses did.",
+          "Dulux Weathershield Exterior Gloss is fine for front doors. For long-lasting work on softwood windows, Tikkurila is the one that holds up year after year.",
+        ],
+      },
+      {
+        heading: "Prep matters more than the paint",
+        paragraphs: [
+          "We get called to 'redo a paint job that failed' more often than we get called for fresh exterior jobs. Almost every failure is prep, not product. The order that matters: pressure-wash and biocide everything. Let it dry for at least 48 hours of dry weather. Fix the actual moisture source (blocked gutter, cracked sealant, failed lead flashing) before paint touches it. Stabilise chalky surfaces. Spot-prime any bare patches. Then — and only then — paint.",
+        ],
+      },
+      {
+        heading: "How long it should actually last",
+        paragraphs: [
+          "Properly prepped masonry with a quality system: 8–10 years on the south and west elevations, 10–12 years on the north and east. Exterior woodwork: 5–7 years with a modern water-based system, less on south-facing windows. If a job is failing in under 4 years, it's almost always under-prepped, not the wrong paint.",
+        ],
+      },
+      {
+        heading: "Get a proper exterior quote",
+        paragraphs: [
+          "Every exterior job we quote includes the specific paint system we'll use, the prep we'll do, and an honest estimate of how long it should last. Send us a few photos and we'll come back with a price within 48 hours.",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "how-long-to-paint-house-interior",
+    title: "How Long Does It Take to Paint a House Interior in Dublin?",
+    excerpt:
+      "Realistic timelines for interior painting jobs in Dublin. Room by room guide from professional painters.",
+    cover: aboutAsset.url,
+    date: "2025-07-15",
+    readTime: "5 min read",
+    category: "Process",
+    author: "All Colours Painting",
+    body: [
+      {
+        paragraphs: [
+          "When you're trying to schedule a painter around work, kids, and the in-laws coming to stay, the timeline matters as much as the price. Here's an honest guide to how long interior painting actually takes, based on years of Dublin jobs.",
+        ],
+      },
+      {
+        heading: "Room by room timelines",
+        paragraphs: [
+          "Standard bedroom (walls and ceiling, two coats, light prep): one painter, one day. Add half a day if woodwork is included.",
+          "Living or dining room: 1–1.5 days for a single painter. More if there's a feature wall in a different colour or significant prep.",
+          "Kitchen (walls and ceiling, excluding cabinets): one day. Spraying cabinets is a separate 2–3 day job that needs the kitchen fully cleared.",
+          "Hallway, stairs and landing: 2–3 days. It's almost always the slowest part of any house repaint — high walls, scaffold or ladder work, lots of cutting in around spindles and banisters.",
+          "Bathroom: half a day to a day depending on tiling and fittings to mask off.",
+          "Full three-bed semi interior repaint: typically 6–10 working days with a two-painter crew.",
+        ],
+      },
+      {
+        heading: "What slows a job down",
+        paragraphs: [
+          "Heavy prep is the biggest variable. A wall that's been Polyfilla-patched fifteen times needs sanding flat and possibly skim-coating before paint goes on. That can add a full day per room.",
+          "Colour changes — particularly dark-to-light or strong reds and yellows — almost always need three coats instead of two. Factor 30% extra time.",
+          "Drying time between coats is fixed by the paint, not by hustle. Two coats means at least 4 hours of drying in the middle, often overnight. You can't sensibly do walls and ceilings of one room in a single morning.",
+          "Furniture, flooring protection and moving stuff around adds half a day to most jobs. The faster you can have the room cleared before we arrive, the faster we're out.",
+          "Wallpaper removal, replastering, or fixing damp issues are separate jobs that need to happen first. We'll usually flag these at the quote stage.",
+        ],
+      },
+      {
+        heading: "Planning around your schedule",
+        paragraphs: [
+          "Most Dublin families don't move out for a repaint and don't need to. The trick is sequencing. We agree which rooms you need offline-free (usually the kitchen, one bathroom and the bedrooms you sleep in) and phase the work so those are never down at the same time.",
+          "If you're selling and need everything done fast, a two- or three-painter crew can knock a full three-bed interior out in 4–5 days. It costs more per day but the total is similar — and you get your house back sooner.",
+          "If you're living through it, we work normal hours (8–5), clean down every evening, and keep one set of stairs and one hallway usable at all times. The house functions around the job rather than the other way around.",
+        ],
+      },
+      {
+        heading: "Get a timeline with your quote",
+        paragraphs: [
+          "Every quote we send includes a realistic start date, working days needed, and which rooms will be offline on which days. Send us a few photos or book a free home visit and we'll come back with a fixed price and a schedule that works around your life.",
+        ],
+      },
+    ],
+  },
+  {
     slug: "how-to-repaint-your-front-door",
     title: "How to Repaint Your Front Door (Without Regretting It a Year Later)",
     excerpt:
