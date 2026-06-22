@@ -97,8 +97,6 @@ import { Route as LovableEmailTransactionalPreviewRouteImport } from './routes/l
 import { Route as LovableEmailQueueProcessRouteImport } from './routes/lovable/email/queue/process'
 import { Route as LovableEmailAuthWebhookRouteImport } from './routes/lovable/email/auth/webhook'
 import { Route as LovableEmailAuthPreviewRouteImport } from './routes/lovable/email/auth/preview'
-import { Route as AuthenticatedAdminGalleryNewRouteImport } from './routes/_authenticated/admin.gallery.new'
-import { Route as AuthenticatedAdminGalleryProjectIdRouteImport } from './routes/_authenticated/admin.gallery.$projectId'
 import { Route as AuthenticatedAdminCaseStudiesNewRouteImport } from './routes/_authenticated/admin.case-studies.new'
 import { Route as AuthenticatedAdminCaseStudiesStudyIdRouteImport } from './routes/_authenticated/admin.case-studies.$studyId'
 import { Route as AuthenticatedAdminBlogNewRouteImport } from './routes/_authenticated/admin.blog.new'
@@ -553,18 +551,6 @@ const LovableEmailAuthPreviewRoute = LovableEmailAuthPreviewRouteImport.update({
   path: '/lovable/email/auth/preview',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AuthenticatedAdminGalleryNewRoute =
-  AuthenticatedAdminGalleryNewRouteImport.update({
-    id: '/new',
-    path: '/new',
-    getParentRoute: () => AuthenticatedAdminGalleryRoute,
-  } as any)
-const AuthenticatedAdminGalleryProjectIdRoute =
-  AuthenticatedAdminGalleryProjectIdRouteImport.update({
-    id: '/$projectId',
-    path: '/$projectId',
-    getParentRoute: () => AuthenticatedAdminGalleryRoute,
-  } as any)
 const AuthenticatedAdminCaseStudiesNewRoute =
   AuthenticatedAdminCaseStudiesNewRouteImport.update({
     id: '/new',
@@ -664,7 +650,7 @@ export interface FileRoutesByFullPath {
   '/admin/blog': typeof AuthenticatedAdminBlogRouteWithChildren
   '/admin/case-studies': typeof AuthenticatedAdminCaseStudiesRouteWithChildren
   '/admin/content': typeof AuthenticatedAdminContentRoute
-  '/admin/gallery': typeof AuthenticatedAdminGalleryRouteWithChildren
+  '/admin/gallery': typeof AuthenticatedAdminGalleryRoute
   '/admin/inquiries': typeof AuthenticatedAdminInquiriesRoute
   '/admin/leads': typeof AuthenticatedAdminLeadsRoute
   '/admin/testimonials': typeof AuthenticatedAdminTestimonialsRoute
@@ -677,8 +663,6 @@ export interface FileRoutesByFullPath {
   '/admin/blog/new': typeof AuthenticatedAdminBlogNewRoute
   '/admin/case-studies/$studyId': typeof AuthenticatedAdminCaseStudiesStudyIdRoute
   '/admin/case-studies/new': typeof AuthenticatedAdminCaseStudiesNewRoute
-  '/admin/gallery/$projectId': typeof AuthenticatedAdminGalleryProjectIdRoute
-  '/admin/gallery/new': typeof AuthenticatedAdminGalleryNewRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
   '/lovable/email/auth/webhook': typeof LovableEmailAuthWebhookRoute
   '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
@@ -758,7 +742,7 @@ export interface FileRoutesByTo {
   '/admin/blog': typeof AuthenticatedAdminBlogRouteWithChildren
   '/admin/case-studies': typeof AuthenticatedAdminCaseStudiesRouteWithChildren
   '/admin/content': typeof AuthenticatedAdminContentRoute
-  '/admin/gallery': typeof AuthenticatedAdminGalleryRouteWithChildren
+  '/admin/gallery': typeof AuthenticatedAdminGalleryRoute
   '/admin/inquiries': typeof AuthenticatedAdminInquiriesRoute
   '/admin/leads': typeof AuthenticatedAdminLeadsRoute
   '/admin/testimonials': typeof AuthenticatedAdminTestimonialsRoute
@@ -771,8 +755,6 @@ export interface FileRoutesByTo {
   '/admin/blog/new': typeof AuthenticatedAdminBlogNewRoute
   '/admin/case-studies/$studyId': typeof AuthenticatedAdminCaseStudiesStudyIdRoute
   '/admin/case-studies/new': typeof AuthenticatedAdminCaseStudiesNewRoute
-  '/admin/gallery/$projectId': typeof AuthenticatedAdminGalleryProjectIdRoute
-  '/admin/gallery/new': typeof AuthenticatedAdminGalleryNewRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
   '/lovable/email/auth/webhook': typeof LovableEmailAuthWebhookRoute
   '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
@@ -855,7 +837,7 @@ export interface FileRoutesById {
   '/_authenticated/admin/blog': typeof AuthenticatedAdminBlogRouteWithChildren
   '/_authenticated/admin/case-studies': typeof AuthenticatedAdminCaseStudiesRouteWithChildren
   '/_authenticated/admin/content': typeof AuthenticatedAdminContentRoute
-  '/_authenticated/admin/gallery': typeof AuthenticatedAdminGalleryRouteWithChildren
+  '/_authenticated/admin/gallery': typeof AuthenticatedAdminGalleryRoute
   '/_authenticated/admin/inquiries': typeof AuthenticatedAdminInquiriesRoute
   '/_authenticated/admin/leads': typeof AuthenticatedAdminLeadsRoute
   '/_authenticated/admin/testimonials': typeof AuthenticatedAdminTestimonialsRoute
@@ -868,8 +850,6 @@ export interface FileRoutesById {
   '/_authenticated/admin/blog/new': typeof AuthenticatedAdminBlogNewRoute
   '/_authenticated/admin/case-studies/$studyId': typeof AuthenticatedAdminCaseStudiesStudyIdRoute
   '/_authenticated/admin/case-studies/new': typeof AuthenticatedAdminCaseStudiesNewRoute
-  '/_authenticated/admin/gallery/$projectId': typeof AuthenticatedAdminGalleryProjectIdRoute
-  '/_authenticated/admin/gallery/new': typeof AuthenticatedAdminGalleryNewRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
   '/lovable/email/auth/webhook': typeof LovableEmailAuthWebhookRoute
   '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
@@ -965,8 +945,6 @@ export interface FileRouteTypes {
     | '/admin/blog/new'
     | '/admin/case-studies/$studyId'
     | '/admin/case-studies/new'
-    | '/admin/gallery/$projectId'
-    | '/admin/gallery/new'
     | '/lovable/email/auth/preview'
     | '/lovable/email/auth/webhook'
     | '/lovable/email/queue/process'
@@ -1059,8 +1037,6 @@ export interface FileRouteTypes {
     | '/admin/blog/new'
     | '/admin/case-studies/$studyId'
     | '/admin/case-studies/new'
-    | '/admin/gallery/$projectId'
-    | '/admin/gallery/new'
     | '/lovable/email/auth/preview'
     | '/lovable/email/auth/webhook'
     | '/lovable/email/queue/process'
@@ -1155,8 +1131,6 @@ export interface FileRouteTypes {
     | '/_authenticated/admin/blog/new'
     | '/_authenticated/admin/case-studies/$studyId'
     | '/_authenticated/admin/case-studies/new'
-    | '/_authenticated/admin/gallery/$projectId'
-    | '/_authenticated/admin/gallery/new'
     | '/lovable/email/auth/preview'
     | '/lovable/email/auth/webhook'
     | '/lovable/email/queue/process'
@@ -1863,20 +1837,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LovableEmailAuthPreviewRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/_authenticated/admin/gallery/new': {
-      id: '/_authenticated/admin/gallery/new'
-      path: '/new'
-      fullPath: '/admin/gallery/new'
-      preLoaderRoute: typeof AuthenticatedAdminGalleryNewRouteImport
-      parentRoute: typeof AuthenticatedAdminGalleryRoute
-    }
-    '/_authenticated/admin/gallery/$projectId': {
-      id: '/_authenticated/admin/gallery/$projectId'
-      path: '/$projectId'
-      fullPath: '/admin/gallery/$projectId'
-      preLoaderRoute: typeof AuthenticatedAdminGalleryProjectIdRouteImport
-      parentRoute: typeof AuthenticatedAdminGalleryRoute
-    }
     '/_authenticated/admin/case-studies/new': {
       id: '/_authenticated/admin/case-studies/new'
       path: '/new'
@@ -1942,29 +1902,12 @@ const AuthenticatedAdminCaseStudiesRouteWithChildren =
     AuthenticatedAdminCaseStudiesRouteChildren,
   )
 
-interface AuthenticatedAdminGalleryRouteChildren {
-  AuthenticatedAdminGalleryProjectIdRoute: typeof AuthenticatedAdminGalleryProjectIdRoute
-  AuthenticatedAdminGalleryNewRoute: typeof AuthenticatedAdminGalleryNewRoute
-}
-
-const AuthenticatedAdminGalleryRouteChildren: AuthenticatedAdminGalleryRouteChildren =
-  {
-    AuthenticatedAdminGalleryProjectIdRoute:
-      AuthenticatedAdminGalleryProjectIdRoute,
-    AuthenticatedAdminGalleryNewRoute: AuthenticatedAdminGalleryNewRoute,
-  }
-
-const AuthenticatedAdminGalleryRouteWithChildren =
-  AuthenticatedAdminGalleryRoute._addFileChildren(
-    AuthenticatedAdminGalleryRouteChildren,
-  )
-
 interface AuthenticatedAdminRouteChildren {
   AuthenticatedAdminAnalyticsRoute: typeof AuthenticatedAdminAnalyticsRoute
   AuthenticatedAdminBlogRoute: typeof AuthenticatedAdminBlogRouteWithChildren
   AuthenticatedAdminCaseStudiesRoute: typeof AuthenticatedAdminCaseStudiesRouteWithChildren
   AuthenticatedAdminContentRoute: typeof AuthenticatedAdminContentRoute
-  AuthenticatedAdminGalleryRoute: typeof AuthenticatedAdminGalleryRouteWithChildren
+  AuthenticatedAdminGalleryRoute: typeof AuthenticatedAdminGalleryRoute
   AuthenticatedAdminInquiriesRoute: typeof AuthenticatedAdminInquiriesRoute
   AuthenticatedAdminLeadsRoute: typeof AuthenticatedAdminLeadsRoute
   AuthenticatedAdminTestimonialsRoute: typeof AuthenticatedAdminTestimonialsRoute
@@ -1977,7 +1920,7 @@ const AuthenticatedAdminRouteChildren: AuthenticatedAdminRouteChildren = {
   AuthenticatedAdminCaseStudiesRoute:
     AuthenticatedAdminCaseStudiesRouteWithChildren,
   AuthenticatedAdminContentRoute: AuthenticatedAdminContentRoute,
-  AuthenticatedAdminGalleryRoute: AuthenticatedAdminGalleryRouteWithChildren,
+  AuthenticatedAdminGalleryRoute: AuthenticatedAdminGalleryRoute,
   AuthenticatedAdminInquiriesRoute: AuthenticatedAdminInquiriesRoute,
   AuthenticatedAdminLeadsRoute: AuthenticatedAdminLeadsRoute,
   AuthenticatedAdminTestimonialsRoute: AuthenticatedAdminTestimonialsRoute,
