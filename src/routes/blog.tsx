@@ -49,6 +49,8 @@ export const Route = createFileRoute("/blog")({
 function BlogIndex() {
   const { posts } = Route.useLoaderData();
   const [first, ...rest] = posts;
+  const formatDate = (iso: string) =>
+    new Date(iso).toLocaleDateString("en-IE", { day: "numeric", month: "long", year: "numeric" });
   return (
     <SiteLayout>
       <section className="bg-background">
@@ -71,7 +73,8 @@ function BlogIndex() {
                 <div className="flex flex-wrap items-center gap-3 text-[11px] uppercase tracking-[0.16em] text-primary">
                   <span className="bg-primary/10 px-2 py-1">Featured</span>
                   {first.category && <span>{first.category}</span>}
-                  {first.read_time && <span className="text-foreground/70">{first.read_time}</span>}
+                  {first.read_time && <span className="text-foreground/70">· {first.read_time}</span>}
+                  {first.published_at && <span className="text-foreground/60">· {formatDate(first.published_at)}</span>}
                 </div>
                 <h2 className="mt-4 font-display text-2xl font-bold uppercase leading-tight tracking-wide text-[oklch(0.2_0_0)] md:text-3xl">{first.title}</h2>
                 <p className="mt-4 text-base leading-relaxed text-foreground">{first.excerpt ?? first.intro}</p>
@@ -92,7 +95,8 @@ function BlogIndex() {
                   <div className="flex flex-1 flex-col border-b-[3px] border-primary p-6">
                     <div className="flex flex-wrap items-center gap-3 text-[11px] uppercase tracking-[0.16em] text-primary">
                       {p.category && <span>{p.category}</span>}
-                      {p.read_time && <span className="text-foreground/70">{p.read_time}</span>}
+                      {p.read_time && <span className="text-foreground/70">· {p.read_time}</span>}
+                      {p.published_at && <span className="text-foreground/60">· {formatDate(p.published_at)}</span>}
                     </div>
                     <h3 className="mt-3 flex-1 font-display text-lg font-bold uppercase leading-snug tracking-wide text-[oklch(0.2_0_0)]">{p.title}</h3>
                     <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-foreground">{p.excerpt ?? p.intro}</p>
