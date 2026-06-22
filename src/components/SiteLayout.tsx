@@ -157,7 +157,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
 
       {/* Footer */}
       <footer className="bg-[var(--color-surface-dark)] text-[var(--color-surface-dark-foreground)]">
-        <div className="mx-auto grid max-w-7xl gap-10 px-4 py-16 md:grid-cols-4 md:px-8">
+        <div className="mx-auto grid max-w-7xl gap-10 px-4 py-16 md:grid-cols-5 md:px-8">
           <div className="md:col-span-2">
             <div className="flex items-center gap-3">
               <img src={logo} alt={`${COMPANY.shortName} logo`} width={64} height={64} className="h-16 w-16 object-contain" />
