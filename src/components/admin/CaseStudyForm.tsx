@@ -69,6 +69,9 @@ export function CaseStudyForm({ initial, studyId }: { initial: CaseStudyInput; s
       qc.invalidateQueries({ queryKey: ["case-studies"] });
       if (!studyId) navigate({ to: "/admin/case-studies/$studyId", params: { studyId: id } });
     },
+    onError: (error) => {
+      console.error("[CaseStudyForm] save failed:", error);
+    },
   });
 
   const del = useMutation({
