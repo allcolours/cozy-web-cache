@@ -22,6 +22,18 @@ export function AdminShell({ children, title }: { children: ReactNode; title: st
   const qc = useQueryClient();
   const path = useRouterState({ select: (s) => s.location.pathname });
 
+  const { data: newLeadsCount = 0 } = useQuery({
+    queryKey: ["admin-new-leads-count"],
+    enabled: !!isAdmin,
+    queryFn: async () => {
+      const { count } = await supabase
+        .from("leads")
+        .select("*", { count: "exact", head: true })
+        .eq("status", "new");
+      return count ?? 0;
+    },
+  });
+
   async function signOut() {
     await qc.cancelQueries();
     qc.clear();
