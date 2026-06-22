@@ -114,6 +114,7 @@ function RootShell({ children }: { children: ReactNode }) {
     <html lang="en">
       <head>
         <HeadContent />
+        <SchemaOrg />
       </head>
       <body>
         {children}
