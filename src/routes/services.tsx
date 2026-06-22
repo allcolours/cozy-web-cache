@@ -69,8 +69,8 @@ const headline = [
 const more = [
   { title: "Interior Painting", img: heroAsset.url, desc: "Walls, ceilings, woodwork and skirting in premium emulsion, eggshell and satin finishes. Water based and oil based paint systems available." },
   { title: "Exterior Painting", img: exteriorAsset.url, desc: "Render, masonry, brick, soffits and fascias with weatherproof Sandtex and Dulux Weathershield systems." },
-  { title: "Kitchen Painting", img: commercialAsset.url, desc: "Cabinet refinishing, kitchen spraying and hand-painting with durable kitchen-grade finishes." },
-  { title: "Spray Painting", img: floorAsset.url, desc: "Airless and HVLP spray painting for kitchens, doors, joinery and ceilings — factory-grade spray finish on site." },
+  { title: "Kitchen Painting", img: heroAsset.url, desc: "Cabinet refinishing, kitchen spraying and hand-painting with durable kitchen-grade finishes." },
+  { title: "Spray Painting", img: heroAsset.url, desc: "Airless and HVLP spray painting for kitchens, doors, joinery and ceilings — factory-grade spray finish on site." },
   { title: "Floor Painting", img: industrialAsset.url, desc: "Epoxy floor painting, two-pack floor paints and industrial floor coatings for warehouses, garages and commercial spaces." },
   { title: "Furniture Painting", img: hospitalityAsset.url, desc: "Bespoke furniture painting and varnish painting for tables, chairs, built-ins and cabinetry." },
   { title: "Railings Painting", img: exteriorAsset.url, desc: "Metal railings, gates and wrought-iron painting with rust-inhibiting primers and long-life top coats." },
@@ -78,7 +78,7 @@ const more = [
   { title: "Plastering & Repairs", img: commercialAsset.url, desc: "Skim, patch and full re-plasters, crack stitching and surface prep so every finish has a flawless base." },
   { title: "Property Maintenance", img: industrialAsset.url, desc: "Annual repaint contracts for landlords, letting agents and managed property portfolios." },
   { title: "Apartment Painting", img: heroAsset.url, desc: "Full apartment repaints across Dublin city and South Dublin — fast turnaround for owners, tenants and lettings." },
-  { title: "Ceiling & Hallway Painting", img: commercialAsset.url, desc: "Ceiling painting, hallway and staircase repaints — covered, dust-controlled and finished without splatter." },
+  { title: "Ceiling & Hallway Painting", img: heroAsset.url, desc: "Ceiling painting, hallway and staircase repaints — covered, dust-controlled and finished without splatter." },
   { title: "Period & Georgian Homes", img: exteriorAsset.url, desc: "Georgian house painting, sash windows, cornicing and heritage colour systems for period properties in Dublin." },
 ];
 
