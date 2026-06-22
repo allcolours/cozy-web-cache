@@ -11,6 +11,8 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { SchemaOrg } from "../components/SchemaOrg";
+
 
 function NotFoundComponent() {
   return (
@@ -112,6 +114,7 @@ function RootShell({ children }: { children: ReactNode }) {
     <html lang="en">
       <head>
         <HeadContent />
+        <SchemaOrg />
       </head>
       <body>
         {children}
