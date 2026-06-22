@@ -19,6 +19,28 @@ const NAV = [
   { to: "/contact", label: "Contact" },
 ] as const;
 
+const DESKTOP_NAV = [
+  { to: "/", label: "Home" },
+  { to: "/about", label: "About" },
+  { to: "/services", label: "Services" },
+  { to: "/commercial-painting-dublin", label: "Commercial" },
+  { to: "/estimate", label: "Get Estimate" },
+  { to: "/case-studies", label: "Case Studies" },
+  { to: "/projects", label: "Projects" },
+  { to: "/gallery", label: "Gallery" },
+  { to: "/blog", label: "Blog" },
+  { to: "/faq", label: "FAQ" },
+  { to: "/contact", label: "Contact" },
+] as const;
+
+const MOBILE_NAV = [
+  { to: "/", label: "Home" },
+  { to: "/services", label: "Services" },
+  { to: "/gallery", label: "Gallery" },
+  { to: "/estimate", label: "Get Estimate" },
+  { to: "/contact", label: "Contact" },
+] as const;
+
 // Static brand info (not editable from admin)
 export const COMPANY = {
   name: "All Colours Painting Contractor Limited",
@@ -69,7 +91,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
           </Link>
 
           <nav className="hidden items-center gap-4 lg:flex xl:gap-5">
-            {NAV.map((n) => (
+            {DESKTOP_NAV.map((n) => (
               <Link
                 key={n.to}
                 to={n.to}
@@ -104,7 +126,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
           <div className="border-t border-border lg:hidden">
 
             <nav className="mx-auto flex max-w-7xl flex-col gap-1 px-4 py-4">
-              {NAV.map((n) => (
+              {MOBILE_NAV.map((n) => (
                 <Link
                   key={n.to}
                   to={n.to}
@@ -116,12 +138,13 @@ export function SiteLayout({ children }: { children: ReactNode }) {
                   {n.label}
                 </Link>
               ))}
-              <a
-                href={`tel:${phone.replace(/\s/g, "")}`}
+              <Link
+                to="/contact"
+                onClick={() => setOpen(false)}
                 className="mt-3 inline-flex items-center justify-center rounded-sm bg-primary px-5 py-3 font-display text-xs font-bold uppercase tracking-wider text-primary-foreground"
               >
-                Call {phone}
-              </a>
+                Get a Quote
+              </Link>
             </nav>
           </div>
         )}
