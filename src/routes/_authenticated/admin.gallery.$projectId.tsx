@@ -146,7 +146,8 @@ function EditProject() {
       .eq("id", projectId);
     setSaving(false);
     if (upErr) {
-      setError(upErr.message);
+      console.error("[admin.gallery saveProject] update failed:", upErr);
+      setError(`${upErr.message}${upErr.code ? ` (code: ${upErr.code})` : ""}${upErr.details ? ` — ${upErr.details}` : ""}${upErr.hint ? ` — hint: ${upErr.hint}` : ""}`);
     } else {
       setSavedMsg("Saved");
       qc.invalidateQueries({ queryKey: ["admin-project", projectId] });
