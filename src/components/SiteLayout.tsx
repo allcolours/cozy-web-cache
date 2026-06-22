@@ -61,6 +61,8 @@ export const COMPANY = {
 
 export function SiteLayout({ children }: { children: ReactNode }) {
   const [open, setOpen] = useState(false);
+  const [moreOpen, setMoreOpen] = useState(false);
+  const moreRef = useRef<HTMLDivElement>(null);
   const settings = useSiteSettings();
   const phone = settings.phone || COMPANY.phone;
   const email = settings.email || COMPANY.email;
