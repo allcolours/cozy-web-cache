@@ -52,6 +52,13 @@ function Contact() {
       return;
     }
     try {
+      await supabase.from("leads").insert({
+        name: payload.name,
+        email: payload.email,
+        phone: payload.phone,
+        message: payload.message,
+        source: "contact_form",
+      });
       const res = await fetch("https://llyaicklknzbemnhiyfp.supabase.co/functions/v1/send-contact-email", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
