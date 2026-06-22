@@ -91,10 +91,7 @@ export const Route = createFileRoute("/services_/$service")({
 function ServicePage() {
   const service = Route.useLoaderData();
 
-  const heroImage =
-    service.slug === "new-build-painting"
-      ? { src: "/images/10-new-build-exterior-white-render-anthracite-windows-dublin.jpg", alt: "New build exterior painting with white render and anthracite windows, Dublin" }
-      : { src: heroAsset.url, alt: `${service.name} in Dublin — All Colours Painting` };
+  const heroImage = serviceHeroImage(service);
 
   return (
     <SiteLayout>
