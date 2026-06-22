@@ -13,10 +13,10 @@ import exteriorAsset from "../assets/portfolio/portfolio-exterior-1.jpg.asset.js
 export const Route = createFileRoute("/services")({
   head: () => ({
     meta: [
-      { title: "Services | All Colours Painting Contractor Limited" },
-      { name: "description", content: "Interior, exterior, kitchen & floor painting, epoxy floors, spray painting, wallpapering and plastering for homes and businesses in Dublin." },
-      { property: "og:title", content: "Painting & Decorating Services Dublin" },
-      { property: "og:description", content: "Full painting & decorating service for homes and businesses." },
+      { title: "Painting & Decorating Services Dublin | All Colours" },
+      { name: "description", content: "Full range of painting services in Dublin: interior, exterior, commercial, industrial epoxy floors, kitchen painting, spray finishing and wallpapering. Free estimates." },
+      { property: "og:title", content: "Painting & Decorating Services Dublin | All Colours" },
+      { property: "og:description", content: "Full range of painting services in Dublin: interior, exterior, commercial, industrial epoxy floors, kitchen painting, spray finishing and wallpapering. Free estimates." },
       { property: "og:url", content: "https://allcolourspainter.com/services" },
       { property: "og:type", content: "website" },
       { property: "og:image", content: `https://allcolourspainter.com${commercialAsset.url}` },

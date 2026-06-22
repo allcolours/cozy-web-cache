@@ -7,10 +7,10 @@ import heroAsset from "../assets/portfolio/hero-house.webp.asset.json";
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About | All Colours Painting Contractor Limited" },
-      { name: "description", content: "Painters & decorators with over 10 years of experience. Fully insured and committed to quality finishes." },
-      { property: "og:title", content: "About All Colours Painting" },
-      { property: "og:description", content: "Painting & decorating company with 10+ years of experience across Dublin." },
+      { title: "About Us | All Colours Painting Contractor Dublin" },
+      { name: "description", content: "Meet the team behind All Colours Painting. 10+ years experience, 1,200+ projects completed, fully insured with 12-month workmanship guarantee across Dublin." },
+      { property: "og:title", content: "About Us | All Colours Painting Contractor Dublin" },
+      { property: "og:description", content: "Meet the team behind All Colours Painting. 10+ years experience, 1,200+ projects completed, fully insured with 12-month workmanship guarantee across Dublin." },
       { property: "og:url", content: "https://allcolourspainter.com/about" },
       { property: "og:type", content: "website" },
       { property: "og:image", content: `https://allcolourspainter.com${aboutAsset.url}` },

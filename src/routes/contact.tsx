@@ -7,10 +7,10 @@ import ctaAsset from "../assets/portfolio/cta-bg.jpg.asset.json";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact | All Colours Painting Contractor Limited" },
-      { name: "description", content: "Request a free painting & decorating quote. Call, email, or send us a message." },
-      { property: "og:title", content: "Contact All Colours Painting" },
-      { property: "og:description", content: "Request a free painting & decorating quote." },
+      { title: "Get a Free Quote | All Colours Painting Dublin" },
+      { name: "description", content: "Request a free painting quote in Dublin. Call 085 821 1870 or email info@allcolourspainter.com. We respond within 24 hours. No obligation estimates." },
+      { property: "og:title", content: "Get a Free Quote | All Colours Painting Dublin" },
+      { property: "og:description", content: "Request a free painting quote in Dublin. Call 085 821 1870 or email info@allcolourspainter.com. We respond within 24 hours. No obligation estimates." },
       { property: "og:url", content: "https://allcolourspainter.com/contact" },
       { property: "og:type", content: "website" },
       { property: "og:image", content: `https://allcolourspainter.com${ctaAsset.url}` },

@@ -6,10 +6,10 @@ import heroAsset from "../assets/portfolio/hero-house.webp.asset.json";
 export const Route = createFileRoute("/blog")({
   head: () => ({
     meta: [
-      { title: "Painting & Decorating Blog | All Colours Painting" },
-      { name: "description", content: "Practical advice from working painters — finishes, prep, colour, Irish weather, painting while living in the house. Written for Dublin homeowners." },
-      { property: "og:title", content: "Painting & Decorating Blog — Dublin" },
-      { property: "og:description", content: "Honest, hands-on painting & decorating advice for Dublin homes." },
+      { title: "Painting Tips & Advice Blog | All Colours Dublin" },
+      { name: "description", content: "Practical painting and decorating tips for Dublin homeowners and businesses. Colour advice, prep guides, maintenance tips from professional painters." },
+      { property: "og:title", content: "Painting Tips & Advice Blog | All Colours Dublin" },
+      { property: "og:description", content: "Practical painting and decorating tips for Dublin homeowners and businesses. Colour advice, prep guides, maintenance tips from professional painters." },
       { property: "og:url", content: "https://allcolourspainter.com/blog" },
       { property: "og:type", content: "website" },
       { property: "og:image", content: `https://allcolourspainter.com${heroAsset.url}` },

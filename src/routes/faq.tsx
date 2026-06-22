@@ -9,10 +9,10 @@ const CATEGORIES = ["Booking", "Pricing", "Process", "Materials", "Aftercare"] a
 export const Route = createFileRoute("/faq")({
   head: () => ({
     meta: [
-      { title: "FAQ | All Colours Painting Contractor Limited" },
-      { name: "description", content: "Honest answers to questions Dublin homeowners ask before hiring painters & decorators — quotes, timelines, materials, guarantees." },
-      { property: "og:title", content: "Painting & Decorating FAQ — Dublin" },
-      { property: "og:description", content: "Everything you wanted to know before booking a painter — answered straight." },
+      { title: "Painting FAQ Dublin | All Colours Painting" },
+      { name: "description", content: "Answers to common questions about painting and decorating in Dublin. Pricing, timelines, preparation, paint brands and what to expect from All Colours Painting." },
+      { property: "og:title", content: "Painting FAQ Dublin | All Colours Painting" },
+      { property: "og:description", content: "Answers to common questions about painting and decorating in Dublin. Pricing, timelines, preparation, paint brands and what to expect from All Colours Painting." },
       { property: "og:url", content: "https://allcolourspainter.com/faq" },
       { property: "og:type", content: "website" },
       { property: "og:image", content: `https://allcolourspainter.com${heroAsset.url}` },

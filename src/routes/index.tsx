@@ -17,10 +17,10 @@ import ctaAsset from "../assets/portfolio/cta-bg.jpg.asset.json";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Painter Dublin | Interior & Exterior Painting & Decorating" },
-      { name: "description", content: "Painter and decorator in Dublin. Interior, exterior, kitchen & floor painting, epoxy floors, spray painting for houses & apartments across South Dublin. Free quotes." },
-      { property: "og:title", content: "Painter Dublin — All Colours Painting & Decorating" },
-      { property: "og:description", content: "Professional painter & decorator in Dublin. Interior, exterior, apartments & houses across South Dublin." },
+      { title: "Painter Dublin | All Colours Painting & Decorating" },
+      { name: "description", content: "Professional painter and decorator in Dublin. Interior & exterior painting, epoxy floors, spray painting for houses, apartments & commercial. Free quotes — call 085 821 1870." },
+      { property: "og:title", content: "Painter Dublin | All Colours Painting & Decorating" },
+      { property: "og:description", content: "Professional painter and decorator in Dublin. Interior & exterior painting, epoxy floors, spray painting for houses, apartments & commercial. Free quotes — call 085 821 1870." },
       { property: "og:url", content: "https://allcolourspainter.com/" },
       { property: "og:type", content: "website" },
       { property: "og:image", content: `https://allcolourspainter.com${heroAsset.url}` },
