@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { AdminShell } from "@/components/admin/AdminShell";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
@@ -67,11 +67,13 @@ const CATEGORY_BADGE: Record<string, string> = {
 };
 
 function GalleryAdmin() {
+  const navigate = useNavigate();
   const qc = useQueryClient();
   const { data, isLoading, isError, error } = useQuery({ queryKey: ["admin-gallery-projects"], queryFn: fetchProjects });
   const [busy, setBusy] = useState<string | null>(null);
 
-  async function toggleVisible(p: ProjectRow) {
+  async function toggleVisible(p: ProjectRow, e: React.MouseEvent) {
+    e.stopPropagation();
     setBusy(p.id);
     await supabase.from("gallery_projects").update({ visible: !p.visible }).eq("id", p.id);
     setBusy(null);
@@ -90,7 +92,8 @@ function GalleryAdmin() {
     qc.invalidateQueries({ queryKey: ["admin-gallery-projects"] });
   }
 
-  async function moveProject(p: ProjectRow, dir: -1 | 1) {
+  async function moveProject(p: ProjectRow, dir: -1 | 1, e: React.MouseEvent) {
+    e.stopPropagation();
     const list = (data ?? []).slice().sort((a, b) => a.sort_order - b.sort_order);
     const idx = list.findIndex((x) => x.id === p.id);
     const swap = list[idx + dir];
@@ -139,11 +142,15 @@ function GalleryAdmin() {
             </thead>
             <tbody>
               {data.slice().sort((a, b) => a.sort_order - b.sort_order).map((p) => (
-                <tr key={p.id} className="border-b border-border last:border-0">
+                <tr
+                  key={p.id}
+                  onClick={() => navigate({ to: "/admin/gallery/$projectId", params: { projectId: p.id } })}
+                  className="cursor-pointer border-b border-border last:border-0 hover:bg-secondary/50"
+                >
                   <td className="px-3 py-2">
                     <div className="flex flex-col gap-0.5">
-                      <button onClick={() => moveProject(p, -1)} className="text-muted-foreground hover:text-foreground" aria-label="Move up">▲</button>
-                      <button onClick={() => moveProject(p, 1)} className="text-muted-foreground hover:text-foreground" aria-label="Move down">▼</button>
+                      <button onClick={(e) => moveProject(p, -1, e)} className="text-muted-foreground hover:text-foreground" aria-label="Move up">▲</button>
+                      <button onClick={(e) => moveProject(p, 1, e)} className="text-muted-foreground hover:text-foreground" aria-label="Move down">▼</button>
                     </div>
                   </td>
                   <td className="px-3 py-2">
@@ -163,7 +170,7 @@ function GalleryAdmin() {
                   <td className="px-3 py-2 text-muted-foreground">{p.image_count}</td>
                   <td className="px-3 py-2">
                     <button
-                      onClick={() => toggleVisible(p)}
+                      onClick={(e) => toggleVisible(p, e)}
                       disabled={busy === p.id}
                       className={`relative inline-flex h-5 w-9 items-center rounded-full transition-colors ${p.visible ? "bg-[#16a34a]" : "bg-muted-foreground/30"}`}
                       aria-label={p.visible ? "Hide project" : "Show project"}
@@ -172,10 +179,13 @@ function GalleryAdmin() {
                     </button>
                   </td>
                   <td className="px-3 py-2 text-right">
-                    <Link to="/admin/gallery/$projectId" params={{ projectId: p.id }} className="mr-3 text-xs font-bold uppercase tracking-wider text-primary hover:underline">
+                    <button
+                      onClick={(e) => { e.stopPropagation(); navigate({ to: "/admin/gallery/$projectId", params: { projectId: p.id } }); }}
+                      className="mr-3 text-xs font-bold uppercase tracking-wider text-primary hover:underline"
+                    >
                       Edit
-                    </Link>
-                    <button onClick={() => deleteProject(p)} disabled={busy === p.id} className="text-xs font-bold uppercase tracking-wider text-destructive hover:underline">
+                    </button>
+                    <button onClick={(e) => { e.stopPropagation(); deleteProject(p); }} disabled={busy === p.id} className="text-xs font-bold uppercase tracking-wider text-destructive hover:underline">
                       Delete
                     </button>
                   </td>
