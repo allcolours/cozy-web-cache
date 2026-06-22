@@ -193,13 +193,22 @@ export function SiteLayout({ children }: { children: ReactNode }) {
             <h4 className="font-display text-sm font-bold uppercase tracking-wider text-white">Areas We Cover</h4>
             <div className="mt-3 h-[2px] w-10 bg-primary" />
             <ul className="mt-4 space-y-2 text-sm text-white/65">
+              <li><Link to="/painter-ballsbridge" className="hover:text-primary">Painter Ballsbridge</Link></li>
               <li><Link to="/painter-ranelagh" className="hover:text-primary">Painter Ranelagh</Link></li>
-              <li><Link to="/painter-sandyford" className="hover:text-primary">Painter Sandyford</Link></li>
-              <li><Link to="/painter-dun-laoghaire" className="hover:text-primary">Painter Dún Laoghaire</Link></li>
-              <li><Link to="/painter-stillorgan" className="hover:text-primary">Painter Stillorgan</Link></li>
-              <li><Link to="/painter-rathfarnham" className="hover:text-primary">Painter Rathfarnham</Link></li>
-              <li><Link to="/painter-clondalkin" className="hover:text-primary">Painter Clondalkin</Link></li>
+              <li><Link to="/painter-rathmines" className="hover:text-primary">Painter Rathmines</Link></li>
+              <li><Link to="/painter-donnybrook" className="hover:text-primary">Painter Donnybrook</Link></li>
+              <li><Link to="/painter-clontarf" className="hover:text-primary">Painter Clontarf</Link></li>
               <li><Link to="/painter-blackrock" className="hover:text-primary">Painter Blackrock</Link></li>
+              <li><Link to="/painter-dun-laoghaire" className="hover:text-primary">Painter Dún Laoghaire</Link></li>
+              <li><Link to="/painter-dalkey" className="hover:text-primary">Painter Dalkey</Link></li>
+              <li><Link to="/painter-foxrock" className="hover:text-primary">Painter Foxrock</Link></li>
+              <li><Link to="/painter-stillorgan" className="hover:text-primary">Painter Stillorgan</Link></li>
+              <li><Link to="/painter-sandyford" className="hover:text-primary">Painter Sandyford</Link></li>
+              <li><Link to="/painter-dundrum" className="hover:text-primary">Painter Dundrum</Link></li>
+              <li><Link to="/painter-rathfarnham" className="hover:text-primary">Painter Rathfarnham</Link></li>
+              <li><Link to="/painter-malahide" className="hover:text-primary">Painter Malahide</Link></li>
+              <li><Link to="/painter-clondalkin" className="hover:text-primary">Painter Clondalkin</Link></li>
+              <li><Link to="/painters" className="hover:text-primary font-medium">View all areas →</Link></li>
             </ul>
           </div>
 

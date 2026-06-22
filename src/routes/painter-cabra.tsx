@@ -1,0 +1,26 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { LocalAreaPage } from "../components/LocalAreaPage";
+
+const TITLE = "Painter Cabra Dublin 7 | All Colours Painting";
+const DESC = "Professional painter and decorator in Cabra, Dublin 7. Interior & exterior painting, free quotes — call 085 821 1870.";
+const URL = "https://allcolourspainter.com/painter-cabra";
+
+export const Route = createFileRoute("/painter-cabra")({
+  head: () => ({
+    meta: [
+      { title: TITLE },
+      { name: "description", content: DESC },
+      { property: "og:title", content: TITLE },
+      { property: "og:description", content: DESC },
+      { property: "og:url", content: URL },
+    ],
+    links: [{ rel: "canonical", href: URL }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({"@context":"https://schema.org","@type":"LocalBusiness","name":"All Colours Painting Contractor Limited","url":"https://allcolourspainter.com/painter-cabra","telephone":"+353858211870","email":"info@allcolourspainter.com","areaServed":{"@type":"Place","name":"Cabra, Dublin 7"},"address":{"@type":"PostalAddress","addressLocality":"Cabra","addressRegion":"Dublin 7","addressCountry":"IE"}}),
+      },
+    ],
+  }),
+  component: () => <LocalAreaPage area="Cabra" postcode="Dublin 7" intro="Traditional terraces and family homes in Cabra — straightforward, reliable painting at honest prices." />,
+});
