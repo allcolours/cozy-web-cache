@@ -78,7 +78,7 @@ const more = [
   { title: "Railings Painting", img: exteriorAsset.url, desc: "Metal railings, gates and wrought-iron painting with rust-inhibiting primers and long-life top coats." },
   { title: "Wallpapering", img: hospitalityAsset.url, desc: "Lining paper, standard wallcoverings, hand-printed and feature wall installs with mitre-perfect seams." },
   { title: "Plastering & Repairs", img: commercialAsset.url, desc: "Skim, patch and full re-plasters, crack stitching and surface prep so every finish has a flawless base." },
-  { title: "Property Maintenance", img: industrialAsset.url, desc: "Annual repaint contracts for landlords, letting agents and managed property portfolios." },
+  { title: "Property Maintenance", img: heroAsset.url, desc: "Annual repaint contracts for landlords, letting agents and managed property portfolios." },
   { title: "Apartment Painting", img: heroAsset.url, desc: "Full apartment repaints across Dublin city and South Dublin — fast turnaround for owners, tenants and lettings." },
   { title: "Ceiling & Hallway Painting", img: heroAsset.url, desc: "Ceiling painting, hallway and staircase repaints — covered, dust-controlled and finished without splatter." },
   { title: "Period & Georgian Homes", img: exteriorAsset.url, desc: "Georgian house painting, sash windows, cornicing and heritage colour systems for period properties in Dublin." },
