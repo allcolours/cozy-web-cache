@@ -14,6 +14,8 @@ const ContactSchema = z.object({
   phone: z.string().trim().max(50).optional().nullable(),
   postcode: z.string().trim().max(50).optional().nullable(),
   message: z.string().trim().min(1).max(4000),
+  source: z.enum(['contact_form', 'commercial_form', 'website']).optional(),
+  service_type: z.string().trim().max(100).optional().nullable(),
 })
 
 export const Route = createFileRoute('/api/public/contact')({
@@ -61,6 +63,21 @@ export const Route = createFileRoute('/api/public/contact')({
         if (insertError) {
           console.error('Failed to insert contact submission', insertError)
           return Response.json({ error: 'Failed to save inquiry' }, { status: 500 })
+        }
+
+        // Also record as a lead in the CRM (best-effort)
+        try {
+          await supabase.from('leads').insert({
+            name: data.name,
+            email: data.email,
+            phone: data.phone || null,
+            message: data.message,
+            service_type: data.service_type || null,
+            source: data.source || 'contact_form',
+            status: 'new',
+          })
+        } catch (e) {
+          console.error('Failed to insert lead', e)
         }
 
         // 2. Build & enqueue admin notification email (best-effort — inquiry already saved)
