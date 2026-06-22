@@ -433,6 +433,197 @@ export const BLOG_POSTS: BlogPost[] = [
       },
     ],
   },
+  {
+    slug: "cost-of-painting-a-house-dublin-2025",
+    title: "How Much Does It Cost to Paint a House in Dublin in 2025?",
+    excerpt:
+      "Real pricing for interior and exterior house painting in Dublin. 3-bed semi from €1,800. Get accurate figures before you call anyone.",
+    cover: heroAsset.url,
+    date: "2025-10-02",
+    readTime: "5 min read",
+    category: "Pricing",
+    author: "All Colours Painting",
+    body: [
+      {
+        heading: "Interior house painting — what to expect",
+        paragraphs: [
+          "A standard 3-bed semi-detached interior repaint in Dublin typically costs between €1,800 and €3,200, depending on condition and finish.",
+          "Breakdown: Living room (walls + ceiling) €350–€550. Kitchen €400–€700. Three bedrooms €250–€400 each. Hallway, stairs and landing €500–€900. Woodwork throughout (skirting, architraves, doors) €600–€1,200.",
+          "The biggest variables are prep time and the current state of the surfaces. A house that hasn't been painted in 10 years takes longer to sand, fill and prime than one done 3 years ago.",
+        ],
+      },
+      {
+        heading: "Exterior house painting — real Dublin figures",
+        paragraphs: [
+          "Exterior work is more variable. Typical ranges: 3-bed semi, smooth render €1,800–€3,000. 3-bed semi, pebbledash €2,500–€4,500. Detached 4–5 bed €3,500–€7,000. Front only €800–€1,800. Fascias, soffits and gutters add €400–€800.",
+          "One thing Dublin homeowners often underestimate: preparation. Cracked render, peeling paint and mould growth all need to be treated before painting.",
+        ],
+      },
+      {
+        heading: "What affects the price most?",
+        paragraphs: [
+          "Four factors: surface condition, access (scaffolding adds €300–€800), number of coats (most exteriors need primer + 2 finish coats minimum), and paint quality (trade-grade Dulux or Johnstone's lasts 2–3x longer than budget paint).",
+          "We always specify the paint in our written quotes — so you know exactly what's going on your walls.",
+        ],
+      },
+      {
+        heading: "How to get an accurate quote",
+        paragraphs: [
+          "The only way to get a price you can trust is a site visit. We visit the property, walk every room and take measurements. Written quote within 48 hours. No obligation. Call 085 821 1870 or request online.",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "best-paint-colours-dublin-homes-2025",
+    title: "Best Paint Colours for Dublin Homes in 2025",
+    excerpt:
+      "What colours actually work in Dublin's grey light? Our painters share the shades that look good year-round in Irish interiors — with real project examples.",
+    cover: aboutAsset.url,
+    date: "2025-10-08",
+    readTime: "4 min read",
+    category: "Colour Advice",
+    author: "All Colours Painting",
+    body: [
+      {
+        heading: "Why Dublin light changes everything",
+        paragraphs: [
+          "Ireland sits at 51–55° north, which means lower, greyer light than most paint colours are designed for. Shades made for sunnier climates look wrong on a Dublin wall.",
+          "Rule of thumb: go warmer and lighter than you think you need to. Dublin light knocks 15–20% of warmth and brightness out of any colour.",
+        ],
+      },
+      {
+        heading: "Whites and off-whites that work",
+        paragraphs: [
+          "Pure white is rarely right. Best options: Dulux Jasmine White (warm, creamy), Farrow & Ball Pointing No.2003 (for period homes), Johnstone's Antique White (affordable alternative), Little Greene Slaked Lime (cooler white for bright rooms).",
+          "For woodwork we default to Dulux Trade Brilliant White Satinwood — durable and easy to touch up.",
+        ],
+      },
+      {
+        heading: "Living rooms and open-plan spaces",
+        paragraphs: [
+          "The trend has moved away from cool grey toward earthy mineral tones. Most requested: Farrow & Ball Elephant's Breath (works in almost any light). Also strong: Dulux Denim Drift, Little Greene Sloe (a deep navy that's excellent for feature walls), Farrow & Ball Mole's Breath.",
+        ],
+      },
+      {
+        heading: "Kitchens — what holds up",
+        paragraphs: [
+          "Always specify a hard-wearing eggshell or satin finish for kitchens. Popular choices: Farrow & Ball Pigeon (grey-green), Dulux Willow Tree (sage green at a fraction of the price), Farrow & Ball Shaded White (for cabinets), Little Greene Invisible Green (dramatic, for large kitchens).",
+          "For cabinet painting use a specialist cabinet paint (Zinsser or Dulux Trade) — not standard wall paint.",
+        ],
+      },
+      {
+        heading: "Getting colour right",
+        paragraphs: [
+          "Paint two large test patches (A3 size minimum). Live with them for 48 hours. Look in morning light, afternoon light and artificial light before you commit.",
+          "We give honest colour advice as part of every site visit — call 085 821 1870 to book.",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "how-to-prepare-walls-before-painting-dublin",
+    title: "How to Prepare Walls Before Painting — The Right Way",
+    excerpt:
+      "Preparation is where paint jobs succeed or fail. Our Dublin painters explain exactly how we prep walls — and what happens when it's skipped.",
+    cover: exteriorAsset.url,
+    date: "2025-10-15",
+    readTime: "5 min read",
+    category: "How-To",
+    author: "All Colours Painting",
+    body: [
+      {
+        heading: "Why prep matters more than paint",
+        paragraphs: [
+          "Premium paint on poor prep fails faster than budget paint on good prep. Preparation does three things: adhesion, smoothness and longevity.",
+          "We spend 40–50% of total job time on preparation. It's the part you don't see in photos — and the reason finishes still look right five years on.",
+        ],
+      },
+      {
+        heading: "Step 1 — Cleaning the surface",
+        paragraphs: [
+          "Sugar soap solution for interiors. Pressure washer plus mould treatment for exteriors — Dublin's damp climate means most exterior surfaces have biological growth.",
+          "Drying time: 24 hours for interiors, 48–72 hours for exteriors before any paint goes on.",
+        ],
+      },
+      {
+        heading: "Step 2 — Filling and repairs",
+        paragraphs: [
+          "Hairline cracks: fine surface filler. Larger holes: two-part filler or bonding plaster. Render cracks: flexible exterior filler or sand-cement. Gaps around frames: decorator's caulk — not filler, because caulk flexes with movement.",
+          "And yes, we fill nail holes and picture hooks as standard.",
+        ],
+      },
+      {
+        heading: "Step 3 — Sanding",
+        paragraphs: [
+          "Sanding smooths filled areas and gives gloss paint a key. We use vacuum sanders on interior work — they capture dust at source, so your house stays liveable while we work.",
+          "On woodwork with multiple layers of old gloss, a heat gun is faster and kinder to the timber than chemical strippers.",
+        ],
+      },
+      {
+        heading: "Step 4 — Priming",
+        paragraphs: [
+          "Not optional. Primer seals filler and plaster, improves adhesion, and blocks stains.",
+          "Stain-blocking primer (Zinsser BIN) on any staining. Standard PVA for new plaster. Exterior masonry primer on bare render. Skipping primer is the most common cause of patchy results on older Dublin houses.",
+        ],
+      },
+      {
+        heading: "The result of doing it right",
+        paragraphs: [
+          "All preparation is included in our written quotes, itemised line by line. No surprises on the day. Call 085 821 1870 for a free site visit.",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "exterior-painting-dublin-when-and-how",
+    title: "Exterior Painting in Dublin — When to Do It and What to Expect",
+    excerpt:
+      "When is the right time to paint your Dublin home's exterior? What preparation is needed? How long will it last? Real answers from a working Dublin painter.",
+    cover: commercialAsset.url,
+    date: "2025-10-22",
+    readTime: "5 min read",
+    category: "Exterior",
+    author: "All Colours Painting",
+    body: [
+      {
+        heading: "The best time of year",
+        paragraphs: [
+          "April to September is ideal. Requirements: air temperature above 10°C, no rain forecast for 24 hours after, surface moisture below 15%, no direct hot sun while painting.",
+          "We work year-round when conditions allow — but we won't paint in rain, frost, or on damp surfaces.",
+        ],
+      },
+      {
+        heading: "How long does exterior paint last in Dublin?",
+        paragraphs: [
+          "With proper prep and quality paint: 7–12 years on render, 5–8 years on timber.",
+          "What reduces lifespan: poor prep, cheap paint (budget masonry paint chalks in 3–4 years), ongoing damp issues, mould that hasn't been treated.",
+          "What extends it: full prep, primer, two coats of Dulux Weathershield or Johnstone's Stormshield, and good water management around the building.",
+        ],
+      },
+      {
+        heading: "Pebbledash and rough render",
+        paragraphs: [
+          "Much of Dublin's housing stock is pebbledash (1930s–1970s semis). It's harder to paint: more abrasive on rollers, holds more moisture, takes significantly more paint, and loose sections need repair before any coating goes on.",
+          "Long-pile roller plus back-brushing is required to work paint into the texture. Once painted, pebbledash needs regular maintenance — but future repaints are much easier.",
+        ],
+      },
+      {
+        heading: "What's included in a proper exterior paint job",
+        paragraphs: [
+          "Eight steps: pressure wash, mould and algae treatment, crack repair, masking, primer, two coats of masonry paint, woodwork (fascias, soffits, window frames), and a full site clean.",
+          "Some painters quote low by excluding prep or the second coat — always check what's included before signing.",
+        ],
+      },
+      {
+        heading: "Getting a quote",
+        paragraphs: [
+          "Free site visits across Dublin. We identify damp issues and structural problems before painting, not after. Written quote within 48 hours.",
+          "Get quotes from at least 2 painters and ask each to specify exactly what's included. Call 085 821 1870.",
+        ],
+      },
+    ],
+  },
 ];
 
 export const getBlogPost = (slug: string) => BLOG_POSTS.find((p) => p.slug === slug);
