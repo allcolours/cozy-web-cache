@@ -125,9 +125,6 @@ function Gallery() {
                 </div>
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                 <div className="pointer-events-none absolute inset-0 border-b-[3px] border-primary opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                <div className="pointer-events-none absolute bottom-0 left-0 right-0 p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                  <p className="font-display text-xs font-bold uppercase tracking-wider text-white">{p.title}</p>
-                </div>
               </figure>
             ))}
           </div>
