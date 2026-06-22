@@ -1,45 +1,53 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout } from "../components/SiteLayout";
-import { CASE_STUDIES } from "../data/caseStudies";
+import { supabase } from "@/integrations/supabase/client";
 import heroAsset from "../assets/portfolio/about-architecture.jpg.asset.json";
 
+type ListItem = {
+  id: string;
+  slug: string;
+  title: string;
+  subtitle: string | null;
+  location: string | null;
+  category: string | null;
+  duration: string | null;
+  cover_image_url: string | null;
+};
+
 export const Route = createFileRoute("/case-studies")({
+  loader: async () => {
+    const { data } = await supabase
+      .from("case_studies")
+      .select("id, slug, title, subtitle, location, category, duration, cover_image_url")
+      .eq("visible", true)
+      .order("sort_order")
+      .order("created_at", { ascending: false });
+    return { studies: (data ?? []) as ListItem[] };
+  },
   head: () => ({
     meta: [
       { title: "Painting Case Studies Dublin | All Colours" },
       { name: "description", content: "Real painting projects: the brief, the prep, the materials and the result. Honest case studies from residential and commercial jobs across Dublin." },
       { property: "og:title", content: "Painting Case Studies Dublin | All Colours" },
-      { property: "og:description", content: "Real painting projects: the brief, the prep, the materials and the result. Honest case studies from residential and commercial jobs across Dublin." },
+      { property: "og:description", content: "Real painting projects from residential and commercial jobs across Dublin." },
       { property: "og:url", content: "https://allcolourspainter.com/case-studies" },
       { property: "og:type", content: "website" },
       { property: "og:image", content: `https://allcolourspainter.com${heroAsset.url}` },
       { name: "twitter:image", content: `https://allcolourspainter.com${heroAsset.url}` },
     ],
     links: [{ rel: "canonical", href: "https://allcolourspainter.com/case-studies" }],
-    scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "CollectionPage",
-          name: "Case Studies",
-          description: "Before-and-after painting & decorating projects across Dublin.",
-          url: "https://allcolourspainter.com/case-studies",
-          hasPart: CASE_STUDIES.map((c) => ({
-            "@type": "Article",
-            headline: c.title,
-            url: `https://allcolourspainter.com/case-studies/${c.slug}`,
-            image: c.cover,
-            description: c.summary,
-          })),
-        }),
-      },
-    ],
   }),
+  errorComponent: ({ error }) => (
+    <SiteLayout><div className="mx-auto max-w-3xl px-4 py-32 text-center"><h1 className="font-display text-3xl font-bold uppercase">Couldn't load case studies</h1><p className="mt-4 text-sm text-muted-foreground">{error.message}</p></div></SiteLayout>
+  ),
+  notFoundComponent: () => (
+    <SiteLayout><div className="mx-auto max-w-3xl px-4 py-32 text-center"><h1 className="font-display text-3xl font-bold uppercase">No case studies yet</h1></div></SiteLayout>
+  ),
   component: CaseStudiesIndex,
 });
 
 function CaseStudiesIndex() {
+  const { studies } = Route.useLoaderData();
   return (
     <SiteLayout>
       <section className="relative isolate overflow-hidden">
@@ -59,34 +67,38 @@ function CaseStudiesIndex() {
 
       <section className="bg-background">
         <div className="mx-auto max-w-7xl px-4 py-20 md:px-8 md:py-28">
-          <div className="grid gap-10 lg:grid-cols-2">
-            {CASE_STUDIES.map((c) => (
-              <Link
-                key={c.slug}
-                to="/case-studies/$slug"
-                params={{ slug: c.slug }}
-                className="group flex flex-col overflow-hidden bg-card transition-transform hover:-translate-y-1"
-              >
-                <div className="aspect-[16/10] overflow-hidden">
-                  <img src={c.cover} alt={c.title} loading="lazy" width={1200} height={750} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
-                </div>
-                <div className="border-b-[3px] border-primary p-7 md:p-8">
-                  <div className="flex flex-wrap items-center gap-3 text-[11px] uppercase tracking-[0.16em] text-primary">
-                    <span className="bg-primary/10 px-2 py-1">{c.sector}</span>
-                    <span className="text-foreground/70">{c.location}</span>
-                    <span className="text-foreground/70">· {c.duration}</span>
+          {studies.length === 0 ? (
+            <p className="text-sm text-muted-foreground">No case studies published yet.</p>
+          ) : (
+            <div className="grid gap-10 lg:grid-cols-2">
+              {studies.map((c: ListItem) => (
+                <Link
+                  key={c.id}
+                  to="/case-studies/$slug"
+                  params={{ slug: c.slug }}
+                  className="group flex flex-col overflow-hidden bg-card transition-transform hover:-translate-y-1"
+                >
+                  {c.cover_image_url && (
+                    <div className="aspect-[16/10] overflow-hidden">
+                      <img src={c.cover_image_url} alt={c.title} loading="lazy" width={1200} height={750} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                    </div>
+                  )}
+                  <div className="border-b-[3px] border-primary p-7 md:p-8">
+                    <div className="flex flex-wrap items-center gap-3 text-[11px] uppercase tracking-[0.16em] text-primary">
+                      {c.category && <span className="bg-primary/10 px-2 py-1">{c.category}</span>}
+                      {c.location && <span className="text-foreground/70">{c.location}</span>}
+                      {c.duration && <span className="text-foreground/70">· {c.duration}</span>}
+                    </div>
+                    <h2 className="mt-4 font-display text-2xl font-bold uppercase leading-tight tracking-wide text-[oklch(0.2_0_0)]">{c.title}</h2>
+                    {c.subtitle && <p className="mt-3 text-sm leading-relaxed text-foreground">{c.subtitle}</p>}
+                    <span className="mt-5 inline-flex items-center font-display text-xs font-bold uppercase tracking-wider text-primary group-hover:text-[oklch(0.2_0_0)]">
+                      Read the full story →
+                    </span>
                   </div>
-                  <h2 className="mt-4 font-display text-2xl font-bold uppercase leading-tight tracking-wide text-[oklch(0.2_0_0)]">
-                    {c.title}
-                  </h2>
-                  <p className="mt-3 text-sm leading-relaxed text-foreground">{c.summary}</p>
-                  <span className="mt-5 inline-flex items-center font-display text-xs font-bold uppercase tracking-wider text-primary group-hover:text-[oklch(0.2_0_0)]">
-                    Read the full story →
-                  </span>
-                </div>
-              </Link>
-            ))}
-          </div>
+                </Link>
+              ))}
+            </div>
+          )}
         </div>
       </section>
     </SiteLayout>

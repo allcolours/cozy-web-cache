@@ -49,9 +49,12 @@ import { Route as LovableEmailSuppressionRouteImport } from './routes/lovable/em
 import { Route as ApiPublicSitemapDotxmlRouteImport } from './routes/api/public/sitemap[.]xml'
 import { Route as ApiPublicEstimateRouteImport } from './routes/api/public/estimate'
 import { Route as ApiPublicContactRouteImport } from './routes/api/public/contact'
+import { Route as AuthenticatedAdminTestimonialsRouteImport } from './routes/_authenticated/admin.testimonials'
 import { Route as AuthenticatedAdminInquiriesRouteImport } from './routes/_authenticated/admin.inquiries'
 import { Route as AuthenticatedAdminGalleryRouteImport } from './routes/_authenticated/admin.gallery'
 import { Route as AuthenticatedAdminContentRouteImport } from './routes/_authenticated/admin.content'
+import { Route as AuthenticatedAdminCaseStudiesRouteImport } from './routes/_authenticated/admin.case-studies'
+import { Route as AuthenticatedAdminBlogRouteImport } from './routes/_authenticated/admin.blog'
 import { Route as AuthenticatedAdminAnalyticsRouteImport } from './routes/_authenticated/admin.analytics'
 import { Route as LovableEmailTransactionalSendRouteImport } from './routes/lovable/email/transactional/send'
 import { Route as LovableEmailTransactionalPreviewRouteImport } from './routes/lovable/email/transactional/preview'
@@ -60,6 +63,10 @@ import { Route as LovableEmailAuthWebhookRouteImport } from './routes/lovable/em
 import { Route as LovableEmailAuthPreviewRouteImport } from './routes/lovable/email/auth/preview'
 import { Route as AuthenticatedAdminGalleryNewRouteImport } from './routes/_authenticated/admin.gallery.new'
 import { Route as AuthenticatedAdminGalleryProjectIdRouteImport } from './routes/_authenticated/admin.gallery.$projectId'
+import { Route as AuthenticatedAdminCaseStudiesNewRouteImport } from './routes/_authenticated/admin.case-studies.new'
+import { Route as AuthenticatedAdminCaseStudiesStudyIdRouteImport } from './routes/_authenticated/admin.case-studies.$studyId'
+import { Route as AuthenticatedAdminBlogNewRouteImport } from './routes/_authenticated/admin.blog.new'
+import { Route as AuthenticatedAdminBlogPostIdRouteImport } from './routes/_authenticated/admin.blog.$postId'
 
 const UnsubscribeRoute = UnsubscribeRouteImport.update({
   id: '/unsubscribe',
@@ -261,6 +268,12 @@ const ApiPublicContactRoute = ApiPublicContactRouteImport.update({
   path: '/api/public/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedAdminTestimonialsRoute =
+  AuthenticatedAdminTestimonialsRouteImport.update({
+    id: '/testimonials',
+    path: '/testimonials',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
 const AuthenticatedAdminInquiriesRoute =
   AuthenticatedAdminInquiriesRouteImport.update({
     id: '/inquiries',
@@ -279,6 +292,17 @@ const AuthenticatedAdminContentRoute =
     path: '/content',
     getParentRoute: () => AuthenticatedAdminRoute,
   } as any)
+const AuthenticatedAdminCaseStudiesRoute =
+  AuthenticatedAdminCaseStudiesRouteImport.update({
+    id: '/case-studies',
+    path: '/case-studies',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminBlogRoute = AuthenticatedAdminBlogRouteImport.update({
+  id: '/blog',
+  path: '/blog',
+  getParentRoute: () => AuthenticatedAdminRoute,
+} as any)
 const AuthenticatedAdminAnalyticsRoute =
   AuthenticatedAdminAnalyticsRouteImport.update({
     id: '/analytics',
@@ -325,6 +349,30 @@ const AuthenticatedAdminGalleryProjectIdRoute =
     path: '/$projectId',
     getParentRoute: () => AuthenticatedAdminGalleryRoute,
   } as any)
+const AuthenticatedAdminCaseStudiesNewRoute =
+  AuthenticatedAdminCaseStudiesNewRouteImport.update({
+    id: '/new',
+    path: '/new',
+    getParentRoute: () => AuthenticatedAdminCaseStudiesRoute,
+  } as any)
+const AuthenticatedAdminCaseStudiesStudyIdRoute =
+  AuthenticatedAdminCaseStudiesStudyIdRouteImport.update({
+    id: '/$studyId',
+    path: '/$studyId',
+    getParentRoute: () => AuthenticatedAdminCaseStudiesRoute,
+  } as any)
+const AuthenticatedAdminBlogNewRoute =
+  AuthenticatedAdminBlogNewRouteImport.update({
+    id: '/new',
+    path: '/new',
+    getParentRoute: () => AuthenticatedAdminBlogRoute,
+  } as any)
+const AuthenticatedAdminBlogPostIdRoute =
+  AuthenticatedAdminBlogPostIdRouteImport.update({
+    id: '/$postId',
+    path: '/$postId',
+    getParentRoute: () => AuthenticatedAdminBlogRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -362,14 +410,21 @@ export interface FileRoutesByFullPath {
   '/services/$service': typeof ServicesServiceRoute
   '/painters/': typeof PaintersIndexRoute
   '/admin/analytics': typeof AuthenticatedAdminAnalyticsRoute
+  '/admin/blog': typeof AuthenticatedAdminBlogRouteWithChildren
+  '/admin/case-studies': typeof AuthenticatedAdminCaseStudiesRouteWithChildren
   '/admin/content': typeof AuthenticatedAdminContentRoute
   '/admin/gallery': typeof AuthenticatedAdminGalleryRouteWithChildren
   '/admin/inquiries': typeof AuthenticatedAdminInquiriesRoute
+  '/admin/testimonials': typeof AuthenticatedAdminTestimonialsRoute
   '/api/public/contact': typeof ApiPublicContactRoute
   '/api/public/estimate': typeof ApiPublicEstimateRoute
   '/api/public/sitemap.xml': typeof ApiPublicSitemapDotxmlRoute
   '/lovable/email/suppression': typeof LovableEmailSuppressionRoute
   '/admin/': typeof AuthenticatedAdminIndexRoute
+  '/admin/blog/$postId': typeof AuthenticatedAdminBlogPostIdRoute
+  '/admin/blog/new': typeof AuthenticatedAdminBlogNewRoute
+  '/admin/case-studies/$studyId': typeof AuthenticatedAdminCaseStudiesStudyIdRoute
+  '/admin/case-studies/new': typeof AuthenticatedAdminCaseStudiesNewRoute
   '/admin/gallery/$projectId': typeof AuthenticatedAdminGalleryProjectIdRoute
   '/admin/gallery/new': typeof AuthenticatedAdminGalleryNewRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
@@ -413,14 +468,21 @@ export interface FileRoutesByTo {
   '/services/$service': typeof ServicesServiceRoute
   '/painters': typeof PaintersIndexRoute
   '/admin/analytics': typeof AuthenticatedAdminAnalyticsRoute
+  '/admin/blog': typeof AuthenticatedAdminBlogRouteWithChildren
+  '/admin/case-studies': typeof AuthenticatedAdminCaseStudiesRouteWithChildren
   '/admin/content': typeof AuthenticatedAdminContentRoute
   '/admin/gallery': typeof AuthenticatedAdminGalleryRouteWithChildren
   '/admin/inquiries': typeof AuthenticatedAdminInquiriesRoute
+  '/admin/testimonials': typeof AuthenticatedAdminTestimonialsRoute
   '/api/public/contact': typeof ApiPublicContactRoute
   '/api/public/estimate': typeof ApiPublicEstimateRoute
   '/api/public/sitemap.xml': typeof ApiPublicSitemapDotxmlRoute
   '/lovable/email/suppression': typeof LovableEmailSuppressionRoute
   '/admin': typeof AuthenticatedAdminIndexRoute
+  '/admin/blog/$postId': typeof AuthenticatedAdminBlogPostIdRoute
+  '/admin/blog/new': typeof AuthenticatedAdminBlogNewRoute
+  '/admin/case-studies/$studyId': typeof AuthenticatedAdminCaseStudiesStudyIdRoute
+  '/admin/case-studies/new': typeof AuthenticatedAdminCaseStudiesNewRoute
   '/admin/gallery/$projectId': typeof AuthenticatedAdminGalleryProjectIdRoute
   '/admin/gallery/new': typeof AuthenticatedAdminGalleryNewRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
@@ -467,14 +529,21 @@ export interface FileRoutesById {
   '/services_/$service': typeof ServicesServiceRoute
   '/painters/': typeof PaintersIndexRoute
   '/_authenticated/admin/analytics': typeof AuthenticatedAdminAnalyticsRoute
+  '/_authenticated/admin/blog': typeof AuthenticatedAdminBlogRouteWithChildren
+  '/_authenticated/admin/case-studies': typeof AuthenticatedAdminCaseStudiesRouteWithChildren
   '/_authenticated/admin/content': typeof AuthenticatedAdminContentRoute
   '/_authenticated/admin/gallery': typeof AuthenticatedAdminGalleryRouteWithChildren
   '/_authenticated/admin/inquiries': typeof AuthenticatedAdminInquiriesRoute
+  '/_authenticated/admin/testimonials': typeof AuthenticatedAdminTestimonialsRoute
   '/api/public/contact': typeof ApiPublicContactRoute
   '/api/public/estimate': typeof ApiPublicEstimateRoute
   '/api/public/sitemap.xml': typeof ApiPublicSitemapDotxmlRoute
   '/lovable/email/suppression': typeof LovableEmailSuppressionRoute
   '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
+  '/_authenticated/admin/blog/$postId': typeof AuthenticatedAdminBlogPostIdRoute
+  '/_authenticated/admin/blog/new': typeof AuthenticatedAdminBlogNewRoute
+  '/_authenticated/admin/case-studies/$studyId': typeof AuthenticatedAdminCaseStudiesStudyIdRoute
+  '/_authenticated/admin/case-studies/new': typeof AuthenticatedAdminCaseStudiesNewRoute
   '/_authenticated/admin/gallery/$projectId': typeof AuthenticatedAdminGalleryProjectIdRoute
   '/_authenticated/admin/gallery/new': typeof AuthenticatedAdminGalleryNewRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
@@ -521,14 +590,21 @@ export interface FileRouteTypes {
     | '/services/$service'
     | '/painters/'
     | '/admin/analytics'
+    | '/admin/blog'
+    | '/admin/case-studies'
     | '/admin/content'
     | '/admin/gallery'
     | '/admin/inquiries'
+    | '/admin/testimonials'
     | '/api/public/contact'
     | '/api/public/estimate'
     | '/api/public/sitemap.xml'
     | '/lovable/email/suppression'
     | '/admin/'
+    | '/admin/blog/$postId'
+    | '/admin/blog/new'
+    | '/admin/case-studies/$studyId'
+    | '/admin/case-studies/new'
     | '/admin/gallery/$projectId'
     | '/admin/gallery/new'
     | '/lovable/email/auth/preview'
@@ -572,14 +648,21 @@ export interface FileRouteTypes {
     | '/services/$service'
     | '/painters'
     | '/admin/analytics'
+    | '/admin/blog'
+    | '/admin/case-studies'
     | '/admin/content'
     | '/admin/gallery'
     | '/admin/inquiries'
+    | '/admin/testimonials'
     | '/api/public/contact'
     | '/api/public/estimate'
     | '/api/public/sitemap.xml'
     | '/lovable/email/suppression'
     | '/admin'
+    | '/admin/blog/$postId'
+    | '/admin/blog/new'
+    | '/admin/case-studies/$studyId'
+    | '/admin/case-studies/new'
     | '/admin/gallery/$projectId'
     | '/admin/gallery/new'
     | '/lovable/email/auth/preview'
@@ -625,14 +708,21 @@ export interface FileRouteTypes {
     | '/services_/$service'
     | '/painters/'
     | '/_authenticated/admin/analytics'
+    | '/_authenticated/admin/blog'
+    | '/_authenticated/admin/case-studies'
     | '/_authenticated/admin/content'
     | '/_authenticated/admin/gallery'
     | '/_authenticated/admin/inquiries'
+    | '/_authenticated/admin/testimonials'
     | '/api/public/contact'
     | '/api/public/estimate'
     | '/api/public/sitemap.xml'
     | '/lovable/email/suppression'
     | '/_authenticated/admin/'
+    | '/_authenticated/admin/blog/$postId'
+    | '/_authenticated/admin/blog/new'
+    | '/_authenticated/admin/case-studies/$studyId'
+    | '/_authenticated/admin/case-studies/new'
     | '/_authenticated/admin/gallery/$projectId'
     | '/_authenticated/admin/gallery/new'
     | '/lovable/email/auth/preview'
@@ -970,6 +1060,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiPublicContactRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/admin/testimonials': {
+      id: '/_authenticated/admin/testimonials'
+      path: '/testimonials'
+      fullPath: '/admin/testimonials'
+      preLoaderRoute: typeof AuthenticatedAdminTestimonialsRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
     '/_authenticated/admin/inquiries': {
       id: '/_authenticated/admin/inquiries'
       path: '/inquiries'
@@ -989,6 +1086,20 @@ declare module '@tanstack/react-router' {
       path: '/content'
       fullPath: '/admin/content'
       preLoaderRoute: typeof AuthenticatedAdminContentRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/case-studies': {
+      id: '/_authenticated/admin/case-studies'
+      path: '/case-studies'
+      fullPath: '/admin/case-studies'
+      preLoaderRoute: typeof AuthenticatedAdminCaseStudiesRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/blog': {
+      id: '/_authenticated/admin/blog'
+      path: '/blog'
+      fullPath: '/admin/blog'
+      preLoaderRoute: typeof AuthenticatedAdminBlogRouteImport
       parentRoute: typeof AuthenticatedAdminRoute
     }
     '/_authenticated/admin/analytics': {
@@ -1047,8 +1158,70 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminGalleryProjectIdRouteImport
       parentRoute: typeof AuthenticatedAdminGalleryRoute
     }
+    '/_authenticated/admin/case-studies/new': {
+      id: '/_authenticated/admin/case-studies/new'
+      path: '/new'
+      fullPath: '/admin/case-studies/new'
+      preLoaderRoute: typeof AuthenticatedAdminCaseStudiesNewRouteImport
+      parentRoute: typeof AuthenticatedAdminCaseStudiesRoute
+    }
+    '/_authenticated/admin/case-studies/$studyId': {
+      id: '/_authenticated/admin/case-studies/$studyId'
+      path: '/$studyId'
+      fullPath: '/admin/case-studies/$studyId'
+      preLoaderRoute: typeof AuthenticatedAdminCaseStudiesStudyIdRouteImport
+      parentRoute: typeof AuthenticatedAdminCaseStudiesRoute
+    }
+    '/_authenticated/admin/blog/new': {
+      id: '/_authenticated/admin/blog/new'
+      path: '/new'
+      fullPath: '/admin/blog/new'
+      preLoaderRoute: typeof AuthenticatedAdminBlogNewRouteImport
+      parentRoute: typeof AuthenticatedAdminBlogRoute
+    }
+    '/_authenticated/admin/blog/$postId': {
+      id: '/_authenticated/admin/blog/$postId'
+      path: '/$postId'
+      fullPath: '/admin/blog/$postId'
+      preLoaderRoute: typeof AuthenticatedAdminBlogPostIdRouteImport
+      parentRoute: typeof AuthenticatedAdminBlogRoute
+    }
   }
 }
+
+interface AuthenticatedAdminBlogRouteChildren {
+  AuthenticatedAdminBlogPostIdRoute: typeof AuthenticatedAdminBlogPostIdRoute
+  AuthenticatedAdminBlogNewRoute: typeof AuthenticatedAdminBlogNewRoute
+}
+
+const AuthenticatedAdminBlogRouteChildren: AuthenticatedAdminBlogRouteChildren =
+  {
+    AuthenticatedAdminBlogPostIdRoute: AuthenticatedAdminBlogPostIdRoute,
+    AuthenticatedAdminBlogNewRoute: AuthenticatedAdminBlogNewRoute,
+  }
+
+const AuthenticatedAdminBlogRouteWithChildren =
+  AuthenticatedAdminBlogRoute._addFileChildren(
+    AuthenticatedAdminBlogRouteChildren,
+  )
+
+interface AuthenticatedAdminCaseStudiesRouteChildren {
+  AuthenticatedAdminCaseStudiesStudyIdRoute: typeof AuthenticatedAdminCaseStudiesStudyIdRoute
+  AuthenticatedAdminCaseStudiesNewRoute: typeof AuthenticatedAdminCaseStudiesNewRoute
+}
+
+const AuthenticatedAdminCaseStudiesRouteChildren: AuthenticatedAdminCaseStudiesRouteChildren =
+  {
+    AuthenticatedAdminCaseStudiesStudyIdRoute:
+      AuthenticatedAdminCaseStudiesStudyIdRoute,
+    AuthenticatedAdminCaseStudiesNewRoute:
+      AuthenticatedAdminCaseStudiesNewRoute,
+  }
+
+const AuthenticatedAdminCaseStudiesRouteWithChildren =
+  AuthenticatedAdminCaseStudiesRoute._addFileChildren(
+    AuthenticatedAdminCaseStudiesRouteChildren,
+  )
 
 interface AuthenticatedAdminGalleryRouteChildren {
   AuthenticatedAdminGalleryProjectIdRoute: typeof AuthenticatedAdminGalleryProjectIdRoute
@@ -1069,17 +1242,24 @@ const AuthenticatedAdminGalleryRouteWithChildren =
 
 interface AuthenticatedAdminRouteChildren {
   AuthenticatedAdminAnalyticsRoute: typeof AuthenticatedAdminAnalyticsRoute
+  AuthenticatedAdminBlogRoute: typeof AuthenticatedAdminBlogRouteWithChildren
+  AuthenticatedAdminCaseStudiesRoute: typeof AuthenticatedAdminCaseStudiesRouteWithChildren
   AuthenticatedAdminContentRoute: typeof AuthenticatedAdminContentRoute
   AuthenticatedAdminGalleryRoute: typeof AuthenticatedAdminGalleryRouteWithChildren
   AuthenticatedAdminInquiriesRoute: typeof AuthenticatedAdminInquiriesRoute
+  AuthenticatedAdminTestimonialsRoute: typeof AuthenticatedAdminTestimonialsRoute
   AuthenticatedAdminIndexRoute: typeof AuthenticatedAdminIndexRoute
 }
 
 const AuthenticatedAdminRouteChildren: AuthenticatedAdminRouteChildren = {
   AuthenticatedAdminAnalyticsRoute: AuthenticatedAdminAnalyticsRoute,
+  AuthenticatedAdminBlogRoute: AuthenticatedAdminBlogRouteWithChildren,
+  AuthenticatedAdminCaseStudiesRoute:
+    AuthenticatedAdminCaseStudiesRouteWithChildren,
   AuthenticatedAdminContentRoute: AuthenticatedAdminContentRoute,
   AuthenticatedAdminGalleryRoute: AuthenticatedAdminGalleryRouteWithChildren,
   AuthenticatedAdminInquiriesRoute: AuthenticatedAdminInquiriesRoute,
+  AuthenticatedAdminTestimonialsRoute: AuthenticatedAdminTestimonialsRoute,
   AuthenticatedAdminIndexRoute: AuthenticatedAdminIndexRoute,
 }
 
