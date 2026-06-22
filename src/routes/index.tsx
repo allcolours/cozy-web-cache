@@ -136,6 +136,70 @@ const stats = [
   { k: "Free Quotes", v: "No obligation" },
 ];
 
+const NEED_OPTIONS = [
+  "Interior painting",
+  "Exterior painting",
+  "Full house repaint",
+  "Commercial painting",
+  "Epoxy floor",
+  "Other",
+];
+
+function LeadCaptureForm() {
+  const [submitted, setSubmitted] = useState(false);
+
+  if (submitted) {
+    return (
+      <div className="rounded-sm border border-white/10 bg-white/10 px-6 py-10 backdrop-blur">
+        <h3 className="font-display text-xl font-bold uppercase text-primary">Thanks! We'll be in touch within 24 hours.</h3>
+        <p className="mt-2 text-sm text-white/80">One of our team will call or email to arrange your free site visit.</p>
+      </div>
+    );
+  }
+
+  return (
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        setSubmitted(true);
+      }}
+      className="mx-auto grid max-w-3xl gap-4 rounded-sm border border-white/10 bg-white/10 p-5 backdrop-blur sm:grid-cols-2 md:grid-cols-4 md:p-6"
+    >
+      <input
+        type="text"
+        name="name"
+        placeholder="Your name"
+        required
+        className="w-full rounded-sm border border-white/20 bg-white px-3 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none"
+      />
+      <input
+        type="tel"
+        name="phone"
+        placeholder="Your phone number"
+        required
+        className="w-full rounded-sm border border-white/20 bg-white px-3 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none"
+      />
+      <select
+        name="need"
+        required
+        defaultValue=""
+        className="w-full rounded-sm border border-white/20 bg-white px-3 py-3 text-sm text-foreground focus:border-primary focus:outline-none sm:col-span-2 md:col-span-1"
+      >
+        <option value="" disabled>What do you need?</option>
+        {NEED_OPTIONS.map((o) => (
+          <option key={o} value={o}>{o}</option>
+        ))}
+      </select>
+      <button
+        type="submit"
+        className="inline-flex w-full items-center justify-center rounded-sm bg-primary px-5 py-3 font-display text-xs font-bold uppercase tracking-wider text-primary-foreground transition-colors hover:bg-[oklch(0.62_0.17_158)] sm:col-span-2 md:col-span-4"
+      >
+        Request a Free Quote →
+      </button>
+    </form>
+  );
+}
+
 function Home() {
   return (
     <SiteLayout>
