@@ -159,6 +159,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
               ))}
               <li><Link to="/painters" className="hover:text-primary">Areas We Cover</Link></li>
               <li><Link to="/pricing-guide" className="hover:text-primary">Pricing Guide</Link></li>
+              <li><Link to="/commercial-painting-dublin" className="hover:text-primary">Commercial Painting</Link></li>
             </ul>
           </div>
 
