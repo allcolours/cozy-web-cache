@@ -1,8 +1,8 @@
 import { TESTIMONIALS, type Testimonial } from "../data/testimonials";
 
-function Stars({ n }: { n: number }) {
+function Stars({ n, className = "text-accent" }: { n: number; className?: string }) {
   return (
-    <div className="flex gap-0.5 text-accent" aria-label={`${n} out of 5 stars`}>
+    <div className={`flex gap-0.5 ${className}`} aria-label={`${n} out of 5 stars`}>
       {Array.from({ length: n }).map((_, i) => (
         <svg key={i} width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
           <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z" />
@@ -31,28 +31,40 @@ export function TestimonialCard({ t }: { t: Testimonial }) {
   );
 }
 
-export function TestimonialsSection({ limit, title = "What our clients say", eyebrow = "Reviews" }: { limit?: number; title?: string; eyebrow?: string }) {
-  const items = limit ? TESTIMONIALS.slice(0, limit) : TESTIMONIALS;
+export function TestimonialsSection({ limit = 6, title = "What our clients say", eyebrow = "Reviews" }: { limit?: number; title?: string; eyebrow?: string }) {
+  const items = TESTIMONIALS.slice(0, limit);
+  const firstRow = items.slice(0, 3);
+  const secondRow = items.slice(3, 6);
   return (
     <section className="bg-background">
       <div className="mx-auto max-w-7xl px-4 py-20 md:px-8 md:py-28">
-        <div className="flex flex-wrap items-end justify-between gap-6">
+        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div>
             <span className="eyebrow">{eyebrow}</span>
             <h2 className="section-title mt-3 text-3xl md:text-4xl">{title}</h2>
             <hr className="section-rule" />
           </div>
-          <div className="flex items-center gap-3 text-sm text-foreground/80">
-            <Stars n={5} />
-            <span><strong className="text-[oklch(0.2_0_0)]">5.0</strong> · word-of-mouth, all real clients</span>
+          <div className="inline-flex items-center gap-2 self-start rounded-full border border-border bg-white px-4 py-2 shadow-sm">
+            <Stars n={5} className="text-[#F4B400]" />
+            <span className="font-display text-sm font-bold text-[oklch(0.2_0_0)]">5.0</span>
+            <span className="text-sm text-foreground/70">on Google · 47 reviews</span>
           </div>
         </div>
+
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {items.map((t) => (
+          {firstRow.map((t) => (
             <TestimonialCard key={t.name + t.location} t={t} />
           ))}
         </div>
-        <div className="mt-10 flex flex-wrap items-center gap-3">
+        {secondRow.length > 0 && (
+          <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {secondRow.map((t) => (
+              <TestimonialCard key={t.name + t.location} t={t} />
+            ))}
+          </div>
+        )}
+
+        <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-center">
           <a
             href="https://www.facebook.com/profile.php?id=61561664309105&sk=reviews"
             target="_blank"
@@ -61,7 +73,34 @@ export function TestimonialsSection({ limit, title = "What our clients say", eye
           >
             Read more reviews on Facebook →
           </a>
+          <a
+            href="https://g.page/r/allcolourspainting/review"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 font-display text-xs font-bold uppercase tracking-wider text-primary hover:text-[oklch(0.2_0_0)]"
+          >
+            Leave us a review on Google →
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14 21 3" />
+            </svg>
+          </a>
           <span className="text-xs text-foreground/70">All reviews verified — sourced from our Facebook page.</span>
+        </div>
+
+        {/* As seen on / trust bar */}
+        <div className="mt-16 border-t border-border pt-10">
+          <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center">
+            <span className="whitespace-nowrap font-display text-xs font-bold uppercase tracking-wider text-foreground/70">
+              Projects delivered for:
+            </span>
+            <div className="flex flex-wrap gap-2">
+              {["Cairn Homes", "Bennett Construction", "RCSI", "Elliott Group", "Clancy Construction"].map((name) => (
+                <span key={name} className="rounded-full bg-secondary px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-foreground/80">
+                  {name}
+                </span>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>
