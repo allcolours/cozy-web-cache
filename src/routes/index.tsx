@@ -147,6 +147,8 @@ const NEED_OPTIONS = [
 
 function LeadCaptureForm() {
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   if (submitted) {
     return (
@@ -159,9 +161,30 @@ function LeadCaptureForm() {
 
   return (
     <form
-      onSubmit={(e) => {
+      onSubmit={async (e) => {
         e.preventDefault();
+        setSubmitting(true);
+        setError(null);
+        const fd = new FormData(e.currentTarget);
+        const payload = {
+          name: String(fd.get("name") || "").trim().slice(0, 100),
+          phone: String(fd.get("phone") || "").trim().slice(0, 50),
+          service_type: String(fd.get("need") || "").trim().slice(0, 100),
+          source: "homepage_form",
+        };
+        if (!payload.name || !payload.phone || !payload.service_type) {
+          setError("Please fill in all fields.");
+          setSubmitting(false);
+          return;
+        }
+        const { error: insErr } = await supabase.from("leads").insert(payload);
+        if (insErr) {
+          setError("Sorry, something went wrong. Please call us directly.");
+          setSubmitting(false);
+          return;
+        }
         setSubmitted(true);
+        setSubmitting(false);
       }}
       className="mx-auto grid max-w-3xl gap-4 rounded-sm border border-white/10 bg-white/10 p-5 backdrop-blur sm:grid-cols-2 md:grid-cols-4 md:p-6"
     >
