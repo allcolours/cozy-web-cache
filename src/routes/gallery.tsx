@@ -147,7 +147,7 @@ function Gallery() {
 
       <section className="bg-background">
         <div className="mx-auto max-w-7xl px-4 py-20 md:px-8 md:py-28">
-          <div className="-mx-4 mb-10 flex gap-2 overflow-x-auto px-4 pb-2 scrollbar-hide md:mx-0 md:flex-wrap md:overflow-visible md:px-0">
+          <div className="mb-10 flex gap-2 overflow-x-auto pb-2 scrollbar-hide md:flex-wrap md:overflow-visible">
             {counts.map((cat) => (
               <button
                 key={cat.value}
