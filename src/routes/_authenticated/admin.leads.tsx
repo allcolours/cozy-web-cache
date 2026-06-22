@@ -93,9 +93,8 @@ function LeadsAdmin() {
               {leads.map((lead) => {
                 const isOpen = expanded === lead.id;
                 return (
-                  <>
+                  <tbody key={lead.id} className="contents">
                     <tr
-                      key={lead.id}
                       onClick={() => setExpanded(isOpen ? null : lead.id)}
                       className={`cursor-pointer border-b border-border transition-colors hover:bg-secondary/50 ${isOpen ? "bg-secondary/50" : ""}`}
                     >
