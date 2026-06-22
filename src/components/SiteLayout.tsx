@@ -75,8 +75,8 @@ export function SiteLayout({ children }: { children: ReactNode }) {
         setMoreOpen(false);
       }
     }
-    document.addEventListener("mousedown", handleClick);
-    return () => document.removeEventListener("mousedown", handleClick);
+    document.addEventListener("click", handleClick);
+    return () => document.removeEventListener("click", handleClick);
   }, []);
 
   return (
@@ -122,7 +122,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
             ))}
             <div ref={moreRef} className="relative">
               <button
-                onClick={() => setMoreOpen((v) => !v)}
+                onClick={(e) => { e.stopPropagation(); setMoreOpen((v) => !v); }}
                 className="flex items-center gap-1 whitespace-nowrap font-display text-[11px] font-semibold uppercase tracking-wider text-[oklch(0.3_0_0)] transition-colors hover:text-primary xl:text-[12px]"
               >
                 More <span className={`transition-transform ${moreOpen ? "rotate-180" : ""}`}>▾</span>
