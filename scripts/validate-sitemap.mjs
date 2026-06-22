@@ -61,7 +61,7 @@ const cacheKey = computeCacheKey();
 if (!process.env.NO_CACHE && !isDeployBranch && existsSync(CACHE_FILE)) {
   try {
     const cached = JSON.parse(readFileSync(CACHE_FILE, "utf8"));
-    const ttlOk = CACHE_TTL_MINUTES <= 0 || cacheAgeMinutes() < CACHE_TTL_MINUTES;
+    const ttlOk = CACHE_TTL_MINUTES > 0 && cacheAgeMinutes() < CACHE_TTL_MINUTES;
     if (cached.key === cacheKey && ttlOk) {
       console.log(
         `✓ Sitemap validation cached (inputs unchanged, age ${Math.floor(cacheAgeMinutes())}m < ${CACHE_TTL_MINUTES}m TTL) — skipping`,
