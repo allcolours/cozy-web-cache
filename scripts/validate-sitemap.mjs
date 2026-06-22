@@ -149,4 +149,9 @@ if (process.exitCode) {
   console.error("\nSitemap validation FAILED");
   process.exit(1);
 }
+try {
+  mkdirSync(CACHE_DIR, { recursive: true });
+  writeFileSync(CACHE_FILE, cacheKey);
+} catch {}
 console.log("\nSitemap validation passed");
+
