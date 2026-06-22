@@ -1,5 +1,5 @@
 import { Link, useNavigate, useRouterState } from "@tanstack/react-router";
-import { type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useIsAdmin } from "@/hooks/useIsAdmin";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
@@ -16,11 +16,95 @@ const NAV: { to: string; label: string; exact?: boolean; badgeKey?: "leads" }[] 
   { to: "/admin/analytics", label: "Analytics" },
 ];
 
+type AdminDiagnostic = {
+  loading: boolean;
+  userId: string | null;
+  email: string | null;
+  roleResult: boolean | null;
+  roleError: string | null;
+  selectOk: boolean | null;
+  selectError: string | null;
+  updateCode: string | null;
+  updateMessage: string | null;
+  updateStatus: string | null;
+  authError: string | null;
+};
+
+const initialDiagnostic: AdminDiagnostic = {
+  loading: true,
+  userId: null,
+  email: null,
+  roleResult: null,
+  roleError: null,
+  selectOk: null,
+  selectError: null,
+  updateCode: null,
+  updateMessage: null,
+  updateStatus: null,
+  authError: null,
+};
+
 export function AdminShell({ children, title }: { children: ReactNode; title: string }) {
   const { data: isAdmin, isLoading } = useIsAdmin();
+  const [diagnostic, setDiagnostic] = useState<AdminDiagnostic>(initialDiagnostic);
   const navigate = useNavigate();
   const qc = useQueryClient();
   const path = useRouterState({ select: (s) => s.location.pathname });
+
+  useEffect(() => {
+    let cancelled = false;
+
+    async function runDiagnostics() {
+      const next: AdminDiagnostic = { ...initialDiagnostic };
+
+      try {
+        const { data: userData, error: userError } = await supabase.auth.getUser();
+        next.authError = userError ? `${userError.name}: ${userError.message}` : null;
+        next.userId = userData.user?.id ?? null;
+        next.email = userData.user?.email ?? null;
+
+        if (userData.user?.id) {
+          const { data: roleData, error: roleError } = await supabase.rpc("has_role", {
+            _user_id: userData.user.id,
+            _role: "admin",
+          });
+          next.roleResult = roleError ? null : Boolean(roleData);
+          next.roleError = roleError ? `${roleError.code ?? "unknown"}: ${roleError.message}` : null;
+        }
+
+        const { error: selectError } = await supabase.from("gallery_projects").select("id").limit(1);
+        next.selectOk = !selectError;
+        next.selectError = selectError ? `${selectError.code ?? "unknown"}: ${selectError.message}` : null;
+
+        const { error: updateError } = await supabase
+          .from("gallery_projects")
+          .update({ visible: true })
+          .eq("id", "00000000-0000-0000-0000-000000000000")
+          .select("id")
+          .single();
+        next.updateCode = updateError?.code ?? null;
+        next.updateMessage = updateError?.message ?? null;
+        next.updateStatus = updateError
+          ? updateError.code === "PGRST116"
+            ? "PGRST116: no matching row returned; permission check appears to pass."
+            : updateError.code === "42501"
+              ? "42501: permission denied; RLS or grants blocked the update."
+              : `${updateError.code ?? "unknown"}: ${updateError.message}`
+          : "No error returned.";
+      } catch (error) {
+        next.authError = error instanceof Error ? error.message : String(error);
+      } finally {
+        next.loading = false;
+        if (!cancelled) setDiagnostic(next);
+      }
+    }
+
+    runDiagnostics();
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   const { data: newLeadsCount = 0 } = useQuery({
     queryKey: ["admin-new-leads-count"],
@@ -93,6 +177,42 @@ export function AdminShell({ children, title }: { children: ReactNode; title: st
         <header className="border-b border-border bg-background px-5 py-5 md:px-8 md:py-6">
           <h1 className="font-display text-xl font-extrabold uppercase tracking-tight md:text-2xl">{title}</h1>
         </header>
+        <div className="px-5 pt-5 md:px-8 md:pt-6">
+          <details className="border border-[oklch(0.82_0.15_85)] bg-[oklch(0.97_0.07_95)] px-4 py-3 text-[oklch(0.28_0.08_70)] shadow-sm" open>
+            <summary className="cursor-pointer font-display text-xs font-bold uppercase tracking-wider">
+              Admin diagnostics
+            </summary>
+            <dl className="mt-3 grid gap-2 text-xs md:grid-cols-2">
+              <div>
+                <dt className="font-bold uppercase">User</dt>
+                <dd className="break-all">{diagnostic.loading ? "Checking…" : diagnostic.userId ?? "No user"}</dd>
+                <dd className="break-all">{diagnostic.email ?? "No email"}</dd>
+              </div>
+              <div>
+                <dt className="font-bold uppercase">Admin role</dt>
+                <dd>{diagnostic.roleResult === null ? "Unknown" : String(diagnostic.roleResult)}</dd>
+                {diagnostic.roleError && <dd className="break-all">{diagnostic.roleError}</dd>}
+              </div>
+              <div>
+                <dt className="font-bold uppercase">Gallery SELECT</dt>
+                <dd>{diagnostic.selectOk === null ? "Unknown" : diagnostic.selectOk ? "Success" : "Error"}</dd>
+                {diagnostic.selectError && <dd className="break-all">{diagnostic.selectError}</dd>}
+              </div>
+              <div>
+                <dt className="font-bold uppercase">Gallery UPDATE probe</dt>
+                <dd className="break-all">{diagnostic.updateStatus ?? "Unknown"}</dd>
+                {diagnostic.updateCode && <dd>Code: {diagnostic.updateCode}</dd>}
+                {diagnostic.updateMessage && <dd className="break-all">{diagnostic.updateMessage}</dd>}
+              </div>
+              {diagnostic.authError && (
+                <div className="md:col-span-2">
+                  <dt className="font-bold uppercase">Auth error</dt>
+                  <dd className="break-all">{diagnostic.authError}</dd>
+                </div>
+              )}
+            </dl>
+          </details>
+        </div>
         <div className="px-5 py-6 md:px-8 md:py-8">{children}</div>
       </main>
     </div>
