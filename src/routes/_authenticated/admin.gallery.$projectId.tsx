@@ -140,15 +140,36 @@ function EditProject() {
     setSaving(true);
     setError(null);
     setSavedMsg(null);
-    const { error: upErr } = await supabase
+    const payload = {
+      title: title.trim(),
+      location: location.trim() || null,
+      category,
+      description: description.trim() || null,
+      visible,
+    };
+    console.log("[saveProject] projectId:", projectId);
+    console.log("[saveProject] payload:", payload);
+    const { data: authData } = await supabase.auth.getUser();
+    console.log("[saveProject] auth user id:", authData?.user?.id, "email:", authData?.user?.email);
+
+    const response = await supabase
       .from("gallery_projects")
-      .update({ title: title.trim(), location: location.trim() || null, category, description: description.trim() || null, visible })
-      .eq("id", projectId);
+      .update(payload)
+      .eq("id", projectId)
+      .select("id, title, location, category, description, visible");
+    console.log("[saveProject] full response:", response);
+    const { data: updated, error: upErr, status, statusText } = response;
+    console.log("[saveProject] status:", status, statusText, "rows updated:", updated?.length ?? 0);
+
     setSaving(false);
     if (upErr) {
-      console.error("[admin.gallery saveProject] update failed:", upErr);
+      console.error("[saveProject] update failed:", upErr);
       setError(`${upErr.message}${upErr.code ? ` (code: ${upErr.code})` : ""}${upErr.details ? ` — ${upErr.details}` : ""}${upErr.hint ? ` — hint: ${upErr.hint}` : ""}`);
+    } else if (!updated || updated.length === 0) {
+      console.warn("[saveProject] no rows updated — RLS UPDATE policy likely blocking this row");
+      setError("Save succeeded but 0 rows were updated. This means the row-level security UPDATE policy on gallery_projects is blocking the write. Check that an admin UPDATE policy exists.");
     } else {
+      console.log("[saveProject] success, updated row:", updated[0]);
       setSavedMsg("Saved");
       qc.invalidateQueries({ queryKey: ["admin-project", projectId] });
       qc.invalidateQueries({ queryKey: ["admin-gallery-projects"] });
