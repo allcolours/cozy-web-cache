@@ -21,6 +21,7 @@ import { Route as PainterSandyfordRouteImport } from './routes/painter-sandyford
 import { Route as PainterRathfarnhamRouteImport } from './routes/painter-rathfarnham'
 import { Route as PainterRanelaghRouteImport } from './routes/painter-ranelagh'
 import { Route as PainterDunLaoghaireRouteImport } from './routes/painter-dun-laoghaire'
+import { Route as PainterDublinRouteImport } from './routes/painter-dublin'
 import { Route as PainterClondalkinRouteImport } from './routes/painter-clondalkin'
 import { Route as PainterBlackrockRouteImport } from './routes/painter-blackrock'
 import { Route as GalleryRouteImport } from './routes/gallery'
@@ -115,6 +116,11 @@ const PainterRanelaghRoute = PainterRanelaghRouteImport.update({
 const PainterDunLaoghaireRoute = PainterDunLaoghaireRouteImport.update({
   id: '/painter-dun-laoghaire',
   path: '/painter-dun-laoghaire',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PainterDublinRoute = PainterDublinRouteImport.update({
+  id: '/painter-dublin',
+  path: '/painter-dublin',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PainterClondalkinRoute = PainterClondalkinRouteImport.update({
@@ -314,6 +320,7 @@ export interface FileRoutesByFullPath {
   '/gallery': typeof GalleryRoute
   '/painter-blackrock': typeof PainterBlackrockRoute
   '/painter-clondalkin': typeof PainterClondalkinRoute
+  '/painter-dublin': typeof PainterDublinRoute
   '/painter-dun-laoghaire': typeof PainterDunLaoghaireRoute
   '/painter-ranelagh': typeof PainterRanelaghRoute
   '/painter-rathfarnham': typeof PainterRathfarnhamRoute
@@ -362,6 +369,7 @@ export interface FileRoutesByTo {
   '/gallery': typeof GalleryRoute
   '/painter-blackrock': typeof PainterBlackrockRoute
   '/painter-clondalkin': typeof PainterClondalkinRoute
+  '/painter-dublin': typeof PainterDublinRoute
   '/painter-dun-laoghaire': typeof PainterDunLaoghaireRoute
   '/painter-ranelagh': typeof PainterRanelaghRoute
   '/painter-rathfarnham': typeof PainterRathfarnhamRoute
@@ -411,6 +419,7 @@ export interface FileRoutesById {
   '/gallery': typeof GalleryRoute
   '/painter-blackrock': typeof PainterBlackrockRoute
   '/painter-clondalkin': typeof PainterClondalkinRoute
+  '/painter-dublin': typeof PainterDublinRoute
   '/painter-dun-laoghaire': typeof PainterDunLaoghaireRoute
   '/painter-ranelagh': typeof PainterRanelaghRoute
   '/painter-rathfarnham': typeof PainterRathfarnhamRoute
@@ -461,6 +470,7 @@ export interface FileRouteTypes {
     | '/gallery'
     | '/painter-blackrock'
     | '/painter-clondalkin'
+    | '/painter-dublin'
     | '/painter-dun-laoghaire'
     | '/painter-ranelagh'
     | '/painter-rathfarnham'
@@ -509,6 +519,7 @@ export interface FileRouteTypes {
     | '/gallery'
     | '/painter-blackrock'
     | '/painter-clondalkin'
+    | '/painter-dublin'
     | '/painter-dun-laoghaire'
     | '/painter-ranelagh'
     | '/painter-rathfarnham'
@@ -557,6 +568,7 @@ export interface FileRouteTypes {
     | '/gallery'
     | '/painter-blackrock'
     | '/painter-clondalkin'
+    | '/painter-dublin'
     | '/painter-dun-laoghaire'
     | '/painter-ranelagh'
     | '/painter-rathfarnham'
@@ -607,6 +619,7 @@ export interface RootRouteChildren {
   GalleryRoute: typeof GalleryRoute
   PainterBlackrockRoute: typeof PainterBlackrockRoute
   PainterClondalkinRoute: typeof PainterClondalkinRoute
+  PainterDublinRoute: typeof PainterDublinRoute
   PainterDunLaoghaireRoute: typeof PainterDunLaoghaireRoute
   PainterRanelaghRoute: typeof PainterRanelaghRoute
   PainterRathfarnhamRoute: typeof PainterRathfarnhamRoute
@@ -720,6 +733,13 @@ declare module '@tanstack/react-router' {
       path: '/painter-dun-laoghaire'
       fullPath: '/painter-dun-laoghaire'
       preLoaderRoute: typeof PainterDunLaoghaireRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/painter-dublin': {
+      id: '/painter-dublin'
+      path: '/painter-dublin'
+      fullPath: '/painter-dublin'
+      preLoaderRoute: typeof PainterDublinRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/painter-clondalkin': {
@@ -1015,6 +1035,7 @@ const rootRouteChildren: RootRouteChildren = {
   GalleryRoute: GalleryRoute,
   PainterBlackrockRoute: PainterBlackrockRoute,
   PainterClondalkinRoute: PainterClondalkinRoute,
+  PainterDublinRoute: PainterDublinRoute,
   PainterDunLaoghaireRoute: PainterDunLaoghaireRoute,
   PainterRanelaghRoute: PainterRanelaghRoute,
   PainterRathfarnhamRoute: PainterRathfarnhamRoute,
@@ -1046,13 +1067,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
