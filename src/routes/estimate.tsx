@@ -4,17 +4,17 @@ import { useEffect, useMemo, useState } from "react";
 export const Route = createFileRoute("/estimate")({
   head: () => ({
     meta: [
-      { title: "Painting Cost Calculator Dublin | All Colours Painting" },
+      { title: "Free Painting Estimate Dublin | All Colours" },
       {
         name: "description",
         content:
-          "Estimate your painting & decorating cost in Dublin — interior, exterior, doors, floors. Quick from–to range before requesting a free on-site quote.",
+          "Get a detailed painting estimate for your Dublin home or business. We visit the site, measure up and deliver a written quote within 48 hours. No pressure.",
       },
-      { property: "og:title", content: "Painting Cost Calculator — Dublin" },
+      { property: "og:title", content: "Free Painting Estimate Dublin | All Colours" },
       {
         property: "og:description",
         content:
-          "Quick from–to cost range for painting jobs in Dublin. Not a binding quote — a budget sanity check.",
+          "Get a detailed painting estimate for your Dublin home or business. We visit the site, measure up and deliver a written quote within 48 hours. No pressure.",
       },
       { property: "og:url", content: "https://allcolourspainter.com/estimate" },
       { property: "og:type", content: "website" },

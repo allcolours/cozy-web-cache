@@ -37,10 +37,10 @@ const GALLERY_PHOTOS = Object.entries(galleryModules)
 export const Route = createFileRoute("/gallery")({
   head: () => ({
     meta: [
-      { title: "Gallery | All Colours Painting Contractor Limited" },
-      { name: "description", content: "Recent painting and decorating projects — interior, exterior, commercial and industrial." },
-      { property: "og:title", content: "Project Gallery" },
-      { property: "og:description", content: "A selection of our recent painting & decorating work." },
+      { title: "Painting Portfolio Dublin | All Colours Painting Gallery" },
+      { name: "description", content: "Browse our portfolio of completed painting projects across Dublin. Interior repaints, exterior work, commercial fit-outs, epoxy floors and bespoke finishes." },
+      { property: "og:title", content: "Painting Portfolio Dublin | All Colours Painting Gallery" },
+      { property: "og:description", content: "Browse our portfolio of completed painting projects across Dublin. Interior repaints, exterior work, commercial fit-outs, epoxy floors and bespoke finishes." },
       { property: "og:url", content: "https://allcolourspainter.com/gallery" },
       { property: "og:type", content: "website" },
       { property: "og:image", content: `https://allcolourspainter.com${heroAsset.url}` },

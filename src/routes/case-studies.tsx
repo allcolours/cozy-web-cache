@@ -6,10 +6,10 @@ import heroAsset from "../assets/portfolio/about-architecture.jpg.asset.json";
 export const Route = createFileRoute("/case-studies")({
   head: () => ({
     meta: [
-      { title: "Case Studies | All Colours Painting Contractor Limited" },
-      { name: "description", content: "Before-and-after painting & decorating projects across Dublin — residential, commercial, industrial and heritage." },
-      { property: "og:title", content: "Painting & Decorating Case Studies — Dublin" },
-      { property: "og:description", content: "Real projects, real materials, real timelines. See how we approach residential, commercial, industrial and heritage painting jobs." },
+      { title: "Painting Case Studies Dublin | All Colours" },
+      { name: "description", content: "Real painting projects: the brief, the prep, the materials and the result. Honest case studies from residential and commercial jobs across Dublin." },
+      { property: "og:title", content: "Painting Case Studies Dublin | All Colours" },
+      { property: "og:description", content: "Real painting projects: the brief, the prep, the materials and the result. Honest case studies from residential and commercial jobs across Dublin." },
       { property: "og:url", content: "https://allcolourspainter.com/case-studies" },
       { property: "og:type", content: "website" },
       { property: "og:image", content: `https://allcolourspainter.com${heroAsset.url}` },
