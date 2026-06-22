@@ -66,15 +66,21 @@ export function AdminShell({ children, title }: { children: ReactNode; title: st
         <nav className="flex gap-1 overflow-x-auto px-3 pb-3 md:flex-col md:gap-0 md:px-0 md:pb-0">
           {NAV.map((n) => {
             const active = n.exact ? path === n.to : path.startsWith(n.to);
+            const badge = n.badgeKey === "leads" ? newLeadsCount : 0;
             return (
               <Link
                 key={n.to}
                 to={n.to}
-                className={`whitespace-nowrap px-4 py-2 font-display text-xs font-bold uppercase tracking-wider transition-colors md:py-3 ${
+                className={`flex items-center justify-between gap-2 whitespace-nowrap px-4 py-2 font-display text-xs font-bold uppercase tracking-wider transition-colors md:py-3 ${
                   active ? "bg-primary text-primary-foreground" : "text-white/70 hover:bg-white/5 hover:text-white"
                 }`}
               >
-                {n.label}
+                <span>{n.label}</span>
+                {badge > 0 && (
+                  <span className={`inline-flex min-w-[20px] items-center justify-center rounded-full px-1.5 py-0.5 text-[10px] font-bold ${active ? "bg-white/20 text-white" : "bg-primary text-primary-foreground"}`}>
+                    {badge}
+                  </span>
+                )}
               </Link>
             );
           })}
