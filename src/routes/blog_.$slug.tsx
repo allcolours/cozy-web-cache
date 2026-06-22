@@ -137,7 +137,7 @@ function BlogPostPage() {
                   <Link key={o.id} to="/blog/$slug" params={{ slug: o.slug }} className="group block bg-card">
                     {o.cover_image_url && (
                       <div className="aspect-[4/3] overflow-hidden">
-                        <img src={o.cover_image_url} alt={o.title} loading="lazy" loading="lazy" width={800} height={600} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                        <img src={o.cover_image_url} alt={o.title} loading="lazy" width={800} height={600} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
                       </div>
                     )}
                     <div className="border-b-[3px] border-primary p-5">

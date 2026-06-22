@@ -80,7 +80,7 @@ function CaseStudiesIndex() {
                 >
                   {c.cover_image_url && (
                     <div className="aspect-[16/10] overflow-hidden">
-                      <img src={c.cover_image_url} alt={c.title} loading="lazy" loading="lazy" width={1200} height={750} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                      <img src={c.cover_image_url} alt={c.title} loading="lazy" width={1200} height={750} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
                     </div>
                   )}
                   <div className="border-b-[3px] border-primary p-7 md:p-8">

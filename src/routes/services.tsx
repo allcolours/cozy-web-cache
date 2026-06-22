@@ -135,7 +135,7 @@ function Services() {
             {headline.map((s) => (
               <article key={s.title} className="flex flex-col bg-card">
                 <div className="aspect-[4/3] overflow-hidden">
-                  <img src={s.img} alt={`${s.title} painting services`} loading="lazy" loading="lazy" width={1000} height={750} className="h-full w-full object-cover transition-transform duration-700 hover:scale-105" />
+                  <img src={s.img} alt={`${s.title} painting services`} loading="lazy" width={1000} height={750} className="h-full w-full object-cover transition-transform duration-700 hover:scale-105" />
                 </div>
                 <div className="flex flex-1 flex-col border-b-[3px] border-primary p-8">
                   <h3 className="font-display text-xl font-bold uppercase tracking-wide text-[oklch(0.2_0_0)]">{s.title}</h3>
@@ -168,7 +168,7 @@ function Services() {
             {more.map((s) => (
               <div key={s.title} className="group overflow-hidden bg-card">
                 <div className="aspect-[16/10] overflow-hidden">
-                  <img src={s.img} alt={`${s.title} — ${s.desc.split(".")[0]}`} loading="lazy" loading="lazy" width={800} height={500} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                  <img src={s.img} alt={`${s.title} — ${s.desc.split(".")[0]}`} loading="lazy" width={800} height={500} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
                 </div>
                 <div className="p-6">
                   <h3 className="font-display text-base font-bold uppercase tracking-wide text-[oklch(0.2_0_0)]">{s.title}</h3>

@@ -216,7 +216,7 @@ function CaseStudyPage() {
                 <Link key={c.id} to="/case-studies/$slug" params={{ slug: c.slug }} className="group block bg-card">
                   {c.cover_image_url && (
                     <div className="aspect-[4/3] overflow-hidden">
-                      <img src={c.cover_image_url} alt={c.title} loading="lazy" loading="lazy" width={800} height={600} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                      <img src={c.cover_image_url} alt={c.title} loading="lazy" width={800} height={600} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
                     </div>
                   )}
                   <div className="border-b-[3px] border-primary p-5">
