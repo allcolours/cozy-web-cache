@@ -51,7 +51,7 @@ function Contact() {
       return;
     }
     try {
-      const res = await fetch("/api/public/contact", {
+      const res = await fetch("https://llyaicklknzbemnhiyfp.supabase.co/functions/v1/send-contact-email", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
