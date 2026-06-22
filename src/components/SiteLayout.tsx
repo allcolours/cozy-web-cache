@@ -157,7 +157,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
 
       {/* Footer */}
       <footer className="bg-[var(--color-surface-dark)] text-[var(--color-surface-dark-foreground)]">
-        <div className="mx-auto grid max-w-7xl gap-10 px-4 py-16 md:grid-cols-4 md:px-8">
+        <div className="mx-auto grid max-w-7xl gap-10 px-4 py-16 md:grid-cols-5 md:px-8">
           <div className="md:col-span-2">
             <div className="flex items-center gap-3">
               <img src={logo} alt={`${COMPANY.shortName} logo`} width={64} height={64} className="h-16 w-16 object-contain" />
@@ -184,6 +184,20 @@ export function SiteLayout({ children }: { children: ReactNode }) {
               <li><Link to="/painters" className="hover:text-primary">Areas We Cover</Link></li>
               <li><Link to="/pricing-guide" className="hover:text-primary">Pricing Guide</Link></li>
               <li><Link to="/commercial-painting-dublin" className="hover:text-primary">Commercial Painting</Link></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="font-display text-sm font-bold uppercase tracking-wider text-white">Areas We Cover</h4>
+            <div className="mt-3 h-[2px] w-10 bg-primary" />
+            <ul className="mt-4 space-y-2 text-sm text-white/65">
+              <li><Link to="/painter-ranelagh" className="hover:text-primary">Painter Ranelagh</Link></li>
+              <li><Link to="/painter-sandyford" className="hover:text-primary">Painter Sandyford</Link></li>
+              <li><Link to="/painter-dun-laoghaire" className="hover:text-primary">Painter Dún Laoghaire</Link></li>
+              <li><Link to="/painter-stillorgan" className="hover:text-primary">Painter Stillorgan</Link></li>
+              <li><Link to="/painter-rathfarnham" className="hover:text-primary">Painter Rathfarnham</Link></li>
+              <li><Link to="/painter-clondalkin" className="hover:text-primary">Painter Clondalkin</Link></li>
+              <li><Link to="/painter-blackrock" className="hover:text-primary">Painter Blackrock</Link></li>
             </ul>
           </div>
 
