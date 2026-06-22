@@ -5,9 +5,9 @@
 //   - HTTP (optional): SITEMAP_URL=<url> node scripts/validate-sitemap.mjs
 //
 // Caching: skipped when the cache key (hash of inputs + script + SITEMAP_URL)
-// matches a previous successful run. Deploy branches always revalidate.
-// Disable with NO_CACHE=1.
-import { readFileSync, existsSync, mkdirSync, writeFileSync } from "node:fs";
+// matches a previous successful run AND the entry is within CACHE_TTL_MINUTES.
+// Deploy branches always revalidate. Disable with NO_CACHE=1.
+import { readFileSync, existsSync, mkdirSync, writeFileSync, statSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { XMLParser, XMLValidator } from "fast-xml-parser";
 
@@ -17,6 +17,7 @@ const BASE_URL = "https://allcolourspainter.com";
 const CACHE_DIR = "node_modules/.cache/validate-sitemap";
 const CACHE_FILE = `${CACHE_DIR}/last-ok`;
 const DEPLOY_BRANCHES = new Set(["main", "master", "production", "prod", "release"]);
+const CACHE_TTL_MINUTES = Number(process.env.CACHE_TTL_MINUTES ?? "60");
 
 function fail(msg) {
   console.error(`✗ ${msg}`);
@@ -47,13 +48,28 @@ function computeCacheKey() {
   return h.digest("hex");
 }
 
+function cacheAgeMinutes() {
+  try {
+    return (Date.now() - statSync(CACHE_FILE).mtimeMs) / 1000 / 60;
+  } catch {
+    return Infinity;
+  }
+}
+
 const isDeployBranch = DEPLOY_BRANCHES.has(currentBranch());
 const cacheKey = computeCacheKey();
 if (!process.env.NO_CACHE && !isDeployBranch && existsSync(CACHE_FILE)) {
   try {
-    if (readFileSync(CACHE_FILE, "utf8").trim() === cacheKey) {
-      console.log("✓ Sitemap validation cached (inputs unchanged) — skipping");
+    const cached = JSON.parse(readFileSync(CACHE_FILE, "utf8"));
+    const ttlOk = CACHE_TTL_MINUTES > 0 && cacheAgeMinutes() < CACHE_TTL_MINUTES;
+    if (cached.key === cacheKey && ttlOk) {
+      console.log(
+        `✓ Sitemap validation cached (inputs unchanged, age ${Math.floor(cacheAgeMinutes())}m < ${CACHE_TTL_MINUTES}m TTL) — skipping`,
+      );
       process.exit(0);
+    }
+    if (cached.key === cacheKey && !ttlOk) {
+      console.log(`Cache key matches but TTL (${CACHE_TTL_MINUTES}m) expired — revalidating`);
     }
   } catch {}
 }
@@ -151,7 +167,7 @@ if (process.exitCode) {
 }
 try {
   mkdirSync(CACHE_DIR, { recursive: true });
-  writeFileSync(CACHE_FILE, cacheKey);
+  writeFileSync(CACHE_FILE, JSON.stringify({ key: cacheKey, cachedAt: new Date().toISOString() }));
 } catch {}
 console.log("\nSitemap validation passed");
 
