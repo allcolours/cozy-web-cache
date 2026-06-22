@@ -1,3 +1,5 @@
+import { useQuery } from "@tanstack/react-query";
+import { supabase } from "@/integrations/supabase/client";
 import { TESTIMONIALS, type Testimonial } from "../data/testimonials";
 
 function Stars({ n, className = "text-accent" }: { n: number; className?: string }) {
@@ -32,7 +34,27 @@ export function TestimonialCard({ t }: { t: Testimonial }) {
 }
 
 export function TestimonialsSection({ limit = 6, title = "What our clients say", eyebrow = "Reviews" }: { limit?: number; title?: string; eyebrow?: string }) {
-  const items = TESTIMONIALS.slice(0, limit);
+  const { data: dbItems } = useQuery({
+    queryKey: ["testimonials", limit],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("testimonials")
+        .select("author_name, author_role, location, content, rating, project_type")
+        .eq("visible", true)
+        .order("sort_order")
+        .limit(limit);
+      if (error) throw error;
+      return data.map<Testimonial>((d) => ({
+        name: d.author_name,
+        role: d.author_role ?? "",
+        location: d.location ?? "",
+        rating: d.rating ?? 5,
+        quote: d.content,
+        project: d.project_type ?? "",
+      }));
+    },
+  });
+  const items = (dbItems && dbItems.length > 0 ? dbItems : TESTIMONIALS).slice(0, limit);
   const firstRow = items.slice(0, 3);
   const secondRow = items.slice(3, 6);
   return (

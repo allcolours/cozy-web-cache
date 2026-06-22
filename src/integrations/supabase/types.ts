@@ -14,6 +14,161 @@ export type Database = {
   }
   public: {
     Tables: {
+      blog_posts: {
+        Row: {
+          author: string | null
+          category: string | null
+          content: Json | null
+          cover_image_url: string | null
+          created_at: string | null
+          excerpt: string | null
+          id: string
+          intro: string | null
+          meta_description: string | null
+          meta_title: string | null
+          published: boolean | null
+          published_at: string | null
+          read_time: string | null
+          slug: string
+          title: string
+          updated_at: string | null
+        }
+        Insert: {
+          author?: string | null
+          category?: string | null
+          content?: Json | null
+          cover_image_url?: string | null
+          created_at?: string | null
+          excerpt?: string | null
+          id?: string
+          intro?: string | null
+          meta_description?: string | null
+          meta_title?: string | null
+          published?: boolean | null
+          published_at?: string | null
+          read_time?: string | null
+          slug: string
+          title: string
+          updated_at?: string | null
+        }
+        Update: {
+          author?: string | null
+          category?: string | null
+          content?: Json | null
+          cover_image_url?: string | null
+          created_at?: string | null
+          excerpt?: string | null
+          id?: string
+          intro?: string | null
+          meta_description?: string | null
+          meta_title?: string | null
+          published?: boolean | null
+          published_at?: string | null
+          read_time?: string | null
+          slug?: string
+          title?: string
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      case_studies: {
+        Row: {
+          approach: string | null
+          category: string | null
+          challenge: string | null
+          client_type: string | null
+          cover_image_url: string | null
+          created_at: string | null
+          duration: string | null
+          id: string
+          intro: string | null
+          location: string | null
+          materials: string | null
+          result: string | null
+          slug: string
+          sort_order: number | null
+          subtitle: string | null
+          title: string
+          visible: boolean | null
+        }
+        Insert: {
+          approach?: string | null
+          category?: string | null
+          challenge?: string | null
+          client_type?: string | null
+          cover_image_url?: string | null
+          created_at?: string | null
+          duration?: string | null
+          id?: string
+          intro?: string | null
+          location?: string | null
+          materials?: string | null
+          result?: string | null
+          slug: string
+          sort_order?: number | null
+          subtitle?: string | null
+          title: string
+          visible?: boolean | null
+        }
+        Update: {
+          approach?: string | null
+          category?: string | null
+          challenge?: string | null
+          client_type?: string | null
+          cover_image_url?: string | null
+          created_at?: string | null
+          duration?: string | null
+          id?: string
+          intro?: string | null
+          location?: string | null
+          materials?: string | null
+          result?: string | null
+          slug?: string
+          sort_order?: number | null
+          subtitle?: string | null
+          title?: string
+          visible?: boolean | null
+        }
+        Relationships: []
+      }
+      case_study_images: {
+        Row: {
+          caption: string | null
+          case_study_id: string | null
+          created_at: string | null
+          id: string
+          image_url: string
+          sort_order: number | null
+          storage_path: string | null
+        }
+        Insert: {
+          caption?: string | null
+          case_study_id?: string | null
+          created_at?: string | null
+          id?: string
+          image_url: string
+          sort_order?: number | null
+          storage_path?: string | null
+        }
+        Update: {
+          caption?: string | null
+          case_study_id?: string | null
+          created_at?: string | null
+          id?: string
+          image_url?: string
+          sort_order?: number | null
+          storage_path?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "case_study_images_case_study_id_fkey"
+            columns: ["case_study_id"]
+            isOneToOne: false
+            referencedRelation: "case_studies"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       contact_submissions: {
         Row: {
           created_at: string
@@ -319,6 +474,45 @@ export type Database = {
           id?: string
           metadata?: Json | null
           reason?: string
+        }
+        Relationships: []
+      }
+      testimonials: {
+        Row: {
+          author_name: string
+          author_role: string | null
+          content: string
+          created_at: string | null
+          id: string
+          location: string | null
+          project_type: string | null
+          rating: number | null
+          sort_order: number | null
+          visible: boolean | null
+        }
+        Insert: {
+          author_name: string
+          author_role?: string | null
+          content: string
+          created_at?: string | null
+          id?: string
+          location?: string | null
+          project_type?: string | null
+          rating?: number | null
+          sort_order?: number | null
+          visible?: boolean | null
+        }
+        Update: {
+          author_name?: string
+          author_role?: string | null
+          content?: string
+          created_at?: string | null
+          id?: string
+          location?: string | null
+          project_type?: string | null
+          rating?: number | null
+          sort_order?: number | null
+          visible?: boolean | null
         }
         Relationships: []
       }
