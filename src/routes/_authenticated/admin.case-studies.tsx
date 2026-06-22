@@ -77,7 +77,7 @@ function CaseStudiesAdmin() {
                     </button>
                   </td>
                   <td className="px-3 py-3 text-right">
-                    <a href={`/admin/case-studies/${c.id}`} className="text-xs font-bold uppercase tracking-wider text-primary hover:underline">Edit</a>
+                    <Link to="/admin/case-studies/$studyId" params={{ studyId: c.id }} className="text-xs font-bold uppercase tracking-wider text-primary hover:underline">Edit</Link>
                   </td>
                 </tr>
               ))}
