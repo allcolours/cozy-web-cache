@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout, COMPANY } from "../components/SiteLayout";
 import { TestimonialsSection } from "../components/Testimonials";
-import aboutAsset from "../assets/portfolio/about-architecture.jpg.asset.json";
+
 import heroAsset from "../assets/portfolio/hero-house.webp.asset.json";
 
 export const Route = createFileRoute("/about")({
