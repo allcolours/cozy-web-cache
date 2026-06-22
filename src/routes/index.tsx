@@ -240,7 +240,7 @@ function Home() {
     <SiteLayout>
       {/* Hero */}
       <section className="relative isolate w-full overflow-hidden">
-        <img src="/images/01-georgian-manor-house-sage-green-exterior-dublin.jpg" alt="Freshly painted Dublin home exterior by All Colours Painting" width={1920} height={1280} fetchPriority="high" decoding="async" className="absolute inset-0 -z-10 h-full w-full object-cover" />
+        <img src={heroAsset.url} alt="Freshly painted Dublin home exterior by All Colours Painting" width={1920} height={1280} fetchPriority="high" decoding="async" className="absolute inset-0 -z-10 h-full w-full object-cover" />
         <div className="absolute inset-0 -z-10 bg-gradient-to-r from-black/70 via-black/45 to-black/10" />
         <div className="mx-auto max-w-7xl px-6 py-28 md:px-8 md:py-44">
           <div className="max-w-2xl text-white">

@@ -53,6 +53,9 @@ export function BlogPostForm({ initial, postId }: { initial: BlogPostInput; post
       qc.invalidateQueries({ queryKey: ["blog-posts"] });
       if (!postId) navigate({ to: "/admin/blog/$postId", params: { postId: id } });
     },
+    onError: (error) => {
+      console.error("[BlogPostForm] save failed:", error);
+    },
   });
 
   const del = useMutation({
@@ -159,6 +162,7 @@ export function BlogPostForm({ initial, postId }: { initial: BlogPostInput; post
       </label>
 
       {save.error && <p className="text-sm text-destructive">{(save.error as Error).message}</p>}
+      {save.isSuccess && <p className="text-sm font-medium text-green-600">Saved successfully ✓</p>}
 
       <div className="flex flex-wrap items-center justify-between gap-3 border-t border-border pt-6">
         <div className="flex gap-3">
