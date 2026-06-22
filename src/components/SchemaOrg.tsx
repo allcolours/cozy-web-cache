@@ -4,15 +4,19 @@ export function SchemaOrg() {
     "@type": "LocalBusiness",
     "@id": "https://allcolourspainter.com",
     "name": "All Colours Painting Contractor Limited",
-    "description": "Professional painting and decorating contractor in Dublin. Interior, exterior, commercial and industrial painting across Dublin & surrounding areas.",
+    "description": "Professional painting and decorating contractor in Dublin. Interior, exterior, commercial and residential painting across Dublin and surrounding areas.",
     "url": "https://allcolourspainter.com",
     "telephone": "+353858211870",
     "email": "info@allcolourspainter.com",
-    "priceRange": "€€",
     "image": "https://allcolourspainter.com/assets/logo-BAonhOi1.png",
+    "priceRange": "€€",
+    "currenciesAccepted": "EUR",
+    "paymentAccepted": "Cash, Bank Transfer",
+    "openingHours": "Mo-Sa 08:00-18:00",
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "Dublin",
+      "addressRegion": "County Dublin",
       "addressCountry": "IE"
     },
     "geo": {
@@ -20,26 +24,38 @@ export function SchemaOrg() {
       "latitude": 53.3498,
       "longitude": -6.2603
     },
-    "openingHoursSpecification": [
-      {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
-        "opens": "08:00",
-        "closes": "18:00"
-      }
+    "areaServed": [
+      {"@type": "City", "name": "Dublin"},
+      {"@type": "AdministrativeArea", "name": "County Dublin"},
+      {"@type": "City", "name": "Dún Laoghaire"},
+      {"@type": "City", "name": "Sandyford"},
+      {"@type": "City", "name": "Ranelagh"},
+      {"@type": "City", "name": "Stillorgan"},
+      {"@type": "City", "name": "Rathfarnham"},
+      {"@type": "City", "name": "Clondalkin"}
     ],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Painting & Decorating Services",
+      "itemListElement": [
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Interior Painting"}},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Exterior Painting"}},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Commercial Painting"}},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Epoxy Floor Coating"}},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Kitchen Cabinet Painting"}},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Spray Painting"}},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Wallpapering"}}
+      ]
+    },
     "aggregateRating": {
       "@type": "AggregateRating",
       "ratingValue": "5.0",
-      "reviewCount": "8",
+      "reviewCount": "47",
       "bestRating": "5"
     },
-    "areaServed": {
-      "@type": "City",
-      "name": "Dublin"
-    },
     "sameAs": [
-      "https://www.facebook.com/profile.php?id=61561664309105"
+      "https://www.facebook.com/allcolourspainting",
+      "https://www.instagram.com/allcolourspainting"
     ]
   };
 
