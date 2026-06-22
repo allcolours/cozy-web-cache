@@ -1,7 +1,13 @@
 import { Link } from "@tanstack/react-router";
-import { useState, useRef, useEffect, type ReactNode } from "react";
+import { useState, type ReactNode } from "react";
 import logo from "../assets/logo.png";
 import { useSiteSettings } from "../hooks/useSiteSettings";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "./ui/dropdown-menu";
 import { CookieBanner } from "./CookieBanner";
 import { FloatingContact } from "./FloatingContact";
 import { FooterCTA } from "./FooterCTA";
