@@ -52,17 +52,10 @@ function Contact() {
       return;
     }
     try {
-      await supabase.from("leads").insert({
-        name: payload.name,
-        email: payload.email,
-        phone: payload.phone,
-        message: payload.message,
-        source: "contact_form",
-      });
-      const res = await fetch("https://llyaicklknzbemnhiyfp.supabase.co/functions/v1/send-contact-email", {
+      const res = await fetch("/api/public/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
+        body: JSON.stringify({ ...payload, source: "contact_form" }),
       });
       if (!res.ok) {
         setError("Sorry, we couldn't send that. Please try again or call us directly.");
