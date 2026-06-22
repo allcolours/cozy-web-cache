@@ -1,4 +1,4 @@
-import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { AdminShell } from "@/components/admin/AdminShell";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
@@ -8,7 +8,6 @@ export const Route = createFileRoute("/_authenticated/admin/blog")({
 });
 
 function BlogAdmin() {
-  const navigate = useNavigate();
   const { data, isLoading } = useQuery({
     queryKey: ["admin-blog"],
     queryFn: async () => {
@@ -46,7 +45,7 @@ function BlogAdmin() {
               {data.map((p) => (
                 <tr
                   key={p.id}
-                  onClick={() => navigate({ to: "/admin/blog/$postId", params: { postId: p.id } })}
+                  onClick={() => { window.location.href = `/admin/blog/${p.id}`; }}
                   className="cursor-pointer border-b border-border last:border-0 hover:bg-secondary/50"
                 >
                   <td className="px-3 py-3">
@@ -64,7 +63,7 @@ function BlogAdmin() {
                   <td className="px-3 py-3 text-xs text-muted-foreground">{p.updated_at ? new Date(p.updated_at).toLocaleDateString() : "—"}</td>
                   <td className="px-3 py-3 text-right">
                     <button
-                      onClick={(e) => { e.stopPropagation(); navigate({ to: "/admin/blog/$postId", params: { postId: p.id } }); }}
+                      onClick={(e) => { e.stopPropagation(); window.location.href = `/admin/blog/${p.id}`; }}
                       className="text-xs font-bold uppercase tracking-wider text-primary hover:underline"
                     >
                       Edit

@@ -1,4 +1,4 @@
-import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { AdminShell } from "@/components/admin/AdminShell";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
@@ -8,7 +8,6 @@ export const Route = createFileRoute("/_authenticated/admin/case-studies")({
 });
 
 function CaseStudiesAdmin() {
-  const navigate = useNavigate();
   const qc = useQueryClient();
   const { data, isLoading } = useQuery({
     queryKey: ["admin-case-studies"],
@@ -57,7 +56,7 @@ function CaseStudiesAdmin() {
               {data.map((c) => (
                 <tr
                   key={c.id}
-                  onClick={() => navigate({ to: "/admin/case-studies/$studyId", params: { studyId: c.id } })}
+                  onClick={() => { window.location.href = `/admin/case-studies/${c.id}`; }}
                   className="cursor-pointer border-b border-border last:border-0 hover:bg-secondary/50"
                 >
                   <td className="px-3 py-2">
@@ -80,7 +79,7 @@ function CaseStudiesAdmin() {
                   </td>
                   <td className="px-3 py-3 text-right">
                     <button
-                      onClick={(e) => { e.stopPropagation(); navigate({ to: "/admin/case-studies/$studyId", params: { studyId: c.id } }); }}
+                      onClick={(e) => { e.stopPropagation(); window.location.href = `/admin/case-studies/${c.id}`; }}
                       className="text-xs font-bold uppercase tracking-wider text-primary hover:underline"
                     >
                       Edit
