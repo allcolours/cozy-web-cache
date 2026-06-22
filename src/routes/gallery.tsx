@@ -1,7 +1,26 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
 import { SiteLayout } from "../components/SiteLayout";
+import { cn } from "../lib/utils";
 import heroAsset from "../assets/portfolio/hero-house.webp.asset.json";
 import exteriorAsset from "../assets/portfolio/portfolio-exterior-1.jpg.asset.json";
+
+const CATEGORIES = [
+  { value: "all", label: "All" },
+  { value: "residential", label: "Residential" },
+  { value: "commercial", label: "Commercial" },
+  { value: "industrial", label: "Industrial" },
+  { value: "floors", label: "Floors" },
+  { value: "before-after", label: "Before & After" },
+];
+
+function getCategory(index: number) {
+  if (index < 20) return "residential";
+  if (index < 35) return "commercial";
+  if (index < 50) return "industrial";
+  if (index < 65) return "floors";
+  return "before-after";
+}
 
 // Auto-generated gallery imports
 const galleryModules = import.meta.glob<{ default: { url: string } }>(
