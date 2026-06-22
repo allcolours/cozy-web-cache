@@ -71,7 +71,7 @@ const more = [
   { title: "Exterior Painting", img: exteriorAsset.url, desc: "Render, masonry, brick, soffits and fascias with weatherproof Sandtex and Dulux Weathershield systems." },
   { title: "Kitchen Painting", img: heroAsset.url, desc: "Cabinet refinishing, kitchen spraying and hand-painting with durable kitchen-grade finishes." },
   { title: "Spray Painting", img: heroAsset.url, desc: "Airless and HVLP spray painting for kitchens, doors, joinery and ceilings — factory-grade spray finish on site." },
-  { title: "Floor Painting", img: industrialAsset.url, desc: "Epoxy floor painting, two-pack floor paints and industrial floor coatings for warehouses, garages and commercial spaces." },
+  { title: "Floor Painting", img: "/images/08-storage-facility-epoxy-floor-yellow-doors-low-angle-dublin.jpg", desc: "Epoxy floor painting, two-pack floor paints and industrial floor coatings for warehouses, garages and commercial spaces." },
   { title: "Furniture Painting", img: hospitalityAsset.url, desc: "Bespoke furniture painting and varnish painting for tables, chairs, built-ins and cabinetry." },
   { title: "Railings Painting", img: exteriorAsset.url, desc: "Metal railings, gates and wrought-iron painting with rust-inhibiting primers and long-life top coats." },
   { title: "Wallpapering", img: hospitalityAsset.url, desc: "Lining paper, standard wallcoverings, hand-printed and feature wall installs with mitre-perfect seams." },
