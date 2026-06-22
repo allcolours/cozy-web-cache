@@ -64,7 +64,7 @@ function About() {
             </div>
           </div>
           <div className="relative">
-            <img src={heroAsset.url} alt="Painted country home" width={1200} height={800} className="aspect-[4/5] w-full object-cover" />
+            <img src={heroAsset.url} alt="Painted country home" loading="lazy" width={1200} height={800} className="aspect-[4/5] w-full object-cover" />
             <div className="absolute -bottom-6 -right-6 hidden h-32 w-32 border-[6px] border-primary md:block" />
           </div>
         </div>
