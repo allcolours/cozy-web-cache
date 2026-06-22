@@ -167,7 +167,7 @@ if (process.exitCode) {
 }
 try {
   mkdirSync(CACHE_DIR, { recursive: true });
-  writeFileSync(CACHE_FILE, cacheKey);
+  writeFileSync(CACHE_FILE, JSON.stringify({ key: cacheKey, cachedAt: new Date().toISOString() }));
 } catch {}
 console.log("\nSitemap validation passed");
 
