@@ -246,7 +246,7 @@ function Home() {
             </Link>
           </div>
           <div className="relative">
-            <img src={aboutAsset.url} alt="Close-up of clean architectural painting detail on interior moulding" width={1200} height={800} className="aspect-[4/5] w-full object-cover" />
+            <img src={aboutAsset.url} alt="Close-up of clean architectural painting detail on interior moulding" loading="lazy" width={1200} height={800} className="aspect-[4/5] w-full object-cover" />
             <div className="absolute -bottom-6 -left-6 hidden h-32 w-32 border-[6px] border-accent md:block" />
           </div>
         </div>
