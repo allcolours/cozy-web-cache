@@ -38,8 +38,8 @@ export const Route = createFileRoute("/services_/$service")({
         { property: "og:description", content: description },
         { property: "og:url", content: url },
         { property: "og:type", content: "website" },
-        { property: "og:image", content: `https://allcolourspainter.com${heroAsset.url}` },
-        { property: "twitter:image", content: `https://allcolourspainter.com${heroAsset.url}` },
+        { property: "og:image", content: `https://allcolourspainter.com${serviceHeroImage(service).src}` },
+        { property: "twitter:image", content: `https://allcolourspainter.com${serviceHeroImage(service).src}` },
       ],
       links: [{ rel: "canonical", href: url }],
       scripts: [
