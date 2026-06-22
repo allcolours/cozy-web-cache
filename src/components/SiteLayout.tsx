@@ -69,6 +69,16 @@ export function SiteLayout({ children }: { children: ReactNode }) {
   const area = settings.area || COMPANY.area;
   const hours = settings.hours || COMPANY.hours;
 
+  useEffect(() => {
+    function handleClick(e: MouseEvent) {
+      if (moreRef.current && !moreRef.current.contains(e.target as Node)) {
+        setMoreOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClick);
+    return () => document.removeEventListener("mousedown", handleClick);
+  }, []);
+
   return (
     <div className="flex min-h-screen flex-col bg-background text-foreground pb-16 md:pb-0">
       {/* Top contact bar */}
