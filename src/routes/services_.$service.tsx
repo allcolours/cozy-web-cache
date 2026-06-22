@@ -6,6 +6,19 @@ import { SERVICES } from "../data/services";
 import { TESTIMONIALS } from "../data/testimonials";
 import heroAsset from "../assets/portfolio/hero-house.webp.asset.json";
 
+function serviceHeroImage(service?: { slug: string; name: string }) {
+  if (service?.slug === "new-build-painting") {
+    return {
+      src: "/images/10-new-build-exterior-white-render-anthracite-windows-dublin.jpg",
+      alt: "New build exterior painting white render anthracite windows Dublin",
+    };
+  }
+  return {
+    src: heroAsset.url,
+    alt: `${service?.name ?? "Painting service"} in Dublin — All Colours Painting`,
+  };
+}
+
 export const Route = createFileRoute("/services_/$service")({
   loader: ({ params }) => {
     const service = SERVICES.find((s) => s.slug === params.service);
