@@ -25,15 +25,10 @@ const DESKTOP_NAV = [
   { to: "/", label: "Home" },
   { to: "/about", label: "About" },
   { to: "/services", label: "Services" },
-  { to: "/painter-dublin", label: "Painter Dublin" },
-  { to: "/commercial-painting-dublin", label: "Commercial" },
-  { to: "/estimate", label: "Get Estimate" },
-  { to: "/case-studies", label: "Case Studies" },
-  { to: "/projects", label: "Projects" },
   { to: "/gallery", label: "Gallery" },
+  { to: "/case-studies", label: "Case Studies" },
   { to: "/blog", label: "Blog" },
   { to: "/faq", label: "FAQ" },
-  { to: "/contact", label: "Contact" },
 ] as const;
 
 const MOBILE_NAV = [
