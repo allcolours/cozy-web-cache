@@ -1,7 +1,13 @@
 import { Link } from "@tanstack/react-router";
-import { useState, useRef, useEffect, type ReactNode } from "react";
+import { useState, type ReactNode } from "react";
 import logo from "../assets/logo.png";
 import { useSiteSettings } from "../hooks/useSiteSettings";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "./ui/dropdown-menu";
 import { CookieBanner } from "./CookieBanner";
 import { FloatingContact } from "./FloatingContact";
 import { FooterCTA } from "./FooterCTA";
@@ -61,23 +67,11 @@ export const COMPANY = {
 
 export function SiteLayout({ children }: { children: ReactNode }) {
   const [open, setOpen] = useState(false);
-  const [moreOpen, setMoreOpen] = useState(false);
-  const moreRef = useRef<HTMLDivElement>(null);
   const settings = useSiteSettings();
   const phone = settings.phone || COMPANY.phone;
   const email = settings.email || COMPANY.email;
   const area = settings.area || COMPANY.area;
   const hours = settings.hours || COMPANY.hours;
-
-  useEffect(() => {
-    function handleClick(e: MouseEvent) {
-      if (moreRef.current && !moreRef.current.contains(e.target as Node)) {
-        setMoreOpen(false);
-      }
-    }
-    document.addEventListener("click", handleClick);
-    return () => document.removeEventListener("click", handleClick);
-  }, []);
 
   return (
     <div className="flex min-h-screen flex-col bg-background text-foreground pb-16 md:pb-0">
@@ -120,28 +114,25 @@ export function SiteLayout({ children }: { children: ReactNode }) {
                 {n.label}
               </Link>
             ))}
-            <div ref={moreRef} className="relative">
-              <button
-                onClick={(e) => { e.stopPropagation(); setMoreOpen((v) => !v); }}
-                className="flex items-center gap-1 whitespace-nowrap font-display text-[11px] font-semibold uppercase tracking-wider text-[oklch(0.3_0_0)] transition-colors hover:text-primary xl:text-[12px]"
-              >
-                More <span className={`transition-transform ${moreOpen ? "rotate-180" : ""}`}>▾</span>
-              </button>
-              {moreOpen && (
-                <div className="absolute left-0 top-full z-50 mt-2 min-w-[180px] rounded-md border border-border bg-background py-1 shadow-lg">
-                  {MORE_NAV.map((n) => (
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <button className="flex items-center gap-1 whitespace-nowrap font-display text-[11px] font-semibold uppercase tracking-wider text-[oklch(0.3_0_0)] transition-colors hover:text-primary xl:text-[12px] [&[data-state=open]>span]:rotate-180">
+                  More <span className="transition-transform">▾</span>
+                </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="start" className="min-w-[180px] p-1">
+                {MORE_NAV.map((n) => (
+                  <DropdownMenuItem key={n.to} asChild>
                     <Link
-                      key={n.to}
                       to={n.to}
-                      onClick={() => setMoreOpen(false)}
-                      className="block px-4 py-2 font-display text-[11px] font-semibold uppercase tracking-wider text-[oklch(0.3_0_0)] hover:bg-secondary hover:text-primary"
+                      className="block cursor-pointer px-4 py-2 font-display text-[11px] font-semibold uppercase tracking-wider text-[oklch(0.3_0_0)] hover:bg-secondary hover:text-primary focus:bg-secondary focus:text-primary"
                     >
                       {n.label}
                     </Link>
-                  ))}
-                </div>
-              )}
-            </div>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
             <Link
               to="/contact"
               className="ml-2 inline-flex items-center whitespace-nowrap rounded-sm bg-primary px-5 py-2.5 font-display text-xs font-bold uppercase tracking-wider text-primary-foreground transition-colors hover:bg-[oklch(0.62_0.17_158)]"
