@@ -1,7 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { SiteLayout } from "../components/SiteLayout";
 import { cn } from "../lib/utils";
+import { supabase } from "@/integrations/supabase/client";
+import { resolveGalleryUrl } from "@/lib/galleryUrl";
 import heroAsset from "../assets/portfolio/hero-house.webp.asset.json";
 import exteriorAsset from "../assets/portfolio/portfolio-exterior-1.jpg.asset.json";
 
@@ -24,57 +27,14 @@ const CATEGORY_LABEL: Record<CategoryValue, string> = {
   bespoke: "Bespoke",
 };
 
-// Explicit overrides for work-001 … work-020
-const META: Record<string, { category: CategoryValue; title: string; location: string }> = {
-  "work-001": { category: "interior", title: "Living room repaint", location: "Dublin 6" },
-  "work-002": { category: "interior", title: "Bedroom & feature wall", location: "Dublin 4" },
-  "work-003": { category: "interior", title: "Kitchen repaint", location: "Ranelagh" },
-  "work-004": { category: "interior", title: "Period home interior", location: "Dún Laoghaire" },
-  "work-005": { category: "interior", title: "Open-plan living area", location: "Dublin 6" },
-  "work-006": { category: "interior", title: "Hallway & staircase", location: "Dublin 14" },
-  "work-007": { category: "interior", title: "Apartment full repaint", location: "Dublin 2" },
-  "work-008": { category: "interior", title: "Master bedroom", location: "Blackrock" },
-  "work-009": { category: "commercial", title: "Office fit-out", location: "Dublin 2" },
-  "work-010": { category: "commercial", title: "Retail unit painting", location: "Dublin 1" },
-  "work-011": { category: "commercial", title: "Hospitality fit-out", location: "Dublin 2" },
-  "work-012": { category: "commercial", title: "Warehouse repaint", location: "Stillorgan" },
-  "work-013": { category: "exterior", title: "Full exterior repaint", location: "Stillorgan" },
-  "work-014": { category: "exterior", title: "Victorian terrace exterior", location: "Dublin 8" },
-  "work-015": { category: "exterior", title: "Pebbledash repaint", location: "Rathfarnham" },
-  "work-016": { category: "exterior", title: "Render & masonry", location: "Clondalkin" },
-  "work-017": { category: "epoxy", title: "Garage epoxy floor", location: "Sandyford" },
-  "work-018": { category: "epoxy", title: "Commercial epoxy floor", location: "Dublin 12" },
-  "work-019": { category: "bespoke", title: "Spray-finished joinery", location: "Dublin 6" },
-  "work-020": { category: "bespoke", title: "Kitchen cabinet painting", location: "Dublin 18" },
+type Photo = {
+  id: string;
+  project_id: string;
+  image_url: string;
+  title: string;
+  location: string;
+  category: CategoryValue;
 };
-
-function metaFor(key: string): { category: CategoryValue; title: string; location: string } {
-  if (META[key]) return META[key];
-  const lower = key.toLowerCase();
-  if (/exterior|house|render|masonry|pebbledash/.test(lower)) {
-    return { category: "exterior", title: "Exterior repaint", location: "Dublin" };
-  }
-  return { category: "interior", title: "Recent interior project", location: "Dublin" };
-}
-
-const galleryModules = import.meta.glob<{ default: { url: string } }>(
-  "../assets/gallery/*.webp.asset.json",
-  { eager: true },
-);
-
-const GALLERY_PHOTOS = Object.entries(galleryModules)
-  .sort(([a], [b]) => a.localeCompare(b))
-  .map(([path, mod]) => {
-    const key = path.split("/").pop()!.replace(".webp.asset.json", "");
-    const meta = metaFor(key);
-    return {
-      id: key,
-      image_url: mod.default.url,
-      title: meta.title,
-      location: meta.location,
-      category: meta.category,
-    };
-  });
 
 export const Route = createFileRoute("/gallery")({
   head: () => ({
@@ -93,21 +53,41 @@ export const Route = createFileRoute("/gallery")({
   component: Gallery,
 });
 
+async function fetchGallery(): Promise<Photo[]> {
+  const { data, error } = await supabase
+    .from("gallery_images")
+    .select("id, project_id, image_url, storage_path, alt_text, is_cover, sort_order, gallery_projects!inner(id, title, location, category, sort_order, visible)")
+    .eq("gallery_projects.visible", true)
+    .order("sort_order", { foreignTable: "gallery_projects", ascending: true })
+    .order("is_cover", { ascending: false })
+    .order("sort_order", { ascending: true });
+  if (error) throw error;
+  const resolved = await Promise.all(
+    (data ?? []).map(async (row: any) => ({
+      id: row.id as string,
+      project_id: row.project_id as string,
+      image_url: await resolveGalleryUrl(row.image_url, row.storage_path),
+      title: row.gallery_projects.title as string,
+      location: (row.gallery_projects.location ?? "Dublin") as string,
+      category: row.gallery_projects.category as CategoryValue,
+    })),
+  );
+  return resolved;
+}
+
 function Gallery() {
-  const projects = GALLERY_PHOTOS;
+  const { data: projects, isLoading, isError } = useQuery({ queryKey: ["public-gallery"], queryFn: fetchGallery });
   const [activeFilter, setActiveFilter] = useState<"all" | CategoryValue>("all");
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
-  const visibleSet = new Set(
-    activeFilter === "all"
-      ? projects.map((p) => p.id)
-      : projects.filter((p) => p.category === activeFilter).map((p) => p.id),
+  const all = projects ?? [];
+  const filteredProjects = useMemo(
+    () => (activeFilter === "all" ? all : all.filter((p) => p.category === activeFilter)),
+    [all, activeFilter],
   );
-  const filteredProjects = projects.filter((p) => visibleSet.has(p.id));
-
   const counts = CATEGORIES.map((cat) => ({
     ...cat,
-    count: cat.value === "all" ? projects.length : projects.filter((p) => p.category === cat.value).length,
+    count: cat.value === "all" ? all.length : all.filter((p) => p.category === cat.value).length,
   }));
 
   const closeLightbox = useCallback(() => setLightboxIndex(null), []);
@@ -144,7 +124,6 @@ function Gallery() {
 
   return (
     <SiteLayout>
-      {/* Hero */}
       <section className="relative isolate overflow-hidden">
         <img
           src={exteriorAsset.url}
@@ -166,10 +145,8 @@ function Gallery() {
         </div>
       </section>
 
-      {/* Gallery */}
       <section className="bg-background">
         <div className="mx-auto max-w-7xl px-4 py-20 md:px-8 md:py-28">
-          {/* Filter tabs */}
           <div className="-mx-4 mb-10 flex gap-2 overflow-x-auto px-4 pb-2 scrollbar-hide md:mx-0 md:flex-wrap md:overflow-visible md:px-0">
             {counts.map((cat) => (
               <button
@@ -196,17 +173,31 @@ function Gallery() {
             ))}
           </div>
 
-          {/* Masonry — CSS columns; items keep natural aspect ratio */}
-          <div className="columns-1 gap-4 md:columns-2 lg:columns-3">
-            {projects.map((p) => {
-              const visible = visibleSet.has(p.id);
-              if (!visible) return null;
-              const idx = filteredProjects.findIndex((x) => x.id === p.id);
-              return (
+          {isLoading ? (
+            <div className="columns-1 gap-4 md:columns-2 lg:columns-3">
+              {Array.from({ length: 9 }).map((_, i) => (
+                <div
+                  key={i}
+                  className="mb-4 break-inside-avoid animate-pulse bg-muted"
+                  style={{ height: 200 + ((i * 53) % 220) }}
+                />
+              ))}
+            </div>
+          ) : isError ? (
+            <div className="rounded-md border border-border bg-card p-8 text-center">
+              <p className="text-sm text-muted-foreground">
+                We couldn't load the gallery right now. Call us on{" "}
+                <a href="tel:0858211870" className="font-semibold text-primary">085 821 1870</a> and we'll send photos by WhatsApp.
+              </p>
+            </div>
+          ) : filteredProjects.length === 0 ? (
+            <p className="text-sm text-muted-foreground">No projects in this category yet.</p>
+          ) : (
+            <div className="columns-1 gap-4 md:columns-2 lg:columns-3">
+              {filteredProjects.map((p, idx) => (
                 <figure
                   key={p.id}
-                  className="group relative mb-4 block cursor-pointer overflow-hidden bg-card break-inside-avoid opacity-0 animate-fade-in"
-                  style={{ animationDelay: `${Math.min(idx, 12) * 30}ms`, animationFillMode: "forwards" }}
+                  className="group relative mb-4 block cursor-pointer overflow-hidden bg-card break-inside-avoid"
                   onClick={() => setLightboxIndex(idx)}
                   role="button"
                   tabIndex={0}
@@ -224,107 +215,63 @@ function Gallery() {
                     loading="lazy"
                     className="block h-auto w-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
-                  {/* Hover overlay — slides up from bottom */}
                   <div className="pointer-events-none absolute inset-x-0 bottom-0 translate-y-full bg-gradient-to-t from-black/95 via-black/80 to-transparent p-4 pt-12 transition-transform duration-300 group-hover:translate-y-0">
                     <span className="inline-block bg-primary px-2 py-0.5 font-display text-[10px] font-bold uppercase tracking-wider text-primary-foreground">
                       {CATEGORY_LABEL[p.category]}
                     </span>
-                    <p className="mt-2 font-display text-sm font-bold uppercase tracking-wide text-white">
-                      {p.title}
-                    </p>
+                    <p className="mt-2 font-display text-sm font-bold uppercase tracking-wide text-white">{p.title}</p>
                     <p className="mt-0.5 text-xs text-white/75">{p.location}</p>
                   </div>
                 </figure>
-              );
-            })}
-          </div>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
-      {/* CTA strip */}
       <section className="bg-[var(--color-surface-dark)] text-white">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 px-4 py-16 text-center md:flex-row md:px-8 md:text-left">
           <div>
-            <h2 className="font-display text-2xl font-bold uppercase tracking-tight md:text-3xl">
-              Like what you see?
-            </h2>
+            <h2 className="font-display text-2xl font-bold uppercase tracking-tight md:text-3xl">Like what you see?</h2>
             <p className="mt-2 text-white/75">Every project starts with a free site visit.</p>
           </div>
           <div className="flex flex-wrap justify-center gap-3">
-            <Link
-              to="/contact"
-              className="inline-flex items-center rounded-sm bg-primary px-6 py-3 font-display text-xs font-bold uppercase tracking-wider text-primary-foreground hover:bg-[oklch(0.62_0.17_158)]"
-            >
+            <Link to="/contact" className="inline-flex items-center rounded-sm bg-primary px-6 py-3 font-display text-xs font-bold uppercase tracking-wider text-primary-foreground hover:bg-[oklch(0.62_0.17_158)]">
               Request a Free Quote
             </Link>
-            <a
-              href="tel:0858211870"
-              className="inline-flex items-center rounded-sm border border-white/30 px-6 py-3 font-display text-xs font-bold uppercase tracking-wider text-white hover:border-primary hover:text-primary"
-            >
+            <a href="tel:0858211870" className="inline-flex items-center rounded-sm border border-white/30 px-6 py-3 font-display text-xs font-bold uppercase tracking-wider text-white hover:border-primary hover:text-primary">
               📞 Call 085 821 1870
             </a>
           </div>
         </div>
       </section>
 
-      {/* Lightbox */}
       {activePhoto && (
-        <div
-          className="fixed inset-0 z-[70] flex items-center justify-center bg-black/95 p-4"
-          onClick={closeLightbox}
-          role="dialog"
-          aria-modal="true"
-          aria-label="Image lightbox"
-        >
-          <button
-            type="button"
-            onClick={closeLightbox}
-            className="absolute right-4 top-4 rounded-full bg-white/10 p-2 text-white backdrop-blur-sm transition-colors hover:bg-white/20"
-            aria-label="Close lightbox"
-          >
+        <div className="fixed inset-0 z-[70] flex items-center justify-center bg-black/95 p-4" onClick={closeLightbox} role="dialog" aria-modal="true" aria-label="Image lightbox">
+          <button type="button" onClick={closeLightbox} className="absolute right-4 top-4 rounded-full bg-white/10 p-2 text-white backdrop-blur-sm transition-colors hover:bg-white/20" aria-label="Close lightbox">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg>
           </button>
 
           {filteredProjects.length > 1 && (
             <>
-              <button
-                type="button"
-                onClick={(e) => { e.stopPropagation(); goPrev(); }}
-                className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-white/10 p-3 text-white backdrop-blur-sm transition-colors hover:bg-white/20 md:left-6"
-                aria-label="Previous image"
-              >
+              <button type="button" onClick={(e) => { e.stopPropagation(); goPrev(); }} className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-white/10 p-3 text-white backdrop-blur-sm transition-colors hover:bg-white/20 md:left-6" aria-label="Previous image">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6" /></svg>
               </button>
-              <button
-                type="button"
-                onClick={(e) => { e.stopPropagation(); goNext(); }}
-                className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-white/10 p-3 text-white backdrop-blur-sm transition-colors hover:bg-white/20 md:right-6"
-                aria-label="Next image"
-              >
+              <button type="button" onClick={(e) => { e.stopPropagation(); goNext(); }} className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-white/10 p-3 text-white backdrop-blur-sm transition-colors hover:bg-white/20 md:right-6" aria-label="Next image">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6" /></svg>
               </button>
             </>
           )}
 
           <div className="flex max-h-full max-w-5xl flex-col items-center" onClick={(e) => e.stopPropagation()}>
-            <img
-              src={activePhoto.image_url}
-              alt={`${activePhoto.title} — ${activePhoto.location} — All Colours Painting Dublin`}
-              className="max-h-[75vh] max-w-full rounded-sm object-contain shadow-2xl"
-            />
+            <img src={activePhoto.image_url} alt={`${activePhoto.title} — ${activePhoto.location} — All Colours Painting Dublin`} className="max-h-[75vh] max-w-full rounded-sm object-contain shadow-2xl" />
             <div className="mt-4 text-center">
               <span className="inline-block bg-primary px-2 py-0.5 font-display text-[10px] font-bold uppercase tracking-wider text-primary-foreground">
                 {CATEGORY_LABEL[activePhoto.category]}
               </span>
-              <p className="mt-2 font-display text-lg font-bold uppercase tracking-wide text-white">
-                {activePhoto.title}
-              </p>
+              <p className="mt-2 font-display text-lg font-bold uppercase tracking-wide text-white">{activePhoto.title}</p>
               <p className="mt-0.5 text-sm text-white/70">{activePhoto.location}</p>
-              <Link
-                to="/contact"
-                onClick={closeLightbox}
-                className="mt-5 inline-flex items-center rounded-sm bg-[#16a34a] px-6 py-3 font-display text-xs font-bold uppercase tracking-wider text-white hover:bg-[#15803d]"
-              >
+              <Link to="/contact" onClick={closeLightbox} className="mt-5 inline-flex items-center rounded-sm bg-[#16a34a] px-6 py-3 font-display text-xs font-bold uppercase tracking-wider text-white hover:bg-[#15803d]">
                 Get a similar quote →
               </Link>
             </div>
