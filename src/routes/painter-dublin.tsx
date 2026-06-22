@@ -228,7 +228,7 @@ function PainterDublinPage() {
           <hr className="section-rule" />
           <div className="mt-10 grid gap-6 md:grid-cols-3">
             {reviews.map((t) => (
-              <TestimonialCard key={t.name} testimonial={t} />
+              <TestimonialCard key={t.name} t={t} />
             ))}
           </div>
         </div>
