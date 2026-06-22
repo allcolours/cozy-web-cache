@@ -78,17 +78,17 @@ export const Route = createFileRoute("/services_/$service")({
 function ServicePage() {
   const service = Route.useLoaderData();
 
+  const heroImage =
+    service.slug === "new-build-painting"
+      ? { src: "/images/10-new-build-exterior-white-render-anthracite-windows-dublin.jpg", alt: "New build exterior painting with white render and anthracite windows, Dublin" }
+      : { src: heroAsset.url, alt: `${service.name} in Dublin — All Colours Painting` };
+
   return (
     <SiteLayout>
       {/* Hero */}
-      <section
-        className="relative isolate overflow-hidden bg-[var(--color-surface-dark)] text-white"
-        style={{
-          backgroundImage: `linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.75)), url(${heroAsset.url})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      >
+      <section className="relative isolate overflow-hidden bg-[var(--color-surface-dark)] text-white">
+        <img src={heroImage.src} alt={heroImage.alt} fetchPriority="high" decoding="async" width={1920} height={900} className="absolute inset-0 -z-10 h-full w-full object-cover" />
+        <div className="absolute inset-0 -z-10 bg-black/70" />
         <div className="mx-auto max-w-7xl px-4 py-20 md:px-8 md:py-28">
           <p className="font-display text-xs font-bold uppercase tracking-[0.25em] text-primary">
             Dublin · Fully insured
