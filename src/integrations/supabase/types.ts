@@ -184,28 +184,75 @@ export type Database = {
       }
       gallery_images: {
         Row: {
+          alt_text: string | null
           created_at: string
           id: string
           image_url: string
+          is_cover: boolean
+          project_id: string | null
           sort_order: number
-          tag: string | null
-          title: string
+          storage_path: string | null
         }
         Insert: {
+          alt_text?: string | null
           created_at?: string
           id?: string
           image_url: string
+          is_cover?: boolean
+          project_id?: string | null
           sort_order?: number
-          tag?: string | null
-          title: string
+          storage_path?: string | null
         }
         Update: {
+          alt_text?: string | null
           created_at?: string
           id?: string
           image_url?: string
+          is_cover?: boolean
+          project_id?: string | null
           sort_order?: number
-          tag?: string | null
+          storage_path?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "gallery_images_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "gallery_projects"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      gallery_projects: {
+        Row: {
+          category: string
+          created_at: string
+          description: string | null
+          id: string
+          location: string | null
+          sort_order: number
+          title: string
+          visible: boolean
+        }
+        Insert: {
+          category: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          location?: string | null
+          sort_order?: number
+          title: string
+          visible?: boolean
+        }
+        Update: {
+          category?: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          location?: string | null
+          sort_order?: number
           title?: string
+          visible?: boolean
         }
         Relationships: []
       }

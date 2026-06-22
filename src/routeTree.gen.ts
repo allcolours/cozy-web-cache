@@ -42,6 +42,7 @@ import { Route as PaintersAreaRouteImport } from './routes/painters.$area'
 import { Route as EmailUnsubscribeRouteImport } from './routes/email/unsubscribe'
 import { Route as CaseStudiesSlugRouteImport } from './routes/case-studies_.$slug'
 import { Route as BlogSlugRouteImport } from './routes/blog_.$slug'
+import { Route as AdminLoginRouteImport } from './routes/admin.login'
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated/admin.index'
 import { Route as LovableEmailSuppressionRouteImport } from './routes/lovable/email/suppression'
@@ -57,6 +58,8 @@ import { Route as LovableEmailTransactionalPreviewRouteImport } from './routes/l
 import { Route as LovableEmailQueueProcessRouteImport } from './routes/lovable/email/queue/process'
 import { Route as LovableEmailAuthWebhookRouteImport } from './routes/lovable/email/auth/webhook'
 import { Route as LovableEmailAuthPreviewRouteImport } from './routes/lovable/email/auth/preview'
+import { Route as AuthenticatedAdminGalleryNewRouteImport } from './routes/_authenticated/admin.gallery.new'
+import { Route as AuthenticatedAdminGalleryProjectIdRouteImport } from './routes/_authenticated/admin.gallery.$projectId'
 
 const UnsubscribeRoute = UnsubscribeRouteImport.update({
   id: '/unsubscribe',
@@ -223,6 +226,11 @@ const BlogSlugRoute = BlogSlugRouteImport.update({
   path: '/blog/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminLoginRoute = AdminLoginRouteImport.update({
+  id: '/admin/login',
+  path: '/admin/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
   id: '/admin',
   path: '/admin',
@@ -305,6 +313,18 @@ const LovableEmailAuthPreviewRoute = LovableEmailAuthPreviewRouteImport.update({
   path: '/lovable/email/auth/preview',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedAdminGalleryNewRoute =
+  AuthenticatedAdminGalleryNewRouteImport.update({
+    id: '/new',
+    path: '/new',
+    getParentRoute: () => AuthenticatedAdminGalleryRoute,
+  } as any)
+const AuthenticatedAdminGalleryProjectIdRoute =
+  AuthenticatedAdminGalleryProjectIdRouteImport.update({
+    id: '/$projectId',
+    path: '/$projectId',
+    getParentRoute: () => AuthenticatedAdminGalleryRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -334,6 +354,7 @@ export interface FileRoutesByFullPath {
   '/terms': typeof TermsRoute
   '/unsubscribe': typeof UnsubscribeRoute
   '/admin': typeof AuthenticatedAdminRouteWithChildren
+  '/admin/login': typeof AdminLoginRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/case-studies/$slug': typeof CaseStudiesSlugRoute
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
@@ -342,13 +363,15 @@ export interface FileRoutesByFullPath {
   '/painters/': typeof PaintersIndexRoute
   '/admin/analytics': typeof AuthenticatedAdminAnalyticsRoute
   '/admin/content': typeof AuthenticatedAdminContentRoute
-  '/admin/gallery': typeof AuthenticatedAdminGalleryRoute
+  '/admin/gallery': typeof AuthenticatedAdminGalleryRouteWithChildren
   '/admin/inquiries': typeof AuthenticatedAdminInquiriesRoute
   '/api/public/contact': typeof ApiPublicContactRoute
   '/api/public/estimate': typeof ApiPublicEstimateRoute
   '/api/public/sitemap.xml': typeof ApiPublicSitemapDotxmlRoute
   '/lovable/email/suppression': typeof LovableEmailSuppressionRoute
   '/admin/': typeof AuthenticatedAdminIndexRoute
+  '/admin/gallery/$projectId': typeof AuthenticatedAdminGalleryProjectIdRoute
+  '/admin/gallery/new': typeof AuthenticatedAdminGalleryNewRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
   '/lovable/email/auth/webhook': typeof LovableEmailAuthWebhookRoute
   '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
@@ -382,6 +405,7 @@ export interface FileRoutesByTo {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/unsubscribe': typeof UnsubscribeRoute
+  '/admin/login': typeof AdminLoginRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/case-studies/$slug': typeof CaseStudiesSlugRoute
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
@@ -390,13 +414,15 @@ export interface FileRoutesByTo {
   '/painters': typeof PaintersIndexRoute
   '/admin/analytics': typeof AuthenticatedAdminAnalyticsRoute
   '/admin/content': typeof AuthenticatedAdminContentRoute
-  '/admin/gallery': typeof AuthenticatedAdminGalleryRoute
+  '/admin/gallery': typeof AuthenticatedAdminGalleryRouteWithChildren
   '/admin/inquiries': typeof AuthenticatedAdminInquiriesRoute
   '/api/public/contact': typeof ApiPublicContactRoute
   '/api/public/estimate': typeof ApiPublicEstimateRoute
   '/api/public/sitemap.xml': typeof ApiPublicSitemapDotxmlRoute
   '/lovable/email/suppression': typeof LovableEmailSuppressionRoute
   '/admin': typeof AuthenticatedAdminIndexRoute
+  '/admin/gallery/$projectId': typeof AuthenticatedAdminGalleryProjectIdRoute
+  '/admin/gallery/new': typeof AuthenticatedAdminGalleryNewRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
   '/lovable/email/auth/webhook': typeof LovableEmailAuthWebhookRoute
   '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
@@ -433,6 +459,7 @@ export interface FileRoutesById {
   '/terms': typeof TermsRoute
   '/unsubscribe': typeof UnsubscribeRoute
   '/_authenticated/admin': typeof AuthenticatedAdminRouteWithChildren
+  '/admin/login': typeof AdminLoginRoute
   '/blog_/$slug': typeof BlogSlugRoute
   '/case-studies_/$slug': typeof CaseStudiesSlugRoute
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
@@ -441,13 +468,15 @@ export interface FileRoutesById {
   '/painters/': typeof PaintersIndexRoute
   '/_authenticated/admin/analytics': typeof AuthenticatedAdminAnalyticsRoute
   '/_authenticated/admin/content': typeof AuthenticatedAdminContentRoute
-  '/_authenticated/admin/gallery': typeof AuthenticatedAdminGalleryRoute
+  '/_authenticated/admin/gallery': typeof AuthenticatedAdminGalleryRouteWithChildren
   '/_authenticated/admin/inquiries': typeof AuthenticatedAdminInquiriesRoute
   '/api/public/contact': typeof ApiPublicContactRoute
   '/api/public/estimate': typeof ApiPublicEstimateRoute
   '/api/public/sitemap.xml': typeof ApiPublicSitemapDotxmlRoute
   '/lovable/email/suppression': typeof LovableEmailSuppressionRoute
   '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
+  '/_authenticated/admin/gallery/$projectId': typeof AuthenticatedAdminGalleryProjectIdRoute
+  '/_authenticated/admin/gallery/new': typeof AuthenticatedAdminGalleryNewRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
   '/lovable/email/auth/webhook': typeof LovableEmailAuthWebhookRoute
   '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
@@ -484,6 +513,7 @@ export interface FileRouteTypes {
     | '/terms'
     | '/unsubscribe'
     | '/admin'
+    | '/admin/login'
     | '/blog/$slug'
     | '/case-studies/$slug'
     | '/email/unsubscribe'
@@ -499,6 +529,8 @@ export interface FileRouteTypes {
     | '/api/public/sitemap.xml'
     | '/lovable/email/suppression'
     | '/admin/'
+    | '/admin/gallery/$projectId'
+    | '/admin/gallery/new'
     | '/lovable/email/auth/preview'
     | '/lovable/email/auth/webhook'
     | '/lovable/email/queue/process'
@@ -532,6 +564,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/terms'
     | '/unsubscribe'
+    | '/admin/login'
     | '/blog/$slug'
     | '/case-studies/$slug'
     | '/email/unsubscribe'
@@ -547,6 +580,8 @@ export interface FileRouteTypes {
     | '/api/public/sitemap.xml'
     | '/lovable/email/suppression'
     | '/admin'
+    | '/admin/gallery/$projectId'
+    | '/admin/gallery/new'
     | '/lovable/email/auth/preview'
     | '/lovable/email/auth/webhook'
     | '/lovable/email/queue/process'
@@ -582,6 +617,7 @@ export interface FileRouteTypes {
     | '/terms'
     | '/unsubscribe'
     | '/_authenticated/admin'
+    | '/admin/login'
     | '/blog_/$slug'
     | '/case-studies_/$slug'
     | '/email/unsubscribe'
@@ -597,6 +633,8 @@ export interface FileRouteTypes {
     | '/api/public/sitemap.xml'
     | '/lovable/email/suppression'
     | '/_authenticated/admin/'
+    | '/_authenticated/admin/gallery/$projectId'
+    | '/_authenticated/admin/gallery/new'
     | '/lovable/email/auth/preview'
     | '/lovable/email/auth/webhook'
     | '/lovable/email/queue/process'
@@ -632,6 +670,7 @@ export interface RootRouteChildren {
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TermsRoute: typeof TermsRoute
   UnsubscribeRoute: typeof UnsubscribeRoute
+  AdminLoginRoute: typeof AdminLoginRoute
   BlogSlugRoute: typeof BlogSlugRoute
   CaseStudiesSlugRoute: typeof CaseStudiesSlugRoute
   EmailUnsubscribeRoute: typeof EmailUnsubscribeRoute
@@ -882,6 +921,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/login': {
+      id: '/admin/login'
+      path: '/admin/login'
+      fullPath: '/admin/login'
+      preLoaderRoute: typeof AdminLoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_authenticated/admin': {
       id: '/_authenticated/admin'
       path: '/admin'
@@ -987,13 +1033,44 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LovableEmailAuthPreviewRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/admin/gallery/new': {
+      id: '/_authenticated/admin/gallery/new'
+      path: '/new'
+      fullPath: '/admin/gallery/new'
+      preLoaderRoute: typeof AuthenticatedAdminGalleryNewRouteImport
+      parentRoute: typeof AuthenticatedAdminGalleryRoute
+    }
+    '/_authenticated/admin/gallery/$projectId': {
+      id: '/_authenticated/admin/gallery/$projectId'
+      path: '/$projectId'
+      fullPath: '/admin/gallery/$projectId'
+      preLoaderRoute: typeof AuthenticatedAdminGalleryProjectIdRouteImport
+      parentRoute: typeof AuthenticatedAdminGalleryRoute
+    }
   }
 }
+
+interface AuthenticatedAdminGalleryRouteChildren {
+  AuthenticatedAdminGalleryProjectIdRoute: typeof AuthenticatedAdminGalleryProjectIdRoute
+  AuthenticatedAdminGalleryNewRoute: typeof AuthenticatedAdminGalleryNewRoute
+}
+
+const AuthenticatedAdminGalleryRouteChildren: AuthenticatedAdminGalleryRouteChildren =
+  {
+    AuthenticatedAdminGalleryProjectIdRoute:
+      AuthenticatedAdminGalleryProjectIdRoute,
+    AuthenticatedAdminGalleryNewRoute: AuthenticatedAdminGalleryNewRoute,
+  }
+
+const AuthenticatedAdminGalleryRouteWithChildren =
+  AuthenticatedAdminGalleryRoute._addFileChildren(
+    AuthenticatedAdminGalleryRouteChildren,
+  )
 
 interface AuthenticatedAdminRouteChildren {
   AuthenticatedAdminAnalyticsRoute: typeof AuthenticatedAdminAnalyticsRoute
   AuthenticatedAdminContentRoute: typeof AuthenticatedAdminContentRoute
-  AuthenticatedAdminGalleryRoute: typeof AuthenticatedAdminGalleryRoute
+  AuthenticatedAdminGalleryRoute: typeof AuthenticatedAdminGalleryRouteWithChildren
   AuthenticatedAdminInquiriesRoute: typeof AuthenticatedAdminInquiriesRoute
   AuthenticatedAdminIndexRoute: typeof AuthenticatedAdminIndexRoute
 }
@@ -1001,7 +1078,7 @@ interface AuthenticatedAdminRouteChildren {
 const AuthenticatedAdminRouteChildren: AuthenticatedAdminRouteChildren = {
   AuthenticatedAdminAnalyticsRoute: AuthenticatedAdminAnalyticsRoute,
   AuthenticatedAdminContentRoute: AuthenticatedAdminContentRoute,
-  AuthenticatedAdminGalleryRoute: AuthenticatedAdminGalleryRoute,
+  AuthenticatedAdminGalleryRoute: AuthenticatedAdminGalleryRouteWithChildren,
   AuthenticatedAdminInquiriesRoute: AuthenticatedAdminInquiriesRoute,
   AuthenticatedAdminIndexRoute: AuthenticatedAdminIndexRoute,
 }
@@ -1048,6 +1125,7 @@ const rootRouteChildren: RootRouteChildren = {
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TermsRoute: TermsRoute,
   UnsubscribeRoute: UnsubscribeRoute,
+  AdminLoginRoute: AdminLoginRoute,
   BlogSlugRoute: BlogSlugRoute,
   CaseStudiesSlugRoute: CaseStudiesSlugRoute,
   EmailUnsubscribeRoute: EmailUnsubscribeRoute,
