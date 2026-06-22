@@ -21,8 +21,8 @@ export const Route = createFileRoute("/services")({
       { property: "og:description", content: "Full range of painting services in Dublin: interior, exterior, commercial, industrial epoxy floors, kitchen painting, spray finishing and wallpapering. Free estimates." },
       { property: "og:url", content: "https://allcolourspainter.com/services" },
       { property: "og:type", content: "website" },
-      { property: "og:image", content: `https://allcolourspainter.com${commercialAsset.url}` },
-      { name: "twitter:image", content: `https://allcolourspainter.com${commercialAsset.url}` },
+      { property: "og:image", content: `https://allcolourspainter.com${servicesHeroImg}` },
+      { name: "twitter:image", content: `https://allcolourspainter.com${servicesHeroImg}` },
     ],
     links: [{ rel: "canonical", href: "https://allcolourspainter.com/services" }],
     scripts: [
