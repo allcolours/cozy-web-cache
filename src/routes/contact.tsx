@@ -164,16 +164,11 @@ function Contact() {
           <p className="mt-4 max-w-2xl text-sm text-foreground/80">
             We cover all of Dublin city and county — including Ballsbridge, Donnybrook, Rathmines, Ranelagh, Dundrum, Dún Laoghaire and Blackrock — plus parts of Wicklow, Kildare and Meath.
           </p>
-          <div className="mt-8 aspect-[16/9] w-full overflow-hidden border-t-[3px] border-primary bg-card">
-            <iframe
-              title="All Colours Painting service area — Dublin"
-              src="https://www.google.com/maps?q=Dublin,Ireland&z=11&output=embed"
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              className="h-full w-full border-0"
-              allowFullScreen
-            />
-          </div>
+          <MapEmbed
+            title="All Colours Painting service area — Dublin"
+            src="https://www.google.com/maps?q=Dublin,Ireland&z=11&output=embed"
+            className="mt-8 aspect-[16/9] w-full overflow-hidden border-t-[3px] border-primary bg-card"
+          />
         </div>
       </section>
     </SiteLayout>

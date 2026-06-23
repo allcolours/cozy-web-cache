@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { SiteLayout, COMPANY } from "../components/SiteLayout";
+import { MapEmbed } from "../components/MapEmbed";
 import { TestimonialsSection } from "../components/Testimonials";
 import { ProcessSteps } from "../components/ProcessSteps";
 import { FaqAccordion } from "../components/FaqAccordion";
@@ -413,17 +414,12 @@ function Home() {
 
           <div className="mt-12 grid gap-10 md:grid-cols-5 md:gap-12">
             <div className="md:col-span-3">
-              <div className="relative w-full overflow-hidden border border-border bg-secondary" style={{ aspectRatio: "920 / 680" }}>
-                <iframe
-                  title="Map of County Dublin — All Colours Painting service area"
-                  src="https://www.google.com/maps?q=County+Dublin,+Ireland&z=10&output=embed"
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  className="absolute inset-0 h-full w-full"
-                  style={{ border: 0 }}
-                  allowFullScreen
-                />
-              </div>
+              <MapEmbed
+                title="Map of County Dublin — All Colours Painting service area"
+                src="https://www.google.com/maps?q=County+Dublin,+Ireland&z=10&output=embed"
+                className="relative w-full overflow-hidden border border-border bg-secondary"
+                style={{ aspectRatio: "920 / 680" }}
+              />
               <p className="mt-3 text-xs uppercase tracking-[0.18em] text-muted-foreground">
                 We cover all of County Dublin
               </p>
