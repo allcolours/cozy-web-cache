@@ -52,10 +52,7 @@ const GscCoverageReport = ({
   return (
     <Html lang="en" dir="ltr">
       <Head />
-      <Preview>
-        Weekly Coverage: {totals.indexed}/{totals.submitted} indexed ·
-        {totals.errors} errors · {totals.warnings} warnings
-      </Preview>
+      <Preview>{`Weekly Coverage: ${totals.indexed}/${totals.submitted} indexed · ${totals.errors} errors · ${totals.warnings} warnings`}</Preview>
       <Body style={main}>
         <Container style={container}>
           <Section style={{ ...accent, backgroundColor: accentColor }} />
