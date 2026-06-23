@@ -12,6 +12,12 @@ export const Route = createFileRoute("/terms")({
       { property: "og:type", content: "website" },
     ],
     links: [{ rel: "canonical", href: "https://allcolourspainter.com/terms" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://allcolourspainter.com/"},{"@type":"ListItem","position":2,"name":"Terms of Service","item":"https://allcolourspainter.com/terms"}]}),
+      },
+    ],
   }),
   component: TermsPage,
 });

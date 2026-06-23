@@ -21,6 +21,12 @@ export const Route = createFileRoute("/estimate")({
       { property: "og:type", content: "website" },
     ],
     links: [{ rel: "canonical", href: "https://allcolourspainter.com/estimate" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://allcolourspainter.com/"},{"@type":"ListItem","position":2,"name":"Free Painting Estimate","item":"https://allcolourspainter.com/estimate"}]}),
+      },
+    ],
   }),
   component: EstimatePage,
 });
