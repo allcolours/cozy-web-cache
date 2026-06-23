@@ -429,20 +429,27 @@ function Home() {
               </p>
             </div>
 
-            <ul className="grid grid-cols-2 gap-x-4 gap-y-3 self-start text-sm text-foreground md:col-span-2">
-              {[
-                "Painter Ballsbridge","Painter Donnybrook","Painter Stillorgan","Painter Dún Laoghaire",
-                "Painter Rathfarnham","Painter Sandyford","Painter Rathmines","Painter Milltown",
-                "Painter Dundrum","Painter Roebuck","Painter Goatstown","Painter Ballinteer",
-                "Painter Leopardstown","Painter Harold's Cross","Painter Cabinteely","Painter Foxrock",
-                "Painter Glenageary","Painter Dalkey","Painter Monkstown","Painter Sandymount",
-                "Painter Mount Merrion","Painter Blackrock","Painter Ranelagh",
-              ].map((a) => (
-                <li key={a} className="flex items-center gap-2 border-l-2 border-primary/70 pl-3">
-                  <span className="font-medium text-[oklch(0.2_0_0)]">{a}</span>
-                </li>
-              ))}
-            </ul>
+            <div className="self-start md:col-span-2">
+              <ul className="grid grid-cols-2 gap-x-4 gap-y-3 text-sm text-foreground">
+                {[
+                  { name: "Ballsbridge", to: "/painter-ballsbridge" },
+                  { name: "Ranelagh", to: "/painter-ranelagh" },
+                  { name: "Rathmines", to: "/painter-rathmines" },
+                  { name: "Blackrock", to: "/painter-blackrock" },
+                  { name: "Dún Laoghaire", to: "/painter-dun-laoghaire" },
+                  { name: "Dalkey", to: "/painter-dalkey" },
+                  { name: "Foxrock", to: "/painter-foxrock" },
+                  { name: "Dundrum", to: "/painter-dundrum" },
+                ].map((a) => (
+                  <li key={a.to} className="flex items-center gap-2 border-l-2 border-primary/70 pl-3">
+                    <Link to={a.to} className="font-medium text-[oklch(0.2_0_0)] hover:text-primary">{a.name}</Link>
+                  </li>
+                ))}
+              </ul>
+              <Link to="/painters" className="mt-6 inline-flex items-center font-display text-xs font-bold uppercase tracking-wider text-primary hover:text-[oklch(0.2_0_0)]">
+                View all areas →
+              </Link>
+            </div>
           </div>
         </div>
       </section>
