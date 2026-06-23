@@ -36,7 +36,7 @@ const CLIENTS = [
   { title: "Property Management Companies", body: "Block management, common areas, hallways and external repaints across Dublin portfolios." },
   { title: "Facilities Management", body: "Planned and reactive redecoration for offices, schools, healthcare and retail estates." },
   { title: "Landlords & REITs", body: "Turnaround painting between tenancies, full apartment block exteriors and communal areas." },
-  { title: "Main Contractors", body: "Trusted painting subcontractor for Cairn, Bennett, Elliott and Clancy on live Dublin sites." },
+  { title: "Main Contractors", body: "Painting works delivered on Dublin developments — including projects for Cairn Homes, Bennett, Elliott and Clancy." },
 ];
 
 const SERVICES = [
