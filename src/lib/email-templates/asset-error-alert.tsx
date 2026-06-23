@@ -110,7 +110,7 @@ export const template = {
     threshold: 10,
     topBroken: [
       { url: 'https://allcolourspainter.com/images/missing-hero.jpg', count: 8 },
-      { url: 'https://allcolourspainter.com/images/old-logo.png', count: 4 },
+      { url: 'https://allcolourspainter.com/images/old-banner.webp', count: 4 },
     ],
     dashboardUrl: 'https://allcolourspainter.com/admin/asset-errors',
     generatedAt: new Date().toLocaleString('en-IE'),
