@@ -36,6 +36,12 @@ export const Route = createFileRoute("/blog")({
       { name: "twitter:image", content: `https://allcolourspainter.com${heroAsset.url}` },
     ],
     links: [{ rel: "canonical", href: "https://allcolourspainter.com/blog" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://allcolourspainter.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://allcolourspainter.com/blog"}]}),
+      },
+    ],
   }),
   errorComponent: ({ error }) => (
     <SiteLayout><div className="mx-auto max-w-3xl px-4 py-32 text-center"><h1 className="font-display text-3xl font-bold uppercase">Couldn't load blog</h1><p className="mt-4 text-sm text-muted-foreground">{error.message}</p></div></SiteLayout>

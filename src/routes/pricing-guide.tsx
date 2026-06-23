@@ -33,6 +33,10 @@ export const Route = createFileRoute("/pricing-guide")({
             })),
           }),
         },
+        {
+          type: "application/ld+json",
+          children: JSON.stringify({"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://allcolourspainter.com/"},{"@type":"ListItem","position":2,"name":"Pricing Guide","item":"https://allcolourspainter.com/pricing-guide"}]}),
+        },
       ],
     };
   },

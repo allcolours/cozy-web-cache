@@ -83,6 +83,12 @@ export const Route = createFileRoute("/projects")({
       { name: "twitter:image", content: `https://allcolourspainter.com${heroAsset.url}` },
     ],
     links: [{ rel: "canonical", href: "https://allcolourspainter.com/projects" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://allcolourspainter.com/"},{"@type":"ListItem","position":2,"name":"Major Projects","item":"https://allcolourspainter.com/projects"}]}),
+      },
+    ],
   }),
   component: ProjectsPage,
 });
