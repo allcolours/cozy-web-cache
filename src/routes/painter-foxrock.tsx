@@ -18,6 +18,17 @@ export const Route = createFileRoute("/painter-foxrock")({
     scripts: [
       {
         type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Home", item: "https://allcolourspainter.com/" },
+            { "@type": "ListItem", position: 2, name: TITLE.split(" | ")[0], item: URL },
+          ],
+        }),
+      },
+      {
+        type: "application/ld+json",
         children: JSON.stringify({"@context":"https://schema.org","@type":"LocalBusiness","name":"All Colours Painting Contractor Limited","url":"https://allcolourspainter.com/painter-foxrock","telephone":"+353858211870","email":"info@allcolourspainter.com","areaServed":{"@type":"Place","name":"Foxrock, Dublin 18"},"address":{"@type":"PostalAddress","addressLocality":"Foxrock","addressRegion":"Dublin 18","addressCountry":"IE"}}),
       },
     ],

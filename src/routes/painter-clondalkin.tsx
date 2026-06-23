@@ -14,6 +14,19 @@ export const Route = createFileRoute("/painter-clondalkin")({
       { property: "og:description", content: DESC },
       { property: "og:url", content: URL },
     ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Home", item: "https://allcolourspainter.com/" },
+            { "@type": "ListItem", position: 2, name: TITLE.split(" | ")[0], item: URL },
+          ],
+        }),
+      },
+    ],
     links: [{ rel: "canonical", href: URL }],
   }),
   component: () => <LocalAreaPage area="Clondalkin" postcode="Dublin 22" intro="Houses, apartments and commercial units across Clondalkin — reliable crews, clean workmanship and written quotes within 48 hours." />,
