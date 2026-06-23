@@ -99,6 +99,7 @@ import { Route as LovableEmailTransactionalPreviewRouteImport } from './routes/l
 import { Route as LovableEmailQueueProcessRouteImport } from './routes/lovable/email/queue/process'
 import { Route as LovableEmailAuthWebhookRouteImport } from './routes/lovable/email/auth/webhook'
 import { Route as LovableEmailAuthPreviewRouteImport } from './routes/lovable/email/auth/preview'
+import { Route as ApiPublicHooksCheckAssetErrorsRouteImport } from './routes/api/public/hooks/check-asset-errors'
 import { Route as AuthenticatedAdminCaseStudiesNewRouteImport } from './routes/_authenticated/admin.case-studies.new'
 import { Route as AuthenticatedAdminCaseStudiesStudyIdRouteImport } from './routes/_authenticated/admin.case-studies.$studyId'
 import { Route as AuthenticatedAdminBlogNewRouteImport } from './routes/_authenticated/admin.blog.new'
@@ -564,6 +565,12 @@ const LovableEmailAuthPreviewRoute = LovableEmailAuthPreviewRouteImport.update({
   path: '/lovable/email/auth/preview',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicHooksCheckAssetErrorsRoute =
+  ApiPublicHooksCheckAssetErrorsRouteImport.update({
+    id: '/api/public/hooks/check-asset-errors',
+    path: '/api/public/hooks/check-asset-errors',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const AuthenticatedAdminCaseStudiesNewRoute =
   AuthenticatedAdminCaseStudiesNewRouteImport.update({
     id: '/new',
@@ -678,6 +685,7 @@ export interface FileRoutesByFullPath {
   '/admin/blog/new': typeof AuthenticatedAdminBlogNewRoute
   '/admin/case-studies/$studyId': typeof AuthenticatedAdminCaseStudiesStudyIdRoute
   '/admin/case-studies/new': typeof AuthenticatedAdminCaseStudiesNewRoute
+  '/api/public/hooks/check-asset-errors': typeof ApiPublicHooksCheckAssetErrorsRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
   '/lovable/email/auth/webhook': typeof LovableEmailAuthWebhookRoute
   '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
@@ -772,6 +780,7 @@ export interface FileRoutesByTo {
   '/admin/blog/new': typeof AuthenticatedAdminBlogNewRoute
   '/admin/case-studies/$studyId': typeof AuthenticatedAdminCaseStudiesStudyIdRoute
   '/admin/case-studies/new': typeof AuthenticatedAdminCaseStudiesNewRoute
+  '/api/public/hooks/check-asset-errors': typeof ApiPublicHooksCheckAssetErrorsRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
   '/lovable/email/auth/webhook': typeof LovableEmailAuthWebhookRoute
   '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
@@ -869,6 +878,7 @@ export interface FileRoutesById {
   '/_authenticated/admin/blog/new': typeof AuthenticatedAdminBlogNewRoute
   '/_authenticated/admin/case-studies/$studyId': typeof AuthenticatedAdminCaseStudiesStudyIdRoute
   '/_authenticated/admin/case-studies/new': typeof AuthenticatedAdminCaseStudiesNewRoute
+  '/api/public/hooks/check-asset-errors': typeof ApiPublicHooksCheckAssetErrorsRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
   '/lovable/email/auth/webhook': typeof LovableEmailAuthWebhookRoute
   '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
@@ -966,6 +976,7 @@ export interface FileRouteTypes {
     | '/admin/blog/new'
     | '/admin/case-studies/$studyId'
     | '/admin/case-studies/new'
+    | '/api/public/hooks/check-asset-errors'
     | '/lovable/email/auth/preview'
     | '/lovable/email/auth/webhook'
     | '/lovable/email/queue/process'
@@ -1060,6 +1071,7 @@ export interface FileRouteTypes {
     | '/admin/blog/new'
     | '/admin/case-studies/$studyId'
     | '/admin/case-studies/new'
+    | '/api/public/hooks/check-asset-errors'
     | '/lovable/email/auth/preview'
     | '/lovable/email/auth/webhook'
     | '/lovable/email/queue/process'
@@ -1156,6 +1168,7 @@ export interface FileRouteTypes {
     | '/_authenticated/admin/blog/new'
     | '/_authenticated/admin/case-studies/$studyId'
     | '/_authenticated/admin/case-studies/new'
+    | '/api/public/hooks/check-asset-errors'
     | '/lovable/email/auth/preview'
     | '/lovable/email/auth/webhook'
     | '/lovable/email/queue/process'
@@ -1238,6 +1251,7 @@ export interface RootRouteChildren {
   ApiPublicLogAssetErrorRoute: typeof ApiPublicLogAssetErrorRoute
   ApiPublicSitemapDotxmlRoute: typeof ApiPublicSitemapDotxmlRoute
   LovableEmailSuppressionRoute: typeof LovableEmailSuppressionRoute
+  ApiPublicHooksCheckAssetErrorsRoute: typeof ApiPublicHooksCheckAssetErrorsRoute
   LovableEmailAuthPreviewRoute: typeof LovableEmailAuthPreviewRoute
   LovableEmailAuthWebhookRoute: typeof LovableEmailAuthWebhookRoute
   LovableEmailQueueProcessRoute: typeof LovableEmailQueueProcessRoute
@@ -1877,6 +1891,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LovableEmailAuthPreviewRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/hooks/check-asset-errors': {
+      id: '/api/public/hooks/check-asset-errors'
+      path: '/api/public/hooks/check-asset-errors'
+      fullPath: '/api/public/hooks/check-asset-errors'
+      preLoaderRoute: typeof ApiPublicHooksCheckAssetErrorsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_authenticated/admin/case-studies/new': {
       id: '/_authenticated/admin/case-studies/new'
       path: '/new'
@@ -2058,6 +2079,7 @@ const rootRouteChildren: RootRouteChildren = {
   ApiPublicLogAssetErrorRoute: ApiPublicLogAssetErrorRoute,
   ApiPublicSitemapDotxmlRoute: ApiPublicSitemapDotxmlRoute,
   LovableEmailSuppressionRoute: LovableEmailSuppressionRoute,
+  ApiPublicHooksCheckAssetErrorsRoute: ApiPublicHooksCheckAssetErrorsRoute,
   LovableEmailAuthPreviewRoute: LovableEmailAuthPreviewRoute,
   LovableEmailAuthWebhookRoute: LovableEmailAuthWebhookRoute,
   LovableEmailQueueProcessRoute: LovableEmailQueueProcessRoute,

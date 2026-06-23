@@ -14,6 +14,30 @@ export type Database = {
   }
   public: {
     Tables: {
+      asset_error_alerts: {
+        Row: {
+          alert_key: string
+          alert_type: string
+          asset_url: string | null
+          id: string
+          notified_at: string
+        }
+        Insert: {
+          alert_key: string
+          alert_type: string
+          asset_url?: string | null
+          id?: string
+          notified_at?: string
+        }
+        Update: {
+          alert_key?: string
+          alert_type?: string
+          asset_url?: string | null
+          id?: string
+          notified_at?: string
+        }
+        Relationships: []
+      }
       asset_errors: {
         Row: {
           asset_url: string
