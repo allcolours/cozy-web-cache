@@ -3,7 +3,7 @@
 // assets (which have WebP twins) or the deleted logo.png — covers JS/TS
 // imports, CSS url() strings, and MDX/Markdown asset URLs, across src/ and
 // public/.
-import { readdirSync, readFileSync, statSync } from "node:fs";
+import { appendFileSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { join, extname } from "node:path";
 
 const ROOTS = ["src", "public"];
@@ -71,10 +71,19 @@ function escapeAnnotation(value) {
 
 if (failures.length > 0) {
   console.error("\n✗ Stale asset references detected:\n");
+
+  // Build a concise Markdown summary for the GitHub Actions job summary page.
+  let summary = "## 🚫 Stale asset references\n\n";
+  summary += `Found **${failures.length}** reference(s) to retired assets:\n\n`;
+  summary += "| File | Line | Reason |\n";
+  summary += "|------|------|--------|\n";
+
   for (const f of failures) {
     console.error(`  ${f.file}:${f.line}`);
     console.error(`    → ${f.reason}`);
     console.error(`    ${f.text}`);
+
+    summary += `| \`${f.file}\` | ${f.line} | ${f.reason} |\n`;
 
     // Emit a GitHub Actions annotation when running in CI so the PR
     // diff surface shows clickable markers on each offending file/line.
@@ -84,6 +93,13 @@ if (failures.length > 0) {
       console.error(`::error file=${file},line=${f.line}::${message}`);
     }
   }
+
+  summary += "\nPlease switch to the recommended replacement asset before merging.\n";
+
+  if (process.env.GITHUB_STEP_SUMMARY) {
+    appendFileSync(process.env.GITHUB_STEP_SUMMARY, summary);
+  }
+
   console.error(`\n${failures.length} violation(s). Build aborted.\n`);
   process.exit(1);
 }
