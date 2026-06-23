@@ -5,10 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite dev",
-    "prebuild": "node scripts/validate-sitemap.mjs",
+    "prebuild": "node scripts/validate-sitemap.mjs && node scripts/check-stale-imports.mjs",
     "build": "vite build",
-    "prebuild:dev": "node scripts/validate-sitemap.mjs",
+    "prebuild:dev": "node scripts/validate-sitemap.mjs && node scripts/check-stale-imports.mjs",
     "build:dev": "vite build --mode development",
+    "check:stale-imports": "node scripts/check-stale-imports.mjs",
     "preview": "vite preview",
     "lint": "eslint .",
     "format": "prettier --write .",
