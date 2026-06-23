@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { SiteLayout } from "../components/SiteLayout";
+import { MapEmbed } from "../components/MapEmbed";
 import { useSiteSettings } from "../hooks/useSiteSettings";
 import ctaAsset from "../assets/portfolio/cta-bg.jpg.asset.json";
 
