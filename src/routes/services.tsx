@@ -8,9 +8,10 @@ import heroAsset from "../assets/portfolio/hero-house.webp.asset.json";
 import commercialAsset from "../assets/portfolio/service-commercial.webp.asset.json";
 import hospitalityAsset from "../assets/portfolio/service-hospitality.webp.asset.json";
 import exteriorAsset from "../assets/portfolio/portfolio-exterior-1.webp.asset.json";
+import industrialAsset from "../assets/portfolio/service-industrial.webp.asset.json";
 
-const servicesHeroImg = "/images/13-georgian-door-white-portico-columns-grey-paint-gold-dublin.jpg";
-const epoxyFloorImg = "/images/08-storage-facility-epoxy-floor-yellow-doors-low-angle-dublin.jpg";
+const servicesHeroImg = exteriorAsset.url;
+const epoxyFloorImg = industrialAsset.url;
 
 export const Route = createFileRoute("/services")({
   head: () => ({
@@ -112,7 +113,7 @@ function Services() {
     <SiteLayout>
       {/* Hero band */}
       <section className="relative isolate overflow-hidden">
-        <img src="/images/13-georgian-door-white-portico-columns-grey-paint-gold-dublin.jpg" alt="Georgian door painting grey with gold hardware, Dublin 4" fetchPriority="high" decoding="async" width={1920} height={900} className="absolute inset-0 -z-10 h-full w-full object-cover" />
+        <img src={servicesHeroImg} alt="Exterior painting project completed by All Colours Painting, Dublin" fetchPriority="high" decoding="async" width={1920} height={900} className="absolute inset-0 -z-10 h-full w-full object-cover" />
         <div className="absolute inset-0 -z-10 bg-[oklch(0.2_0_0)]/75" />
         <div className="mx-auto max-w-7xl px-4 py-24 md:px-8 md:py-36">
           <span className="eyebrow text-accent">What we offer</span>
