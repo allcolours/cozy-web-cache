@@ -84,7 +84,11 @@ export const runAssetErrorCheck = createServerFn({ method: "POST" })
       process.env.PUBLIC_SITE_URL || "https://allcolourspainter.com";
     const res = await fetch(`${base}/api/public/hooks/check-asset-errors`, {
       method: "POST",
-      headers: { "Content-Type": "application/json", apikey: anonKey },
+      headers: {
+        "Content-Type": "application/json",
+        apikey: anonKey,
+        "x-triggered-by": data.seedTest ? "admin-test" : "admin-manual",
+      },
     });
     const text = await res.text();
     let body: any = text;
@@ -92,4 +96,39 @@ export const runAssetErrorCheck = createServerFn({ method: "POST" })
     if (!res.ok) throw new Error(`Check failed (${res.status}): ${text}`);
     return { ok: true, seededUrl, result: body };
   });
+
+export const getAssetErrorCheckRuns = createServerFn({ method: "GET" })
+  .middleware([requireSupabaseAuth])
+  .inputValidator((input: { range?: "24h" | "7d" | "30d" | "all" } | undefined) => input ?? {})
+  .handler(async ({ data, context }) => {
+    const isAdmin = await context.supabase
+      .rpc("has_role", { _user_id: context.userId, _role: "admin" });
+    if (!isAdmin.data) throw new Error("Forbidden");
+
+    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+    const range = data.range ?? "7d";
+    const hours: Record<string, number | null> = { "24h": 24, "7d": 24 * 7, "30d": 24 * 30, "all": null };
+    const h = hours[range];
+
+    let q = supabaseAdmin
+      .from("asset_error_check_runs")
+      .select("id, ran_at, total_last_24h, new_urls_count, new_urls, alerts_sent, triggered_by, duration_ms, status, error_message")
+      .order("ran_at", { ascending: false })
+      .limit(500);
+    if (h !== null) {
+      q = q.gte("ran_at", new Date(Date.now() - h * 3600_000).toISOString());
+    }
+    const { data: rows, error } = await q;
+    if (error) throw error;
+
+    const runs = rows ?? [];
+    const summary = {
+      total: runs.length,
+      withAlerts: runs.filter((r: any) => (r.alerts_sent ?? []).length > 0).length,
+      totalNewUrls: runs.reduce((s: number, r: any) => s + (r.new_urls_count ?? 0), 0),
+      lastRunAt: runs[0]?.ran_at ?? null,
+    };
+    return { range, runs, summary };
+  });
+
 

@@ -114,6 +114,7 @@ export const Route = createFileRoute('/api/public/hooks/check-asset-errors')({
   server: {
     handlers: {
       POST: async ({ request }) => {
+        const startedAt = Date.now()
         const anonKey =
           process.env.SUPABASE_PUBLISHABLE_KEY ||
           process.env.SUPABASE_ANON_KEY ||
@@ -220,6 +221,17 @@ export const Route = createFileRoute('/api/public/hooks/check-asset-errors')({
             }
           }
         }
+
+        const triggeredBy = request.headers.get('x-triggered-by') || 'cron'
+        await supabase.from('asset_error_check_runs').insert({
+          total_last_24h: totalLast24h,
+          new_urls_count: newUrls.length,
+          new_urls: newUrls,
+          alerts_sent: alertsSent,
+          triggered_by: triggeredBy,
+          duration_ms: Date.now() - startedAt,
+          status: 'ok',
+        })
 
         return Response.json({
           ok: true,

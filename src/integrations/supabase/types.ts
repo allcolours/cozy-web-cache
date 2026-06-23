@@ -38,6 +38,45 @@ export type Database = {
         }
         Relationships: []
       }
+      asset_error_check_runs: {
+        Row: {
+          alerts_sent: string[]
+          duration_ms: number | null
+          error_message: string | null
+          id: string
+          new_urls: Json
+          new_urls_count: number
+          ran_at: string
+          status: string
+          total_last_24h: number
+          triggered_by: string
+        }
+        Insert: {
+          alerts_sent?: string[]
+          duration_ms?: number | null
+          error_message?: string | null
+          id?: string
+          new_urls?: Json
+          new_urls_count?: number
+          ran_at?: string
+          status?: string
+          total_last_24h?: number
+          triggered_by?: string
+        }
+        Update: {
+          alerts_sent?: string[]
+          duration_ms?: number | null
+          error_message?: string | null
+          id?: string
+          new_urls?: Json
+          new_urls_count?: number
+          ran_at?: string
+          status?: string
+          total_last_24h?: number
+          triggered_by?: string
+        }
+        Relationships: []
+      }
       asset_errors: {
         Row: {
           asset_url: string
