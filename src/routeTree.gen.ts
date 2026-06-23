@@ -93,6 +93,7 @@ import { Route as AuthenticatedAdminContentRouteImport } from './routes/_authent
 import { Route as AuthenticatedAdminCaseStudiesRouteImport } from './routes/_authenticated/admin.case-studies'
 import { Route as AuthenticatedAdminBlogRouteImport } from './routes/_authenticated/admin.blog'
 import { Route as AuthenticatedAdminAssetErrorsRouteImport } from './routes/_authenticated/admin.asset-errors'
+import { Route as AuthenticatedAdminAssetErrorRunsRouteImport } from './routes/_authenticated/admin.asset-error-runs'
 import { Route as AuthenticatedAdminAnalyticsRouteImport } from './routes/_authenticated/admin.analytics'
 import { Route as LovableEmailTransactionalSendRouteImport } from './routes/lovable/email/transactional/send'
 import { Route as LovableEmailTransactionalPreviewRouteImport } from './routes/lovable/email/transactional/preview'
@@ -531,6 +532,12 @@ const AuthenticatedAdminAssetErrorsRoute =
     path: '/asset-errors',
     getParentRoute: () => AuthenticatedAdminRoute,
   } as any)
+const AuthenticatedAdminAssetErrorRunsRoute =
+  AuthenticatedAdminAssetErrorRunsRouteImport.update({
+    id: '/asset-error-runs',
+    path: '/asset-error-runs',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
 const AuthenticatedAdminAnalyticsRoute =
   AuthenticatedAdminAnalyticsRouteImport.update({
     id: '/analytics',
@@ -667,6 +674,7 @@ export interface FileRoutesByFullPath {
   '/services/$service': typeof ServicesServiceRoute
   '/painters/': typeof PaintersIndexRoute
   '/admin/analytics': typeof AuthenticatedAdminAnalyticsRoute
+  '/admin/asset-error-runs': typeof AuthenticatedAdminAssetErrorRunsRoute
   '/admin/asset-errors': typeof AuthenticatedAdminAssetErrorsRoute
   '/admin/blog': typeof AuthenticatedAdminBlogRouteWithChildren
   '/admin/case-studies': typeof AuthenticatedAdminCaseStudiesRouteWithChildren
@@ -762,6 +770,7 @@ export interface FileRoutesByTo {
   '/services/$service': typeof ServicesServiceRoute
   '/painters': typeof PaintersIndexRoute
   '/admin/analytics': typeof AuthenticatedAdminAnalyticsRoute
+  '/admin/asset-error-runs': typeof AuthenticatedAdminAssetErrorRunsRoute
   '/admin/asset-errors': typeof AuthenticatedAdminAssetErrorsRoute
   '/admin/blog': typeof AuthenticatedAdminBlogRouteWithChildren
   '/admin/case-studies': typeof AuthenticatedAdminCaseStudiesRouteWithChildren
@@ -860,6 +869,7 @@ export interface FileRoutesById {
   '/services_/$service': typeof ServicesServiceRoute
   '/painters/': typeof PaintersIndexRoute
   '/_authenticated/admin/analytics': typeof AuthenticatedAdminAnalyticsRoute
+  '/_authenticated/admin/asset-error-runs': typeof AuthenticatedAdminAssetErrorRunsRoute
   '/_authenticated/admin/asset-errors': typeof AuthenticatedAdminAssetErrorsRoute
   '/_authenticated/admin/blog': typeof AuthenticatedAdminBlogRouteWithChildren
   '/_authenticated/admin/case-studies': typeof AuthenticatedAdminCaseStudiesRouteWithChildren
@@ -958,6 +968,7 @@ export interface FileRouteTypes {
     | '/services/$service'
     | '/painters/'
     | '/admin/analytics'
+    | '/admin/asset-error-runs'
     | '/admin/asset-errors'
     | '/admin/blog'
     | '/admin/case-studies'
@@ -1053,6 +1064,7 @@ export interface FileRouteTypes {
     | '/services/$service'
     | '/painters'
     | '/admin/analytics'
+    | '/admin/asset-error-runs'
     | '/admin/asset-errors'
     | '/admin/blog'
     | '/admin/case-studies'
@@ -1150,6 +1162,7 @@ export interface FileRouteTypes {
     | '/services_/$service'
     | '/painters/'
     | '/_authenticated/admin/analytics'
+    | '/_authenticated/admin/asset-error-runs'
     | '/_authenticated/admin/asset-errors'
     | '/_authenticated/admin/blog'
     | '/_authenticated/admin/case-studies'
@@ -1849,6 +1862,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminAssetErrorsRouteImport
       parentRoute: typeof AuthenticatedAdminRoute
     }
+    '/_authenticated/admin/asset-error-runs': {
+      id: '/_authenticated/admin/asset-error-runs'
+      path: '/asset-error-runs'
+      fullPath: '/admin/asset-error-runs'
+      preLoaderRoute: typeof AuthenticatedAdminAssetErrorRunsRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
     '/_authenticated/admin/analytics': {
       id: '/_authenticated/admin/analytics'
       path: '/analytics'
@@ -1965,6 +1985,7 @@ const AuthenticatedAdminCaseStudiesRouteWithChildren =
 
 interface AuthenticatedAdminRouteChildren {
   AuthenticatedAdminAnalyticsRoute: typeof AuthenticatedAdminAnalyticsRoute
+  AuthenticatedAdminAssetErrorRunsRoute: typeof AuthenticatedAdminAssetErrorRunsRoute
   AuthenticatedAdminAssetErrorsRoute: typeof AuthenticatedAdminAssetErrorsRoute
   AuthenticatedAdminBlogRoute: typeof AuthenticatedAdminBlogRouteWithChildren
   AuthenticatedAdminCaseStudiesRoute: typeof AuthenticatedAdminCaseStudiesRouteWithChildren
@@ -1978,6 +1999,7 @@ interface AuthenticatedAdminRouteChildren {
 
 const AuthenticatedAdminRouteChildren: AuthenticatedAdminRouteChildren = {
   AuthenticatedAdminAnalyticsRoute: AuthenticatedAdminAnalyticsRoute,
+  AuthenticatedAdminAssetErrorRunsRoute: AuthenticatedAdminAssetErrorRunsRoute,
   AuthenticatedAdminAssetErrorsRoute: AuthenticatedAdminAssetErrorsRoute,
   AuthenticatedAdminBlogRoute: AuthenticatedAdminBlogRouteWithChildren,
   AuthenticatedAdminCaseStudiesRoute:
