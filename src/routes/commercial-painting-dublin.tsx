@@ -26,7 +26,7 @@ export const Route = createFileRoute("/commercial-painting-dublin")({
 });
 
 const STATS = [
-  { value: "20+", label: "Painters available" },
+  { value: "15–30", label: "Painters mobilised to programme" },
   { value: "24/7", label: "Out-of-hours scheduling" },
   { value: "€6.5m", label: "Public liability insured" },
   { value: "RCT", label: "Compliant subcontractor" },
