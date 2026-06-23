@@ -246,7 +246,7 @@ function EstimatePage() {
                     rel="noopener noreferrer"
                     className="inline-flex items-center justify-center rounded-sm bg-[#25D366] px-5 py-3 font-display text-xs font-bold uppercase tracking-wider text-white transition-colors hover:opacity-90"
                   >
-                    💬 WhatsApp Us
+                    💬 Send photos on WhatsApp
                   </a>
                 </div>
 

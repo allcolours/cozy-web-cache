@@ -303,7 +303,7 @@ function PainterDublinPage() {
               rel="noopener noreferrer"
               className="inline-flex items-center rounded-sm bg-[#25D366] px-7 py-4 font-display text-sm font-bold uppercase tracking-wider text-white hover:opacity-90"
             >
-              💬 WhatsApp
+              💬 Send photos on WhatsApp
             </a>
           </div>
         </div>
