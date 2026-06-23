@@ -65,11 +65,7 @@ export function TestimonialsSection({ limit = 6, title = "What our clients say",
             <span className="eyebrow">{eyebrow}</span>
             <h2 className="section-title mt-3 text-3xl md:text-4xl">{title}</h2>
             <hr className="section-rule" />
-          </div>
-          <div className="inline-flex items-center gap-2 self-start rounded-full border border-border bg-white px-4 py-2 shadow-sm">
-            <Stars n={5} className="text-[#F4B400]" />
-            <span className="font-display text-sm font-bold text-[oklch(0.2_0_0)]">5.0</span>
-            <span className="text-sm text-foreground/70">on Google · 47 reviews</span>
+            <p className="mt-3 text-sm text-foreground/70">Real client feedback — Facebook &amp; word of mouth</p>
           </div>
         </div>
 

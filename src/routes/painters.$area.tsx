@@ -49,11 +49,6 @@ export const Route = createFileRoute("/painters/$area")({
               addressCountry: "IE",
             },
             areaServed: { "@type": "Place", name },
-            aggregateRating: {
-              "@type": "AggregateRating",
-              ratingValue: "5.0",
-              reviewCount: String(TESTIMONIALS.length),
-            },
           }),
         },
       ],

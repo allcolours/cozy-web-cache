@@ -47,12 +47,6 @@ export function SchemaOrg() {
         {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Wallpapering"}}
       ]
     },
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "5.0",
-      "reviewCount": "8",
-      "bestRating": "5"
-    },
     "sameAs": [
       "https://www.facebook.com/profile.php?id=61561664309105"
     ]

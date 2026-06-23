@@ -51,7 +51,7 @@ export const Route = createFileRoute("/")({
           address: { "@type": "PostalAddress", addressLocality: "Dublin", addressRegion: "Leinster", addressCountry: "IE" },
           openingHoursSpecification: [{ "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], opens: "08:00", closes: "18:00" }],
           identifier: { "@type": "PropertyValue", name: "CRO", value: "810243" },
-          aggregateRating: { "@type": "AggregateRating", ratingValue: "5.0", reviewCount: "47" },
+          
         }),
       },
       {
