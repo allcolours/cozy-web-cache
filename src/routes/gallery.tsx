@@ -134,6 +134,8 @@ function Gallery() {
         <img
           src={exteriorAsset.url}
           alt="Gallery of painting & decorating projects completed across Dublin"
+          fetchPriority="high"
+          decoding="async"
           width={1920}
           height={900}
           className="absolute inset-0 -z-10 h-full w-full object-cover"
