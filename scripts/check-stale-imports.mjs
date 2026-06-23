@@ -62,12 +62,27 @@ function walk(dir) {
 
 for (const root of ROOTS) walk(root);
 
+function escapeAnnotation(value) {
+  return String(value)
+    .replace(/%/g, "%25")
+    .replace(/\r/g, "%0D")
+    .replace(/\n/g, "%0A");
+}
+
 if (failures.length > 0) {
   console.error("\n✗ Stale asset references detected:\n");
   for (const f of failures) {
     console.error(`  ${f.file}:${f.line}`);
     console.error(`    → ${f.reason}`);
     console.error(`    ${f.text}`);
+
+    // Emit a GitHub Actions annotation when running in CI so the PR
+    // diff surface shows clickable markers on each offending file/line.
+    if (process.env.GITHUB_ACTIONS === "true") {
+      const message = escapeAnnotation(`${f.reason}: ${f.text}`);
+      const file = escapeAnnotation(f.file);
+      console.error(`::error file=${file},line=${f.line}::${message}`);
+    }
   }
   console.error(`\n${failures.length} violation(s). Build aborted.\n`);
   process.exit(1);
