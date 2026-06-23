@@ -479,5 +479,3 @@ function Home() {
   );
 }
 
-
-const img = "logo.png";
