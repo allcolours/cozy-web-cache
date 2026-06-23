@@ -88,7 +88,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
               {email}
             </a>
           </div>
-          <div className="text-white/60">{hours}</div>
+          <div className="text-white/80">{hours}</div>
         </div>
       </div>
 
@@ -195,7 +195,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
                 {COMPANY.shortName}
               </span>
             </div>
-            <p className="mt-5 max-w-md text-sm leading-relaxed text-white/65">
+            <p className="mt-5 max-w-md text-sm leading-relaxed text-white/80">
               Professional interior, exterior and commercial painting & decorating across {area}.
               Quality finishes, tidy workmanship, fully insured — backed by a 12-month written workmanship guarantee.
             </p>
@@ -205,7 +205,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
           <div>
             <h4 className="font-display text-sm font-bold uppercase tracking-wider text-white">Explore</h4>
             <div className="mt-3 h-[2px] w-10 bg-primary" />
-            <ul className="mt-4 space-y-2 text-sm text-white/65">
+            <ul className="mt-4 space-y-2 text-sm text-white/80">
               {NAV.map((n) => (
                 <li key={n.to}>
                   <Link to={n.to} className="hover:text-primary">{n.label}</Link>
@@ -220,7 +220,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
           <div>
             <h4 className="font-display text-sm font-bold uppercase tracking-wider text-white">Areas We Cover</h4>
             <div className="mt-3 h-[2px] w-10 bg-primary" />
-            <ul className="mt-4 space-y-2 text-sm text-white/65">
+            <ul className="mt-4 space-y-2 text-sm text-white/80">
               <li><Link to="/painter-ballsbridge" className="hover:text-primary">Painter Ballsbridge</Link></li>
               <li><Link to="/painter-ranelagh" className="hover:text-primary">Painter Ranelagh</Link></li>
               <li><Link to="/painter-rathmines" className="hover:text-primary">Painter Rathmines</Link></li>
@@ -243,7 +243,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
           <div>
             <h4 className="font-display text-sm font-bold uppercase tracking-wider text-white">Commercial</h4>
             <div className="mt-3 h-[2px] w-10 bg-primary" />
-            <ul className="mt-4 space-y-2 text-sm text-white/65">
+            <ul className="mt-4 space-y-2 text-sm text-white/80">
               <li><Link to="/commercial-contractors" className="hover:text-primary">Commercial Contractors</Link></li>
               <li><Link to="/commercial-painting-dublin" className="hover:text-primary">Commercial Painting Dublin</Link></li>
               <li><Link to="/case-studies" className="hover:text-primary">Case Studies</Link></li>
@@ -255,7 +255,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
           <div>
             <h4 className="font-display text-sm font-bold uppercase tracking-wider text-white">Contact</h4>
             <div className="mt-3 h-[2px] w-10 bg-primary" />
-            <ul className="mt-4 space-y-2 text-sm text-white/65">
+            <ul className="mt-4 space-y-2 text-sm text-white/80">
               <li><a href={`tel:${phone.replace(/\s/g, "")}`} className="hover:text-primary">{phone}</a></li>
               <li><a href={`mailto:${email}`} className="hover:text-primary">{email}</a></li>
               <li>{area}</li>

@@ -89,6 +89,12 @@ const ENTRIES: SitemapEntry[] = [
   { path: "/painter-templeogue", changefreq: "monthly", priority: "0.7" },
   { path: "/painter-terenure", changefreq: "monthly", priority: "0.7" },
   { path: "/painter-walkinstown", changefreq: "monthly", priority: "0.7" },
+  // Commercial landing pages
+  { path: "/commercial-contractors", changefreq: "monthly", priority: "0.8" },
+  { path: "/commercial-painting-dublin", changefreq: "monthly", priority: "0.8" },
+  // Legal
+  { path: "/privacy", changefreq: "yearly", priority: "0.3" },
+  { path: "/terms", changefreq: "yearly", priority: "0.3" },
 ];
 
 export const Route = createFileRoute("/sitemap.xml")({
