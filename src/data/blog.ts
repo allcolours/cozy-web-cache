@@ -1,7 +1,7 @@
 import heroAsset from "../assets/portfolio/hero-house.webp.asset.json";
 import aboutAsset from "../assets/portfolio/about-architecture.jpg.asset.json";
-import exteriorAsset from "../assets/portfolio/portfolio-exterior-1.jpg.asset.json";
-import commercialAsset from "../assets/portfolio/service-commercial.jpg.asset.json";
+import exteriorAsset from "../assets/portfolio/portfolio-exterior-1.webp.asset.json";
+import commercialAsset from "../assets/portfolio/service-commercial.webp.asset.json";
 
 export interface BlogPost {
   slug: string;
