@@ -114,6 +114,7 @@ export const Route = createFileRoute('/api/public/hooks/check-asset-errors')({
   server: {
     handlers: {
       POST: async ({ request }) => {
+        const startedAt = Date.now()
         const anonKey =
           process.env.SUPABASE_PUBLISHABLE_KEY ||
           process.env.SUPABASE_ANON_KEY ||
