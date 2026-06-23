@@ -6,7 +6,7 @@ import { ProcessSteps } from "../components/ProcessSteps";
 import { FaqAccordion } from "../components/FaqAccordion";
 import { FAQS } from "../data/faqs";
 import { CASE_STUDIES } from "../data/caseStudies";
-import { TESTIMONIALS } from "../data/testimonials";
+
 import heroAsset from "../assets/portfolio/hero-house.webp.asset.json";
 import aboutAsset from "../assets/portfolio/about-architecture.jpg.asset.json";
 import sCommercialAsset from "../assets/portfolio/service-commercial.jpg.asset.json";
