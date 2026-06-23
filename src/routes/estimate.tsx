@@ -241,7 +241,7 @@ function EstimatePage() {
                     📞 Call 085 821 1870
                   </a>
                   <a
-                    href="https://wa.me/353858211870"
+                    href="https://wa.me/353858211870?text=Hi%20All%20Colours%2C%20I%27d%20like%20a%20quote.%20Here%20are%20photos%20of%20the%20job%3A"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center justify-center rounded-sm bg-[#25D366] px-5 py-3 font-display text-xs font-bold uppercase tracking-wider text-white transition-colors hover:opacity-90"

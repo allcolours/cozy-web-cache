@@ -27,7 +27,7 @@ export function MobileBottomBar() {
         <span className="font-display text-sm font-bold">Call Us</span>
       </a>
       <a
-        href="https://wa.me/353858211870"
+        href="https://wa.me/353858211870?text=Hi%20All%20Colours%2C%20I%27d%20like%20a%20quote.%20Here%20are%20photos%20of%20the%20job%3A"
         target="_blank"
         rel="noopener noreferrer"
         className="flex flex-1 items-center justify-center gap-2 bg-[#25D366] text-white transition-colors active:bg-[#128C7E]"

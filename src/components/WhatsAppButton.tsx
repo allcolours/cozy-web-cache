@@ -11,7 +11,7 @@ export function WhatsAppButton() {
 
   return (
     <a
-      href="https://wa.me/353858211870?text=Hi%2C%20I%27d%20like%20a%20free%20quote%20for%20painting%20work%20in%20Dublin."
+      href="https://wa.me/353858211870?text=Hi%20All%20Colours%2C%20I%27d%20like%20a%20quote.%20Here%20are%20photos%20of%20the%20job%3A"
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat on WhatsApp"
