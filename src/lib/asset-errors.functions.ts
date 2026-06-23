@@ -52,3 +52,44 @@ export const clearAssetErrors = createServerFn({ method: "POST" })
     if (error) throw error;
     return { ok: true };
   });
+
+export const runAssetErrorCheck = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
+  .inputValidator((input: { seedTest?: boolean } | undefined) => input ?? {})
+  .handler(async ({ data, context }) => {
+    const isAdmin = await context.supabase
+      .rpc("has_role", { _user_id: context.userId, _role: "admin" });
+    if (!isAdmin.data) throw new Error("Forbidden");
+
+    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+    let seededUrl: string | null = null;
+
+    if (data.seedTest) {
+      seededUrl = `https://allcolourspainter.com/test/manual-check-${Date.now()}.jpg`;
+      const { error: insErr } = await supabaseAdmin.from("asset_errors").insert({
+        asset_url: seededUrl,
+        page_url: "https://allcolourspainter.com/admin/asset-errors",
+        user_agent: "manual-admin-trigger/1.0",
+        status: 404,
+        referrer: null,
+      });
+      if (insErr) throw insErr;
+    }
+
+    const anonKey =
+      process.env.SUPABASE_PUBLISHABLE_KEY ||
+      process.env.SUPABASE_ANON_KEY ||
+      "";
+    const base =
+      process.env.PUBLIC_SITE_URL || "https://allcolourspainter.com";
+    const res = await fetch(`${base}/api/public/hooks/check-asset-errors`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", apikey: anonKey },
+    });
+    const text = await res.text();
+    let body: any = text;
+    try { body = JSON.parse(text); } catch {}
+    if (!res.ok) throw new Error(`Check failed (${res.status}): ${text}`);
+    return { ok: true, seededUrl, result: body };
+  });
+
