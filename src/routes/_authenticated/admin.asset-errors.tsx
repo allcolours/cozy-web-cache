@@ -2,7 +2,12 @@ import { createFileRoute } from "@tanstack/react-router";
 import { AdminShell } from "@/components/admin/AdminShell";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
-import { getAssetErrors, clearAssetErrors } from "@/lib/asset-errors.functions";
+import {
+  getAssetErrors,
+  clearAssetErrors,
+  runAssetErrorCheck,
+} from "@/lib/asset-errors.functions";
+import { useState } from "react";
 
 export const Route = createFileRoute("/_authenticated/admin/asset-errors")({
   component: AssetErrorsPage,
@@ -11,7 +16,9 @@ export const Route = createFileRoute("/_authenticated/admin/asset-errors")({
 function AssetErrorsPage() {
   const fetchErrors = useServerFn(getAssetErrors);
   const clearAll = useServerFn(clearAssetErrors);
+  const runCheck = useServerFn(runAssetErrorCheck);
   const qc = useQueryClient();
+  const [lastRun, setLastRun] = useState<string | null>(null);
 
   const { data, isLoading, error } = useQuery({
     queryKey: ["admin-asset-errors"],
@@ -22,6 +29,18 @@ function AssetErrorsPage() {
   const clearMutation = useMutation({
     mutationFn: () => clearAll(),
     onSuccess: () => qc.invalidateQueries({ queryKey: ["admin-asset-errors"] }),
+  });
+
+  const checkMutation = useMutation({
+    mutationFn: (seedTest: boolean) => runCheck({ data: { seedTest } }),
+    onSuccess: (res: any) => {
+      const r = res?.result ?? res;
+      setLastRun(
+        `✓ ran at ${new Date().toLocaleTimeString()} · ${r?.totalLast24h ?? 0} in 24h · ${r?.newUrlsCount ?? 0} new · alerts: ${(r?.alertsSent ?? []).join(", ") || "none"}`,
+      );
+      qc.invalidateQueries({ queryKey: ["admin-asset-errors"] });
+    },
+    onError: (e) => setLastRun(`✗ ${(e as Error).message}`),
   });
 
   return (
@@ -45,6 +64,25 @@ function AssetErrorsPage() {
             ))}
           </div>
 
+          <section className="mt-6 flex flex-wrap items-center gap-3 border border-border bg-background p-4">
+            <button
+              onClick={() => checkMutation.mutate(false)}
+              disabled={checkMutation.isPending}
+              className="rounded-md bg-primary px-3 py-1.5 text-xs font-bold text-primary-foreground hover:opacity-90 disabled:opacity-50"
+            >
+              {checkMutation.isPending ? "Running…" : "Run check now"}
+            </button>
+            <button
+              onClick={() => checkMutation.mutate(true)}
+              disabled={checkMutation.isPending}
+              className="rounded-md border border-border bg-background px-3 py-1.5 text-xs font-medium hover:bg-muted disabled:opacity-50"
+              title="Inserts a synthetic 404 then triggers the check — sends a real test email"
+            >
+              Send test email
+            </button>
+            {lastRun && <span className="text-xs text-muted-foreground">{lastRun}</span>}
+          </section>
+
           <div className="mt-8 flex items-center justify-between">
             <h3 className="font-display text-sm font-bold uppercase tracking-wider">
               Top broken assets (7 days)
@@ -57,6 +95,7 @@ function AssetErrorsPage() {
               {clearMutation.isPending ? "Clearing…" : "Clear all"}
             </button>
           </div>
+
 
           <section className="mt-3 bg-background p-6">
             {data.topBroken.length === 0 && (
