@@ -12,6 +12,7 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { SchemaOrg } from "../components/SchemaOrg";
+import { AssetErrorMonitor } from "../components/AssetErrorMonitor";
 
 
 function NotFoundComponent() {
@@ -130,6 +131,7 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <PageViewTracker />
+      <AssetErrorMonitor />
       <Outlet />
     </QueryClientProvider>
   );
