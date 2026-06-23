@@ -93,6 +93,32 @@ function buildSummary() {
   return summary;
 }
 
+// Path to a persisted file holding the previously-created PR comment ID.
+// The CI workflow caches this file (keyed by PR number) across runs so we
+// always edit the same comment instead of creating a new one each time.
+const COMMENT_ID_FILE =
+  process.env.STALE_ASSETS_COMMENT_ID_FILE ||
+  ".github/stale-assets-cache/comment-id.txt";
+
+function readStoredCommentId() {
+  try {
+    if (!existsSync(COMMENT_ID_FILE)) return null;
+    const raw = readFileSync(COMMENT_ID_FILE, "utf8").trim();
+    return raw ? raw : null;
+  } catch {
+    return null;
+  }
+}
+
+function writeStoredCommentId(id) {
+  try {
+    mkdirSync(dirname(COMMENT_ID_FILE), { recursive: true });
+    writeFileSync(COMMENT_ID_FILE, String(id));
+  } catch (err) {
+    console.error("Could not persist PR comment id:", err.message);
+  }
+}
+
 async function postOrUpdatePrComment(summaryMarkdown) {
   if (process.env.GITHUB_ACTIONS !== "true") return;
 
@@ -125,30 +151,61 @@ async function postOrUpdatePrComment(summaryMarkdown) {
     "User-Agent": "stale-assets-check",
   };
 
+  // 1) Reuse the cached comment ID if we have one.
+  const storedId = readStoredCommentId();
+  if (storedId) {
+    try {
+      const patchRes = await fetch(`${apiBase}/issues/comments/${storedId}`, {
+        method: "PATCH",
+        headers: { ...headers, "Content-Type": "application/json" },
+        body: JSON.stringify({ body: fullBody }),
+      });
+      if (patchRes.ok) return;
+      // 404 / 410 → the comment was deleted on GitHub; fall through and recreate.
+      if (patchRes.status !== 404 && patchRes.status !== 410) {
+        console.error(
+          `PATCH on stored comment ${storedId} failed: ${patchRes.status}`,
+        );
+      }
+    } catch (err) {
+      console.error("Could not update stored PR comment:", err.message);
+    }
+  }
+
+  // 2) Fallback: look for an existing marker comment (covers first run after
+  //    a cache miss so we don't create a duplicate).
   try {
     const listRes = await fetch(`${apiBase}/issues/${prNumber}/comments`, { headers });
     if (listRes.ok) {
       const comments = await listRes.json();
       const existing = comments.find((c) => c.body?.includes(COMMENT_MARKER));
       if (existing) {
-        await fetch(`${apiBase}/issues/comments/${existing.id}`, {
+        const patchRes = await fetch(`${apiBase}/issues/comments/${existing.id}`, {
           method: "PATCH",
           headers: { ...headers, "Content-Type": "application/json" },
           body: JSON.stringify({ body: fullBody }),
         });
-        return;
+        if (patchRes.ok) {
+          writeStoredCommentId(existing.id);
+          return;
+        }
       }
     }
   } catch (err) {
     console.error("Could not search for existing PR comment:", err.message);
   }
 
+  // 3) Create a new comment and persist its ID for future runs.
   try {
-    await fetch(`${apiBase}/issues/${prNumber}/comments`, {
+    const createRes = await fetch(`${apiBase}/issues/${prNumber}/comments`, {
       method: "POST",
       headers: { ...headers, "Content-Type": "application/json" },
       body: JSON.stringify({ body: fullBody }),
     });
+    if (createRes.ok) {
+      const created = await createRes.json();
+      if (created?.id) writeStoredCommentId(created.id);
+    }
   } catch (err) {
     console.error("Could not post PR comment:", err.message);
   }
