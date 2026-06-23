@@ -28,6 +28,8 @@ const FORBIDDEN = [
   { pattern: "service-industrial.jpg", reason: "use service-industrial.webp" },
 ];
 
+const COMMENT_MARKER = "<!-- stale-assets-check -->";
+
 const failures = [];
 
 function shouldSkip(path) {
@@ -69,39 +71,110 @@ function escapeAnnotation(value) {
     .replace(/\n/g, "%0A");
 }
 
-if (failures.length > 0) {
-  console.error("\n✗ Stale asset references detected:\n");
-
-  // Build a concise Markdown summary for the GitHub Actions job summary page.
-  let summary = "## 🚫 Stale asset references\n\n";
+function buildSummary() {
+  let summary = "## Stale asset references\n\n";
   summary += `Found **${failures.length}** reference(s) to retired assets:\n\n`;
   summary += "| File | Line | Reason |\n";
   summary += "|------|------|--------|\n";
 
   for (const f of failures) {
-    console.error(`  ${f.file}:${f.line}`);
-    console.error(`    → ${f.reason}`);
-    console.error(`    ${f.text}`);
-
     summary += `| \`${f.file}\` | ${f.line} | ${f.reason} |\n`;
-
-    // Emit a GitHub Actions annotation when running in CI so the PR
-    // diff surface shows clickable markers on each offending file/line.
-    if (process.env.GITHUB_ACTIONS === "true") {
-      const message = escapeAnnotation(`${f.reason}: ${f.text}`);
-      const file = escapeAnnotation(f.file);
-      console.error(`::error file=${file},line=${f.line}::${message}`);
-    }
   }
 
   summary += "\nPlease switch to the recommended replacement asset before merging.\n";
-
-  if (process.env.GITHUB_STEP_SUMMARY) {
-    appendFileSync(process.env.GITHUB_STEP_SUMMARY, summary);
-  }
-
-  console.error(`\n${failures.length} violation(s). Build aborted.\n`);
-  process.exit(1);
+  return summary;
 }
 
-console.log("✓ No stale JPG/logo.png references found in src/ or public/.");
+async function postOrUpdatePrComment(summaryMarkdown) {
+  if (process.env.GITHUB_ACTIONS !== "true") return;
+
+  const eventPath = process.env.GITHUB_EVENT_PATH;
+  const repo = process.env.GITHUB_REPOSITORY;
+  const token = process.env.GITHUB_TOKEN;
+  const runId = process.env.GITHUB_RUN_ID;
+  if (!eventPath || !repo || !token || !runId) return;
+
+  let prNumber;
+  try {
+    const event = JSON.parse(readFileSync(eventPath, "utf8"));
+    prNumber = event?.pull_request?.number;
+  } catch {
+    return;
+  }
+  if (!prNumber) return;
+
+  const [owner, repoName] = repo.split("/");
+  if (!owner || !repoName) return;
+
+  const jobSummaryUrl = `https://github.com/${owner}/${repoName}/actions/runs/${runId}`;
+  const fullBody = `${COMMENT_MARKER}\n${summaryMarkdown}\n📄 [View job summary](${jobSummaryUrl})`;
+
+  const apiBase = `https://api.github.com/repos/${owner}/${repoName}`;
+  const headers = {
+    Authorization: `Bearer ${token}`,
+    Accept: "application/vnd.github+json",
+    "X-GitHub-Api-Version": "2022-11-28",
+    "User-Agent": "stale-assets-check",
+  };
+
+  try {
+    const listRes = await fetch(`${apiBase}/issues/${prNumber}/comments`, { headers });
+    if (listRes.ok) {
+      const comments = await listRes.json();
+      const existing = comments.find((c) => c.body?.includes(COMMENT_MARKER));
+      if (existing) {
+        await fetch(`${apiBase}/issues/comments/${existing.id}`, {
+          method: "PATCH",
+          headers: { ...headers, "Content-Type": "application/json" },
+          body: JSON.stringify({ body: fullBody }),
+        });
+        return;
+      }
+    }
+  } catch (err) {
+    console.error("Could not search for existing PR comment:", err.message);
+  }
+
+  try {
+    await fetch(`${apiBase}/issues/${prNumber}/comments`, {
+      method: "POST",
+      headers: { ...headers, "Content-Type": "application/json" },
+      body: JSON.stringify({ body: fullBody }),
+    });
+  } catch (err) {
+    console.error("Could not post PR comment:", err.message);
+  }
+}
+
+(async () => {
+  if (failures.length > 0) {
+    console.error("\n✗ Stale asset references detected:\n");
+
+    const summary = buildSummary();
+
+    for (const f of failures) {
+      console.error(`  ${f.file}:${f.line}`);
+      console.error(`    → ${f.reason}`);
+      console.error(`    ${f.text}`);
+
+      // Emit a GitHub Actions annotation when running in CI so the PR
+      // diff surface shows clickable markers on each offending file/line.
+      if (process.env.GITHUB_ACTIONS === "true") {
+        const message = escapeAnnotation(`${f.reason}: ${f.text}`);
+        const file = escapeAnnotation(f.file);
+        console.error(`::error file=${file},line=${f.line}::${message}`);
+      }
+    }
+
+    if (process.env.GITHUB_STEP_SUMMARY) {
+      appendFileSync(process.env.GITHUB_STEP_SUMMARY, summary);
+    }
+
+    await postOrUpdatePrComment(summary);
+
+    console.error(`\n${failures.length} violation(s). Build aborted.\n`);
+    process.exit(1);
+  }
+
+  console.log("✓ No stale JPG/logo.png references found in src/ or public/.");
+})();
