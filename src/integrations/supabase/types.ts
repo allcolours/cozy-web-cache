@@ -14,6 +14,36 @@ export type Database = {
   }
   public: {
     Tables: {
+      asset_errors: {
+        Row: {
+          asset_url: string
+          created_at: string
+          id: string
+          page_url: string | null
+          referrer: string | null
+          status: number | null
+          user_agent: string | null
+        }
+        Insert: {
+          asset_url: string
+          created_at?: string
+          id?: string
+          page_url?: string | null
+          referrer?: string | null
+          status?: number | null
+          user_agent?: string | null
+        }
+        Update: {
+          asset_url?: string
+          created_at?: string
+          id?: string
+          page_url?: string | null
+          referrer?: string | null
+          status?: number | null
+          user_agent?: string | null
+        }
+        Relationships: []
+      }
       blog_posts: {
         Row: {
           author: string | null
