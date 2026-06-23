@@ -38,10 +38,10 @@ export function CookieBanner() {
         </p>
         <div className="flex shrink-0 gap-2">
           <Link
-            to="/faq"
+            to="/privacy"
             className="inline-flex items-center rounded-sm border border-white/30 px-4 py-2 font-display text-xs font-bold uppercase tracking-wider text-white hover:border-primary hover:text-primary"
           >
-            Learn more
+            View cookie details
           </Link>
           <button
             type="button"

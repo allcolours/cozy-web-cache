@@ -163,24 +163,35 @@ function LeadCaptureForm() {
       }}
       className="mx-auto grid max-w-3xl gap-4 rounded-sm border border-white/10 bg-white/10 p-5 backdrop-blur sm:grid-cols-2 md:grid-cols-4 md:p-6"
     >
+      <label htmlFor="lead-name" className="sr-only">Your name</label>
       <input
+        id="lead-name"
         type="text"
         name="name"
         placeholder="Your name"
+        aria-label="Your name"
+        autoComplete="name"
         required
         className="w-full rounded-sm border border-white/20 bg-white px-3 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none"
       />
+      <label htmlFor="lead-phone" className="sr-only">Your phone number</label>
       <input
+        id="lead-phone"
         type="tel"
         name="phone"
         placeholder="Your phone number"
+        aria-label="Your phone number"
+        autoComplete="tel"
         required
         className="w-full rounded-sm border border-white/20 bg-white px-3 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none"
       />
+      <label htmlFor="lead-need" className="sr-only">What service do you need?</label>
       <select
+        id="lead-need"
         name="need"
         required
         defaultValue=""
+        aria-label="What service do you need?"
         className="w-full rounded-sm border border-white/20 bg-white px-3 py-3 text-sm text-foreground focus:border-primary focus:outline-none sm:col-span-2 md:col-span-1"
       >
         <option value="" disabled>What do you need?</option>
