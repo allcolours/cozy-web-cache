@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useState } from "react";
 import { AdminShell } from "@/components/admin/AdminShell";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
@@ -6,6 +7,46 @@ import { supabase } from "@/integrations/supabase/client";
 export const Route = createFileRoute("/_authenticated/admin/")({
   component: Dashboard,
 });
+
+function GscTestButton() {
+  const [status, setStatus] = useState<{ kind: "idle" | "loading" | "ok" | "err"; msg?: string }>({ kind: "idle" });
+  const send = async () => {
+    setStatus({ kind: "loading" });
+    try {
+      const apikey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY as string;
+      const res = await fetch("/api/public/hooks/gsc-coverage-report", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", apikey },
+        body: "{}",
+      });
+      const json = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(json?.error || `HTTP ${res.status}`);
+      const t = json?.totals || {};
+      setStatus({
+        kind: "ok",
+        msg: `Queued → info@allcolourspainter.com · ${t.indexed ?? 0}/${t.submitted ?? 0} indexed, ${t.errors ?? 0} errors, ${t.warnings ?? 0} warnings`,
+      });
+    } catch (e: any) {
+      setStatus({ kind: "err", msg: e?.message || "Failed to send" });
+    }
+  };
+  return (
+    <div className="flex flex-col items-start gap-2">
+      <button
+        onClick={send}
+        disabled={status.kind === "loading"}
+        className="rounded-sm border border-border bg-background px-4 py-2 text-xs font-bold uppercase tracking-wider text-foreground hover:bg-secondary disabled:opacity-50"
+      >
+        {status.kind === "loading" ? "Sending…" : "Test GSC Report"}
+      </button>
+      {status.msg ? (
+        <div className={`text-xs ${status.kind === "err" ? "text-destructive" : "text-muted-foreground"}`}>
+          {status.msg}
+        </div>
+      ) : null}
+    </div>
+  );
+}
 
 function Dashboard() {
   const { data } = useQuery({
@@ -47,8 +88,9 @@ function Dashboard() {
 
   return (
     <AdminShell title="Dashboard">
-      <div className="mb-6 flex items-center gap-3">
+      <div className="mb-6 flex flex-wrap items-start gap-3">
         <a href="/" target="_blank" rel="noopener noreferrer" className="rounded-sm border border-border bg-background px-4 py-2 text-xs font-bold uppercase tracking-wider text-foreground hover:bg-secondary">View site →</a>
+        <GscTestButton />
       </div>
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {tiles.map((t) => (
