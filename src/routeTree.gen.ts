@@ -82,6 +82,7 @@ import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/
 import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated/admin.index'
 import { Route as LovableEmailSuppressionRouteImport } from './routes/lovable/email/suppression'
 import { Route as ApiPublicSitemapDotxmlRouteImport } from './routes/api/public/sitemap[.]xml'
+import { Route as ApiPublicLogAssetErrorRouteImport } from './routes/api/public/log-asset-error'
 import { Route as ApiPublicEstimateRouteImport } from './routes/api/public/estimate'
 import { Route as ApiPublicContactRouteImport } from './routes/api/public/contact'
 import { Route as AuthenticatedAdminTestimonialsRouteImport } from './routes/_authenticated/admin.testimonials'
@@ -91,6 +92,7 @@ import { Route as AuthenticatedAdminGalleryRouteImport } from './routes/_authent
 import { Route as AuthenticatedAdminContentRouteImport } from './routes/_authenticated/admin.content'
 import { Route as AuthenticatedAdminCaseStudiesRouteImport } from './routes/_authenticated/admin.case-studies'
 import { Route as AuthenticatedAdminBlogRouteImport } from './routes/_authenticated/admin.blog'
+import { Route as AuthenticatedAdminAssetErrorsRouteImport } from './routes/_authenticated/admin.asset-errors'
 import { Route as AuthenticatedAdminAnalyticsRouteImport } from './routes/_authenticated/admin.analytics'
 import { Route as LovableEmailTransactionalSendRouteImport } from './routes/lovable/email/transactional/send'
 import { Route as LovableEmailTransactionalPreviewRouteImport } from './routes/lovable/email/transactional/preview'
@@ -467,6 +469,11 @@ const ApiPublicSitemapDotxmlRoute = ApiPublicSitemapDotxmlRouteImport.update({
   path: '/api/public/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicLogAssetErrorRoute = ApiPublicLogAssetErrorRouteImport.update({
+  id: '/api/public/log-asset-error',
+  path: '/api/public/log-asset-error',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiPublicEstimateRoute = ApiPublicEstimateRouteImport.update({
   id: '/api/public/estimate',
   path: '/api/public/estimate',
@@ -517,6 +524,12 @@ const AuthenticatedAdminBlogRoute = AuthenticatedAdminBlogRouteImport.update({
   path: '/blog',
   getParentRoute: () => AuthenticatedAdminRoute,
 } as any)
+const AuthenticatedAdminAssetErrorsRoute =
+  AuthenticatedAdminAssetErrorsRouteImport.update({
+    id: '/asset-errors',
+    path: '/asset-errors',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
 const AuthenticatedAdminAnalyticsRoute =
   AuthenticatedAdminAnalyticsRouteImport.update({
     id: '/analytics',
@@ -647,6 +660,7 @@ export interface FileRoutesByFullPath {
   '/services/$service': typeof ServicesServiceRoute
   '/painters/': typeof PaintersIndexRoute
   '/admin/analytics': typeof AuthenticatedAdminAnalyticsRoute
+  '/admin/asset-errors': typeof AuthenticatedAdminAssetErrorsRoute
   '/admin/blog': typeof AuthenticatedAdminBlogRouteWithChildren
   '/admin/case-studies': typeof AuthenticatedAdminCaseStudiesRouteWithChildren
   '/admin/content': typeof AuthenticatedAdminContentRoute
@@ -656,6 +670,7 @@ export interface FileRoutesByFullPath {
   '/admin/testimonials': typeof AuthenticatedAdminTestimonialsRoute
   '/api/public/contact': typeof ApiPublicContactRoute
   '/api/public/estimate': typeof ApiPublicEstimateRoute
+  '/api/public/log-asset-error': typeof ApiPublicLogAssetErrorRoute
   '/api/public/sitemap.xml': typeof ApiPublicSitemapDotxmlRoute
   '/lovable/email/suppression': typeof LovableEmailSuppressionRoute
   '/admin/': typeof AuthenticatedAdminIndexRoute
@@ -739,6 +754,7 @@ export interface FileRoutesByTo {
   '/services/$service': typeof ServicesServiceRoute
   '/painters': typeof PaintersIndexRoute
   '/admin/analytics': typeof AuthenticatedAdminAnalyticsRoute
+  '/admin/asset-errors': typeof AuthenticatedAdminAssetErrorsRoute
   '/admin/blog': typeof AuthenticatedAdminBlogRouteWithChildren
   '/admin/case-studies': typeof AuthenticatedAdminCaseStudiesRouteWithChildren
   '/admin/content': typeof AuthenticatedAdminContentRoute
@@ -748,6 +764,7 @@ export interface FileRoutesByTo {
   '/admin/testimonials': typeof AuthenticatedAdminTestimonialsRoute
   '/api/public/contact': typeof ApiPublicContactRoute
   '/api/public/estimate': typeof ApiPublicEstimateRoute
+  '/api/public/log-asset-error': typeof ApiPublicLogAssetErrorRoute
   '/api/public/sitemap.xml': typeof ApiPublicSitemapDotxmlRoute
   '/lovable/email/suppression': typeof LovableEmailSuppressionRoute
   '/admin': typeof AuthenticatedAdminIndexRoute
@@ -834,6 +851,7 @@ export interface FileRoutesById {
   '/services_/$service': typeof ServicesServiceRoute
   '/painters/': typeof PaintersIndexRoute
   '/_authenticated/admin/analytics': typeof AuthenticatedAdminAnalyticsRoute
+  '/_authenticated/admin/asset-errors': typeof AuthenticatedAdminAssetErrorsRoute
   '/_authenticated/admin/blog': typeof AuthenticatedAdminBlogRouteWithChildren
   '/_authenticated/admin/case-studies': typeof AuthenticatedAdminCaseStudiesRouteWithChildren
   '/_authenticated/admin/content': typeof AuthenticatedAdminContentRoute
@@ -843,6 +861,7 @@ export interface FileRoutesById {
   '/_authenticated/admin/testimonials': typeof AuthenticatedAdminTestimonialsRoute
   '/api/public/contact': typeof ApiPublicContactRoute
   '/api/public/estimate': typeof ApiPublicEstimateRoute
+  '/api/public/log-asset-error': typeof ApiPublicLogAssetErrorRoute
   '/api/public/sitemap.xml': typeof ApiPublicSitemapDotxmlRoute
   '/lovable/email/suppression': typeof LovableEmailSuppressionRoute
   '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
@@ -929,6 +948,7 @@ export interface FileRouteTypes {
     | '/services/$service'
     | '/painters/'
     | '/admin/analytics'
+    | '/admin/asset-errors'
     | '/admin/blog'
     | '/admin/case-studies'
     | '/admin/content'
@@ -938,6 +958,7 @@ export interface FileRouteTypes {
     | '/admin/testimonials'
     | '/api/public/contact'
     | '/api/public/estimate'
+    | '/api/public/log-asset-error'
     | '/api/public/sitemap.xml'
     | '/lovable/email/suppression'
     | '/admin/'
@@ -1021,6 +1042,7 @@ export interface FileRouteTypes {
     | '/services/$service'
     | '/painters'
     | '/admin/analytics'
+    | '/admin/asset-errors'
     | '/admin/blog'
     | '/admin/case-studies'
     | '/admin/content'
@@ -1030,6 +1052,7 @@ export interface FileRouteTypes {
     | '/admin/testimonials'
     | '/api/public/contact'
     | '/api/public/estimate'
+    | '/api/public/log-asset-error'
     | '/api/public/sitemap.xml'
     | '/lovable/email/suppression'
     | '/admin'
@@ -1115,6 +1138,7 @@ export interface FileRouteTypes {
     | '/services_/$service'
     | '/painters/'
     | '/_authenticated/admin/analytics'
+    | '/_authenticated/admin/asset-errors'
     | '/_authenticated/admin/blog'
     | '/_authenticated/admin/case-studies'
     | '/_authenticated/admin/content'
@@ -1124,6 +1148,7 @@ export interface FileRouteTypes {
     | '/_authenticated/admin/testimonials'
     | '/api/public/contact'
     | '/api/public/estimate'
+    | '/api/public/log-asset-error'
     | '/api/public/sitemap.xml'
     | '/lovable/email/suppression'
     | '/_authenticated/admin/'
@@ -1210,6 +1235,7 @@ export interface RootRouteChildren {
   PaintersIndexRoute: typeof PaintersIndexRoute
   ApiPublicContactRoute: typeof ApiPublicContactRoute
   ApiPublicEstimateRoute: typeof ApiPublicEstimateRoute
+  ApiPublicLogAssetErrorRoute: typeof ApiPublicLogAssetErrorRoute
   ApiPublicSitemapDotxmlRoute: typeof ApiPublicSitemapDotxmlRoute
   LovableEmailSuppressionRoute: typeof LovableEmailSuppressionRoute
   LovableEmailAuthPreviewRoute: typeof LovableEmailAuthPreviewRoute
@@ -1732,6 +1758,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiPublicSitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/log-asset-error': {
+      id: '/api/public/log-asset-error'
+      path: '/api/public/log-asset-error'
+      fullPath: '/api/public/log-asset-error'
+      preLoaderRoute: typeof ApiPublicLogAssetErrorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/public/estimate': {
       id: '/api/public/estimate'
       path: '/api/public/estimate'
@@ -1793,6 +1826,13 @@ declare module '@tanstack/react-router' {
       path: '/blog'
       fullPath: '/admin/blog'
       preLoaderRoute: typeof AuthenticatedAdminBlogRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/asset-errors': {
+      id: '/_authenticated/admin/asset-errors'
+      path: '/asset-errors'
+      fullPath: '/admin/asset-errors'
+      preLoaderRoute: typeof AuthenticatedAdminAssetErrorsRouteImport
       parentRoute: typeof AuthenticatedAdminRoute
     }
     '/_authenticated/admin/analytics': {
@@ -1904,6 +1944,7 @@ const AuthenticatedAdminCaseStudiesRouteWithChildren =
 
 interface AuthenticatedAdminRouteChildren {
   AuthenticatedAdminAnalyticsRoute: typeof AuthenticatedAdminAnalyticsRoute
+  AuthenticatedAdminAssetErrorsRoute: typeof AuthenticatedAdminAssetErrorsRoute
   AuthenticatedAdminBlogRoute: typeof AuthenticatedAdminBlogRouteWithChildren
   AuthenticatedAdminCaseStudiesRoute: typeof AuthenticatedAdminCaseStudiesRouteWithChildren
   AuthenticatedAdminContentRoute: typeof AuthenticatedAdminContentRoute
@@ -1916,6 +1957,7 @@ interface AuthenticatedAdminRouteChildren {
 
 const AuthenticatedAdminRouteChildren: AuthenticatedAdminRouteChildren = {
   AuthenticatedAdminAnalyticsRoute: AuthenticatedAdminAnalyticsRoute,
+  AuthenticatedAdminAssetErrorsRoute: AuthenticatedAdminAssetErrorsRoute,
   AuthenticatedAdminBlogRoute: AuthenticatedAdminBlogRouteWithChildren,
   AuthenticatedAdminCaseStudiesRoute:
     AuthenticatedAdminCaseStudiesRouteWithChildren,
@@ -2013,6 +2055,7 @@ const rootRouteChildren: RootRouteChildren = {
   PaintersIndexRoute: PaintersIndexRoute,
   ApiPublicContactRoute: ApiPublicContactRoute,
   ApiPublicEstimateRoute: ApiPublicEstimateRoute,
+  ApiPublicLogAssetErrorRoute: ApiPublicLogAssetErrorRoute,
   ApiPublicSitemapDotxmlRoute: ApiPublicSitemapDotxmlRoute,
   LovableEmailSuppressionRoute: LovableEmailSuppressionRoute,
   LovableEmailAuthPreviewRoute: LovableEmailAuthPreviewRoute,
