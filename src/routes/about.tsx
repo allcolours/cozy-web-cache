@@ -165,7 +165,7 @@ function About() {
             <h2 className="section-title mt-3 text-3xl md:text-4xl">It's still personal</h2>
             <hr className="section-rule" />
             <div className="mt-8 space-y-5 text-base leading-relaxed text-foreground md:text-lg">
-              <p>We're a small team. The person who quotes the job is on site for the job. The phone is answered by someone who's actually been up a ladder this week. That's not marketing — it's just how a small trade business works when it cares about its reputation.</p>
+              <p>We're a tight core crew, scaled with trusted painters to 15–30 on site. The person who quotes the job is on site for the job. The phone is answered by someone who's actually been up a ladder this week. That's not marketing — it's just how a small trade business works when it cares about its reputation.</p>
               <p>Every client we've ever had has come through word of mouth or repeat business. We've never paid for a single advert. The day that changes is the day we've stopped doing the job properly.</p>
               <p>If you're trusting us with your home or your premises, you should know who's coming through the door. That's why every quote we send includes the name of the lead painter who'll be on your job — and you'll meet them at the site visit, not on day one.</p>
             </div>

@@ -23,7 +23,7 @@ export function FloatingContact() {
   const telHref = `tel:${phone.replace(/[^+\d]/g, "")}`;
   // Irish mobile 085 821 1870 -> WhatsApp international 353858211870
   const waNumber = phone.replace(/[^\d]/g, "").replace(/^0/, "353");
-  const waMsg = encodeURIComponent("Hi! I'd like a quote for painting & decorating.");
+  const waMsg = encodeURIComponent("Hi All Colours, I'd like a quote. Here are photos of the job:");
   const waHref = `https://wa.me/${waNumber}?text=${waMsg}`;
 
   return (

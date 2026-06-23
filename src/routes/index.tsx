@@ -135,7 +135,7 @@ const services = [
 const portfolio = CASE_STUDIES.slice(0, 4).map((c) => ({ img: c.cover, title: c.title, tag: `${c.sector} · ${c.location}`, slug: c.slug }));
 
 const stats = [
-  { k: "30+", v: "Painters available" },
+  { k: "15–30", v: "Painters mobilised to programme" },
   { k: "1,200+", v: "Projects completed" },
   { k: "10+", v: "Years experience" },
   { k: "5★", v: "Average client rating" },
@@ -272,8 +272,8 @@ function Home() {
             <h2 className="section-title mt-3 text-3xl md:text-4xl">Welcome to All Colours Painting</h2>
             <hr className="section-rule" />
             <div className="mt-8 space-y-5 text-base leading-relaxed text-foreground">
-              <p>All Colours Painting Contractor Limited has become synonymous with exceptional quality and customer satisfaction throughout {COMPANY.area}. Our reputation is built on strong relationships with both commercial and residential clients — and on consistently delivering stunning results.</p>
-              <p>What sets us apart is an unwavering commitment to perfection in every aspect of our work. We focus relentlessly on the three core stages of any decorating project: <span className="font-semibold text-[oklch(0.2_0_0)]">Protection, Preparation and the Finish</span>.</p>
+              <p>All Colours Painting Contractor Limited has worked across Dublin for over 10 years — family homes, period townhouses, apartment blocks and commercial fit-outs. Most of our work comes from repeat clients, architects and main contractors who've used us before.</p>
+              <p>Every job runs the same way: protect the space, prep the surfaces properly, apply trade paint systems to spec, and leave the site clean. The prep is where the finish is decided — so that's where we spend the time.</p>
               <p>From a single feature wall to a full commercial fit-out, we treat every job the same: prepare meticulously, paint cleanly, leave the site spotless.</p>
             </div>
             <Link to="/about" className="mt-8 inline-flex items-center font-display text-xs font-bold uppercase tracking-wider text-primary hover:text-[oklch(0.2_0_0)]">

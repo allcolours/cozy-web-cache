@@ -26,7 +26,7 @@ export const Route = createFileRoute("/commercial-painting-dublin")({
 });
 
 const STATS = [
-  { value: "20+", label: "Painters available" },
+  { value: "15–30", label: "Painters mobilised to programme" },
   { value: "24/7", label: "Out-of-hours scheduling" },
   { value: "€6.5m", label: "Public liability insured" },
   { value: "RCT", label: "Compliant subcontractor" },
@@ -36,7 +36,7 @@ const CLIENTS = [
   { title: "Property Management Companies", body: "Block management, common areas, hallways and external repaints across Dublin portfolios." },
   { title: "Facilities Management", body: "Planned and reactive redecoration for offices, schools, healthcare and retail estates." },
   { title: "Landlords & REITs", body: "Turnaround painting between tenancies, full apartment block exteriors and communal areas." },
-  { title: "Main Contractors", body: "Trusted painting subcontractor for Cairn, Bennett, Elliott and Clancy on live Dublin sites." },
+  { title: "Main Contractors", body: "Painting works delivered on Dublin developments — including projects for Cairn Homes, Bennett, Elliott and Clancy." },
 ];
 
 const SERVICES = [

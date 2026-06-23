@@ -59,8 +59,8 @@ export function LocalAreaPage({ area, postcode, intro }: LocalAreaPageProps) {
             <a href="tel:0858211870" className="inline-flex items-center rounded-sm bg-primary px-6 py-3 font-display text-xs font-bold uppercase tracking-wider text-primary-foreground hover:bg-[oklch(0.62_0.17_158)]">
               Call 085 821 1870
             </a>
-            <a href="https://wa.me/353858211870" target="_blank" rel="noopener noreferrer" className="inline-flex items-center rounded-sm border-2 border-white px-6 py-3 font-display text-xs font-bold uppercase tracking-wider text-white hover:bg-white hover:text-[var(--color-surface-dark)]">
-              WhatsApp Us
+            <a href="https://wa.me/353858211870?text=Hi%20All%20Colours%2C%20I%27d%20like%20a%20quote.%20Here%20are%20photos%20of%20the%20job%3A" target="_blank" rel="noopener noreferrer" className="inline-flex items-center rounded-sm border-2 border-white px-6 py-3 font-display text-xs font-bold uppercase tracking-wider text-white hover:bg-white hover:text-[var(--color-surface-dark)]">
+              Send photos on WhatsApp
             </a>
           </div>
         </div>
@@ -137,8 +137,8 @@ export function LocalAreaPage({ area, postcode, intro }: LocalAreaPageProps) {
             <a href="tel:0858211870" className="inline-flex items-center rounded-sm bg-primary px-7 py-4 font-display text-sm font-bold uppercase tracking-wider text-primary-foreground hover:bg-[oklch(0.62_0.17_158)]">
               📞 Call 085 821 1870
             </a>
-            <a href="https://wa.me/353858211870" target="_blank" rel="noopener noreferrer" className="inline-flex items-center rounded-sm bg-[#25D366] px-7 py-4 font-display text-sm font-bold uppercase tracking-wider text-white hover:opacity-90">
-              💬 WhatsApp Us
+            <a href="https://wa.me/353858211870?text=Hi%20All%20Colours%2C%20I%27d%20like%20a%20quote.%20Here%20are%20photos%20of%20the%20job%3A" target="_blank" rel="noopener noreferrer" className="inline-flex items-center rounded-sm bg-[#25D366] px-7 py-4 font-display text-sm font-bold uppercase tracking-wider text-white hover:opacity-90">
+              💬 Send photos on WhatsApp
             </a>
           </div>
           <div className="mt-10">
