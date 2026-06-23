@@ -92,6 +92,7 @@ import { Route as AuthenticatedAdminGalleryRouteImport } from './routes/_authent
 import { Route as AuthenticatedAdminContentRouteImport } from './routes/_authenticated/admin.content'
 import { Route as AuthenticatedAdminCaseStudiesRouteImport } from './routes/_authenticated/admin.case-studies'
 import { Route as AuthenticatedAdminBlogRouteImport } from './routes/_authenticated/admin.blog'
+import { Route as AuthenticatedAdminAssetErrorsRouteImport } from './routes/_authenticated/admin.asset-errors'
 import { Route as AuthenticatedAdminAnalyticsRouteImport } from './routes/_authenticated/admin.analytics'
 import { Route as LovableEmailTransactionalSendRouteImport } from './routes/lovable/email/transactional/send'
 import { Route as LovableEmailTransactionalPreviewRouteImport } from './routes/lovable/email/transactional/preview'
@@ -523,6 +524,12 @@ const AuthenticatedAdminBlogRoute = AuthenticatedAdminBlogRouteImport.update({
   path: '/blog',
   getParentRoute: () => AuthenticatedAdminRoute,
 } as any)
+const AuthenticatedAdminAssetErrorsRoute =
+  AuthenticatedAdminAssetErrorsRouteImport.update({
+    id: '/asset-errors',
+    path: '/asset-errors',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
 const AuthenticatedAdminAnalyticsRoute =
   AuthenticatedAdminAnalyticsRouteImport.update({
     id: '/analytics',
@@ -653,6 +660,7 @@ export interface FileRoutesByFullPath {
   '/services/$service': typeof ServicesServiceRoute
   '/painters/': typeof PaintersIndexRoute
   '/admin/analytics': typeof AuthenticatedAdminAnalyticsRoute
+  '/admin/asset-errors': typeof AuthenticatedAdminAssetErrorsRoute
   '/admin/blog': typeof AuthenticatedAdminBlogRouteWithChildren
   '/admin/case-studies': typeof AuthenticatedAdminCaseStudiesRouteWithChildren
   '/admin/content': typeof AuthenticatedAdminContentRoute
@@ -746,6 +754,7 @@ export interface FileRoutesByTo {
   '/services/$service': typeof ServicesServiceRoute
   '/painters': typeof PaintersIndexRoute
   '/admin/analytics': typeof AuthenticatedAdminAnalyticsRoute
+  '/admin/asset-errors': typeof AuthenticatedAdminAssetErrorsRoute
   '/admin/blog': typeof AuthenticatedAdminBlogRouteWithChildren
   '/admin/case-studies': typeof AuthenticatedAdminCaseStudiesRouteWithChildren
   '/admin/content': typeof AuthenticatedAdminContentRoute
@@ -842,6 +851,7 @@ export interface FileRoutesById {
   '/services_/$service': typeof ServicesServiceRoute
   '/painters/': typeof PaintersIndexRoute
   '/_authenticated/admin/analytics': typeof AuthenticatedAdminAnalyticsRoute
+  '/_authenticated/admin/asset-errors': typeof AuthenticatedAdminAssetErrorsRoute
   '/_authenticated/admin/blog': typeof AuthenticatedAdminBlogRouteWithChildren
   '/_authenticated/admin/case-studies': typeof AuthenticatedAdminCaseStudiesRouteWithChildren
   '/_authenticated/admin/content': typeof AuthenticatedAdminContentRoute
@@ -938,6 +948,7 @@ export interface FileRouteTypes {
     | '/services/$service'
     | '/painters/'
     | '/admin/analytics'
+    | '/admin/asset-errors'
     | '/admin/blog'
     | '/admin/case-studies'
     | '/admin/content'
@@ -1031,6 +1042,7 @@ export interface FileRouteTypes {
     | '/services/$service'
     | '/painters'
     | '/admin/analytics'
+    | '/admin/asset-errors'
     | '/admin/blog'
     | '/admin/case-studies'
     | '/admin/content'
@@ -1126,6 +1138,7 @@ export interface FileRouteTypes {
     | '/services_/$service'
     | '/painters/'
     | '/_authenticated/admin/analytics'
+    | '/_authenticated/admin/asset-errors'
     | '/_authenticated/admin/blog'
     | '/_authenticated/admin/case-studies'
     | '/_authenticated/admin/content'
@@ -1815,6 +1828,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminBlogRouteImport
       parentRoute: typeof AuthenticatedAdminRoute
     }
+    '/_authenticated/admin/asset-errors': {
+      id: '/_authenticated/admin/asset-errors'
+      path: '/asset-errors'
+      fullPath: '/admin/asset-errors'
+      preLoaderRoute: typeof AuthenticatedAdminAssetErrorsRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
     '/_authenticated/admin/analytics': {
       id: '/_authenticated/admin/analytics'
       path: '/analytics'
@@ -1924,6 +1944,7 @@ const AuthenticatedAdminCaseStudiesRouteWithChildren =
 
 interface AuthenticatedAdminRouteChildren {
   AuthenticatedAdminAnalyticsRoute: typeof AuthenticatedAdminAnalyticsRoute
+  AuthenticatedAdminAssetErrorsRoute: typeof AuthenticatedAdminAssetErrorsRoute
   AuthenticatedAdminBlogRoute: typeof AuthenticatedAdminBlogRouteWithChildren
   AuthenticatedAdminCaseStudiesRoute: typeof AuthenticatedAdminCaseStudiesRouteWithChildren
   AuthenticatedAdminContentRoute: typeof AuthenticatedAdminContentRoute
@@ -1936,6 +1957,7 @@ interface AuthenticatedAdminRouteChildren {
 
 const AuthenticatedAdminRouteChildren: AuthenticatedAdminRouteChildren = {
   AuthenticatedAdminAnalyticsRoute: AuthenticatedAdminAnalyticsRoute,
+  AuthenticatedAdminAssetErrorsRoute: AuthenticatedAdminAssetErrorsRoute,
   AuthenticatedAdminBlogRoute: AuthenticatedAdminBlogRouteWithChildren,
   AuthenticatedAdminCaseStudiesRoute:
     AuthenticatedAdminCaseStudiesRouteWithChildren,
