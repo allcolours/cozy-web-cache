@@ -1,13 +1,24 @@
 #!/usr/bin/env node
-// Fails the build if any source file imports the 5 retired JPG assets
-// (which have WebP twins) or the deleted logo.png.
+// Fails the build if any tracked source file references the 5 retired JPG
+// assets (which have WebP twins) or the deleted logo.png — covers JS/TS
+// imports, CSS url() strings, and MDX/Markdown asset URLs, across src/ and
+// public/.
 import { readdirSync, readFileSync, statSync } from "node:fs";
 import { join, extname } from "node:path";
 
-const ROOT = "src";
-const EXTS = new Set([".ts", ".tsx", ".js", ".jsx", ".mjs", ".cjs"]);
+const ROOTS = ["src", "public"];
+const EXTS = new Set([
+  ".ts", ".tsx", ".js", ".jsx", ".mjs", ".cjs",
+  ".css", ".scss", ".sass", ".less",
+  ".md", ".mdx",
+  ".html", ".htm",
+  ".json", ".xml", ".txt",
+]);
 
-// Forbidden import substrings → human-readable reason
+// Skip generated asset pointer files — they describe the old binary, not a live reference.
+const SKIP_SUFFIX = [".asset.json"];
+
+// Forbidden substrings → human-readable reason
 const FORBIDDEN = [
   { pattern: "logo.png", reason: "logo.png was deleted; use logo.webp" },
   { pattern: "portfolio-commercial-floor.jpg", reason: "use portfolio-commercial-floor.webp" },
@@ -19,13 +30,23 @@ const FORBIDDEN = [
 
 const failures = [];
 
+function shouldSkip(path) {
+  return SKIP_SUFFIX.some((s) => path.endsWith(s));
+}
+
 function walk(dir) {
-  for (const entry of readdirSync(dir)) {
+  let entries;
+  try {
+    entries = readdirSync(dir);
+  } catch {
+    return;
+  }
+  for (const entry of entries) {
     const full = join(dir, entry);
     const st = statSync(full);
     if (st.isDirectory()) {
       walk(full);
-    } else if (EXTS.has(extname(entry))) {
+    } else if (EXTS.has(extname(entry)) && !shouldSkip(full)) {
       const text = readFileSync(full, "utf8");
       const lines = text.split("\n");
       lines.forEach((line, i) => {
@@ -39,10 +60,10 @@ function walk(dir) {
   }
 }
 
-walk(ROOT);
+for (const root of ROOTS) walk(root);
 
 if (failures.length > 0) {
-  console.error("\n✗ Stale asset imports detected:\n");
+  console.error("\n✗ Stale asset references detected:\n");
   for (const f of failures) {
     console.error(`  ${f.file}:${f.line}`);
     console.error(`    → ${f.reason}`);
@@ -52,4 +73,4 @@ if (failures.length > 0) {
   process.exit(1);
 }
 
-console.log("✓ No stale JPG/logo.png imports found.");
+console.log("✓ No stale JPG/logo.png references found in src/ or public/.");
