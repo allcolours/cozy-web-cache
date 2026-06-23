@@ -13,8 +13,8 @@ export const Route = createFileRoute("/about")({
       { property: "og:description", content: "Meet the team behind All Colours Painting. 10+ years experience, 1,200+ projects completed, fully insured with 12-month workmanship guarantee across Dublin." },
       { property: "og:url", content: "https://allcolourspainter.com/about" },
       { property: "og:type", content: "website" },
-      { property: "og:image", content: "https://allcolourspainter.com/images/01-georgian-manor-house-sage-green-exterior-dublin.jpg" },
-      { name: "twitter:image", content: "https://allcolourspainter.com/images/01-georgian-manor-house-sage-green-exterior-dublin.jpg" },
+      { property: "og:image", content: `https://allcolourspainter.com${heroAsset.url}` },
+      { name: "twitter:image", content: `https://allcolourspainter.com${heroAsset.url}` },
     ],
     links: [{ rel: "canonical", href: "https://allcolourspainter.com/about" }],
     scripts: [
@@ -52,7 +52,7 @@ function About() {
     <SiteLayout>
       {/* Hero band */}
       <section className="relative isolate overflow-hidden">
-        <img src="/images/01-georgian-manor-house-sage-green-exterior-dublin.jpg" alt="Georgian manor house exterior painting in sage green, Dublin" fetchPriority="high" decoding="async" width={1920} height={900} className="absolute inset-0 -z-10 h-full w-full object-cover" />
+        <img src={heroAsset.url} alt="Period home exterior repainted in sage green by All Colours Painting, Dublin" fetchPriority="high" decoding="async" width={1920} height={900} className="absolute inset-0 -z-10 h-full w-full object-cover" />
         <div className="absolute inset-0 -z-10 bg-[oklch(0.2_0_0)]/75" />
         <div className="mx-auto max-w-7xl px-4 py-24 md:px-8 md:py-36">
           <span className="eyebrow text-accent">About us</span>
