@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout, COMPANY } from "../components/SiteLayout";
-import heroAsset from "../assets/portfolio/service-commercial.jpg.asset.json";
+import heroAsset from "../assets/portfolio/service-commercial.webp.asset.json";
 
 const PROJECTS = [
   {

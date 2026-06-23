@@ -6,7 +6,7 @@ import { cn } from "../lib/utils";
 import { supabase } from "@/integrations/supabase/client";
 import { resolveGalleryUrl } from "@/lib/galleryUrl";
 import heroAsset from "../assets/portfolio/hero-house.webp.asset.json";
-import exteriorAsset from "../assets/portfolio/portfolio-exterior-1.jpg.asset.json";
+import exteriorAsset from "../assets/portfolio/portfolio-exterior-1.webp.asset.json";
 
 type CategoryValue = "interior" | "exterior" | "commercial" | "epoxy" | "bespoke";
 

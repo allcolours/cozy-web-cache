@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { SiteLayout } from "../components/SiteLayout";
-import commercialAsset from "../assets/portfolio/service-commercial.jpg.asset.json";
+import commercialAsset from "../assets/portfolio/service-commercial.webp.asset.json";
 
 export const Route = createFileRoute("/commercial-painting-dublin")({
   head: () => ({

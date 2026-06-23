@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout } from "../components/SiteLayout";
 import { FAQS } from "../data/faqs";
 import { FaqAccordion } from "../components/FaqAccordion";
-import heroAsset from "../assets/portfolio/service-commercial.jpg.asset.json";
+import heroAsset from "../assets/portfolio/service-commercial.webp.asset.json";
 
 const CATEGORIES = ["Booking", "Pricing", "Process", "Materials", "Aftercare"] as const;
 

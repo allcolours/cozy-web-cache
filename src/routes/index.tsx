@@ -10,9 +10,9 @@ import { CASE_STUDIES } from "../data/caseStudies";
 
 import heroAsset from "../assets/portfolio/hero-house.webp.asset.json";
 import aboutAsset from "../assets/portfolio/about-architecture.jpg.asset.json";
-import sCommercialAsset from "../assets/portfolio/service-commercial.jpg.asset.json";
-import sIndustrialAsset from "../assets/portfolio/service-industrial.jpg.asset.json";
-import sHospitalityAsset from "../assets/portfolio/service-hospitality.jpg.asset.json";
+import sCommercialAsset from "../assets/portfolio/service-commercial.webp.asset.json";
+import sIndustrialAsset from "../assets/portfolio/service-industrial.webp.asset.json";
+import sHospitalityAsset from "../assets/portfolio/service-hospitality.webp.asset.json";
 import ctaAsset from "../assets/portfolio/cta-bg.jpg.asset.json";
 import { supabase } from "@/integrations/supabase/client";
 
