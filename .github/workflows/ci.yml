@@ -22,5 +22,17 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
+      # Restore the previously stored PR comment ID (if any) so the script
+      # edits the same comment on every run instead of creating a new one.
+      # Keyed by PR number; only runs for pull_request events.
+      - name: Restore stored PR comment ID
+        if: github.event_name == 'pull_request'
+        uses: actions/cache@v4
+        with:
+          path: .github/stale-assets-cache
+          key: stale-assets-comment-id-pr-${{ github.event.pull_request.number }}
+
       - name: Check retired asset references
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: node scripts/check-stale-imports.mjs
