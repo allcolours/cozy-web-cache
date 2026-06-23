@@ -57,6 +57,29 @@ export const Route = createFileRoute("/services")({
           },
         }),
       },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: FAQS.filter((f) => f.category === "Process" || f.category === "Pricing").slice(0, 6).map((f) => ({
+            "@type": "Question",
+            name: f.q,
+            acceptedAnswer: { "@type": "Answer", text: f.a },
+          })),
+        }),
+      },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Home", item: "https://allcolourspainter.com/" },
+            { "@type": "ListItem", position: 2, name: "Services", item: "https://allcolourspainter.com/services" },
+          ],
+        }),
+      },
     ],
   }),
   component: Services,

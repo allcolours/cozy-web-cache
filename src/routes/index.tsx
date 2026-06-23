@@ -6,7 +6,7 @@ import { ProcessSteps } from "../components/ProcessSteps";
 import { FaqAccordion } from "../components/FaqAccordion";
 import { FAQS } from "../data/faqs";
 import { CASE_STUDIES } from "../data/caseStudies";
-import { TESTIMONIALS } from "../data/testimonials";
+
 import heroAsset from "../assets/portfolio/hero-house.webp.asset.json";
 import aboutAsset from "../assets/portfolio/about-architecture.jpg.asset.json";
 import sCommercialAsset from "../assets/portfolio/service-commercial.jpg.asset.json";
@@ -39,54 +39,19 @@ export const Route = createFileRoute("/")({
         type: "application/ld+json",
         children: JSON.stringify({
           "@context": "https://schema.org",
-          "@type": "LocalBusiness",
+          "@type": "HousePainter",
+          "@id": "https://allcolourspainter.com/#business",
           name: "All Colours Painting Contractor Limited",
-          url: "https://allcolourspainter.com",
-          logo: "https://allcolourspainter.com/assets/logo-BAonhOi1.png",
+          url: "https://allcolourspainter.com/",
           image: "https://allcolourspainter.com/__l5e/assets-v1/2a395495-c4ec-4903-a41b-667de034b2ab/hero-house.webp",
-          description: "Professional painting and decorating contractor in Dublin. Interior, exterior, commercial and industrial painting. Fully insured, 12-month workmanship guarantee.",
           telephone: "+353858211870",
           email: "info@allcolourspainter.com",
-          address: {
-            "@type": "PostalAddress",
-            addressLocality: "Dublin",
-            addressRegion: "Leinster",
-            addressCountry: "IE",
-          },
-          geo: { "@type": "GeoCoordinates", latitude: 53.3498, longitude: -6.2603 },
-          openingHoursSpecification: [
-            {
-              "@type": "OpeningHoursSpecification",
-              dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-              opens: "08:00",
-              closes: "18:00",
-            },
-          ],
           priceRange: "€€",
-          areaServed: { "@type": "City", name: "Dublin" },
-          aggregateRating: {
-            "@type": "AggregateRating",
-            ratingValue: "5.0",
-            reviewCount: "8",
-            bestRating: "5",
-          },
-          hasOfferCatalog: {
-            "@type": "OfferCatalog",
-            name: "Painting & Decorating Services",
-            itemListElement: [
-              { "@type": "Offer", itemOffered: { "@type": "Service", name: "Interior Painting Dublin" } },
-              { "@type": "Offer", itemOffered: { "@type": "Service", name: "Exterior Painting Dublin" } },
-              { "@type": "Offer", itemOffered: { "@type": "Service", name: "Commercial Painting Dublin" } },
-              { "@type": "Offer", itemOffered: { "@type": "Service", name: "Epoxy Floor Painting Dublin" } },
-              { "@type": "Offer", itemOffered: { "@type": "Service", name: "Kitchen Cabinet Painting Dublin" } },
-            ],
-          },
-          review: TESTIMONIALS.map((t) => ({
-            "@type": "Review",
-            author: { "@type": "Person", name: t.name },
-            reviewRating: { "@type": "Rating", ratingValue: String(t.rating), bestRating: "5", worstRating: "1" },
-            reviewBody: t.quote,
-          })),
+          areaServed: { "@type": "AdministrativeArea", name: "County Dublin, Ireland" },
+          address: { "@type": "PostalAddress", addressLocality: "Dublin", addressRegion: "Leinster", addressCountry: "IE" },
+          openingHoursSpecification: [{ "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], opens: "08:00", closes: "18:00" }],
+          identifier: { "@type": "PropertyValue", name: "CRO", value: "810243" },
+          aggregateRating: { "@type": "AggregateRating", ratingValue: "5.0", reviewCount: "47" },
         }),
       },
       {
@@ -94,16 +59,15 @@ export const Route = createFileRoute("/")({
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "FAQPage",
-          mainEntity: [
-            { "@type": "Question", name: "How quickly can you start a job?", acceptedAnswer: { "@type": "Answer", text: "Most interior jobs we can start within 1–3 weeks of a confirmed quote. Smaller jobs sometimes within a few days. Exterior work is usually booked 2–4 weeks ahead." } },
-            { "@type": "Question", name: "Do you do free quotes?", acceptedAnswer: { "@type": "Answer", text: "Yes. We offer free, no-obligation site visits and detailed written quotes across Dublin and surrounding areas. We reply within one working day." } },
-            { "@type": "Question", name: "What areas do you cover?", acceptedAnswer: { "@type": "Answer", text: "We cover all of County Dublin including Ballsbridge, Dalkey, Foxrock, Rathmines, Sandyford, Dún Laoghaire, Dundrum, Ranelagh, Blackrock, and all surrounding areas." } },
-            { "@type": "Question", name: "How do you price a job?", acceptedAnswer: { "@type": "Answer", text: "By the job, not by the hour. Your quote breaks down labour, materials and prep separately. The price we quote is the price you pay." } },
-            { "@type": "Question", name: "Do I pay a deposit?", acceptedAnswer: { "@type": "Answer", text: "For most domestic jobs, no deposit is required. For larger commercial projects or those requiring significant materials upfront, a staged payment schedule is agreed in advance." } },
-          ],
+          mainEntity: FAQS.slice(0, 5).map((f) => ({
+            "@type": "Question",
+            name: f.q,
+            acceptedAnswer: { "@type": "Answer", text: f.a },
+          })),
         }),
       },
     ],
+
   }),
   component: Home,
 });
@@ -423,26 +387,15 @@ function Home() {
             <h2 className="section-title text-3xl md:text-4xl">Every room, every surface</h2>
             <hr className="section-rule" />
             <p className="mt-6 max-w-3xl text-base text-foreground">
-              From a single <strong>bedroom painting</strong> refresh to full <strong>apartment painting</strong>, <strong>kitchen cabinet painting</strong>, <strong>hallway and staircase painting</strong>, <strong>ceiling painting</strong>, <strong>wallpapering</strong> and <strong>Georgian house painting</strong> — we cover it all across Dublin.
+              From a single room to a full house repaint — kitchens and cabinets, hallways and stairs, ceilings, apartments and period homes. If it needs painting, we paint it.
             </p>
           </div>
 
-          <ul className="mt-10 grid grid-cols-2 gap-3 text-sm sm:grid-cols-3 lg:grid-cols-4">
-            {[
-              "Kitchen painting","Kitchen cabinet respraying","Hand-painted kitchens",
-              "Bedroom painting","Bathroom painting","Living room painting",
-              "Nursery painting","Hallway & staircase painting","Ceiling painting",
-              "Apartment painting","House painting","Renovation repaints",
-              "Wallpapering & wall decorating","Furniture painting","Varnish painting",
-              "Spray painting & spray finish","Railings & gates painting","Exterior render & masonry",
-              "Dash & pebbledash painting","Epoxy floor painting","Two-pack floor paints",
-              "Georgian & period homes","Office & commercial painting","Industrial premises painting",
-            ].map((s) => (
-              <li key={s} className="border-l-2 border-primary/70 bg-card px-3 py-2 font-medium text-[oklch(0.2_0_0)]">
-                {s}
-              </li>
-            ))}
-          </ul>
+          <div className="mt-8">
+            <Link to="/services" className="inline-flex items-center font-display text-xs font-bold uppercase tracking-wider text-primary hover:text-[oklch(0.2_0_0)]">
+              See all services →
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -476,20 +429,27 @@ function Home() {
               </p>
             </div>
 
-            <ul className="grid grid-cols-2 gap-x-4 gap-y-3 self-start text-sm text-foreground md:col-span-2">
-              {[
-                "Painter Ballsbridge","Painter Donnybrook","Painter Stillorgan","Painter Dún Laoghaire",
-                "Painter Rathfarnham","Painter Sandyford","Painter Rathmines","Painter Milltown",
-                "Painter Dundrum","Painter Roebuck","Painter Goatstown","Painter Ballinteer",
-                "Painter Leopardstown","Painter Harold's Cross","Painter Cabinteely","Painter Foxrock",
-                "Painter Glenageary","Painter Dalkey","Painter Monkstown","Painter Sandymount",
-                "Painter Mount Merrion","Painter Blackrock","Painter Ranelagh",
-              ].map((a) => (
-                <li key={a} className="flex items-center gap-2 border-l-2 border-primary/70 pl-3">
-                  <span className="font-medium text-[oklch(0.2_0_0)]">{a}</span>
-                </li>
-              ))}
-            </ul>
+            <div className="self-start md:col-span-2">
+              <ul className="grid grid-cols-2 gap-x-4 gap-y-3 text-sm text-foreground">
+                {[
+                  { name: "Ballsbridge", to: "/painter-ballsbridge" },
+                  { name: "Ranelagh", to: "/painter-ranelagh" },
+                  { name: "Rathmines", to: "/painter-rathmines" },
+                  { name: "Blackrock", to: "/painter-blackrock" },
+                  { name: "Dún Laoghaire", to: "/painter-dun-laoghaire" },
+                  { name: "Dalkey", to: "/painter-dalkey" },
+                  { name: "Foxrock", to: "/painter-foxrock" },
+                  { name: "Dundrum", to: "/painter-dundrum" },
+                ].map((a) => (
+                  <li key={a.to} className="flex items-center gap-2 border-l-2 border-primary/70 pl-3">
+                    <Link to={a.to} className="font-medium text-[oklch(0.2_0_0)] hover:text-primary">{a.name}</Link>
+                  </li>
+                ))}
+              </ul>
+              <Link to="/painters" className="mt-6 inline-flex items-center font-display text-xs font-bold uppercase tracking-wider text-primary hover:text-[oklch(0.2_0_0)]">
+                View all areas →
+              </Link>
+            </div>
           </div>
         </div>
       </section>

@@ -18,6 +18,17 @@ export const Route = createFileRoute("/painter-cabinteely")({
     scripts: [
       {
         type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Home", item: "https://allcolourspainter.com/" },
+            { "@type": "ListItem", position: 2, name: TITLE.split(" | ")[0], item: URL },
+          ],
+        }),
+      },
+      {
+        type: "application/ld+json",
         children: JSON.stringify({"@context":"https://schema.org","@type":"LocalBusiness","name":"All Colours Painting Contractor Limited","url":"https://allcolourspainter.com/painter-cabinteely","telephone":"+353858211870","email":"info@allcolourspainter.com","areaServed":{"@type":"Place","name":"Cabinteely, Dublin 18"},"address":{"@type":"PostalAddress","addressLocality":"Cabinteely","addressRegion":"Dublin 18","addressCountry":"IE"}}),
       },
     ],

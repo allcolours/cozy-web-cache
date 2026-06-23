@@ -14,6 +14,19 @@ export const Route = createFileRoute("/painter-sandyford")({
       { property: "og:description", content: DESC },
       { property: "og:url", content: URL },
     ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Home", item: "https://allcolourspainter.com/" },
+            { "@type": "ListItem", position: 2, name: TITLE.split(" | ")[0], item: URL },
+          ],
+        }),
+      },
+    ],
     links: [{ rel: "canonical", href: URL }],
   }),
   component: () => <LocalAreaPage area="Sandyford" postcode="Dublin 18" intro="Offices, retail units, apartment blocks and family homes across the Sandyford Business District — out-of-hours commercial painting available." />,
