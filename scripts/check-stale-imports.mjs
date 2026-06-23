@@ -3,8 +3,16 @@
 // assets (which have WebP twins) or the deleted logo.png — covers JS/TS
 // imports, CSS url() strings, and MDX/Markdown asset URLs, across src/ and
 // public/.
-import { appendFileSync, readdirSync, readFileSync, statSync } from "node:fs";
-import { join, extname } from "node:path";
+import {
+  appendFileSync,
+  existsSync,
+  mkdirSync,
+  readdirSync,
+  readFileSync,
+  statSync,
+  writeFileSync,
+} from "node:fs";
+import { dirname, join, extname } from "node:path";
 
 const ROOTS = ["src", "public"];
 const EXTS = new Set([
