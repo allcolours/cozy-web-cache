@@ -3,6 +3,7 @@ import { template as contactInquiryTemplate } from './contact-inquiry'
 import { template as estimateRequestTemplate } from './estimate-request'
 import { template as estimateConfirmationTemplate } from './estimate-confirmation'
 import { template as assetErrorAlertTemplate } from './asset-error-alert'
+import { template as gscCoverageReportTemplate } from './gsc-coverage-report'
 
 export interface TemplateEntry {
   component: ComponentType<any>
@@ -18,4 +19,5 @@ export const TEMPLATES: Record<string, TemplateEntry> = {
   'estimate-request': estimateRequestTemplate,
   'estimate-confirmation': estimateConfirmationTemplate,
   'asset-error-alert': assetErrorAlertTemplate,
+  'gsc-coverage-report': gscCoverageReportTemplate,
 }
