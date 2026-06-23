@@ -116,7 +116,7 @@ const SERVICES = [
 
 const WHY = [
   "We show up on time and finish on schedule — no chasing",
-  "30+ painters available — we can scale to your project size",
+  "Crews of 15–30 painters — we scale to your project size",
   "Compliant with all standard FM procurement requirements",
   "Experience on Cairn Homes, Bennett Construction and RCSI projects",
   "Single point of contact from first call to final sign-off",
