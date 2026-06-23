@@ -1,6 +1,5 @@
 import * as React from 'react'
 import { render } from '@react-email/components'
-import { createClient } from '@supabase/supabase-js'
 import { createFileRoute } from '@tanstack/react-router'
 import { TEMPLATES } from '@/lib/email-templates/registry'
 
@@ -8,8 +7,8 @@ const SITE_NAME = 'All Colours Painting'
 const SENDER_DOMAIN = 'notify.allcolourspainter.com'
 const FROM_DOMAIN = 'notify.allcolourspainter.com'
 
-const THRESHOLD = 10 // 10+ 404s in 24h → threshold alert
-const THRESHOLD_COOLDOWN_HOURS = 24 // resend at most once per 24h
+const THRESHOLD = 10
+const THRESHOLD_COOLDOWN_HOURS = 24
 
 function generateToken(): string {
   const bytes = new Uint8Array(32)
@@ -18,7 +17,7 @@ function generateToken(): string {
 }
 
 async function enqueueAlert(
-  supabase: ReturnType<typeof createClient>,
+  supabase: any,
   templateData: Record<string, any>,
 ) {
   const template = TEMPLATES['asset-error-alert']
@@ -26,7 +25,6 @@ async function enqueueAlert(
   const recipient = template.to as string
   const messageId = crypto.randomUUID()
 
-  // Suppression check
   const { data: suppressed } = await supabase
     .from('suppressed_emails')
     .select('id')
@@ -42,7 +40,6 @@ async function enqueueAlert(
     return { skipped: 'suppressed' as const }
   }
 
-  // Unsubscribe token (reuse or create)
   const normalized = recipient.toLowerCase()
   let unsubscribeToken: string
   const { data: existingToken } = await supabase
@@ -68,7 +65,6 @@ async function enqueueAlert(
     if (stored?.token) unsubscribeToken = stored.token as string
   }
 
-  // Render
   const element = React.createElement(template.component, templateData)
   const html = await render(element)
   const text = await render(element, { plainText: true })
@@ -77,7 +73,6 @@ async function enqueueAlert(
       ? template.subject(templateData)
       : template.subject
 
-  // Log pending
   await supabase.from('email_send_log').insert({
     message_id: messageId,
     template_name: 'asset-error-alert',
@@ -119,29 +114,21 @@ export const Route = createFileRoute('/api/public/hooks/check-asset-errors')({
   server: {
     handlers: {
       POST: async ({ request }) => {
-        const supabaseUrl = process.env.SUPABASE_URL || import.meta.env.VITE_SUPABASE_URL
-        const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY
         const anonKey =
           process.env.SUPABASE_PUBLISHABLE_KEY ||
           process.env.SUPABASE_ANON_KEY ||
           import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY
-        if (!supabaseUrl || !serviceKey) {
-          return Response.json({ error: 'Server misconfigured' }, { status: 500 })
-        }
 
-        // Lightweight auth: pg_cron sends apikey header == anon key
         const apiKey = request.headers.get('apikey')
         if (!apiKey || (anonKey && apiKey !== anonKey)) {
           return Response.json({ error: 'Unauthorized' }, { status: 401 })
         }
 
-        const supabase = createClient(supabaseUrl, serviceKey, {
-          auth: { persistSession: false, autoRefreshToken: false },
-        })
+        const { supabaseAdmin } = await import('@/integrations/supabase/client.server')
+        const supabase: any = supabaseAdmin
 
         const since24 = new Date(Date.now() - 24 * 3600 * 1000).toISOString()
 
-        // Fetch all errors in last 24h
         const { data: rows, error: rowsErr } = await supabase
           .from('asset_errors')
           .select('asset_url, created_at')
@@ -153,7 +140,6 @@ export const Route = createFileRoute('/api/public/hooks/check-asset-errors')({
         const errors = (rows as Array<{ asset_url: string; created_at: string }>) || []
         const totalLast24h = errors.length
 
-        // Top broken (24h)
         const counts = new Map<string, number>()
         for (const r of errors) counts.set(r.asset_url, (counts.get(r.asset_url) ?? 0) + 1)
         const topBroken = [...counts.entries()]
@@ -161,7 +147,6 @@ export const Route = createFileRoute('/api/public/hooks/check-asset-errors')({
           .sort((a, b) => b.count - a.count)
           .slice(0, 10)
 
-        // Detect URLs not yet alerted (alert_type new_url)
         const distinctUrls = [...counts.keys()]
         const newUrls: string[] = []
         if (distinctUrls.length > 0) {
@@ -170,19 +155,16 @@ export const Route = createFileRoute('/api/public/hooks/check-asset-errors')({
             .from('asset_error_alerts')
             .select('alert_key')
             .in('alert_key', keys)
-          const alertedSet = new Set((alerted || []).map((a: any) => a.alert_key as string))
+          const alertedSet = new Set(
+            ((alerted as Array<{ alert_key: string }>) || []).map((a) => a.alert_key),
+          )
           for (const u of distinctUrls) {
             if (!alertedSet.has(`new_url:${u}`)) newUrls.push(u)
           }
         }
 
-        const results: Record<string, unknown> = {
-          totalLast24h,
-          newUrlsCount: newUrls.length,
-          alertsSent: [] as string[],
-        }
+        const alertsSent: string[] = []
 
-        // 1) New-URL alert
         if (newUrls.length > 0) {
           try {
             await enqueueAlert(supabase, {
@@ -200,13 +182,12 @@ export const Route = createFileRoute('/api/public/hooks/check-asset-errors')({
               asset_url: u,
             }))
             await supabase.from('asset_error_alerts').insert(inserts)
-            ;(results.alertsSent as string[]).push('new_url')
+            alertsSent.push('new_url')
           } catch (e) {
             console.error('[check-asset-errors] new_url enqueue failed', e)
           }
         }
 
-        // 2) Threshold alert (dedup with 24h cooldown)
         if (totalLast24h >= THRESHOLD) {
           const cooldownSince = new Date(
             Date.now() - THRESHOLD_COOLDOWN_HOURS * 3600 * 1000,
@@ -217,7 +198,7 @@ export const Route = createFileRoute('/api/public/hooks/check-asset-errors')({
             .eq('alert_type', 'threshold')
             .gte('notified_at', cooldownSince)
             .limit(1)
-          if (!recentThreshold || recentThreshold.length === 0) {
+          if (!recentThreshold || (recentThreshold as unknown[]).length === 0) {
             try {
               await enqueueAlert(supabase, {
                 alertType: 'threshold',
@@ -233,14 +214,19 @@ export const Route = createFileRoute('/api/public/hooks/check-asset-errors')({
                 alert_type: 'threshold',
                 asset_url: null,
               })
-              ;(results.alertsSent as string[]).push('threshold')
+              alertsSent.push('threshold')
             } catch (e) {
               console.error('[check-asset-errors] threshold enqueue failed', e)
             }
           }
         }
 
-        return Response.json({ ok: true, ...results })
+        return Response.json({
+          ok: true,
+          totalLast24h,
+          newUrlsCount: newUrls.length,
+          alertsSent,
+        })
       },
     },
   },
