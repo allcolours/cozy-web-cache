@@ -57,11 +57,6 @@ export const Route = createFileRoute("/services_/$service")({
             },
             areaServed: { "@type": "City", name: "Dublin" },
             description,
-            aggregateRating: {
-              "@type": "AggregateRating",
-              ratingValue: "5.0",
-              reviewCount: String(TESTIMONIALS.length),
-            },
           }),
         },
       ],
