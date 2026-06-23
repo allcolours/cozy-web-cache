@@ -478,3 +478,5 @@ function Home() {
     </SiteLayout>
   );
 }
+
+const img = "logo.png";
