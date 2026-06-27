@@ -8,11 +8,11 @@ import { AREA_CONTENT, AREA_PATHS } from "../data/areaContent";
 
 const STATS = [
   { value: "15–30", label: "Skilled painters" },
-  { value: "300+", label: "Projects completed" },
-  { value: "10+", label: "Years in Dublin" },
+  { value: "48hr", label: "Quote turnaround" },
   { value: "12-Month", label: "Workmanship guarantee" },
   { value: "100%", label: "Fully insured" },
   { value: "Free", label: "Written quotes" },
+  { value: "Dublin", label: "Based & operating" },
 ];
 
 const SERVICES = [
@@ -24,22 +24,15 @@ const SERVICES = [
   { title: "Bespoke Finishes", desc: "Spray finishing, feature walls and hand-painted kitchens." },
 ];
 
-const WHY = [
-  "Professional crews with 10+ years on Dublin sites",
-  "Reliable scheduling and tidy daily handover",
-  "Fully insured",
-  "12-month written workmanship guarantee",
-];
-
 const WHY_FALLBACK = [
-  "Professional crews with 10+ years on Dublin sites",
+  "Established Dublin crews",
   "Reliable scheduling and tidy daily handover",
   "Fully insured",
   "12-month written workmanship guarantee",
 ];
 
 const LOCAL_CONTEXT_FALLBACK =
-  "We've been painting and decorating across Dublin for over a decade. Our local clients get the same dedicated crew, written quote, and 12-month workmanship guarantee — backed by 300+ projects completed across Dublin.";
+  "We're an established Dublin painting and decorating company with a large portfolio of completed work across the city. Local clients get the same dedicated crew, written quote, and 12-month workmanship guarantee.";
 
 export interface LocalAreaPageProps {
   area: string;
