@@ -60,15 +60,16 @@ const MOBILE_NAV = [
   { to: "/contact", label: "Contact" },
 ] as const;
 
-// Static brand info (not editable from admin)
+// Static brand info (not editable from admin). Sourced from src/lib/site.ts.
+import { SITE } from "@/lib/site";
 export const COMPANY = {
-  name: "All Colours Painting Contractor Limited",
-  shortName: "All Colours Painting",
-  phone: "085 821 1870",
-  email: "info@allcolourspainter.com",
-  area: "Dublin & surrounding areas",
-  hours: "Mon–Sat · 8:00 – 18:00",
-  tagline: "Painting & decorating, done properly.",
+  name: SITE.name,
+  shortName: SITE.shortName,
+  phone: SITE.phoneDisplay,
+  email: SITE.email,
+  area: SITE.area,
+  hours: SITE.hours,
+  tagline: SITE.tagline,
 };
 
 
