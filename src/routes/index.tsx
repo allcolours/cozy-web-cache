@@ -104,7 +104,7 @@ const portfolio = CASE_STUDIES.slice(0, 4).map((c) => ({ img: c.cover, title: c.
 
 const stats = [
   { k: "15–30", v: "Painters mobilised to programme" },
-  { k: "1,200+", v: "Projects completed" },
+  { k: "300+", v: "Projects completed" },
   { k: "10+", v: "Years experience" },
   { k: "5★", v: "Average client rating" },
   { k: "Commercial & Residential", v: "All property types" },

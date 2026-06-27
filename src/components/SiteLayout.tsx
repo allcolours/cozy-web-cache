@@ -206,16 +206,17 @@ export function SiteLayout({ children }: { children: ReactNode }) {
             <h4 className="font-display text-sm font-bold uppercase tracking-wider text-white">Explore</h4>
             <div className="mt-3 h-[2px] w-10 bg-primary" />
             <ul className="mt-4 space-y-2 text-sm text-white/80">
-              {NAV.map((n) => (
-                <li key={n.to}>
-                  <Link to={n.to} className="hover:text-primary">{n.label}</Link>
-                </li>
-              ))}
-              <li><Link to="/painters" className="hover:text-primary">Areas We Cover</Link></li>
+              <li><Link to="/" className="hover:text-primary">Home</Link></li>
+              <li><Link to="/about" className="hover:text-primary">About</Link></li>
+              <li><Link to="/services" className="hover:text-primary">Services</Link></li>
+              <li><Link to="/gallery" className="hover:text-primary">Gallery</Link></li>
+              <li><Link to="/blog" className="hover:text-primary">Blog</Link></li>
+              <li><Link to="/faq" className="hover:text-primary">FAQ</Link></li>
+              <li><Link to="/projects" className="hover:text-primary">Projects</Link></li>
               <li><Link to="/pricing-guide" className="hover:text-primary">Pricing Guide</Link></li>
-              <li><Link to="/commercial-contractors" className="hover:text-primary">Commercial Contractors</Link></li>
             </ul>
           </div>
+
 
           <div>
             <h4 className="font-display text-sm font-bold uppercase tracking-wider text-white">Areas We Cover</h4>
