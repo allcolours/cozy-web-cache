@@ -161,7 +161,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
         </div>
 
         {open && (
-          <div className="border-t border-border lg:hidden">
+          <div className="max-h-[calc(100vh-4rem)] overflow-y-auto scroll-smooth border-t border-border lg:hidden">
 
             <nav className="mx-auto flex max-w-7xl flex-col gap-1 px-4 py-4">
               {MOBILE_NAV.map((n) => (
