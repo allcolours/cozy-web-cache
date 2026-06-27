@@ -407,33 +407,9 @@ function Home() {
         </div>
       </section>
 
-      {/* Recent case studies */}
-      <section className="bg-secondary">
-        <div className="mx-auto max-w-7xl px-4 py-20 md:px-8 md:py-28">
-          <div className="flex flex-wrap items-end justify-between gap-6">
-            <div>
-              <span className="eyebrow">Our work</span>
-              <h2 className="section-title mt-3 text-3xl md:text-4xl">Recent case studies</h2>
-              <hr className="section-rule" />
-              <p className="mt-6 max-w-2xl text-base text-foreground">The brief, the prep, the materials, the result. The honest version of how each job actually went.</p>
-            </div>
-            <Link to="/case-studies" className="font-display text-xs font-bold uppercase tracking-wider text-primary hover:text-[oklch(0.2_0_0)]">All case studies →</Link>
-          </div>
-          <div className="mt-12 grid gap-6 sm:grid-cols-2">
-            {portfolio.map((p) => (
-              <Link key={p.slug} to="/case-studies/$slug" params={{ slug: p.slug }} className="group relative block overflow-hidden bg-card">
-                <div className="aspect-[16/11] overflow-hidden">
-                  <img src={p.img} alt={p.title} loading="lazy" width={1200} height={825} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
-                </div>
-                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent p-6 text-white">
-                  <p className="text-[11px] uppercase tracking-[0.18em] text-accent">{p.tag}</p>
-                  <h3 className="mt-1 font-display text-lg font-bold uppercase tracking-wide">{p.title}</h3>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Recent projects */}
+      <RecentProjects />
+
 
       {/* Process */}
       <ProcessSteps background="background" />
