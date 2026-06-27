@@ -12,11 +12,11 @@ import { resolveGalleryUrl } from "@/lib/galleryUrl";
 
 
 import heroAsset from "../assets/portfolio/hero-house.webp.asset.json";
-import aboutAsset from "../assets/portfolio/about-architecture.jpg.asset.json";
+import aboutAsset from "../assets/portfolio/about-architecture.webp.asset.json";
 import sCommercialAsset from "../assets/portfolio/service-commercial.webp.asset.json";
 import sIndustrialAsset from "../assets/portfolio/service-industrial.webp.asset.json";
 import sHospitalityAsset from "../assets/portfolio/service-hospitality.webp.asset.json";
-import ctaAsset from "../assets/portfolio/cta-bg.jpg.asset.json";
+import ctaAsset from "../assets/portfolio/cta-bg.webp.asset.json";
 import { FormBotTraps, readBotTraps } from "../components/FormBotTraps";
 
 

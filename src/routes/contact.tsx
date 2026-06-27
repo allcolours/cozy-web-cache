@@ -4,7 +4,7 @@ import { SiteLayout } from "../components/SiteLayout";
 import { MapEmbed } from "../components/MapEmbed";
 import { useSiteSettings } from "../hooks/useSiteSettings";
 import { FormBotTraps, readBotTraps } from "../components/FormBotTraps";
-import ctaAsset from "../assets/portfolio/cta-bg.jpg.asset.json";
+import ctaAsset from "../assets/portfolio/cta-bg.webp.asset.json";
 
 
 export const Route = createFileRoute("/contact")({
