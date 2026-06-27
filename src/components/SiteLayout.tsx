@@ -264,6 +264,14 @@ export function SiteLayout({ children }: { children: ReactNode }) {
           </div>
         </div>
         <div className="border-t border-white/10">
+          <div className="mx-auto max-w-7xl px-4 py-5 text-xs text-white/60 md:px-8">
+            <div className="space-y-1 leading-relaxed">
+              <div>All Colours Painting Contractor Limited · Registered in Ireland No. 810243 · VAT IE4706227DH</div>
+              <div>Registered office: Dublin 22, D22 X052, Ireland</div>
+            </div>
+          </div>
+        </div>
+        <div className="border-t border-white/10">
           <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-4 py-5 text-xs text-white/75 md:flex-row md:px-8">
             <div>© {new Date().getFullYear()} {COMPANY.name}. All rights reserved.</div>
             <div className="flex items-center gap-4">

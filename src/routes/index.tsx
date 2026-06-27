@@ -43,15 +43,18 @@ export const Route = createFileRoute("/")({
           "@type": "HousePainter",
           "@id": "https://allcolourspainter.com/#business",
           name: "All Colours Painting Contractor Limited",
+          legalName: "All Colours Painting Contractor Limited",
+          vatID: "IE4706227DH",
           url: "https://allcolourspainter.com/",
           image: "https://allcolourspainter.com/__l5e/assets-v1/2a395495-c4ec-4903-a41b-667de034b2ab/hero-house.webp",
           telephone: "+353858211870",
           email: "info@allcolourspainter.com",
           priceRange: "€€",
           areaServed: { "@type": "AdministrativeArea", name: "County Dublin, Ireland" },
-          address: { "@type": "PostalAddress", addressLocality: "Dublin", addressRegion: "Leinster", addressCountry: "IE" },
+          address: { "@type": "PostalAddress", addressLocality: "Dublin 22", postalCode: "D22 X052", addressRegion: "Leinster", addressCountry: "IE" },
           openingHoursSpecification: [{ "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], opens: "08:00", closes: "18:00" }],
           identifier: { "@type": "PropertyValue", name: "CRO", value: "810243" },
+          
           
         }),
       },
@@ -281,7 +284,7 @@ function Home() {
               { t: "Fast & Efficient", d: "Modern techniques, the best tools on the market. We're in, the job is done, and we're gone." },
               { t: "Reliable", d: "We say what we'll do — and we do what we say. Honest quotes, honest timelines." },
               { t: "Clean & Dust-Free", d: "Floors, furniture and belongings fully protected. Vacuum sanding keeps dust out of your home." },
-              { t: "Fully Insured", d: "Public liability insured and tax-compliant. Every job covered from first prep to final coat." },
+              { t: "Fully Insured", d: "Fully insured and tax-compliant. Every job covered from first prep to final coat." },
               { t: "12-Month Warranty", d: "If anything's not right within 12 months of completion, we come back and put it right — no quibble. Written workmanship guarantee on every job." },
             ].map((v, i) => (
               <div key={v.t} className="border-t-[3px] border-primary bg-card p-7">

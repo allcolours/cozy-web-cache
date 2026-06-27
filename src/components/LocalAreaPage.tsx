@@ -25,7 +25,7 @@ const SERVICES = [
 const WHY = [
   "Professional crews with 10+ years on Dublin sites",
   "Reliable scheduling and tidy daily handover",
-  "Fully insured with public liability cover",
+  "Fully insured",
   "12-month written workmanship guarantee",
 ];
 

@@ -64,7 +64,7 @@ export const BLOG_POSTS: BlogPost[] = [
       {
         heading: "What should be in a proper quote",
         paragraphs: [
-          "A written quote that itemises labour, materials and prep separately. Specific paint brands and finishes named (not just 'two coats of emulsion'). Number of coats specified. Surfaces included and excluded listed. Start date, expected duration and payment terms. Public liability insurance details. A clear price for change-of-scope work if you decide to add a room mid-job.",
+          "A written quote that itemises labour, materials and prep separately. Specific paint brands and finishes named (not just 'two coats of emulsion'). Number of coats specified. Surfaces included and excluded listed. Start date, expected duration and payment terms. Confirmation the contractor is fully insured. A clear price for change-of-scope work if you decide to add a room mid-job.",
         ],
       },
       {

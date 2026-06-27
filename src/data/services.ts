@@ -83,7 +83,7 @@ export const SERVICES: ServiceInfo[] = [
     name: "Commercial Painting",
     h1: "Commercial Painters Dublin",
     intro:
-      "Offices, retail units, restaurants, hotels and apartment-block common areas — we work out-of-hours so your business never stops. Safe Pass certified crews, full RAMS, public liability cover and a single point of contact for the whole job.",
+      "Offices, retail units, restaurants, hotels and apartment-block common areas — we work out-of-hours so your business never stops. Safe Pass certified crews, full RAMS, fully insured and a single point of contact for the whole job.",
     metaTitle: "Commercial Painters Dublin | Offices, Retail & Hotels – All Colours",
     metaDescription:
       "Commercial painting contractors in Dublin. Out-of-hours offices, retail fit-outs, hotels, restaurants & apartment blocks. Safe Pass certified, fully insured.",
