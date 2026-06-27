@@ -25,7 +25,7 @@ export const Route = createFileRoute("/")({
     meta: [
       { title: "Painters Dublin — Interior, Exterior & Commercial | All Colours Painting" },
       { name: "description", content: "Professional painter and decorator in Dublin. Interior & exterior painting, epoxy floors, spray painting for houses, apartments & commercial. Free quotes — call 085 821 1870." },
-      { property: "og:title", content: "Painter Dublin | All Colours Painting & Decorating" },
+      { property: "og:title", content: "Painters Dublin — Interior, Exterior & Commercial | All Colours Painting" },
       { property: "og:description", content: "Professional painter and decorator in Dublin. Interior & exterior painting, epoxy floors, spray painting for houses, apartments & commercial. Free quotes — call 085 821 1870." },
       { property: "og:url", content: "https://allcolourspainter.com/" },
       { property: "og:type", content: "website" },
