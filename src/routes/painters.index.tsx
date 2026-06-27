@@ -1,6 +1,8 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { SiteLayout } from "../components/SiteLayout";
 import { AREAS } from "../data/areas";
+import { AREA_PATHS } from "../data/areaContent";
+
 
 export const Route = createFileRoute("/painters/")({
   head: () => {
