@@ -97,7 +97,7 @@ const AREAS = [
 
 const WHY = [
   "Professional crews with 10+ years on Dublin sites",
-  "Tax Clearance compliant and fully insured (€6.5m+ public liability)",
+  "Tax Clearance compliant and fully insured",
   "12-month written workmanship guarantee on every job",
   "Tidy daily handover — vacuum sanding, dust control, furniture protected",
   "Honest written quotes — line-by-line, no surprises",
@@ -115,7 +115,7 @@ const FAQS = [
   },
   {
     q: "Are you fully insured?",
-    a: "Yes — public liability €6.5m+, employers liability €13m+, fully Tax Clearance compliant.",
+    a: "Yes — fully insured and Tax Clearance compliant.",
   },
   {
     q: "Do you paint while we're living in the house?",

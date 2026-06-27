@@ -9,7 +9,7 @@ export const Route = createFileRoute("/commercial-contractors")({
       {
         name: "description",
         content:
-          "Painting subcontractor for property management & facilities management companies in Dublin. Tax Clearance, public liability €6.5m+, RAMS, Safe Pass. Free tender — 085 821 1870.",
+          "Painting subcontractor for property management & facilities management companies in Dublin. Tax Clearance, fully insured, RAMS, Safe Pass. Free tender — 085 821 1870.",
       },
       {
         property: "og:title",
@@ -18,7 +18,7 @@ export const Route = createFileRoute("/commercial-contractors")({
       {
         property: "og:description",
         content:
-          "Painting subcontractor for property management & facilities management companies in Dublin. Tax Clearance, public liability €6.5m+, RAMS, Safe Pass. Free tender — 085 821 1870.",
+          "Painting subcontractor for property management & facilities management companies in Dublin. Tax Clearance, fully insured, RAMS, Safe Pass. Free tender — 085 821 1870.",
       },
       { property: "og:url", content: "https://allcolourspainter.com/commercial-contractors" },
       { property: "og:type", content: "website" },
@@ -65,8 +65,7 @@ export const Route = createFileRoute("/commercial-contractors")({
 
 const COMPLIANCE = [
   "Tax Clearance Certificate",
-  "Public Liability €6.5m+",
-  "Employers Liability €13m+",
+  "Fully Insured",
   "Safe Pass & Manual Handling",
   "RAMS on request",
   "RCT Compliant",
