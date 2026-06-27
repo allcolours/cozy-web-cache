@@ -3,6 +3,8 @@ import { SiteLayout } from "./SiteLayout";
 import { TESTIMONIALS } from "../data/testimonials";
 import { TestimonialCard } from "./Testimonials";
 import heroAsset from "../assets/portfolio/hero-house.webp.asset.json";
+import { AREA_CONTENT, AREA_PATHS } from "../data/areaContent";
+
 
 const STATS = [
   { value: "15–30", label: "Skilled painters" },
