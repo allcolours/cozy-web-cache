@@ -302,6 +302,46 @@ function ProjectRow({ project, allProjects, isOpen, onToggle, onRefresh, canMove
     refetchImages();
   }
 
+  async function rotateImage(img: GalleryImage) {
+    if (!img.resolved_url) return;
+    setRotatingId(img.id);
+    try {
+      const blob = await (await fetch(img.resolved_url)).blob();
+      const bmp = await createImageBitmap(blob);
+      const canvas = document.createElement("canvas");
+      canvas.width = bmp.height;
+      canvas.height = bmp.width;
+      const ctx = canvas.getContext("2d");
+      if (!ctx) throw new Error("Canvas not available");
+      ctx.translate(canvas.width / 2, canvas.height / 2);
+      ctx.rotate(Math.PI / 2);
+      ctx.drawImage(bmp, -bmp.width / 2, -bmp.height / 2);
+      const rotated: Blob = await new Promise((resolve, reject) => {
+        canvas.toBlob((b) => b ? resolve(b) : reject(new Error("toBlob failed")), "image/webp", 0.85);
+      });
+      const path = `projects/${project.id}/${crypto.randomUUID()}.webp`;
+      const { error: upErr } = await supabase.storage.from("gallery").upload(path, rotated, {
+        contentType: "image/webp", cacheControl: "31536000", upsert: false,
+      });
+      if (upErr) throw upErr;
+      const { error: updErr } = await supabase
+        .from("gallery_images")
+        .update({ image_url: path, storage_path: path })
+        .eq("id", img.id);
+      if (updErr) throw updErr;
+      if (img.storage_path) {
+        await supabase.storage.from("gallery").remove([img.storage_path]);
+      }
+      await refetchImages();
+    } catch (err) {
+      console.error("rotate failed", err);
+      alert(`Rotate failed: ${(err as Error)?.message ?? "Unknown error"}`);
+    } finally {
+      setRotatingId(null);
+    }
+  }
+
+
   const BADGE: Record<string, string> = {
     interior: "bg-blue-100 text-blue-800",
     exterior: "bg-amber-100 text-amber-800",
