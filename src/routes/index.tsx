@@ -36,7 +36,6 @@ export const Route = createFileRoute("/")({
     links: [
       { rel: "canonical", href: "https://allcolourspainter.com/" },
       { rel: "preload", as: "image", href: heroAsset.url, fetchPriority: "high" },
-      { rel: "preload", as: "image", href: "https://allcolourspainter.com/__l5e/assets-v1/2a395495-c4ec-4903-a41b-667de034b2ab/hero-house.webp" },
     ],
     scripts: [
       {
