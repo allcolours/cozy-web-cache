@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { getConsent, setConsent } from "@/lib/consent";
 
 type Props = {
   title: string;
@@ -14,13 +15,26 @@ type Props = {
  * Click-to-load (or scroll-into-view) Google Maps embed.
  * Keeps an empty styled container in the DOM so layout doesn't shift,
  * and only injects the <iframe> after user intent / visibility.
+ * Auto-load only fires if cookie consent === "accepted"; otherwise
+ * a click is required (and is treated as implicit consent for this load).
  */
 export function MapEmbed({ title, src, className, style, autoLoadOnVisible = true }: Props) {
   const [loaded, setLoaded] = useState(false);
+  const [consented, setConsented] = useState(false);
   const ref = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    if (!autoLoadOnVisible || loaded) return;
+    setConsented(getConsent() === "accepted");
+    const onChange = (e: Event) => {
+      const detail = (e as CustomEvent).detail;
+      setConsented(detail === "accepted");
+    };
+    window.addEventListener("cookie-consent-change", onChange);
+    return () => window.removeEventListener("cookie-consent-change", onChange);
+  }, []);
+
+  useEffect(() => {
+    if (!autoLoadOnVisible || loaded || !consented) return;
     const el = ref.current;
     if (!el || typeof IntersectionObserver === "undefined") return;
     const io = new IntersectionObserver(
@@ -34,7 +48,12 @@ export function MapEmbed({ title, src, className, style, autoLoadOnVisible = tru
     );
     io.observe(el);
     return () => io.disconnect();
-  }, [autoLoadOnVisible, loaded]);
+  }, [autoLoadOnVisible, loaded, consented]);
+
+  const handleClick = () => {
+    if (getConsent() !== "accepted") setConsent("accepted");
+    setLoaded(true);
+  };
 
   return (
     <div ref={ref} className={className} style={style}>
@@ -51,7 +70,7 @@ export function MapEmbed({ title, src, className, style, autoLoadOnVisible = tru
       ) : (
         <button
           type="button"
-          onClick={() => setLoaded(true)}
+          onClick={handleClick}
           aria-label={`Load map: ${title}`}
           className="flex h-full w-full flex-col items-center justify-center gap-3 bg-secondary text-foreground transition-colors hover:bg-muted"
         >
