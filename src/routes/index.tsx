@@ -151,12 +151,15 @@ async function fetchHomeAlbums(): Promise<HomeAlbum[]> {
   return albums.slice(0, 6);
 }
 
+const stats = [
+  { k: "15–30", v: "Painters mobilised to programme" },
   { k: "300+", v: "Projects completed" },
   { k: "10+", v: "Years experience" },
   { k: "48hr", v: "Written quote turnaround" },
   { k: "12-Month", v: "Workmanship guarantee" },
   { k: "Free", v: "No-obligation quotes" },
 ];
+
 
 const NEED_OPTIONS = [
   "Interior painting",
