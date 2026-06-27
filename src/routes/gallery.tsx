@@ -243,7 +243,7 @@ function Gallery() {
             <div className="rounded-md border border-border bg-card p-8 text-center">
               <p className="text-sm text-muted-foreground">
                 We couldn't load the gallery right now. Call us on{" "}
-                <a href={`tel:${SITE.phoneTel}`} className="font-semibold text-primary">085 821 1870</a> and we'll send photos by WhatsApp.
+                <a href={`tel:${SITE.phoneTel}`} className="font-semibold text-primary">{SITE.phoneDisplay}</a> and we'll send photos by WhatsApp.
               </p>
             </div>
           ) : filteredAlbums.length === 0 ? (

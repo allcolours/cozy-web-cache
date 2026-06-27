@@ -12,9 +12,9 @@ export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
       { title: "Get a Free Quote | All Colours Painting Dublin" },
-      { name: "description", content: `Request a free painting quote in Dublin. Call ${SITE.phoneDisplay} or email info@allcolourspainter.com. We respond within 24 hours. No obligation estimates.` },
+      { name: "description", content: `Request a free painting quote in Dublin. Call ${SITE.phoneDisplay} or email ${SITE.email}. We respond within 24 hours. No obligation estimates.` },
       { property: "og:title", content: "Get a Free Quote | All Colours Painting Dublin" },
-      { property: "og:description", content: `Request a free painting quote in Dublin. Call ${SITE.phoneDisplay} or email info@allcolourspainter.com. We respond within 24 hours. No obligation estimates.` },
+      { property: "og:description", content: `Request a free painting quote in Dublin. Call ${SITE.phoneDisplay} or email ${SITE.email}. We respond within 24 hours. No obligation estimates.` },
       { property: "og:url", content: "https://allcolourspainter.com/contact" },
       { property: "og:type", content: "website" },
       { property: "og:image", content: `https://allcolourspainter.com${ctaAsset.url}` },
@@ -121,9 +121,9 @@ function Contact() {
               <div className="mt-8 border-t border-border/60 pt-6 text-xs leading-relaxed text-foreground/70">
                 <p className="font-display text-[11px] font-bold uppercase tracking-[0.18em] text-primary">Company details</p>
                 <p className="mt-2">All Colours Painting Contractor Limited</p>
-                <p>Registered in Ireland · Company No. 810243</p>
-                <p>VAT IE4706227DH</p>
-                <p>Registered office: 22 Liscarne Court, Dublin 22, D22 X052, Ireland</p>
+                <p>Registered in Ireland · Company No. {SITE.cro}</p>
+                <p>VAT {SITE.vat}</p>
+                <p>Registered office: {SITE.registeredAddress}</p>
               </div>
 
             </div>

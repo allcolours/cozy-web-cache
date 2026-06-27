@@ -160,7 +160,7 @@ function PainterDublinPage() {
               href={`tel:${SITE.phoneTel}`}
               className="inline-flex items-center rounded-sm border border-white/30 px-6 py-3 font-display text-xs font-bold uppercase tracking-wider text-white hover:border-primary hover:text-primary"
             >
-              Call 085 821 1870
+              Call {SITE.phoneDisplay}
             </a>
           </div>
         </div>

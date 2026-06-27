@@ -69,7 +69,7 @@ export function LocalAreaPage({ area, postcode, intro }: LocalAreaPageProps) {
 
           <div className="mt-8 flex flex-wrap gap-3">
             <a href={`tel:${SITE.phoneTel}`} className="inline-flex items-center rounded-sm bg-primary px-6 py-3 font-display text-xs font-bold uppercase tracking-wider text-primary-foreground hover:bg-[oklch(0.62_0.17_158)]">
-              Call 085 821 1870
+              Call {SITE.phoneDisplay}
             </a>
             <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center rounded-sm border-2 border-white px-6 py-3 font-display text-xs font-bold uppercase tracking-wider text-white hover:bg-white hover:text-[var(--color-surface-dark)]">
               Send photos on WhatsApp

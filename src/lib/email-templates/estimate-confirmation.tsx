@@ -62,7 +62,7 @@ const EstimateConfirmationEmail = ({
 
         <Hr style={hr} />
         <Text style={footer}>
-          Need to reach us sooner? Call <a style={link} href={`tel:${SITE.phoneTel}`}>085 821 1870</a> or reply to this email.<br />
+          Need to reach us sooner? Call <a style={link} href={`tel:${SITE.phoneTel}`}>{SITE.phoneDisplay}</a> or reply to this email.<br />
           — All Colours Painting Contractor Limited, Dublin
         </Text>
       </Container>

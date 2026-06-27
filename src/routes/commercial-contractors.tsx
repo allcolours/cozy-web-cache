@@ -252,7 +252,7 @@ function CommercialContractors() {
               href=`mailto:${SITE.email}`
               className="inline-flex items-center rounded-sm bg-primary px-7 py-4 font-display text-sm font-bold uppercase tracking-wider text-primary-foreground hover:bg-[oklch(0.62_0.17_158)]"
             >
-              ✉️ info@allcolourspainter.com
+              ✉️ {SITE.email}
             </a>
             <a
               href={`tel:${SITE.phoneTel}`}
