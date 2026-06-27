@@ -6,7 +6,7 @@ import heroAsset from "../assets/portfolio/hero-house.webp.asset.json";
 
 const STATS = [
   { value: "30+", label: "Skilled painters" },
-  { value: "1,200+", label: "Projects completed" },
+  { value: "300+", label: "Projects completed" },
   { value: "10+", label: "Years in Dublin" },
   { value: "5★", label: "Client rating" },
   { value: "100%", label: "Fully insured" },

@@ -16,7 +16,7 @@ export const Route = createFileRoute("/painters/$area")({
     const area = loaderData ?? AREAS.find((a) => a.slug === params.area);
     const name = area?.name ?? "Dublin";
     const title = `Painters ${name} | Professional Painter & Decorator – All Colours`;
-    const description = `Trusted painters in ${name}${area?.postcode ? `, ${area.postcode}` : ""}. Interior, exterior, kitchen & commercial painting. Free quotes, fully insured, 1,200+ projects completed.`;
+    const description = `Trusted painters in ${name}${area?.postcode ? `, ${area.postcode}` : ""}. Interior, exterior, kitchen & commercial painting. Free quotes, fully insured, 300+ projects completed across Dublin.`;
     const url = `https://allcolourspainter.com/painters/${params.area}`;
     return {
       meta: [
@@ -139,8 +139,8 @@ function AreaPage() {
             </h2>
             <p className="mt-5 text-base leading-relaxed text-muted-foreground">
               We've been painting and decorating across Dublin for over a decade. Our {area.name} clients
-              get the same dedicated crew, written quote, and workmanship guarantee — backed by 1,200+
-              completed projects across the city.
+              get the same dedicated crew, written quote, and workmanship guarantee — backed by 300+
+              projects completed across Dublin.
             </p>
             <ul className="mt-6 space-y-3">
               {area.highlights.map((h: string) => (
@@ -176,7 +176,7 @@ function AreaPage() {
       <section className="border-y border-border bg-secondary py-10">
         <div className="mx-auto grid max-w-7xl grid-cols-2 gap-6 px-4 text-center md:grid-cols-4 md:px-8">
           {[
-            ["1,200+", "Projects"],
+            ["300+", "Projects"],
             ["10+", "Years"],
             ["30+", "Painters"],
             ["5★", "Average rating"],

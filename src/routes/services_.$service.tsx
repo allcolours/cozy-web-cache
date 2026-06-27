@@ -158,7 +158,7 @@ function ServicePage() {
             <p className="mt-4 text-sm leading-relaxed text-foreground">{service.process}</p>
 
             <div className="mt-6 rounded-sm bg-secondary p-4 text-xs text-muted-foreground">
-              30+ painters · 1,200+ projects · Fully insured · Dublin based
+              30+ painters · 300+ projects · Fully insured · Dublin based
             </div>
           </div>
         </div>
@@ -168,7 +168,7 @@ function ServicePage() {
       <section className="border-y border-border bg-secondary py-10">
         <div className="mx-auto grid max-w-7xl grid-cols-2 gap-6 px-4 text-center md:grid-cols-4 md:px-8">
           {[
-            ["1,200+", "Projects"],
+            ["300+", "Projects"],
             ["10+", "Years"],
             ["30+", "Painters"],
             ["5★", "Average rating"],
