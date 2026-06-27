@@ -74,7 +74,7 @@ const SERVICES = [
 ];
 
 const WHY = [
-  { title: "Labour supply", body: "Scale from 15 to 30+ painters on site to hit tight programme dates." },
+  { title: "Labour supply", body: "Scale crews of 15–30 painters on site to hit tight programme dates." },
   { title: "Programme delivery", body: "On-time handover, sectional completion, snag-list closed out fast." },
   { title: "Compliance", body: "RCT registered, fully insured, Safe Pass, manual handling, RAMS on request." },
   { title: "Communication", body: "Dedicated WhatsApp groups, daily progress reports, photos from site." },
