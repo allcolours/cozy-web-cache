@@ -2,6 +2,8 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
+import { CmsImageUpload } from "@/components/admin/CmsImageUpload";
+
 
 type Section = { heading: string; body: string };
 export type BlogPostInput = {
@@ -114,10 +116,18 @@ export function BlogPostForm({ initial, postId }: { initial: BlogPostInput; post
         <FieldLabel label="Read time">
           <input value={form.read_time} onChange={(e) => setForm({ ...form, read_time: e.target.value })} placeholder="5 min read" className="adm-input" />
         </FieldLabel>
-        <FieldLabel label="Cover image URL">
-          <input value={form.cover_image_url} onChange={(e) => setForm({ ...form, cover_image_url: e.target.value })} className="adm-input" />
-        </FieldLabel>
       </div>
+
+      <FieldLabel label="Cover image URL">
+        <div className="flex gap-3">
+          <input value={form.cover_image_url} onChange={(e) => setForm({ ...form, cover_image_url: e.target.value })} className="adm-input flex-1" />
+          <CmsImageUpload folder="blog" onUploaded={(url) => setForm({ ...form, cover_image_url: url })} />
+        </div>
+        {form.cover_image_url && (
+          <img src={form.cover_image_url} alt="Cover preview" className="mt-2 h-32 rounded border border-border object-cover" />
+        )}
+      </FieldLabel>
+
 
       <FieldLabel label="Intro / excerpt (also used as meta description if blank)">
         <textarea rows={3} value={form.intro} onChange={(e) => setForm({ ...form, intro: e.target.value, excerpt: e.target.value })} className="adm-input" />

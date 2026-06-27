@@ -2,6 +2,8 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
+import { CmsImageUpload } from "@/components/admin/CmsImageUpload";
+
 
 export type CaseStudyInput = {
   id?: string;
@@ -114,7 +116,16 @@ export function CaseStudyForm({ initial, studyId }: { initial: CaseStudyInput; s
         <FL label="Client type"><input value={form.client_type} onChange={(e) => setForm({ ...form, client_type: e.target.value })} className="adm-input" /></FL>
         <FL label="Duration"><input value={form.duration} onChange={(e) => setForm({ ...form, duration: e.target.value })} className="adm-input" placeholder="8 working days" /></FL>
       </div>
-      <FL label="Cover image URL"><input value={form.cover_image_url} onChange={(e) => setForm({ ...form, cover_image_url: e.target.value })} className="adm-input" /></FL>
+      <FL label="Cover image URL">
+        <div className="flex gap-3">
+          <input value={form.cover_image_url} onChange={(e) => setForm({ ...form, cover_image_url: e.target.value })} className="adm-input flex-1" />
+          <CmsImageUpload folder="case-studies" onUploaded={(url) => setForm({ ...form, cover_image_url: url })} />
+        </div>
+        {form.cover_image_url && (
+          <img src={form.cover_image_url} alt="Cover preview" className="mt-2 h-32 rounded border border-border object-cover" />
+        )}
+      </FL>
+
 
       <FL label="Intro"><textarea rows={3} value={form.intro} onChange={(e) => setForm({ ...form, intro: e.target.value })} className="adm-input" /></FL>
       <FL label="The Challenge"><textarea rows={4} value={form.challenge} onChange={(e) => setForm({ ...form, challenge: e.target.value })} className="adm-input" /></FL>
@@ -133,10 +144,12 @@ export function CaseStudyForm({ initial, studyId }: { initial: CaseStudyInput; s
               </div>
             ))}
           </div>
-          <div className="mt-3 flex gap-2">
+          <div className="mt-3 flex flex-wrap items-center gap-2">
             <input id="imgUrl" placeholder="Image URL (paste from gallery uploads or external)" className="adm-input flex-1" />
             <button type="button" onClick={() => { const el = document.getElementById("imgUrl") as HTMLInputElement; addImage(el.value); el.value = ""; }} className="rounded-sm border border-border bg-background px-4 py-2 text-xs font-bold uppercase tracking-wider hover:bg-secondary">Add image</button>
+            <CmsImageUpload folder="case-studies" onUploaded={(url) => addImage(url)} label="Upload image" />
           </div>
+
         </div>
       )}
 
