@@ -1,8 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { LocalAreaPage } from "../components/LocalAreaPage";
+import { SITE } from "@/lib/site";
 
 const TITLE = "Painter Donnybrook Dublin 4 | All Colours Painting";
-const DESC = "Professional painter and decorator in Donnybrook, Dublin 4. Interior & exterior painting, free quotes — call 085 821 1870.";
+const DESC = `Professional painter and decorator in Donnybrook, Dublin 4. Interior & exterior painting, free quotes — call ${SITE.phoneDisplay}.`;
 const URL = "https://allcolourspainter.com/painter-donnybrook";
 
 export const Route = createFileRoute("/painter-donnybrook")({
@@ -29,7 +30,7 @@ export const Route = createFileRoute("/painter-donnybrook")({
       },
       {
         type: "application/ld+json",
-        children: JSON.stringify({"@context":"https://schema.org","@type":"LocalBusiness","name":"All Colours Painting Contractor Limited","url":"https://allcolourspainter.com/painter-donnybrook","telephone":"+353858211870","email":"info@allcolourspainter.com","areaServed":{"@type":"Place","name":"Donnybrook, Dublin 4"},"address":{"@type":"PostalAddress","addressLocality":"Donnybrook","addressRegion":"Dublin 4","addressCountry":"IE"}}),
+        children: JSON.stringify({"@context":"https://schema.org","@type":"LocalBusiness","name":"All Colours Painting Contractor Limited","url":"https://allcolourspainter.com/painter-donnybrook","telephone":SITE.phoneIntl,"email":SITE.email,"areaServed":{"@type":"Place","name":"Donnybrook, Dublin 4"},"address":{"@type":"PostalAddress","addressLocality":"Donnybrook","addressRegion":"Dublin 4","addressCountry":"IE"}}),
       },
     ],
   }),

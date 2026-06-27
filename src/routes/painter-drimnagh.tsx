@@ -1,8 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { LocalAreaPage } from "../components/LocalAreaPage";
+import { SITE } from "@/lib/site";
 
 const TITLE = "Painter Drimnagh Dublin 12 | All Colours Painting";
-const DESC = "Professional painter and decorator in Drimnagh, Dublin 12. Interior & exterior painting, free quotes — call 085 821 1870.";
+const DESC = `Professional painter and decorator in Drimnagh, Dublin 12. Interior & exterior painting, free quotes — call ${SITE.phoneDisplay}.`;
 const URL = "https://allcolourspainter.com/painter-drimnagh";
 
 export const Route = createFileRoute("/painter-drimnagh")({
@@ -29,7 +30,7 @@ export const Route = createFileRoute("/painter-drimnagh")({
       },
       {
         type: "application/ld+json",
-        children: JSON.stringify({"@context":"https://schema.org","@type":"LocalBusiness","name":"All Colours Painting Contractor Limited","url":"https://allcolourspainter.com/painter-drimnagh","telephone":"+353858211870","email":"info@allcolourspainter.com","areaServed":{"@type":"Place","name":"Drimnagh, Dublin 12"},"address":{"@type":"PostalAddress","addressLocality":"Drimnagh","addressRegion":"Dublin 12","addressCountry":"IE"}}),
+        children: JSON.stringify({"@context":"https://schema.org","@type":"LocalBusiness","name":"All Colours Painting Contractor Limited","url":"https://allcolourspainter.com/painter-drimnagh","telephone":SITE.phoneIntl,"email":SITE.email,"areaServed":{"@type":"Place","name":"Drimnagh, Dublin 12"},"address":{"@type":"PostalAddress","addressLocality":"Drimnagh","addressRegion":"Dublin 12","addressCountry":"IE"}}),
       },
     ],
   }),

@@ -1,8 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { LocalAreaPage } from "../components/LocalAreaPage";
+import { SITE } from "@/lib/site";
 
 const TITLE = "Painter Phibsborough Dublin 7 | All Colours Painting";
-const DESC = "Professional painter and decorator in Phibsborough, Dublin 7. Interior & exterior painting, free quotes — call 085 821 1870.";
+const DESC = `Professional painter and decorator in Phibsborough, Dublin 7. Interior & exterior painting, free quotes — call ${SITE.phoneDisplay}.`;
 const URL = "https://allcolourspainter.com/painter-phibsborough";
 
 export const Route = createFileRoute("/painter-phibsborough")({
@@ -29,7 +30,7 @@ export const Route = createFileRoute("/painter-phibsborough")({
       },
       {
         type: "application/ld+json",
-        children: JSON.stringify({"@context":"https://schema.org","@type":"LocalBusiness","name":"All Colours Painting Contractor Limited","url":"https://allcolourspainter.com/painter-phibsborough","telephone":"+353858211870","email":"info@allcolourspainter.com","areaServed":{"@type":"Place","name":"Phibsborough, Dublin 7"},"address":{"@type":"PostalAddress","addressLocality":"Phibsborough","addressRegion":"Dublin 7","addressCountry":"IE"}}),
+        children: JSON.stringify({"@context":"https://schema.org","@type":"LocalBusiness","name":"All Colours Painting Contractor Limited","url":"https://allcolourspainter.com/painter-phibsborough","telephone":SITE.phoneIntl,"email":SITE.email,"areaServed":{"@type":"Place","name":"Phibsborough, Dublin 7"},"address":{"@type":"PostalAddress","addressLocality":"Phibsborough","addressRegion":"Dublin 7","addressCountry":"IE"}}),
       },
     ],
   }),

@@ -1,8 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { LocalAreaPage } from "../components/LocalAreaPage";
+import { SITE } from "@/lib/site";
 
 const TITLE = "Painter Goatstown Dublin 14 | All Colours Painting";
-const DESC = "Professional painter and decorator in Goatstown, Dublin 14. Interior & exterior painting, free quotes — call 085 821 1870.";
+const DESC = `Professional painter and decorator in Goatstown, Dublin 14. Interior & exterior painting, free quotes — call ${SITE.phoneDisplay}.`;
 const URL = "https://allcolourspainter.com/painter-goatstown";
 
 export const Route = createFileRoute("/painter-goatstown")({
@@ -29,7 +30,7 @@ export const Route = createFileRoute("/painter-goatstown")({
       },
       {
         type: "application/ld+json",
-        children: JSON.stringify({"@context":"https://schema.org","@type":"LocalBusiness","name":"All Colours Painting Contractor Limited","url":"https://allcolourspainter.com/painter-goatstown","telephone":"+353858211870","email":"info@allcolourspainter.com","areaServed":{"@type":"Place","name":"Goatstown, Dublin 14"},"address":{"@type":"PostalAddress","addressLocality":"Goatstown","addressRegion":"Dublin 14","addressCountry":"IE"}}),
+        children: JSON.stringify({"@context":"https://schema.org","@type":"LocalBusiness","name":"All Colours Painting Contractor Limited","url":"https://allcolourspainter.com/painter-goatstown","telephone":SITE.phoneIntl,"email":SITE.email,"areaServed":{"@type":"Place","name":"Goatstown, Dublin 14"},"address":{"@type":"PostalAddress","addressLocality":"Goatstown","addressRegion":"Dublin 14","addressCountry":"IE"}}),
       },
     ],
   }),

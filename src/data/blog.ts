@@ -2,6 +2,7 @@ import heroAsset from "../assets/portfolio/hero-house.webp.asset.json";
 import aboutAsset from "../assets/portfolio/about-architecture.webp.asset.json";
 import exteriorAsset from "../assets/portfolio/portfolio-exterior-1.webp.asset.json";
 import commercialAsset from "../assets/portfolio/service-commercial.webp.asset.json";
+import { SITE } from "@/lib/site";
 
 export interface BlogPost {
   slug: string;
@@ -463,13 +464,13 @@ export const BLOG_POSTS: BlogPost[] = [
         heading: "What affects the price most?",
         paragraphs: [
           "Four factors: surface condition, access (scaffolding adds €300–€800), number of coats (most exteriors need primer + 2 finish coats minimum), and paint quality (trade-grade Dulux or Johnstone's lasts 2–3x longer than budget paint).",
-          "We always specify the paint in our written quotes — so you know exactly what's going on your walls.",
+          "We always specify the paint in our written quotes — so you know exactly what`s going on your walls.",
         ],
       },
       {
         heading: "How to get an accurate quote",
         paragraphs: [
-          "The only way to get a price you can trust is a site visit. We visit the property, walk every room and take measurements. Written quote within 48 hours. No obligation. Call 085 821 1870 or request online.",
+          "The only way to get a price you can trust is a site visit. We visit the property, walk every room and take measurements. Written quote within 48 hours. No obligation. Call ${SITE.phoneDisplay} or request online.",
         ],
       },
     ],
@@ -478,7 +479,7 @@ export const BLOG_POSTS: BlogPost[] = [
     slug: "best-paint-colours-dublin-homes-2025",
     title: "Best Paint Colours for Dublin Homes in 2025",
     excerpt:
-      "What colours actually work in Dublin's grey light? Our painters share the shades that look good year-round in Irish interiors — with real project examples.",
+      "What colours actually work in Dublin`s grey light? Our painters share the shades that look good year-round in Irish interiors — with real project examples.",
     cover: aboutAsset.url,
     date: "2025-10-08",
     readTime: "4 min read",
@@ -502,7 +503,7 @@ export const BLOG_POSTS: BlogPost[] = [
       {
         heading: "Living rooms and open-plan spaces",
         paragraphs: [
-          "The trend has moved away from cool grey toward earthy mineral tones. Most requested: Farrow & Ball Elephant's Breath (works in almost any light). Also strong: Dulux Denim Drift, Little Greene Sloe (a deep navy that's excellent for feature walls), Farrow & Ball Mole's Breath.",
+          "The trend has moved away from cool grey toward earthy mineral tones. Most requested: Farrow & Ball Elephant's Breath (works in almost any light). Also strong: Dulux Denim Drift, Little Greene Sloe (a deep navy that's excellent for feature walls), Farrow & Ball Mole`s Breath.",
         ],
       },
       {
@@ -516,7 +517,7 @@ export const BLOG_POSTS: BlogPost[] = [
         heading: "Getting colour right",
         paragraphs: [
           "Paint two large test patches (A3 size minimum). Live with them for 48 hours. Look in morning light, afternoon light and artificial light before you commit.",
-          "We give honest colour advice as part of every site visit — call 085 821 1870 to book.",
+          "We give honest colour advice as part of every site visit — call ${SITE.phoneDisplay} to book.",
         ],
       },
     ],
@@ -525,7 +526,7 @@ export const BLOG_POSTS: BlogPost[] = [
     slug: "how-to-prepare-walls-before-painting-dublin",
     title: "How to Prepare Walls Before Painting — The Right Way",
     excerpt:
-      "Preparation is where paint jobs succeed or fail. Our Dublin painters explain exactly how we prep walls — and what happens when it's skipped.",
+      "Preparation is where paint jobs succeed or fail. Our Dublin painters explain exactly how we prep walls — and what happens when it`s skipped.",
     cover: exteriorAsset.url,
     date: "2025-10-15",
     readTime: "5 min read",
@@ -549,7 +550,7 @@ export const BLOG_POSTS: BlogPost[] = [
       {
         heading: "Step 2 — Filling and repairs",
         paragraphs: [
-          "Hairline cracks: fine surface filler. Larger holes: two-part filler or bonding plaster. Render cracks: flexible exterior filler or sand-cement. Gaps around frames: decorator's caulk — not filler, because caulk flexes with movement.",
+          "Hairline cracks: fine surface filler. Larger holes: two-part filler or bonding plaster. Render cracks: flexible exterior filler or sand-cement. Gaps around frames: decorator`s caulk — not filler, because caulk flexes with movement.",
           "And yes, we fill nail holes and picture hooks as standard.",
         ],
       },
@@ -570,7 +571,7 @@ export const BLOG_POSTS: BlogPost[] = [
       {
         heading: "The result of doing it right",
         paragraphs: [
-          "All preparation is included in our written quotes, itemised line by line. No surprises on the day. Call 085 821 1870 for a free site visit.",
+          "All preparation is included in our written quotes, itemised line by line. No surprises on the day. Call ${SITE.phoneDisplay} for a free site visit.",
         ],
       },
     ],
@@ -579,7 +580,7 @@ export const BLOG_POSTS: BlogPost[] = [
     slug: "exterior-painting-dublin-when-and-how",
     title: "Exterior Painting in Dublin — When to Do It and What to Expect",
     excerpt:
-      "When is the right time to paint your Dublin home's exterior? What preparation is needed? How long will it last? Real answers from a working Dublin painter.",
+      "When is the right time to paint your Dublin home`s exterior? What preparation is needed? How long will it last? Real answers from a working Dublin painter.",
     cover: commercialAsset.url,
     date: "2025-10-22",
     readTime: "5 min read",
@@ -619,7 +620,7 @@ export const BLOG_POSTS: BlogPost[] = [
         heading: "Getting a quote",
         paragraphs: [
           "Free site visits across Dublin. We identify damp issues and structural problems before painting, not after. Written quote within 48 hours.",
-          "Get quotes from at least 2 painters and ask each to specify exactly what's included. Call 085 821 1870.",
+          `Get quotes from at least 2 painters and ask each to specify exactly what's included. Call ${SITE.phoneDisplay}.`,
         ],
       },
     ],

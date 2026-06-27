@@ -1,8 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { LocalAreaPage } from "../components/LocalAreaPage";
+import { SITE } from "@/lib/site";
 
 const TITLE = "Painter Tallaght Dublin 24 | All Colours Painting";
-const DESC = "Professional painter and decorator in Tallaght, Dublin 24. Interior & exterior painting, free quotes — call 085 821 1870.";
+const DESC = `Professional painter and decorator in Tallaght, Dublin 24. Interior & exterior painting, free quotes — call ${SITE.phoneDisplay}.`;
 const URL = "https://allcolourspainter.com/painter-tallaght";
 
 export const Route = createFileRoute("/painter-tallaght")({
@@ -29,7 +30,7 @@ export const Route = createFileRoute("/painter-tallaght")({
       },
       {
         type: "application/ld+json",
-        children: JSON.stringify({"@context":"https://schema.org","@type":"LocalBusiness","name":"All Colours Painting Contractor Limited","url":"https://allcolourspainter.com/painter-tallaght","telephone":"+353858211870","email":"info@allcolourspainter.com","areaServed":{"@type":"Place","name":"Tallaght, Dublin 24"},"address":{"@type":"PostalAddress","addressLocality":"Tallaght","addressRegion":"Dublin 24","addressCountry":"IE"}}),
+        children: JSON.stringify({"@context":"https://schema.org","@type":"LocalBusiness","name":"All Colours Painting Contractor Limited","url":"https://allcolourspainter.com/painter-tallaght","telephone":SITE.phoneIntl,"email":SITE.email,"areaServed":{"@type":"Place","name":"Tallaght, Dublin 24"},"address":{"@type":"PostalAddress","addressLocality":"Tallaght","addressRegion":"Dublin 24","addressCountry":"IE"}}),
       },
     ],
   }),

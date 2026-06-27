@@ -1,8 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { LocalAreaPage } from "../components/LocalAreaPage";
+import { SITE } from "@/lib/site";
 
 const TITLE = "Painter Harold's Cross Dublin 6W | All Colours Painting";
-const DESC = "Professional painter and decorator in Harold's Cross, Dublin 6W. Interior & exterior painting, free quotes — call 085 821 1870.";
+const DESC = `Professional painter and decorator in Harold's Cross, Dublin 6W. Interior & exterior painting, free quotes — call ${SITE.phoneDisplay}.`;
 const URL = "https://allcolourspainter.com/painter-harold-s-cross";
 
 export const Route = createFileRoute("/painter-harold-s-cross")({
@@ -29,7 +30,7 @@ export const Route = createFileRoute("/painter-harold-s-cross")({
       },
       {
         type: "application/ld+json",
-        children: JSON.stringify({"@context":"https://schema.org","@type":"LocalBusiness","name":"All Colours Painting Contractor Limited","url":"https://allcolourspainter.com/painter-harold-s-cross","telephone":"+353858211870","email":"info@allcolourspainter.com","areaServed":{"@type":"Place","name":"Harold's Cross, Dublin 6W"},"address":{"@type":"PostalAddress","addressLocality":"Harold's Cross","addressRegion":"Dublin 6W","addressCountry":"IE"}}),
+        children: JSON.stringify({"@context":"https://schema.org","@type":"LocalBusiness","name":"All Colours Painting Contractor Limited","url":"https://allcolourspainter.com/painter-harold-s-cross","telephone":SITE.phoneIntl,"email":SITE.email,"areaServed":{"@type":"Place","name":"Harold's Cross, Dublin 6W"},"address":{"@type":"PostalAddress","addressLocality":"Harold's Cross","addressRegion":"Dublin 6W","addressCountry":"IE"}}),
       },
     ],
   }),

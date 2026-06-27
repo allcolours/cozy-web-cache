@@ -1,8 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { LocalAreaPage } from "../components/LocalAreaPage";
+import { SITE } from "@/lib/site";
 
 const TITLE = "Painter Foxrock Dublin 18 | All Colours Painting";
-const DESC = "Professional painter and decorator in Foxrock, Dublin 18. Interior & exterior painting, free quotes — call 085 821 1870.";
+const DESC = `Professional painter and decorator in Foxrock, Dublin 18. Interior & exterior painting, free quotes — call ${SITE.phoneDisplay}.`;
 const URL = "https://allcolourspainter.com/painter-foxrock";
 
 export const Route = createFileRoute("/painter-foxrock")({
@@ -29,7 +30,7 @@ export const Route = createFileRoute("/painter-foxrock")({
       },
       {
         type: "application/ld+json",
-        children: JSON.stringify({"@context":"https://schema.org","@type":"LocalBusiness","name":"All Colours Painting Contractor Limited","url":"https://allcolourspainter.com/painter-foxrock","telephone":"+353858211870","email":"info@allcolourspainter.com","areaServed":{"@type":"Place","name":"Foxrock, Dublin 18"},"address":{"@type":"PostalAddress","addressLocality":"Foxrock","addressRegion":"Dublin 18","addressCountry":"IE"}}),
+        children: JSON.stringify({"@context":"https://schema.org","@type":"LocalBusiness","name":"All Colours Painting Contractor Limited","url":"https://allcolourspainter.com/painter-foxrock","telephone":SITE.phoneIntl,"email":SITE.email,"areaServed":{"@type":"Place","name":"Foxrock, Dublin 18"},"address":{"@type":"PostalAddress","addressLocality":"Foxrock","addressRegion":"Dublin 18","addressCountry":"IE"}}),
       },
     ],
   }),

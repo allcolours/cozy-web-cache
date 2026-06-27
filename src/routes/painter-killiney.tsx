@@ -1,8 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { LocalAreaPage } from "../components/LocalAreaPage";
+import { SITE } from "@/lib/site";
 
 const TITLE = "Painter Killiney Co. Dublin | All Colours Painting";
-const DESC = "Professional painter and decorator in Killiney, Co. Dublin. Interior & exterior painting, free quotes — call 085 821 1870.";
+const DESC = `Professional painter and decorator in Killiney, Co. Dublin. Interior & exterior painting, free quotes — call ${SITE.phoneDisplay}.`;
 const URL = "https://allcolourspainter.com/painter-killiney";
 
 export const Route = createFileRoute("/painter-killiney")({
@@ -29,7 +30,7 @@ export const Route = createFileRoute("/painter-killiney")({
       },
       {
         type: "application/ld+json",
-        children: JSON.stringify({"@context":"https://schema.org","@type":"LocalBusiness","name":"All Colours Painting Contractor Limited","url":"https://allcolourspainter.com/painter-killiney","telephone":"+353858211870","email":"info@allcolourspainter.com","areaServed":{"@type":"Place","name":"Killiney, Co. Dublin"},"address":{"@type":"PostalAddress","addressLocality":"Killiney","addressRegion":"Co. Dublin","addressCountry":"IE"}}),
+        children: JSON.stringify({"@context":"https://schema.org","@type":"LocalBusiness","name":"All Colours Painting Contractor Limited","url":"https://allcolourspainter.com/painter-killiney","telephone":SITE.phoneIntl,"email":SITE.email,"areaServed":{"@type":"Place","name":"Killiney, Co. Dublin"},"address":{"@type":"PostalAddress","addressLocality":"Killiney","addressRegion":"Co. Dublin","addressCountry":"IE"}}),
       },
     ],
   }),

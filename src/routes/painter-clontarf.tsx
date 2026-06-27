@@ -1,8 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { LocalAreaPage } from "../components/LocalAreaPage";
+import { SITE } from "@/lib/site";
 
 const TITLE = "Painter Clontarf Dublin 3 | All Colours Painting";
-const DESC = "Professional painter and decorator in Clontarf, Dublin 3. Interior & exterior painting, free quotes — call 085 821 1870.";
+const DESC = `Professional painter and decorator in Clontarf, Dublin 3. Interior & exterior painting, free quotes — call ${SITE.phoneDisplay}.`;
 const URL = "https://allcolourspainter.com/painter-clontarf";
 
 export const Route = createFileRoute("/painter-clontarf")({
@@ -29,7 +30,7 @@ export const Route = createFileRoute("/painter-clontarf")({
       },
       {
         type: "application/ld+json",
-        children: JSON.stringify({"@context":"https://schema.org","@type":"LocalBusiness","name":"All Colours Painting Contractor Limited","url":"https://allcolourspainter.com/painter-clontarf","telephone":"+353858211870","email":"info@allcolourspainter.com","areaServed":{"@type":"Place","name":"Clontarf, Dublin 3"},"address":{"@type":"PostalAddress","addressLocality":"Clontarf","addressRegion":"Dublin 3","addressCountry":"IE"}}),
+        children: JSON.stringify({"@context":"https://schema.org","@type":"LocalBusiness","name":"All Colours Painting Contractor Limited","url":"https://allcolourspainter.com/painter-clontarf","telephone":SITE.phoneIntl,"email":SITE.email,"areaServed":{"@type":"Place","name":"Clontarf, Dublin 3"},"address":{"@type":"PostalAddress","addressLocality":"Clontarf","addressRegion":"Dublin 3","addressCountry":"IE"}}),
       },
     ],
   }),
