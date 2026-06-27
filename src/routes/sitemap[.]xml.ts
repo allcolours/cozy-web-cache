@@ -105,7 +105,7 @@ export const Route = createFileRoute("/sitemap.xml")({
 
         const { data: csRows } = await supabase
           .from("case_studies")
-          .select("slug, updated_at")
+          .select("slug, created_at")
           .eq("visible", true);
         if (csRows) {
           for (const r of csRows) {
@@ -113,7 +113,7 @@ export const Route = createFileRoute("/sitemap.xml")({
               path: `/case-studies/${r.slug}`,
               changefreq: "monthly",
               priority: "0.7",
-              lastmod: (r.updated_at || LASTMOD).slice(0, 10),
+              lastmod: (r.created_at || LASTMOD).slice(0, 10),
             });
           }
         }
