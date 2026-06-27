@@ -31,6 +31,16 @@ const WHY = [
   "12-month written workmanship guarantee",
 ];
 
+const WHY_FALLBACK = [
+  "Professional crews with 10+ years on Dublin sites",
+  "Reliable scheduling and tidy daily handover",
+  "Fully insured",
+  "12-month written workmanship guarantee",
+];
+
+const LOCAL_CONTEXT_FALLBACK =
+  "We've been painting and decorating across Dublin for over a decade. Our local clients get the same dedicated crew, written quote, and 12-month workmanship guarantee — backed by 300+ projects completed across Dublin.";
+
 export interface LocalAreaPageProps {
   area: string;
   postcode?: string;
@@ -39,6 +49,12 @@ export interface LocalAreaPageProps {
 
 export function LocalAreaPage({ area, postcode, intro }: LocalAreaPageProps) {
   const reviews = TESTIMONIALS.slice(0, 3);
+  const content = AREA_CONTENT[area];
+  const heroIntro = content?.intro ?? intro ?? "Interior, exterior and commercial painting delivered to a professional standard — fully insured with a 12-month workmanship guarantee.";
+  const localContext = content?.localContext ?? LOCAL_CONTEXT_FALLBACK;
+  const highlights = content?.highlights ?? WHY_FALLBACK;
+  const otherAreas = AREA_PATHS.filter((a) => a.name !== area);
+
   return (
     <SiteLayout>
       {/* Hero */}
