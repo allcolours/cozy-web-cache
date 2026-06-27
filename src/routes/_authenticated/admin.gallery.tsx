@@ -284,7 +284,7 @@ function ProjectRow({ project, allProjects, isOpen, onToggle, onRefresh, canMove
         setUploads((u) => u.map((x, idx) => idx === i ? { ...x, progress: 100 } : x));
       } catch (err) {
         console.error("upload failed", file.name, err);
-        setUploads((u) => u.map((x, idx) => idx === i ? { ...x, error: "Failed" } : x));
+        setUploads((u) => u.map((x, idx) => idx === i ? { ...x, error: (err as Error)?.message?.slice(0,80) || "Failed" } : x));
       }
       i++;
     }
