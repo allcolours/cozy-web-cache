@@ -113,14 +113,17 @@ export function LocalAreaPage({ area, postcode, intro }: LocalAreaPageProps) {
         </div>
       </section>
 
-      {/* Why choose us */}
+      {/* Why choose us / local context */}
       <section className="bg-card">
         <div className="mx-auto max-w-7xl px-4 py-20 md:px-8 md:py-24">
           <span className="eyebrow">Why {area} chooses us</span>
           <h2 className="section-title mt-3 text-3xl md:text-4xl">Reliable painters, properly insured</h2>
           <hr className="section-rule" />
-          <ul className="mt-10 grid gap-4 md:grid-cols-2">
-            {WHY.map((w) => (
+          <p className="mt-8 max-w-3xl text-base leading-relaxed text-foreground/85">
+            {localContext}
+          </p>
+          <ul className="mt-8 grid gap-4 md:grid-cols-2">
+            {highlights.map((w) => (
               <li key={w} className="flex items-start gap-3 border-l-[3px] border-primary bg-background p-5">
                 <span className="mt-0.5 text-primary">✓</span>
                 <span className="text-sm leading-relaxed text-foreground/85">{w}</span>
@@ -129,6 +132,7 @@ export function LocalAreaPage({ area, postcode, intro }: LocalAreaPageProps) {
           </ul>
         </div>
       </section>
+
 
       {/* Reviews */}
       <section className="bg-background">
