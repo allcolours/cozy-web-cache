@@ -39,14 +39,14 @@ const SERVICES = [
 ];
 
 const WHY_FALLBACK = [
-  "Crews with 10+ years' experience on Dublin sites",
+  "Crews with 10+ years' hands-on experience on Dublin sites",
   "Reliable scheduling and tidy daily handover",
   "Fully insured",
   "12-month written workmanship guarantee",
 ];
 
 const LOCAL_CONTEXT_FALLBACK =
-  "We bring over a decade of painting experience across Dublin, with 300+ projects completed. Local clients get the same dedicated crew, written quote, and 12-month workmanship guarantee.";
+  "We bring 10+ years hands-on painting experience across Dublin, with 300+ projects completed. Local clients get the same dedicated crew, written quote, and 12-month workmanship guarantee.";
 
 export interface LocalAreaPageProps {
   area: string;

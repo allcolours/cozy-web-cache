@@ -101,7 +101,7 @@ const AREAS = [
 ] as const;
 
 const WHY = [
-  "Crews with 10+ years' experience on Dublin sites",
+  "Crews with 10+ years' hands-on experience on Dublin sites",
   "Tax Clearance compliant and fully insured",
   "12-month written workmanship guarantee on every job",
   "Tidy daily handover — vacuum sanding, dust control, furniture protected",

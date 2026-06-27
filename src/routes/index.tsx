@@ -179,7 +179,7 @@ async function fetchHomeAlbums(): Promise<HomeAlbum[]> {
 const stats = [
   { k: "15–30", v: "Painters mobilised to programme" },
   { k: "300+", v: "Projects completed" },
-  { k: "10+", v: "Years experience" },
+  { k: "10+", v: "Years hands-on experience" },
   { k: "48hr", v: "Written quote turnaround" },
   { k: "12-Month", v: "Workmanship guarantee" },
   { k: "Free", v: "No-obligation quotes" },
@@ -357,7 +357,7 @@ function Home() {
                 Request a free quote
               </a>
               <Link
-                to="/gallery"
+                to="/projects"
                 className="inline-flex items-center rounded-sm border border-white/40 bg-white/10 px-6 py-3 font-display text-xs font-bold uppercase tracking-wider text-white backdrop-blur hover:bg-white/20"
               >
                 View our work
@@ -378,9 +378,9 @@ function Home() {
             <hr className="section-rule" />
             <div className="mt-8 space-y-5 text-base leading-relaxed text-foreground">
               <p>
-                All Colours Painting Contractor Limited has worked across Dublin for over 10 years —
-                family homes, period townhouses, apartment blocks and commercial fit-outs. Most of
-                our work comes from repeat clients, architects and main contractors who've used us
+                Our owner brings 10+ years hands-on painting experience across Dublin — family
+                homes, period townhouses, apartment blocks and commercial fit-outs. Most of our
+                work comes from repeat clients, architects and main contractors who've used us
                 before.
               </p>
               <p>
@@ -702,15 +702,15 @@ function RecentProjects() {
             </p>
           </div>
           <Link
-            to="/gallery"
+            to="/projects"
             className="font-display text-xs font-bold uppercase tracking-wider text-primary hover:text-[oklch(0.2_0_0)]"
           >
-            View full gallery →
+            See more projects →
           </Link>
         </div>
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {items.map((p) => (
-            <Link key={p.id} to="/gallery" className="group relative block overflow-hidden bg-card">
+            <Link key={p.id} to="/projects" className="group relative block overflow-hidden bg-card">
               <div className="aspect-[16/11] overflow-hidden">
                 {p.cover_url ? (
                   <img
