@@ -106,7 +106,7 @@ const stats = [
   { k: "15–30", v: "Painters mobilised to programme" },
   { k: "300+", v: "Projects completed" },
   { k: "10+", v: "Years experience" },
-  { k: "5★", v: "Average client rating" },
+  { k: "48hr", v: "Written quote turnaround" },
   { k: "Commercial & Residential", v: "All property types" },
   { k: "New-Build Specialists", v: "Developers welcome" },
   { k: "Dublin Based", v: "Fully insured" },
