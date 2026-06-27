@@ -8,9 +8,9 @@ export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
       { title: "About Us | All Colours Painting Contractor Dublin" },
-      { name: "description", content: "Meet the team behind All Colours Painting. 10+ years experience, 1,200+ projects completed, fully insured with 12-month workmanship guarantee across Dublin." },
+      { name: "description", content: "Meet the team behind All Colours Painting. 10+ years experience, 300+ projects completed across Dublin, fully insured with 12-month workmanship guarantee." },
       { property: "og:title", content: "About Us | All Colours Painting Contractor Dublin" },
-      { property: "og:description", content: "Meet the team behind All Colours Painting. 10+ years experience, 1,200+ projects completed, fully insured with 12-month workmanship guarantee across Dublin." },
+      { property: "og:description", content: "Meet the team behind All Colours Painting. 10+ years experience, 300+ projects completed across Dublin, fully insured with 12-month workmanship guarantee." },
       { property: "og:url", content: "https://allcolourspainter.com/about" },
       { property: "og:type", content: "website" },
       { property: "og:image", content: `https://allcolourspainter.com${heroAsset.url}` },
