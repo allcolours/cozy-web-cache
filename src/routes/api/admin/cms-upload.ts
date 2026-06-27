@@ -39,6 +39,14 @@ export const Route = createFileRoute("/api/admin/cms-upload")({
             return Response.json({ error: "Missing file" }, { status: 400 });
           }
 
+          const MAX_BYTES = 15 * 1024 * 1024;
+          if (file.size > MAX_BYTES) {
+            return Response.json(
+              { error: "Image is too large (max 15 MB)." },
+              { status: 413 },
+            );
+          }
+
           const arrayBuf = await file.arrayBuffer();
           let bytes = new Uint8Array(arrayBuf);
 
