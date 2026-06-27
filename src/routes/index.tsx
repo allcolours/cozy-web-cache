@@ -103,7 +103,7 @@ const services = [
   },
 ];
 
-const portfolio = CASE_STUDIES.slice(0, 4).map((c) => ({ img: c.cover, title: c.title, tag: `${c.sector} · ${c.location}`, slug: c.slug }));
+
 
 type HomeAlbum = { id: string; title: string; location: string; category: string; cover_url: string; photo_count: number };
 
