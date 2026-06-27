@@ -21,6 +21,7 @@ const ENTRIES: SitemapEntry[] = [
   { path: "/services/wallpapering", changefreq: "monthly", priority: "0.7" },
   { path: "/gallery", changefreq: "weekly", priority: "0.8" },
   { path: "/blog", changefreq: "weekly", priority: "0.8" },
+  { path: "/case-studies", changefreq: "weekly", priority: "0.7" },
   { path: "/blog/how-to-repaint-your-front-door", changefreq: "monthly", priority: "0.7" },
   { path: "/blog/how-to-choose-the-right-paint-finish", changefreq: "monthly", priority: "0.7" },
   { path: "/blog/preparing-exterior-paintwork-irish-weather", changefreq: "monthly", priority: "0.7" },
