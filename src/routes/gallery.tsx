@@ -7,6 +7,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { resolveGalleryUrl } from "@/lib/galleryUrl";
 import heroAsset from "../assets/portfolio/hero-house.webp.asset.json";
 import exteriorAsset from "../assets/portfolio/portfolio-exterior-1.webp.asset.json";
+import { SITE } from "@/lib/site";
 
 type CategoryValue = "interior" | "exterior" | "commercial" | "epoxy" | "bespoke";
 
@@ -242,7 +243,7 @@ function Gallery() {
             <div className="rounded-md border border-border bg-card p-8 text-center">
               <p className="text-sm text-muted-foreground">
                 We couldn't load the gallery right now. Call us on{" "}
-                <a href="tel:0858211870" className="font-semibold text-primary">085 821 1870</a> and we'll send photos by WhatsApp.
+                <a href={`tel:${SITE.phoneTel}`} className="font-semibold text-primary">085 821 1870</a> and we'll send photos by WhatsApp.
               </p>
             </div>
           ) : filteredAlbums.length === 0 ? (
@@ -295,8 +296,8 @@ function Gallery() {
             <Link to="/contact" className="inline-flex items-center rounded-sm bg-primary px-6 py-3 font-display text-xs font-bold uppercase tracking-wider text-primary-foreground hover:bg-[oklch(0.62_0.17_158)]">
               Request a Free Quote
             </Link>
-            <a href="tel:0858211870" className="inline-flex items-center rounded-sm border border-white/30 px-6 py-3 font-display text-xs font-bold uppercase tracking-wider text-white hover:border-primary hover:text-primary">
-              📞 Call 085 821 1870
+            <a href={`tel:${SITE.phoneTel}`} className="inline-flex items-center rounded-sm border border-white/30 px-6 py-3 font-display text-xs font-bold uppercase tracking-wider text-white hover:border-primary hover:text-primary`>
+              📞 Call ${SITE.phoneDisplay}
             </a>
           </div>
         </div>
@@ -304,7 +305,7 @@ function Gallery() {
 
       {/* Album view (modal overlay) */}
       {openAlbum && (
-        <div className="fixed inset-0 z-[60] overflow-y-auto bg-background" role="dialog" aria-modal="true" aria-label={`${openAlbum.title} album`}>
+        <div className=`fixed inset-0 z-[60] overflow-y-auto bg-background" role="dialog" aria-modal="true" aria-label={`${openAlbum.title} album`}>
           <div className="sticky top-0 z-10 flex items-center justify-between gap-4 border-b border-border bg-background/95 px-4 py-4 backdrop-blur md:px-8">
             <button
               type="button"

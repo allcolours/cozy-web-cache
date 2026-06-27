@@ -11,6 +11,7 @@ import {
   Text,
 } from '@react-email/components'
 import type { TemplateEntry } from './registry'
+import { SITE } from "@/lib/site";
 
 interface Props {
   name?: string
@@ -61,7 +62,7 @@ const EstimateConfirmationEmail = ({
 
         <Hr style={hr} />
         <Text style={footer}>
-          Need to reach us sooner? Call <a style={link} href="tel:0858211870">085 821 1870</a> or reply to this email.<br />
+          Need to reach us sooner? Call <a style={link} href={`tel:${SITE.phoneTel}`}>085 821 1870</a> or reply to this email.<br />
           — All Colours Painting Contractor Limited, Dublin
         </Text>
       </Container>

@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout } from "../components/SiteLayout";
 import commercialAsset from "../assets/portfolio/service-commercial.webp.asset.json";
+import { SITE, WHATSAPP_URL } from "@/lib/site";
 
 export const Route = createFileRoute("/commercial-contractors")({
   head: () => ({
@@ -9,7 +10,7 @@ export const Route = createFileRoute("/commercial-contractors")({
       {
         name: "description",
         content:
-          "Painting subcontractor for property management & facilities management companies in Dublin. Tax Clearance, fully insured, RAMS, Safe Pass. Free tender — 085 821 1870.",
+          `Painting subcontractor for property management & facilities management companies in Dublin. Tax Clearance, fully insured, RAMS, Safe Pass. Free tender — ${SITE.phoneDisplay}.`,
       },
       {
         property: "og:title",
@@ -18,7 +19,7 @@ export const Route = createFileRoute("/commercial-contractors")({
       {
         property: "og:description",
         content:
-          "Painting subcontractor for property management & facilities management companies in Dublin. Tax Clearance, fully insured, RAMS, Safe Pass. Free tender — 085 821 1870.",
+          `Painting subcontractor for property management & facilities management companies in Dublin. Tax Clearance, fully insured, RAMS, Safe Pass. Free tender — ${SITE.phoneDisplay}.`,
       },
       { property: "og:url", content: "https://allcolourspainter.com/commercial-contractors" },
       { property: "og:type", content: "website" },
@@ -157,17 +158,17 @@ function CommercialContractors() {
               Request a Tender
             </Link>
             <a
-              href="tel:0858211870"
-              className="inline-flex items-center rounded-sm border border-white/30 px-6 py-3 font-display text-xs font-bold uppercase tracking-wider text-white hover:border-primary hover:text-primary"
+              href={`tel:${SITE.phoneTel}`}
+              className="inline-flex items-center rounded-sm border border-white/30 px-6 py-3 font-display text-xs font-bold uppercase tracking-wider text-white hover:border-primary hover:text-primary`
             >
-              Call 085 821 1870
+              Call ${SITE.phoneDisplay}
             </a>
           </div>
         </div>
       </section>
 
       {/* Compliance strip */}
-      <section className="border-y border-border bg-secondary">
+      <section className=`border-y border-border bg-secondary">
         <div className="mx-auto max-w-7xl px-4 py-6 md:px-8">
           <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-6">
             {COMPLIANCE.map((item) => (
@@ -248,20 +249,20 @@ function CommercialContractors() {
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <a
-              href="mailto:info@allcolourspainter.com"
+              href=`mailto:${SITE.email}`
               className="inline-flex items-center rounded-sm bg-primary px-7 py-4 font-display text-sm font-bold uppercase tracking-wider text-primary-foreground hover:bg-[oklch(0.62_0.17_158)]"
             >
               ✉️ info@allcolourspainter.com
             </a>
             <a
-              href="tel:0858211870"
-              className="inline-flex items-center rounded-sm border border-white/30 px-7 py-4 font-display text-sm font-bold uppercase tracking-wider text-white hover:border-primary hover:text-primary"
+              href={`tel:${SITE.phoneTel}`}
+              className="inline-flex items-center rounded-sm border border-white/30 px-7 py-4 font-display text-sm font-bold uppercase tracking-wider text-white hover:border-primary hover:text-primary`
             >
-              📞 085 821 1870
+              📞 ${SITE.phoneDisplay}
             </a>
             <a
-              href="https://wa.me/353858211870?text=Hi%20All%20Colours%2C%20I%27d%20like%20a%20quote.%20Here%20are%20photos%20of%20the%20job%3A"
-              target="_blank"
+              href={WHATSAPP_URL}
+              target=`_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center rounded-sm bg-[#25D366] px-7 py-4 font-display text-sm font-bold uppercase tracking-wider text-white hover:opacity-90"
             >

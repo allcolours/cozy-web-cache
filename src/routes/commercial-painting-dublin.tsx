@@ -3,6 +3,7 @@ import { useState } from "react";
 import { SiteLayout } from "../components/SiteLayout";
 import { FormBotTraps, readBotTraps } from "../components/FormBotTraps";
 import commercialAsset from "../assets/portfolio/service-commercial.webp.asset.json";
+import { SITE } from "@/lib/site";
 
 export const Route = createFileRoute("/commercial-painting-dublin")({
   head: () => ({
@@ -160,7 +161,7 @@ function CommercialPage() {
               Get a commercial quote
             </a>
             <a
-              href="tel:0858211870"
+              href={`tel:${SITE.phoneTel}`}
               className="inline-flex items-center rounded-sm border border-white/30 px-6 py-3 font-display text-xs font-bold uppercase tracking-wider text-white hover:border-primary hover:text-primary"
             >
               Call 085 821 1870
@@ -248,7 +249,7 @@ function CommercialPage() {
               and a budget guide. For tenders, we can return RAMS, insurance certs and tax clearance on request.
             </p>
             <div className="mt-8 space-y-3 text-sm text-white/80">
-              <div>📞 <a href="tel:0858211870" className="hover:text-primary">085 821 1870</a></div>
+              <div>📞 <a href={`tel:${SITE.phoneTel}`} className="hover:text-primary">085 821 1870</a></div>
               <div>✉️ <a href="mailto:info@allcolourspainter.com" className="hover:text-primary">info@allcolourspainter.com</a></div>
               <div>🕒 Mon–Sat · 8:00 – 18:00 (out-of-hours by arrangement)</div>
             </div>

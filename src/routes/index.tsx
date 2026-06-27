@@ -18,15 +18,16 @@ import sIndustrialAsset from "../assets/portfolio/service-industrial.webp.asset.
 import sHospitalityAsset from "../assets/portfolio/service-hospitality.webp.asset.json";
 import ctaAsset from "../assets/portfolio/cta-bg.webp.asset.json";
 import { FormBotTraps, readBotTraps } from "../components/FormBotTraps";
+import { SITE } from "@/lib/site";
 
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "Painters Dublin — Interior, Exterior & Commercial | All Colours Painting" },
-      { name: "description", content: "Professional painter and decorator in Dublin. Interior & exterior painting, epoxy floors, spray painting for houses, apartments & commercial. Free quotes — call 085 821 1870." },
+      { name: "description", content: `Professional painter and decorator in Dublin. Interior & exterior painting, epoxy floors, spray painting for houses, apartments & commercial. Free quotes — call ${SITE.phoneDisplay}.` },
       { property: "og:title", content: "Painters Dublin — Interior, Exterior & Commercial | All Colours Painting" },
-      { property: "og:description", content: "Professional painter and decorator in Dublin. Interior & exterior painting, epoxy floors, spray painting for houses, apartments & commercial. Free quotes — call 085 821 1870." },
+      { property: "og:description", content: `Professional painter and decorator in Dublin. Interior & exterior painting, epoxy floors, spray painting for houses, apartments & commercial. Free quotes — call ${SITE.phoneDisplay}.` },
       { property: "og:url", content: "https://allcolourspainter.com/" },
       { property: "og:type", content: "website" },
       { property: "og:image", content: `https://allcolourspainter.com${heroAsset.url}` },
@@ -46,16 +47,16 @@ export const Route = createFileRoute("/")({
           "@id": "https://allcolourspainter.com/#business",
           name: "All Colours Painting Contractor Limited",
           legalName: "All Colours Painting Contractor Limited",
-          vatID: "IE4706227DH",
+          vatID: SITE.vat,
           url: "https://allcolourspainter.com/",
           image: "https://allcolourspainter.com/__l5e/assets-v1/2a395495-c4ec-4903-a41b-667de034b2ab/hero-house.webp",
-          telephone: "+353858211870",
-          email: "info@allcolourspainter.com",
+          telephone: SITE.phoneIntl,
+          email: SITE.email,
           priceRange: "€€",
           areaServed: { "@type": "AdministrativeArea", name: "County Dublin, Ireland" },
           address: { "@type": "PostalAddress", streetAddress: "22 Liscarne Court", addressLocality: "Dublin 22", postalCode: "D22 X052", addressRegion: "Leinster", addressCountry: "IE" },
           openingHoursSpecification: [{ "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], opens: "08:00", closes: "18:00" }],
-          identifier: { "@type": "PropertyValue", name: "CRO", value: "810243" },
+          identifier: { "@type": "PropertyValue", name: "CRO", value: SITE.cro },
           
           
         }),

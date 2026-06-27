@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { WHATSAPP_URL } from "@/lib/site";
 
 export function WhatsAppButton() {
   const [mounted, setMounted] = useState(false);
@@ -11,7 +12,7 @@ export function WhatsAppButton() {
 
   return (
     <a
-      href="https://wa.me/353858211870?text=Hi%20All%20Colours%2C%20I%27d%20like%20a%20quote.%20Here%20are%20photos%20of%20the%20job%3A"
+      href={WHATSAPP_URL}
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat on WhatsApp"

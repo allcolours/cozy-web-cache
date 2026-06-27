@@ -1,8 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { LocalAreaPage } from "../components/LocalAreaPage";
+import { SITE } from "@/lib/site";
 
 const TITLE = "Painter Monkstown South County Dublin | All Colours Painting";
-const DESC = "Professional painter and decorator in Monkstown, South County Dublin. Interior & exterior painting, free quotes — call 085 821 1870.";
+const DESC = `Professional painter and decorator in Monkstown, South County Dublin. Interior & exterior painting, free quotes — call ${SITE.phoneDisplay}.`;
 const URL = "https://allcolourspainter.com/painter-monkstown";
 
 export const Route = createFileRoute("/painter-monkstown")({
@@ -29,7 +30,7 @@ export const Route = createFileRoute("/painter-monkstown")({
       },
       {
         type: "application/ld+json",
-        children: JSON.stringify({"@context":"https://schema.org","@type":"LocalBusiness","name":"All Colours Painting Contractor Limited","url":"https://allcolourspainter.com/painter-monkstown","telephone":"+353858211870","email":"info@allcolourspainter.com","areaServed":{"@type":"Place","name":"Monkstown, South County Dublin"},"address":{"@type":"PostalAddress","addressLocality":"Monkstown","addressRegion":"South County Dublin","addressCountry":"IE"}}),
+        children: JSON.stringify({"@context":"https://schema.org","@type":"LocalBusiness","name":"All Colours Painting Contractor Limited","url":"https://allcolourspainter.com/painter-monkstown","telephone":SITE.phoneIntl,"email":SITE.email,"areaServed":{"@type":"Place","name":"Monkstown, South County Dublin"},"address":{"@type":"PostalAddress","addressLocality":"Monkstown","addressRegion":"South County Dublin","addressCountry":"IE"}}),
       },
     ],
   }),

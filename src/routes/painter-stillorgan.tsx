@@ -1,8 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { LocalAreaPage } from "../components/LocalAreaPage";
+import { SITE } from "@/lib/site";
 
 const TITLE = "Painter Stillorgan Dublin | All Colours Painting";
-const DESC = "Painting and decorating in Stillorgan, Co. Dublin. Residential repaints, commercial fit-outs, epoxy floors. Free quotes — call 085 821 1870.";
+const DESC = `Painting and decorating in Stillorgan, Co. Dublin. Residential repaints, commercial fit-outs, epoxy floors. Free quotes — call ${SITE.phoneDisplay}.`;
 const URL = "https://allcolourspainter.com/painter-stillorgan";
 
 export const Route = createFileRoute("/painter-stillorgan")({

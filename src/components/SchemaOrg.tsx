@@ -1,3 +1,4 @@
+import { SITE } from "@/lib/site";
 export function SchemaOrg() {
   const schema = {
     "@context": "https://schema.org",
@@ -5,17 +6,17 @@ export function SchemaOrg() {
     "@id": "https://allcolourspainter.com",
     "name": "All Colours Painting Contractor Limited",
     "legalName": "All Colours Painting Contractor Limited",
-    "vatID": "IE4706227DH",
+    "vatID": SITE.vat,
     "description": "Professional painting and decorating contractor in Dublin. Interior, exterior, commercial and residential painting across Dublin and surrounding areas.",
     "url": "https://allcolourspainter.com",
-    "telephone": "+353858211870",
-    "email": "info@allcolourspainter.com",
+    "telephone": SITE.phoneIntl,
+    "email": SITE.email,
     "image": "https://allcolourspainter.com/__l5e/assets-v1/8242608f-5e6d-44f5-bbf1-6fc212ae1634/logo.webp",
     "priceRange": "€€",
     "currenciesAccepted": "EUR",
     "paymentAccepted": "Cash, Bank Transfer",
     "openingHours": "Mo-Sa 08:00-18:00",
-    "identifier": { "@type": "PropertyValue", "name": "CRO", "value": "810243" },
+    "identifier": { "@type": "PropertyValue", "name": "CRO", "value": SITE.cro },
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "22 Liscarne Court",

@@ -1,8 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { LocalAreaPage } from "../components/LocalAreaPage";
+import { SITE } from "@/lib/site";
 
 const TITLE = "Painter Sallynoggin Co. Dublin | All Colours Painting";
-const DESC = "Professional painter and decorator in Sallynoggin, Co. Dublin. Interior & exterior painting, free quotes — call 085 821 1870.";
+const DESC = `Professional painter and decorator in Sallynoggin, Co. Dublin. Interior & exterior painting, free quotes — call ${SITE.phoneDisplay}.`;
 const URL = "https://allcolourspainter.com/painter-sallynoggin";
 
 export const Route = createFileRoute("/painter-sallynoggin")({
@@ -29,7 +30,7 @@ export const Route = createFileRoute("/painter-sallynoggin")({
       },
       {
         type: "application/ld+json",
-        children: JSON.stringify({"@context":"https://schema.org","@type":"LocalBusiness","name":"All Colours Painting Contractor Limited","url":"https://allcolourspainter.com/painter-sallynoggin","telephone":"+353858211870","email":"info@allcolourspainter.com","areaServed":{"@type":"Place","name":"Sallynoggin, Co. Dublin"},"address":{"@type":"PostalAddress","addressLocality":"Sallynoggin","addressRegion":"Co. Dublin","addressCountry":"IE"}}),
+        children: JSON.stringify({"@context":"https://schema.org","@type":"LocalBusiness","name":"All Colours Painting Contractor Limited","url":"https://allcolourspainter.com/painter-sallynoggin","telephone":SITE.phoneIntl,"email":SITE.email,"areaServed":{"@type":"Place","name":"Sallynoggin, Co. Dublin"},"address":{"@type":"PostalAddress","addressLocality":"Sallynoggin","addressRegion":"Co. Dublin","addressCountry":"IE"}}),
       },
     ],
   }),

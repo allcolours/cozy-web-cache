@@ -4,10 +4,11 @@ import { SiteLayout } from "../components/SiteLayout";
 import { TestimonialCard } from "../components/Testimonials";
 import { TESTIMONIALS } from "../data/testimonials";
 import heroAsset from "../assets/portfolio/hero-house.webp.asset.json";
+import { SITE, WHATSAPP_URL } from "@/lib/site";
 
 const TITLE = "Painter Dublin | All Colours Painting & Decorating";
 const DESC =
-  "Top-rated painter and decorator in Dublin. Interior, exterior, residential & commercial painting across all Dublin areas. Free quotes — call 085 821 1870.";
+  `Top-rated painter and decorator in Dublin. Interior, exterior, residential & commercial painting across all Dublin areas. Free quotes — call ${SITE.phoneDisplay}.`;
 const URL = "https://allcolourspainter.com/painter-dublin";
 
 export const Route = createFileRoute("/painter-dublin")({
@@ -156,7 +157,7 @@ function PainterDublinPage() {
               Get a Free Quote
             </Link>
             <a
-              href="tel:0858211870"
+              href={`tel:${SITE.phoneTel}`}
               className="inline-flex items-center rounded-sm border border-white/30 px-6 py-3 font-display text-xs font-bold uppercase tracking-wider text-white hover:border-primary hover:text-primary"
             >
               Call 085 821 1870
@@ -303,14 +304,14 @@ function PainterDublinPage() {
               Get a Free Quote
             </Link>
             <a
-              href="tel:0858211870"
-              className="inline-flex items-center rounded-sm border border-white/30 px-7 py-4 font-display text-sm font-bold uppercase tracking-wider text-white hover:border-primary hover:text-primary"
+              href={`tel:${SITE.phoneTel}`}
+              className="inline-flex items-center rounded-sm border border-white/30 px-7 py-4 font-display text-sm font-bold uppercase tracking-wider text-white hover:border-primary hover:text-primary`
             >
-              📞 085 821 1870
+              📞 ${SITE.phoneDisplay}
             </a>
             <a
-              href="https://wa.me/353858211870?text=Hi%20All%20Colours%2C%20I%27d%20like%20a%20quote.%20Here%20are%20photos%20of%20the%20job%3A"
-              target="_blank"
+              href={WHATSAPP_URL}
+              target=`_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center rounded-sm bg-[#25D366] px-7 py-4 font-display text-sm font-bold uppercase tracking-wider text-white hover:opacity-90"
             >

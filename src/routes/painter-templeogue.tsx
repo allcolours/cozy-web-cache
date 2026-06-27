@@ -1,8 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { LocalAreaPage } from "../components/LocalAreaPage";
+import { SITE } from "@/lib/site";
 
 const TITLE = "Painter Templeogue Dublin 6W | All Colours Painting";
-const DESC = "Professional painter and decorator in Templeogue, Dublin 6W. Interior & exterior painting, free quotes — call 085 821 1870.";
+const DESC = `Professional painter and decorator in Templeogue, Dublin 6W. Interior & exterior painting, free quotes — call ${SITE.phoneDisplay}.`;
 const URL = "https://allcolourspainter.com/painter-templeogue";
 
 export const Route = createFileRoute("/painter-templeogue")({
@@ -29,7 +30,7 @@ export const Route = createFileRoute("/painter-templeogue")({
       },
       {
         type: "application/ld+json",
-        children: JSON.stringify({"@context":"https://schema.org","@type":"LocalBusiness","name":"All Colours Painting Contractor Limited","url":"https://allcolourspainter.com/painter-templeogue","telephone":"+353858211870","email":"info@allcolourspainter.com","areaServed":{"@type":"Place","name":"Templeogue, Dublin 6W"},"address":{"@type":"PostalAddress","addressLocality":"Templeogue","addressRegion":"Dublin 6W","addressCountry":"IE"}}),
+        children: JSON.stringify({"@context":"https://schema.org","@type":"LocalBusiness","name":"All Colours Painting Contractor Limited","url":"https://allcolourspainter.com/painter-templeogue","telephone":SITE.phoneIntl,"email":SITE.email,"areaServed":{"@type":"Place","name":"Templeogue, Dublin 6W"},"address":{"@type":"PostalAddress","addressLocality":"Templeogue","addressRegion":"Dublin 6W","addressCountry":"IE"}}),
       },
     ],
   }),

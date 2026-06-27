@@ -1,8 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { LocalAreaPage } from "../components/LocalAreaPage";
+import { SITE } from "@/lib/site";
 
 const TITLE = "Painter Clondalkin Dublin 22 | All Colours Painting";
-const DESC = "Painting contractor in Clondalkin, Dublin 22. Houses, apartments, commercial units. Clean, reliable, fully insured. Free quotes — call 085 821 1870.";
+const DESC = `Painting contractor in Clondalkin, Dublin 22. Houses, apartments, commercial units. Clean, reliable, fully insured. Free quotes — call ${SITE.phoneDisplay}.`;
 const URL = "https://allcolourspainter.com/painter-clondalkin";
 
 export const Route = createFileRoute("/painter-clondalkin")({

@@ -1,8 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { LocalAreaPage } from "../components/LocalAreaPage";
+import { SITE } from "@/lib/site";
 
 const TITLE = "Painter Lucan Co. Dublin | All Colours Painting";
-const DESC = "Professional painter and decorator in Lucan, Co. Dublin. Interior & exterior painting, free quotes — call 085 821 1870.";
+const DESC = `Professional painter and decorator in Lucan, Co. Dublin. Interior & exterior painting, free quotes — call ${SITE.phoneDisplay}.`;
 const URL = "https://allcolourspainter.com/painter-lucan";
 
 export const Route = createFileRoute("/painter-lucan")({
@@ -29,7 +30,7 @@ export const Route = createFileRoute("/painter-lucan")({
       },
       {
         type: "application/ld+json",
-        children: JSON.stringify({"@context":"https://schema.org","@type":"LocalBusiness","name":"All Colours Painting Contractor Limited","url":"https://allcolourspainter.com/painter-lucan","telephone":"+353858211870","email":"info@allcolourspainter.com","areaServed":{"@type":"Place","name":"Lucan, Co. Dublin"},"address":{"@type":"PostalAddress","addressLocality":"Lucan","addressRegion":"Co. Dublin","addressCountry":"IE"}}),
+        children: JSON.stringify({"@context":"https://schema.org","@type":"LocalBusiness","name":"All Colours Painting Contractor Limited","url":"https://allcolourspainter.com/painter-lucan","telephone":SITE.phoneIntl,"email":SITE.email,"areaServed":{"@type":"Place","name":"Lucan, Co. Dublin"},"address":{"@type":"PostalAddress","addressLocality":"Lucan","addressRegion":"Co. Dublin","addressCountry":"IE"}}),
       },
     ],
   }),

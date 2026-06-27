@@ -1,8 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { LocalAreaPage } from "../components/LocalAreaPage";
+import { SITE } from "@/lib/site";
 
 const TITLE = "Painter Glenageary Co. Dublin | All Colours Painting";
-const DESC = "Professional painter and decorator in Glenageary, Co. Dublin. Interior & exterior painting, free quotes — call 085 821 1870.";
+const DESC = `Professional painter and decorator in Glenageary, Co. Dublin. Interior & exterior painting, free quotes — call ${SITE.phoneDisplay}.`;
 const URL = "https://allcolourspainter.com/painter-glenageary";
 
 export const Route = createFileRoute("/painter-glenageary")({
@@ -29,7 +30,7 @@ export const Route = createFileRoute("/painter-glenageary")({
       },
       {
         type: "application/ld+json",
-        children: JSON.stringify({"@context":"https://schema.org","@type":"LocalBusiness","name":"All Colours Painting Contractor Limited","url":"https://allcolourspainter.com/painter-glenageary","telephone":"+353858211870","email":"info@allcolourspainter.com","areaServed":{"@type":"Place","name":"Glenageary, Co. Dublin"},"address":{"@type":"PostalAddress","addressLocality":"Glenageary","addressRegion":"Co. Dublin","addressCountry":"IE"}}),
+        children: JSON.stringify({"@context":"https://schema.org","@type":"LocalBusiness","name":"All Colours Painting Contractor Limited","url":"https://allcolourspainter.com/painter-glenageary","telephone":SITE.phoneIntl,"email":SITE.email,"areaServed":{"@type":"Place","name":"Glenageary, Co. Dublin"},"address":{"@type":"PostalAddress","addressLocality":"Glenageary","addressRegion":"Co. Dublin","addressCountry":"IE"}}),
       },
     ],
   }),

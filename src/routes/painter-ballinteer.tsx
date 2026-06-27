@@ -1,8 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { LocalAreaPage } from "../components/LocalAreaPage";
+import { SITE } from "@/lib/site";
 
 const TITLE = "Painter Ballinteer Dublin 16 | All Colours Painting";
-const DESC = "Professional painter and decorator in Ballinteer, Dublin 16. Interior & exterior painting, free quotes — call 085 821 1870.";
+const DESC = `Professional painter and decorator in Ballinteer, Dublin 16. Interior & exterior painting, free quotes — call ${SITE.phoneDisplay}.`;
 const URL = "https://allcolourspainter.com/painter-ballinteer";
 
 export const Route = createFileRoute("/painter-ballinteer")({
@@ -29,7 +30,7 @@ export const Route = createFileRoute("/painter-ballinteer")({
       },
       {
         type: "application/ld+json",
-        children: JSON.stringify({"@context":"https://schema.org","@type":"LocalBusiness","name":"All Colours Painting Contractor Limited","url":"https://allcolourspainter.com/painter-ballinteer","telephone":"+353858211870","email":"info@allcolourspainter.com","areaServed":{"@type":"Place","name":"Ballinteer, Dublin 16"},"address":{"@type":"PostalAddress","addressLocality":"Ballinteer","addressRegion":"Dublin 16","addressCountry":"IE"}}),
+        children: JSON.stringify({"@context":"https://schema.org","@type":"LocalBusiness","name":"All Colours Painting Contractor Limited","url":"https://allcolourspainter.com/painter-ballinteer","telephone":SITE.phoneIntl,"email":SITE.email,"areaServed":{"@type":"Place","name":"Ballinteer, Dublin 16"},"address":{"@type":"PostalAddress","addressLocality":"Ballinteer","addressRegion":"Dublin 16","addressCountry":"IE"}}),
       },
     ],
   }),

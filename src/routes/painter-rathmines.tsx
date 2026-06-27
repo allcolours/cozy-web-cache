@@ -1,8 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { LocalAreaPage } from "../components/LocalAreaPage";
+import { SITE } from "@/lib/site";
 
 const TITLE = "Painter Rathmines Dublin 6 | All Colours Painting";
-const DESC = "Professional painter and decorator in Rathmines, Dublin 6. Interior & exterior painting, free quotes — call 085 821 1870.";
+const DESC = `Professional painter and decorator in Rathmines, Dublin 6. Interior & exterior painting, free quotes — call ${SITE.phoneDisplay}.`;
 const URL = "https://allcolourspainter.com/painter-rathmines";
 
 export const Route = createFileRoute("/painter-rathmines")({
@@ -29,7 +30,7 @@ export const Route = createFileRoute("/painter-rathmines")({
       },
       {
         type: "application/ld+json",
-        children: JSON.stringify({"@context":"https://schema.org","@type":"LocalBusiness","name":"All Colours Painting Contractor Limited","url":"https://allcolourspainter.com/painter-rathmines","telephone":"+353858211870","email":"info@allcolourspainter.com","areaServed":{"@type":"Place","name":"Rathmines, Dublin 6"},"address":{"@type":"PostalAddress","addressLocality":"Rathmines","addressRegion":"Dublin 6","addressCountry":"IE"}}),
+        children: JSON.stringify({"@context":"https://schema.org","@type":"LocalBusiness","name":"All Colours Painting Contractor Limited","url":"https://allcolourspainter.com/painter-rathmines","telephone":SITE.phoneIntl,"email":SITE.email,"areaServed":{"@type":"Place","name":"Rathmines, Dublin 6"},"address":{"@type":"PostalAddress","addressLocality":"Rathmines","addressRegion":"Dublin 6","addressCountry":"IE"}}),
       },
     ],
   }),
