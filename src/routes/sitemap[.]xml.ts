@@ -86,9 +86,42 @@ export const Route = createFileRoute("/sitemap.xml")({
   server: {
     handlers: {
       GET: async () => {
-        const urls = ENTRIES.map(
+        const dynamicEntries: SitemapEntry[] = [];
+
+        const { data: blogRows } = await supabase
+          .from("blog_posts")
+          .select("slug, published_at, updated_at")
+          .eq("published", true);
+        if (blogRows) {
+          for (const r of blogRows) {
+            dynamicEntries.push({
+              path: `/blog/${r.slug}`,
+              changefreq: "monthly",
+              priority: "0.7",
+              lastmod: (r.updated_at || r.published_at || LASTMOD).slice(0, 10),
+            });
+          }
+        }
+
+        const { data: csRows } = await supabase
+          .from("case_studies")
+          .select("slug, updated_at")
+          .eq("visible", true);
+        if (csRows) {
+          for (const r of csRows) {
+            dynamicEntries.push({
+              path: `/case-studies/${r.slug}`,
+              changefreq: "monthly",
+              priority: "0.7",
+              lastmod: (r.updated_at || LASTMOD).slice(0, 10),
+            });
+          }
+        }
+
+        const all = [...ENTRIES, ...dynamicEntries];
+        const urls = all.map(
           (e) =>
-            `  <url>\n    <loc>${BASE_URL}${e.path}</loc>\n    <lastmod>${LASTMOD}</lastmod>\n    <changefreq>${e.changefreq}</changefreq>\n    <priority>${e.priority}</priority>\n  </url>`,
+            `  <url>\n    <loc>${BASE_URL}${e.path}</loc>\n    <lastmod>${e.lastmod || LASTMOD}</lastmod>\n    <changefreq>${e.changefreq}</changefreq>\n    <priority>${e.priority}</priority>\n  </url>`,
         );
         const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.join("\n")}\n</urlset>`;
         return new Response(xml, {
