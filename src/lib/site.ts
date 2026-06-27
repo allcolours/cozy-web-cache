@@ -21,6 +21,7 @@ export const SITE = {
   // Registered company details (already shown in footer / contact / JSON-LD)
   cro: "810243",
   vat: "IE4706227DH",
+  registeredAddress: "22 Liscarne Court, Dublin 22, D22 X052, Ireland",
 } as const;
 
 export const WHATSAPP_URL =
