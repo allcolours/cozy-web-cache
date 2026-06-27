@@ -115,13 +115,10 @@ export const Route = createFileRoute('/api/public/hooks/check-asset-errors')({
     handlers: {
       POST: async ({ request }) => {
         const startedAt = Date.now()
-        const anonKey =
-          process.env.SUPABASE_PUBLISHABLE_KEY ||
-          process.env.SUPABASE_ANON_KEY ||
-          import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY
-
-        const apiKey = request.headers.get('apikey')
-        if (!apiKey || (anonKey && apiKey !== anonKey)) {
+        const expected = process.env.HOOK_AUTH_TOKEN
+        const provided =
+          request.headers.get('x-hook-token') || request.headers.get('apikey')
+        if (!expected || !provided || provided !== expected) {
           return Response.json({ error: 'Unauthorized' }, { status: 401 })
         }
 
