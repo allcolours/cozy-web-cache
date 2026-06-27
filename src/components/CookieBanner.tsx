@@ -1,27 +1,20 @@
 import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
-
-const STORAGE_KEY = "acp-cookie-consent";
+import { getConsent, setConsent } from "@/lib/consent";
 
 export function CookieBanner() {
+  const [mounted, setMounted] = useState(false);
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    try {
-      if (!localStorage.getItem(STORAGE_KEY)) setVisible(true);
-    } catch {
-      // ignore (SSR / privacy mode)
-    }
+    setMounted(true);
+    setVisible(getConsent() === null);
   }, []);
 
-  if (!visible) return null;
+  if (!mounted || !visible) return null;
 
-  const accept = () => {
-    try {
-      localStorage.setItem(STORAGE_KEY, "accepted");
-    } catch {
-      // ignore
-    }
+  const choose = (value: "accepted" | "declined") => {
+    setConsent(value);
     setVisible(false);
   };
 
@@ -30,23 +23,28 @@ export function CookieBanner() {
       role="dialog"
       aria-live="polite"
       aria-label="Cookie consent"
-      className="fixed inset-x-0 bottom-16 z-[60] border-t border-border bg-[var(--color-surface-dark)] text-white shadow-lg md:bottom-0"
+      className="fixed inset-x-0 bottom-0 z-[100] border-t border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 shadow-lg"
     >
-      <div className="mx-auto flex max-w-7xl flex-col items-start gap-3 px-4 py-4 md:flex-row md:items-center md:justify-between md:gap-6 md:px-8">
-        <p className="text-sm leading-relaxed text-white/85">
-          We use cookies to improve your experience. By continuing you accept our use of cookies.
-        </p>
-        <div className="flex shrink-0 gap-2">
-          <Link
-            to="/privacy"
-            className="inline-flex items-center rounded-sm border border-white/30 px-4 py-2 font-display text-xs font-bold uppercase tracking-wider text-white hover:border-primary hover:text-primary"
-          >
-            View cookie details
+      <div className="mx-auto flex max-w-6xl flex-col gap-3 px-4 py-4 sm:flex-row sm:items-center sm:justify-between">
+        <p className="text-sm text-muted-foreground">
+          We use cookies and load Google Maps to improve your experience. See our{" "}
+          <Link to="/privacy" className="underline underline-offset-2 text-foreground hover:text-primary">
+            privacy policy
           </Link>
+          .
+        </p>
+        <div className="flex gap-2 shrink-0">
           <button
             type="button"
-            onClick={accept}
-            className="inline-flex items-center rounded-sm bg-primary px-5 py-2 font-display text-xs font-bold uppercase tracking-wider text-primary-foreground hover:bg-[oklch(0.62_0.17_158)]"
+            onClick={() => choose("declined")}
+            className="inline-flex items-center justify-center rounded-md border border-border bg-background px-4 py-2 text-sm font-medium hover:bg-muted focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          >
+            Decline
+          </button>
+          <button
+            type="button"
+            onClick={() => choose("accepted")}
+            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
             Accept
           </button>
