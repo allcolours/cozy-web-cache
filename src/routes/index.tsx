@@ -533,3 +533,42 @@ function Home() {
   );
 }
 
+
+function RecentProjects() {
+  const { data: albums } = useQuery({ queryKey: ["home-recent-albums"], queryFn: fetchHomeAlbums });
+  const items = albums ?? [];
+  if (items.length === 0) return null;
+  return (
+    <section className="bg-secondary">
+      <div className="mx-auto max-w-7xl px-4 py-20 md:px-8 md:py-28">
+        <div className="flex flex-wrap items-end justify-between gap-6">
+          <div>
+            <span className="eyebrow">Our work</span>
+            <h2 className="section-title mt-3 text-3xl md:text-4xl">Recent projects</h2>
+            <hr className="section-rule" />
+            <p className="mt-6 max-w-2xl text-base text-foreground">A selection of recent Dublin jobs from our gallery — interiors, exteriors, floor coatings and commercial fit-outs.</p>
+          </div>
+          <Link to="/gallery" className="font-display text-xs font-bold uppercase tracking-wider text-primary hover:text-[oklch(0.2_0_0)]">View full gallery →</Link>
+        </div>
+        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {items.map((p) => (
+            <Link key={p.id} to="/gallery" className="group relative block overflow-hidden bg-card">
+              <div className="aspect-[16/11] overflow-hidden">
+                {p.cover_url ? (
+                  <img src={p.cover_url} alt={p.title} loading="lazy" width={1200} height={825} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                ) : (
+                  <div className="h-full w-full bg-muted" />
+                )}
+              </div>
+              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent p-6 text-white">
+                <p className="text-[11px] uppercase tracking-[0.18em] text-accent">{CATEGORY_LABEL[p.category] ?? p.category} · {p.location}</p>
+                <h3 className="mt-1 font-display text-lg font-bold uppercase tracking-wide">{p.title}</h3>
+                <p className="mt-1 text-xs text-white/80">{p.photo_count} photo{p.photo_count === 1 ? "" : "s"}</p>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
