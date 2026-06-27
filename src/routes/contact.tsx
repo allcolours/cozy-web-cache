@@ -3,6 +3,7 @@ import { useState } from "react";
 import { SiteLayout } from "../components/SiteLayout";
 import { MapEmbed } from "../components/MapEmbed";
 import { useSiteSettings } from "../hooks/useSiteSettings";
+import { FormBotTraps, readBotTraps } from "../components/FormBotTraps";
 import ctaAsset from "../assets/portfolio/cta-bg.jpg.asset.json";
 
 
@@ -47,6 +48,7 @@ function Contact() {
     setSubmitting(true);
     setError(null);
     const form = new FormData(e.currentTarget);
+    const traps = readBotTraps(form);
     const payload = {
       name: String(form.get("name") || "").trim().slice(0, 100),
       email: String(form.get("email") || "").trim().slice(0, 255),
@@ -69,7 +71,7 @@ function Contact() {
       const res = await fetch("/api/public/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...payload, source: "contact_form" }),
+        body: JSON.stringify({ ...payload, source: "contact_form", ...traps }),
       });
       if (!res.ok) {
         setError("Sorry, we couldn't send that. Please try again or call us directly.");
@@ -128,6 +130,7 @@ function Contact() {
                 </div>
               ) : (
                 <>
+                  <FormBotTraps />
                   <h3 className="font-display text-lg font-bold uppercase tracking-wide text-[oklch(0.2_0_0)]">Request a quote</h3>
                   <div className="grid gap-4 sm:grid-cols-2">
                     <Field label="Name" name="name" required />

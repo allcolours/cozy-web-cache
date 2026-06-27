@@ -31,7 +31,15 @@ const EstimateSchema = z.object({
   condition: z.string().trim().min(1).max(50),
   mode: z.string().trim().min(1).max(50),
   lineItems: z.array(LineItemSchema).max(50),
+  company_website: z.string().max(500).optional().nullable(),
+  form_rendered_at: z.number().int().optional().nullable(),
 })
+
+function getClientIp(request: Request): string {
+  const h = request.headers
+  const fwd = h.get('cf-connecting-ip') || h.get('x-forwarded-for') || h.get('x-real-ip') || ''
+  return (fwd.split(',')[0] || 'unknown').trim()
+}
 
 async function getOrCreateUnsubscribeToken(supabase: any, email: string): Promise<string> {
   const normalized = email.toLowerCase()
@@ -122,6 +130,15 @@ export const Route = createFileRoute('/api/public/estimate')({
         }
         const data = parsed.data
 
+        // --- Bot trap: honeypot ---
+        if (data.company_website && data.company_website.trim() !== '') {
+          return Response.json({ success: true })
+        }
+        // --- Bot trap: too-fast submission (< 2s) ---
+        if (data.form_rendered_at && Date.now() - data.form_rendered_at < 2000) {
+          return Response.json({ success: true })
+        }
+
         const supabaseUrl = import.meta.env.VITE_SUPABASE_URL
         const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY
         if (!supabaseUrl || !supabaseServiceKey) {
@@ -129,6 +146,23 @@ export const Route = createFileRoute('/api/public/estimate')({
         }
         const { createClient } = await import('@supabase/supabase-js')
         const supabase = createClient(supabaseUrl, supabaseServiceKey)
+
+        // --- Rate limit: max 5 submissions / IP / 10 minutes ---
+        const ip = getClientIp(request)
+        const windowStart = new Date(Date.now() - 10 * 60 * 1000).toISOString()
+        const { count: recent } = await supabase
+          .from('rate_limits')
+          .select('id', { count: 'exact', head: true })
+          .eq('bucket', 'estimate')
+          .eq('ip', ip)
+          .gte('created_at', windowStart)
+        if ((recent ?? 0) >= 5) {
+          return Response.json(
+            { error: 'Too many requests. Please try again in a few minutes or call us.' },
+            { status: 429 },
+          )
+        }
+        await supabase.from('rate_limits').insert({ bucket: 'estimate', ip })
 
         const { data: inserted, error: insertError } = await supabase
           .from('estimate_requests')

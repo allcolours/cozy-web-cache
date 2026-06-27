@@ -14,7 +14,7 @@ import sCommercialAsset from "../assets/portfolio/service-commercial.webp.asset.
 import sIndustrialAsset from "../assets/portfolio/service-industrial.webp.asset.json";
 import sHospitalityAsset from "../assets/portfolio/service-hospitality.webp.asset.json";
 import ctaAsset from "../assets/portfolio/cta-bg.jpg.asset.json";
-import { supabase } from "@/integrations/supabase/client";
+import { FormBotTraps, readBotTraps } from "../components/FormBotTraps";
 
 
 export const Route = createFileRoute("/")({
@@ -141,19 +141,35 @@ function LeadCaptureForm() {
         setSubmitting(true);
         setError(null);
         const fd = new FormData(e.currentTarget);
-        const payload = {
-          name: String(fd.get("name") || "").trim().slice(0, 100),
-          phone: String(fd.get("phone") || "").trim().slice(0, 50),
-          service_type: String(fd.get("need") || "").trim().slice(0, 100),
-          source: "homepage_form",
-        };
-        if (!payload.name || !payload.phone || !payload.service_type) {
+        const traps = readBotTraps(fd);
+        const name = String(fd.get("name") || "").trim().slice(0, 100);
+        const phone = String(fd.get("phone") || "").trim().slice(0, 50);
+        const service_type = String(fd.get("need") || "").trim().slice(0, 100);
+        if (!name || !phone || !service_type) {
           setError("Please fill in all fields.");
           setSubmitting(false);
           return;
         }
-        const { error: insErr } = await supabase.from("leads").insert(payload);
-        if (insErr) {
+        try {
+          const res = await fetch("/api/public/contact", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              name,
+              email: "no-reply@homepage-lead.local",
+              phone,
+              message: `Homepage quick quote — service requested: ${service_type}`,
+              source: "homepage_form",
+              service_type,
+              ...traps,
+            }),
+          });
+          if (!res.ok) {
+            setError("Sorry, something went wrong. Please call us directly.");
+            setSubmitting(false);
+            return;
+          }
+        } catch {
           setError("Sorry, something went wrong. Please call us directly.");
           setSubmitting(false);
           return;
@@ -163,6 +179,7 @@ function LeadCaptureForm() {
       }}
       className="mx-auto grid max-w-3xl gap-4 rounded-sm border border-white/10 bg-white/10 p-5 backdrop-blur sm:grid-cols-2 md:grid-cols-4 md:p-6"
     >
+      <FormBotTraps />
       <label htmlFor="lead-name" className="sr-only">Your name</label>
       <input
         id="lead-name"
