@@ -145,7 +145,7 @@ function CaseStudyPage() {
               <div>
                 <h2 className="font-display text-xl font-bold uppercase tracking-wide text-[oklch(0.2_0_0)] md:text-2xl">The challenge</h2>
                 <div className="mt-4 space-y-4">
-                  {s.challenge.split(/\n\n+/).filter(Boolean).map((p, i) => (
+                  {s.challenge.split(/\n\n+/).filter(Boolean).map((p: string, i: number) => (
                     <p key={i} className="text-base leading-relaxed text-foreground md:text-lg">{p}</p>
                   ))}
                 </div>
@@ -167,7 +167,7 @@ function CaseStudyPage() {
               <div>
                 <h2 className="font-display text-xl font-bold uppercase tracking-wide text-[oklch(0.2_0_0)] md:text-2xl">The result</h2>
                 <div className="mt-4 space-y-4">
-                  {s.result.split(/\n\n+/).filter(Boolean).map((p, i) => (
+                  {s.result.split(/\n\n+/).filter(Boolean).map((p: string, i: number) => (
                     <p key={i} className="text-base leading-relaxed text-foreground md:text-lg">{p}</p>
                   ))}
                 </div>
@@ -194,7 +194,7 @@ function CaseStudyPage() {
               <h2 className="section-title mt-3 text-2xl md:text-3xl">Photo gallery</h2>
               <hr className="section-rule" />
               <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                {images.map((im) => (
+                {images.map((im: Img) => (
                   <a key={im.id} href={im.image_url} target="_blank" rel="noopener noreferrer" className="group block aspect-[4/3] overflow-hidden bg-card">
                     <img src={im.image_url} alt={s.title} loading="lazy" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
                   </a>

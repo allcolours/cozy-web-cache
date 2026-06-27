@@ -72,7 +72,7 @@ function CaseStudiesIndex() {
             </div>
           ) : (
             <div className="mt-14 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-              {studies.map((s) => (
+              {studies.map((s: ListStudy) => (
                 <Link key={s.id} to="/case-studies/$slug" params={{ slug: s.slug }} className="group flex flex-col bg-card">
                   {s.cover_image_url && (
                     <div className="aspect-[16/10] overflow-hidden">
