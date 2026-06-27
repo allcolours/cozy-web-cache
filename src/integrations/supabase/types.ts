@@ -698,6 +698,38 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      admin_cron_jobs: {
+        Args: never
+        Returns: {
+          active: boolean
+          command: string
+          failures_24h: number
+          jobid: number
+          jobname: string
+          last_end: string
+          last_start: string
+          last_status: string
+          runs_24h: number
+          schedule: string
+        }[]
+      }
+      admin_db_size: {
+        Args: never
+        Returns: {
+          size_bytes: number
+          size_pretty: string
+        }[]
+      }
+      admin_top_tables: {
+        Args: { limit_count?: number }
+        Returns: {
+          row_est: number
+          schema_name: string
+          size_bytes: number
+          size_pretty: string
+          table_name: string
+        }[]
+      }
       delete_email: {
         Args: { message_id: number; queue_name: string }
         Returns: boolean
