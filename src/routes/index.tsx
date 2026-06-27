@@ -107,11 +107,8 @@ const stats = [
   { k: "300+", v: "Projects completed" },
   { k: "10+", v: "Years experience" },
   { k: "48hr", v: "Written quote turnaround" },
-  { k: "Commercial & Residential", v: "All property types" },
-  { k: "New-Build Specialists", v: "Developers welcome" },
-  { k: "Dublin Based", v: "Fully insured" },
-  { k: "Large Developments", v: "Managed across Dublin" },
-  { k: "Free Quotes", v: "No obligation" },
+  { k: "12-Month", v: "Workmanship guarantee" },
+  { k: "Free", v: "No-obligation quotes" },
 ];
 
 const NEED_OPTIONS = [
@@ -232,9 +229,9 @@ function Home() {
               {COMPANY.name} delivers precise, long-lasting finishes for homes, landlords and businesses — on time and on budget. Free quotes, no pressure.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Link to="/contact" className="inline-flex items-center rounded-sm bg-primary px-6 py-3 font-display text-xs font-bold uppercase tracking-wider text-primary-foreground transition-colors hover:bg-[oklch(0.62_0.17_158)]">
+              <a href="#quote" className="inline-flex items-center rounded-sm bg-primary px-6 py-3 font-display text-xs font-bold uppercase tracking-wider text-primary-foreground transition-colors hover:bg-[oklch(0.62_0.17_158)]">
                 Request a free quote
-              </Link>
+              </a>
               <Link to="/gallery" className="inline-flex items-center rounded-sm border border-white/40 bg-white/10 px-6 py-3 font-display text-xs font-bold uppercase tracking-wider text-white backdrop-blur hover:bg-white/20">
                 View our work
               </Link>
@@ -467,7 +464,7 @@ function Home() {
 
 
       {/* Lead capture — Get a Free Quote */}
-      <section className="relative isolate overflow-hidden">
+      <section id="quote" className="relative isolate overflow-hidden scroll-mt-24">
         <img src={ctaAsset.url} alt="Freshly painted Dublin home exterior" loading="lazy" width={1920} height={600} className="absolute inset-0 -z-10 h-full w-full object-cover" />
         <div className="absolute inset-0 -z-10 bg-[oklch(0.2_0_0)]/85" />
         <div className="mx-auto max-w-5xl px-4 py-20 text-center md:px-8 md:py-28">
