@@ -112,7 +112,7 @@ function AssetErrorsPage() {
                   <a
                     href={b.url}
                     target="_blank"
-                    rel="noreferrer"
+                    rel="noopener noreferrer"
                     className="truncate text-foreground underline-offset-2 hover:underline"
                     title={b.url}
                   >
