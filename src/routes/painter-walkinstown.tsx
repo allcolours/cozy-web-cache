@@ -23,16 +23,41 @@ export const Route = createFileRoute("/painter-walkinstown")({
           "@context": "https://schema.org",
           "@type": "BreadcrumbList",
           itemListElement: [
-            { "@type": "ListItem", position: 1, name: "Home", item: "https://allcolourspainter.com/" },
+            {
+              "@type": "ListItem",
+              position: 1,
+              name: "Home",
+              item: "https://allcolourspainter.com/",
+            },
             { "@type": "ListItem", position: 2, name: TITLE.split(" | ")[0], item: URL },
           ],
         }),
       },
       {
         type: "application/ld+json",
-        children: JSON.stringify({"@context":"https://schema.org","@type":"LocalBusiness","name":"All Colours Painting Contractor Limited","url":"https://allcolourspainter.com/painter-walkinstown","telephone":SITE.phoneIntl,"email":SITE.email,"areaServed":{"@type":"Place","name":"Walkinstown, Dublin 12"},"address":{"@type":"PostalAddress","addressLocality":"Walkinstown","addressRegion":"Dublin 12","addressCountry":"IE"}}),
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "LocalBusiness",
+          name: "All Colours Painting Contractor Limited",
+          url: "https://allcolourspainter.com/painter-walkinstown",
+          telephone: SITE.phoneIntl,
+          email: SITE.email,
+          areaServed: { "@type": "Place", name: "Walkinstown, Dublin 12" },
+          address: {
+            "@type": "PostalAddress",
+            addressLocality: "Walkinstown",
+            addressRegion: "Dublin 12",
+            addressCountry: "IE",
+          },
+        }),
       },
     ],
   }),
-  component: () => <LocalAreaPage area="Walkinstown" postcode="Dublin 12" intro="Residential and light commercial painting in Walkinstown — affordable, reliable and properly insured." />,
+  component: () => (
+    <LocalAreaPage
+      area="Walkinstown"
+      postcode="Dublin 12"
+      intro="Residential and light commercial painting in Walkinstown — affordable, reliable and properly insured."
+    />
+  ),
 });

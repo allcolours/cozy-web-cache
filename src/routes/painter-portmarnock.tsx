@@ -23,16 +23,41 @@ export const Route = createFileRoute("/painter-portmarnock")({
           "@context": "https://schema.org",
           "@type": "BreadcrumbList",
           itemListElement: [
-            { "@type": "ListItem", position: 1, name: "Home", item: "https://allcolourspainter.com/" },
+            {
+              "@type": "ListItem",
+              position: 1,
+              name: "Home",
+              item: "https://allcolourspainter.com/",
+            },
             { "@type": "ListItem", position: 2, name: TITLE.split(" | ")[0], item: URL },
           ],
         }),
       },
       {
         type: "application/ld+json",
-        children: JSON.stringify({"@context":"https://schema.org","@type":"LocalBusiness","name":"All Colours Painting Contractor Limited","url":"https://allcolourspainter.com/painter-portmarnock","telephone":SITE.phoneIntl,"email":SITE.email,"areaServed":{"@type":"Place","name":"Portmarnock, Co. Dublin"},"address":{"@type":"PostalAddress","addressLocality":"Portmarnock","addressRegion":"Co. Dublin","addressCountry":"IE"}}),
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "LocalBusiness",
+          name: "All Colours Painting Contractor Limited",
+          url: "https://allcolourspainter.com/painter-portmarnock",
+          telephone: SITE.phoneIntl,
+          email: SITE.email,
+          areaServed: { "@type": "Place", name: "Portmarnock, Co. Dublin" },
+          address: {
+            "@type": "PostalAddress",
+            addressLocality: "Portmarnock",
+            addressRegion: "Co. Dublin",
+            addressCountry: "IE",
+          },
+        }),
       },
     ],
   }),
-  component: () => <LocalAreaPage area="Portmarnock" postcode="Co. Dublin" intro="Coastal village with premium homes — exterior systems suited to coastal exposure and quality interior finishes." />,
+  component: () => (
+    <LocalAreaPage
+      area="Portmarnock"
+      postcode="Co. Dublin"
+      intro="Coastal village with premium homes — exterior systems suited to coastal exposure and quality interior finishes."
+    />
+  ),
 });

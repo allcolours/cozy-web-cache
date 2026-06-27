@@ -39,8 +39,14 @@ export const Route = createFileRoute("/services_/$service")({
         { property: "og:description", content: description },
         { property: "og:url", content: url },
         { property: "og:type", content: "website" },
-        { property: "og:image", content: `https://allcolourspainter.com${serviceHeroImage(service).src}` },
-        { property: "twitter:image", content: `https://allcolourspainter.com${serviceHeroImage(service).src}` },
+        {
+          property: "og:image",
+          content: `https://allcolourspainter.com${serviceHeroImage(service).src}`,
+        },
+        {
+          property: "twitter:image",
+          content: `https://allcolourspainter.com${serviceHeroImage(service).src}`,
+        },
       ],
       links: [{ rel: "canonical", href: url }],
       scripts: [
@@ -54,7 +60,11 @@ export const Route = createFileRoute("/services_/$service")({
               "@type": "LocalBusiness",
               name: "All Colours Painting",
               telephone: "+353 85 821 1870",
-              address: { "@type": "PostalAddress", addressLocality: "Dublin", addressCountry: "IE" },
+              address: {
+                "@type": "PostalAddress",
+                addressLocality: "Dublin",
+                addressCountry: "IE",
+              },
             },
             areaServed: { "@type": "City", name: "Dublin" },
             description,
@@ -68,7 +78,10 @@ export const Route = createFileRoute("/services_/$service")({
     <SiteLayout>
       <div className="mx-auto max-w-3xl px-4 py-24 text-center md:px-8">
         <h1 className="font-display text-3xl font-bold uppercase">Service not found</h1>
-        <Link to="/services" className="mt-6 inline-flex rounded-sm bg-primary px-5 py-3 font-display text-xs font-bold uppercase tracking-wider text-primary-foreground">
+        <Link
+          to="/services"
+          className="mt-6 inline-flex rounded-sm bg-primary px-5 py-3 font-display text-xs font-bold uppercase tracking-wider text-primary-foreground"
+        >
           See all services
         </Link>
       </div>
@@ -78,7 +91,9 @@ export const Route = createFileRoute("/services_/$service")({
     <SiteLayout>
       <div className="mx-auto max-w-3xl px-4 py-24 text-center md:px-8">
         <h1 className="font-display text-2xl font-bold uppercase">Something went wrong</h1>
-        <Link to="/" className="mt-6 inline-flex text-primary hover:underline">Back home</Link>
+        <Link to="/" className="mt-6 inline-flex text-primary hover:underline">
+          Back home
+        </Link>
       </div>
     </SiteLayout>
   ),
@@ -93,7 +108,15 @@ function ServicePage() {
     <SiteLayout>
       {/* Hero */}
       <section className="relative isolate overflow-hidden bg-[var(--color-surface-dark)] text-white">
-        <img src={heroImage.src} alt={heroImage.alt} fetchPriority="high" decoding="async" width={1920} height={900} className="absolute inset-0 -z-10 h-full w-full object-cover" />
+        <img
+          src={heroImage.src}
+          alt={heroImage.alt}
+          fetchPriority="high"
+          decoding="async"
+          width={1920}
+          height={900}
+          className="absolute inset-0 -z-10 h-full w-full object-cover"
+        />
         <div className="absolute inset-0 -z-10 bg-black/70" />
         <div className="mx-auto max-w-7xl px-4 py-20 md:px-8 md:py-28">
           <p className="font-display text-xs font-bold uppercase tracking-[0.25em] text-primary">
@@ -102,9 +125,7 @@ function ServicePage() {
           <h1 className="mt-4 max-w-3xl font-display text-4xl font-bold uppercase leading-tight md:text-6xl">
             {service.h1}
           </h1>
-          <p className="mt-6 max-w-2xl text-base text-white/85 md:text-lg">
-            {service.intro}
-          </p>
+          <p className="mt-6 max-w-2xl text-base text-white/85 md:text-lg">{service.intro}</p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Link
               to="/contact"

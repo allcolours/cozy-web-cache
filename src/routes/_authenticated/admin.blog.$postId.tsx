@@ -13,7 +13,11 @@ function EditPost() {
   const { data, isLoading, error } = useQuery({
     queryKey: ["admin-blog-post", postId],
     queryFn: async () => {
-      const { data, error } = await supabase.from("blog_posts").select("*").eq("id", postId).single();
+      const { data, error } = await supabase
+        .from("blog_posts")
+        .select("*")
+        .eq("id", postId)
+        .single();
       if (error) throw error;
       return data;
     },

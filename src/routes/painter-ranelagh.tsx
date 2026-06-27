@@ -22,7 +22,12 @@ export const Route = createFileRoute("/painter-ranelagh")({
           "@context": "https://schema.org",
           "@type": "BreadcrumbList",
           itemListElement: [
-            { "@type": "ListItem", position: 1, name: "Home", item: "https://allcolourspainter.com/" },
+            {
+              "@type": "ListItem",
+              position: 1,
+              name: "Home",
+              item: "https://allcolourspainter.com/",
+            },
             { "@type": "ListItem", position: 2, name: TITLE.split(" | ")[0], item: URL },
           ],
         }),
@@ -30,5 +35,11 @@ export const Route = createFileRoute("/painter-ranelagh")({
     ],
     links: [{ rel: "canonical", href: URL }],
   }),
-  component: () => <LocalAreaPage area="Ranelagh" postcode="Dublin 6" intro="Bay-window redbricks, cottage extensions and designer-grade interior repaints — delivered to the standard Ranelagh expects." />,
+  component: () => (
+    <LocalAreaPage
+      area="Ranelagh"
+      postcode="Dublin 6"
+      intro="Bay-window redbricks, cottage extensions and designer-grade interior repaints — delivered to the standard Ranelagh expects."
+    />
+  ),
 });

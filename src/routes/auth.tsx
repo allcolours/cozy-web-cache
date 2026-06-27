@@ -55,7 +55,12 @@ function AuthPage() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-[oklch(0.2_0_0)] px-4">
       <div className="w-full max-w-md bg-background p-8 shadow-xl">
-        <Link to="/" className="font-display text-xs font-bold uppercase tracking-wider text-primary">← Back to site</Link>
+        <Link
+          to="/"
+          className="font-display text-xs font-bold uppercase tracking-wider text-primary"
+        >
+          ← Back to site
+        </Link>
         <h1 className="mt-4 font-display text-2xl font-extrabold uppercase tracking-tight">
           {mode === "signin" ? "Admin sign in" : "Create admin account"}
         </h1>
@@ -72,7 +77,9 @@ function AuthPage() {
             />
           </div>
           <div>
-            <label className="font-display text-xs font-bold uppercase tracking-wider">Password</label>
+            <label className="font-display text-xs font-bold uppercase tracking-wider">
+              Password
+            </label>
             <input
               type="password"
               required
@@ -93,10 +100,16 @@ function AuthPage() {
           </button>
         </form>
         <button
-          onClick={() => { setMode(mode === "signin" ? "signup" : "signin"); setError(null); setInfo(null); }}
+          onClick={() => {
+            setMode(mode === "signin" ? "signup" : "signin");
+            setError(null);
+            setInfo(null);
+          }}
           className="mt-4 w-full text-center text-xs text-muted-foreground hover:text-primary"
         >
-          {mode === "signin" ? "First time? Create your admin account →" : "Already have an account? Sign in →"}
+          {mode === "signin"
+            ? "First time? Create your admin account →"
+            : "Already have an account? Sign in →"}
         </button>
       </div>
     </div>

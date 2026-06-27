@@ -63,7 +63,11 @@ export const Route = createFileRoute("/api/admin/gallery-upload")({
             ]);
             const decoded = await decodeHeic({ buffer: bytes });
             const png = new PNG({ width: decoded.width, height: decoded.height });
-            png.data = Buffer.from(decoded.data.buffer, decoded.data.byteOffset, decoded.data.byteLength);
+            png.data = Buffer.from(
+              decoded.data.buffer,
+              decoded.data.byteOffset,
+              decoded.data.byteLength,
+            );
             bytes = new Uint8Array(PNG.sync.write(png));
           }
 

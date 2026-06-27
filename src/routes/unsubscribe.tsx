@@ -76,7 +76,9 @@ function UnsubscribePage() {
               {status === "submitting" && <p>Processing…</p>}
 
               {status === "success" && (
-                <p className="bg-primary/10 p-4">You've been unsubscribed. You won't receive any further emails.</p>
+                <p className="bg-primary/10 p-4">
+                  You've been unsubscribed. You won't receive any further emails.
+                </p>
               )}
 
               {status === "already" && (

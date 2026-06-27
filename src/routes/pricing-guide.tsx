@@ -15,9 +15,17 @@ export const Route = createFileRoute("/pricing-guide")({
         { property: "og:description", content: description },
         { property: "og:url", content: url },
         { property: "og:type", content: "article" },
-        { property: "og:image", content: "https://allcolourspainter.com/__l5e/assets-v1/2a395495-c4ec-4903-a41b-667de034b2ab/hero-house.webp" },
+        {
+          property: "og:image",
+          content:
+            "https://allcolourspainter.com/__l5e/assets-v1/2a395495-c4ec-4903-a41b-667de034b2ab/hero-house.webp",
+        },
         { name: "twitter:card", content: "summary_large_image" },
-        { name: "twitter:image", content: "https://allcolourspainter.com/__l5e/assets-v1/2a395495-c4ec-4903-a41b-667de034b2ab/hero-house.webp" },
+        {
+          name: "twitter:image",
+          content:
+            "https://allcolourspainter.com/__l5e/assets-v1/2a395495-c4ec-4903-a41b-667de034b2ab/hero-house.webp",
+        },
       ],
       links: [{ rel: "canonical", href: url }],
       scripts: [
@@ -35,7 +43,24 @@ export const Route = createFileRoute("/pricing-guide")({
         },
         {
           type: "application/ld+json",
-          children: JSON.stringify({"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://allcolourspainter.com/"},{"@type":"ListItem","position":2,"name":"Pricing Guide","item":"https://allcolourspainter.com/pricing-guide"}]}),
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              {
+                "@type": "ListItem",
+                position: 1,
+                name: "Home",
+                item: "https://allcolourspainter.com/",
+              },
+              {
+                "@type": "ListItem",
+                position: 2,
+                name: "Pricing Guide",
+                item: "https://allcolourspainter.com/pricing-guide",
+              },
+            ],
+          }),
         },
       ],
     };
@@ -44,15 +69,51 @@ export const Route = createFileRoute("/pricing-guide")({
 });
 
 const ROWS: { job: string; range: string; notes: string }[] = [
-  { job: "Single room (walls)", range: "€280 – €550", notes: "One coat colour change incl. prep & light filling." },
-  { job: "Single room (walls + ceiling + woodwork)", range: "€550 – €950", notes: "Full repaint with two coats and proper prep." },
-  { job: "1-bed apartment (full interior)", range: "€1,400 – €2,400", notes: "Walls, ceilings, woodwork; landlord turnaround." },
-  { job: "2-bed apartment (full interior)", range: "€1,800 – €3,200", notes: "Depends on condition and colour change." },
-  { job: "3-bed semi (full interior)", range: "€2,800 – €5,500", notes: "Typical Dublin family home, two coats throughout." },
-  { job: "4-bed detached (full interior)", range: "€4,500 – €8,500", notes: "Includes stairwell and high ceilings." },
-  { job: "Exterior – 3-bed semi", range: "€2,500 – €5,000", notes: "Render or pebbledash, masonry paint, access included." },
-  { job: "Kitchen cabinet respray", range: "€1,800 – €3,800", notes: "Hand-painted or sprayed, primer + 2K topcoat." },
-  { job: "Garage / utility epoxy floor", range: "€650 – €1,500", notes: "Per 20–35 m², two-pack epoxy, prep included." },
+  {
+    job: "Single room (walls)",
+    range: "€280 – €550",
+    notes: "One coat colour change incl. prep & light filling.",
+  },
+  {
+    job: "Single room (walls + ceiling + woodwork)",
+    range: "€550 – €950",
+    notes: "Full repaint with two coats and proper prep.",
+  },
+  {
+    job: "1-bed apartment (full interior)",
+    range: "€1,400 – €2,400",
+    notes: "Walls, ceilings, woodwork; landlord turnaround.",
+  },
+  {
+    job: "2-bed apartment (full interior)",
+    range: "€1,800 – €3,200",
+    notes: "Depends on condition and colour change.",
+  },
+  {
+    job: "3-bed semi (full interior)",
+    range: "€2,800 – €5,500",
+    notes: "Typical Dublin family home, two coats throughout.",
+  },
+  {
+    job: "4-bed detached (full interior)",
+    range: "€4,500 – €8,500",
+    notes: "Includes stairwell and high ceilings.",
+  },
+  {
+    job: "Exterior – 3-bed semi",
+    range: "€2,500 – €5,000",
+    notes: "Render or pebbledash, masonry paint, access included.",
+  },
+  {
+    job: "Kitchen cabinet respray",
+    range: "€1,800 – €3,800",
+    notes: "Hand-painted or sprayed, primer + 2K topcoat.",
+  },
+  {
+    job: "Garage / utility epoxy floor",
+    range: "€650 – €1,500",
+    notes: "Per 20–35 m², two-pack epoxy, prep included.",
+  },
 ];
 
 const PRICING_FAQ: { q: string; a: string }[] = [
@@ -89,25 +150,36 @@ function PricingGuidePage() {
           How much does painting cost in Dublin?
         </h1>
         <p className="mt-6 text-base leading-relaxed text-muted-foreground md:text-lg">
-          Honest, up-to-date ranges based on hundreds of quotes we've issued across Dublin in 2025–2026.
-          Every project is different, so use these as a guide — your written quote will be exact.
+          Honest, up-to-date ranges based on hundreds of quotes we've issued across Dublin in
+          2025–2026. Every project is different, so use these as a guide — your written quote will
+          be exact.
         </p>
 
         <div className="mt-12 overflow-hidden rounded-sm border border-border">
           <table className="w-full text-left text-sm">
             <thead className="bg-secondary">
               <tr>
-                <th className="px-4 py-3 font-display text-xs font-bold uppercase tracking-wider text-foreground">Job</th>
-                <th className="px-4 py-3 font-display text-xs font-bold uppercase tracking-wider text-foreground">Typical price</th>
-                <th className="hidden px-4 py-3 font-display text-xs font-bold uppercase tracking-wider text-foreground sm:table-cell">Notes</th>
+                <th className="px-4 py-3 font-display text-xs font-bold uppercase tracking-wider text-foreground">
+                  Job
+                </th>
+                <th className="px-4 py-3 font-display text-xs font-bold uppercase tracking-wider text-foreground">
+                  Typical price
+                </th>
+                <th className="hidden px-4 py-3 font-display text-xs font-bold uppercase tracking-wider text-foreground sm:table-cell">
+                  Notes
+                </th>
               </tr>
             </thead>
             <tbody>
               {ROWS.map((r) => (
                 <tr key={r.job} className="border-t border-border">
                   <td className="px-4 py-3 align-top font-medium text-foreground">{r.job}</td>
-                  <td className="px-4 py-3 align-top font-display font-bold text-primary">{r.range}</td>
-                  <td className="hidden px-4 py-3 align-top text-muted-foreground sm:table-cell">{r.notes}</td>
+                  <td className="px-4 py-3 align-top font-display font-bold text-primary">
+                    {r.range}
+                  </td>
+                  <td className="hidden px-4 py-3 align-top text-muted-foreground sm:table-cell">
+                    {r.notes}
+                  </td>
                 </tr>
               ))}
             </tbody>
@@ -118,11 +190,26 @@ function PricingGuidePage() {
           What changes the price?
         </h2>
         <ul className="mt-5 space-y-3 text-base leading-relaxed text-muted-foreground">
-          <li><strong className="text-foreground">Condition.</strong> Heavy filling, damp patches or wallpaper removal add labour time.</li>
-          <li><strong className="text-foreground">Colour change.</strong> Dark to light (or vice versa) often needs a third coat.</li>
-          <li><strong className="text-foreground">Paint spec.</strong> Trade emulsion vs. premium Colourtrend / Fleetwood / Farrow & Ball.</li>
-          <li><strong className="text-foreground">Access.</strong> High ceilings, stairwells and external scaffolding.</li>
-          <li><strong className="text-foreground">Finish level.</strong> Standard vs. designer-grade hand-finished joinery.</li>
+          <li>
+            <strong className="text-foreground">Condition.</strong> Heavy filling, damp patches or
+            wallpaper removal add labour time.
+          </li>
+          <li>
+            <strong className="text-foreground">Colour change.</strong> Dark to light (or vice
+            versa) often needs a third coat.
+          </li>
+          <li>
+            <strong className="text-foreground">Paint spec.</strong> Trade emulsion vs. premium
+            Colourtrend / Fleetwood / Farrow & Ball.
+          </li>
+          <li>
+            <strong className="text-foreground">Access.</strong> High ceilings, stairwells and
+            external scaffolding.
+          </li>
+          <li>
+            <strong className="text-foreground">Finish level.</strong> Standard vs. designer-grade
+            hand-finished joinery.
+          </li>
         </ul>
 
         <h2 className="mt-16 font-display text-2xl font-bold uppercase text-foreground md:text-3xl">

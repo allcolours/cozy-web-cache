@@ -56,7 +56,24 @@ export const Route = createFileRoute("/commercial-contractors")({
       },
       {
         type: "application/ld+json",
-        children: JSON.stringify({"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://allcolourspainter.com/"},{"@type":"ListItem","position":2,"name":"Commercial Painting Contractor Dublin","item":"https://allcolourspainter.com/commercial-contractors"}]}),
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            {
+              "@type": "ListItem",
+              position: 1,
+              name: "Home",
+              item: "https://allcolourspainter.com/",
+            },
+            {
+              "@type": "ListItem",
+              position: 2,
+              name: "Commercial Painting Contractor Dublin",
+              item: "https://allcolourspainter.com/commercial-contractors",
+            },
+          ],
+        }),
       },
     ],
   }),
@@ -146,8 +163,9 @@ function CommercialContractors() {
             A painting contractor you can actually rely on
           </h1>
           <p className="mt-6 max-w-2xl text-base leading-relaxed text-white/80 md:text-lg">
-            All Colours Painting works with property managers, FM companies and developers across Dublin.
-            Fully compliant, properly insured, and used to working within managed buildings and occupied sites.
+            All Colours Painting works with property managers, FM companies and developers across
+            Dublin. Fully compliant, properly insured, and used to working within managed buildings
+            and occupied sites.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Link
@@ -204,7 +222,9 @@ function CommercialContractors() {
         <div className="mx-auto max-w-7xl px-4 py-20 md:px-8 md:py-28">
           <div className="flex flex-col items-start gap-2">
             <span className="eyebrow text-primary">What we deliver</span>
-            <h2 className="section-title text-3xl md:text-4xl">Commercial painting services that scale</h2>
+            <h2 className="section-title text-3xl md:text-4xl">
+              Commercial painting services that scale
+            </h2>
             <hr className="section-rule" />
           </div>
 
@@ -229,7 +249,10 @@ function CommercialContractors() {
         </h2>
         <ul className="mt-10 grid gap-4 md:grid-cols-2">
           {WHY.map((w) => (
-            <li key={w} className="flex items-start gap-3 border-l-[3px] border-primary bg-card p-5">
+            <li
+              key={w}
+              className="flex items-start gap-3 border-l-[3px] border-primary bg-card p-5"
+            >
               <span className="mt-0.5 text-primary">✓</span>
               <span className="text-sm leading-relaxed text-foreground/85">{w}</span>
             </li>
@@ -244,7 +267,8 @@ function CommercialContractors() {
             Request a tender or framework discussion
           </h2>
           <p className="mt-5 text-lg text-white/75">
-            Send us the scope and we'll respond with a written tender within 48 hours. No obligation.
+            Send us the scope and we'll respond with a written tender within 48 hours. No
+            obligation.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <a

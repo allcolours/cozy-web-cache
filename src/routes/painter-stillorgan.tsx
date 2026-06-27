@@ -22,7 +22,12 @@ export const Route = createFileRoute("/painter-stillorgan")({
           "@context": "https://schema.org",
           "@type": "BreadcrumbList",
           itemListElement: [
-            { "@type": "ListItem", position: 1, name: "Home", item: "https://allcolourspainter.com/" },
+            {
+              "@type": "ListItem",
+              position: 1,
+              name: "Home",
+              item: "https://allcolourspainter.com/",
+            },
             { "@type": "ListItem", position: 2, name: TITLE.split(" | ")[0], item: URL },
           ],
         }),
@@ -30,5 +35,11 @@ export const Route = createFileRoute("/painter-stillorgan")({
     ],
     links: [{ rel: "canonical", href: URL }],
   }),
-  component: () => <LocalAreaPage area="Stillorgan" postcode="Co. Dublin" intro="Family-home repaints, commercial fit-outs and epoxy floors across Stillorgan and the surrounding South Dublin suburbs." />,
+  component: () => (
+    <LocalAreaPage
+      area="Stillorgan"
+      postcode="Co. Dublin"
+      intro="Family-home repaints, commercial fit-outs and epoxy floors across Stillorgan and the surrounding South Dublin suburbs."
+    />
+  ),
 });

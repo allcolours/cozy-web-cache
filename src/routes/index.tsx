@@ -10,7 +10,6 @@ import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { resolveGalleryUrl } from "@/lib/galleryUrl";
 
-
 import heroAsset from "../assets/portfolio/hero-house.webp.asset.json";
 import aboutAsset from "../assets/portfolio/about-architecture.webp.asset.json";
 import sCommercialAsset from "../assets/portfolio/service-commercial.webp.asset.json";
@@ -20,14 +19,22 @@ import ctaAsset from "../assets/portfolio/cta-bg.webp.asset.json";
 import { FormBotTraps, readBotTraps } from "../components/FormBotTraps";
 import { SITE } from "@/lib/site";
 
-
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "Painters Dublin — Interior, Exterior & Commercial | All Colours Painting" },
-      { name: "description", content: `Professional painter and decorator in Dublin. Interior & exterior painting, epoxy floors, spray painting for houses, apartments & commercial. Free quotes — call ${SITE.phoneDisplay}.` },
-      { property: "og:title", content: "Painters Dublin — Interior, Exterior & Commercial | All Colours Painting" },
-      { property: "og:description", content: `Professional painter and decorator in Dublin. Interior & exterior painting, epoxy floors, spray painting for houses, apartments & commercial. Free quotes — call ${SITE.phoneDisplay}.` },
+      {
+        name: "description",
+        content: `Professional painter and decorator in Dublin. Interior & exterior painting, epoxy floors, spray painting for houses, apartments & commercial. Free quotes — call ${SITE.phoneDisplay}.`,
+      },
+      {
+        property: "og:title",
+        content: "Painters Dublin — Interior, Exterior & Commercial | All Colours Painting",
+      },
+      {
+        property: "og:description",
+        content: `Professional painter and decorator in Dublin. Interior & exterior painting, epoxy floors, spray painting for houses, apartments & commercial. Free quotes — call ${SITE.phoneDisplay}.`,
+      },
       { property: "og:url", content: "https://allcolourspainter.com/" },
       { property: "og:type", content: "website" },
       { property: "og:image", content: `https://allcolourspainter.com${heroAsset.url}` },
@@ -49,16 +56,29 @@ export const Route = createFileRoute("/")({
           legalName: "All Colours Painting Contractor Limited",
           vatID: SITE.vat,
           url: "https://allcolourspainter.com/",
-          image: "https://allcolourspainter.com/__l5e/assets-v1/2a395495-c4ec-4903-a41b-667de034b2ab/hero-house.webp",
+          image:
+            "https://allcolourspainter.com/__l5e/assets-v1/2a395495-c4ec-4903-a41b-667de034b2ab/hero-house.webp",
           telephone: SITE.phoneIntl,
           email: SITE.email,
           priceRange: "€€",
           areaServed: { "@type": "AdministrativeArea", name: "County Dublin, Ireland" },
-          address: { "@type": "PostalAddress", streetAddress: "22 Liscarne Court", addressLocality: "Dublin 22", postalCode: "D22 X052", addressRegion: "Leinster", addressCountry: "IE" },
-          openingHoursSpecification: [{ "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], opens: "08:00", closes: "18:00" }],
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: "22 Liscarne Court",
+            addressLocality: "Dublin 22",
+            postalCode: "D22 X052",
+            addressRegion: "Leinster",
+            addressCountry: "IE",
+          },
+          openingHoursSpecification: [
+            {
+              "@type": "OpeningHoursSpecification",
+              dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+              opens: "08:00",
+              closes: "18:00",
+            },
+          ],
           identifier: { "@type": "PropertyValue", name: "CRO", value: SITE.cro },
-          
-          
         }),
       },
       {
@@ -74,11 +94,9 @@ export const Route = createFileRoute("/")({
         }),
       },
     ],
-
   }),
   component: Home,
 });
-
 
 const services = [
   {
@@ -103,9 +121,14 @@ const services = [
   },
 ];
 
-
-
-type HomeAlbum = { id: string; title: string; location: string; category: string; cover_url: string; photo_count: number };
+type HomeAlbum = {
+  id: string;
+  title: string;
+  location: string;
+  category: string;
+  cover_url: string;
+  photo_count: number;
+};
 
 const CATEGORY_LABEL: Record<string, string> = {
   interior: "Interior",
@@ -118,7 +141,9 @@ const CATEGORY_LABEL: Record<string, string> = {
 async function fetchHomeAlbums(): Promise<HomeAlbum[]> {
   const { data, error } = await supabase
     .from("gallery_images")
-    .select("id, project_id, image_url, storage_path, is_cover, sort_order, gallery_projects!inner(id, title, location, category, sort_order, visible)")
+    .select(
+      "id, project_id, image_url, storage_path, is_cover, sort_order, gallery_projects!inner(id, title, location, category, sort_order, visible)",
+    )
     .eq("gallery_projects.visible", true)
     .order("sort_order", { foreignTable: "gallery_projects", ascending: true })
     .order("is_cover", { ascending: false })
@@ -160,7 +185,6 @@ const stats = [
   { k: "Free", v: "No-obligation quotes" },
 ];
 
-
 const NEED_OPTIONS = [
   "Interior painting",
   "Exterior painting",
@@ -178,8 +202,12 @@ function LeadCaptureForm() {
   if (submitted) {
     return (
       <div className="rounded-sm border border-white/10 bg-white/10 px-6 py-10 backdrop-blur">
-        <h3 className="font-display text-xl font-bold uppercase text-primary">Thanks! We'll be in touch within 24 hours.</h3>
-        <p className="mt-2 text-sm text-white/80">One of our team will call or email to arrange your free site visit.</p>
+        <h3 className="font-display text-xl font-bold uppercase text-primary">
+          Thanks! We'll be in touch within 24 hours.
+        </h3>
+        <p className="mt-2 text-sm text-white/80">
+          One of our team will call or email to arrange your free site visit.
+        </p>
       </div>
     );
   }
@@ -192,9 +220,15 @@ function LeadCaptureForm() {
         setError(null);
         const fd = new FormData(e.currentTarget);
         const traps = readBotTraps(fd);
-        const name = String(fd.get("name") || "").trim().slice(0, 100);
-        const phone = String(fd.get("phone") || "").trim().slice(0, 50);
-        const service_type = String(fd.get("need") || "").trim().slice(0, 100);
+        const name = String(fd.get("name") || "")
+          .trim()
+          .slice(0, 100);
+        const phone = String(fd.get("phone") || "")
+          .trim()
+          .slice(0, 50);
+        const service_type = String(fd.get("need") || "")
+          .trim()
+          .slice(0, 100);
         if (!name || !phone || !service_type) {
           setError("Please fill in all fields.");
           setSubmitting(false);
@@ -230,7 +264,9 @@ function LeadCaptureForm() {
       className="mx-auto grid max-w-3xl gap-4 rounded-sm border border-white/10 bg-white/10 p-5 backdrop-blur sm:grid-cols-2 md:grid-cols-4 md:p-6"
     >
       <FormBotTraps />
-      <label htmlFor="lead-name" className="sr-only">Your name</label>
+      <label htmlFor="lead-name" className="sr-only">
+        Your name
+      </label>
       <input
         id="lead-name"
         type="text"
@@ -241,7 +277,9 @@ function LeadCaptureForm() {
         required
         className="w-full rounded-sm border border-white/20 bg-white px-3 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none"
       />
-      <label htmlFor="lead-phone" className="sr-only">Your phone number</label>
+      <label htmlFor="lead-phone" className="sr-only">
+        Your phone number
+      </label>
       <input
         id="lead-phone"
         type="tel"
@@ -252,7 +290,9 @@ function LeadCaptureForm() {
         required
         className="w-full rounded-sm border border-white/20 bg-white px-3 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none"
       />
-      <label htmlFor="lead-need" className="sr-only">What service do you need?</label>
+      <label htmlFor="lead-need" className="sr-only">
+        What service do you need?
+      </label>
       <select
         id="lead-need"
         name="need"
@@ -261,9 +301,13 @@ function LeadCaptureForm() {
         aria-label="What service do you need?"
         className="w-full rounded-sm border border-white/20 bg-white px-3 py-3 text-sm text-foreground focus:border-primary focus:outline-none sm:col-span-2 md:col-span-1"
       >
-        <option value="" disabled>What do you need?</option>
+        <option value="" disabled>
+          What do you need?
+        </option>
         {NEED_OPTIONS.map((o) => (
-          <option key={o} value={o}>{o}</option>
+          <option key={o} value={o}>
+            {o}
+          </option>
         ))}
       </select>
       <button
@@ -283,23 +327,39 @@ function Home() {
     <SiteLayout>
       {/* Hero */}
       <section className="relative isolate w-full overflow-hidden">
-        <img src={heroAsset.url} alt="Freshly painted Dublin home exterior by All Colours Painting" width={1920} height={1280} fetchPriority="high" decoding="async" className="absolute inset-0 -z-10 h-full w-full object-cover" />
+        <img
+          src={heroAsset.url}
+          alt="Freshly painted Dublin home exterior by All Colours Painting"
+          width={1920}
+          height={1280}
+          fetchPriority="high"
+          decoding="async"
+          className="absolute inset-0 -z-10 h-full w-full object-cover"
+        />
         <div className="absolute inset-0 -z-10 bg-gradient-to-r from-black/70 via-black/45 to-black/10" />
         <div className="mx-auto max-w-7xl px-6 py-28 md:px-8 md:py-44">
           <div className="max-w-2xl text-white">
             <span className="eyebrow text-accent">{COMPANY.area}</span>
             <h1 className="mt-5 font-display text-4xl font-extrabold uppercase leading-[1.05] tracking-tight text-white md:text-6xl">
-              Painting & decorating, <br />done <span className="text-primary">properly.</span>
+              Painting & decorating, <br />
+              done <span className="text-primary">properly.</span>
             </h1>
             <div className="mt-6 h-[3px] w-[170px] bg-primary" />
             <p className="mt-6 max-w-xl text-base text-white/85 md:text-lg">
-              {COMPANY.name} delivers precise, long-lasting finishes for homes, landlords and businesses — on time and on budget. Free quotes, no pressure.
+              {COMPANY.name} delivers precise, long-lasting finishes for homes, landlords and
+              businesses — on time and on budget. Free quotes, no pressure.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <a href="#quote" className="inline-flex items-center rounded-sm bg-primary px-6 py-3 font-display text-xs font-bold uppercase tracking-wider text-primary-foreground transition-colors hover:bg-[oklch(0.62_0.17_158)]">
+              <a
+                href="#quote"
+                className="inline-flex items-center rounded-sm bg-primary px-6 py-3 font-display text-xs font-bold uppercase tracking-wider text-primary-foreground transition-colors hover:bg-[oklch(0.62_0.17_158)]"
+              >
                 Request a free quote
               </a>
-              <Link to="/gallery" className="inline-flex items-center rounded-sm border border-white/40 bg-white/10 px-6 py-3 font-display text-xs font-bold uppercase tracking-wider text-white backdrop-blur hover:bg-white/20">
+              <Link
+                to="/gallery"
+                className="inline-flex items-center rounded-sm border border-white/40 bg-white/10 px-6 py-3 font-display text-xs font-bold uppercase tracking-wider text-white backdrop-blur hover:bg-white/20"
+              >
                 View our work
               </Link>
             </div>
@@ -312,19 +372,43 @@ function Home() {
         <div className="mx-auto grid max-w-7xl gap-12 px-4 py-20 md:grid-cols-2 md:gap-16 md:px-8 md:py-28">
           <div>
             <span className="eyebrow">Who we are</span>
-            <h2 className="section-title mt-3 text-3xl md:text-4xl">Welcome to All Colours Painting</h2>
+            <h2 className="section-title mt-3 text-3xl md:text-4xl">
+              Welcome to All Colours Painting
+            </h2>
             <hr className="section-rule" />
             <div className="mt-8 space-y-5 text-base leading-relaxed text-foreground">
-              <p>All Colours Painting Contractor Limited has worked across Dublin for over 10 years — family homes, period townhouses, apartment blocks and commercial fit-outs. Most of our work comes from repeat clients, architects and main contractors who've used us before.</p>
-              <p>Every job runs the same way: protect the space, prep the surfaces properly, apply trade paint systems to spec, and leave the site clean. The prep is where the finish is decided — so that's where we spend the time.</p>
-              <p>From a single feature wall to a full commercial fit-out, we treat every job the same: prepare meticulously, paint cleanly, leave the site spotless.</p>
+              <p>
+                All Colours Painting Contractor Limited has worked across Dublin for over 10 years —
+                family homes, period townhouses, apartment blocks and commercial fit-outs. Most of
+                our work comes from repeat clients, architects and main contractors who've used us
+                before.
+              </p>
+              <p>
+                Every job runs the same way: protect the space, prep the surfaces properly, apply
+                trade paint systems to spec, and leave the site clean. The prep is where the finish
+                is decided — so that's where we spend the time.
+              </p>
+              <p>
+                From a single feature wall to a full commercial fit-out, we treat every job the
+                same: prepare meticulously, paint cleanly, leave the site spotless.
+              </p>
             </div>
-            <Link to="/about" className="mt-8 inline-flex items-center font-display text-xs font-bold uppercase tracking-wider text-primary hover:text-[oklch(0.2_0_0)]">
+            <Link
+              to="/about"
+              className="mt-8 inline-flex items-center font-display text-xs font-bold uppercase tracking-wider text-primary hover:text-[oklch(0.2_0_0)]"
+            >
               Read more about us →
             </Link>
           </div>
           <div className="relative">
-            <img src={aboutAsset.url} alt="Close-up of clean architectural painting detail on interior moulding" loading="lazy" width={1200} height={800} className="aspect-[4/5] w-full object-cover" />
+            <img
+              src={aboutAsset.url}
+              alt="Close-up of clean architectural painting detail on interior moulding"
+              loading="lazy"
+              width={1200}
+              height={800}
+              className="aspect-[4/5] w-full object-cover"
+            />
             <div className="absolute -bottom-6 -left-6 hidden h-32 w-32 border-[6px] border-accent md:block" />
           </div>
         </div>
@@ -344,16 +428,38 @@ function Home() {
 
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {[
-              { t: "Professional", d: "We don't cut corners. We listen to what you need and deliver it on time, every time." },
-              { t: "Fast & Efficient", d: "Modern techniques, the best tools on the market. We're in, the job is done, and we're gone." },
-              { t: "Reliable", d: "We say what we'll do — and we do what we say. Honest quotes, honest timelines." },
-              { t: "Clean & Dust-Free", d: "Floors, furniture and belongings fully protected. Vacuum sanding keeps dust out of your home." },
-              { t: "Fully Insured", d: "Fully insured and tax-compliant. Every job covered from first prep to final coat." },
-              { t: "12-Month Warranty", d: "If anything's not right within 12 months of completion, we come back and put it right — no quibble. Written workmanship guarantee on every job." },
+              {
+                t: "Professional",
+                d: "We don't cut corners. We listen to what you need and deliver it on time, every time.",
+              },
+              {
+                t: "Fast & Efficient",
+                d: "Modern techniques, the best tools on the market. We're in, the job is done, and we're gone.",
+              },
+              {
+                t: "Reliable",
+                d: "We say what we'll do — and we do what we say. Honest quotes, honest timelines.",
+              },
+              {
+                t: "Clean & Dust-Free",
+                d: "Floors, furniture and belongings fully protected. Vacuum sanding keeps dust out of your home.",
+              },
+              {
+                t: "Fully Insured",
+                d: "Fully insured and tax-compliant. Every job covered from first prep to final coat.",
+              },
+              {
+                t: "12-Month Warranty",
+                d: "If anything's not right within 12 months of completion, we come back and put it right — no quibble. Written workmanship guarantee on every job.",
+              },
             ].map((v, i) => (
               <div key={v.t} className="border-t-[3px] border-primary bg-card p-7">
-                <div className="font-display text-xs font-bold uppercase tracking-[0.18em] text-primary">0{i + 1}</div>
-                <h3 className="mt-3 font-display text-lg font-bold uppercase tracking-wide text-[oklch(0.2_0_0)]">{v.t}</h3>
+                <div className="font-display text-xs font-bold uppercase tracking-[0.18em] text-primary">
+                  0{i + 1}
+                </div>
+                <h3 className="mt-3 font-display text-lg font-bold uppercase tracking-wide text-[oklch(0.2_0_0)]">
+                  {v.t}
+                </h3>
                 <p className="mt-3 text-sm leading-relaxed text-foreground">{v.d}</p>
               </div>
             ))}
@@ -366,8 +472,12 @@ function Home() {
         <div className="mx-auto grid max-w-7xl grid-cols-2 gap-6 px-4 py-12 md:grid-cols-3 md:px-8">
           {stats.map((s) => (
             <div key={s.v} className="text-center">
-              <div className="font-display text-2xl font-extrabold text-primary md:text-3xl">{s.k}</div>
-              <div className="mt-2 text-[11px] uppercase tracking-[0.18em] text-foreground">{s.v}</div>
+              <div className="font-display text-2xl font-extrabold text-primary md:text-3xl">
+                {s.k}
+              </div>
+              <div className="mt-2 text-[11px] uppercase tracking-[0.18em] text-foreground">
+                {s.v}
+              </div>
             </div>
           ))}
         </div>
@@ -381,7 +491,8 @@ function Home() {
             <h2 className="section-title text-3xl md:text-4xl">What we offer</h2>
             <hr className="section-rule" />
             <p className="mt-6 max-w-2xl text-base text-foreground">
-              An experienced team of painters and decorators specialising in a wide range of commercial, residential and bespoke projects.
+              An experienced team of painters and decorators specialising in a wide range of
+              commercial, residential and bespoke projects.
             </p>
           </div>
 
@@ -389,10 +500,19 @@ function Home() {
             {services.map((s) => (
               <div key={s.title} className="group overflow-hidden bg-card">
                 <div className="aspect-[4/3] overflow-hidden">
-                  <img src={s.img} alt={`${s.title} painting & decorating in Dublin`} loading="lazy" width={800} height={600} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                  <img
+                    src={s.img}
+                    alt={`${s.title} painting & decorating in Dublin`}
+                    loading="lazy"
+                    width={800}
+                    height={600}
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
                 </div>
                 <div className="border-b-[3px] border-primary p-6">
-                  <h3 className="font-display text-base font-bold uppercase tracking-wide text-[oklch(0.2_0_0)]">{s.title}</h3>
+                  <h3 className="font-display text-base font-bold uppercase tracking-wide text-[oklch(0.2_0_0)]">
+                    {s.title}
+                  </h3>
                   <p className="mt-3 text-sm leading-relaxed text-foreground">{s.desc}</p>
                 </div>
               </div>
@@ -400,7 +520,10 @@ function Home() {
           </div>
 
           <div className="mt-10">
-            <Link to="/services" className="inline-flex items-center rounded-sm border-[2px] border-primary px-6 py-3 font-display text-xs font-bold uppercase tracking-wider text-primary hover:bg-primary hover:text-primary-foreground">
+            <Link
+              to="/services"
+              className="inline-flex items-center rounded-sm border-[2px] border-primary px-6 py-3 font-display text-xs font-bold uppercase tracking-wider text-primary hover:bg-primary hover:text-primary-foreground"
+            >
               All services →
             </Link>
           </div>
@@ -409,7 +532,6 @@ function Home() {
 
       {/* Recent projects */}
       <RecentProjects />
-
 
       {/* Process */}
       <ProcessSteps background="background" />
@@ -426,7 +548,12 @@ function Home() {
               <h2 className="section-title mt-3 text-3xl md:text-4xl">Before you book</h2>
               <hr className="section-rule" />
             </div>
-            <Link to="/faq" className="font-display text-xs font-bold uppercase tracking-wider text-primary hover:text-[oklch(0.2_0_0)]">Read all FAQs →</Link>
+            <Link
+              to="/faq"
+              className="font-display text-xs font-bold uppercase tracking-wider text-primary hover:text-[oklch(0.2_0_0)]"
+            >
+              Read all FAQs →
+            </Link>
           </div>
           <div className="mt-10">
             <FaqAccordion items={FAQS.slice(0, 5)} />
@@ -442,12 +569,16 @@ function Home() {
             <h2 className="section-title text-3xl md:text-4xl">Every room, every surface</h2>
             <hr className="section-rule" />
             <p className="mt-6 max-w-3xl text-base text-foreground">
-              From a single room to a full house repaint — kitchens and cabinets, hallways and stairs, ceilings, apartments and period homes. If it needs painting, we paint it.
+              From a single room to a full house repaint — kitchens and cabinets, hallways and
+              stairs, ceilings, apartments and period homes. If it needs painting, we paint it.
             </p>
           </div>
 
           <div className="mt-8">
-            <Link to="/services" className="inline-flex items-center font-display text-xs font-bold uppercase tracking-wider text-primary hover:text-[oklch(0.2_0_0)]">
+            <Link
+              to="/services"
+              className="inline-flex items-center font-display text-xs font-bold uppercase tracking-wider text-primary hover:text-[oklch(0.2_0_0)]"
+            >
               See all services →
             </Link>
           </div>
@@ -459,10 +590,14 @@ function Home() {
         <div className="mx-auto max-w-7xl px-4 py-20 md:px-8 md:py-24">
           <div className="flex flex-col items-start gap-2">
             <span className="eyebrow">Where we work</span>
-            <h2 className="section-title text-3xl md:text-4xl">Painter & decorator across Dublin</h2>
+            <h2 className="section-title text-3xl md:text-4xl">
+              Painter & decorator across Dublin
+            </h2>
             <hr className="section-rule" />
             <p className="mt-6 max-w-3xl text-base text-foreground">
-              Looking for a <strong>painter near me</strong> in Dublin? We cover interior painting, exterior painting, dash and pebbledash repaints for houses and apartments across South Dublin and surrounding areas.
+              Looking for a <strong>painter near me</strong> in Dublin? We cover interior painting,
+              exterior painting, dash and pebbledash repaints for houses and apartments across South
+              Dublin and surrounding areas.
             </p>
           </div>
 
@@ -491,12 +626,23 @@ function Home() {
                   { name: "Foxrock", to: "/painter-foxrock" },
                   { name: "Dundrum", to: "/painter-dundrum" },
                 ].map((a) => (
-                  <li key={a.to} className="flex items-center gap-2 border-l-2 border-primary/70 pl-3">
-                    <Link to={a.to} className="font-medium text-[oklch(0.2_0_0)] hover:text-primary">{a.name}</Link>
+                  <li
+                    key={a.to}
+                    className="flex items-center gap-2 border-l-2 border-primary/70 pl-3"
+                  >
+                    <Link
+                      to={a.to}
+                      className="font-medium text-[oklch(0.2_0_0)] hover:text-primary"
+                    >
+                      {a.name}
+                    </Link>
                   </li>
                 ))}
               </ul>
-              <Link to="/painters" className="mt-6 inline-flex items-center font-display text-xs font-bold uppercase tracking-wider text-primary hover:text-[oklch(0.2_0_0)]">
+              <Link
+                to="/painters"
+                className="mt-6 inline-flex items-center font-display text-xs font-bold uppercase tracking-wider text-primary hover:text-[oklch(0.2_0_0)]"
+              >
                 View all areas →
               </Link>
             </div>
@@ -504,11 +650,16 @@ function Home() {
         </div>
       </section>
 
-
-
       {/* Lead capture — Get a Free Quote */}
       <section id="quote" className="relative isolate overflow-hidden scroll-mt-24">
-        <img src={ctaAsset.url} alt="Freshly painted Dublin home exterior" loading="lazy" width={1920} height={600} className="absolute inset-0 -z-10 h-full w-full object-cover" />
+        <img
+          src={ctaAsset.url}
+          alt="Freshly painted Dublin home exterior"
+          loading="lazy"
+          width={1920}
+          height={600}
+          className="absolute inset-0 -z-10 h-full w-full object-cover"
+        />
         <div className="absolute inset-0 -z-10 bg-[oklch(0.2_0_0)]/85" />
         <div className="mx-auto max-w-5xl px-4 py-20 text-center md:px-8 md:py-28">
           <span className="eyebrow text-accent">Free quotes</span>
@@ -516,8 +667,8 @@ function Home() {
             Ready to get started?
           </h2>
           <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-white/80 md:text-lg">
-            Tell us about your project and we'll visit, measure up and send a written quote within 48 hours.
-            No obligation, no pressure.
+            Tell us about your project and we'll visit, measure up and send a written quote within
+            48 hours. No obligation, no pressure.
           </p>
           <div className="mt-10">
             <LeadCaptureForm />
@@ -533,7 +684,6 @@ function Home() {
   );
 }
 
-
 function RecentProjects() {
   const { data: albums } = useQuery({ queryKey: ["home-recent-albums"], queryFn: fetchHomeAlbums });
   const items = albums ?? [];
@@ -546,24 +696,45 @@ function RecentProjects() {
             <span className="eyebrow">Our work</span>
             <h2 className="section-title mt-3 text-3xl md:text-4xl">Recent projects</h2>
             <hr className="section-rule" />
-            <p className="mt-6 max-w-2xl text-base text-foreground">A selection of recent Dublin jobs from our gallery — interiors, exteriors, floor coatings and commercial fit-outs.</p>
+            <p className="mt-6 max-w-2xl text-base text-foreground">
+              A selection of recent Dublin jobs from our gallery — interiors, exteriors, floor
+              coatings and commercial fit-outs.
+            </p>
           </div>
-          <Link to="/gallery" className="font-display text-xs font-bold uppercase tracking-wider text-primary hover:text-[oklch(0.2_0_0)]">View full gallery →</Link>
+          <Link
+            to="/gallery"
+            className="font-display text-xs font-bold uppercase tracking-wider text-primary hover:text-[oklch(0.2_0_0)]"
+          >
+            View full gallery →
+          </Link>
         </div>
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {items.map((p) => (
             <Link key={p.id} to="/gallery" className="group relative block overflow-hidden bg-card">
               <div className="aspect-[16/11] overflow-hidden">
                 {p.cover_url ? (
-                  <img src={p.cover_url} alt={p.title} loading="lazy" width={1200} height={825} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                  <img
+                    src={p.cover_url}
+                    alt={p.title}
+                    loading="lazy"
+                    width={1200}
+                    height={825}
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
                 ) : (
                   <div className="h-full w-full bg-muted" />
                 )}
               </div>
               <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent p-6 text-white">
-                <p className="text-[11px] uppercase tracking-[0.18em] text-accent">{CATEGORY_LABEL[p.category] ?? p.category} · {p.location}</p>
-                <h3 className="mt-1 font-display text-lg font-bold uppercase tracking-wide">{p.title}</h3>
-                <p className="mt-1 text-xs text-white/80">{p.photo_count} photo{p.photo_count === 1 ? "" : "s"}</p>
+                <p className="text-[11px] uppercase tracking-[0.18em] text-accent">
+                  {CATEGORY_LABEL[p.category] ?? p.category} · {p.location}
+                </p>
+                <h3 className="mt-1 font-display text-lg font-bold uppercase tracking-wide">
+                  {p.title}
+                </h3>
+                <p className="mt-1 text-xs text-white/80">
+                  {p.photo_count} photo{p.photo_count === 1 ? "" : "s"}
+                </p>
               </div>
             </Link>
           ))}

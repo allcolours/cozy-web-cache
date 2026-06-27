@@ -23,16 +23,41 @@ export const Route = createFileRoute("/painter-cabinteely")({
           "@context": "https://schema.org",
           "@type": "BreadcrumbList",
           itemListElement: [
-            { "@type": "ListItem", position: 1, name: "Home", item: "https://allcolourspainter.com/" },
+            {
+              "@type": "ListItem",
+              position: 1,
+              name: "Home",
+              item: "https://allcolourspainter.com/",
+            },
             { "@type": "ListItem", position: 2, name: TITLE.split(" | ")[0], item: URL },
           ],
         }),
       },
       {
         type: "application/ld+json",
-        children: JSON.stringify({"@context":"https://schema.org","@type":"LocalBusiness","name":"All Colours Painting Contractor Limited","url":"https://allcolourspainter.com/painter-cabinteely","telephone":SITE.phoneIntl,"email":SITE.email,"areaServed":{"@type":"Place","name":"Cabinteely, Dublin 18"},"address":{"@type":"PostalAddress","addressLocality":"Cabinteely","addressRegion":"Dublin 18","addressCountry":"IE"}}),
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "LocalBusiness",
+          name: "All Colours Painting Contractor Limited",
+          url: "https://allcolourspainter.com/painter-cabinteely",
+          telephone: SITE.phoneIntl,
+          email: SITE.email,
+          areaServed: { "@type": "Place", name: "Cabinteely, Dublin 18" },
+          address: {
+            "@type": "PostalAddress",
+            addressLocality: "Cabinteely",
+            addressRegion: "Dublin 18",
+            addressCountry: "IE",
+          },
+        }),
       },
     ],
   }),
-  component: () => <LocalAreaPage area="Cabinteely" postcode="Dublin 18" intro="Suburban family homes and new developments throughout Cabinteely — reliable scheduling, tidy crews and a finish that lasts." />,
+  component: () => (
+    <LocalAreaPage
+      area="Cabinteely"
+      postcode="Dublin 18"
+      intro="Suburban family homes and new developments throughout Cabinteely — reliable scheduling, tidy crews and a finish that lasts."
+    />
+  ),
 });

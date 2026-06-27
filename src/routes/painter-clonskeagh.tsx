@@ -23,16 +23,41 @@ export const Route = createFileRoute("/painter-clonskeagh")({
           "@context": "https://schema.org",
           "@type": "BreadcrumbList",
           itemListElement: [
-            { "@type": "ListItem", position: 1, name: "Home", item: "https://allcolourspainter.com/" },
+            {
+              "@type": "ListItem",
+              position: 1,
+              name: "Home",
+              item: "https://allcolourspainter.com/",
+            },
             { "@type": "ListItem", position: 2, name: TITLE.split(" | ")[0], item: URL },
           ],
         }),
       },
       {
         type: "application/ld+json",
-        children: JSON.stringify({"@context":"https://schema.org","@type":"LocalBusiness","name":"All Colours Painting Contractor Limited","url":"https://allcolourspainter.com/painter-clonskeagh","telephone":SITE.phoneIntl,"email":SITE.email,"areaServed":{"@type":"Place","name":"Clonskeagh, Dublin 14"},"address":{"@type":"PostalAddress","addressLocality":"Clonskeagh","addressRegion":"Dublin 14","addressCountry":"IE"}}),
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "LocalBusiness",
+          name: "All Colours Painting Contractor Limited",
+          url: "https://allcolourspainter.com/painter-clonskeagh",
+          telephone: SITE.phoneIntl,
+          email: SITE.email,
+          areaServed: { "@type": "Place", name: "Clonskeagh, Dublin 14" },
+          address: {
+            "@type": "PostalAddress",
+            addressLocality: "Clonskeagh",
+            addressRegion: "Dublin 14",
+            addressCountry: "IE",
+          },
+        }),
       },
     ],
   }),
-  component: () => <LocalAreaPage area="Clonskeagh" postcode="Dublin 14" intro="Mature residential streets and period houses near UCD — interior repaints and exterior masonry done with care." />,
+  component: () => (
+    <LocalAreaPage
+      area="Clonskeagh"
+      postcode="Dublin 14"
+      intro="Mature residential streets and period houses near UCD — interior repaints and exterior masonry done with care."
+    />
+  ),
 });

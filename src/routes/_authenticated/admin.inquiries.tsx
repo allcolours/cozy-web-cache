@@ -38,27 +38,53 @@ function InquiriesAdmin() {
       {isLoading ? (
         <p className="text-sm text-muted-foreground">Loading…</p>
       ) : !data?.length ? (
-        <p className="text-sm text-muted-foreground">No inquiries yet. Messages from the contact form will appear here.</p>
+        <p className="text-sm text-muted-foreground">
+          No inquiries yet. Messages from the contact form will appear here.
+        </p>
       ) : (
         <div className="space-y-4">
           {data.map((row) => (
-            <article key={row.id} className={`border-l-[3px] bg-background p-5 ${row.is_read ? "border-border" : "border-primary"}`}>
+            <article
+              key={row.id}
+              className={`border-l-[3px] bg-background p-5 ${row.is_read ? "border-border" : "border-primary"}`}
+            >
               <header className="flex flex-wrap items-start justify-between gap-3">
                 <div>
-                  <h3 className="font-display text-base font-bold uppercase tracking-wide">{row.name}</h3>
+                  <h3 className="font-display text-base font-bold uppercase tracking-wide">
+                    {row.name}
+                  </h3>
                   <p className="mt-1 text-sm text-muted-foreground">
-                    <a className="hover:text-primary" href={`mailto:${row.email}`}>{row.email}</a>
-                    {row.phone && <> · <a className="hover:text-primary" href={`tel:${row.phone.replace(/\s/g, "")}`}>{row.phone}</a></>}
+                    <a className="hover:text-primary" href={`mailto:${row.email}`}>
+                      {row.email}
+                    </a>
+                    {row.phone && (
+                      <>
+                        {" "}
+                        ·{" "}
+                        <a
+                          className="hover:text-primary"
+                          href={`tel:${row.phone.replace(/\s/g, "")}`}
+                        >
+                          {row.phone}
+                        </a>
+                      </>
+                    )}
                     {row.postcode && <> · {row.postcode}</>}
                   </p>
                 </div>
                 <div className="text-right text-xs text-muted-foreground">
                   {new Date(row.created_at).toLocaleString()}
                   <div className="mt-2 flex gap-3">
-                    <button onClick={() => toggleRead(row.id, row.is_read)} className="font-bold uppercase tracking-wider hover:text-primary">
+                    <button
+                      onClick={() => toggleRead(row.id, row.is_read)}
+                      className="font-bold uppercase tracking-wider hover:text-primary"
+                    >
                       Mark {row.is_read ? "unread" : "read"}
                     </button>
-                    <button onClick={() => remove(row.id)} className="font-bold uppercase tracking-wider text-destructive hover:underline">
+                    <button
+                      onClick={() => remove(row.id)}
+                      className="font-bold uppercase tracking-wider text-destructive hover:underline"
+                    >
                       Delete
                     </button>
                   </div>

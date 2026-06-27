@@ -23,16 +23,41 @@ export const Route = createFileRoute("/painter-knocklyon")({
           "@context": "https://schema.org",
           "@type": "BreadcrumbList",
           itemListElement: [
-            { "@type": "ListItem", position: 1, name: "Home", item: "https://allcolourspainter.com/" },
+            {
+              "@type": "ListItem",
+              position: 1,
+              name: "Home",
+              item: "https://allcolourspainter.com/",
+            },
             { "@type": "ListItem", position: 2, name: TITLE.split(" | ")[0], item: URL },
           ],
         }),
       },
       {
         type: "application/ld+json",
-        children: JSON.stringify({"@context":"https://schema.org","@type":"LocalBusiness","name":"All Colours Painting Contractor Limited","url":"https://allcolourspainter.com/painter-knocklyon","telephone":SITE.phoneIntl,"email":SITE.email,"areaServed":{"@type":"Place","name":"Knocklyon, Dublin 16"},"address":{"@type":"PostalAddress","addressLocality":"Knocklyon","addressRegion":"Dublin 16","addressCountry":"IE"}}),
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "LocalBusiness",
+          name: "All Colours Painting Contractor Limited",
+          url: "https://allcolourspainter.com/painter-knocklyon",
+          telephone: SITE.phoneIntl,
+          email: SITE.email,
+          areaServed: { "@type": "Place", name: "Knocklyon, Dublin 16" },
+          address: {
+            "@type": "PostalAddress",
+            addressLocality: "Knocklyon",
+            addressRegion: "Dublin 16",
+            addressCountry: "IE",
+          },
+        }),
       },
     ],
   }),
-  component: () => <LocalAreaPage area="Knocklyon" postcode="Dublin 16" intro="Established suburban homes throughout Knocklyon — full interior repaints, woodwork and exterior work delivered on schedule." />,
+  component: () => (
+    <LocalAreaPage
+      area="Knocklyon"
+      postcode="Dublin 16"
+      intro="Established suburban homes throughout Knocklyon — full interior repaints, woodwork and exterior work delivered on schedule."
+    />
+  ),
 });

@@ -61,7 +61,11 @@ export const Route = createFileRoute("/api/admin/cms-upload")({
             ]);
             const decoded = await decodeHeic({ buffer: bytes });
             const png = new PNG({ width: decoded.width, height: decoded.height });
-            png.data = Buffer.from(decoded.data.buffer, decoded.data.byteOffset, decoded.data.byteLength);
+            png.data = Buffer.from(
+              decoded.data.buffer,
+              decoded.data.byteOffset,
+              decoded.data.byteLength,
+            );
             bytes = new Uint8Array(PNG.sync.write(png));
           }
 
@@ -94,7 +98,9 @@ export const Route = createFileRoute("/api/admin/cms-upload")({
             return Response.json({ error: `upload failed: ${upErr.message}` }, { status: 500 });
           }
 
-          const { data: publicUrlData } = supabaseAdmin.storage.from("cms-media").getPublicUrl(path);
+          const { data: publicUrlData } = supabaseAdmin.storage
+            .from("cms-media")
+            .getPublicUrl(path);
           const url = publicUrlData.publicUrl;
 
           return Response.json({ url });

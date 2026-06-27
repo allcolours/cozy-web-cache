@@ -64,7 +64,12 @@ function GalleryAdmin() {
     const maxOrder = projects.reduce((m, p) => Math.max(m, p.sort_order ?? 0), 0);
     const { data, error } = await supabase
       .from("gallery_projects")
-      .insert({ title: newTitle.trim(), category: newCategory, sort_order: maxOrder + 10, visible: true })
+      .insert({
+        title: newTitle.trim(),
+        category: newCategory,
+        sort_order: maxOrder + 10,
+        visible: true,
+      })
       .select("id")
       .single();
     if (!error && data) {
@@ -98,7 +103,9 @@ function GalleryAdmin() {
 
       {creating && (
         <div className="mb-4 rounded-md border border-primary bg-background p-4">
-          <p className="mb-3 font-display text-sm font-bold uppercase tracking-wider">New project</p>
+          <p className="mb-3 font-display text-sm font-bold uppercase tracking-wider">
+            New project
+          </p>
           <div className="flex gap-3">
             <input
               autoFocus
@@ -113,12 +120,22 @@ function GalleryAdmin() {
               onChange={(e) => setNewCategory(e.target.value)}
               className="rounded border border-input bg-background px-3 py-2 text-sm outline-none focus:border-primary"
             >
-              {CATEGORIES.map((c) => <option key={c} value={c}>{CATEGORY_LABEL[c]}</option>)}
+              {CATEGORIES.map((c) => (
+                <option key={c} value={c}>
+                  {CATEGORY_LABEL[c]}
+                </option>
+              ))}
             </select>
-            <button onClick={createProject} className="rounded-sm bg-primary px-4 py-2 text-xs font-bold uppercase tracking-wider text-white">
+            <button
+              onClick={createProject}
+              className="rounded-sm bg-primary px-4 py-2 text-xs font-bold uppercase tracking-wider text-white"
+            >
               Create
             </button>
-            <button onClick={() => setCreating(false)} className="rounded-sm border border-border px-4 py-2 text-xs font-bold uppercase tracking-wider text-muted-foreground">
+            <button
+              onClick={() => setCreating(false)}
+              className="rounded-sm border border-border px-4 py-2 text-xs font-bold uppercase tracking-wider text-muted-foreground"
+            >
               Cancel
             </button>
           </div>
@@ -147,7 +164,17 @@ function GalleryAdmin() {
   );
 }
 
-function ProjectRow({ project, allProjects, isOpen, onToggle, onRefresh, canMoveUp, canMoveDown, onMoveUp, onMoveDown }: {
+function ProjectRow({
+  project,
+  allProjects,
+  isOpen,
+  onToggle,
+  onRefresh,
+  canMoveUp,
+  canMoveDown,
+  onMoveUp,
+  onMoveDown,
+}: {
   project: Project;
   allProjects: Project[];
   isOpen: boolean;
@@ -165,10 +192,9 @@ function ProjectRow({ project, allProjects, isOpen, onToggle, onRefresh, canMove
   const [visible, setVisible] = useState(project.visible);
   const [saving, setSaving] = useState(false);
   const [savedMsg, setSavedMsg] = useState("");
-  const [uploads, setUploads] = useState<{name: string; progress: number; error?: string}[]>([]);
+  const [uploads, setUploads] = useState<{ name: string; progress: number; error?: string }[]>([]);
   const [lightboxUrl, setLightboxUrl] = useState<string | null>(null);
   const [rotatingId, setRotatingId] = useState<string | null>(null);
-
 
   useEffect(() => {
     setTitle(project.title);
@@ -192,7 +218,7 @@ function ProjectRow({ project, allProjects, isOpen, onToggle, onRefresh, canMove
         (data ?? []).map(async (r) => ({
           ...r,
           resolved_url: await resolveGalleryUrl(r.image_url, r.storage_path),
-        }))
+        })),
       );
     },
   });
@@ -213,7 +239,10 @@ function ProjectRow({ project, allProjects, isOpen, onToggle, onRefresh, canMove
 
   async function deleteProject() {
     if (!confirm(`Delete "${project.title}" and all its images?`)) return;
-    const { data: imgs } = await supabase.from("gallery_images").select("storage_path").eq("project_id", project.id);
+    const { data: imgs } = await supabase
+      .from("gallery_images")
+      .select("storage_path")
+      .eq("project_id", project.id);
     const paths = (imgs ?? []).map((i) => i.storage_path).filter((x): x is string => !!x);
     if (paths.length) await supabase.storage.from("gallery").remove(paths);
     await supabase.from("gallery_projects").delete().eq("id", project.id);
@@ -224,13 +253,15 @@ function ProjectRow({ project, allProjects, isOpen, onToggle, onRefresh, canMove
     if (!files?.length) return;
     const arr = Array.from(files).map((f) => ({ name: f.name, progress: 0 }));
     setUploads(arr);
-    const { data: { session } } = await supabase.auth.getSession();
+    const {
+      data: { session },
+    } = await supabase.auth.getSession();
     const token = session?.access_token;
     let i = 0;
     for (const file of Array.from(files)) {
       try {
         if (!token) throw new Error("Not signed in");
-        setUploads((u) => u.map((x, idx) => idx === i ? { ...x, progress: 15 } : x));
+        setUploads((u) => u.map((x, idx) => (idx === i ? { ...x, progress: 15 } : x)));
         const fd = new FormData();
         fd.append("file", file, file.name);
         fd.append("projectId", project.id);
@@ -239,7 +270,7 @@ function ProjectRow({ project, allProjects, isOpen, onToggle, onRefresh, canMove
           headers: { Authorization: `Bearer ${token}` },
           body: fd,
         });
-        setUploads((u) => u.map((x, idx) => idx === i ? { ...x, progress: 70 } : x));
+        setUploads((u) => u.map((x, idx) => (idx === i ? { ...x, progress: 70 } : x)));
         const json = await res.json().catch(() => ({}));
         if (!res.ok || !json?.path) {
           throw new Error(json?.error || `Upload failed (${res.status})`);
@@ -253,10 +284,14 @@ function ProjectRow({ project, allProjects, isOpen, onToggle, onRefresh, canMove
           is_cover: images.length === 0 && i === 0,
           sort_order: images.length + i,
         });
-        setUploads((u) => u.map((x, idx) => idx === i ? { ...x, progress: 100 } : x));
+        setUploads((u) => u.map((x, idx) => (idx === i ? { ...x, progress: 100 } : x)));
       } catch (err) {
         console.error("upload failed", file.name, err);
-        setUploads((u) => u.map((x, idx) => idx === i ? { ...x, error: (err as Error)?.message?.slice(0,120) || "Failed" } : x));
+        setUploads((u) =>
+          u.map((x, idx) =>
+            idx === i ? { ...x, error: (err as Error)?.message?.slice(0, 120) || "Failed" } : x,
+          ),
+        );
       }
       i++;
     }
@@ -317,11 +352,17 @@ function ProjectRow({ project, allProjects, isOpen, onToggle, onRefresh, canMove
       ctx.rotate(Math.PI / 2);
       ctx.drawImage(bmp, -bmp.width / 2, -bmp.height / 2);
       const rotated: Blob = await new Promise((resolve, reject) => {
-        canvas.toBlob((b) => b ? resolve(b) : reject(new Error("toBlob failed")), "image/webp", 0.85);
+        canvas.toBlob(
+          (b) => (b ? resolve(b) : reject(new Error("toBlob failed"))),
+          "image/webp",
+          0.85,
+        );
       });
       const path = `projects/${project.id}/${crypto.randomUUID()}.webp`;
       const { error: upErr } = await supabase.storage.from("gallery").upload(path, rotated, {
-        contentType: "image/webp", cacheControl: "31536000", upsert: false,
+        contentType: "image/webp",
+        cacheControl: "31536000",
+        upsert: false,
       });
       if (upErr) throw upErr;
       const { error: updErr } = await supabase
@@ -340,7 +381,6 @@ function ProjectRow({ project, allProjects, isOpen, onToggle, onRefresh, canMove
       setRotatingId(null);
     }
   }
-
 
   const BADGE: Record<string, string> = {
     interior: "bg-blue-100 text-blue-800",
@@ -362,14 +402,18 @@ function ProjectRow({ project, allProjects, isOpen, onToggle, onRefresh, canMove
             disabled={!canMoveUp}
             aria-label="Move album up"
             className="px-1 text-xs text-muted-foreground hover:text-primary disabled:opacity-30"
-          >▲</button>
+          >
+            ▲
+          </button>
           <button
             type="button"
             onClick={onMoveDown}
             disabled={!canMoveDown}
             aria-label="Move album down"
             className="px-1 text-xs text-muted-foreground hover:text-primary disabled:opacity-30"
-          >▼</button>
+          >
+            ▼
+          </button>
         </div>
         <button
           type="button"
@@ -378,11 +422,17 @@ function ProjectRow({ project, allProjects, isOpen, onToggle, onRefresh, canMove
         >
           <span className="text-lg text-muted-foreground">{isOpen ? "▾" : "▸"}</span>
           <span className="flex-1 font-medium">{project.title}</span>
-          {project.location && <span className="text-sm text-muted-foreground">{project.location}</span>}
-          <span className={`rounded px-2 py-0.5 text-[11px] font-semibold ${BADGE[project.category] ?? "bg-muted text-foreground"}`}>
+          {project.location && (
+            <span className="text-sm text-muted-foreground">{project.location}</span>
+          )}
+          <span
+            className={`rounded px-2 py-0.5 text-[11px] font-semibold ${BADGE[project.category] ?? "bg-muted text-foreground"}`}
+          >
             {CATEGORY_LABEL[project.category] ?? project.category}
           </span>
-          <span className={`text-xs font-bold ${project.visible ? "text-green-600" : "text-muted-foreground"}`}>
+          <span
+            className={`text-xs font-bold ${project.visible ? "text-green-600" : "text-muted-foreground"}`}
+          >
             {project.visible ? "Visible" : "Hidden"}
           </span>
         </button>
@@ -393,39 +443,86 @@ function ProjectRow({ project, allProjects, isOpen, onToggle, onRefresh, canMove
           <div className="grid gap-6 lg:grid-cols-[280px_1fr]">
             <div className="space-y-4">
               <div>
-                <label className="mb-1 block text-xs font-bold uppercase tracking-wider text-muted-foreground">Title</label>
-                <input value={title} onChange={(e) => setTitle(e.target.value)} className="w-full rounded border border-input bg-background px-3 py-2 text-sm outline-none focus:border-primary" />
+                <label className="mb-1 block text-xs font-bold uppercase tracking-wider text-muted-foreground">
+                  Title
+                </label>
+                <input
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
+                  className="w-full rounded border border-input bg-background px-3 py-2 text-sm outline-none focus:border-primary"
+                />
               </div>
               <div>
-                <label className="mb-1 block text-xs font-bold uppercase tracking-wider text-muted-foreground">Location</label>
-                <input value={location} onChange={(e) => setLocation(e.target.value)} placeholder="e.g. Dublin 6" className="w-full rounded border border-input bg-background px-3 py-2 text-sm outline-none focus:border-primary" />
+                <label className="mb-1 block text-xs font-bold uppercase tracking-wider text-muted-foreground">
+                  Location
+                </label>
+                <input
+                  value={location}
+                  onChange={(e) => setLocation(e.target.value)}
+                  placeholder="e.g. Dublin 6"
+                  className="w-full rounded border border-input bg-background px-3 py-2 text-sm outline-none focus:border-primary"
+                />
               </div>
               <div>
-                <label className="mb-1 block text-xs font-bold uppercase tracking-wider text-muted-foreground">Category</label>
-                <select value={category} onChange={(e) => setCategory(e.target.value)} className="w-full rounded border border-input bg-background px-3 py-2 text-sm outline-none focus:border-primary">
-                  {CATEGORIES.map((c) => <option key={c} value={c}>{CATEGORY_LABEL[c]}</option>)}
+                <label className="mb-1 block text-xs font-bold uppercase tracking-wider text-muted-foreground">
+                  Category
+                </label>
+                <select
+                  value={category}
+                  onChange={(e) => setCategory(e.target.value)}
+                  className="w-full rounded border border-input bg-background px-3 py-2 text-sm outline-none focus:border-primary"
+                >
+                  {CATEGORIES.map((c) => (
+                    <option key={c} value={c}>
+                      {CATEGORY_LABEL[c]}
+                    </option>
+                  ))}
                 </select>
               </div>
               <label className="flex items-center gap-2 text-sm">
-                <input type="checkbox" checked={visible} onChange={(e) => setVisible(e.target.checked)} />
+                <input
+                  type="checkbox"
+                  checked={visible}
+                  onChange={(e) => setVisible(e.target.checked)}
+                />
                 Visible on public gallery
               </label>
               <div className="flex gap-2">
-                <button onClick={save} disabled={saving} className="flex-1 rounded-sm bg-primary py-2 text-xs font-bold uppercase tracking-wider text-white disabled:opacity-50">
+                <button
+                  onClick={save}
+                  disabled={saving}
+                  className="flex-1 rounded-sm bg-primary py-2 text-xs font-bold uppercase tracking-wider text-white disabled:opacity-50"
+                >
                   {saving ? "Saving…" : "Save"}
                 </button>
-                <button onClick={deleteProject} className="rounded-sm border border-destructive/40 px-3 py-2 text-xs font-bold uppercase tracking-wider text-destructive hover:bg-destructive hover:text-white">
+                <button
+                  onClick={deleteProject}
+                  className="rounded-sm border border-destructive/40 px-3 py-2 text-xs font-bold uppercase tracking-wider text-destructive hover:bg-destructive hover:text-white"
+                >
                   Delete
                 </button>
               </div>
               {savedMsg && <p className="text-sm font-medium text-green-600">{savedMsg}</p>}
 
               <div className="border-t border-border pt-4">
-                <p className="mb-1 text-xs font-bold uppercase tracking-wider text-muted-foreground">Upload photos</p>
-                <p className="mb-2 text-[11px] text-muted-foreground">HEIC, JPG, PNG, WebP — auto-converted to WebP, max 1600px wide.</p>
+                <p className="mb-1 text-xs font-bold uppercase tracking-wider text-muted-foreground">
+                  Upload photos
+                </p>
+                <p className="mb-2 text-[11px] text-muted-foreground">
+                  HEIC, JPG, PNG, WebP — auto-converted to WebP, max 1600px wide.
+                </p>
                 <label className="cursor-pointer rounded-sm bg-[#16a34a] px-4 py-2 text-xs font-bold uppercase tracking-wider text-white hover:bg-[#15803d]">
                   Choose files
-                  <input type="file" multiple accept="image/*,.heic,.heif" className="hidden" onChange={(e) => { handleUpload(e.target.files); e.target.value = ""; }} />
+                  <input
+                    type="file"
+                    multiple
+                    accept="image/*,.heic,.heif"
+                    className="hidden"
+                    onChange={(e) => {
+                      handleUpload(e.target.files);
+                      e.target.value = "";
+                    }}
+                  />
                 </label>
                 {uploads.length > 0 && (
                   <ul className="mt-3 space-y-1">
@@ -433,10 +530,15 @@ function ProjectRow({ project, allProjects, isOpen, onToggle, onRefresh, canMove
                       <li key={i} className="text-xs">
                         <div className="flex justify-between">
                           <span className="truncate">{u.name}</span>
-                          <span className={u.error ? "text-destructive" : "text-muted-foreground"}>{u.error ?? `${u.progress}%`}</span>
+                          <span className={u.error ? "text-destructive" : "text-muted-foreground"}>
+                            {u.error ?? `${u.progress}%`}
+                          </span>
                         </div>
                         <div className="mt-0.5 h-1 overflow-hidden rounded bg-muted">
-                          <div className={`h-full ${u.error ? "bg-destructive" : "bg-[#16a34a]"}`} style={{ width: `${u.progress}%` }} />
+                          <div
+                            className={`h-full ${u.error ? "bg-destructive" : "bg-[#16a34a]"}`}
+                            style={{ width: `${u.progress}%` }}
+                          />
                         </div>
                       </li>
                     ))}
@@ -453,14 +555,21 @@ function ProjectRow({ project, allProjects, isOpen, onToggle, onRefresh, canMove
               ) : (
                 <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4">
                   {images.map((img, idx) => (
-                    <div key={img.id} className="relative overflow-hidden rounded-md border border-border">
+                    <div
+                      key={img.id}
+                      className="relative overflow-hidden rounded-md border border-border"
+                    >
                       <button
                         type="button"
                         onClick={() => img.resolved_url && setLightboxUrl(img.resolved_url)}
                         className="block w-full"
                         aria-label="Enlarge image"
                       >
-                        <img src={img.resolved_url} alt={img.alt_text ?? ""} className="aspect-[4/3] w-full object-cover" />
+                        <img
+                          src={img.resolved_url}
+                          alt={img.alt_text ?? ""}
+                          className="aspect-[4/3] w-full object-cover"
+                        />
                       </button>
                       {img.is_cover && (
                         <span className="pointer-events-none absolute left-1 top-1 rounded bg-primary px-1.5 py-0.5 text-[10px] font-bold uppercase text-white">
@@ -476,25 +585,38 @@ function ProjectRow({ project, allProjects, isOpen, onToggle, onRefresh, canMove
                       <div className="absolute right-1 top-1 flex flex-col gap-1">
                         <button
                           type="button"
-                          onClick={(e) => { e.stopPropagation(); swapImageOrder(idx, -1); }}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            swapImageOrder(idx, -1);
+                          }}
                           disabled={idx === 0}
                           className="flex h-8 w-8 items-center justify-center rounded bg-black/75 text-sm font-bold text-white active:bg-black disabled:opacity-30"
                           aria-label="Move image up"
-                        >▲</button>
+                        >
+                          ▲
+                        </button>
                         <button
                           type="button"
-                          onClick={(e) => { e.stopPropagation(); swapImageOrder(idx, 1); }}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            swapImageOrder(idx, 1);
+                          }}
                           disabled={idx === images.length - 1}
                           className="flex h-8 w-8 items-center justify-center rounded bg-black/75 text-sm font-bold text-white active:bg-black disabled:opacity-30"
                           aria-label="Move image down"
-                        >▼</button>
+                        >
+                          ▼
+                        </button>
                       </div>
                       {/* Action bar — always visible, mobile-friendly */}
                       <div className="flex flex-col gap-1.5 bg-neutral-900 p-1.5">
                         <div className="flex flex-wrap gap-1.5">
                           <button
                             type="button"
-                            onClick={(e) => { e.stopPropagation(); if (!img.is_cover) setCover(img); }}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              if (!img.is_cover) setCover(img);
+                            }}
                             disabled={img.is_cover}
                             aria-label={img.is_cover ? "Current cover" : "Set as cover"}
                             className={`flex h-8 min-w-8 items-center justify-center rounded px-2 text-xs font-bold ${img.is_cover ? "bg-primary text-white" : "bg-white text-black active:bg-primary active:text-white"}`}
@@ -503,7 +625,10 @@ function ProjectRow({ project, allProjects, isOpen, onToggle, onRefresh, canMove
                           </button>
                           <button
                             type="button"
-                            onClick={(e) => { e.stopPropagation(); rotateImage(img); }}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              rotateImage(img);
+                            }}
                             disabled={rotatingId === img.id}
                             aria-label="Rotate 90° clockwise"
                             className="flex h-8 min-w-8 items-center justify-center rounded bg-white px-2 text-xs font-bold text-black active:bg-neutral-200 disabled:opacity-50"
@@ -512,7 +637,10 @@ function ProjectRow({ project, allProjects, isOpen, onToggle, onRefresh, canMove
                           </button>
                           <button
                             type="button"
-                            onClick={(e) => { e.stopPropagation(); deleteImage(img); }}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              deleteImage(img);
+                            }}
                             aria-label="Delete image"
                             className="ml-auto flex h-8 min-w-8 items-center justify-center rounded bg-red-600 px-2 text-xs font-bold text-white active:bg-red-700"
                           >
@@ -533,13 +661,14 @@ function ProjectRow({ project, allProjects, isOpen, onToggle, onRefresh, canMove
                           >
                             <option value="">Move to album…</option>
                             {otherProjects.map((p) => (
-                              <option key={p.id} value={p.id}>{p.title}</option>
+                              <option key={p.id} value={p.id}>
+                                {p.title}
+                              </option>
                             ))}
                           </select>
                         )}
                       </div>
                     </div>
-
                   ))}
                 </div>
               )}
@@ -558,7 +687,10 @@ function ProjectRow({ project, allProjects, isOpen, onToggle, onRefresh, canMove
         >
           <button
             type="button"
-            onClick={(e) => { e.stopPropagation(); setLightboxUrl(null); }}
+            onClick={(e) => {
+              e.stopPropagation();
+              setLightboxUrl(null);
+            }}
             className="absolute right-4 top-4 rounded-full bg-white/15 px-3 py-1.5 text-sm font-bold text-white backdrop-blur-sm hover:bg-white/25"
             aria-label="Close"
           >

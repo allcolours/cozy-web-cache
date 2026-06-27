@@ -76,13 +76,17 @@ function DatabasePage() {
           <div className="mt-3 font-display text-3xl font-extrabold tracking-tight">
             {sizeQ.isLoading ? "…" : (sizeQ.data?.size_pretty ?? "—")}
           </div>
-          {sizeQ.error ? <div className="mt-2 text-xs text-destructive">{(sizeQ.error as Error).message}</div> : null}
+          {sizeQ.error ? (
+            <div className="mt-2 text-xs text-destructive">{(sizeQ.error as Error).message}</div>
+          ) : null}
         </div>
         <div className="border-t-[3px] border-border bg-background p-6">
           <div className="font-display text-[11px] font-bold uppercase tracking-[0.18em] text-muted-foreground">
             Tables tracked
           </div>
-          <div className="mt-3 font-display text-3xl font-extrabold tracking-tight">{tablesQ.data?.length ?? "—"}</div>
+          <div className="mt-3 font-display text-3xl font-extrabold tracking-tight">
+            {tablesQ.data?.length ?? "—"}
+          </div>
         </div>
         <div className="border-t-[3px] border-border bg-background p-6">
           <div className="font-display text-[11px] font-bold uppercase tracking-[0.18em] text-muted-foreground">
@@ -99,7 +103,9 @@ function DatabasePage() {
 
       <section className="mt-8">
         <div className="mb-3 flex items-baseline justify-between">
-          <h2 className="font-display text-lg font-bold uppercase tracking-wider">Top tables by size</h2>
+          <h2 className="font-display text-lg font-bold uppercase tracking-wider">
+            Top tables by size
+          </h2>
           <span className="text-xs text-muted-foreground">refreshes every 30s</span>
         </div>
         <div className="overflow-x-auto border border-border bg-background">
@@ -123,12 +129,18 @@ function DatabasePage() {
                     </td>
                     <td className="px-3 py-2 text-right tabular-nums">{t.size_pretty}</td>
                     <td className="px-3 py-2 text-right tabular-nums">{pct.toFixed(1)}%</td>
-                    <td className="px-3 py-2 text-right tabular-nums">{t.row_est.toLocaleString()}</td>
+                    <td className="px-3 py-2 text-right tabular-nums">
+                      {t.row_est.toLocaleString()}
+                    </td>
                   </tr>
                 );
               })}
               {!tablesQ.isLoading && (tablesQ.data?.length ?? 0) === 0 ? (
-                <tr><td className="px-3 py-4 text-muted-foreground" colSpan={4}>No data</td></tr>
+                <tr>
+                  <td className="px-3 py-4 text-muted-foreground" colSpan={4}>
+                    No data
+                  </td>
+                </tr>
               ) : null}
             </tbody>
           </table>
@@ -159,32 +171,52 @@ function DatabasePage() {
                 <tr key={j.jobid} className="border-t border-border align-top">
                   <td className="px-3 py-2 tabular-nums text-muted-foreground">{j.jobid}</td>
                   <td className="px-3 py-2">
-                    <div className="font-medium">{j.jobname ?? <span className="text-muted-foreground">—</span>}</div>
+                    <div className="font-medium">
+                      {j.jobname ?? <span className="text-muted-foreground">—</span>}
+                    </div>
                     <details className="mt-1">
-                      <summary className="cursor-pointer text-xs text-muted-foreground hover:text-foreground">command</summary>
-                      <pre className="mt-1 max-w-xl overflow-x-auto whitespace-pre-wrap break-all rounded-sm bg-secondary/50 p-2 text-[11px] leading-snug">{j.command}</pre>
+                      <summary className="cursor-pointer text-xs text-muted-foreground hover:text-foreground">
+                        command
+                      </summary>
+                      <pre className="mt-1 max-w-xl overflow-x-auto whitespace-pre-wrap break-all rounded-sm bg-secondary/50 p-2 text-[11px] leading-snug">
+                        {j.command}
+                      </pre>
                     </details>
                   </td>
                   <td className="px-3 py-2 font-mono text-xs">{j.schedule}</td>
                   <td className="px-3 py-2">
-                    <span className={`inline-block rounded-sm px-2 py-0.5 text-[11px] font-bold uppercase tracking-wider ${j.active ? "bg-emerald-100 text-emerald-900" : "bg-muted text-muted-foreground"}`}>
+                    <span
+                      className={`inline-block rounded-sm px-2 py-0.5 text-[11px] font-bold uppercase tracking-wider ${j.active ? "bg-emerald-100 text-emerald-900" : "bg-muted text-muted-foreground"}`}
+                    >
                       {j.active ? "yes" : "no"}
                     </span>
                   </td>
                   <td className="px-3 py-2 text-xs text-muted-foreground">{fmt(j.last_start)}</td>
                   <td className="px-3 py-2">
                     {j.last_status ? (
-                      <span className={`inline-block rounded-sm px-2 py-0.5 text-[11px] font-bold uppercase tracking-wider ${j.last_status === "succeeded" ? "bg-emerald-100 text-emerald-900" : "bg-destructive/10 text-destructive"}`}>
+                      <span
+                        className={`inline-block rounded-sm px-2 py-0.5 text-[11px] font-bold uppercase tracking-wider ${j.last_status === "succeeded" ? "bg-emerald-100 text-emerald-900" : "bg-destructive/10 text-destructive"}`}
+                      >
                         {j.last_status}
                       </span>
-                    ) : <span className="text-muted-foreground">—</span>}
+                    ) : (
+                      <span className="text-muted-foreground">—</span>
+                    )}
                   </td>
                   <td className="px-3 py-2 text-right tabular-nums">{j.runs_24h}</td>
-                  <td className={`px-3 py-2 text-right tabular-nums ${j.failures_24h > 0 ? "text-destructive font-semibold" : ""}`}>{j.failures_24h}</td>
+                  <td
+                    className={`px-3 py-2 text-right tabular-nums ${j.failures_24h > 0 ? "text-destructive font-semibold" : ""}`}
+                  >
+                    {j.failures_24h}
+                  </td>
                 </tr>
               ))}
               {!cronQ.isLoading && (cronQ.data?.length ?? 0) === 0 ? (
-                <tr><td className="px-3 py-4 text-muted-foreground" colSpan={8}>No cron jobs scheduled</td></tr>
+                <tr>
+                  <td className="px-3 py-4 text-muted-foreground" colSpan={8}>
+                    No cron jobs scheduled
+                  </td>
+                </tr>
               ) : null}
             </tbody>
           </table>

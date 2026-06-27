@@ -24,7 +24,10 @@ function CaseStudiesAdmin() {
 
   const toggle = useMutation({
     mutationFn: async (r: { id: string; visible: boolean }) => {
-      const { error } = await supabase.from("case_studies").update({ visible: !r.visible }).eq("id", r.id);
+      const { error } = await supabase
+        .from("case_studies")
+        .update({ visible: !r.visible })
+        .eq("id", r.id);
       if (error) throw error;
     },
     onSuccess: () => qc.invalidateQueries({ queryKey: ["admin-case-studies"] }),
@@ -34,7 +37,12 @@ function CaseStudiesAdmin() {
     <AdminShell title="Case Studies">
       <div className="mb-6 flex items-center justify-between">
         <p className="text-sm text-muted-foreground">{data?.length ?? 0} case studies</p>
-        <Link to="/admin/case-studies/new" className="rounded-sm bg-primary px-5 py-2.5 font-display text-xs font-bold uppercase tracking-wider text-primary-foreground hover:bg-[oklch(0.62_0.17_158)]">+ New case study</Link>
+        <Link
+          to="/admin/case-studies/new"
+          className="rounded-sm bg-primary px-5 py-2.5 font-display text-xs font-bold uppercase tracking-wider text-primary-foreground hover:bg-[oklch(0.62_0.17_158)]"
+        >
+          + New case study
+        </Link>
       </div>
 
       {isLoading && <p className="text-sm text-muted-foreground">Loading…</p>}
@@ -60,7 +68,11 @@ function CaseStudiesAdmin() {
                 >
                   <td className="px-3 py-2">
                     {c.cover_image_url ? (
-                      <img src={c.cover_image_url} alt="" className="h-10 w-14 rounded object-cover" />
+                      <img
+                        src={c.cover_image_url}
+                        alt=""
+                        className="h-10 w-14 rounded object-cover"
+                      />
                     ) : (
                       <div className="h-10 w-14 rounded bg-muted" />
                     )}
@@ -72,12 +84,27 @@ function CaseStudiesAdmin() {
                   <td className="px-3 py-3 text-muted-foreground">{c.location ?? "—"}</td>
                   <td className="px-3 py-3 text-muted-foreground">{c.category ?? "—"}</td>
                   <td className="px-3 py-3">
-                    <button onClick={(e) => { e.stopPropagation(); toggle.mutate({ id: c.id, visible: !!c.visible }); }} className={`relative inline-flex h-5 w-9 items-center rounded-full ${c.visible ? "bg-[#16a34a]" : "bg-muted-foreground/30"}`} aria-label="Toggle visible">
-                      <span className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${c.visible ? "translate-x-4" : "translate-x-0.5"}`} />
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        toggle.mutate({ id: c.id, visible: !!c.visible });
+                      }}
+                      className={`relative inline-flex h-5 w-9 items-center rounded-full ${c.visible ? "bg-[#16a34a]" : "bg-muted-foreground/30"}`}
+                      aria-label="Toggle visible"
+                    >
+                      <span
+                        className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${c.visible ? "translate-x-4" : "translate-x-0.5"}`}
+                      />
                     </button>
                   </td>
                   <td className="px-3 py-3 text-right">
-                    <Link to="/admin/case-studies/$studyId" params={{ studyId: c.id }} className="text-xs font-bold uppercase tracking-wider text-primary hover:underline">Edit</Link>
+                    <Link
+                      to="/admin/case-studies/$studyId"
+                      params={{ studyId: c.id }}
+                      className="text-xs font-bold uppercase tracking-wider text-primary hover:underline"
+                    >
+                      Edit
+                    </Link>
                   </td>
                 </tr>
               ))}

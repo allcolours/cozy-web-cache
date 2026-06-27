@@ -9,7 +9,10 @@ const cache = new Map<string, { url: string; expiresAt: number }>();
  * - Anything else is treated as a Supabase Storage path in the 'gallery' bucket
  *   and returned as a signed URL valid for ~7 days.
  */
-export async function resolveGalleryUrl(imageUrl: string, storagePath?: string | null): Promise<string> {
+export async function resolveGalleryUrl(
+  imageUrl: string,
+  storagePath?: string | null,
+): Promise<string> {
   if (/^https?:\/\//.test(imageUrl) || imageUrl.startsWith("/")) return imageUrl;
   const path = storagePath || imageUrl;
   const cached = cache.get(path);

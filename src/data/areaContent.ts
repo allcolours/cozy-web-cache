@@ -41,8 +41,7 @@ export const AREA_CONTENT: Record<string, AreaContent> = {
     ],
   },
   Donnybrook: {
-    intro:
-      "Clean interior repaints and careful exterior work on Donnybrook's period homes.",
+    intro: "Clean interior repaints and careful exterior work on Donnybrook's period homes.",
     localContext:
       "Donnybrook (Dublin 4) is a leafy neighbourhood of period red-brick houses and quiet residential streets. We deliver tidy interior repaints and careful exterior preparation on older properties.",
     highlights: [
@@ -52,8 +51,7 @@ export const AREA_CONTENT: Record<string, AreaContent> = {
     ],
   },
   Clontarf: {
-    intro:
-      "Coastal-ready exterior systems and full interiors along the Clontarf seafront.",
+    intro: "Coastal-ready exterior systems and full interiors along the Clontarf seafront.",
     localContext:
       "Clontarf (Dublin 3) runs along the north coast, with red-brick period houses and 1930s semis near the seafront. Salt and wind are hard on exterior paint, so we specify primers and finishes that last by the sea.",
     highlights: [
@@ -63,8 +61,7 @@ export const AREA_CONTENT: Record<string, AreaContent> = {
     ],
   },
   Blackrock: {
-    intro:
-      "Interiors and salt-resistant exterior finishes for Blackrock homes near the bay.",
+    intro: "Interiors and salt-resistant exterior finishes for Blackrock homes near the bay.",
     localContext:
       "Blackrock (Co. Dublin, A94) mixes Victorian period houses with modern coastal properties. We paint interiors, exterior masonry and timber, using systems built for the salt air near the bay.",
     highlights: [
@@ -74,8 +71,7 @@ export const AREA_CONTENT: Record<string, AreaContent> = {
     ],
   },
   "Dún Laoghaire": {
-    intro:
-      "Marine-grade exteriors and full interiors across Dún Laoghaire's harbour terraces.",
+    intro: "Marine-grade exteriors and full interiors across Dún Laoghaire's harbour terraces.",
     localContext:
       "Dún Laoghaire (Co. Dublin, A96) is a Victorian harbour town of seafront terraces and apartments. Paint near the coast needs the right system, so we prime and finish exteriors to handle marine exposure.",
     highlights: [
@@ -85,8 +81,7 @@ export const AREA_CONTENT: Record<string, AreaContent> = {
     ],
   },
   Dalkey: {
-    intro:
-      "High-standard interiors and weather-tough exteriors for Dalkey's coastal homes.",
+    intro: "High-standard interiors and weather-tough exteriors for Dalkey's coastal homes.",
     localContext:
       "Dalkey (Co. Dublin, A96) is an upmarket coastal village of granite and period homes. We deliver careful interior finishes and exterior systems that stand up to wind and sea spray.",
     highlights: [
@@ -96,8 +91,7 @@ export const AREA_CONTENT: Record<string, AreaContent> = {
     ],
   },
   Foxrock: {
-    intro:
-      "Full-house repaints and hand-painted kitchens for Foxrock's larger homes.",
+    intro: "Full-house repaints and hand-painted kitchens for Foxrock's larger homes.",
     localContext:
       "Foxrock (Dublin 18) is a quiet, leafy suburb of large detached homes. We carry out full-house interior repaints, hand-painted kitchen cabinetry and exterior work on bigger properties.",
     highlights: [
@@ -107,15 +101,10 @@ export const AREA_CONTENT: Record<string, AreaContent> = {
     ],
   },
   Stillorgan: {
-    intro:
-      "Repaints, tenancy turnarounds and exterior upkeep across Stillorgan.",
+    intro: "Repaints, tenancy turnarounds and exterior upkeep across Stillorgan.",
     localContext:
       "Stillorgan (Co. Dublin, A94) is an established south-Dublin suburb of mid-century semis and apartment blocks. We handle full repaints, tenancy turnarounds and ongoing exterior maintenance.",
-    highlights: [
-      "Full house repaints",
-      "Tenancy turnarounds",
-      "Exterior maintenance",
-    ],
+    highlights: ["Full house repaints", "Tenancy turnarounds", "Exterior maintenance"],
   },
   Sandyford: {
     intro: "Out-of-hours commercial and residential painting across Sandyford.",
@@ -128,63 +117,37 @@ export const AREA_CONTENT: Record<string, AreaContent> = {
     ],
   },
   Dundrum: {
-    intro:
-      "Family-home repaints, new-build finishing and commercial work in Dundrum.",
+    intro: "Family-home repaints, new-build finishing and commercial work in Dundrum.",
     localContext:
       "Dundrum (Dublin 14) mixes period homes, newer estates and the town-centre commercial area. We deliver family-home repaints, new-build finishing and tidy commercial work.",
-    highlights: [
-      "Family-home repaints",
-      "New-build snagging & finishing",
-      "Clean, tidy handover",
-    ],
+    highlights: ["Family-home repaints", "New-build snagging & finishing", "Clean, tidy handover"],
   },
   Rathfarnham: {
-    intro:
-      "Full repaints, woodwork and exterior upkeep for Rathfarnham homes.",
+    intro: "Full repaints, woodwork and exterior upkeep for Rathfarnham homes.",
     localContext:
       "Rathfarnham (Dublin 14) is a mature south-Dublin suburb of semis and detached homes. We handle full house repaints, woodwork and trim, and exterior maintenance for owner-occupiers.",
-    highlights: [
-      "Full house repaints",
-      "Woodwork & trim",
-      "Exterior maintenance",
-    ],
+    highlights: ["Full house repaints", "Woodwork & trim", "Exterior maintenance"],
   },
   Malahide: {
-    intro:
-      "Interiors and coastal-ready exteriors for Malahide's homes near the marina.",
+    intro: "Interiors and coastal-ready exteriors for Malahide's homes near the marina.",
     localContext:
       "Malahide (Co. Dublin, K36) is a coastal town in north Dublin with period and modern homes near the marina. We paint interiors and specify exterior finishes suited to coastal conditions.",
-    highlights: [
-      "Coastal exterior finishes",
-      "Period & modern interiors",
-      "Full-house repaints",
-    ],
+    highlights: ["Coastal exterior finishes", "Period & modern interiors", "Full-house repaints"],
   },
   Clondalkin: {
-    intro:
-      "Repaints and quick tenancy turnarounds across Clondalkin's homes and estates.",
+    intro: "Repaints and quick tenancy turnarounds across Clondalkin's homes and estates.",
     localContext:
       "Clondalkin (Dublin 22) combines an historic village core with large residential estates in west Dublin. We repaint older and newer homes alike, with fast tenancy turnarounds.",
-    highlights: [
-      "Full house repaints",
-      "Tenancy turnarounds",
-      "Older & new-build homes",
-    ],
+    highlights: ["Full house repaints", "Tenancy turnarounds", "Older & new-build homes"],
   },
   Cabra: {
-    intro:
-      "Straightforward interior and exterior repaints across Cabra's terraces and semis.",
+    intro: "Straightforward interior and exterior repaints across Cabra's terraces and semis.",
     localContext:
       "Cabra (Dublin 7) is a north-inner suburb of traditional terraces, 1930s semis and family homes. We deliver clean interior repaints, woodwork and exterior maintenance at honest prices.",
-    highlights: [
-      "Terrace & semi repaints",
-      "Woodwork & trim",
-      "Exterior maintenance",
-    ],
+    highlights: ["Terrace & semi repaints", "Woodwork & trim", "Exterior maintenance"],
   },
   Phibsborough: {
-    intro:
-      "Period interiors, feature walls and tidy exterior work across Phibsborough.",
+    intro: "Period interiors, feature walls and tidy exterior work across Phibsborough.",
     localContext:
       "Phibsborough (Dublin 7) is a north-inner area of Victorian terraces and modern apartment conversions close to the city. We handle interior repaints, period plasterwork and tidy exterior touch-ups in occupied homes.",
     highlights: [
@@ -194,96 +157,55 @@ export const AREA_CONTENT: Record<string, AreaContent> = {
     ],
   },
   Drumcondra: {
-    intro:
-      "Period red-brick repaints and fast landlord turnarounds across Drumcondra.",
+    intro: "Period red-brick repaints and fast landlord turnarounds across Drumcondra.",
     localContext:
       "Drumcondra (Dublin 9) is a north-Dublin suburb of red-brick terraces and rental properties near the city. We handle interior and exterior repaints with quick turnarounds for landlords between tenancies.",
-    highlights: [
-      "Red-brick period interiors",
-      "Landlord turnarounds",
-      "Exterior repaints",
-    ],
+    highlights: ["Red-brick period interiors", "Landlord turnarounds", "Exterior repaints"],
   },
   Glasthule: {
-    intro:
-      "Careful interior and exterior work for Glasthule's coastal village homes.",
+    intro: "Careful interior and exterior work for Glasthule's coastal village homes.",
     localContext:
       "Glasthule (Co. Dublin, A96) sits between Dún Laoghaire and Sandycove, with Victorian and Edwardian properties and period detail. We work carefully on older homes and specify exteriors that suit the coastal setting.",
-    highlights: [
-      "Coastal exterior systems",
-      "Period interior work",
-      "Tidy, low-disruption crews",
-    ],
+    highlights: ["Coastal exterior systems", "Period interior work", "Tidy, low-disruption crews"],
   },
   "Mount Merrion": {
-    intro:
-      "Full-house repaints and exterior upkeep for Mount Merrion's family homes.",
+    intro: "Full-house repaints and exterior upkeep for Mount Merrion's family homes.",
     localContext:
       "Mount Merrion (Co. Dublin, A94) is a mature south-Dublin suburb of detached and semi-detached family homes. We deliver full interior repaints, woodwork and exterior maintenance with a clean handover.",
-    highlights: [
-      "Full-house repaints",
-      "Woodwork & trim",
-      "Exterior maintenance",
-    ],
+    highlights: ["Full-house repaints", "Woodwork & trim", "Exterior maintenance"],
   },
   Cabinteely: {
-    intro:
-      "Repaints and exterior work across Cabinteely's family homes and estates.",
+    intro: "Repaints and exterior work across Cabinteely's family homes and estates.",
     localContext:
       "Cabinteely (Dublin 18) is a south-Dublin suburb of family homes and newer residential developments. We handle full interior repaints, woodwork and exterior maintenance with reliable scheduling.",
-    highlights: [
-      "Family-home repaints",
-      "New-build finishing",
-      "Exterior maintenance",
-    ],
+    highlights: ["Family-home repaints", "New-build finishing", "Exterior maintenance"],
   },
   Walkinstown: {
-    intro:
-      "Reliable residential and light commercial painting across Walkinstown.",
+    intro: "Reliable residential and light commercial painting across Walkinstown.",
     localContext:
       "Walkinstown (Dublin 12) is a west-Dublin suburb of mid-century semis, terraces and small commercial units. We carry out tidy interior and exterior repaints for homeowners, landlords and small businesses.",
-    highlights: [
-      "Semi & terrace repaints",
-      "Light commercial work",
-      "Exterior maintenance",
-    ],
+    highlights: ["Semi & terrace repaints", "Light commercial work", "Exterior maintenance"],
   },
   Terenure: {
-    intro:
-      "Full interior repaints and exterior maintenance for Terenure's period homes.",
+    intro: "Full interior repaints and exterior maintenance for Terenure's period homes.",
     localContext:
       "Terenure (Dublin 6W) is a south-Dublin suburb of red-brick period houses and detached family homes. We handle interior repaints, period detail and exterior work with proper prep and trade-grade materials.",
-    highlights: [
-      "Period home repaints",
-      "Hallway & stairwell work",
-      "Exterior maintenance",
-    ],
+    highlights: ["Period home repaints", "Hallway & stairwell work", "Exterior maintenance"],
   },
   Templeogue: {
-    intro:
-      "Clean interior and exterior repaints across Templeogue's family homes.",
+    intro: "Clean interior and exterior repaints across Templeogue's family homes.",
     localContext:
       "Templeogue (Dublin 6W) is a well-established south-Dublin suburb of detached and semi-detached homes. We deliver full interior repaints, woodwork and exterior maintenance on reliable timelines.",
-    highlights: [
-      "Full house repaints",
-      "Woodwork & trim",
-      "Exterior maintenance",
-    ],
+    highlights: ["Full house repaints", "Woodwork & trim", "Exterior maintenance"],
   },
   Milltown: {
-    intro:
-      "Period and semi-detached repaints with a clean finish across Milltown.",
+    intro: "Period and semi-detached repaints with a clean finish across Milltown.",
     localContext:
       "Milltown (Dublin 6) is a quiet south-Dublin suburb of period homes and semi-detached houses near the Dodder. We deliver interior repaints, woodwork and exterior maintenance with thorough prep.",
-    highlights: [
-      "Period interior repaints",
-      "Woodwork & trim",
-      "Exterior maintenance",
-    ],
+    highlights: ["Period interior repaints", "Woodwork & trim", "Exterior maintenance"],
   },
   Monkstown: {
-    intro:
-      "Marine-grade exteriors and careful period interiors across Monkstown.",
+    intro: "Marine-grade exteriors and careful period interiors across Monkstown.",
     localContext:
       "Monkstown (Co. Dublin, A94) is a coastal south-Dublin suburb of Victorian and Edwardian seafront properties. Salt and wind mean exteriors need the right primers and finishes; interiors get careful period-appropriate work.",
     highlights: [
@@ -293,74 +215,43 @@ export const AREA_CONTENT: Record<string, AreaContent> = {
     ],
   },
   Tallaght: {
-    intro:
-      "Residential and commercial painting at scale across Tallaght.",
+    intro: "Residential and commercial painting at scale across Tallaght.",
     localContext:
       "Tallaght (Dublin 24) is a large west-Dublin town with residential estates and commercial premises. We handle full house repaints, tenancy turnarounds and commercial fit-outs with a large enough team to keep schedules.",
-    highlights: [
-      "Estate & semi repaints",
-      "Commercial premises",
-      "Tenancy turnarounds",
-    ],
+    highlights: ["Estate & semi repaints", "Commercial premises", "Tenancy turnarounds"],
   },
   Ballinteer: {
-    intro:
-      "Dust-controlled interiors and exterior masonry across Ballinteer.",
+    intro: "Dust-controlled interiors and exterior masonry across Ballinteer.",
     localContext:
       "Ballinteer (Dublin 16) is a south-Dublin suburb of family homes and newer estates in the foothills. We deliver dust-controlled interior repaints, woodwork and exterior masonry work.",
-    highlights: [
-      "Dust-controlled interiors",
-      "Exterior masonry",
-      "New-build finishing",
-    ],
+    highlights: ["Dust-controlled interiors", "Exterior masonry", "New-build finishing"],
   },
   Lucan: {
-    intro:
-      "Interior and exterior painting for Lucan homeowners and developers.",
+    intro: "Interior and exterior painting for Lucan homeowners and developers.",
     localContext:
       "Lucan (Co. Dublin, K78) is a fast-growing west-Dublin area with a mix of new-build estates and older established homes. We work for owner-occupiers and developers across full repaints and new-build finishing.",
-    highlights: [
-      "New-build finishing",
-      "Family-home repaints",
-      "Exterior maintenance",
-    ],
+    highlights: ["New-build finishing", "Family-home repaints", "Exterior maintenance"],
   },
   Swords: {
-    intro:
-      "Residential and commercial painting across Swords and north Fingal.",
+    intro: "Residential and commercial painting across Swords and north Fingal.",
     localContext:
       "Swords (Co. Dublin, K67) is the largest town in Fingal, with residential estates and commercial premises. We handle full house repaints, exterior work and commercial fit-outs across the town.",
-    highlights: [
-      "Estate house repaints",
-      "Commercial premises",
-      "Exterior maintenance",
-    ],
+    highlights: ["Estate house repaints", "Commercial premises", "Exterior maintenance"],
   },
   Drimnagh: {
-    intro:
-      "Fast landlord turnarounds and full repaints across Drimnagh.",
+    intro: "Fast landlord turnarounds and full repaints across Drimnagh.",
     localContext:
       "Drimnagh (Dublin 12) is a west-Dublin suburb of traditional terraces and family homes. We deliver fast tenancy turnarounds for landlords and full interior and exterior repaints for owner-occupiers.",
-    highlights: [
-      "Tenancy turnarounds",
-      "Terrace repaints",
-      "Exterior maintenance",
-    ],
+    highlights: ["Tenancy turnarounds", "Terrace repaints", "Exterior maintenance"],
   },
   Balbriggan: {
-    intro:
-      "Interior and exterior painting across Balbriggan's homes and estates.",
+    intro: "Interior and exterior painting across Balbriggan's homes and estates.",
     localContext:
       "Balbriggan (Co. Dublin, K32) is a coastal Fingal town in north Dublin, with older terraces and large newer estates. We handle interior repaints and exterior systems suited to the coastal exposure.",
-    highlights: [
-      "Coastal-ready exteriors",
-      "Estate & terrace repaints",
-      "Landlord turnarounds",
-    ],
+    highlights: ["Coastal-ready exteriors", "Estate & terrace repaints", "Landlord turnarounds"],
   },
   Leopardstown: {
-    intro:
-      "Commercial and apartment-scheme painting around Leopardstown.",
+    intro: "Commercial and apartment-scheme painting around Leopardstown.",
     localContext:
       "Leopardstown (Dublin 18) sits in south Dublin near the racecourse and business district, with executive homes and apartment schemes. We deliver residential repaints and commercial work, out of hours where required.",
     highlights: [
@@ -370,85 +261,49 @@ export const AREA_CONTENT: Record<string, AreaContent> = {
     ],
   },
   Knocklyon: {
-    intro:
-      "Full interior repaints and exterior upkeep across Knocklyon.",
+    intro: "Full interior repaints and exterior upkeep across Knocklyon.",
     localContext:
       "Knocklyon (Dublin 16) is an established south-Dublin suburb of family homes and semis. We deliver full interior repaints, woodwork and exterior work delivered on schedule.",
-    highlights: [
-      "Full house repaints",
-      "Woodwork & trim",
-      "Exterior maintenance",
-    ],
+    highlights: ["Full house repaints", "Woodwork & trim", "Exterior maintenance"],
   },
   Killiney: {
-    intro:
-      "Coastal-grade exteriors and high-spec interiors for Killiney homes.",
+    intro: "Coastal-grade exteriors and high-spec interiors for Killiney homes.",
     localContext:
       "Killiney (Co. Dublin, A96) is an upmarket coastal area of high-value homes on the south Dublin coast. Exteriors need systems built for sea air; interiors are finished to a high spec.",
-    highlights: [
-      "Coastal exterior systems",
-      "High-spec interior finishes",
-      "Larger-property work",
-    ],
+    highlights: ["Coastal exterior systems", "High-spec interior finishes", "Larger-property work"],
   },
   "Harold's Cross": {
-    intro:
-      "Period interiors and tight-access exterior work across Harold's Cross.",
+    intro: "Period interiors and tight-access exterior work across Harold's Cross.",
     localContext:
       "Harold's Cross (Dublin 6W) is a south-inner suburb of Victorian terraces and modern apartment conversions. We work carefully in occupied homes, handling tight access and period plasterwork.",
-    highlights: [
-      "Period terrace interiors",
-      "Apartment conversions",
-      "Tight-access exteriors",
-    ],
+    highlights: ["Period terrace interiors", "Apartment conversions", "Tight-access exteriors"],
   },
   Sallynoggin: {
-    intro:
-      "Weather-ready exteriors and full interior repaints across Sallynoggin.",
+    intro: "Weather-ready exteriors and full interior repaints across Sallynoggin.",
     localContext:
       "Sallynoggin (Co. Dublin, A96) is a coastal south-Dublin suburb with a mix of estate housing and semis. We specify exteriors suited to the marine environment and deliver clean interior repaints.",
-    highlights: [
-      "Coastal-ready exteriors",
-      "Full house repaints",
-      "Exterior maintenance",
-    ],
+    highlights: ["Coastal-ready exteriors", "Full house repaints", "Exterior maintenance"],
   },
   Crumlin: {
-    intro:
-      "Terrace and family-home repaints with exterior masonry across Crumlin.",
+    intro: "Terrace and family-home repaints with exterior masonry across Crumlin.",
     localContext:
       "Crumlin (Dublin 12) is a south-west Dublin suburb of traditional terraces and family homes. We deliver interior repaints, ceiling work and exterior masonry at competitive rates.",
-    highlights: [
-      "Terrace repaints",
-      "Ceiling work",
-      "Exterior masonry",
-    ],
+    highlights: ["Terrace repaints", "Ceiling work", "Exterior masonry"],
   },
   Goatstown: {
-    intro:
-      "Period and modern home repaints with careful exterior work in Goatstown.",
+    intro: "Period and modern home repaints with careful exterior work in Goatstown.",
     localContext:
       "Goatstown (Dublin 14) is a quiet south-Dublin suburb with a mix of period and modern homes. We deliver interior repaints, woodwork and exterior masonry done properly.",
-    highlights: [
-      "Period & modern interiors",
-      "Woodwork & trim",
-      "Exterior masonry",
-    ],
+    highlights: ["Period & modern interiors", "Woodwork & trim", "Exterior masonry"],
   },
   Glenageary: {
-    intro:
-      "Coastal-grade exteriors and tidy interiors across Glenageary.",
+    intro: "Coastal-grade exteriors and tidy interiors across Glenageary.",
     localContext:
       "Glenageary (Co. Dublin, A96) is a well-established coastal south-Dublin suburb with period and modern homes. We specify exterior systems suited to coastal conditions and deliver tidy interior work.",
-    highlights: [
-      "Coastal exterior systems",
-      "Full house repaints",
-      "Woodwork & trim",
-    ],
+    highlights: ["Coastal exterior systems", "Full house repaints", "Woodwork & trim"],
   },
   Portmarnock: {
-    intro:
-      "Coastal-ready exteriors and quality interiors across Portmarnock.",
+    intro: "Coastal-ready exteriors and quality interiors across Portmarnock.",
     localContext:
       "Portmarnock (Co. Dublin, D13) is a coastal village in north Dublin with premium homes near the sea. We specify exterior systems suited to coastal exposure and deliver quality interior finishes.",
     highlights: [
@@ -458,15 +313,10 @@ export const AREA_CONTENT: Record<string, AreaContent> = {
     ],
   },
   Clonskeagh: {
-    intro:
-      "Period and family-home repaints with careful exterior work in Clonskeagh.",
+    intro: "Period and family-home repaints with careful exterior work in Clonskeagh.",
     localContext:
       "Clonskeagh (Dublin 14) is a mature south-Dublin area of period houses and family homes near UCD. We deliver interior repaints and exterior masonry with proper prep and tidy crews.",
-    highlights: [
-      "Period interior repaints",
-      "Family-home work",
-      "Exterior masonry",
-    ],
+    highlights: ["Period interior repaints", "Family-home work", "Exterior masonry"],
   },
 };
 
@@ -515,4 +365,3 @@ export const AREA_PATHS: Array<{ name: string; path: string }> = [
   { name: "Portmarnock", path: "/painter-portmarnock" },
   { name: "Clonskeagh", path: "/painter-clonskeagh" },
 ];
-

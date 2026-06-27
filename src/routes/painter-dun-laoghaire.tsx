@@ -22,7 +22,12 @@ export const Route = createFileRoute("/painter-dun-laoghaire")({
           "@context": "https://schema.org",
           "@type": "BreadcrumbList",
           itemListElement: [
-            { "@type": "ListItem", position: 1, name: "Home", item: "https://allcolourspainter.com/" },
+            {
+              "@type": "ListItem",
+              position: 1,
+              name: "Home",
+              item: "https://allcolourspainter.com/",
+            },
             { "@type": "ListItem", position: 2, name: TITLE.split(" | ")[0], item: URL },
           ],
         }),
@@ -30,5 +35,11 @@ export const Route = createFileRoute("/painter-dun-laoghaire")({
     ],
     links: [{ rel: "canonical", href: URL }],
   }),
-  component: () => <LocalAreaPage area="Dún Laoghaire" postcode="South County Dublin" intro="Seafront terraces and harbour-side properties — marine-grade exterior systems and traditional interior decorating done right." />,
+  component: () => (
+    <LocalAreaPage
+      area="Dún Laoghaire"
+      postcode="South County Dublin"
+      intro="Seafront terraces and harbour-side properties — marine-grade exterior systems and traditional interior decorating done right."
+    />
+  ),
 });

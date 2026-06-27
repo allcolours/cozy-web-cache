@@ -4,8 +4,10 @@ import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
 export const getAssetErrors = createServerFn({ method: "GET" })
   .middleware([requireSupabaseAuth])
   .handler(async ({ context }) => {
-    const isAdmin = await context.supabase
-      .rpc("has_role", { _user_id: context.userId, _role: "admin" });
+    const isAdmin = await context.supabase.rpc("has_role", {
+      _user_id: context.userId,
+      _role: "admin",
+    });
     if (!isAdmin.data) throw new Error("Forbidden");
 
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
@@ -18,13 +20,20 @@ export const getAssetErrors = createServerFn({ method: "GET" })
         .select("id, asset_url, page_url, status, created_at")
         .order("created_at", { ascending: false })
         .limit(200),
-      supabaseAdmin.from("asset_errors").select("*", { count: "exact", head: true }).gte("created_at", since24),
-      supabaseAdmin.from("asset_errors").select("*", { count: "exact", head: true }).gte("created_at", since7),
+      supabaseAdmin
+        .from("asset_errors")
+        .select("*", { count: "exact", head: true })
+        .gte("created_at", since24),
+      supabaseAdmin
+        .from("asset_errors")
+        .select("*", { count: "exact", head: true })
+        .gte("created_at", since7),
       supabaseAdmin.from("asset_errors").select("asset_url").gte("created_at", since7),
     ]);
 
     const urlCounts = new Map<string, number>();
-    for (const r of distinctUrls.data ?? []) urlCounts.set(r.asset_url, (urlCounts.get(r.asset_url) ?? 0) + 1);
+    for (const r of distinctUrls.data ?? [])
+      urlCounts.set(r.asset_url, (urlCounts.get(r.asset_url) ?? 0) + 1);
     const topBroken = [...urlCounts.entries()]
       .map(([url, count]) => ({ url, count }))
       .sort((a, b) => b.count - a.count)
@@ -44,8 +53,10 @@ export const getAssetErrors = createServerFn({ method: "GET" })
 export const clearAssetErrors = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
   .handler(async ({ context }) => {
-    const isAdmin = await context.supabase
-      .rpc("has_role", { _user_id: context.userId, _role: "admin" });
+    const isAdmin = await context.supabase.rpc("has_role", {
+      _user_id: context.userId,
+      _role: "admin",
+    });
     if (!isAdmin.data) throw new Error("Forbidden");
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
     const { error } = await supabaseAdmin.from("asset_errors").delete().not("id", "is", null);
@@ -57,8 +68,10 @@ export const runAssetErrorCheck = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
   .inputValidator((input: { seedTest?: boolean } | undefined) => input ?? {})
   .handler(async ({ data, context }) => {
-    const isAdmin = await context.supabase
-      .rpc("has_role", { _user_id: context.userId, _role: "admin" });
+    const isAdmin = await context.supabase.rpc("has_role", {
+      _user_id: context.userId,
+      _role: "admin",
+    });
     if (!isAdmin.data) throw new Error("Forbidden");
 
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
@@ -77,8 +90,7 @@ export const runAssetErrorCheck = createServerFn({ method: "POST" })
     }
 
     const hookToken = process.env.HOOK_AUTH_TOKEN || "";
-    const base =
-      process.env.PUBLIC_SITE_URL || "https://allcolourspainter.com";
+    const base = process.env.PUBLIC_SITE_URL || "https://allcolourspainter.com";
     const res = await fetch(`${base}/api/public/hooks/check-asset-errors`, {
       method: "POST",
       headers: {
@@ -89,7 +101,9 @@ export const runAssetErrorCheck = createServerFn({ method: "POST" })
     });
     const text = await res.text();
     let body: any = text;
-    try { body = JSON.parse(text); } catch {}
+    try {
+      body = JSON.parse(text);
+    } catch {}
     if (!res.ok) throw new Error(`Check failed (${res.status}): ${text}`);
     return { ok: true, seededUrl, result: body };
   });
@@ -97,17 +111,23 @@ export const runAssetErrorCheck = createServerFn({ method: "POST" })
 export const getAssetErrorCheckRuns = createServerFn({ method: "GET" })
   .middleware([requireSupabaseAuth])
   .inputValidator(
-    (input: {
-      range?: "24h" | "7d" | "30d" | "all";
-      page?: number;
-      perPage?: number;
-      sortBy?: "ran_at" | "status";
-      sortOrder?: "asc" | "desc";
-    } | undefined) => input ?? {}
+    (
+      input:
+        | {
+            range?: "24h" | "7d" | "30d" | "all";
+            page?: number;
+            perPage?: number;
+            sortBy?: "ran_at" | "status";
+            sortOrder?: "asc" | "desc";
+          }
+        | undefined,
+    ) => input ?? {},
   )
   .handler(async ({ data, context }) => {
-    const isAdmin = await context.supabase
-      .rpc("has_role", { _user_id: context.userId, _role: "admin" });
+    const isAdmin = await context.supabase.rpc("has_role", {
+      _user_id: context.userId,
+      _role: "admin",
+    });
     if (!isAdmin.data) throw new Error("Forbidden");
 
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
@@ -128,7 +148,7 @@ export const getAssetErrorCheckRuns = createServerFn({ method: "GET" })
     let q = supabaseAdmin
       .from("asset_error_check_runs")
       .select(
-        "id, ran_at, total_last_24h, new_urls_count, new_urls, alerts_sent, triggered_by, duration_ms, status, error_message"
+        "id, ran_at, total_last_24h, new_urls_count, new_urls, alerts_sent, triggered_by, duration_ms, status, error_message",
       )
       .order("ran_at", { ascending: false });
     if (h !== null) {
@@ -159,13 +179,8 @@ export const getAssetErrorCheckRuns = createServerFn({ method: "GET" })
 
     const summary = {
       total,
-      withAlerts: allRuns.filter(
-        (r: any) => (r.alerts_sent ?? []).length > 0
-      ).length,
-      totalNewUrls: allRuns.reduce(
-        (s: number, r: any) => s + (r.new_urls_count ?? 0),
-        0
-      ),
+      withAlerts: allRuns.filter((r: any) => (r.alerts_sent ?? []).length > 0).length,
+      totalNewUrls: allRuns.reduce((s: number, r: any) => s + (r.new_urls_count ?? 0), 0),
       lastRunAt: allRuns[0]?.ran_at ?? null,
     };
 
@@ -179,5 +194,3 @@ export const getAssetErrorCheckRuns = createServerFn({ method: "GET" })
       summary,
     };
   });
-
-

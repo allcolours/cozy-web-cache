@@ -23,16 +23,41 @@ export const Route = createFileRoute("/painter-drimnagh")({
           "@context": "https://schema.org",
           "@type": "BreadcrumbList",
           itemListElement: [
-            { "@type": "ListItem", position: 1, name: "Home", item: "https://allcolourspainter.com/" },
+            {
+              "@type": "ListItem",
+              position: 1,
+              name: "Home",
+              item: "https://allcolourspainter.com/",
+            },
             { "@type": "ListItem", position: 2, name: TITLE.split(" | ")[0], item: URL },
           ],
         }),
       },
       {
         type: "application/ld+json",
-        children: JSON.stringify({"@context":"https://schema.org","@type":"LocalBusiness","name":"All Colours Painting Contractor Limited","url":"https://allcolourspainter.com/painter-drimnagh","telephone":SITE.phoneIntl,"email":SITE.email,"areaServed":{"@type":"Place","name":"Drimnagh, Dublin 12"},"address":{"@type":"PostalAddress","addressLocality":"Drimnagh","addressRegion":"Dublin 12","addressCountry":"IE"}}),
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "LocalBusiness",
+          name: "All Colours Painting Contractor Limited",
+          url: "https://allcolourspainter.com/painter-drimnagh",
+          telephone: SITE.phoneIntl,
+          email: SITE.email,
+          areaServed: { "@type": "Place", name: "Drimnagh, Dublin 12" },
+          address: {
+            "@type": "PostalAddress",
+            addressLocality: "Drimnagh",
+            addressRegion: "Dublin 12",
+            addressCountry: "IE",
+          },
+        }),
       },
     ],
   }),
-  component: () => <LocalAreaPage area="Drimnagh" postcode="Dublin 12" intro="Interior and exterior painting for homes and investment properties across Drimnagh — fast turnarounds for landlords." />,
+  component: () => (
+    <LocalAreaPage
+      area="Drimnagh"
+      postcode="Dublin 12"
+      intro="Interior and exterior painting for homes and investment properties across Drimnagh — fast turnarounds for landlords."
+    />
+  ),
 });

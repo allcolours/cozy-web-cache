@@ -23,16 +23,41 @@ export const Route = createFileRoute("/painter-glasthule")({
           "@context": "https://schema.org",
           "@type": "BreadcrumbList",
           itemListElement: [
-            { "@type": "ListItem", position: 1, name: "Home", item: "https://allcolourspainter.com/" },
+            {
+              "@type": "ListItem",
+              position: 1,
+              name: "Home",
+              item: "https://allcolourspainter.com/",
+            },
             { "@type": "ListItem", position: 2, name: TITLE.split(" | ")[0], item: URL },
           ],
         }),
       },
       {
         type: "application/ld+json",
-        children: JSON.stringify({"@context":"https://schema.org","@type":"LocalBusiness","name":"All Colours Painting Contractor Limited","url":"https://allcolourspainter.com/painter-glasthule","telephone":SITE.phoneIntl,"email":SITE.email,"areaServed":{"@type":"Place","name":"Glasthule, Co. Dublin"},"address":{"@type":"PostalAddress","addressLocality":"Glasthule","addressRegion":"Co. Dublin","addressCountry":"IE"}}),
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "LocalBusiness",
+          name: "All Colours Painting Contractor Limited",
+          url: "https://allcolourspainter.com/painter-glasthule",
+          telephone: SITE.phoneIntl,
+          email: SITE.email,
+          areaServed: { "@type": "Place", name: "Glasthule, Co. Dublin" },
+          address: {
+            "@type": "PostalAddress",
+            addressLocality: "Glasthule",
+            addressRegion: "Co. Dublin",
+            addressCountry: "IE",
+          },
+        }),
       },
     ],
   }),
-  component: () => <LocalAreaPage area="Glasthule" postcode="Co. Dublin" intro="Village-feel coastal suburb — Victorian and Edwardian properties with character details that require experienced hands." />,
+  component: () => (
+    <LocalAreaPage
+      area="Glasthule"
+      postcode="Co. Dublin"
+      intro="Village-feel coastal suburb — Victorian and Edwardian properties with character details that require experienced hands."
+    />
+  ),
 });
