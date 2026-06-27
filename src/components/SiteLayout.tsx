@@ -47,8 +47,15 @@ const MORE_NAV = [
 
 const MOBILE_NAV = [
   { to: "/", label: "Home" },
+  { to: "/about", label: "About" },
   { to: "/services", label: "Services" },
   { to: "/gallery", label: "Gallery" },
+  { to: "/case-studies", label: "Case Studies" },
+  { to: "/projects", label: "Projects" },
+  { to: "/blog", label: "Blog" },
+  { to: "/faq", label: "FAQ" },
+  { to: "/commercial-painting-dublin", label: "Commercial" },
+  { to: "/painter-dublin", label: "Painter Dublin" },
   { to: "/estimate", label: "Get Estimate" },
   { to: "/contact", label: "Contact" },
 ] as const;
