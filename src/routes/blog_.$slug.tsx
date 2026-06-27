@@ -97,7 +97,7 @@ export const Route = createFileRoute("/blog_/$slug")({
               name: "All Colours Painting Contractor Limited",
               logo: {
                 "@type": "ImageObject",
-                url: "https://allcolourspainter.com/assets/logo-BAonhOi1.png",
+                url: "https://allcolourspainter.com/__l5e/assets-v1/8242608f-5e6d-44f5-bbf1-6fc212ae1634/logo.webp",
               },
             },
             ...(p.published_at ? { datePublished: p.published_at } : {}),

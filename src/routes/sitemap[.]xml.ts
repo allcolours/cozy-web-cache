@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { supabase } from "@/integrations/supabase/client";
 
 const BASE_URL = "https://allcolourspainter.com";
 const LASTMOD = "2026-06-22";
@@ -7,6 +8,7 @@ interface SitemapEntry {
   path: string;
   changefreq: "weekly" | "monthly" | "yearly";
   priority: string;
+  lastmod?: string;
 }
 
 const ENTRIES: SitemapEntry[] = [
@@ -22,15 +24,6 @@ const ENTRIES: SitemapEntry[] = [
   // { path: "/gallery", changefreq: "weekly", priority: "0.8" }, // hidden until populated
   { path: "/blog", changefreq: "weekly", priority: "0.8" },
   { path: "/case-studies", changefreq: "weekly", priority: "0.7" },
-  { path: "/blog/how-to-repaint-your-front-door", changefreq: "monthly", priority: "0.7" },
-  { path: "/blog/how-to-choose-the-right-paint-finish", changefreq: "monthly", priority: "0.7" },
-  {
-    path: "/blog/preparing-exterior-paintwork-irish-weather",
-    changefreq: "monthly",
-    priority: "0.7",
-  },
-  { path: "/blog/painting-while-you-live-in-the-house", changefreq: "monthly", priority: "0.7" },
-  { path: "/blog/colour-trends-dublin-homes-2026", changefreq: "monthly", priority: "0.7" },
   { path: "/painters", changefreq: "monthly", priority: "0.8" },
   { path: "/pricing-guide", changefreq: "monthly", priority: "0.8" },
   { path: "/faq", changefreq: "monthly", priority: "0.7" },
@@ -93,9 +86,42 @@ export const Route = createFileRoute("/sitemap.xml")({
   server: {
     handlers: {
       GET: async () => {
-        const urls = ENTRIES.map(
+        const dynamicEntries: SitemapEntry[] = [];
+
+        const { data: blogRows } = await supabase
+          .from("blog_posts")
+          .select("slug, published_at, updated_at")
+          .eq("published", true);
+        if (blogRows) {
+          for (const r of blogRows) {
+            dynamicEntries.push({
+              path: `/blog/${r.slug}`,
+              changefreq: "monthly",
+              priority: "0.7",
+              lastmod: (r.updated_at || r.published_at || LASTMOD).slice(0, 10),
+            });
+          }
+        }
+
+        const { data: csRows } = await supabase
+          .from("case_studies")
+          .select("slug, created_at")
+          .eq("visible", true);
+        if (csRows) {
+          for (const r of csRows) {
+            dynamicEntries.push({
+              path: `/case-studies/${r.slug}`,
+              changefreq: "monthly",
+              priority: "0.7",
+              lastmod: (r.created_at || LASTMOD).slice(0, 10),
+            });
+          }
+        }
+
+        const all = [...ENTRIES, ...dynamicEntries];
+        const urls = all.map(
           (e) =>
-            `  <url>\n    <loc>${BASE_URL}${e.path}</loc>\n    <lastmod>${LASTMOD}</lastmod>\n    <changefreq>${e.changefreq}</changefreq>\n    <priority>${e.priority}</priority>\n  </url>`,
+            `  <url>\n    <loc>${BASE_URL}${e.path}</loc>\n    <lastmod>${e.lastmod || LASTMOD}</lastmod>\n    <changefreq>${e.changefreq}</changefreq>\n    <priority>${e.priority}</priority>\n  </url>`,
         );
         const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.join("\n")}\n</urlset>`;
         return new Response(xml, {

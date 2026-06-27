@@ -169,6 +169,11 @@ function PrivacyPage() {
               This website uses only strictly necessary technical storage required for the site to
               function. We do not use advertising or third-party tracking cookies.
             </p>
+            <p className="mt-3 text-sm leading-relaxed">
+              We set a first-party <code>cookie_consent</code> cookie to remember your choice about
+              optional embedded content. Google Maps is loaded only after you give consent; until
+              then no request is made to Google.
+            </p>
 
             <h2 className="mt-10 font-display text-xl font-bold uppercase tracking-wide">
               8. Changes to this policy
