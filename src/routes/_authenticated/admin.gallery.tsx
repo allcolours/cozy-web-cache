@@ -453,7 +453,7 @@ function ProjectRow({ project, allProjects, isOpen, onToggle, onRefresh, canMove
               ) : (
                 <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4">
                   {images.map((img, idx) => (
-                    <div key={img.id} className="group relative overflow-hidden rounded-md border border-border">
+                    <div key={img.id} className="relative overflow-hidden rounded-md border border-border">
                       <button
                         type="button"
                         onClick={() => img.resolved_url && setLightboxUrl(img.resolved_url)}
@@ -463,49 +463,75 @@ function ProjectRow({ project, allProjects, isOpen, onToggle, onRefresh, canMove
                         <img src={img.resolved_url} alt={img.alt_text ?? ""} className="aspect-[4/3] w-full object-cover" />
                       </button>
                       {img.is_cover && (
-                        <span className="absolute left-1 top-1 rounded bg-primary px-1.5 py-0.5 text-[10px] font-bold uppercase text-white">
+                        <span className="pointer-events-none absolute left-1 top-1 rounded bg-primary px-1.5 py-0.5 text-[10px] font-bold uppercase text-white">
                           Cover
                         </span>
                       )}
+                      {rotatingId === img.id && (
+                        <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-black/50 text-xs font-bold text-white">
+                          Rotating…
+                        </div>
+                      )}
+                      {/* Reorder column — always visible */}
                       <div className="absolute right-1 top-1 flex flex-col gap-1">
                         <button
                           type="button"
-                          onClick={() => swapImageOrder(idx, -1)}
+                          onClick={(e) => { e.stopPropagation(); swapImageOrder(idx, -1); }}
                           disabled={idx === 0}
-                          className="rounded bg-black/60 px-1.5 py-0.5 text-[10px] font-bold text-white hover:bg-black/80 disabled:opacity-30"
+                          className="flex h-8 w-8 items-center justify-center rounded bg-black/75 text-sm font-bold text-white active:bg-black disabled:opacity-30"
                           aria-label="Move image up"
                         >▲</button>
                         <button
                           type="button"
-                          onClick={() => swapImageOrder(idx, 1)}
+                          onClick={(e) => { e.stopPropagation(); swapImageOrder(idx, 1); }}
                           disabled={idx === images.length - 1}
-                          className="rounded bg-black/60 px-1.5 py-0.5 text-[10px] font-bold text-white hover:bg-black/80 disabled:opacity-30"
+                          className="flex h-8 w-8 items-center justify-center rounded bg-black/75 text-sm font-bold text-white active:bg-black disabled:opacity-30"
                           aria-label="Move image down"
                         >▼</button>
                       </div>
-                      <div className="absolute inset-x-0 bottom-0 flex flex-col gap-1 bg-gradient-to-t from-black/85 to-transparent p-2 opacity-0 transition-opacity group-hover:opacity-100">
-                        <div className="flex gap-1">
-                          {!img.is_cover && (
-                            <button onClick={() => setCover(img)} className="rounded bg-white px-2 py-1 text-[10px] font-bold uppercase text-black hover:bg-primary hover:text-white">
-                              Cover
-                            </button>
-                          )}
-                          <button onClick={() => deleteImage(img)} className="rounded bg-red-600 px-2 py-1 text-[10px] font-bold uppercase text-white hover:bg-red-700">
-                            Delete
+                      {/* Action bar — always visible, mobile-friendly */}
+                      <div className="flex flex-col gap-1.5 bg-neutral-900 p-1.5">
+                        <div className="flex flex-wrap gap-1.5">
+                          <button
+                            type="button"
+                            onClick={(e) => { e.stopPropagation(); if (!img.is_cover) setCover(img); }}
+                            disabled={img.is_cover}
+                            aria-label={img.is_cover ? "Current cover" : "Set as cover"}
+                            className={`flex h-8 min-w-8 items-center justify-center rounded px-2 text-xs font-bold ${img.is_cover ? "bg-primary text-white" : "bg-white text-black active:bg-primary active:text-white"}`}
+                          >
+                            ★ {img.is_cover ? "Cover" : "Set cover"}
+                          </button>
+                          <button
+                            type="button"
+                            onClick={(e) => { e.stopPropagation(); rotateImage(img); }}
+                            disabled={rotatingId === img.id}
+                            aria-label="Rotate 90° clockwise"
+                            className="flex h-8 min-w-8 items-center justify-center rounded bg-white px-2 text-xs font-bold text-black active:bg-neutral-200 disabled:opacity-50"
+                          >
+                            ↻ Rotate
+                          </button>
+                          <button
+                            type="button"
+                            onClick={(e) => { e.stopPropagation(); deleteImage(img); }}
+                            aria-label="Delete image"
+                            className="ml-auto flex h-8 min-w-8 items-center justify-center rounded bg-red-600 px-2 text-xs font-bold text-white active:bg-red-700"
+                          >
+                            🗑 Delete
                           </button>
                         </div>
                         {otherProjects.length > 0 && (
                           <select
                             defaultValue=""
+                            onClick={(e) => e.stopPropagation()}
                             onChange={(e) => {
                               const v = e.target.value;
                               e.target.value = "";
                               if (v) moveImageToProject(img, v);
                             }}
-                            className="rounded bg-white px-1 py-1 text-[10px] text-black"
+                            className="h-8 w-full rounded bg-white px-1 text-xs text-black"
                             aria-label="Move to another album"
                           >
-                            <option value="">Move to…</option>
+                            <option value="">Move to album…</option>
                             {otherProjects.map((p) => (
                               <option key={p.id} value={p.id}>{p.title}</option>
                             ))}
@@ -513,6 +539,7 @@ function ProjectRow({ project, allProjects, isOpen, onToggle, onRefresh, canMove
                         )}
                       </div>
                     </div>
+
                   ))}
                 </div>
               )}
