@@ -10,7 +10,7 @@ export function SchemaOrg() {
     "url": "https://allcolourspainter.com",
     "telephone": "+353858211870",
     "email": "info@allcolourspainter.com",
-    "image": "https://allcolourspainter.com/assets/logo-BAonhOi1.png",
+    "image": "https://allcolourspainter.com/__l5e/assets-v1/8242608f-5e6d-44f5-bbf1-6fc212ae1634/logo.webp",
     "priceRange": "€€",
     "currenciesAccepted": "EUR",
     "paymentAccepted": "Cash, Bank Transfer",
@@ -26,8 +26,8 @@ export function SchemaOrg() {
     },
     "geo": {
       "@type": "GeoCoordinates",
-      "latitude": 53.3498,
-      "longitude": -6.2603
+      "latitude": 53.319,
+      "longitude": -6.401
     },
     "areaServed": [
       {"@type": "City", "name": "Dublin"},

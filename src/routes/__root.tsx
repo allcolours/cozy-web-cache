@@ -13,6 +13,7 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { SchemaOrg } from "../components/SchemaOrg";
 import { AssetErrorMonitor } from "../components/AssetErrorMonitor";
+import { supabase } from "../integrations/supabase/client";
 
 
 function NotFoundComponent() {
@@ -143,12 +144,10 @@ function PageViewTracker() {
   useEffect(() => {
     if (typeof window === "undefined") return;
     if (path.startsWith("/admin") || path.startsWith("/auth")) return;
-    import("../integrations/supabase/client").then(({ supabase }) => {
-      void supabase.from("page_views").insert({
-        path,
-        referrer: document.referrer || null,
-        user_agent: navigator.userAgent.slice(0, 500),
-      });
+    void supabase.from("page_views").insert({
+      path,
+      referrer: document.referrer || null,
+      user_agent: navigator.userAgent.slice(0, 500),
     });
   }, [path]);
   return null;
