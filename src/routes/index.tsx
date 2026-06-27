@@ -12,11 +12,11 @@ import { resolveGalleryUrl } from "@/lib/galleryUrl";
 
 
 import heroAsset from "../assets/portfolio/hero-house.webp.asset.json";
-import aboutAsset from "../assets/portfolio/about-architecture.jpg.asset.json";
+import aboutAsset from "../assets/portfolio/about-architecture.webp.asset.json";
 import sCommercialAsset from "../assets/portfolio/service-commercial.webp.asset.json";
 import sIndustrialAsset from "../assets/portfolio/service-industrial.webp.asset.json";
 import sHospitalityAsset from "../assets/portfolio/service-hospitality.webp.asset.json";
-import ctaAsset from "../assets/portfolio/cta-bg.jpg.asset.json";
+import ctaAsset from "../assets/portfolio/cta-bg.webp.asset.json";
 import { FormBotTraps, readBotTraps } from "../components/FormBotTraps";
 
 
@@ -36,7 +36,6 @@ export const Route = createFileRoute("/")({
     links: [
       { rel: "canonical", href: "https://allcolourspainter.com/" },
       { rel: "preload", as: "image", href: heroAsset.url, fetchPriority: "high" },
-      { rel: "preload", as: "image", href: "https://allcolourspainter.com/__l5e/assets-v1/2a395495-c4ec-4903-a41b-667de034b2ab/hero-house.webp" },
     ],
     scripts: [
       {

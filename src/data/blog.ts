@@ -1,5 +1,5 @@
 import heroAsset from "../assets/portfolio/hero-house.webp.asset.json";
-import aboutAsset from "../assets/portfolio/about-architecture.jpg.asset.json";
+import aboutAsset from "../assets/portfolio/about-architecture.webp.asset.json";
 import exteriorAsset from "../assets/portfolio/portfolio-exterior-1.webp.asset.json";
 import commercialAsset from "../assets/portfolio/service-commercial.webp.asset.json";
 

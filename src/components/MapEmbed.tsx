@@ -15,7 +15,7 @@ type Props = {
  * Keeps an empty styled container in the DOM so layout doesn't shift,
  * and only injects the <iframe> after user intent / visibility.
  */
-export function MapEmbed({ title, src, className, style, autoLoadOnVisible = false }: Props) {
+export function MapEmbed({ title, src, className, style, autoLoadOnVisible = true }: Props) {
   const [loaded, setLoaded] = useState(false);
   const ref = useRef<HTMLDivElement | null>(null);
 
