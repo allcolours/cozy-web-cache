@@ -170,6 +170,35 @@ export function LocalAreaPage({ area, postcode, intro }: LocalAreaPageProps) {
           </div>
         </div>
       </section>
+
+      {/* Other areas we cover */}
+      <section className="border-t border-border bg-secondary">
+        <div className="mx-auto max-w-7xl px-4 py-14 md:px-8 md:py-16">
+          <h2 className="font-display text-xl font-bold uppercase text-foreground">
+            Other areas we cover
+          </h2>
+          <div className="mt-6 flex flex-wrap gap-2">
+            {otherAreas.map((a) => (
+              <a
+                key={a.path}
+                href={a.path}
+                className="rounded-sm border border-border bg-card px-4 py-2 font-display text-xs font-semibold uppercase tracking-wider text-foreground hover:border-primary hover:text-primary"
+              >
+                Painters {a.name}
+              </a>
+            ))}
+          </div>
+          <div className="mt-6 flex flex-wrap gap-3 text-sm">
+            <Link to="/services" className="font-display text-xs font-bold uppercase tracking-wider text-primary hover:underline">
+              View all services →
+            </Link>
+            <Link to="/painters" className="font-display text-xs font-bold uppercase tracking-wider text-primary hover:underline">
+              All Dublin areas →
+            </Link>
+          </div>
+        </div>
+      </section>
     </SiteLayout>
+
   );
 }
