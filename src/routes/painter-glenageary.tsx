@@ -3,7 +3,7 @@ import { LocalAreaPage } from "../components/LocalAreaPage";
 import { SITE } from "@/lib/site";
 
 const TITLE = "Painter Glenageary Co. Dublin | All Colours Painting";
-const DESC = `Professional painter and decorator in Glenageary, Co. Dublin. Interior & exterior painting, free quotes — call ${SITE.phoneDisplay}.`;
+const DESC = `Coastal-grade exteriors and tidy interiors across Glenageary. Free quotes, fully insured — call ${SITE.phoneDisplay}.`;
 const URL = "https://allcolourspainter.com/painter-glenageary";
 
 export const Route = createFileRoute("/painter-glenageary")({

@@ -3,7 +3,7 @@ import { LocalAreaPage } from "../components/LocalAreaPage";
 import { SITE } from "@/lib/site";
 
 const TITLE = "Painter Cabinteely Dublin 18 | All Colours Painting";
-const DESC = `Professional painter and decorator in Cabinteely, Dublin 18. Interior & exterior painting, free quotes — call ${SITE.phoneDisplay}.`;
+const DESC = `Repaints and exterior work across Cabinteely's family homes and estates. Free quotes, fully insured — call ${SITE.phoneDisplay}.`;
 const URL = "https://allcolourspainter.com/painter-cabinteely";
 
 export const Route = createFileRoute("/painter-cabinteely")({

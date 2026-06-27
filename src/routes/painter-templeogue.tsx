@@ -3,7 +3,7 @@ import { LocalAreaPage } from "../components/LocalAreaPage";
 import { SITE } from "@/lib/site";
 
 const TITLE = "Painter Templeogue Dublin 6W | All Colours Painting";
-const DESC = `Professional painter and decorator in Templeogue, Dublin 6W. Interior & exterior painting, free quotes — call ${SITE.phoneDisplay}.`;
+const DESC = `Clean interior and exterior repaints across Templeogue's family homes. Free quotes, fully insured — call ${SITE.phoneDisplay}.`;
 const URL = "https://allcolourspainter.com/painter-templeogue";
 
 export const Route = createFileRoute("/painter-templeogue")({

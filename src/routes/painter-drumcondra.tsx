@@ -3,7 +3,7 @@ import { LocalAreaPage } from "../components/LocalAreaPage";
 import { SITE } from "@/lib/site";
 
 const TITLE = "Painter Drumcondra Dublin 9 | All Colours Painting";
-const DESC = `Professional painter and decorator in Drumcondra, Dublin 9. Interior & exterior painting, free quotes — call ${SITE.phoneDisplay}.`;
+const DESC = `Period red-brick repaints and fast landlord turnarounds across Drumcondra. Free quotes, fully insured — call ${SITE.phoneDisplay}.`;
 const URL = "https://allcolourspainter.com/painter-drumcondra";
 
 export const Route = createFileRoute("/painter-drumcondra")({

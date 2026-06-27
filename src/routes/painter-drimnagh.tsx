@@ -3,7 +3,7 @@ import { LocalAreaPage } from "../components/LocalAreaPage";
 import { SITE } from "@/lib/site";
 
 const TITLE = "Painter Drimnagh Dublin 12 | All Colours Painting";
-const DESC = `Professional painter and decorator in Drimnagh, Dublin 12. Interior & exterior painting, free quotes — call ${SITE.phoneDisplay}.`;
+const DESC = `Fast landlord turnarounds and full repaints across Drimnagh. Free quotes, fully insured — call ${SITE.phoneDisplay}.`;
 const URL = "https://allcolourspainter.com/painter-drimnagh";
 
 export const Route = createFileRoute("/painter-drimnagh")({

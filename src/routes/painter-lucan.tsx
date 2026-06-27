@@ -3,7 +3,7 @@ import { LocalAreaPage } from "../components/LocalAreaPage";
 import { SITE } from "@/lib/site";
 
 const TITLE = "Painter Lucan Co. Dublin | All Colours Painting";
-const DESC = `Professional painter and decorator in Lucan, Co. Dublin. Interior & exterior painting, free quotes — call ${SITE.phoneDisplay}.`;
+const DESC = `Interior and exterior painting for Lucan homeowners and developers. Free quotes, fully insured — call ${SITE.phoneDisplay}.`;
 const URL = "https://allcolourspainter.com/painter-lucan";
 
 export const Route = createFileRoute("/painter-lucan")({

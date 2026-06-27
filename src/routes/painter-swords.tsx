@@ -3,7 +3,7 @@ import { LocalAreaPage } from "../components/LocalAreaPage";
 import { SITE } from "@/lib/site";
 
 const TITLE = "Painter Swords Co. Dublin | All Colours Painting";
-const DESC = `Professional painter and decorator in Swords, Co. Dublin. Interior & exterior painting, free quotes — call ${SITE.phoneDisplay}.`;
+const DESC = `Residential and commercial painting across Swords and north Fingal. Free quotes, fully insured — call ${SITE.phoneDisplay}.`;
 const URL = "https://allcolourspainter.com/painter-swords";
 
 export const Route = createFileRoute("/painter-swords")({

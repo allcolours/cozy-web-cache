@@ -3,7 +3,7 @@ import { LocalAreaPage } from "../components/LocalAreaPage";
 import { SITE } from "@/lib/site";
 
 const TITLE = "Painter Tallaght Dublin 24 | All Colours Painting";
-const DESC = `Professional painter and decorator in Tallaght, Dublin 24. Interior & exterior painting, free quotes — call ${SITE.phoneDisplay}.`;
+const DESC = `Residential and commercial painting at scale across Tallaght. Free quotes, fully insured — call ${SITE.phoneDisplay}.`;
 const URL = "https://allcolourspainter.com/painter-tallaght";
 
 export const Route = createFileRoute("/painter-tallaght")({

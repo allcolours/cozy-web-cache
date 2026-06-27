@@ -3,7 +3,7 @@ import { LocalAreaPage } from "../components/LocalAreaPage";
 import { SITE } from "@/lib/site";
 
 const TITLE = "Painter Balbriggan Co. Dublin | All Colours Painting";
-const DESC = `Professional painter and decorator in Balbriggan, Co. Dublin. Interior & exterior painting, free quotes — call ${SITE.phoneDisplay}.`;
+const DESC = `Interior and exterior painting across Balbriggan's homes and estates. Free quotes, fully insured — call ${SITE.phoneDisplay}.`;
 const URL = "https://allcolourspainter.com/painter-balbriggan";
 
 export const Route = createFileRoute("/painter-balbriggan")({

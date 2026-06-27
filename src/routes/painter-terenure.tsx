@@ -3,7 +3,7 @@ import { LocalAreaPage } from "../components/LocalAreaPage";
 import { SITE } from "@/lib/site";
 
 const TITLE = "Painter Terenure Dublin 6W | All Colours Painting";
-const DESC = `Professional painter and decorator in Terenure, Dublin 6W. Interior & exterior painting, free quotes — call ${SITE.phoneDisplay}.`;
+const DESC = `Full interior repaints and exterior maintenance for Terenure's period homes. Free quotes, fully insured — call ${SITE.phoneDisplay}.`;
 const URL = "https://allcolourspainter.com/painter-terenure";
 
 export const Route = createFileRoute("/painter-terenure")({

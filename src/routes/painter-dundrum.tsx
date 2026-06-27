@@ -3,7 +3,7 @@ import { LocalAreaPage } from "../components/LocalAreaPage";
 import { SITE } from "@/lib/site";
 
 const TITLE = "Painter Dundrum Dublin 14 | All Colours Painting";
-const DESC = `Professional painter and decorator in Dundrum, Dublin 14. Interior & exterior painting, free quotes — call ${SITE.phoneDisplay}.`;
+const DESC = `Family-home repaints, new-build finishing and commercial work in Dundrum. Free quotes, fully insured — call ${SITE.phoneDisplay}.`;
 const URL = "https://allcolourspainter.com/painter-dundrum";
 
 export const Route = createFileRoute("/painter-dundrum")({

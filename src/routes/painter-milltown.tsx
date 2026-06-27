@@ -3,7 +3,7 @@ import { LocalAreaPage } from "../components/LocalAreaPage";
 import { SITE } from "@/lib/site";
 
 const TITLE = "Painter Milltown Dublin 6 | All Colours Painting";
-const DESC = `Professional painter and decorator in Milltown, Dublin 6. Interior & exterior painting, free quotes — call ${SITE.phoneDisplay}.`;
+const DESC = `Period and semi-detached repaints with a clean finish across Milltown. Free quotes, fully insured — call ${SITE.phoneDisplay}.`;
 const URL = "https://allcolourspainter.com/painter-milltown";
 
 export const Route = createFileRoute("/painter-milltown")({

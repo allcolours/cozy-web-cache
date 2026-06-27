@@ -3,7 +3,7 @@ import { LocalAreaPage } from "../components/LocalAreaPage";
 import { SITE } from "@/lib/site";
 
 const TITLE = "Painter Mount Merrion Co. Dublin | All Colours Painting";
-const DESC = `Professional painter and decorator in Mount Merrion, Co. Dublin. Interior & exterior painting, free quotes — call ${SITE.phoneDisplay}.`;
+const DESC = `Full-house repaints and exterior upkeep for Mount Merrion's family homes. Free quotes, fully insured — call ${SITE.phoneDisplay}.`;
 const URL = "https://allcolourspainter.com/painter-mount-merrion";
 
 export const Route = createFileRoute("/painter-mount-merrion")({

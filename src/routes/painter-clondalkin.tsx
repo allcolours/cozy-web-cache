@@ -3,7 +3,7 @@ import { LocalAreaPage } from "../components/LocalAreaPage";
 import { SITE } from "@/lib/site";
 
 const TITLE = "Painter Clondalkin Dublin 22 | All Colours Painting";
-const DESC = `Painting contractor in Clondalkin, Dublin 22. Houses, apartments, commercial units. Clean, reliable, fully insured. Free quotes — call ${SITE.phoneDisplay}.`;
+const DESC = `Repaints and quick tenancy turnarounds across Clondalkin's homes and estates. Free quotes, fully insured — call ${SITE.phoneDisplay}.`;
 const URL = "https://allcolourspainter.com/painter-clondalkin";
 
 export const Route = createFileRoute("/painter-clondalkin")({

@@ -3,7 +3,7 @@ import { LocalAreaPage } from "../components/LocalAreaPage";
 import { SITE } from "@/lib/site";
 
 const TITLE = "Painter Cabra Dublin 7 | All Colours Painting";
-const DESC = `Professional painter and decorator in Cabra, Dublin 7. Interior & exterior painting, free quotes — call ${SITE.phoneDisplay}.`;
+const DESC = `Straightforward interior and exterior repaints across Cabra's terraces and semis. Free quotes, fully insured — call ${SITE.phoneDisplay}.`;
 const URL = "https://allcolourspainter.com/painter-cabra";
 
 export const Route = createFileRoute("/painter-cabra")({

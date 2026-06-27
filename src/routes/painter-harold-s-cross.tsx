@@ -3,7 +3,7 @@ import { LocalAreaPage } from "../components/LocalAreaPage";
 import { SITE } from "@/lib/site";
 
 const TITLE = "Painter Harold's Cross Dublin 6W | All Colours Painting";
-const DESC = `Professional painter and decorator in Harold's Cross, Dublin 6W. Interior & exterior painting, free quotes — call ${SITE.phoneDisplay}.`;
+const DESC = `Period interiors and tight-access exterior work across Harold's Cross. Free quotes, fully insured — call ${SITE.phoneDisplay}.`;
 const URL = "https://allcolourspainter.com/painter-harold-s-cross";
 
 export const Route = createFileRoute("/painter-harold-s-cross")({

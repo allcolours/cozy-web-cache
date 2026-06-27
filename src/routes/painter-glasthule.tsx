@@ -3,7 +3,7 @@ import { LocalAreaPage } from "../components/LocalAreaPage";
 import { SITE } from "@/lib/site";
 
 const TITLE = "Painter Glasthule Co. Dublin | All Colours Painting";
-const DESC = `Professional painter and decorator in Glasthule, Co. Dublin. Interior & exterior painting, free quotes — call ${SITE.phoneDisplay}.`;
+const DESC = `Careful interior and exterior work for Glasthule's coastal village homes. Free quotes, fully insured — call ${SITE.phoneDisplay}.`;
 const URL = "https://allcolourspainter.com/painter-glasthule";
 
 export const Route = createFileRoute("/painter-glasthule")({

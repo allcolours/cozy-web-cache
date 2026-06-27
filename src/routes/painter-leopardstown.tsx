@@ -3,7 +3,7 @@ import { LocalAreaPage } from "../components/LocalAreaPage";
 import { SITE } from "@/lib/site";
 
 const TITLE = "Painter Leopardstown Dublin 18 | All Colours Painting";
-const DESC = `Professional painter and decorator in Leopardstown, Dublin 18. Interior & exterior painting, free quotes — call ${SITE.phoneDisplay}.`;
+const DESC = `Commercial and apartment-scheme painting around Leopardstown. Free quotes, fully insured — call ${SITE.phoneDisplay}.`;
 const URL = "https://allcolourspainter.com/painter-leopardstown";
 
 export const Route = createFileRoute("/painter-leopardstown")({

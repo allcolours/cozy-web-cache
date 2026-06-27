@@ -2,8 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { LocalAreaPage } from "../components/LocalAreaPage";
 import { SITE } from "@/lib/site";
 
-const TITLE = "Painter Dún Laoghaire | All Colours Painting Dublin";
-const DESC = `Professional painter in Dún Laoghaire. Period homes, exterior repaints, interior decorating. Fully insured, 12-month guarantee. Free quotes — ${SITE.phoneDisplay}.`;
+const TITLE = "Painter Dún Laoghaire Co. Dublin | All Colours Painting";
+const DESC = `Marine-grade exteriors and full interiors across Dún Laoghaire's harbour terraces. Free quotes, fully insured — call ${SITE.phoneDisplay}.`;
 const URL = "https://allcolourspainter.com/painter-dun-laoghaire";
 
 export const Route = createFileRoute("/painter-dun-laoghaire")({

@@ -3,7 +3,7 @@ import { LocalAreaPage } from "../components/LocalAreaPage";
 import { SITE } from "@/lib/site";
 
 const TITLE = "Painter Goatstown Dublin 14 | All Colours Painting";
-const DESC = `Professional painter and decorator in Goatstown, Dublin 14. Interior & exterior painting, free quotes — call ${SITE.phoneDisplay}.`;
+const DESC = `Period and modern home repaints with careful exterior work in Goatstown. Free quotes, fully insured — call ${SITE.phoneDisplay}.`;
 const URL = "https://allcolourspainter.com/painter-goatstown";
 
 export const Route = createFileRoute("/painter-goatstown")({

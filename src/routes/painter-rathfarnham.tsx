@@ -3,7 +3,7 @@ import { LocalAreaPage } from "../components/LocalAreaPage";
 import { SITE } from "@/lib/site";
 
 const TITLE = "Painter Rathfarnham Dublin 14 | All Colours Painting";
-const DESC = `Painter and decorator in Rathfarnham, Dublin 14. Interior & exterior painting, woodwork, ceilings. Fully insured. Free quotes — call ${SITE.phoneDisplay}.`;
+const DESC = `Full repaints, woodwork and exterior upkeep for Rathfarnham homes. Free quotes, fully insured — call ${SITE.phoneDisplay}.`;
 const URL = "https://allcolourspainter.com/painter-rathfarnham";
 
 export const Route = createFileRoute("/painter-rathfarnham")({

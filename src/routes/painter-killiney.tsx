@@ -3,7 +3,7 @@ import { LocalAreaPage } from "../components/LocalAreaPage";
 import { SITE } from "@/lib/site";
 
 const TITLE = "Painter Killiney Co. Dublin | All Colours Painting";
-const DESC = `Professional painter and decorator in Killiney, Co. Dublin. Interior & exterior painting, free quotes — call ${SITE.phoneDisplay}.`;
+const DESC = `Coastal-grade exteriors and high-spec interiors for Killiney homes. Free quotes, fully insured — call ${SITE.phoneDisplay}.`;
 const URL = "https://allcolourspainter.com/painter-killiney";
 
 export const Route = createFileRoute("/painter-killiney")({
