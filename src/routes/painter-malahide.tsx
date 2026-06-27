@@ -3,7 +3,7 @@ import { LocalAreaPage } from "../components/LocalAreaPage";
 import { SITE } from "@/lib/site";
 
 const TITLE = "Painter Malahide Co. Dublin | All Colours Painting";
-const DESC = `Professional painter and decorator in Malahide, Co. Dublin. Interior & exterior painting, free quotes — call ${SITE.phoneDisplay}.`;
+const DESC = `Interiors and coastal-ready exteriors for Malahide's homes near the marina. Free quotes, fully insured — call ${SITE.phoneDisplay}.`;
 const URL = "https://allcolourspainter.com/painter-malahide";
 
 export const Route = createFileRoute("/painter-malahide")({

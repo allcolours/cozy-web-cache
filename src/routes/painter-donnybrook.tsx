@@ -3,7 +3,7 @@ import { LocalAreaPage } from "../components/LocalAreaPage";
 import { SITE } from "@/lib/site";
 
 const TITLE = "Painter Donnybrook Dublin 4 | All Colours Painting";
-const DESC = `Professional painter and decorator in Donnybrook, Dublin 4. Interior & exterior painting, free quotes — call ${SITE.phoneDisplay}.`;
+const DESC = `Clean interior repaints and careful exterior work on Donnybrook's period homes. Free quotes, fully insured — call ${SITE.phoneDisplay}.`;
 const URL = "https://allcolourspainter.com/painter-donnybrook";
 
 export const Route = createFileRoute("/painter-donnybrook")({

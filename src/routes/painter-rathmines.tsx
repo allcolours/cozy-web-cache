@@ -3,7 +3,7 @@ import { LocalAreaPage } from "../components/LocalAreaPage";
 import { SITE } from "@/lib/site";
 
 const TITLE = "Painter Rathmines Dublin 6 | All Colours Painting";
-const DESC = `Professional painter and decorator in Rathmines, Dublin 6. Interior & exterior painting, free quotes — call ${SITE.phoneDisplay}.`;
+const DESC = `Fast tenancy turnarounds and period restoration across Rathmines. Free quotes, fully insured — call ${SITE.phoneDisplay}.`;
 const URL = "https://allcolourspainter.com/painter-rathmines";
 
 export const Route = createFileRoute("/painter-rathmines")({

@@ -3,7 +3,7 @@ import { LocalAreaPage } from "../components/LocalAreaPage";
 import { SITE } from "@/lib/site";
 
 const TITLE = "Painter Ranelagh Dublin 6 | All Colours Painting";
-const DESC = `Professional painter and decorator in Ranelagh, Dublin 6. Interior & exterior repaints, period homes, feature walls. Free quotes — call ${SITE.phoneDisplay}.`;
+const DESC = `Period interiors, exterior timber and railing work across Ranelagh's red-brick streets. Free quotes, fully insured — call ${SITE.phoneDisplay}.`;
 const URL = "https://allcolourspainter.com/painter-ranelagh";
 
 export const Route = createFileRoute("/painter-ranelagh")({

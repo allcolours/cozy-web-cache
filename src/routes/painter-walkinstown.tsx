@@ -3,7 +3,7 @@ import { LocalAreaPage } from "../components/LocalAreaPage";
 import { SITE } from "@/lib/site";
 
 const TITLE = "Painter Walkinstown Dublin 12 | All Colours Painting";
-const DESC = `Professional painter and decorator in Walkinstown, Dublin 12. Interior & exterior painting, free quotes — call ${SITE.phoneDisplay}.`;
+const DESC = `Reliable residential and light commercial painting across Walkinstown. Free quotes, fully insured — call ${SITE.phoneDisplay}.`;
 const URL = "https://allcolourspainter.com/painter-walkinstown";
 
 export const Route = createFileRoute("/painter-walkinstown")({

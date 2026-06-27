@@ -3,7 +3,7 @@ import { LocalAreaPage } from "../components/LocalAreaPage";
 import { SITE } from "@/lib/site";
 
 const TITLE = "Painter Crumlin Dublin 12 | All Colours Painting";
-const DESC = `Professional painter and decorator in Crumlin, Dublin 12. Interior & exterior painting, free quotes — call ${SITE.phoneDisplay}.`;
+const DESC = `Terrace and family-home repaints with exterior masonry across Crumlin. Free quotes, fully insured — call ${SITE.phoneDisplay}.`;
 const URL = "https://allcolourspainter.com/painter-crumlin";
 
 export const Route = createFileRoute("/painter-crumlin")({

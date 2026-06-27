@@ -3,7 +3,7 @@ import { LocalAreaPage } from "../components/LocalAreaPage";
 import { SITE } from "@/lib/site";
 
 const TITLE = "Painter Stillorgan Dublin | All Colours Painting";
-const DESC = `Painting and decorating in Stillorgan, Co. Dublin. Residential repaints, commercial fit-outs, epoxy floors. Free quotes — call ${SITE.phoneDisplay}.`;
+const DESC = `Repaints, tenancy turnarounds and exterior upkeep across Stillorgan. Free quotes, fully insured — call ${SITE.phoneDisplay}.`;
 const URL = "https://allcolourspainter.com/painter-stillorgan";
 
 export const Route = createFileRoute("/painter-stillorgan")({

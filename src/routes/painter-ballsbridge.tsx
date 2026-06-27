@@ -3,7 +3,7 @@ import { LocalAreaPage } from "../components/LocalAreaPage";
 import { SITE } from "@/lib/site";
 
 const TITLE = "Painter Ballsbridge Dublin 4 | All Colours Painting";
-const DESC = `Professional painter and decorator in Ballsbridge, Dublin 4. Interior & exterior painting, free quotes — call ${SITE.phoneDisplay}.`;
+const DESC = `Careful, low-dust painting for Ballsbridge's period red-brick homes, embassy properties and modern apartments. Free quotes, fully insured — call ${SITE.phoneDisplay}.`;
 const URL = "https://allcolourspainter.com/painter-ballsbridge";
 
 export const Route = createFileRoute("/painter-ballsbridge")({

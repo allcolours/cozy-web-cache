@@ -3,7 +3,7 @@ import { LocalAreaPage } from "../components/LocalAreaPage";
 import { SITE } from "@/lib/site";
 
 const TITLE = "Painter Portmarnock Co. Dublin | All Colours Painting";
-const DESC = `Professional painter and decorator in Portmarnock, Co. Dublin. Interior & exterior painting, free quotes — call ${SITE.phoneDisplay}.`;
+const DESC = `Coastal-ready exteriors and quality interiors across Portmarnock. Free quotes, fully insured — call ${SITE.phoneDisplay}.`;
 const URL = "https://allcolourspainter.com/painter-portmarnock";
 
 export const Route = createFileRoute("/painter-portmarnock")({

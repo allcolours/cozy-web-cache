@@ -3,7 +3,7 @@ import { LocalAreaPage } from "../components/LocalAreaPage";
 import { SITE } from "@/lib/site";
 
 const TITLE = "Painter Clonskeagh Dublin 14 | All Colours Painting";
-const DESC = `Professional painter and decorator in Clonskeagh, Dublin 14. Interior & exterior painting, free quotes — call ${SITE.phoneDisplay}.`;
+const DESC = `Period and family-home repaints with careful exterior work in Clonskeagh. Free quotes, fully insured — call ${SITE.phoneDisplay}.`;
 const URL = "https://allcolourspainter.com/painter-clonskeagh";
 
 export const Route = createFileRoute("/painter-clonskeagh")({

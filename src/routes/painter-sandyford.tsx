@@ -3,7 +3,7 @@ import { LocalAreaPage } from "../components/LocalAreaPage";
 import { SITE } from "@/lib/site";
 
 const TITLE = "Painter Sandyford Dublin | All Colours Painting";
-const DESC = `Painting contractor in Sandyford, Dublin 18. Residential & commercial painting, epoxy floors, spray finishing. Free quotes — call ${SITE.phoneDisplay}.`;
+const DESC = `Out-of-hours commercial and residential painting across Sandyford. Free quotes, fully insured — call ${SITE.phoneDisplay}.`;
 const URL = "https://allcolourspainter.com/painter-sandyford";
 
 export const Route = createFileRoute("/painter-sandyford")({

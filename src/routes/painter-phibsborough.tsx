@@ -3,7 +3,7 @@ import { LocalAreaPage } from "../components/LocalAreaPage";
 import { SITE } from "@/lib/site";
 
 const TITLE = "Painter Phibsborough Dublin 7 | All Colours Painting";
-const DESC = `Professional painter and decorator in Phibsborough, Dublin 7. Interior & exterior painting, free quotes — call ${SITE.phoneDisplay}.`;
+const DESC = `Period interiors, feature walls and tidy exterior work across Phibsborough. Free quotes, fully insured — call ${SITE.phoneDisplay}.`;
 const URL = "https://allcolourspainter.com/painter-phibsborough";
 
 export const Route = createFileRoute("/painter-phibsborough")({

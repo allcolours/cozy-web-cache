@@ -3,7 +3,7 @@ import { LocalAreaPage } from "../components/LocalAreaPage";
 import { SITE } from "@/lib/site";
 
 const TITLE = "Painter Clontarf Dublin 3 | All Colours Painting";
-const DESC = `Professional painter and decorator in Clontarf, Dublin 3. Interior & exterior painting, free quotes — call ${SITE.phoneDisplay}.`;
+const DESC = `Coastal-ready exterior systems and full interiors along the Clontarf seafront. Free quotes, fully insured — call ${SITE.phoneDisplay}.`;
 const URL = "https://allcolourspainter.com/painter-clontarf";
 
 export const Route = createFileRoute("/painter-clontarf")({

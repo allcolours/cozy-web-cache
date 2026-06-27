@@ -3,7 +3,7 @@ import { LocalAreaPage } from "../components/LocalAreaPage";
 import { SITE } from "@/lib/site";
 
 const TITLE = "Painter Knocklyon Dublin 16 | All Colours Painting";
-const DESC = `Professional painter and decorator in Knocklyon, Dublin 16. Interior & exterior painting, free quotes — call ${SITE.phoneDisplay}.`;
+const DESC = `Full interior repaints and exterior upkeep across Knocklyon. Free quotes, fully insured — call ${SITE.phoneDisplay}.`;
 const URL = "https://allcolourspainter.com/painter-knocklyon";
 
 export const Route = createFileRoute("/painter-knocklyon")({

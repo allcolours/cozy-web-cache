@@ -3,7 +3,7 @@ import { LocalAreaPage } from "../components/LocalAreaPage";
 import { SITE } from "@/lib/site";
 
 const TITLE = "Painter Monkstown South County Dublin | All Colours Painting";
-const DESC = `Professional painter and decorator in Monkstown, South County Dublin. Interior & exterior painting, free quotes — call ${SITE.phoneDisplay}.`;
+const DESC = `Marine-grade exteriors and careful period interiors across Monkstown. Free quotes, fully insured — call ${SITE.phoneDisplay}.`;
 const URL = "https://allcolourspainter.com/painter-monkstown";
 
 export const Route = createFileRoute("/painter-monkstown")({

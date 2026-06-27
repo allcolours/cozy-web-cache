@@ -3,7 +3,7 @@ import { LocalAreaPage } from "../components/LocalAreaPage";
 import { SITE } from "@/lib/site";
 
 const TITLE = "Painter Dalkey South County Dublin | All Colours Painting";
-const DESC = `Professional painter and decorator in Dalkey, South County Dublin. Interior & exterior painting, free quotes — call ${SITE.phoneDisplay}.`;
+const DESC = `High-standard interiors and weather-tough exteriors for Dalkey's coastal homes. Free quotes, fully insured — call ${SITE.phoneDisplay}.`;
 const URL = "https://allcolourspainter.com/painter-dalkey";
 
 export const Route = createFileRoute("/painter-dalkey")({
