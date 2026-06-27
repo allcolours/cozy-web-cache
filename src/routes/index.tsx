@@ -51,7 +51,7 @@ export const Route = createFileRoute("/")({
           email: "info@allcolourspainter.com",
           priceRange: "€€",
           areaServed: { "@type": "AdministrativeArea", name: "County Dublin, Ireland" },
-          address: { "@type": "PostalAddress", addressLocality: "Dublin 22", postalCode: "D22 X052", addressRegion: "Leinster", addressCountry: "IE" },
+          address: { "@type": "PostalAddress", streetAddress: "22 Liscarne Court", addressLocality: "Dublin 22", postalCode: "D22 X052", addressRegion: "Leinster", addressCountry: "IE" },
           openingHoursSpecification: [{ "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], opens: "08:00", closes: "18:00" }],
           identifier: { "@type": "PropertyValue", name: "CRO", value: "810243" },
           
