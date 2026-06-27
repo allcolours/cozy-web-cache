@@ -6,7 +6,10 @@ import { TestimonialsSection } from "../components/Testimonials";
 import { ProcessSteps } from "../components/ProcessSteps";
 import { FaqAccordion } from "../components/FaqAccordion";
 import { FAQS } from "../data/faqs";
-import { CASE_STUDIES } from "../data/caseStudies";
+import { useQuery } from "@tanstack/react-query";
+import { supabase } from "@/integrations/supabase/client";
+import { resolveGalleryUrl } from "@/lib/galleryUrl";
+
 
 import heroAsset from "../assets/portfolio/hero-house.webp.asset.json";
 import aboutAsset from "../assets/portfolio/about-architecture.jpg.asset.json";
