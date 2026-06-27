@@ -570,6 +570,27 @@ export type Database = {
         }
         Relationships: []
       }
+      rate_limits: {
+        Row: {
+          bucket: string
+          created_at: string
+          id: number
+          ip: string
+        }
+        Insert: {
+          bucket: string
+          created_at?: string
+          id?: number
+          ip: string
+        }
+        Update: {
+          bucket?: string
+          created_at?: string
+          id?: number
+          ip?: string
+        }
+        Relationships: []
+      }
       site_settings: {
         Row: {
           key: string
