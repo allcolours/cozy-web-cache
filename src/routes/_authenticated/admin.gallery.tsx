@@ -39,51 +39,40 @@ type GalleryImage = {
 
 // ---- Client-side image conversion ----
 async function convertToWebp(file: File): Promise<Blob> {
-  const lower = file.name.toLowerCase();
-  const isHeic =
-    file.type === "image/heic" ||
-    file.type === "image/heif" ||
-    lower.endsWith(".heic") ||
-    lower.endsWith(".heif");
-
-  let sourceBlob: Blob = file;
-  if (isHeic) {
-    const mod = await import("heic2any");
-    const heic2any = (mod as any).default ?? mod;
-    const out = await heic2any({ blob: file, toType: "image/jpeg", quality: 0.9 });
-    sourceBlob = Array.isArray(out) ? out[0] : out;
+  let bitmap: ImageBitmap;
+  let e1: any;
+  try {
+    bitmap = await createImageBitmap(file, { imageOrientation: "from-image" });
+  } catch (err) {
+    e1 = err;
+    try {
+      const mod = await import("heic2any");
+      const heic2any = (mod as any).default ?? mod;
+      const out = await heic2any({ blob: file, toType: "image/jpeg", quality: 0.9 });
+      const jpegBlob: Blob = Array.isArray(out) ? out[0] : out;
+      bitmap = await createImageBitmap(jpegBlob, { imageOrientation: "from-image" });
+    } catch (e2: any) {
+      throw new Error("HEIC convert failed: " + (e2?.message || e1?.message || "unknown"));
+    }
   }
 
-  const dataUrl: string = await new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onload = () => resolve(reader.result as string);
-    reader.onerror = () => reject(reader.error ?? new Error("read failed"));
-    reader.readAsDataURL(sourceBlob);
-  });
-
-  const img = await new Promise<HTMLImageElement>((resolve, reject) => {
-    const i = new Image();
-    i.onload = () => resolve(i);
-    i.onerror = () => reject(new Error("image decode failed"));
-    i.src = dataUrl;
-  });
-
   const MAX = 1600;
-  const longest = Math.max(img.width, img.height);
+  const longest = Math.max(bitmap.width, bitmap.height);
   const scale = longest > MAX ? MAX / longest : 1;
-  const w = Math.round(img.width * scale);
-  const h = Math.round(img.height * scale);
+  const w = Math.round(bitmap.width * scale);
+  const h = Math.round(bitmap.height * scale);
 
   const canvas = document.createElement("canvas");
   canvas.width = w;
   canvas.height = h;
   const ctx = canvas.getContext("2d");
   if (!ctx) throw new Error("canvas ctx unavailable");
-  ctx.drawImage(img, 0, 0, w, h);
+  ctx.drawImage(bitmap, 0, 0, w, h);
+  bitmap.close?.();
 
   return await new Promise<Blob>((resolve, reject) => {
     canvas.toBlob(
-      (b) => (b ? resolve(b) : reject(new Error("webp encode failed"))),
+      (b) => (b ? resolve(b) : reject(new Error("WebP encode failed"))),
       "image/webp",
       0.82,
     );
