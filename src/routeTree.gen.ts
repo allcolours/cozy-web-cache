@@ -86,6 +86,7 @@ import { Route as ApiPublicLogAssetErrorRouteImport } from './routes/api/public/
 import { Route as ApiPublicEstimateRouteImport } from './routes/api/public/estimate'
 import { Route as ApiPublicContactRouteImport } from './routes/api/public/contact'
 import { Route as ApiAdminGalleryUploadRouteImport } from './routes/api/admin/gallery-upload'
+import { Route as ApiAdminCmsUploadRouteImport } from './routes/api/admin/cms-upload'
 import { Route as AuthenticatedAdminTestimonialsRouteImport } from './routes/_authenticated/admin.testimonials'
 import { Route as AuthenticatedAdminLeadsRouteImport } from './routes/_authenticated/admin.leads'
 import { Route as AuthenticatedAdminInquiriesRouteImport } from './routes/_authenticated/admin.inquiries'
@@ -494,6 +495,11 @@ const ApiAdminGalleryUploadRoute = ApiAdminGalleryUploadRouteImport.update({
   path: '/api/admin/gallery-upload',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiAdminCmsUploadRoute = ApiAdminCmsUploadRouteImport.update({
+  id: '/api/admin/cms-upload',
+  path: '/api/admin/cms-upload',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AuthenticatedAdminTestimonialsRoute =
   AuthenticatedAdminTestimonialsRouteImport.update({
     id: '/testimonials',
@@ -704,6 +710,7 @@ export interface FileRoutesByFullPath {
   '/admin/inquiries': typeof AuthenticatedAdminInquiriesRoute
   '/admin/leads': typeof AuthenticatedAdminLeadsRoute
   '/admin/testimonials': typeof AuthenticatedAdminTestimonialsRoute
+  '/api/admin/cms-upload': typeof ApiAdminCmsUploadRoute
   '/api/admin/gallery-upload': typeof ApiAdminGalleryUploadRoute
   '/api/public/contact': typeof ApiPublicContactRoute
   '/api/public/estimate': typeof ApiPublicEstimateRoute
@@ -803,6 +810,7 @@ export interface FileRoutesByTo {
   '/admin/inquiries': typeof AuthenticatedAdminInquiriesRoute
   '/admin/leads': typeof AuthenticatedAdminLeadsRoute
   '/admin/testimonials': typeof AuthenticatedAdminTestimonialsRoute
+  '/api/admin/cms-upload': typeof ApiAdminCmsUploadRoute
   '/api/admin/gallery-upload': typeof ApiAdminGalleryUploadRoute
   '/api/public/contact': typeof ApiPublicContactRoute
   '/api/public/estimate': typeof ApiPublicEstimateRoute
@@ -905,6 +913,7 @@ export interface FileRoutesById {
   '/_authenticated/admin/inquiries': typeof AuthenticatedAdminInquiriesRoute
   '/_authenticated/admin/leads': typeof AuthenticatedAdminLeadsRoute
   '/_authenticated/admin/testimonials': typeof AuthenticatedAdminTestimonialsRoute
+  '/api/admin/cms-upload': typeof ApiAdminCmsUploadRoute
   '/api/admin/gallery-upload': typeof ApiAdminGalleryUploadRoute
   '/api/public/contact': typeof ApiPublicContactRoute
   '/api/public/estimate': typeof ApiPublicEstimateRoute
@@ -1007,6 +1016,7 @@ export interface FileRouteTypes {
     | '/admin/inquiries'
     | '/admin/leads'
     | '/admin/testimonials'
+    | '/api/admin/cms-upload'
     | '/api/admin/gallery-upload'
     | '/api/public/contact'
     | '/api/public/estimate'
@@ -1106,6 +1116,7 @@ export interface FileRouteTypes {
     | '/admin/inquiries'
     | '/admin/leads'
     | '/admin/testimonials'
+    | '/api/admin/cms-upload'
     | '/api/admin/gallery-upload'
     | '/api/public/contact'
     | '/api/public/estimate'
@@ -1207,6 +1218,7 @@ export interface FileRouteTypes {
     | '/_authenticated/admin/inquiries'
     | '/_authenticated/admin/leads'
     | '/_authenticated/admin/testimonials'
+    | '/api/admin/cms-upload'
     | '/api/admin/gallery-upload'
     | '/api/public/contact'
     | '/api/public/estimate'
@@ -1297,6 +1309,7 @@ export interface RootRouteChildren {
   PaintersAreaRoute: typeof PaintersAreaRoute
   ServicesServiceRoute: typeof ServicesServiceRoute
   PaintersIndexRoute: typeof PaintersIndexRoute
+  ApiAdminCmsUploadRoute: typeof ApiAdminCmsUploadRoute
   ApiAdminGalleryUploadRoute: typeof ApiAdminGalleryUploadRoute
   ApiPublicContactRoute: typeof ApiPublicContactRoute
   ApiPublicEstimateRoute: typeof ApiPublicEstimateRoute
@@ -1853,6 +1866,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiAdminGalleryUploadRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/admin/cms-upload': {
+      id: '/api/admin/cms-upload'
+      path: '/api/admin/cms-upload'
+      fullPath: '/api/admin/cms-upload'
+      preLoaderRoute: typeof ApiAdminCmsUploadRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_authenticated/admin/testimonials': {
       id: '/_authenticated/admin/testimonials'
       path: '/testimonials'
@@ -2159,6 +2179,7 @@ const rootRouteChildren: RootRouteChildren = {
   PaintersAreaRoute: PaintersAreaRoute,
   ServicesServiceRoute: ServicesServiceRoute,
   PaintersIndexRoute: PaintersIndexRoute,
+  ApiAdminCmsUploadRoute: ApiAdminCmsUploadRoute,
   ApiAdminGalleryUploadRoute: ApiAdminGalleryUploadRoute,
   ApiPublicContactRoute: ApiPublicContactRoute,
   ApiPublicEstimateRoute: ApiPublicEstimateRoute,
