@@ -24,15 +24,6 @@ const ENTRIES: SitemapEntry[] = [
   // { path: "/gallery", changefreq: "weekly", priority: "0.8" }, // hidden until populated
   { path: "/blog", changefreq: "weekly", priority: "0.8" },
   { path: "/case-studies", changefreq: "weekly", priority: "0.7" },
-  { path: "/blog/how-to-repaint-your-front-door", changefreq: "monthly", priority: "0.7" },
-  { path: "/blog/how-to-choose-the-right-paint-finish", changefreq: "monthly", priority: "0.7" },
-  {
-    path: "/blog/preparing-exterior-paintwork-irish-weather",
-    changefreq: "monthly",
-    priority: "0.7",
-  },
-  { path: "/blog/painting-while-you-live-in-the-house", changefreq: "monthly", priority: "0.7" },
-  { path: "/blog/colour-trends-dublin-homes-2026", changefreq: "monthly", priority: "0.7" },
   { path: "/painters", changefreq: "monthly", priority: "0.8" },
   { path: "/pricing-guide", changefreq: "monthly", priority: "0.8" },
   { path: "/faq", changefreq: "monthly", priority: "0.7" },
