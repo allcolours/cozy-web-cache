@@ -13,6 +13,7 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { SchemaOrg } from "../components/SchemaOrg";
 import { AssetErrorMonitor } from "../components/AssetErrorMonitor";
+import { CookieBanner } from "../components/CookieBanner";
 import { supabase } from "../integrations/supabase/client";
 
 
@@ -133,6 +134,7 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       <PageViewTracker />
       <AssetErrorMonitor />
+      <CookieBanner />
       <Outlet />
     </QueryClientProvider>
   );
