@@ -166,7 +166,7 @@ function AreaPage() {
               ))}
             </ul>
             <div className="mt-6 rounded-sm bg-secondary p-4 text-xs text-muted-foreground">
-              30+ painters · Fully insured · Commercial & residential · Dublin based
+              15–30 painters · Fully insured · Commercial & residential · Dublin based
             </div>
           </div>
         </div>
@@ -178,8 +178,8 @@ function AreaPage() {
           {[
             ["300+", "Projects"],
             ["10+", "Years"],
-            ["30+", "Painters"],
-            ["5★", "Average rating"],
+            ["15–30", "Painters"],
+            ["12-Month", "Workmanship guarantee"],
           ].map(([k, v]) => (
             <div key={k}>
               <div className="font-display text-2xl font-bold text-primary md:text-3xl">{k}</div>

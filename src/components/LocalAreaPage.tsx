@@ -5,10 +5,10 @@ import { TestimonialCard } from "./Testimonials";
 import heroAsset from "../assets/portfolio/hero-house.webp.asset.json";
 
 const STATS = [
-  { value: "30+", label: "Skilled painters" },
+  { value: "15–30", label: "Skilled painters" },
   { value: "300+", label: "Projects completed" },
   { value: "10+", label: "Years in Dublin" },
-  { value: "5★", label: "Client rating" },
+  { value: "12-Month", label: "Workmanship guarantee" },
   { value: "100%", label: "Fully insured" },
   { value: "Free", label: "Written quotes" },
 ];

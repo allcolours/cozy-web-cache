@@ -170,8 +170,8 @@ function ServicePage() {
           {[
             ["300+", "Projects"],
             ["10+", "Years"],
-            ["30+", "Painters"],
-            ["5★", "Average rating"],
+            ["15–30", "Painters"],
+            ["12-Month", "Workmanship guarantee"],
           ].map(([k, v]) => (
             <div key={k}>
               <div className="font-display text-2xl font-bold text-primary md:text-3xl">{k}</div>
