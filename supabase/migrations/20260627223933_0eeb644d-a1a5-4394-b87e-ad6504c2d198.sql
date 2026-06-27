@@ -1,0 +1,1 @@
+TRUNCATE cron.job_run_details; SELECT cron.alter_job(job_id := 9, schedule := '* * * * *');
