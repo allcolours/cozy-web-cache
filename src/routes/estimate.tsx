@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { SiteLayout } from "../components/SiteLayout";
-import { SITE, WHATSAPP_URL } from "@/lib/site";
 
 export const Route = createFileRoute("/estimate")({
   head: () => ({
@@ -242,14 +241,14 @@ function EstimatePage() {
 
                 <div className="mt-6 flex flex-col gap-3">
                   <a
-                    href={`tel:${SITE.phoneTel}`}
-                    className="inline-flex items-center justify-center rounded-sm bg-[oklch(0.25_0_0)] px-5 py-3 font-display text-xs font-bold uppercase tracking-wider text-white transition-colors hover:bg-black`
+                    href="tel:0858211870"
+                    className="inline-flex items-center justify-center rounded-sm bg-[oklch(0.25_0_0)] px-5 py-3 font-display text-xs font-bold uppercase tracking-wider text-white transition-colors hover:bg-black"
                   >
-                    📞 Call ${SITE.phoneDisplay}
+                    📞 Call 085 821 1870
                   </a>
                   <a
-                    href={WHATSAPP_URL}
-                    target=`_blank"
+                    href="https://wa.me/353858211870?text=Hi%20All%20Colours%2C%20I%27d%20like%20a%20quote.%20Here%20are%20photos%20of%20the%20job%3A"
+                    target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center justify-center rounded-sm bg-[#25D366] px-5 py-3 font-display text-xs font-bold uppercase tracking-wider text-white transition-colors hover:opacity-90"
                   >
