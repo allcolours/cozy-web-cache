@@ -23,16 +23,41 @@ export const Route = createFileRoute("/painter-foxrock")({
           "@context": "https://schema.org",
           "@type": "BreadcrumbList",
           itemListElement: [
-            { "@type": "ListItem", position: 1, name: "Home", item: "https://allcolourspainter.com/" },
+            {
+              "@type": "ListItem",
+              position: 1,
+              name: "Home",
+              item: "https://allcolourspainter.com/",
+            },
             { "@type": "ListItem", position: 2, name: TITLE.split(" | ")[0], item: URL },
           ],
         }),
       },
       {
         type: "application/ld+json",
-        children: JSON.stringify({"@context":"https://schema.org","@type":"LocalBusiness","name":"All Colours Painting Contractor Limited","url":"https://allcolourspainter.com/painter-foxrock","telephone":SITE.phoneIntl,"email":SITE.email,"areaServed":{"@type":"Place","name":"Foxrock, Dublin 18"},"address":{"@type":"PostalAddress","addressLocality":"Foxrock","addressRegion":"Dublin 18","addressCountry":"IE"}}),
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "LocalBusiness",
+          name: "All Colours Painting Contractor Limited",
+          url: "https://allcolourspainter.com/painter-foxrock",
+          telephone: SITE.phoneIntl,
+          email: SITE.email,
+          areaServed: { "@type": "Place", name: "Foxrock, Dublin 18" },
+          address: {
+            "@type": "PostalAddress",
+            addressLocality: "Foxrock",
+            addressRegion: "Dublin 18",
+            addressCountry: "IE",
+          },
+        }),
       },
     ],
   }),
-  component: () => <LocalAreaPage area="Foxrock" postcode="Dublin 18" intro="Detached family homes and luxury developments — showroom-grade interiors, hand-painted kitchens and full-house repaints with zero mess." />,
+  component: () => (
+    <LocalAreaPage
+      area="Foxrock"
+      postcode="Dublin 18"
+      intro="Detached family homes and luxury developments — showroom-grade interiors, hand-painted kitchens and full-house repaints with zero mess."
+    />
+  ),
 });

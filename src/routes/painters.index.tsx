@@ -3,7 +3,6 @@ import { SiteLayout } from "../components/SiteLayout";
 import { AREAS } from "../data/areas";
 import { AREA_PATHS } from "../data/areaContent";
 
-
 export const Route = createFileRoute("/painters/")({
   head: () => {
     const title = "Painters Dublin – Areas We Cover | All Colours Painting";
@@ -18,8 +17,16 @@ export const Route = createFileRoute("/painters/")({
         { property: "og:description", content: description },
         { property: "og:url", content: url },
         { property: "og:type", content: "website" },
-        { property: "og:image", content: "https://allcolourspainter.com/__l5e/assets-v1/2a395495-c4ec-4903-a41b-667de034b2ab/hero-house.webp" },
-        { name: "twitter:image", content: "https://allcolourspainter.com/__l5e/assets-v1/2a395495-c4ec-4903-a41b-667de034b2ab/hero-house.webp" },
+        {
+          property: "og:image",
+          content:
+            "https://allcolourspainter.com/__l5e/assets-v1/2a395495-c4ec-4903-a41b-667de034b2ab/hero-house.webp",
+        },
+        {
+          name: "twitter:image",
+          content:
+            "https://allcolourspainter.com/__l5e/assets-v1/2a395495-c4ec-4903-a41b-667de034b2ab/hero-house.webp",
+        },
       ],
       links: [{ rel: "canonical", href: url }],
     };
@@ -39,8 +46,8 @@ function AreasIndex() {
         </h1>
         <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground">
           We work in every Dublin postcode — from period homes in Ballsbridge to coastal villas in
-          Dalkey and busy office blocks in Sandyford. Pick your area for local examples, services and
-          a free quote.
+          Dalkey and busy office blocks in Sandyford. Pick your area for local examples, services
+          and a free quote.
         </p>
 
         <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -71,7 +78,6 @@ function AreasIndex() {
             );
           })}
         </div>
-
       </section>
     </SiteLayout>
   );

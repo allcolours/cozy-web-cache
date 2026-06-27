@@ -23,16 +23,41 @@ export const Route = createFileRoute("/painter-malahide")({
           "@context": "https://schema.org",
           "@type": "BreadcrumbList",
           itemListElement: [
-            { "@type": "ListItem", position: 1, name: "Home", item: "https://allcolourspainter.com/" },
+            {
+              "@type": "ListItem",
+              position: 1,
+              name: "Home",
+              item: "https://allcolourspainter.com/",
+            },
             { "@type": "ListItem", position: 2, name: TITLE.split(" | ")[0], item: URL },
           ],
         }),
       },
       {
         type: "application/ld+json",
-        children: JSON.stringify({"@context":"https://schema.org","@type":"LocalBusiness","name":"All Colours Painting Contractor Limited","url":"https://allcolourspainter.com/painter-malahide","telephone":SITE.phoneIntl,"email":SITE.email,"areaServed":{"@type":"Place","name":"Malahide, Co. Dublin"},"address":{"@type":"PostalAddress","addressLocality":"Malahide","addressRegion":"Co. Dublin","addressCountry":"IE"}}),
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "LocalBusiness",
+          name: "All Colours Painting Contractor Limited",
+          url: "https://allcolourspainter.com/painter-malahide",
+          telephone: SITE.phoneIntl,
+          email: SITE.email,
+          areaServed: { "@type": "Place", name: "Malahide, Co. Dublin" },
+          address: {
+            "@type": "PostalAddress",
+            addressLocality: "Malahide",
+            addressRegion: "Co. Dublin",
+            addressCountry: "IE",
+          },
+        }),
       },
     ],
   }),
-  component: () => <LocalAreaPage area="Malahide" postcode="Co. Dublin" intro="Premium coastal village with high-value homes — quality interior and exterior painting, heritage colour systems on request." />,
+  component: () => (
+    <LocalAreaPage
+      area="Malahide"
+      postcode="Co. Dublin"
+      intro="Premium coastal village with high-value homes — quality interior and exterior painting, heritage colour systems on request."
+    />
+  ),
 });

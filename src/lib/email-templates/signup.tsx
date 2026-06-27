@@ -1,4 +1,4 @@
-import * as React from 'react'
+import * as React from "react";
 
 import {
   Body,
@@ -11,13 +11,13 @@ import {
   Preview,
   Text,
   Section,
-} from '@react-email/components'
+} from "@react-email/components";
 
 interface SignupEmailProps {
-  siteName: string
-  siteUrl: string
-  recipient: string
-  confirmationUrl: string
+  siteName: string;
+  siteUrl: string;
+  recipient: string;
+  confirmationUrl: string;
 }
 
 export const SignupEmail = ({
@@ -37,7 +37,7 @@ export const SignupEmail = ({
         </Section>
         <Heading style={h1}>Confirm your email</Heading>
         <Text style={text}>
-          Thanks for signing up for{' '}
+          Thanks for signing up for{" "}
           <Link href={siteUrl} style={link}>
             <strong>{siteName}</strong>
           </Link>
@@ -59,57 +59,57 @@ export const SignupEmail = ({
       </Container>
     </Body>
   </Html>
-)
+);
 
-export default SignupEmail
+export default SignupEmail;
 
-const main = { backgroundColor: '#ffffff', fontFamily: '"Hind", Arial, sans-serif' }
-const container = { padding: '0', maxWidth: '580px' }
-const header = { padding: '24px 25px 0' }
+const main = { backgroundColor: "#ffffff", fontFamily: '"Hind", Arial, sans-serif' };
+const container = { padding: "0", maxWidth: "580px" };
+const header = { padding: "24px 25px 0" };
 const brandName = {
   fontFamily: '"Montserrat", Arial, sans-serif',
-  fontSize: '18px',
+  fontSize: "18px",
   fontWeight: 700,
-  color: '#1c1c1c',
-  margin: '0 0 12px',
-  letterSpacing: '-0.01em',
-}
+  color: "#1c1c1c",
+  margin: "0 0 12px",
+  letterSpacing: "-0.01em",
+};
 const accentBar = {
-  height: '3px',
-  width: '60px',
-  backgroundColor: '#18b26f',
-}
+  height: "3px",
+  width: "60px",
+  backgroundColor: "#18b26f",
+};
 const h1 = {
   fontFamily: '"Montserrat", Arial, sans-serif',
-  fontSize: '22px',
+  fontSize: "22px",
   fontWeight: 700,
-  color: '#1c1c1c',
-  margin: '24px 0 20px',
-  padding: '0 25px',
-}
+  color: "#1c1c1c",
+  margin: "24px 0 20px",
+  padding: "0 25px",
+};
 const text = {
-  fontSize: '14px',
-  color: '#5e5e5e',
-  lineHeight: '1.6',
-  margin: '0 0 20px',
-  padding: '0 25px',
-}
-const link = { color: '#18b26f', textDecoration: 'underline' }
+  fontSize: "14px",
+  color: "#5e5e5e",
+  lineHeight: "1.6",
+  margin: "0 0 20px",
+  padding: "0 25px",
+};
+const link = { color: "#18b26f", textDecoration: "underline" };
 const button = {
-  backgroundColor: '#18b26f',
-  color: '#ffffff',
+  backgroundColor: "#18b26f",
+  color: "#ffffff",
   fontFamily: '"Montserrat", Arial, sans-serif',
-  fontSize: '14px',
+  fontSize: "14px",
   fontWeight: 600,
-  borderRadius: '4px',
-  padding: '12px 24px',
-  textDecoration: 'none',
-  display: 'inline-block',
-  margin: '0 25px 20px',
-}
+  borderRadius: "4px",
+  padding: "12px 24px",
+  textDecoration: "none",
+  display: "inline-block",
+  margin: "0 25px 20px",
+};
 const footer = {
-  fontSize: '12px',
-  color: '#999999',
-  margin: '20px 0 24px',
-  padding: '0 25px',
-}
+  fontSize: "12px",
+  color: "#999999",
+  margin: "20px 0 24px",
+  padding: "0 25px",
+};

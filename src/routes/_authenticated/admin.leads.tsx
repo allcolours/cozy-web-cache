@@ -75,7 +75,9 @@ function LeadsAdmin() {
       {isLoading ? (
         <p className="text-sm text-muted-foreground">Loading…</p>
       ) : leads.length === 0 ? (
-        <p className="text-sm text-muted-foreground">No leads yet. Submissions from the homepage quote form and contact form will appear here.</p>
+        <p className="text-sm text-muted-foreground">
+          No leads yet. Submissions from the homepage quote form and contact form will appear here.
+        </p>
       ) : (
         <div className="overflow-hidden rounded-sm border border-border bg-background">
           <table className="w-full text-sm">
@@ -90,86 +92,139 @@ function LeadsAdmin() {
               </tr>
             </thead>
             {leads.map((lead) => {
-                const isOpen = expanded === lead.id;
-                return (
-                  <tbody key={lead.id}>
-                    <tr
-                      onClick={() => setExpanded(isOpen ? null : lead.id)}
-                      className={`cursor-pointer border-b border-border transition-colors hover:bg-secondary/50 ${isOpen ? "bg-secondary/50" : ""}`}
-                    >
-                      <td className="px-4 py-3 font-medium">{lead.name || <span className="text-muted-foreground">—</span>}</td>
-                      <td className="px-4 py-3">
-                        {lead.phone ? (
-                          <a href={`tel:${lead.phone}`} onClick={(e) => e.stopPropagation()} className="hover:text-primary">{lead.phone}</a>
-                        ) : <span className="text-muted-foreground">—</span>}
-                      </td>
-                      <td className="px-4 py-3">{lead.service_type || <span className="text-muted-foreground">—</span>}</td>
-                      <td className="px-4 py-3 text-muted-foreground">{new Date(lead.created_at).toLocaleDateString("en-IE", { day: "numeric", month: "short", year: "numeric" })}</td>
-                      <td className="px-4 py-3">
-                        <span className={`inline-flex rounded-full px-2.5 py-1 text-[11px] font-bold uppercase tracking-wider ${STATUS_STYLES[lead.status]}`}>
-                          {lead.status}
-                        </span>
-                      </td>
-                      <td className="px-4 py-3 text-right text-xs text-muted-foreground">{isOpen ? "▴" : "▾"}</td>
-                    </tr>
-                    {isOpen && (
-                      <tr className="border-b border-border bg-secondary/30">
-                        <td colSpan={6} className="px-4 py-5">
-                          <div className="grid gap-5 md:grid-cols-2">
-                            <div className="space-y-3 text-sm">
-                              <DetailRow label="Email" value={lead.email && <a href={`mailto:${lead.email}`} className="hover:text-primary">{lead.email}</a>} />
-                              <DetailRow label="Phone" value={lead.phone && <a href={`tel:${lead.phone}`} className="hover:text-primary">{lead.phone}</a>} />
-                              <DetailRow label="Service" value={lead.service_type} />
-                              <DetailRow label="Source" value={lead.source} />
-                              <DetailRow label="Received" value={new Date(lead.created_at).toLocaleString("en-IE")} />
-                              {lead.message && (
-                                <div>
-                                  <div className="font-display text-[10px] font-bold uppercase tracking-wider text-muted-foreground">Message</div>
-                                  <p className="mt-1 whitespace-pre-wrap text-sm">{lead.message}</p>
+              const isOpen = expanded === lead.id;
+              return (
+                <tbody key={lead.id}>
+                  <tr
+                    onClick={() => setExpanded(isOpen ? null : lead.id)}
+                    className={`cursor-pointer border-b border-border transition-colors hover:bg-secondary/50 ${isOpen ? "bg-secondary/50" : ""}`}
+                  >
+                    <td className="px-4 py-3 font-medium">
+                      {lead.name || <span className="text-muted-foreground">—</span>}
+                    </td>
+                    <td className="px-4 py-3">
+                      {lead.phone ? (
+                        <a
+                          href={`tel:${lead.phone}`}
+                          onClick={(e) => e.stopPropagation()}
+                          className="hover:text-primary"
+                        >
+                          {lead.phone}
+                        </a>
+                      ) : (
+                        <span className="text-muted-foreground">—</span>
+                      )}
+                    </td>
+                    <td className="px-4 py-3">
+                      {lead.service_type || <span className="text-muted-foreground">—</span>}
+                    </td>
+                    <td className="px-4 py-3 text-muted-foreground">
+                      {new Date(lead.created_at).toLocaleDateString("en-IE", {
+                        day: "numeric",
+                        month: "short",
+                        year: "numeric",
+                      })}
+                    </td>
+                    <td className="px-4 py-3">
+                      <span
+                        className={`inline-flex rounded-full px-2.5 py-1 text-[11px] font-bold uppercase tracking-wider ${STATUS_STYLES[lead.status]}`}
+                      >
+                        {lead.status}
+                      </span>
+                    </td>
+                    <td className="px-4 py-3 text-right text-xs text-muted-foreground">
+                      {isOpen ? "▴" : "▾"}
+                    </td>
+                  </tr>
+                  {isOpen && (
+                    <tr className="border-b border-border bg-secondary/30">
+                      <td colSpan={6} className="px-4 py-5">
+                        <div className="grid gap-5 md:grid-cols-2">
+                          <div className="space-y-3 text-sm">
+                            <DetailRow
+                              label="Email"
+                              value={
+                                lead.email && (
+                                  <a href={`mailto:${lead.email}`} className="hover:text-primary">
+                                    {lead.email}
+                                  </a>
+                                )
+                              }
+                            />
+                            <DetailRow
+                              label="Phone"
+                              value={
+                                lead.phone && (
+                                  <a href={`tel:${lead.phone}`} className="hover:text-primary">
+                                    {lead.phone}
+                                  </a>
+                                )
+                              }
+                            />
+                            <DetailRow label="Service" value={lead.service_type} />
+                            <DetailRow label="Source" value={lead.source} />
+                            <DetailRow
+                              label="Received"
+                              value={new Date(lead.created_at).toLocaleString("en-IE")}
+                            />
+                            {lead.message && (
+                              <div>
+                                <div className="font-display text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
+                                  Message
                                 </div>
-                              )}
-                            </div>
-                            <div className="space-y-4">
-                              <div>
-                                <label className="block font-display text-[10px] font-bold uppercase tracking-wider text-muted-foreground">Status</label>
-                                <select
-                                  value={lead.status}
-                                  onChange={(e) => updateStatus(lead.id, e.target.value as Lead["status"])}
-                                  className="mt-1 w-full rounded-sm border border-border bg-background px-3 py-2 text-sm focus:border-primary focus:outline-none"
-                                >
-                                  {STATUSES.map((s) => (
-                                    <option key={s} value={s}>{s}</option>
-                                  ))}
-                                </select>
+                                <p className="mt-1 whitespace-pre-wrap text-sm">{lead.message}</p>
                               </div>
-                              <div>
-                                <label className="block font-display text-[10px] font-bold uppercase tracking-wider text-muted-foreground">Notes</label>
-                                <textarea
-                                  defaultValue={lead.notes ?? ""}
-                                  onBlur={(e) => {
-                                    if ((e.target.value || "") !== (lead.notes ?? "")) {
-                                      updateNotes(lead.id, e.target.value);
-                                    }
-                                  }}
-                                  rows={5}
-                                  placeholder="Add internal notes (saves on blur)…"
-                                  className="mt-1 w-full rounded-sm border border-border bg-background px-3 py-2 text-sm focus:border-primary focus:outline-none"
-                                />
-                              </div>
-                              <button
-                                onClick={() => remove(lead.id)}
-                                className="rounded-sm border border-red-300 px-4 py-2 font-display text-xs font-bold uppercase tracking-wider text-red-700 hover:bg-red-50"
-                              >
-                                Delete lead
-                              </button>
-                            </div>
+                            )}
                           </div>
-                        </td>
-                      </tr>
-                    )}
-                  </tbody>
-                );
-              })}
+                          <div className="space-y-4">
+                            <div>
+                              <label className="block font-display text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
+                                Status
+                              </label>
+                              <select
+                                value={lead.status}
+                                onChange={(e) =>
+                                  updateStatus(lead.id, e.target.value as Lead["status"])
+                                }
+                                className="mt-1 w-full rounded-sm border border-border bg-background px-3 py-2 text-sm focus:border-primary focus:outline-none"
+                              >
+                                {STATUSES.map((s) => (
+                                  <option key={s} value={s}>
+                                    {s}
+                                  </option>
+                                ))}
+                              </select>
+                            </div>
+                            <div>
+                              <label className="block font-display text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
+                                Notes
+                              </label>
+                              <textarea
+                                defaultValue={lead.notes ?? ""}
+                                onBlur={(e) => {
+                                  if ((e.target.value || "") !== (lead.notes ?? "")) {
+                                    updateNotes(lead.id, e.target.value);
+                                  }
+                                }}
+                                rows={5}
+                                placeholder="Add internal notes (saves on blur)…"
+                                className="mt-1 w-full rounded-sm border border-border bg-background px-3 py-2 text-sm focus:border-primary focus:outline-none"
+                              />
+                            </div>
+                            <button
+                              onClick={() => remove(lead.id)}
+                              className="rounded-sm border border-red-300 px-4 py-2 font-display text-xs font-bold uppercase tracking-wider text-red-700 hover:bg-red-50"
+                            >
+                              Delete lead
+                            </button>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  )}
+                </tbody>
+              );
+            })}
           </table>
         </div>
       )}
@@ -181,7 +236,9 @@ function DetailRow({ label, value }: { label: string; value: React.ReactNode }) 
   if (!value) return null;
   return (
     <div>
-      <div className="font-display text-[10px] font-bold uppercase tracking-wider text-muted-foreground">{label}</div>
+      <div className="font-display text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
+        {label}
+      </div>
       <div className="mt-1">{value}</div>
     </div>
   );

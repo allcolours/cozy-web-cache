@@ -63,7 +63,9 @@ function ContentAdmin() {
       <form onSubmit={save} className="max-w-2xl space-y-5 bg-background p-6">
         {FIELDS.map((f) => (
           <div key={f.key}>
-            <label className="font-display text-xs font-bold uppercase tracking-wider">{f.label}</label>
+            <label className="font-display text-xs font-bold uppercase tracking-wider">
+              {f.label}
+            </label>
             {f.multiline ? (
               <textarea
                 rows={3}
@@ -82,7 +84,10 @@ function ContentAdmin() {
         ))}
         {err && <p className="text-sm text-destructive">{err}</p>}
         {savedAt && <p className="text-sm text-primary">Saved at {savedAt}</p>}
-        <button type="submit" className="rounded-sm bg-primary px-6 py-3 font-display text-xs font-bold uppercase tracking-wider text-primary-foreground hover:bg-[oklch(0.62_0.17_158)]">
+        <button
+          type="submit"
+          className="rounded-sm bg-primary px-6 py-3 font-display text-xs font-bold uppercase tracking-wider text-primary-foreground hover:bg-[oklch(0.62_0.17_158)]"
+        >
           Save changes
         </button>
       </form>

@@ -14,9 +14,17 @@ export const Route = createFileRoute("/commercial-painting-dublin")({
         content:
           "Dublin's trusted commercial painting partner. 20+ painters, out-of-hours scheduling, RCT compliant, €6.5m insured. Trusted by Cairn, Bennett, Elliott & Clancy.",
       },
-      { name: "keywords", content: "commercial painting Dublin, painting contractor Dublin, painting subcontractor Dublin" },
+      {
+        name: "keywords",
+        content:
+          "commercial painting Dublin, painting contractor Dublin, painting subcontractor Dublin",
+      },
       { property: "og:title", content: "Commercial Painting Dublin | All Colours Painting" },
-      { property: "og:description", content: "B2B painting partner for property & facilities managers, REITs and main contractors across Dublin." },
+      {
+        property: "og:description",
+        content:
+          "B2B painting partner for property & facilities managers, REITs and main contractors across Dublin.",
+      },
       { property: "og:url", content: "https://allcolourspainter.com/commercial-painting-dublin" },
       { property: "og:type", content: "website" },
       { property: "og:image", content: `https://allcolourspainter.com${commercialAsset.url}` },
@@ -32,7 +40,8 @@ export const Route = createFileRoute("/commercial-painting-dublin")({
           serviceType: "Commercial Painting Contractor",
           provider: { "@id": "https://allcolourspainter.com/#business" },
           areaServed: { "@type": "AdministrativeArea", name: "County Dublin, Ireland" },
-          description: "Commercial painting packages for main contractors, developers, property managers and facilities teams across Dublin.",
+          description:
+            "Commercial painting packages for main contractors, developers, property managers and facilities teams across Dublin.",
           url: "https://allcolourspainter.com/commercial-painting-dublin",
         }),
       },
@@ -42,8 +51,18 @@ export const Route = createFileRoute("/commercial-painting-dublin")({
           "@context": "https://schema.org",
           "@type": "BreadcrumbList",
           itemListElement: [
-            { "@type": "ListItem", position: 1, name: "Home", item: "https://allcolourspainter.com/" },
-            { "@type": "ListItem", position: 2, name: "Commercial Painting Dublin", item: "https://allcolourspainter.com/commercial-painting-dublin" },
+            {
+              "@type": "ListItem",
+              position: 1,
+              name: "Home",
+              item: "https://allcolourspainter.com/",
+            },
+            {
+              "@type": "ListItem",
+              position: 2,
+              name: "Commercial Painting Dublin",
+              item: "https://allcolourspainter.com/commercial-painting-dublin",
+            },
           ],
         }),
       },
@@ -60,10 +79,22 @@ const STATS = [
 ];
 
 const CLIENTS = [
-  { title: "Property Management Companies", body: "Block management, common areas, hallways and external repaints across Dublin portfolios." },
-  { title: "Facilities Management", body: "Planned and reactive redecoration for offices, schools, healthcare and retail estates." },
-  { title: "Landlords & REITs", body: "Turnaround painting between tenancies, full apartment block exteriors and communal areas." },
-  { title: "Main Contractors", body: "Painting works delivered on Dublin developments — including projects for Cairn Homes, Bennett, Elliott and Clancy." },
+  {
+    title: "Property Management Companies",
+    body: "Block management, common areas, hallways and external repaints across Dublin portfolios.",
+  },
+  {
+    title: "Facilities Management",
+    body: "Planned and reactive redecoration for offices, schools, healthcare and retail estates.",
+  },
+  {
+    title: "Landlords & REITs",
+    body: "Turnaround painting between tenancies, full apartment block exteriors and communal areas.",
+  },
+  {
+    title: "Main Contractors",
+    body: "Painting works delivered on Dublin developments — including projects for Cairn Homes, Bennett, Elliott and Clancy.",
+  },
 ];
 
 const SERVICES = [
@@ -76,10 +107,22 @@ const SERVICES = [
 ];
 
 const WHY = [
-  { title: "Labour supply", body: "Scale crews of 15–30 painters on site to hit tight programme dates." },
-  { title: "Programme delivery", body: "On-time handover, sectional completion, snag-list closed out fast." },
-  { title: "Compliance", body: "RCT registered, fully insured, Safe Pass, manual handling, RAMS on request." },
-  { title: "Communication", body: "Dedicated WhatsApp groups, daily progress reports, photos from site." },
+  {
+    title: "Labour supply",
+    body: "Scale crews of 15–30 painters on site to hit tight programme dates.",
+  },
+  {
+    title: "Programme delivery",
+    body: "On-time handover, sectional completion, snag-list closed out fast.",
+  },
+  {
+    title: "Compliance",
+    body: "RCT registered, fully insured, Safe Pass, manual handling, RAMS on request.",
+  },
+  {
+    title: "Communication",
+    body: "Dedicated WhatsApp groups, daily progress reports, photos from site.",
+  },
 ];
 
 function CommercialPage() {
@@ -94,15 +137,28 @@ function CommercialPage() {
     const form = new FormData(e.currentTarget);
     const traps = readBotTraps(form);
     const payload = {
-      name: String(form.get("contact_name") || "").trim().slice(0, 100),
-      email: String(form.get("email") || "").trim().slice(0, 255),
-      phone: String(form.get("phone") || "").trim().slice(0, 50) || null,
+      name: String(form.get("contact_name") || "")
+        .trim()
+        .slice(0, 100),
+      email: String(form.get("email") || "")
+        .trim()
+        .slice(0, 255),
+      phone:
+        String(form.get("phone") || "")
+          .trim()
+          .slice(0, 50) || null,
       postcode: null,
       message: [
-        `Company: ${String(form.get("company") || "").trim().slice(0, 150)}`,
+        `Company: ${String(form.get("company") || "")
+          .trim()
+          .slice(0, 150)}`,
         `Type of work: ${String(form.get("work_type") || "").trim()}`,
-        `Project timeline: ${String(form.get("timeline") || "").trim().slice(0, 200)}`,
-        `Details: ${String(form.get("details") || "").trim().slice(0, 2000)}`,
+        `Project timeline: ${String(form.get("timeline") || "")
+          .trim()
+          .slice(0, 200)}`,
+        `Details: ${String(form.get("details") || "")
+          .trim()
+          .slice(0, 2000)}`,
       ].join("\n"),
     };
     if (!payload.name || !payload.email || !payload.message) {
@@ -114,7 +170,12 @@ function CommercialPage() {
       const res = await fetch("/api/public/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...payload, source: "commercial_form", service_type: "commercial", ...traps }),
+        body: JSON.stringify({
+          ...payload,
+          source: "commercial_form",
+          service_type: "commercial",
+          ...traps,
+        }),
       });
       if (!res.ok) {
         setError("Sorry, we couldn't send that. Please try again or call us directly.");
@@ -150,8 +211,9 @@ function CommercialPage() {
             Dublin's Trusted Commercial Painting Partner
           </h1>
           <p className="mt-6 max-w-2xl text-base leading-relaxed text-white/80 md:text-lg">
-            A scalable painting workforce for property managers, facilities teams and main contractors —
-            delivered on programme, fully compliant, with clear daily communication from site.
+            A scalable painting workforce for property managers, facilities teams and main
+            contractors — delivered on programme, fully compliant, with clear daily communication
+            from site.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <a
@@ -175,8 +237,12 @@ function CommercialPage() {
         <div className="mx-auto grid max-w-7xl grid-cols-2 gap-6 px-4 py-8 md:grid-cols-4 md:px-8">
           {STATS.map((s) => (
             <div key={s.label} className="text-center md:text-left">
-              <div className="font-display text-3xl font-extrabold text-primary md:text-4xl">{s.value}</div>
-              <div className="mt-1 text-xs font-semibold uppercase tracking-wider text-[oklch(0.35_0_0)]">{s.label}</div>
+              <div className="font-display text-3xl font-extrabold text-primary md:text-4xl">
+                {s.value}
+              </div>
+              <div className="mt-1 text-xs font-semibold uppercase tracking-wider text-[oklch(0.35_0_0)]">
+                {s.label}
+              </div>
             </div>
           ))}
         </div>
@@ -191,7 +257,9 @@ function CommercialPage() {
         <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           {CLIENTS.map((c) => (
             <div key={c.title} className="rounded-sm border border-border bg-background p-6">
-              <h3 className="font-display text-base font-bold uppercase tracking-wide text-[oklch(0.2_0_0)]">{c.title}</h3>
+              <h3 className="font-display text-base font-bold uppercase tracking-wide text-[oklch(0.2_0_0)]">
+                {c.title}
+              </h3>
               <div className="mt-3 h-[2px] w-10 bg-primary" />
               <p className="mt-4 text-sm leading-relaxed text-[oklch(0.35_0_0)]">{c.body}</p>
             </div>
@@ -208,11 +276,22 @@ function CommercialPage() {
           </h2>
           <ul className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {SERVICES.map((s) => (
-              <li key={s} className="flex items-start gap-3 rounded-sm border border-border bg-background p-5">
-                <svg className="mt-0.5 h-5 w-5 shrink-0 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+              <li
+                key={s}
+                className="flex items-start gap-3 rounded-sm border border-border bg-background p-5"
+              >
+                <svg
+                  className="mt-0.5 h-5 w-5 shrink-0 text-primary"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                >
                   <path d="M20 6L9 17l-5-5" />
                 </svg>
-                <span className="font-display text-sm font-semibold uppercase tracking-wide text-[oklch(0.2_0_0)]">{s}</span>
+                <span className="font-display text-sm font-semibold uppercase tracking-wide text-[oklch(0.2_0_0)]">
+                  {s}
+                </span>
               </li>
             ))}
           </ul>
@@ -227,9 +306,16 @@ function CommercialPage() {
         </h2>
         <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           {WHY.map((w, i) => (
-            <div key={w.title} className="relative rounded-sm border border-border bg-background p-6">
-              <div className="font-display text-4xl font-extrabold text-primary/20">{String(i + 1).padStart(2, "0")}</div>
-              <h3 className="mt-2 font-display text-base font-bold uppercase tracking-wide text-[oklch(0.2_0_0)]">{w.title}</h3>
+            <div
+              key={w.title}
+              className="relative rounded-sm border border-border bg-background p-6"
+            >
+              <div className="font-display text-4xl font-extrabold text-primary/20">
+                {String(i + 1).padStart(2, "0")}
+              </div>
+              <h3 className="mt-2 font-display text-base font-bold uppercase tracking-wide text-[oklch(0.2_0_0)]">
+                {w.title}
+              </h3>
               <p className="mt-3 text-sm leading-relaxed text-[oklch(0.35_0_0)]">{w.body}</p>
             </div>
           ))}
@@ -237,7 +323,10 @@ function CommercialPage() {
       </section>
 
       {/* Contact form */}
-      <section id="commercial-quote" className="bg-[var(--color-surface-dark)] text-[var(--color-surface-dark-foreground)]">
+      <section
+        id="commercial-quote"
+        className="bg-[var(--color-surface-dark)] text-[var(--color-surface-dark-foreground)]"
+      >
         <div className="mx-auto grid max-w-7xl gap-12 px-4 py-20 md:grid-cols-2 md:px-8">
           <div>
             <span className="eyebrow text-accent">Get a commercial quote</span>
@@ -245,12 +334,23 @@ function CommercialPage() {
               Tell us about your project
             </h2>
             <p className="mt-5 max-w-md text-sm leading-relaxed text-white/70">
-              Send us the basics and we'll come back within one working day with availability, programme fit
-              and a budget guide. For tenders, we can return RAMS, insurance certs and tax clearance on request.
+              Send us the basics and we'll come back within one working day with availability,
+              programme fit and a budget guide. For tenders, we can return RAMS, insurance certs and
+              tax clearance on request.
             </p>
             <div className="mt-8 space-y-3 text-sm text-white/80">
-              <div>📞 <a href={`tel:${SITE.phoneTel}`} className="hover:text-primary">{SITE.phoneDisplay}</a></div>
-              <div>✉️ <a href={`mailto:${SITE.email}`} className="hover:text-primary">{SITE.email}</a></div>
+              <div>
+                📞{" "}
+                <a href={`tel:${SITE.phoneTel}`} className="hover:text-primary">
+                  {SITE.phoneDisplay}
+                </a>
+              </div>
+              <div>
+                ✉️{" "}
+                <a href={`mailto:${SITE.email}`} className="hover:text-primary">
+                  {SITE.email}
+                </a>
+              </div>
               <div>🕒 Mon–Sat · 8:00 – 18:00 (out-of-hours by arrangement)</div>
             </div>
           </div>
@@ -258,8 +358,12 @@ function CommercialPage() {
           <div className="rounded-sm bg-background p-6 text-foreground md:p-8">
             {sent ? (
               <div className="py-8 text-center">
-                <h3 className="font-display text-xl font-bold uppercase text-primary">Thanks — message received</h3>
-                <p className="mt-3 text-sm text-[oklch(0.35_0_0)]">We'll reply within one working day. For urgent jobs, call {SITE.phoneDisplay}.</p>
+                <h3 className="font-display text-xl font-bold uppercase text-primary">
+                  Thanks — message received
+                </h3>
+                <p className="mt-3 text-sm text-[oklch(0.35_0_0)]">
+                  We'll reply within one working day. For urgent jobs, call {SITE.phoneDisplay}.
+                </p>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="grid gap-4">
@@ -280,7 +384,9 @@ function CommercialPage() {
                     defaultValue=""
                     className="mt-2 w-full rounded-sm border border-border bg-background px-3 py-2.5 text-sm"
                   >
-                    <option value="" disabled>Select…</option>
+                    <option value="" disabled>
+                      Select…
+                    </option>
                     <option>Office repaint</option>
                     <option>Apartment block</option>
                     <option>Retail fit-out</option>
@@ -288,7 +394,11 @@ function CommercialPage() {
                     <option>Other</option>
                   </select>
                 </div>
-                <Field label="Project timeline" name="timeline" placeholder="e.g. Start in 4 weeks, 3-week programme" />
+                <Field
+                  label="Project timeline"
+                  name="timeline"
+                  placeholder="e.g. Start in 4 weeks, 3-week programme"
+                />
                 <div>
                   <label className="block font-display text-xs font-semibold uppercase tracking-wider text-[oklch(0.3_0_0)]">
                     Additional details
@@ -309,7 +419,11 @@ function CommercialPage() {
                   {submitting ? "Sending…" : "Get a commercial quote"}
                 </button>
                 <p className="text-xs text-[oklch(0.5_0_0)]">
-                  By submitting, you agree to our <Link to="/privacy" className="underline hover:text-primary">privacy policy</Link>.
+                  By submitting, you agree to our{" "}
+                  <Link to="/privacy" className="underline hover:text-primary">
+                    privacy policy
+                  </Link>
+                  .
                 </p>
               </form>
             )}

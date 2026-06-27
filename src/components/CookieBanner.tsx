@@ -28,7 +28,10 @@ export function CookieBanner() {
       <div className="mx-auto flex max-w-6xl flex-col gap-3 px-4 py-4 sm:flex-row sm:items-center sm:justify-between">
         <p className="text-sm text-muted-foreground">
           We use cookies and load Google Maps to improve your experience. See our{" "}
-          <Link to="/privacy" className="underline underline-offset-2 text-foreground hover:text-primary">
+          <Link
+            to="/privacy"
+            className="underline underline-offset-2 text-foreground hover:text-primary"
+          >
             privacy policy
           </Link>
           .

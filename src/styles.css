@@ -70,36 +70,36 @@
 
   /* Surface */
   --background: oklch(1 0 0);
-  --foreground: oklch(0.43 0 0);                 /* ~#5e5e5e charcoal */
+  --foreground: oklch(0.43 0 0); /* ~#5e5e5e charcoal */
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.43 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.43 0 0);
 
   /* Brand — green */
-  --primary: oklch(0.69 0.165 158);              /* ~#18b26f */
+  --primary: oklch(0.69 0.165 158); /* ~#18b26f */
   --primary-foreground: oklch(1 0 0);
 
   /* Secondary surface — very light grey */
-  --secondary: oklch(0.97 0 0);                  /* ~#f7f7f7 */
+  --secondary: oklch(0.97 0 0); /* ~#f7f7f7 */
   --secondary-foreground: oklch(0.2 0 0);
 
   --muted: oklch(0.97 0 0);
   --muted-foreground: oklch(0.5 0 0);
 
   /* Accent — warm yellow */
-  --accent: oklch(0.92 0.17 95);                 /* ~#fbe12e */
+  --accent: oklch(0.92 0.17 95); /* ~#fbe12e */
   --accent-foreground: oklch(0.18 0 0);
 
   --destructive: oklch(0.58 0.22 27);
   --destructive-foreground: oklch(1 0 0);
 
-  --border: oklch(0.91 0 0);                     /* ~#e5e5e5 */
+  --border: oklch(0.91 0 0); /* ~#e5e5e5 */
   --input: oklch(0.91 0 0);
   --ring: oklch(0.69 0.165 158);
 
   /* Dark surface (footer / dark CTA bands) */
-  --surface-dark: oklch(0.2 0 0);                /* ~#1c1c1c */
+  --surface-dark: oklch(0.2 0 0); /* ~#1c1c1c */
   --surface-dark-foreground: oklch(0.97 0 0);
 
   --chart-1: oklch(0.69 0.165 158);
@@ -169,7 +169,12 @@
     overflow-x: hidden;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: var(--font-display);
     letter-spacing: -0.01em;
     color: inherit;
@@ -226,4 +231,3 @@
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
-

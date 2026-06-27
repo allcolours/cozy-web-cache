@@ -2,11 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { AdminShell } from "@/components/admin/AdminShell";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
-import {
-  getAssetErrors,
-  clearAssetErrors,
-  runAssetErrorCheck,
-} from "@/lib/asset-errors.functions";
+import { getAssetErrors, clearAssetErrors, runAssetErrorCheck } from "@/lib/asset-errors.functions";
 import { useState } from "react";
 
 export const Route = createFileRoute("/_authenticated/admin/asset-errors")({
@@ -96,7 +92,6 @@ function AssetErrorsPage() {
             </button>
           </div>
 
-
           <section className="mt-3 bg-background p-6">
             {data.topBroken.length === 0 && (
               <p className="text-sm text-muted-foreground">
@@ -141,9 +136,7 @@ function AssetErrorsPage() {
                       {new Date(r.created_at).toLocaleString()}
                     </span>
                     {r.status != null && (
-                      <span className="rounded bg-muted px-1.5 py-0.5 font-bold">
-                        {r.status}
-                      </span>
+                      <span className="rounded bg-muted px-1.5 py-0.5 font-bold">{r.status}</span>
                     )}
                   </div>
                   <div className="mt-1 truncate text-foreground" title={r.asset_url}>

@@ -14,7 +14,8 @@ export function FooterCTA() {
             Get a free quote today
           </h2>
           <p className="mt-2 max-w-lg text-sm text-muted-foreground">
-            No-obligation written quotes for interior, exterior & commercial painting across Dublin & surrounding areas. We usually reply within one working day.
+            No-obligation written quotes for interior, exterior & commercial painting across Dublin
+            & surrounding areas. We usually reply within one working day.
           </p>
         </div>
         <div className="flex flex-col gap-3 sm:flex-row">

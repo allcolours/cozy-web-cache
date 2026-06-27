@@ -74,16 +74,22 @@ export function MapEmbed({ title, src, className, style, autoLoadOnVisible = tru
           aria-label={`Load map: ${title}`}
           className="flex h-full w-full flex-col items-center justify-center gap-3 bg-secondary text-foreground transition-colors hover:bg-muted"
         >
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+          <svg
+            width="32"
+            height="32"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            aria-hidden="true"
+          >
             <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z" />
             <circle cx="12" cy="10" r="3" />
           </svg>
           <span className="font-display text-xs font-bold uppercase tracking-[0.18em] text-primary">
             Load map
           </span>
-          <span className="px-4 text-center text-xs text-muted-foreground">
-            {title}
-          </span>
+          <span className="px-4 text-center text-xs text-muted-foreground">{title}</span>
         </button>
       )}
     </div>

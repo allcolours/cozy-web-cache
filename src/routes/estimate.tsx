@@ -24,7 +24,24 @@ export const Route = createFileRoute("/estimate")({
     scripts: [
       {
         type: "application/ld+json",
-        children: JSON.stringify({"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://allcolourspainter.com/"},{"@type":"ListItem","position":2,"name":"Free Painting Estimate","item":"https://allcolourspainter.com/estimate"}]}),
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            {
+              "@type": "ListItem",
+              position: 1,
+              name: "Home",
+              item: "https://allcolourspainter.com/",
+            },
+            {
+              "@type": "ListItem",
+              position: 2,
+              name: "Free Painting Estimate",
+              item: "https://allcolourspainter.com/estimate",
+            },
+          ],
+        }),
       },
     ],
   }),
@@ -60,7 +77,11 @@ function roundTo50(n: number) {
 }
 
 function formatCurrency(n: number) {
-  return new Intl.NumberFormat("en-IE", { style: "currency", currency: "EUR", maximumFractionDigits: 0 }).format(n);
+  return new Intl.NumberFormat("en-IE", {
+    style: "currency",
+    currency: "EUR",
+    maximumFractionDigits: 0,
+  }).format(n);
 }
 
 function EstimatePage() {
@@ -106,7 +127,8 @@ function EstimatePage() {
             Get an Instant Estimate
           </h1>
           <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-white/80 md:text-lg">
-            Select your job type and size for a ballpark range. We'll follow up with a precise written quote after a free site visit.
+            Select your job type and size for a ballpark range. We'll follow up with a precise
+            written quote after a free site visit.
           </p>
         </div>
       </section>
@@ -152,7 +174,10 @@ function EstimatePage() {
                 <div className="mt-6 space-y-6">
                   <div>
                     <div className="flex items-center justify-between">
-                      <label htmlFor="area" className="font-display text-sm font-semibold uppercase tracking-wide text-[oklch(0.25_0_0)]">
+                      <label
+                        htmlFor="area"
+                        className="font-display text-sm font-semibold uppercase tracking-wide text-[oklch(0.25_0_0)]"
+                      >
                         Floor area
                       </label>
                       <span className="font-display text-sm font-bold text-primary">{area} m²</span>
@@ -175,7 +200,10 @@ function EstimatePage() {
 
                   <div>
                     <div className="flex items-center justify-between">
-                      <label htmlFor="rooms" className="font-display text-sm font-semibold uppercase tracking-wide text-[oklch(0.25_0_0)]">
+                      <label
+                        htmlFor="rooms"
+                        className="font-display text-sm font-semibold uppercase tracking-wide text-[oklch(0.25_0_0)]"
+                      >
                         Number of rooms
                       </label>
                       <span className="font-display text-sm font-bold text-primary">{rooms}</span>
@@ -217,10 +245,14 @@ function EstimatePage() {
                             : "border-border bg-background hover:border-primary/50"
                         }`}
                       >
-                        <span className={`font-display text-xs font-bold uppercase tracking-wide ${active ? "text-primary" : "text-[oklch(0.2_0_0)]"}`}>
+                        <span
+                          className={`font-display text-xs font-bold uppercase tracking-wide ${active ? "text-primary" : "text-[oklch(0.2_0_0)]"}`}
+                        >
                           {e.label}
                         </span>
-                        <span className="text-sm font-semibold text-foreground">+{formatCurrency(e.price)}</span>
+                        <span className="text-sm font-semibold text-foreground">
+                          +{formatCurrency(e.price)}
+                        </span>
                       </button>
                     );
                   })}
@@ -263,13 +295,19 @@ function EstimatePage() {
                   </h3>
                   <ul className="mt-4 space-y-3 text-sm">
                     <li className="flex items-center justify-between">
-                      <span className="text-foreground">{WORK_TYPES.find((w) => w.id === workType)?.label} painting</span>
-                      <span className="font-medium text-foreground">{formatCurrency(baseCost)}</span>
+                      <span className="text-foreground">
+                        {WORK_TYPES.find((w) => w.id === workType)?.label} painting
+                      </span>
+                      <span className="font-medium text-foreground">
+                        {formatCurrency(baseCost)}
+                      </span>
                     </li>
                     {selectedExtrasList.map((e) => (
                       <li key={e.id} className="flex items-center justify-between">
                         <span className="text-foreground">{e.label}</span>
-                        <span className="font-medium text-foreground">+{formatCurrency(e.price)}</span>
+                        <span className="font-medium text-foreground">
+                          +{formatCurrency(e.price)}
+                        </span>
                       </li>
                     ))}
                     <li className="flex items-center justify-between border-t border-border pt-3">
@@ -278,7 +316,9 @@ function EstimatePage() {
                     </li>
                     <li className="flex items-center justify-between text-xs text-muted-foreground">
                       <span>Guide range</span>
-                      <span>{formatCurrency(low)} – {formatCurrency(high)}</span>
+                      <span>
+                        {formatCurrency(low)} – {formatCurrency(high)}
+                      </span>
                     </li>
                   </ul>
                 </div>
@@ -294,7 +334,9 @@ function EstimatePage() {
           <div className="grid gap-8 md:grid-cols-3">
             {TRUST_POINTS.map((p) => (
               <div key={p.title} className="border-t-[3px] border-primary bg-background p-6">
-                <h3 className="font-display text-lg font-bold uppercase tracking-wide text-[oklch(0.2_0_0)]">{p.title}</h3>
+                <h3 className="font-display text-lg font-bold uppercase tracking-wide text-[oklch(0.2_0_0)]">
+                  {p.title}
+                </h3>
                 <p className="mt-3 text-sm leading-relaxed text-foreground/80">{p.body}</p>
               </div>
             ))}

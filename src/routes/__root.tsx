@@ -16,7 +16,6 @@ import { AssetErrorMonitor } from "../components/AssetErrorMonitor";
 import { CookieBanner } from "../components/CookieBanner";
 import { supabase } from "../integrations/supabase/client";
 
-
 function NotFoundComponent() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
@@ -83,7 +82,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Painter Dublin | All Colours Painting & Decorating" },
-      { name: "description", content: "Painter & decorator in Dublin. Interior & exterior painting for houses and apartments across South Dublin and surrounding areas." },
+      {
+        name: "description",
+        content:
+          "Painter & decorator in Dublin. Interior & exterior painting for houses and apartments across South Dublin and surrounding areas.",
+      },
       { name: "author", content: "All Colours Painting Contractor Limited" },
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "All Colours Painting" },

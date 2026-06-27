@@ -32,7 +32,7 @@ function CheckRunsPage() {
 
   const params = useMemo(
     () => ({ range, page, perPage, sortBy, sortOrder }),
-    [range, page, perPage, sortBy, sortOrder]
+    [range, page, perPage, sortBy, sortOrder],
   );
 
   const { data, isLoading, error } = useQuery({
@@ -245,7 +245,11 @@ function CheckRunsPage() {
                                 </summary>
                                 <ul className="mt-2 space-y-1">
                                   {urls.slice(0, 25).map((u) => (
-                                    <li key={u} className="truncate font-mono text-[11px]" title={u}>
+                                    <li
+                                      key={u}
+                                      className="truncate font-mono text-[11px]"
+                                      title={u}
+                                    >
                                       {u}
                                     </li>
                                   ))}
@@ -283,7 +287,8 @@ function CheckRunsPage() {
 
                 <div className="flex flex-col items-center justify-between gap-3 border-t border-border p-4 sm:flex-row">
                   <p className="text-xs text-muted-foreground">
-                    Showing {data.runs.length} of {data.total} runs · Page {data.page} of {data.totalPages}
+                    Showing {data.runs.length} of {data.total} runs · Page {data.page} of{" "}
+                    {data.totalPages}
                   </p>
                   <div className="flex items-center gap-2">
                     <button
@@ -295,13 +300,14 @@ function CheckRunsPage() {
                     </button>
                     {Array.from({ length: data.totalPages }, (_, i) => i + 1)
                       .filter(
-                        (p) =>
-                          p === 1 ||
-                          p === data.totalPages ||
-                          Math.abs(p - data.page) <= 1
+                        (p) => p === 1 || p === data.totalPages || Math.abs(p - data.page) <= 1,
                       )
                       .reduce<(number | string)[]>((acc, p, idx, arr) => {
-                        if (idx > 0 && typeof arr[idx - 1] === "number" && p - (arr[idx - 1] as number) > 1) {
+                        if (
+                          idx > 0 &&
+                          typeof arr[idx - 1] === "number" &&
+                          p - (arr[idx - 1] as number) > 1
+                        ) {
                           acc.push("…");
                         }
                         acc.push(p);
@@ -309,7 +315,10 @@ function CheckRunsPage() {
                       }, [])
                       .map((p) =>
                         typeof p === "string" ? (
-                          <span key={`gap-${p}-${Math.random()}`} className="px-1 text-xs text-muted-foreground">
+                          <span
+                            key={`gap-${p}-${Math.random()}`}
+                            className="px-1 text-xs text-muted-foreground"
+                          >
                             {p}
                           </span>
                         ) : (
@@ -324,7 +333,7 @@ function CheckRunsPage() {
                           >
                             {p}
                           </button>
-                        )
+                        ),
                       )}
                     <button
                       onClick={() => goToPage(data.page + 1)}

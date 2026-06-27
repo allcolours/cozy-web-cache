@@ -24,7 +24,12 @@ function BlogAdmin() {
     <AdminShell title="Blog">
       <div className="mb-6 flex items-center justify-between">
         <p className="text-sm text-muted-foreground">{data?.length ?? 0} posts</p>
-        <Link to="/admin/blog/new" className="rounded-sm bg-primary px-5 py-2.5 font-display text-xs font-bold uppercase tracking-wider text-primary-foreground hover:bg-[oklch(0.62_0.17_158)]">+ New post</Link>
+        <Link
+          to="/admin/blog/new"
+          className="rounded-sm bg-primary px-5 py-2.5 font-display text-xs font-bold uppercase tracking-wider text-primary-foreground hover:bg-[oklch(0.62_0.17_158)]"
+        >
+          + New post
+        </Link>
       </div>
 
       {isLoading && <p className="text-sm text-muted-foreground">Loading…</p>}
@@ -54,14 +59,26 @@ function BlogAdmin() {
                   <td className="px-3 py-3 text-muted-foreground">{p.category ?? "—"}</td>
                   <td className="px-3 py-3">
                     {p.published ? (
-                      <span className="rounded bg-emerald-100 px-2 py-0.5 text-xs font-semibold text-emerald-800">Published</span>
+                      <span className="rounded bg-emerald-100 px-2 py-0.5 text-xs font-semibold text-emerald-800">
+                        Published
+                      </span>
                     ) : (
-                      <span className="rounded bg-amber-100 px-2 py-0.5 text-xs font-semibold text-amber-800">Draft</span>
+                      <span className="rounded bg-amber-100 px-2 py-0.5 text-xs font-semibold text-amber-800">
+                        Draft
+                      </span>
                     )}
                   </td>
-                  <td className="px-3 py-3 text-xs text-muted-foreground">{p.updated_at ? new Date(p.updated_at).toLocaleDateString() : "—"}</td>
+                  <td className="px-3 py-3 text-xs text-muted-foreground">
+                    {p.updated_at ? new Date(p.updated_at).toLocaleDateString() : "—"}
+                  </td>
                   <td className="px-3 py-3 text-right">
-                    <Link to="/admin/blog/$postId" params={{ postId: p.id }} className="text-xs font-bold uppercase tracking-wider text-primary hover:underline">Edit</Link>
+                    <Link
+                      to="/admin/blog/$postId"
+                      params={{ postId: p.id }}
+                      className="text-xs font-bold uppercase tracking-wider text-primary hover:underline"
+                    >
+                      Edit
+                    </Link>
                   </td>
                 </tr>
               ))}

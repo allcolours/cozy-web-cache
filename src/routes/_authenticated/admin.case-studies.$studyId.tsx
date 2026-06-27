@@ -13,7 +13,11 @@ function EditCaseStudy() {
   const { data, isLoading, error } = useQuery({
     queryKey: ["admin-case-study", studyId],
     queryFn: async () => {
-      const { data, error } = await supabase.from("case_studies").select("*").eq("id", studyId).single();
+      const { data, error } = await supabase
+        .from("case_studies")
+        .select("*")
+        .eq("id", studyId)
+        .single();
       if (error) throw error;
       return data;
     },

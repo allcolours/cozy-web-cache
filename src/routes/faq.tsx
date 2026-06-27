@@ -10,9 +10,17 @@ export const Route = createFileRoute("/faq")({
   head: () => ({
     meta: [
       { title: "Painting FAQ Dublin | All Colours Painting" },
-      { name: "description", content: "Answers to common questions about painting and decorating in Dublin. Pricing, timelines, preparation, paint brands and what to expect from All Colours Painting." },
+      {
+        name: "description",
+        content:
+          "Answers to common questions about painting and decorating in Dublin. Pricing, timelines, preparation, paint brands and what to expect from All Colours Painting.",
+      },
       { property: "og:title", content: "Painting FAQ Dublin | All Colours Painting" },
-      { property: "og:description", content: "Answers to common questions about painting and decorating in Dublin. Pricing, timelines, preparation, paint brands and what to expect from All Colours Painting." },
+      {
+        property: "og:description",
+        content:
+          "Answers to common questions about painting and decorating in Dublin. Pricing, timelines, preparation, paint brands and what to expect from All Colours Painting.",
+      },
       { property: "og:url", content: "https://allcolourspainter.com/faq" },
       { property: "og:type", content: "website" },
       { property: "og:image", content: `https://allcolourspainter.com${heroAsset.url}` },
@@ -34,7 +42,24 @@ export const Route = createFileRoute("/faq")({
       },
       {
         type: "application/ld+json",
-        children: JSON.stringify({"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://allcolourspainter.com/"},{"@type":"ListItem","position":2,"name":"FAQ","item":"https://allcolourspainter.com/faq"}]}),
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            {
+              "@type": "ListItem",
+              position: 1,
+              name: "Home",
+              item: "https://allcolourspainter.com/",
+            },
+            {
+              "@type": "ListItem",
+              position: 2,
+              name: "FAQ",
+              item: "https://allcolourspainter.com/faq",
+            },
+          ],
+        }),
       },
     ],
   }),
@@ -45,7 +70,14 @@ function FaqPage() {
   return (
     <SiteLayout>
       <section className="relative isolate overflow-hidden">
-        <img src={heroAsset.url} alt="Interior painting and decorating by All Colours Painting Dublin" loading="lazy" width={1920} height={900} className="absolute inset-0 -z-10 h-full w-full object-cover" />
+        <img
+          src={heroAsset.url}
+          alt="Interior painting and decorating by All Colours Painting Dublin"
+          loading="lazy"
+          width={1920}
+          height={900}
+          className="absolute inset-0 -z-10 h-full w-full object-cover"
+        />
         <div className="absolute inset-0 -z-10 bg-[oklch(0.2_0_0)]/75" />
         <div className="mx-auto max-w-7xl px-4 py-24 md:px-8 md:py-32">
           <span className="eyebrow text-accent">Straight answers</span>
@@ -54,7 +86,8 @@ function FaqPage() {
           </h1>
           <div className="mt-6 h-[3px] w-[170px] bg-primary" />
           <p className="mt-6 max-w-2xl text-base text-white/85 md:text-lg">
-            Everything we get asked before, during and after a job — written the way we'd actually answer over a cup of tea.
+            Everything we get asked before, during and after a job — written the way we'd actually
+            answer over a cup of tea.
           </p>
         </div>
       </section>
@@ -82,9 +115,16 @@ function FaqPage() {
         <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-6 px-4 py-16 md:flex-row md:items-center md:px-8 md:py-20">
           <div>
             <span className="eyebrow text-accent">Didn't find your answer?</span>
-            <h2 className="mt-2 font-display text-3xl font-extrabold uppercase tracking-tight md:text-4xl">Just ring us — we don't bite.</h2>
+            <h2 className="mt-2 font-display text-3xl font-extrabold uppercase tracking-tight md:text-4xl">
+              Just ring us — we don't bite.
+            </h2>
           </div>
-          <Link to="/contact" className="inline-flex items-center rounded-sm bg-primary px-6 py-3 font-display text-xs font-bold uppercase tracking-wider text-primary-foreground hover:bg-[oklch(0.62_0.17_158)]">Ask a question</Link>
+          <Link
+            to="/contact"
+            className="inline-flex items-center rounded-sm bg-primary px-6 py-3 font-display text-xs font-bold uppercase tracking-wider text-primary-foreground hover:bg-[oklch(0.62_0.17_158)]"
+          >
+            Ask a question
+          </Link>
         </div>
       </section>
     </SiteLayout>

@@ -34,11 +34,7 @@ export function FormBotTraps() {
           defaultValue=""
         />
       </div>
-      <input
-        type="hidden"
-        name="form_rendered_at"
-        defaultValue={String(rendered.current)}
-      />
+      <input type="hidden" name="form_rendered_at" defaultValue={String(rendered.current)} />
     </>
   );
 }

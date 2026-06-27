@@ -17,9 +17,17 @@ export const Route = createFileRoute("/services")({
   head: () => ({
     meta: [
       { title: "Painting & Decorating Services Dublin | All Colours" },
-      { name: "description", content: "Full range of painting services in Dublin: interior, exterior, commercial, industrial epoxy floors, kitchen painting, spray finishing and wallpapering. Free estimates." },
+      {
+        name: "description",
+        content:
+          "Full range of painting services in Dublin: interior, exterior, commercial, industrial epoxy floors, kitchen painting, spray finishing and wallpapering. Free estimates.",
+      },
       { property: "og:title", content: "Painting & Decorating Services Dublin | All Colours" },
-      { property: "og:description", content: "Full range of painting services in Dublin: interior, exterior, commercial, industrial epoxy floors, kitchen painting, spray finishing and wallpapering. Free estimates." },
+      {
+        property: "og:description",
+        content:
+          "Full range of painting services in Dublin: interior, exterior, commercial, industrial epoxy floors, kitchen painting, spray finishing and wallpapering. Free estimates.",
+      },
       { property: "og:url", content: "https://allcolourspainter.com/services" },
       { property: "og:type", content: "website" },
       { property: "og:image", content: `https://allcolourspainter.com${servicesHeroImg}` },
@@ -63,11 +71,13 @@ export const Route = createFileRoute("/services")({
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "FAQPage",
-          mainEntity: FAQS.filter((f) => f.category === "Process" || f.category === "Pricing").slice(0, 6).map((f) => ({
-            "@type": "Question",
-            name: f.q,
-            acceptedAnswer: { "@type": "Answer", text: f.a },
-          })),
+          mainEntity: FAQS.filter((f) => f.category === "Process" || f.category === "Pricing")
+            .slice(0, 6)
+            .map((f) => ({
+              "@type": "Question",
+              name: f.q,
+              acceptedAnswer: { "@type": "Answer", text: f.a },
+            })),
         }),
       },
       {
@@ -76,8 +86,18 @@ export const Route = createFileRoute("/services")({
           "@context": "https://schema.org",
           "@type": "BreadcrumbList",
           itemListElement: [
-            { "@type": "ListItem", position: 1, name: "Home", item: "https://allcolourspainter.com/" },
-            { "@type": "ListItem", position: 2, name: "Services", item: "https://allcolourspainter.com/services" },
+            {
+              "@type": "ListItem",
+              position: 1,
+              name: "Home",
+              item: "https://allcolourspainter.com/",
+            },
+            {
+              "@type": "ListItem",
+              position: 2,
+              name: "Services",
+              item: "https://allcolourspainter.com/services",
+            },
           ],
         }),
       },
@@ -87,25 +107,104 @@ export const Route = createFileRoute("/services")({
 });
 
 const headline = [
-  { title: "Residential", img: heroAsset.url, desc: "Period townhouses, family homes and apartments — interior, exterior, sash windows and feature walls.", bullets: ["Interior repaints", "Exterior render & masonry", "Sash window restoration", "Feature walls & wallpapering"] },
-  { title: "Commercial", img: commercialAsset.url, desc: "Offices, retail, hospitality and education — scheduled out of hours so your business never stops.", bullets: ["Office repaints", "Retail & hospitality fit-out", "Out-of-hours scheduling", "Insurance & compliance"] },
-  { title: "Industrial", img: epoxyFloorImg, alt: "Industrial epoxy floor coating Dublin storage facility", desc: "Warehouse floors, epoxy floors, line-marking, plant-room repaints and heavy-traffic protective coatings with two-pack paints.", bullets: ["Epoxy floor coatings", "Line marking", "Warehouse repaints", "Anti-slip systems"] },
+  {
+    title: "Residential",
+    img: heroAsset.url,
+    desc: "Period townhouses, family homes and apartments — interior, exterior, sash windows and feature walls.",
+    bullets: [
+      "Interior repaints",
+      "Exterior render & masonry",
+      "Sash window restoration",
+      "Feature walls & wallpapering",
+    ],
+  },
+  {
+    title: "Commercial",
+    img: commercialAsset.url,
+    desc: "Offices, retail, hospitality and education — scheduled out of hours so your business never stops.",
+    bullets: [
+      "Office repaints",
+      "Retail & hospitality fit-out",
+      "Out-of-hours scheduling",
+      "Insurance & compliance",
+    ],
+  },
+  {
+    title: "Industrial",
+    img: epoxyFloorImg,
+    alt: "Industrial epoxy floor coating Dublin storage facility",
+    desc: "Warehouse floors, epoxy floors, line-marking, plant-room repaints and heavy-traffic protective coatings with two-pack paints.",
+    bullets: ["Epoxy floor coatings", "Line marking", "Warehouse repaints", "Anti-slip systems"],
+  },
 ];
 
 const more = [
-  { title: "Interior Painting", img: heroAsset.url, desc: "Walls, ceilings, woodwork and skirting in premium emulsion, eggshell and satin finishes. Water based and oil based paint systems available." },
-  { title: "Exterior Painting", img: exteriorAsset.url, desc: "Render, masonry, brick, soffits and fascias with weatherproof Sandtex and Dulux Weathershield systems." },
-  { title: "Kitchen Painting", img: heroAsset.url, desc: "Cabinet refinishing, kitchen spraying and hand-painting with durable kitchen-grade finishes." },
-  { title: "Spray Painting", img: heroAsset.url, desc: "Airless and HVLP spray painting for kitchens, doors, joinery and ceilings — factory-grade spray finish on site." },
-  { title: "Floor Painting", img: epoxyFloorImg, alt: "Industrial epoxy floor coating Dublin storage facility", desc: "Epoxy floor painting, two-pack floor paints and industrial floor coatings for warehouses, garages and commercial spaces." },
-  { title: "Furniture Painting", img: hospitalityAsset.url, desc: "Bespoke furniture painting and varnish painting for tables, chairs, built-ins and cabinetry." },
-  { title: "Railings Painting", img: exteriorAsset.url, desc: "Metal railings, gates and wrought-iron painting with rust-inhibiting primers and long-life top coats." },
-  { title: "Wallpapering", img: hospitalityAsset.url, desc: "Lining paper, standard wallcoverings, hand-printed and feature wall installs with mitre-perfect seams." },
-  { title: "Plastering & Repairs", img: commercialAsset.url, desc: "Skim, patch and full re-plasters, crack stitching and surface prep so every finish has a flawless base." },
-  { title: "Property Maintenance", img: heroAsset.url, desc: "Annual repaint contracts for landlords, letting agents and managed property portfolios." },
-  { title: "Apartment Painting", img: heroAsset.url, desc: "Full apartment repaints across Dublin city and South Dublin — fast turnaround for owners, tenants and lettings." },
-  { title: "Ceiling & Hallway Painting", img: heroAsset.url, desc: "Ceiling painting, hallway and staircase repaints — covered, dust-controlled and finished without splatter." },
-  { title: "Period & Georgian Homes", img: exteriorAsset.url, desc: "Georgian house painting, sash windows, cornicing and heritage colour systems for period properties in Dublin." },
+  {
+    title: "Interior Painting",
+    img: heroAsset.url,
+    desc: "Walls, ceilings, woodwork and skirting in premium emulsion, eggshell and satin finishes. Water based and oil based paint systems available.",
+  },
+  {
+    title: "Exterior Painting",
+    img: exteriorAsset.url,
+    desc: "Render, masonry, brick, soffits and fascias with weatherproof Sandtex and Dulux Weathershield systems.",
+  },
+  {
+    title: "Kitchen Painting",
+    img: heroAsset.url,
+    desc: "Cabinet refinishing, kitchen spraying and hand-painting with durable kitchen-grade finishes.",
+  },
+  {
+    title: "Spray Painting",
+    img: heroAsset.url,
+    desc: "Airless and HVLP spray painting for kitchens, doors, joinery and ceilings — factory-grade spray finish on site.",
+  },
+  {
+    title: "Floor Painting",
+    img: epoxyFloorImg,
+    alt: "Industrial epoxy floor coating Dublin storage facility",
+    desc: "Epoxy floor painting, two-pack floor paints and industrial floor coatings for warehouses, garages and commercial spaces.",
+  },
+  {
+    title: "Furniture Painting",
+    img: hospitalityAsset.url,
+    desc: "Bespoke furniture painting and varnish painting for tables, chairs, built-ins and cabinetry.",
+  },
+  {
+    title: "Railings Painting",
+    img: exteriorAsset.url,
+    desc: "Metal railings, gates and wrought-iron painting with rust-inhibiting primers and long-life top coats.",
+  },
+  {
+    title: "Wallpapering",
+    img: hospitalityAsset.url,
+    desc: "Lining paper, standard wallcoverings, hand-printed and feature wall installs with mitre-perfect seams.",
+  },
+  {
+    title: "Plastering & Repairs",
+    img: commercialAsset.url,
+    desc: "Skim, patch and full re-plasters, crack stitching and surface prep so every finish has a flawless base.",
+  },
+  {
+    title: "Property Maintenance",
+    img: heroAsset.url,
+    desc: "Annual repaint contracts for landlords, letting agents and managed property portfolios.",
+  },
+  {
+    title: "Apartment Painting",
+    img: heroAsset.url,
+    desc: "Full apartment repaints across Dublin city and South Dublin — fast turnaround for owners, tenants and lettings.",
+  },
+  {
+    title: "Ceiling & Hallway Painting",
+    img: heroAsset.url,
+    desc: "Ceiling painting, hallway and staircase repaints — covered, dust-controlled and finished without splatter.",
+  },
+  {
+    title: "Period & Georgian Homes",
+    img: exteriorAsset.url,
+    desc: "Georgian house painting, sash windows, cornicing and heritage colour systems for period properties in Dublin.",
+  },
 ];
 
 function Services() {
@@ -113,7 +212,15 @@ function Services() {
     <SiteLayout>
       {/* Hero band */}
       <section className="relative isolate overflow-hidden">
-        <img src={servicesHeroImg} alt="Exterior painting project completed by All Colours Painting, Dublin" fetchPriority="high" decoding="async" width={1920} height={900} className="absolute inset-0 -z-10 h-full w-full object-cover" />
+        <img
+          src={servicesHeroImg}
+          alt="Exterior painting project completed by All Colours Painting, Dublin"
+          fetchPriority="high"
+          decoding="async"
+          width={1920}
+          height={900}
+          className="absolute inset-0 -z-10 h-full w-full object-cover"
+        />
         <div className="absolute inset-0 -z-10 bg-[oklch(0.2_0_0)]/75" />
         <div className="mx-auto max-w-7xl px-4 py-24 md:px-8 md:py-36">
           <span className="eyebrow text-accent">What we offer</span>
@@ -122,7 +229,8 @@ function Services() {
           </h1>
           <div className="mt-6 h-[3px] w-[170px] bg-primary" />
           <p className="mt-6 max-w-2xl text-base text-white/80 md:text-lg">
-            From kitchen painting and furniture painting to epoxy floor painting and spray painting — we deliver clean lines and durable finishes, first time.
+            From kitchen painting and furniture painting to epoxy floor painting and spray painting
+            — we deliver clean lines and durable finishes, first time.
           </p>
         </div>
       </section>
@@ -153,7 +261,9 @@ function Services() {
         <div className="mx-auto max-w-7xl px-4 py-20 md:px-8 md:py-28">
           <div className="max-w-2xl">
             <span className="eyebrow">Core services</span>
-            <h2 className="section-title mt-3 text-3xl md:text-4xl">A specialist team for every sector</h2>
+            <h2 className="section-title mt-3 text-3xl md:text-4xl">
+              A specialist team for every sector
+            </h2>
             <hr className="section-rule" />
           </div>
 
@@ -161,10 +271,19 @@ function Services() {
             {headline.map((s) => (
               <article key={s.title} className="flex flex-col bg-card">
                 <div className="aspect-[4/3] overflow-hidden">
-                  <img src={s.img} alt={s.alt ?? `${s.title} painting services`} loading="lazy" width={1000} height={750} className="h-full w-full object-cover transition-transform duration-700 hover:scale-105" />
+                  <img
+                    src={s.img}
+                    alt={s.alt ?? `${s.title} painting services`}
+                    loading="lazy"
+                    width={1000}
+                    height={750}
+                    className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
+                  />
                 </div>
                 <div className="flex flex-1 flex-col border-b-[3px] border-primary p-8">
-                  <h3 className="font-display text-xl font-bold uppercase tracking-wide text-[oklch(0.2_0_0)]">{s.title}</h3>
+                  <h3 className="font-display text-xl font-bold uppercase tracking-wide text-[oklch(0.2_0_0)]">
+                    {s.title}
+                  </h3>
                   <p className="mt-3 text-sm leading-relaxed text-foreground">{s.desc}</p>
                   <ul className="mt-5 space-y-2 text-sm">
                     {s.bullets.map((b) => (
@@ -194,10 +313,19 @@ function Services() {
             {more.map((s) => (
               <div key={s.title} className="group overflow-hidden bg-card">
                 <div className="aspect-[16/10] overflow-hidden">
-                  <img src={s.img} alt={s.alt ?? `${s.title} — ${s.desc.split(".")[0]}`} loading="lazy" width={800} height={500} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                  <img
+                    src={s.img}
+                    alt={s.alt ?? `${s.title} — ${s.desc.split(".")[0]}`}
+                    loading="lazy"
+                    width={800}
+                    height={500}
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
                 </div>
                 <div className="p-6">
-                  <h3 className="font-display text-base font-bold uppercase tracking-wide text-[oklch(0.2_0_0)]">{s.title}</h3>
+                  <h3 className="font-display text-base font-bold uppercase tracking-wide text-[oklch(0.2_0_0)]">
+                    {s.title}
+                  </h3>
                   <p className="mt-2 text-sm leading-relaxed text-foreground">{s.desc}</p>
                 </div>
               </div>
@@ -206,9 +334,18 @@ function Services() {
 
           <div className="mt-16 bg-[var(--color-surface-dark)] p-10 text-white md:p-14">
             <span className="eyebrow text-accent">Free site visit</span>
-            <h2 className="mt-2 font-display text-3xl font-extrabold uppercase tracking-tight md:text-4xl">Not sure what you need?</h2>
-            <p className="mt-3 max-w-2xl text-white/75">We'll visit, advise and quote — free of charge and with no obligation.</p>
-            <Link to="/contact" className="mt-6 inline-flex items-center rounded-sm bg-primary px-6 py-3 font-display text-xs font-bold uppercase tracking-wider text-primary-foreground hover:bg-[oklch(0.62_0.17_158)]">Get a free quote</Link>
+            <h2 className="mt-2 font-display text-3xl font-extrabold uppercase tracking-tight md:text-4xl">
+              Not sure what you need?
+            </h2>
+            <p className="mt-3 max-w-2xl text-white/75">
+              We'll visit, advise and quote — free of charge and with no obligation.
+            </p>
+            <Link
+              to="/contact"
+              className="mt-6 inline-flex items-center rounded-sm bg-primary px-6 py-3 font-display text-xs font-bold uppercase tracking-wider text-primary-foreground hover:bg-[oklch(0.62_0.17_158)]"
+            >
+              Get a free quote
+            </Link>
           </div>
         </div>
       </section>
@@ -221,25 +358,54 @@ function Services() {
         <div className="mx-auto max-w-7xl px-4 py-20 md:px-8 md:py-28">
           <div className="max-w-2xl">
             <span className="eyebrow">What we paint with</span>
-            <h2 className="section-title mt-3 text-3xl md:text-4xl">Trade-grade materials, picked for the job</h2>
+            <h2 className="section-title mt-3 text-3xl md:text-4xl">
+              Trade-grade materials, picked for the job
+            </h2>
             <hr className="section-rule" />
             <p className="mt-6 text-base text-foreground">
-              We don't pick paint by the colour on the lid. Every job gets the system that's right for the surface, the use, and the conditions.
+              We don't pick paint by the colour on the lid. Every job gets the system that's right
+              for the surface, the use, and the conditions.
             </p>
           </div>
           <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
             {[
-              { brand: "Farrow & Ball", use: "Premium interior walls and woodwork — pigment-rich colour, beautiful matt depth." },
-              { brand: "Little Greene", use: "Period and heritage colours, intelligent durable matt and eggshell ranges." },
-              { brand: "Dulux Trade", use: "Workhorse trade emulsions, scrubbable diamond matt, kitchen & bathroom systems." },
-              { brand: "Sandtex / Weathershield", use: "Long-life exterior masonry and woodwork systems for Irish weather." },
-              { brand: "Tikkurila Helmi", use: "Water-based satin and eggshell for skirting, doors and joinery — non-yellowing." },
-              { brand: "Sikafloor Epoxy", use: "Industrial floor coatings — anti-slip, chemical-resistant, fast-cure." },
-              { brand: "Allback Linseed", use: "Heritage and conservation work — traditional linseed paints and putty." },
-              { brand: "Zinsser Primers", use: "Stain block, BIN, Bullseye — primer for every problem surface we meet." },
+              {
+                brand: "Farrow & Ball",
+                use: "Premium interior walls and woodwork — pigment-rich colour, beautiful matt depth.",
+              },
+              {
+                brand: "Little Greene",
+                use: "Period and heritage colours, intelligent durable matt and eggshell ranges.",
+              },
+              {
+                brand: "Dulux Trade",
+                use: "Workhorse trade emulsions, scrubbable diamond matt, kitchen & bathroom systems.",
+              },
+              {
+                brand: "Sandtex / Weathershield",
+                use: "Long-life exterior masonry and woodwork systems for Irish weather.",
+              },
+              {
+                brand: "Tikkurila Helmi",
+                use: "Water-based satin and eggshell for skirting, doors and joinery — non-yellowing.",
+              },
+              {
+                brand: "Sikafloor Epoxy",
+                use: "Industrial floor coatings — anti-slip, chemical-resistant, fast-cure.",
+              },
+              {
+                brand: "Allback Linseed",
+                use: "Heritage and conservation work — traditional linseed paints and putty.",
+              },
+              {
+                brand: "Zinsser Primers",
+                use: "Stain block, BIN, Bullseye — primer for every problem surface we meet.",
+              },
             ].map((m) => (
               <div key={m.brand} className="border-t-[3px] border-primary bg-card p-6">
-                <div className="font-display text-base font-bold uppercase tracking-wide text-[oklch(0.2_0_0)]">{m.brand}</div>
+                <div className="font-display text-base font-bold uppercase tracking-wide text-[oklch(0.2_0_0)]">
+                  {m.brand}
+                </div>
                 <p className="mt-3 text-sm leading-relaxed text-foreground">{m.use}</p>
               </div>
             ))}
@@ -256,10 +422,20 @@ function Services() {
             <hr className="section-rule" />
           </div>
           <div className="mt-10">
-            <FaqAccordion items={FAQS.filter((f) => f.category === "Process" || f.category === "Pricing").slice(0, 6)} />
+            <FaqAccordion
+              items={FAQS.filter((f) => f.category === "Process" || f.category === "Pricing").slice(
+                0,
+                6,
+              )}
+            />
           </div>
           <div className="mt-10">
-            <Link to="/faq" className="font-display text-xs font-bold uppercase tracking-wider text-primary hover:text-[oklch(0.2_0_0)]">All FAQs →</Link>
+            <Link
+              to="/faq"
+              className="font-display text-xs font-bold uppercase tracking-wider text-primary hover:text-[oklch(0.2_0_0)]"
+            >
+              All FAQs →
+            </Link>
           </div>
         </div>
       </section>

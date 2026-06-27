@@ -5,9 +5,7 @@ const MAX_AGE_SECONDS = 60 * 60 * 24 * 180; // ~180 days
 
 export function getConsent(): ConsentValue | null {
   if (typeof document === "undefined") return null;
-  const match = document.cookie
-    .split("; ")
-    .find((row) => row.startsWith(`${COOKIE_NAME}=`));
+  const match = document.cookie.split("; ").find((row) => row.startsWith(`${COOKIE_NAME}=`));
   if (!match) return null;
   const value = decodeURIComponent(match.split("=")[1] ?? "");
   return value === "accepted" || value === "declined" ? value : null;

@@ -4,8 +4,10 @@ import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
 export const getAnalytics = createServerFn({ method: "GET" })
   .middleware([requireSupabaseAuth])
   .handler(async ({ context }) => {
-    const isAdmin = await context.supabase
-      .rpc("has_role", { _user_id: context.userId, _role: "admin" });
+    const isAdmin = await context.supabase.rpc("has_role", {
+      _user_id: context.userId,
+      _role: "admin",
+    });
     if (!isAdmin.data) throw new Error("Forbidden");
 
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
@@ -15,13 +17,29 @@ export const getAnalytics = createServerFn({ method: "GET" })
 
     const [total, last30, last7, last1, byPath, recent, inquiries, unread] = await Promise.all([
       supabaseAdmin.from("page_views").select("*", { count: "exact", head: true }),
-      supabaseAdmin.from("page_views").select("*", { count: "exact", head: true }).gte("created_at", since30),
-      supabaseAdmin.from("page_views").select("*", { count: "exact", head: true }).gte("created_at", since7),
-      supabaseAdmin.from("page_views").select("*", { count: "exact", head: true }).gte("created_at", since1),
+      supabaseAdmin
+        .from("page_views")
+        .select("*", { count: "exact", head: true })
+        .gte("created_at", since30),
+      supabaseAdmin
+        .from("page_views")
+        .select("*", { count: "exact", head: true })
+        .gte("created_at", since7),
+      supabaseAdmin
+        .from("page_views")
+        .select("*", { count: "exact", head: true })
+        .gte("created_at", since1),
       supabaseAdmin.from("page_views").select("path").gte("created_at", since30),
-      supabaseAdmin.from("page_views").select("path, created_at, referrer").order("created_at", { ascending: false }).limit(20),
+      supabaseAdmin
+        .from("page_views")
+        .select("path, created_at, referrer")
+        .order("created_at", { ascending: false })
+        .limit(20),
       supabaseAdmin.from("contact_submissions").select("*", { count: "exact", head: true }),
-      supabaseAdmin.from("contact_submissions").select("*", { count: "exact", head: true }).eq("is_read", false),
+      supabaseAdmin
+        .from("contact_submissions")
+        .select("*", { count: "exact", head: true })
+        .eq("is_read", false),
     ]);
 
     const pathCounts = new Map<string, number>();

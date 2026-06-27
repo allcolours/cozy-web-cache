@@ -22,7 +22,12 @@ export const Route = createFileRoute("/painter-blackrock")({
           "@context": "https://schema.org",
           "@type": "BreadcrumbList",
           itemListElement: [
-            { "@type": "ListItem", position: 1, name: "Home", item: "https://allcolourspainter.com/" },
+            {
+              "@type": "ListItem",
+              position: 1,
+              name: "Home",
+              item: "https://allcolourspainter.com/",
+            },
             { "@type": "ListItem", position: 2, name: TITLE.split(" | ")[0], item: URL },
           ],
         }),
@@ -30,5 +35,11 @@ export const Route = createFileRoute("/painter-blackrock")({
     ],
     links: [{ rel: "canonical", href: URL }],
   }),
-  component: () => <LocalAreaPage area="Blackrock" postcode="Co. Dublin" intro="Victorian and period homes, modern extensions and coastal exteriors throughout Blackrock — heritage-safe paint systems and a 12-month guarantee." />,
+  component: () => (
+    <LocalAreaPage
+      area="Blackrock"
+      postcode="Co. Dublin"
+      intro="Victorian and period homes, modern extensions and coastal exteriors throughout Blackrock — heritage-safe paint systems and a 12-month guarantee."
+    />
+  ),
 });

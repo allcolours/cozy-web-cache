@@ -5,7 +5,6 @@ import { TestimonialCard } from "./Testimonials";
 import heroAsset from "../assets/portfolio/hero-house.webp.asset.json";
 import { AREA_CONTENT, AREA_PATHS } from "../data/areaContent";
 
-
 const STATS = [
   { value: "15–30", label: "Skilled painters" },
   { value: "300+", label: "Projects completed" },
@@ -16,11 +15,26 @@ const STATS = [
 ];
 
 const SERVICES = [
-  { title: "Interior Painting", desc: "Walls, ceilings, woodwork and trim — flawless finishes for occupied homes." },
-  { title: "Exterior Painting", desc: "Render, masonry, timber and metalwork prepared and painted to last." },
-  { title: "Residential Repaints", desc: "Full-house repaints, single rooms or tenancy turnarounds." },
-  { title: "Commercial Painting", desc: "Offices, retail and hospitality — out-of-hours where required." },
-  { title: "Epoxy Floors", desc: "Hard-wearing resin floors for garages, workshops and commercial units." },
+  {
+    title: "Interior Painting",
+    desc: "Walls, ceilings, woodwork and trim — flawless finishes for occupied homes.",
+  },
+  {
+    title: "Exterior Painting",
+    desc: "Render, masonry, timber and metalwork prepared and painted to last.",
+  },
+  {
+    title: "Residential Repaints",
+    desc: "Full-house repaints, single rooms or tenancy turnarounds.",
+  },
+  {
+    title: "Commercial Painting",
+    desc: "Offices, retail and hospitality — out-of-hours where required.",
+  },
+  {
+    title: "Epoxy Floors",
+    desc: "Hard-wearing resin floors for garages, workshops and commercial units.",
+  },
   { title: "Bespoke Finishes", desc: "Spray finishing, feature walls and hand-painted kitchens." },
 ];
 
@@ -43,7 +57,10 @@ export interface LocalAreaPageProps {
 export function LocalAreaPage({ area, postcode, intro }: LocalAreaPageProps) {
   const reviews = TESTIMONIALS.slice(0, 3);
   const content = AREA_CONTENT[area];
-  const heroIntro = content?.intro ?? intro ?? "Interior, exterior and commercial painting delivered to a professional standard — fully insured with a 12-month workmanship guarantee.";
+  const heroIntro =
+    content?.intro ??
+    intro ??
+    "Interior, exterior and commercial painting delivered to a professional standard — fully insured with a 12-month workmanship guarantee.";
   const localContext = content?.localContext ?? LOCAL_CONTEXT_FALLBACK;
   const highlights = content?.highlights ?? WHY_FALLBACK;
   const otherAreas = AREA_PATHS.filter((a) => a.name !== area);
@@ -54,7 +71,11 @@ export function LocalAreaPage({ area, postcode, intro }: LocalAreaPageProps) {
       <section className="relative overflow-hidden bg-[var(--color-surface-dark)] text-white">
         <div
           className="absolute inset-0 opacity-30"
-          style={{ backgroundImage: `url(${heroAsset.url})`, backgroundSize: "cover", backgroundPosition: "center" }}
+          style={{
+            backgroundImage: `url(${heroAsset.url})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
           aria-hidden
         />
         <div className="relative mx-auto max-w-7xl px-4 py-20 md:px-8 md:py-28">
@@ -67,10 +88,18 @@ export function LocalAreaPage({ area, postcode, intro }: LocalAreaPageProps) {
           </p>
 
           <div className="mt-8 flex flex-wrap gap-3">
-            <a href="tel:0858211870" className="inline-flex items-center rounded-sm bg-primary px-6 py-3 font-display text-xs font-bold uppercase tracking-wider text-primary-foreground hover:bg-[oklch(0.62_0.17_158)]">
+            <a
+              href="tel:0858211870"
+              className="inline-flex items-center rounded-sm bg-primary px-6 py-3 font-display text-xs font-bold uppercase tracking-wider text-primary-foreground hover:bg-[oklch(0.62_0.17_158)]"
+            >
               Call 085 821 1870
             </a>
-            <a href="https://wa.me/353858211870?text=Hi%20All%20Colours%2C%20I%27d%20like%20a%20quote.%20Here%20are%20photos%20of%20the%20job%3A" target="_blank" rel="noopener noreferrer" className="inline-flex items-center rounded-sm border-2 border-white px-6 py-3 font-display text-xs font-bold uppercase tracking-wider text-white hover:bg-white hover:text-[var(--color-surface-dark)]">
+            <a
+              href="https://wa.me/353858211870?text=Hi%20All%20Colours%2C%20I%27d%20like%20a%20quote.%20Here%20are%20photos%20of%20the%20job%3A"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center rounded-sm border-2 border-white px-6 py-3 font-display text-xs font-bold uppercase tracking-wider text-white hover:bg-white hover:text-[var(--color-surface-dark)]"
+            >
               Send photos on WhatsApp
             </a>
           </div>
@@ -82,8 +111,12 @@ export function LocalAreaPage({ area, postcode, intro }: LocalAreaPageProps) {
         <div className="mx-auto grid max-w-7xl grid-cols-2 gap-6 px-4 py-10 md:grid-cols-6 md:px-8">
           {STATS.map((s) => (
             <div key={s.label} className="text-center">
-              <div className="font-display text-2xl font-bold text-primary md:text-3xl">{s.value}</div>
-              <div className="mt-1 text-xs uppercase tracking-wider text-foreground/70">{s.label}</div>
+              <div className="font-display text-2xl font-bold text-primary md:text-3xl">
+                {s.value}
+              </div>
+              <div className="mt-1 text-xs uppercase tracking-wider text-foreground/70">
+                {s.label}
+              </div>
             </div>
           ))}
         </div>
@@ -93,12 +126,16 @@ export function LocalAreaPage({ area, postcode, intro }: LocalAreaPageProps) {
       <section className="bg-background">
         <div className="mx-auto max-w-7xl px-4 py-20 md:px-8 md:py-24">
           <span className="eyebrow">What we do in {area}</span>
-          <h2 className="section-title mt-3 text-3xl md:text-4xl">Painting services for {area} homes &amp; businesses</h2>
+          <h2 className="section-title mt-3 text-3xl md:text-4xl">
+            Painting services for {area} homes &amp; businesses
+          </h2>
           <hr className="section-rule" />
           <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {SERVICES.map((s) => (
               <article key={s.title} className="border-t-[3px] border-primary bg-card p-6">
-                <h3 className="font-display text-lg font-bold uppercase tracking-wide text-[oklch(0.2_0_0)]">{s.title}</h3>
+                <h3 className="font-display text-lg font-bold uppercase tracking-wide text-[oklch(0.2_0_0)]">
+                  {s.title}
+                </h3>
                 <p className="mt-3 text-sm leading-relaxed text-foreground/80">{s.desc}</p>
               </article>
             ))}
@@ -110,14 +147,19 @@ export function LocalAreaPage({ area, postcode, intro }: LocalAreaPageProps) {
       <section className="bg-card">
         <div className="mx-auto max-w-7xl px-4 py-20 md:px-8 md:py-24">
           <span className="eyebrow">Why {area} chooses us</span>
-          <h2 className="section-title mt-3 text-3xl md:text-4xl">Reliable painters, properly insured</h2>
+          <h2 className="section-title mt-3 text-3xl md:text-4xl">
+            Reliable painters, properly insured
+          </h2>
           <hr className="section-rule" />
           <p className="mt-8 max-w-3xl text-base leading-relaxed text-foreground/85">
             {localContext}
           </p>
           <ul className="mt-8 grid gap-4 md:grid-cols-2">
             {highlights.map((w) => (
-              <li key={w} className="flex items-start gap-3 border-l-[3px] border-primary bg-background p-5">
+              <li
+                key={w}
+                className="flex items-start gap-3 border-l-[3px] border-primary bg-background p-5"
+              >
                 <span className="mt-0.5 text-primary">✓</span>
                 <span className="text-sm leading-relaxed text-foreground/85">{w}</span>
               </li>
@@ -126,7 +168,6 @@ export function LocalAreaPage({ area, postcode, intro }: LocalAreaPageProps) {
         </div>
       </section>
 
-
       {/* Reviews */}
       <section className="bg-background">
         <div className="mx-auto max-w-7xl px-4 py-20 md:px-8 md:py-24">
@@ -134,7 +175,9 @@ export function LocalAreaPage({ area, postcode, intro }: LocalAreaPageProps) {
           <h2 className="section-title mt-3 text-3xl md:text-4xl">What clients say</h2>
           <hr className="section-rule" />
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {reviews.map((t) => <TestimonialCard key={t.name} t={t} />)}
+            {reviews.map((t) => (
+              <TestimonialCard key={t.name} t={t} />
+            ))}
           </div>
         </div>
       </section>
@@ -146,13 +189,22 @@ export function LocalAreaPage({ area, postcode, intro }: LocalAreaPageProps) {
             Get a Free Quote in {area}
           </h2>
           <p className="mt-5 text-lg text-white/75">
-            Tell us about your project — we'll visit, measure up and send a written quote within 48 hours.
+            Tell us about your project — we'll visit, measure up and send a written quote within 48
+            hours.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <a href="tel:0858211870" className="inline-flex items-center rounded-sm bg-primary px-7 py-4 font-display text-sm font-bold uppercase tracking-wider text-primary-foreground hover:bg-[oklch(0.62_0.17_158)]">
+            <a
+              href="tel:0858211870"
+              className="inline-flex items-center rounded-sm bg-primary px-7 py-4 font-display text-sm font-bold uppercase tracking-wider text-primary-foreground hover:bg-[oklch(0.62_0.17_158)]"
+            >
               📞 Call 085 821 1870
             </a>
-            <a href="https://wa.me/353858211870?text=Hi%20All%20Colours%2C%20I%27d%20like%20a%20quote.%20Here%20are%20photos%20of%20the%20job%3A" target="_blank" rel="noopener noreferrer" className="inline-flex items-center rounded-sm bg-[#25D366] px-7 py-4 font-display text-sm font-bold uppercase tracking-wider text-white hover:opacity-90">
+            <a
+              href="https://wa.me/353858211870?text=Hi%20All%20Colours%2C%20I%27d%20like%20a%20quote.%20Here%20are%20photos%20of%20the%20job%3A"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center rounded-sm bg-[#25D366] px-7 py-4 font-display text-sm font-bold uppercase tracking-wider text-white hover:opacity-90"
+            >
               💬 Send photos on WhatsApp
             </a>
           </div>
@@ -182,16 +234,21 @@ export function LocalAreaPage({ area, postcode, intro }: LocalAreaPageProps) {
             ))}
           </div>
           <div className="mt-6 flex flex-wrap gap-3 text-sm">
-            <Link to="/services" className="font-display text-xs font-bold uppercase tracking-wider text-primary hover:underline">
+            <Link
+              to="/services"
+              className="font-display text-xs font-bold uppercase tracking-wider text-primary hover:underline"
+            >
               View all services →
             </Link>
-            <Link to="/painters" className="font-display text-xs font-bold uppercase tracking-wider text-primary hover:underline">
+            <Link
+              to="/painters"
+              className="font-display text-xs font-bold uppercase tracking-wider text-primary hover:underline"
+            >
               All Dublin areas →
             </Link>
           </div>
         </div>
       </section>
     </SiteLayout>
-
   );
 }

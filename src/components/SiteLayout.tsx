@@ -72,7 +72,6 @@ export const COMPANY = {
   tagline: SITE.tagline,
 };
 
-
 export function SiteLayout({ children }: { children: ReactNode }) {
   const [open, setOpen] = useState(false);
   const settings = useSiteSettings();
@@ -87,12 +86,37 @@ export function SiteLayout({ children }: { children: ReactNode }) {
       <div className="hidden bg-[var(--color-surface-dark)] text-[var(--color-surface-dark-foreground)] lg:block">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 text-xs md:px-8">
           <div className="flex items-center gap-6">
-            <a href={`tel:${phone.replace(/\s/g, "")}`} className="flex items-center gap-2 text-white/80 hover:text-primary">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92Z" /></svg>
+            <a
+              href={`tel:${phone.replace(/\s/g, "")}`}
+              className="flex items-center gap-2 text-white/80 hover:text-primary"
+            >
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92Z" />
+              </svg>
               {phone}
             </a>
-            <a href={`mailto:${email}`} className="flex items-center gap-2 text-white/80 hover:text-primary">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="M3 7l9 6 9-6" /></svg>
+            <a
+              href={`mailto:${email}`}
+              className="flex items-center gap-2 text-white/80 hover:text-primary"
+            >
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <rect x="3" y="5" width="18" height="14" rx="2" />
+                <path d="M3 7l9 6 9-6" />
+              </svg>
               {email}
             </a>
           </div>
@@ -104,7 +128,14 @@ export function SiteLayout({ children }: { children: ReactNode }) {
       <header className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/85">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 md:px-8">
           <Link to="/" className="flex shrink-0 items-center gap-3" onClick={() => setOpen(false)}>
-            <img src={logo} alt={COMPANY.name} width={56} height={56} loading="eager" className="h-12 w-12 shrink-0 object-contain sm:h-14 sm:w-14" />
+            <img
+              src={logo}
+              alt={COMPANY.name}
+              width={56}
+              height={56}
+              loading="eager"
+              className="h-12 w-12 shrink-0 object-contain sm:h-14 sm:w-14"
+            />
             <span className="hidden whitespace-nowrap font-display text-sm font-bold uppercase tracking-wide text-[oklch(0.25_0_0)] sm:block">
               {COMPANY.shortName}
             </span>
@@ -149,13 +180,19 @@ export function SiteLayout({ children }: { children: ReactNode }) {
             </Link>
           </nav>
 
-
           <button
             className="inline-flex shrink-0 items-center justify-center rounded-sm p-2 text-[oklch(0.2_0_0)] lg:hidden"
             onClick={() => setOpen((v) => !v)}
             aria-label="Toggle menu"
           >
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <svg
+              width="26"
+              height="26"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            >
               {open ? <path d="M6 6l12 12M6 18L18 6" /> : <path d="M3 6h18M3 12h18M3 18h18" />}
             </svg>
           </button>
@@ -163,7 +200,6 @@ export function SiteLayout({ children }: { children: ReactNode }) {
 
         {open && (
           <div className="max-h-[calc(100vh-4rem)] overflow-y-auto scroll-smooth border-t border-border lg:hidden">
-
             <nav className="mx-auto flex max-w-7xl flex-col gap-1 px-4 py-4">
               {MOBILE_NAV.map((n) => (
                 <Link
@@ -198,75 +234,214 @@ export function SiteLayout({ children }: { children: ReactNode }) {
         <div className="mx-auto grid max-w-7xl gap-10 px-4 py-16 md:grid-cols-6 md:px-8">
           <div className="md:col-span-2">
             <div className="flex items-center gap-3">
-              <img src={logo} alt={`${COMPANY.shortName} logo`} width={64} height={64} loading="lazy" className="h-16 w-16 object-contain" />
+              <img
+                src={logo}
+                alt={`${COMPANY.shortName} logo`}
+                width={64}
+                height={64}
+                loading="lazy"
+                className="h-16 w-16 object-contain"
+              />
               <span className="font-display text-lg font-bold uppercase tracking-wide text-white">
                 {COMPANY.shortName}
               </span>
             </div>
             <p className="mt-5 max-w-md text-sm leading-relaxed text-white/80">
               Professional interior, exterior and commercial painting & decorating across {area}.
-              Quality finishes, tidy workmanship, fully insured — backed by a 12-month written workmanship guarantee.
+              Quality finishes, tidy workmanship, fully insured — backed by a 12-month written
+              workmanship guarantee.
             </p>
             <div className="mt-5 h-[3px] w-16 bg-primary" />
           </div>
 
           <div>
-            <h4 className="font-display text-sm font-bold uppercase tracking-wider text-white">Explore</h4>
+            <h4 className="font-display text-sm font-bold uppercase tracking-wider text-white">
+              Explore
+            </h4>
             <div className="mt-3 h-[2px] w-10 bg-primary" />
             <ul className="mt-4 space-y-2 text-sm text-white/80">
-              <li><Link to="/" className="hover:text-primary">Home</Link></li>
-              <li><Link to="/about" className="hover:text-primary">About</Link></li>
-              <li><Link to="/services" className="hover:text-primary">Services</Link></li>
-              <li><Link to="/gallery" className="hover:text-primary">Gallery</Link></li>
-              <li><Link to="/blog" className="hover:text-primary">Blog</Link></li>
-              <li><Link to="/faq" className="hover:text-primary">FAQ</Link></li>
-              <li><Link to="/projects" className="hover:text-primary">Projects</Link></li>
-              <li><Link to="/pricing-guide" className="hover:text-primary">Pricing Guide</Link></li>
-            </ul>
-          </div>
-
-
-          <div>
-            <h4 className="font-display text-sm font-bold uppercase tracking-wider text-white">Areas We Cover</h4>
-            <div className="mt-3 h-[2px] w-10 bg-primary" />
-            <ul className="mt-4 space-y-2 text-sm text-white/80">
-              <li><Link to="/painter-ballsbridge" className="hover:text-primary">Painter Ballsbridge</Link></li>
-              <li><Link to="/painter-ranelagh" className="hover:text-primary">Painter Ranelagh</Link></li>
-              <li><Link to="/painter-rathmines" className="hover:text-primary">Painter Rathmines</Link></li>
-              <li><Link to="/painter-donnybrook" className="hover:text-primary">Painter Donnybrook</Link></li>
-              <li><Link to="/painter-clontarf" className="hover:text-primary">Painter Clontarf</Link></li>
-              <li><Link to="/painter-blackrock" className="hover:text-primary">Painter Blackrock</Link></li>
-              <li><Link to="/painter-dun-laoghaire" className="hover:text-primary">Painter Dún Laoghaire</Link></li>
-              <li><Link to="/painter-dalkey" className="hover:text-primary">Painter Dalkey</Link></li>
-              <li><Link to="/painter-foxrock" className="hover:text-primary">Painter Foxrock</Link></li>
-              <li><Link to="/painter-stillorgan" className="hover:text-primary">Painter Stillorgan</Link></li>
-              <li><Link to="/painter-sandyford" className="hover:text-primary">Painter Sandyford</Link></li>
-              <li><Link to="/painter-dundrum" className="hover:text-primary">Painter Dundrum</Link></li>
-              <li><Link to="/painter-rathfarnham" className="hover:text-primary">Painter Rathfarnham</Link></li>
-              <li><Link to="/painter-malahide" className="hover:text-primary">Painter Malahide</Link></li>
-              <li><Link to="/painter-clondalkin" className="hover:text-primary">Painter Clondalkin</Link></li>
-              <li><Link to="/painters" className="hover:text-primary font-medium">View all areas →</Link></li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="font-display text-sm font-bold uppercase tracking-wider text-white">Commercial</h4>
-            <div className="mt-3 h-[2px] w-10 bg-primary" />
-            <ul className="mt-4 space-y-2 text-sm text-white/80">
-              <li><Link to="/commercial-contractors" className="hover:text-primary">Commercial Contractors</Link></li>
-              <li><Link to="/commercial-painting-dublin" className="hover:text-primary">Commercial Painting Dublin</Link></li>
-              <li><Link to="/case-studies" className="hover:text-primary">Case Studies</Link></li>
-              <li><Link to="/estimate" className="hover:text-primary">Get Estimate</Link></li>
-              <li><Link to="/contact" className="hover:text-primary">Request a Tender</Link></li>
+              <li>
+                <Link to="/" className="hover:text-primary">
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link to="/about" className="hover:text-primary">
+                  About
+                </Link>
+              </li>
+              <li>
+                <Link to="/services" className="hover:text-primary">
+                  Services
+                </Link>
+              </li>
+              <li>
+                <Link to="/gallery" className="hover:text-primary">
+                  Gallery
+                </Link>
+              </li>
+              <li>
+                <Link to="/blog" className="hover:text-primary">
+                  Blog
+                </Link>
+              </li>
+              <li>
+                <Link to="/faq" className="hover:text-primary">
+                  FAQ
+                </Link>
+              </li>
+              <li>
+                <Link to="/projects" className="hover:text-primary">
+                  Projects
+                </Link>
+              </li>
+              <li>
+                <Link to="/pricing-guide" className="hover:text-primary">
+                  Pricing Guide
+                </Link>
+              </li>
             </ul>
           </div>
 
           <div>
-            <h4 className="font-display text-sm font-bold uppercase tracking-wider text-white">Contact</h4>
+            <h4 className="font-display text-sm font-bold uppercase tracking-wider text-white">
+              Areas We Cover
+            </h4>
             <div className="mt-3 h-[2px] w-10 bg-primary" />
             <ul className="mt-4 space-y-2 text-sm text-white/80">
-              <li><a href={`tel:${phone.replace(/\s/g, "")}`} className="hover:text-primary">{phone}</a></li>
-              <li><a href={`mailto:${email}`} className="hover:text-primary">{email}</a></li>
+              <li>
+                <Link to="/painter-ballsbridge" className="hover:text-primary">
+                  Painter Ballsbridge
+                </Link>
+              </li>
+              <li>
+                <Link to="/painter-ranelagh" className="hover:text-primary">
+                  Painter Ranelagh
+                </Link>
+              </li>
+              <li>
+                <Link to="/painter-rathmines" className="hover:text-primary">
+                  Painter Rathmines
+                </Link>
+              </li>
+              <li>
+                <Link to="/painter-donnybrook" className="hover:text-primary">
+                  Painter Donnybrook
+                </Link>
+              </li>
+              <li>
+                <Link to="/painter-clontarf" className="hover:text-primary">
+                  Painter Clontarf
+                </Link>
+              </li>
+              <li>
+                <Link to="/painter-blackrock" className="hover:text-primary">
+                  Painter Blackrock
+                </Link>
+              </li>
+              <li>
+                <Link to="/painter-dun-laoghaire" className="hover:text-primary">
+                  Painter Dún Laoghaire
+                </Link>
+              </li>
+              <li>
+                <Link to="/painter-dalkey" className="hover:text-primary">
+                  Painter Dalkey
+                </Link>
+              </li>
+              <li>
+                <Link to="/painter-foxrock" className="hover:text-primary">
+                  Painter Foxrock
+                </Link>
+              </li>
+              <li>
+                <Link to="/painter-stillorgan" className="hover:text-primary">
+                  Painter Stillorgan
+                </Link>
+              </li>
+              <li>
+                <Link to="/painter-sandyford" className="hover:text-primary">
+                  Painter Sandyford
+                </Link>
+              </li>
+              <li>
+                <Link to="/painter-dundrum" className="hover:text-primary">
+                  Painter Dundrum
+                </Link>
+              </li>
+              <li>
+                <Link to="/painter-rathfarnham" className="hover:text-primary">
+                  Painter Rathfarnham
+                </Link>
+              </li>
+              <li>
+                <Link to="/painter-malahide" className="hover:text-primary">
+                  Painter Malahide
+                </Link>
+              </li>
+              <li>
+                <Link to="/painter-clondalkin" className="hover:text-primary">
+                  Painter Clondalkin
+                </Link>
+              </li>
+              <li>
+                <Link to="/painters" className="hover:text-primary font-medium">
+                  View all areas →
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="font-display text-sm font-bold uppercase tracking-wider text-white">
+              Commercial
+            </h4>
+            <div className="mt-3 h-[2px] w-10 bg-primary" />
+            <ul className="mt-4 space-y-2 text-sm text-white/80">
+              <li>
+                <Link to="/commercial-contractors" className="hover:text-primary">
+                  Commercial Contractors
+                </Link>
+              </li>
+              <li>
+                <Link to="/commercial-painting-dublin" className="hover:text-primary">
+                  Commercial Painting Dublin
+                </Link>
+              </li>
+              <li>
+                <Link to="/case-studies" className="hover:text-primary">
+                  Case Studies
+                </Link>
+              </li>
+              <li>
+                <Link to="/estimate" className="hover:text-primary">
+                  Get Estimate
+                </Link>
+              </li>
+              <li>
+                <Link to="/contact" className="hover:text-primary">
+                  Request a Tender
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="font-display text-sm font-bold uppercase tracking-wider text-white">
+              Contact
+            </h4>
+            <div className="mt-3 h-[2px] w-10 bg-primary" />
+            <ul className="mt-4 space-y-2 text-sm text-white/80">
+              <li>
+                <a href={`tel:${phone.replace(/\s/g, "")}`} className="hover:text-primary">
+                  {phone}
+                </a>
+              </li>
+              <li>
+                <a href={`mailto:${email}`} className="hover:text-primary">
+                  {email}
+                </a>
+              </li>
               <li>{area}</li>
               <li>{hours}</li>
             </ul>
@@ -275,17 +450,25 @@ export function SiteLayout({ children }: { children: ReactNode }) {
         <div className="border-t border-white/10">
           <div className="mx-auto max-w-7xl px-4 py-5 text-xs text-white/60 md:px-8">
             <div className="space-y-1 leading-relaxed">
-              <div>{SITE.name} · Registered in Ireland No. {SITE.cro} · VAT {SITE.vat}</div>
+              <div>
+                {SITE.name} · Registered in Ireland No. {SITE.cro} · VAT {SITE.vat}
+              </div>
               <div>Registered office: {SITE.registeredAddress}</div>
             </div>
           </div>
         </div>
         <div className="border-t border-white/10">
           <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-4 py-5 text-xs text-white/75 md:flex-row md:px-8">
-            <div>© {new Date().getFullYear()} {COMPANY.name}. All rights reserved.</div>
+            <div>
+              © {new Date().getFullYear()} {COMPANY.name}. All rights reserved.
+            </div>
             <div className="flex items-center gap-4">
-              <Link to="/privacy" className="hover:text-primary">Privacy</Link>
-              <Link to="/terms" className="hover:text-primary">Terms</Link>
+              <Link to="/privacy" className="hover:text-primary">
+                Privacy
+              </Link>
+              <Link to="/terms" className="hover:text-primary">
+                Terms
+              </Link>
               <span className="text-white/30">·</span>
               <span>Fully insured · Workmanship guaranteed</span>
             </div>

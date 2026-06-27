@@ -23,7 +23,9 @@ export function TestimonialCard({ t }: { t: Testimonial }) {
         {t.quote}
       </blockquote>
       <footer className="mt-6 border-t border-border pt-4">
-        <div className="font-display text-sm font-bold uppercase tracking-wide text-[oklch(0.2_0_0)]">{t.name}</div>
+        <div className="font-display text-sm font-bold uppercase tracking-wide text-[oklch(0.2_0_0)]">
+          {t.name}
+        </div>
         <div className="mt-1 text-xs uppercase tracking-[0.14em] text-foreground/70">
           {t.role} · {t.location}
         </div>
@@ -33,7 +35,15 @@ export function TestimonialCard({ t }: { t: Testimonial }) {
   );
 }
 
-export function TestimonialsSection({ limit = 6, title = "What our clients say", eyebrow = "Reviews" }: { limit?: number; title?: string; eyebrow?: string }) {
+export function TestimonialsSection({
+  limit = 6,
+  title = "What our clients say",
+  eyebrow = "Reviews",
+}: {
+  limit?: number;
+  title?: string;
+  eyebrow?: string;
+}) {
   const { data: dbItems } = useQuery({
     queryKey: ["testimonials", limit],
     queryFn: async () => {
@@ -65,7 +75,9 @@ export function TestimonialsSection({ limit = 6, title = "What our clients say",
             <span className="eyebrow">{eyebrow}</span>
             <h2 className="section-title mt-3 text-3xl md:text-4xl">{title}</h2>
             <hr className="section-rule" />
-            <p className="mt-3 text-sm text-foreground/70">Real client feedback — Facebook &amp; word of mouth</p>
+            <p className="mt-3 text-sm text-foreground/70">
+              Real client feedback — Facebook &amp; word of mouth
+            </p>
           </div>
         </div>
 
@@ -98,11 +110,21 @@ export function TestimonialsSection({ limit = 6, title = "What our clients say",
             className="inline-flex items-center gap-1.5 font-display text-xs font-bold uppercase tracking-wider text-primary hover:text-[oklch(0.2_0_0)]"
           >
             Leave us a review on Google →
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              aria-hidden="true"
+            >
               <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14 21 3" />
             </svg>
           </a>
-          <span className="text-xs text-foreground/70">All reviews verified — sourced from our Facebook page.</span>
+          <span className="text-xs text-foreground/70">
+            All reviews verified — sourced from our Facebook page.
+          </span>
         </div>
 
         {/* As seen on / trust bar */}
@@ -112,8 +134,17 @@ export function TestimonialsSection({ limit = 6, title = "What our clients say",
               Projects delivered for:
             </span>
             <div className="flex flex-wrap gap-2">
-              {["Cairn Homes", "Bennett Construction", "RCSI", "Elliott Group", "Clancy Construction"].map((name) => (
-                <span key={name} className="rounded-full bg-secondary px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-foreground/80">
+              {[
+                "Cairn Homes",
+                "Bennett Construction",
+                "RCSI",
+                "Elliott Group",
+                "Clancy Construction",
+              ].map((name) => (
+                <span
+                  key={name}
+                  className="rounded-full bg-secondary px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-foreground/80"
+                >
                   {name}
                 </span>
               ))}

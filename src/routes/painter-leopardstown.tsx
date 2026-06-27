@@ -23,16 +23,41 @@ export const Route = createFileRoute("/painter-leopardstown")({
           "@context": "https://schema.org",
           "@type": "BreadcrumbList",
           itemListElement: [
-            { "@type": "ListItem", position: 1, name: "Home", item: "https://allcolourspainter.com/" },
+            {
+              "@type": "ListItem",
+              position: 1,
+              name: "Home",
+              item: "https://allcolourspainter.com/",
+            },
             { "@type": "ListItem", position: 2, name: TITLE.split(" | ")[0], item: URL },
           ],
         }),
       },
       {
         type: "application/ld+json",
-        children: JSON.stringify({"@context":"https://schema.org","@type":"LocalBusiness","name":"All Colours Painting Contractor Limited","url":"https://allcolourspainter.com/painter-leopardstown","telephone":SITE.phoneIntl,"email":SITE.email,"areaServed":{"@type":"Place","name":"Leopardstown, Dublin 18"},"address":{"@type":"PostalAddress","addressLocality":"Leopardstown","addressRegion":"Dublin 18","addressCountry":"IE"}}),
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "LocalBusiness",
+          name: "All Colours Painting Contractor Limited",
+          url: "https://allcolourspainter.com/painter-leopardstown",
+          telephone: SITE.phoneIntl,
+          email: SITE.email,
+          areaServed: { "@type": "Place", name: "Leopardstown, Dublin 18" },
+          address: {
+            "@type": "PostalAddress",
+            addressLocality: "Leopardstown",
+            addressRegion: "Dublin 18",
+            addressCountry: "IE",
+          },
+        }),
       },
     ],
   }),
-  component: () => <LocalAreaPage area="Leopardstown" postcode="Dublin 18" intro="Executive homes and apartment schemes near the business district — commercial and residential work delivered to spec." />,
+  component: () => (
+    <LocalAreaPage
+      area="Leopardstown"
+      postcode="Dublin 18"
+      intro="Executive homes and apartment schemes near the business district — commercial and residential work delivered to spec."
+    />
+  ),
 });

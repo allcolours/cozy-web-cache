@@ -30,7 +30,12 @@ export const Route = createFileRoute("/painter-dublin")({
           "@context": "https://schema.org",
           "@type": "BreadcrumbList",
           itemListElement: [
-            { "@type": "ListItem", position: 1, name: "Home", item: "https://allcolourspainter.com/" },
+            {
+              "@type": "ListItem",
+              position: 1,
+              name: "Home",
+              item: "https://allcolourspainter.com/",
+            },
             { "@type": "ListItem", position: 2, name: TITLE.split(" | ")[0], item: URL },
           ],
         }),
@@ -137,7 +142,11 @@ function PainterDublinPage() {
       <section className="relative overflow-hidden bg-[var(--color-surface-dark)] text-white">
         <div
           className="absolute inset-0 opacity-30"
-          style={{ backgroundImage: `url(${heroAsset.url})`, backgroundSize: "cover", backgroundPosition: "center" }}
+          style={{
+            backgroundImage: `url(${heroAsset.url})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
           aria-hidden
         />
         <div className="relative mx-auto max-w-7xl px-4 py-24 md:px-8 md:py-32">
@@ -146,7 +155,8 @@ function PainterDublinPage() {
             Painter Dublin — done properly
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/80">
-            All Colours Painting delivers precise, long-lasting finishes for homes, landlords and businesses across Dublin. Free quotes, no pressure.
+            All Colours Painting delivers precise, long-lasting finishes for homes, landlords and
+            businesses across Dublin. Free quotes, no pressure.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Link
@@ -170,8 +180,12 @@ function PainterDublinPage() {
         <div className="mx-auto grid max-w-7xl grid-cols-2 gap-6 px-4 py-10 md:grid-cols-6 md:px-8">
           {STATS.map((s) => (
             <div key={s.label} className="text-center">
-              <div className="font-display text-2xl font-bold text-primary md:text-3xl">{s.value}</div>
-              <div className="mt-1 text-xs uppercase tracking-wider text-foreground/70">{s.label}</div>
+              <div className="font-display text-2xl font-bold text-primary md:text-3xl">
+                {s.value}
+              </div>
+              <div className="mt-1 text-xs uppercase tracking-wider text-foreground/70">
+                {s.label}
+              </div>
             </div>
           ))}
         </div>
@@ -181,12 +195,16 @@ function PainterDublinPage() {
       <section className="bg-background">
         <div className="mx-auto max-w-7xl px-4 py-20 md:px-8 md:py-24">
           <span className="eyebrow text-primary">What we do</span>
-          <h2 className="section-title mt-3 text-3xl md:text-4xl">Painting services across Dublin</h2>
+          <h2 className="section-title mt-3 text-3xl md:text-4xl">
+            Painting services across Dublin
+          </h2>
           <hr className="section-rule" />
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {SERVICES.map((s) => (
               <article key={s.title} className="border-t-[3px] border-primary bg-card p-6">
-                <h3 className="font-display text-lg font-bold uppercase tracking-wide text-[oklch(0.2_0_0)]">{s.title}</h3>
+                <h3 className="font-display text-lg font-bold uppercase tracking-wide text-[oklch(0.2_0_0)]">
+                  {s.title}
+                </h3>
                 <p className="mt-3 text-sm leading-relaxed text-foreground/80">{s.desc}</p>
               </article>
             ))}
@@ -198,7 +216,9 @@ function PainterDublinPage() {
       <section className="bg-secondary">
         <div className="mx-auto max-w-7xl px-4 py-20 md:px-8 md:py-24">
           <span className="eyebrow text-primary">Where we work</span>
-          <h2 className="section-title mt-3 text-3xl md:text-4xl">Painting across all Dublin areas</h2>
+          <h2 className="section-title mt-3 text-3xl md:text-4xl">
+            Painting across all Dublin areas
+          </h2>
           <hr className="section-rule" />
           <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
             {AREAS.map((a) => (
@@ -222,7 +242,10 @@ function PainterDublinPage() {
           <hr className="section-rule" />
           <ul className="mt-10 grid gap-4 md:grid-cols-2">
             {WHY.map((w) => (
-              <li key={w} className="flex items-start gap-3 border-l-[3px] border-primary bg-card p-5">
+              <li
+                key={w}
+                className="flex items-start gap-3 border-l-[3px] border-primary bg-card p-5"
+              >
                 <span className="mt-0.5 text-primary">✓</span>
                 <span className="text-sm leading-relaxed text-foreground/85">{w}</span>
               </li>
@@ -235,7 +258,9 @@ function PainterDublinPage() {
       <section className="bg-secondary">
         <div className="mx-auto max-w-7xl px-4 py-20 md:px-8 md:py-24">
           <span className="eyebrow text-primary">What clients say</span>
-          <h2 className="section-title mt-3 text-3xl md:text-4xl">Reviews from Dublin homes & businesses</h2>
+          <h2 className="section-title mt-3 text-3xl md:text-4xl">
+            Reviews from Dublin homes & businesses
+          </h2>
           <hr className="section-rule" />
           <div className="mt-10 grid gap-6 md:grid-cols-3">
             {reviews.map((t) => (
@@ -249,7 +274,9 @@ function PainterDublinPage() {
       <section className="bg-background">
         <div className="mx-auto max-w-4xl px-4 py-20 md:px-8 md:py-24">
           <span className="eyebrow text-primary">Frequently asked</span>
-          <h2 className="section-title mt-3 text-3xl md:text-4xl">Painter Dublin — your questions answered</h2>
+          <h2 className="section-title mt-3 text-3xl md:text-4xl">
+            Painter Dublin — your questions answered
+          </h2>
           <hr className="section-rule" />
           <div className="mt-10 divide-y divide-border border-y border-border bg-card">
             {FAQS.map((f, i) => {
@@ -269,7 +296,14 @@ function PainterDublinPage() {
                       aria-hidden
                       className={`inline-flex h-8 w-8 flex-shrink-0 items-center justify-center border border-primary text-primary transition-transform ${isOpen ? "rotate-45" : ""}`}
                     >
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
+                      <svg
+                        width="14"
+                        height="14"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="3"
+                      >
                         <path d="M12 5v14M5 12h14" />
                       </svg>
                     </span>
@@ -293,7 +327,8 @@ function PainterDublinPage() {
             Get your free quote today
           </h2>
           <p className="mt-5 text-lg text-white/75">
-            Tell us about your project — we'll visit, measure up and send a written quote within 48 hours.
+            Tell us about your project — we'll visit, measure up and send a written quote within 48
+            hours.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <Link
