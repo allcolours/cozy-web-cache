@@ -81,7 +81,6 @@ import { Route as AdminLoginRouteImport } from './routes/admin.login'
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated/admin.index'
 import { Route as LovableEmailSuppressionRouteImport } from './routes/lovable/email/suppression'
-import { Route as ApiPublicSitemapDotxmlRouteImport } from './routes/api/public/sitemap[.]xml'
 import { Route as ApiPublicLogAssetErrorRouteImport } from './routes/api/public/log-asset-error'
 import { Route as ApiPublicEstimateRouteImport } from './routes/api/public/estimate'
 import { Route as ApiPublicContactRouteImport } from './routes/api/public/contact'
@@ -470,11 +469,6 @@ const LovableEmailSuppressionRoute = LovableEmailSuppressionRouteImport.update({
   path: '/lovable/email/suppression',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ApiPublicSitemapDotxmlRoute = ApiPublicSitemapDotxmlRouteImport.update({
-  id: '/api/public/sitemap.xml',
-  path: '/api/public/sitemap.xml',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const ApiPublicLogAssetErrorRoute = ApiPublicLogAssetErrorRouteImport.update({
   id: '/api/public/log-asset-error',
   path: '/api/public/log-asset-error',
@@ -715,7 +709,6 @@ export interface FileRoutesByFullPath {
   '/api/public/contact': typeof ApiPublicContactRoute
   '/api/public/estimate': typeof ApiPublicEstimateRoute
   '/api/public/log-asset-error': typeof ApiPublicLogAssetErrorRoute
-  '/api/public/sitemap.xml': typeof ApiPublicSitemapDotxmlRoute
   '/lovable/email/suppression': typeof LovableEmailSuppressionRoute
   '/admin/': typeof AuthenticatedAdminIndexRoute
   '/admin/blog/$postId': typeof AuthenticatedAdminBlogPostIdRoute
@@ -815,7 +808,6 @@ export interface FileRoutesByTo {
   '/api/public/contact': typeof ApiPublicContactRoute
   '/api/public/estimate': typeof ApiPublicEstimateRoute
   '/api/public/log-asset-error': typeof ApiPublicLogAssetErrorRoute
-  '/api/public/sitemap.xml': typeof ApiPublicSitemapDotxmlRoute
   '/lovable/email/suppression': typeof LovableEmailSuppressionRoute
   '/admin': typeof AuthenticatedAdminIndexRoute
   '/admin/blog/$postId': typeof AuthenticatedAdminBlogPostIdRoute
@@ -918,7 +910,6 @@ export interface FileRoutesById {
   '/api/public/contact': typeof ApiPublicContactRoute
   '/api/public/estimate': typeof ApiPublicEstimateRoute
   '/api/public/log-asset-error': typeof ApiPublicLogAssetErrorRoute
-  '/api/public/sitemap.xml': typeof ApiPublicSitemapDotxmlRoute
   '/lovable/email/suppression': typeof LovableEmailSuppressionRoute
   '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
   '/_authenticated/admin/blog/$postId': typeof AuthenticatedAdminBlogPostIdRoute
@@ -1021,7 +1012,6 @@ export interface FileRouteTypes {
     | '/api/public/contact'
     | '/api/public/estimate'
     | '/api/public/log-asset-error'
-    | '/api/public/sitemap.xml'
     | '/lovable/email/suppression'
     | '/admin/'
     | '/admin/blog/$postId'
@@ -1121,7 +1111,6 @@ export interface FileRouteTypes {
     | '/api/public/contact'
     | '/api/public/estimate'
     | '/api/public/log-asset-error'
-    | '/api/public/sitemap.xml'
     | '/lovable/email/suppression'
     | '/admin'
     | '/admin/blog/$postId'
@@ -1223,7 +1212,6 @@ export interface FileRouteTypes {
     | '/api/public/contact'
     | '/api/public/estimate'
     | '/api/public/log-asset-error'
-    | '/api/public/sitemap.xml'
     | '/lovable/email/suppression'
     | '/_authenticated/admin/'
     | '/_authenticated/admin/blog/$postId'
@@ -1314,7 +1302,6 @@ export interface RootRouteChildren {
   ApiPublicContactRoute: typeof ApiPublicContactRoute
   ApiPublicEstimateRoute: typeof ApiPublicEstimateRoute
   ApiPublicLogAssetErrorRoute: typeof ApiPublicLogAssetErrorRoute
-  ApiPublicSitemapDotxmlRoute: typeof ApiPublicSitemapDotxmlRoute
   LovableEmailSuppressionRoute: typeof LovableEmailSuppressionRoute
   ApiPublicHooksCheckAssetErrorsRoute: typeof ApiPublicHooksCheckAssetErrorsRoute
   ApiPublicHooksGscCoverageReportRoute: typeof ApiPublicHooksGscCoverageReportRoute
@@ -1831,13 +1818,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LovableEmailSuppressionRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/api/public/sitemap.xml': {
-      id: '/api/public/sitemap.xml'
-      path: '/api/public/sitemap.xml'
-      fullPath: '/api/public/sitemap.xml'
-      preLoaderRoute: typeof ApiPublicSitemapDotxmlRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/api/public/log-asset-error': {
       id: '/api/public/log-asset-error'
       path: '/api/public/log-asset-error'
@@ -2184,7 +2164,6 @@ const rootRouteChildren: RootRouteChildren = {
   ApiPublicContactRoute: ApiPublicContactRoute,
   ApiPublicEstimateRoute: ApiPublicEstimateRoute,
   ApiPublicLogAssetErrorRoute: ApiPublicLogAssetErrorRoute,
-  ApiPublicSitemapDotxmlRoute: ApiPublicSitemapDotxmlRoute,
   LovableEmailSuppressionRoute: LovableEmailSuppressionRoute,
   ApiPublicHooksCheckAssetErrorsRoute: ApiPublicHooksCheckAssetErrorsRoute,
   ApiPublicHooksGscCoverageReportRoute: ApiPublicHooksGscCoverageReportRoute,
