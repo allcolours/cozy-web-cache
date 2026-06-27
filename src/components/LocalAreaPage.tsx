@@ -3,6 +3,8 @@ import { SiteLayout } from "./SiteLayout";
 import { TESTIMONIALS } from "../data/testimonials";
 import { TestimonialCard } from "./Testimonials";
 import heroAsset from "../assets/portfolio/hero-house.webp.asset.json";
+import { AREA_CONTENT, AREA_PATHS } from "../data/areaContent";
+
 
 const STATS = [
   { value: "15–30", label: "Skilled painters" },
@@ -29,6 +31,16 @@ const WHY = [
   "12-month written workmanship guarantee",
 ];
 
+const WHY_FALLBACK = [
+  "Professional crews with 10+ years on Dublin sites",
+  "Reliable scheduling and tidy daily handover",
+  "Fully insured",
+  "12-month written workmanship guarantee",
+];
+
+const LOCAL_CONTEXT_FALLBACK =
+  "We've been painting and decorating across Dublin for over a decade. Our local clients get the same dedicated crew, written quote, and 12-month workmanship guarantee — backed by 300+ projects completed across Dublin.";
+
 export interface LocalAreaPageProps {
   area: string;
   postcode?: string;
@@ -37,6 +49,12 @@ export interface LocalAreaPageProps {
 
 export function LocalAreaPage({ area, postcode, intro }: LocalAreaPageProps) {
   const reviews = TESTIMONIALS.slice(0, 3);
+  const content = AREA_CONTENT[area];
+  const heroIntro = content?.intro ?? intro ?? "Interior, exterior and commercial painting delivered to a professional standard — fully insured with a 12-month workmanship guarantee.";
+  const localContext = content?.localContext ?? LOCAL_CONTEXT_FALLBACK;
+  const highlights = content?.highlights ?? WHY_FALLBACK;
+  const otherAreas = AREA_PATHS.filter((a) => a.name !== area);
+
   return (
     <SiteLayout>
       {/* Hero */}
@@ -52,9 +70,9 @@ export function LocalAreaPage({ area, postcode, intro }: LocalAreaPageProps) {
             Painter &amp; Decorator in {area}
           </h1>
           <p className="mt-5 max-w-2xl text-lg text-white/80">
-            Serving {area} and surrounding Dublin neighbourhoods.{" "}
-            {intro ?? "Interior, exterior and commercial painting delivered to a professional standard — fully insured with a 12-month workmanship guarantee."}
+            Serving {area} and surrounding Dublin neighbourhoods. {heroIntro}
           </p>
+
           <div className="mt-8 flex flex-wrap gap-3">
             <a href="tel:0858211870" className="inline-flex items-center rounded-sm bg-primary px-6 py-3 font-display text-xs font-bold uppercase tracking-wider text-primary-foreground hover:bg-[oklch(0.62_0.17_158)]">
               Call 085 821 1870
@@ -95,14 +113,17 @@ export function LocalAreaPage({ area, postcode, intro }: LocalAreaPageProps) {
         </div>
       </section>
 
-      {/* Why choose us */}
+      {/* Why choose us / local context */}
       <section className="bg-card">
         <div className="mx-auto max-w-7xl px-4 py-20 md:px-8 md:py-24">
           <span className="eyebrow">Why {area} chooses us</span>
           <h2 className="section-title mt-3 text-3xl md:text-4xl">Reliable painters, properly insured</h2>
           <hr className="section-rule" />
-          <ul className="mt-10 grid gap-4 md:grid-cols-2">
-            {WHY.map((w) => (
+          <p className="mt-8 max-w-3xl text-base leading-relaxed text-foreground/85">
+            {localContext}
+          </p>
+          <ul className="mt-8 grid gap-4 md:grid-cols-2">
+            {highlights.map((w) => (
               <li key={w} className="flex items-start gap-3 border-l-[3px] border-primary bg-background p-5">
                 <span className="mt-0.5 text-primary">✓</span>
                 <span className="text-sm leading-relaxed text-foreground/85">{w}</span>
@@ -111,6 +132,7 @@ export function LocalAreaPage({ area, postcode, intro }: LocalAreaPageProps) {
           </ul>
         </div>
       </section>
+
 
       {/* Reviews */}
       <section className="bg-background">
@@ -148,6 +170,35 @@ export function LocalAreaPage({ area, postcode, intro }: LocalAreaPageProps) {
           </div>
         </div>
       </section>
+
+      {/* Other areas we cover */}
+      <section className="border-t border-border bg-secondary">
+        <div className="mx-auto max-w-7xl px-4 py-14 md:px-8 md:py-16">
+          <h2 className="font-display text-xl font-bold uppercase text-foreground">
+            Other areas we cover
+          </h2>
+          <div className="mt-6 flex flex-wrap gap-2">
+            {otherAreas.map((a) => (
+              <a
+                key={a.path}
+                href={a.path}
+                className="rounded-sm border border-border bg-card px-4 py-2 font-display text-xs font-semibold uppercase tracking-wider text-foreground hover:border-primary hover:text-primary"
+              >
+                Painters {a.name}
+              </a>
+            ))}
+          </div>
+          <div className="mt-6 flex flex-wrap gap-3 text-sm">
+            <Link to="/services" className="font-display text-xs font-bold uppercase tracking-wider text-primary hover:underline">
+              View all services →
+            </Link>
+            <Link to="/painters" className="font-display text-xs font-bold uppercase tracking-wider text-primary hover:underline">
+              All Dublin areas →
+            </Link>
+          </div>
+        </div>
+      </section>
     </SiteLayout>
+
   );
 }
