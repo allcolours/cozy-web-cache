@@ -76,17 +76,14 @@ export const runAssetErrorCheck = createServerFn({ method: "POST" })
       if (insErr) throw insErr;
     }
 
-    const anonKey =
-      process.env.SUPABASE_PUBLISHABLE_KEY ||
-      process.env.SUPABASE_ANON_KEY ||
-      "";
+    const hookToken = process.env.HOOK_AUTH_TOKEN || "";
     const base =
       process.env.PUBLIC_SITE_URL || "https://allcolourspainter.com";
     const res = await fetch(`${base}/api/public/hooks/check-asset-errors`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        apikey: anonKey,
+        "x-hook-token": hookToken,
         "x-triggered-by": data.seedTest ? "admin-test" : "admin-manual",
       },
     });
