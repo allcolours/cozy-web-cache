@@ -37,47 +37,8 @@ type GalleryImage = {
   resolved_url?: string;
 };
 
-// ---- Client-side image conversion ----
-async function convertToWebp(file: File): Promise<Blob> {
-  let bitmap: ImageBitmap;
-  let e1: any;
-  try {
-    bitmap = await createImageBitmap(file, { imageOrientation: "from-image" });
-  } catch (err) {
-    e1 = err;
-    try {
-      const mod = await import("heic2any");
-      const heic2any = (mod as any).default ?? mod;
-      const out = await heic2any({ blob: file, toType: "image/jpeg", quality: 0.9 });
-      const jpegBlob: Blob = Array.isArray(out) ? out[0] : out;
-      bitmap = await createImageBitmap(jpegBlob, { imageOrientation: "from-image" });
-    } catch (e2: any) {
-      throw new Error("HEIC convert failed: " + (e2?.message || e1?.message || "unknown"));
-    }
-  }
-
-  const MAX = 1600;
-  const longest = Math.max(bitmap.width, bitmap.height);
-  const scale = longest > MAX ? MAX / longest : 1;
-  const w = Math.round(bitmap.width * scale);
-  const h = Math.round(bitmap.height * scale);
-
-  const canvas = document.createElement("canvas");
-  canvas.width = w;
-  canvas.height = h;
-  const ctx = canvas.getContext("2d");
-  if (!ctx) throw new Error("canvas ctx unavailable");
-  ctx.drawImage(bitmap, 0, 0, w, h);
-  bitmap.close?.();
-
-  return await new Promise<Blob>((resolve, reject) => {
-    canvas.toBlob(
-      (b) => (b ? resolve(b) : reject(new Error("WebP encode failed"))),
-      "image/webp",
-      0.82,
-    );
-  });
-}
+// Image conversion (HEIC→JPEG + resize + WebP) happens on the server
+// at /api/admin/gallery-upload — see handleUpload below.
 
 function GalleryAdmin() {
   const qc = useQueryClient();
@@ -261,18 +222,27 @@ function ProjectRow({ project, allProjects, isOpen, onToggle, onRefresh, canMove
     if (!files?.length) return;
     const arr = Array.from(files).map((f) => ({ name: f.name, progress: 0 }));
     setUploads(arr);
+    const { data: { session } } = await supabase.auth.getSession();
+    const token = session?.access_token;
     let i = 0;
     for (const file of Array.from(files)) {
       try {
-        setUploads((u) => u.map((x, idx) => idx === i ? { ...x, progress: 10 } : x));
-        const webp = await convertToWebp(file);
-        setUploads((u) => u.map((x, idx) => idx === i ? { ...x, progress: 50 } : x));
-        const path = `projects/${project.id}/${crypto.randomUUID()}.webp`;
-        const { error: upErr } = await supabase.storage
-          .from("gallery")
-          .upload(path, webp, { cacheControl: "31536000", upsert: false, contentType: "image/webp" });
-        if (upErr) throw upErr;
-        setUploads((u) => u.map((x, idx) => idx === i ? { ...x, progress: 80 } : x));
+        if (!token) throw new Error("Not signed in");
+        setUploads((u) => u.map((x, idx) => idx === i ? { ...x, progress: 15 } : x));
+        const fd = new FormData();
+        fd.append("file", file, file.name);
+        fd.append("projectId", project.id);
+        const res = await fetch("/api/admin/gallery-upload", {
+          method: "POST",
+          headers: { Authorization: `Bearer ${token}` },
+          body: fd,
+        });
+        setUploads((u) => u.map((x, idx) => idx === i ? { ...x, progress: 70 } : x));
+        const json = await res.json().catch(() => ({}));
+        if (!res.ok || !json?.path) {
+          throw new Error(json?.error || `Upload failed (${res.status})`);
+        }
+        const path: string = json.path;
         await supabase.from("gallery_images").insert({
           project_id: project.id,
           image_url: path,
@@ -284,7 +254,7 @@ function ProjectRow({ project, allProjects, isOpen, onToggle, onRefresh, canMove
         setUploads((u) => u.map((x, idx) => idx === i ? { ...x, progress: 100 } : x));
       } catch (err) {
         console.error("upload failed", file.name, err);
-        setUploads((u) => u.map((x, idx) => idx === i ? { ...x, error: (err as Error)?.message?.slice(0,80) || "Failed" } : x));
+        setUploads((u) => u.map((x, idx) => idx === i ? { ...x, error: (err as Error)?.message?.slice(0,120) || "Failed" } : x));
       }
       i++;
     }
