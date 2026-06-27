@@ -70,9 +70,9 @@ export function LocalAreaPage({ area, postcode, intro }: LocalAreaPageProps) {
             Painter &amp; Decorator in {area}
           </h1>
           <p className="mt-5 max-w-2xl text-lg text-white/80">
-            Serving {area} and surrounding Dublin neighbourhoods.{" "}
-            {intro ?? "Interior, exterior and commercial painting delivered to a professional standard — fully insured with a 12-month workmanship guarantee."}
+            Serving {area} and surrounding Dublin neighbourhoods. {heroIntro}
           </p>
+
           <div className="mt-8 flex flex-wrap gap-3">
             <a href="tel:0858211870" className="inline-flex items-center rounded-sm bg-primary px-6 py-3 font-display text-xs font-bold uppercase tracking-wider text-primary-foreground hover:bg-[oklch(0.62_0.17_158)]">
               Call 085 821 1870
