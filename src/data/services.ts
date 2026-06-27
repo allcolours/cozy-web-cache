@@ -91,7 +91,7 @@ export const SERVICES: ServiceInfo[] = [
       "Out-of-hours & weekend working",
       "Safe Pass + Manual Handling certified crews",
       "Full RAMS and method statements",
-      "€6.5m public liability cover",
+      "Fully insured",
       "Apartment-block common areas",
       "Tenant-friendly scheduling",
     ],
