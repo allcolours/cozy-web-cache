@@ -71,7 +71,7 @@ const PROJECTS = [
 
 const SECTORS = [
   { t: "Hotels & hospitality", d: "Premier Inn-grade brand standards on live hotel sites." },
-  { t: "Apartments & co-living", d: "Repeat-unit programmes for Cairn, Elliott and others." },
+  { t: "Apartments & co-living", d: "Repeat-unit painting works delivered on developments by Cairn, Elliott and others." },
   { t: "Healthcare", d: "Low-VOC, sensitive finishes around active hospital settings." },
   { t: "Commercial fit-out", d: "Office, retail and mixed-use — sequenced around other trades." },
 ];

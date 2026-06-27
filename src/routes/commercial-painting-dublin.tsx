@@ -12,7 +12,7 @@ export const Route = createFileRoute("/commercial-painting-dublin")({
       {
         name: "description",
         content:
-          "Dublin's trusted commercial painting partner. 20+ painters, out-of-hours scheduling, RCT compliant, €6.5m insured. Trusted by Cairn, Bennett, Elliott & Clancy.",
+          "Dublin commercial painting contractor. 15–30 painters, out-of-hours scheduling, RCT compliant, €6.5m insured. Painting works delivered on developments including projects for Cairn, Bennett, Elliott and Clancy.",
       },
       {
         name: "keywords",

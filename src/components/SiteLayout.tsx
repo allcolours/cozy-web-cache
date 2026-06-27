@@ -14,6 +14,7 @@ import { FooterCTA } from "./FooterCTA";
 import { MobileBottomBar } from "./MobileBottomBar";
 import { WhatsAppButton } from "./WhatsAppButton";
 
+// Gallery temporarily hidden from nav (many albums empty). Route + data preserved.
 const NAV = [
   { to: "/", label: "Home" },
   { to: "/about", label: "About" },
@@ -21,7 +22,6 @@ const NAV = [
   { to: "/estimate", label: "Get Estimate" },
   { to: "/case-studies", label: "Case Studies" },
   { to: "/projects", label: "Projects" },
-  { to: "/gallery", label: "Gallery" },
   { to: "/blog", label: "Blog" },
   { to: "/faq", label: "FAQ" },
   { to: "/contact", label: "Contact" },
@@ -31,7 +31,7 @@ const DESKTOP_NAV = [
   { to: "/", label: "Home" },
   { to: "/about", label: "About" },
   { to: "/services", label: "Services" },
-  { to: "/gallery", label: "Gallery" },
+  { to: "/projects", label: "Projects" },
   { to: "/case-studies", label: "Case Studies" },
   { to: "/blog", label: "Blog" },
   { to: "/faq", label: "FAQ" },
@@ -49,7 +49,6 @@ const MOBILE_NAV = [
   { to: "/", label: "Home" },
   { to: "/about", label: "About" },
   { to: "/services", label: "Services" },
-  { to: "/gallery", label: "Gallery" },
   { to: "/case-studies", label: "Case Studies" },
   { to: "/projects", label: "Projects" },
   { to: "/blog", label: "Blog" },
@@ -273,11 +272,6 @@ export function SiteLayout({ children }: { children: ReactNode }) {
               <li>
                 <Link to="/services" className="hover:text-primary">
                   Services
-                </Link>
-              </li>
-              <li>
-                <Link to="/gallery" className="hover:text-primary">
-                  Gallery
                 </Link>
               </li>
               <li>
