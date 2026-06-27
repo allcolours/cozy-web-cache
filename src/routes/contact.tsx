@@ -117,6 +117,14 @@ function Contact() {
                 <ContactRow label="Service area" value={settings.area} icon="pin" />
                 <ContactRow label="Hours" value={settings.hours} icon="clock" />
               </dl>
+              <div className="mt-8 border-t border-border/60 pt-6 text-xs leading-relaxed text-foreground/70">
+                <p className="font-display text-[11px] font-bold uppercase tracking-[0.18em] text-primary">Company details</p>
+                <p className="mt-2">All Colours Painting Contractor Limited</p>
+                <p>Registered in Ireland · Company No. 810243</p>
+                <p>VAT IE4706227DH</p>
+                <p>Registered office: 22 Liscarne Court, Dublin 22, D22 X052, Ireland</p>
+              </div>
+
             </div>
 
             <form
