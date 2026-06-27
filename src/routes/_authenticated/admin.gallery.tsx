@@ -10,6 +10,13 @@ export const Route = createFileRoute("/_authenticated/admin/gallery")({
 });
 
 const CATEGORIES = ["interior", "exterior", "commercial", "epoxy", "bespoke"] as const;
+const CATEGORY_LABEL: Record<string, string> = {
+  interior: "Interior",
+  exterior: "Exterior",
+  commercial: "Commercial",
+  epoxy: "Floor Coatings",
+  bespoke: "Bespoke",
+};
 
 type Project = {
   id: string;
@@ -29,6 +36,59 @@ type GalleryImage = {
   sort_order: number;
   resolved_url?: string;
 };
+
+// ---- Client-side image conversion ----
+async function convertToWebp(file: File): Promise<Blob> {
+  const lower = file.name.toLowerCase();
+  const isHeic =
+    file.type === "image/heic" ||
+    file.type === "image/heif" ||
+    lower.endsWith(".heic") ||
+    lower.endsWith(".heif");
+
+  let sourceBlob: Blob = file;
+  if (isHeic) {
+    const mod = await import("heic2any");
+    const heic2any = (mod as any).default ?? mod;
+    const out = await heic2any({ blob: file, toType: "image/jpeg", quality: 0.9 });
+    sourceBlob = Array.isArray(out) ? out[0] : out;
+  }
+
+  const dataUrl: string = await new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result as string);
+    reader.onerror = () => reject(reader.error ?? new Error("read failed"));
+    reader.readAsDataURL(sourceBlob);
+  });
+
+  const img = await new Promise<HTMLImageElement>((resolve, reject) => {
+    const i = new Image();
+    i.onload = () => resolve(i);
+    i.onerror = () => reject(new Error("image decode failed"));
+    i.src = dataUrl;
+  });
+
+  const MAX = 1600;
+  const longest = Math.max(img.width, img.height);
+  const scale = longest > MAX ? MAX / longest : 1;
+  const w = Math.round(img.width * scale);
+  const h = Math.round(img.height * scale);
+
+  const canvas = document.createElement("canvas");
+  canvas.width = w;
+  canvas.height = h;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) throw new Error("canvas ctx unavailable");
+  ctx.drawImage(img, 0, 0, w, h);
+
+  return await new Promise<Blob>((resolve, reject) => {
+    canvas.toBlob(
+      (b) => (b ? resolve(b) : reject(new Error("webp encode failed"))),
+      "image/webp",
+      0.82,
+    );
+  });
+}
 
 function GalleryAdmin() {
   const qc = useQueryClient();
@@ -51,9 +111,10 @@ function GalleryAdmin() {
 
   async function createProject() {
     if (!newTitle.trim()) return;
+    const maxOrder = projects.reduce((m, p) => Math.max(m, p.sort_order ?? 0), 0);
     const { data, error } = await supabase
       .from("gallery_projects")
-      .insert({ title: newTitle.trim(), category: newCategory, sort_order: projects.length, visible: true })
+      .insert({ title: newTitle.trim(), category: newCategory, sort_order: maxOrder + 10, visible: true })
       .select("id")
       .single();
     if (!error && data) {
@@ -62,6 +123,15 @@ function GalleryAdmin() {
       setNewTitle("");
       setOpenId(data.id);
     }
+  }
+
+  async function swapAlbumOrder(idx: number, dir: -1 | 1) {
+    const a = projects[idx];
+    const b = projects[idx + dir];
+    if (!a || !b) return;
+    await supabase.from("gallery_projects").update({ sort_order: b.sort_order }).eq("id", a.id);
+    await supabase.from("gallery_projects").update({ sort_order: a.sort_order }).eq("id", b.id);
+    qc.invalidateQueries({ queryKey: ["admin-gallery-projects"] });
   }
 
   return (
@@ -91,9 +161,9 @@ function GalleryAdmin() {
             <select
               value={newCategory}
               onChange={(e) => setNewCategory(e.target.value)}
-              className="rounded border border-input bg-background px-3 py-2 text-sm capitalize outline-none focus:border-primary"
+              className="rounded border border-input bg-background px-3 py-2 text-sm outline-none focus:border-primary"
             >
-              {CATEGORIES.map((c) => <option key={c} value={c}>{c}</option>)}
+              {CATEGORIES.map((c) => <option key={c} value={c}>{CATEGORY_LABEL[c]}</option>)}
             </select>
             <button onClick={createProject} className="rounded-sm bg-primary px-4 py-2 text-xs font-bold uppercase tracking-wider text-white">
               Create
@@ -108,10 +178,15 @@ function GalleryAdmin() {
       {isLoading && <p className="text-sm text-muted-foreground">Loading…</p>}
 
       <div className="space-y-2">
-        {projects.map((p) => (
+        {projects.map((p, idx) => (
           <ProjectRow
             key={p.id}
             project={p}
+            allProjects={projects}
+            canMoveUp={idx > 0}
+            canMoveDown={idx < projects.length - 1}
+            onMoveUp={() => swapAlbumOrder(idx, -1)}
+            onMoveDown={() => swapAlbumOrder(idx, 1)}
             isOpen={openId === p.id}
             onToggle={() => setOpenId(openId === p.id ? null : p.id)}
             onRefresh={() => qc.invalidateQueries({ queryKey: ["admin-gallery-projects"] })}
@@ -122,12 +197,18 @@ function GalleryAdmin() {
   );
 }
 
-function ProjectRow({ project, isOpen, onToggle, onRefresh }: {
+function ProjectRow({ project, allProjects, isOpen, onToggle, onRefresh, canMoveUp, canMoveDown, onMoveUp, onMoveDown }: {
   project: Project;
+  allProjects: Project[];
   isOpen: boolean;
   onToggle: () => void;
   onRefresh: () => void;
+  canMoveUp: boolean;
+  canMoveDown: boolean;
+  onMoveUp: () => void;
+  onMoveDown: () => void;
 }) {
+  const qc = useQueryClient();
   const [title, setTitle] = useState(project.title);
   const [location, setLocation] = useState(project.location ?? "");
   const [category, setCategory] = useState(project.category);
@@ -135,6 +216,7 @@ function ProjectRow({ project, isOpen, onToggle, onRefresh }: {
   const [saving, setSaving] = useState(false);
   const [savedMsg, setSavedMsg] = useState("");
   const [uploads, setUploads] = useState<{name: string; progress: number; error?: string}[]>([]);
+  const [lightboxUrl, setLightboxUrl] = useState<string | null>(null);
 
   useEffect(() => {
     setTitle(project.title);
@@ -192,12 +274,16 @@ function ProjectRow({ project, isOpen, onToggle, onRefresh }: {
     setUploads(arr);
     let i = 0;
     for (const file of Array.from(files)) {
-      const ext = file.name.split(".").pop() || "jpg";
-      const path = `projects/${project.id}/${crypto.randomUUID()}.${ext}`;
       try {
-        const { error: upErr } = await supabase.storage.from("gallery").upload(path, file, { cacheControl: "31536000", upsert: false });
+        setUploads((u) => u.map((x, idx) => idx === i ? { ...x, progress: 10 } : x));
+        const webp = await convertToWebp(file);
+        setUploads((u) => u.map((x, idx) => idx === i ? { ...x, progress: 50 } : x));
+        const path = `projects/${project.id}/${crypto.randomUUID()}.webp`;
+        const { error: upErr } = await supabase.storage
+          .from("gallery")
+          .upload(path, webp, { cacheControl: "31536000", upsert: false, contentType: "image/webp" });
         if (upErr) throw upErr;
-        setUploads((u) => u.map((x, idx) => idx === i ? { ...x, progress: 70 } : x));
+        setUploads((u) => u.map((x, idx) => idx === i ? { ...x, progress: 80 } : x));
         await supabase.from("gallery_images").insert({
           project_id: project.id,
           image_url: path,
@@ -207,13 +293,14 @@ function ProjectRow({ project, isOpen, onToggle, onRefresh }: {
           sort_order: images.length + i,
         });
         setUploads((u) => u.map((x, idx) => idx === i ? { ...x, progress: 100 } : x));
-      } catch {
+      } catch (err) {
+        console.error("upload failed", file.name, err);
         setUploads((u) => u.map((x, idx) => idx === i ? { ...x, error: "Failed" } : x));
       }
       i++;
     }
     refetchImages();
-    setTimeout(() => setUploads([]), 3000);
+    setTimeout(() => setUploads((u) => u.filter((x) => x.error)), 4000);
   }
 
   async function deleteImage(img: GalleryImage) {
@@ -231,6 +318,29 @@ function ProjectRow({ project, isOpen, onToggle, onRefresh }: {
     onRefresh();
   }
 
+  async function moveImageToProject(img: GalleryImage, targetProjectId: string) {
+    const { count } = await supabase
+      .from("gallery_images")
+      .select("id", { count: "exact", head: true })
+      .eq("project_id", targetProjectId);
+    await supabase
+      .from("gallery_images")
+      .update({ project_id: targetProjectId, is_cover: false, sort_order: count ?? 0 })
+      .eq("id", img.id);
+    refetchImages();
+    qc.invalidateQueries({ queryKey: ["admin-project-images", targetProjectId] });
+    onRefresh();
+  }
+
+  async function swapImageOrder(idx: number, dir: -1 | 1) {
+    const a = images[idx];
+    const b = images[idx + dir];
+    if (!a || !b) return;
+    await supabase.from("gallery_images").update({ sort_order: b.sort_order }).eq("id", a.id);
+    await supabase.from("gallery_images").update({ sort_order: a.sort_order }).eq("id", b.id);
+    refetchImages();
+  }
+
   const BADGE: Record<string, string> = {
     interior: "bg-blue-100 text-blue-800",
     exterior: "bg-amber-100 text-amber-800",
@@ -239,23 +349,43 @@ function ProjectRow({ project, isOpen, onToggle, onRefresh }: {
     bespoke: "bg-pink-100 text-pink-800",
   };
 
+  const otherProjects = allProjects.filter((p) => p.id !== project.id);
+
   return (
     <div className="overflow-hidden rounded-md border border-border bg-background">
-      <button
-        type="button"
-        onClick={onToggle}
-        className="flex w-full items-center gap-4 px-4 py-3 text-left hover:bg-secondary/50"
-      >
-        <span className="text-lg text-muted-foreground">{isOpen ? "▾" : "▸"}</span>
-        <span className="flex-1 font-medium">{project.title}</span>
-        {project.location && <span className="text-sm text-muted-foreground">{project.location}</span>}
-        <span className={`rounded px-2 py-0.5 text-[11px] font-semibold capitalize ${BADGE[project.category] ?? "bg-muted text-foreground"}`}>
-          {project.category}
-        </span>
-        <span className={`text-xs font-bold ${project.visible ? "text-green-600" : "text-muted-foreground"}`}>
-          {project.visible ? "Visible" : "Hidden"}
-        </span>
-      </button>
+      <div className="flex w-full items-center gap-2 px-2 py-3 hover:bg-secondary/50">
+        <div className="flex flex-col">
+          <button
+            type="button"
+            onClick={onMoveUp}
+            disabled={!canMoveUp}
+            aria-label="Move album up"
+            className="px-1 text-xs text-muted-foreground hover:text-primary disabled:opacity-30"
+          >▲</button>
+          <button
+            type="button"
+            onClick={onMoveDown}
+            disabled={!canMoveDown}
+            aria-label="Move album down"
+            className="px-1 text-xs text-muted-foreground hover:text-primary disabled:opacity-30"
+          >▼</button>
+        </div>
+        <button
+          type="button"
+          onClick={onToggle}
+          className="flex flex-1 items-center gap-4 px-2 py-1 text-left"
+        >
+          <span className="text-lg text-muted-foreground">{isOpen ? "▾" : "▸"}</span>
+          <span className="flex-1 font-medium">{project.title}</span>
+          {project.location && <span className="text-sm text-muted-foreground">{project.location}</span>}
+          <span className={`rounded px-2 py-0.5 text-[11px] font-semibold ${BADGE[project.category] ?? "bg-muted text-foreground"}`}>
+            {CATEGORY_LABEL[project.category] ?? project.category}
+          </span>
+          <span className={`text-xs font-bold ${project.visible ? "text-green-600" : "text-muted-foreground"}`}>
+            {project.visible ? "Visible" : "Hidden"}
+          </span>
+        </button>
+      </div>
 
       {isOpen && (
         <div className="border-t border-border p-4">
@@ -271,8 +401,8 @@ function ProjectRow({ project, isOpen, onToggle, onRefresh }: {
               </div>
               <div>
                 <label className="mb-1 block text-xs font-bold uppercase tracking-wider text-muted-foreground">Category</label>
-                <select value={category} onChange={(e) => setCategory(e.target.value)} className="w-full rounded border border-input bg-background px-3 py-2 text-sm capitalize outline-none focus:border-primary">
-                  {CATEGORIES.map((c) => <option key={c} value={c}>{c}</option>)}
+                <select value={category} onChange={(e) => setCategory(e.target.value)} className="w-full rounded border border-input bg-background px-3 py-2 text-sm outline-none focus:border-primary">
+                  {CATEGORIES.map((c) => <option key={c} value={c}>{CATEGORY_LABEL[c]}</option>)}
                 </select>
               </div>
               <label className="flex items-center gap-2 text-sm">
@@ -290,10 +420,11 @@ function ProjectRow({ project, isOpen, onToggle, onRefresh }: {
               {savedMsg && <p className="text-sm font-medium text-green-600">{savedMsg}</p>}
 
               <div className="border-t border-border pt-4">
-                <p className="mb-2 text-xs font-bold uppercase tracking-wider text-muted-foreground">Upload photos</p>
+                <p className="mb-1 text-xs font-bold uppercase tracking-wider text-muted-foreground">Upload photos</p>
+                <p className="mb-2 text-[11px] text-muted-foreground">HEIC, JPG, PNG, WebP — auto-converted to WebP, max 1600px wide.</p>
                 <label className="cursor-pointer rounded-sm bg-[#16a34a] px-4 py-2 text-xs font-bold uppercase tracking-wider text-white hover:bg-[#15803d]">
                   Choose files
-                  <input type="file" multiple accept="image/*" className="hidden" onChange={(e) => { handleUpload(e.target.files); e.target.value = ""; }} />
+                  <input type="file" multiple accept="image/*,.heic,.heif" className="hidden" onChange={(e) => { handleUpload(e.target.files); e.target.value = ""; }} />
                 </label>
                 {uploads.length > 0 && (
                   <ul className="mt-3 space-y-1">
@@ -320,23 +451,65 @@ function ProjectRow({ project, isOpen, onToggle, onRefresh }: {
                 </div>
               ) : (
                 <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4">
-                  {images.map((img) => (
+                  {images.map((img, idx) => (
                     <div key={img.id} className="group relative overflow-hidden rounded-md border border-border">
-                      <img src={img.resolved_url} alt={img.alt_text ?? ""} className="aspect-[4/3] w-full object-cover" />
+                      <button
+                        type="button"
+                        onClick={() => img.resolved_url && setLightboxUrl(img.resolved_url)}
+                        className="block w-full"
+                        aria-label="Enlarge image"
+                      >
+                        <img src={img.resolved_url} alt={img.alt_text ?? ""} className="aspect-[4/3] w-full object-cover" />
+                      </button>
                       {img.is_cover && (
                         <span className="absolute left-1 top-1 rounded bg-primary px-1.5 py-0.5 text-[10px] font-bold uppercase text-white">
                           Cover
                         </span>
                       )}
-                      <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-black/60 opacity-0 transition-opacity group-hover:opacity-100">
-                        {!img.is_cover && (
-                          <button onClick={() => setCover(img)} className="rounded bg-white px-2 py-1 text-[10px] font-bold uppercase text-black hover:bg-primary hover:text-white">
-                            Set cover
+                      <div className="absolute right-1 top-1 flex flex-col gap-1">
+                        <button
+                          type="button"
+                          onClick={() => swapImageOrder(idx, -1)}
+                          disabled={idx === 0}
+                          className="rounded bg-black/60 px-1.5 py-0.5 text-[10px] font-bold text-white hover:bg-black/80 disabled:opacity-30"
+                          aria-label="Move image up"
+                        >▲</button>
+                        <button
+                          type="button"
+                          onClick={() => swapImageOrder(idx, 1)}
+                          disabled={idx === images.length - 1}
+                          className="rounded bg-black/60 px-1.5 py-0.5 text-[10px] font-bold text-white hover:bg-black/80 disabled:opacity-30"
+                          aria-label="Move image down"
+                        >▼</button>
+                      </div>
+                      <div className="absolute inset-x-0 bottom-0 flex flex-col gap-1 bg-gradient-to-t from-black/85 to-transparent p-2 opacity-0 transition-opacity group-hover:opacity-100">
+                        <div className="flex gap-1">
+                          {!img.is_cover && (
+                            <button onClick={() => setCover(img)} className="rounded bg-white px-2 py-1 text-[10px] font-bold uppercase text-black hover:bg-primary hover:text-white">
+                              Cover
+                            </button>
+                          )}
+                          <button onClick={() => deleteImage(img)} className="rounded bg-red-600 px-2 py-1 text-[10px] font-bold uppercase text-white hover:bg-red-700">
+                            Delete
                           </button>
+                        </div>
+                        {otherProjects.length > 0 && (
+                          <select
+                            defaultValue=""
+                            onChange={(e) => {
+                              const v = e.target.value;
+                              e.target.value = "";
+                              if (v) moveImageToProject(img, v);
+                            }}
+                            className="rounded bg-white px-1 py-1 text-[10px] text-black"
+                            aria-label="Move to another album"
+                          >
+                            <option value="">Move to…</option>
+                            {otherProjects.map((p) => (
+                              <option key={p.id} value={p.id}>{p.title}</option>
+                            ))}
+                          </select>
                         )}
-                        <button onClick={() => deleteImage(img)} className="rounded bg-red-600 px-2 py-1 text-[10px] font-bold uppercase text-white hover:bg-red-700">
-                          Delete
-                        </button>
                       </div>
                     </div>
                   ))}
@@ -344,6 +517,31 @@ function ProjectRow({ project, isOpen, onToggle, onRefresh }: {
               )}
             </div>
           </div>
+        </div>
+      )}
+
+      {lightboxUrl && (
+        <div
+          className="fixed inset-0 z-[80] flex items-center justify-center bg-black/95 p-4"
+          onClick={() => setLightboxUrl(null)}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Image preview"
+        >
+          <button
+            type="button"
+            onClick={(e) => { e.stopPropagation(); setLightboxUrl(null); }}
+            className="absolute right-4 top-4 rounded-full bg-white/15 px-3 py-1.5 text-sm font-bold text-white backdrop-blur-sm hover:bg-white/25"
+            aria-label="Close"
+          >
+            ✕ Close
+          </button>
+          <img
+            src={lightboxUrl}
+            alt=""
+            onClick={(e) => e.stopPropagation()}
+            className="max-h-[90vh] max-w-full rounded-sm object-contain shadow-2xl"
+          />
         </div>
       )}
     </div>
