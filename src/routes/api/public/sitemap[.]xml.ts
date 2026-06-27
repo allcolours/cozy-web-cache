@@ -18,7 +18,6 @@ export const Route = createFileRoute("/api/public/sitemap.xml")({
           { path: "/", changefreq: "weekly", priority: "1.0" },
           { path: "/about", changefreq: "monthly", priority: "0.8" },
           { path: "/services", changefreq: "monthly", priority: "0.9" },
-          { path: "/case-studies", changefreq: "monthly", priority: "0.9" },
           { path: "/projects", changefreq: "monthly", priority: "0.8" },
           { path: "/gallery", changefreq: "monthly", priority: "0.7" },
           { path: "/blog", changefreq: "weekly", priority: "0.8" },
@@ -26,7 +25,7 @@ export const Route = createFileRoute("/api/public/sitemap.xml")({
           { path: "/contact", changefreq: "yearly", priority: "0.6" },
           { path: "/privacy", changefreq: "yearly", priority: "0.3" },
           { path: "/terms", changefreq: "yearly", priority: "0.3" },
-          ...CASE_STUDIES.map((c) => ({ path: `/case-studies/${c.slug}`, changefreq: "monthly" as const, priority: "0.7" })),
+
           ...BLOG_POSTS.map((b) => ({ path: `/blog/${b.slug}`, changefreq: "monthly" as const, priority: "0.6" })),
         ];
         const urls = entries.map(
