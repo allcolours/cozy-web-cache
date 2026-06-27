@@ -91,7 +91,7 @@ function About() {
             <h2 className="section-title mt-3 text-3xl md:text-4xl">Protection. Preparation. Finish.</h2>
             <hr className="section-rule" />
             <p className="mt-6 text-base text-foreground">
-              Every job goes through the same three stages — relentlessly. It's how we guarantee a faultless, long-lasting finish.
+              Every job goes through the same three stages, every time. It's how we deliver a clean, long-lasting finish.
             </p>
           </div>
 

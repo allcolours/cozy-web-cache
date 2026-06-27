@@ -20,7 +20,7 @@ export const SERVICES: ServiceInfo[] = [
     name: "Kitchen Cabinet Painting",
     h1: "Kitchen Cabinet Painting Dublin",
     intro:
-      "Transform a tired kitchen for a fraction of the cost of a replacement. We hand-paint and spray-finish kitchen cabinets across Dublin using primer + 2K topcoat systems that stand up to daily family life — not the chip-prone DIY emulsion finishes you see on YouTube.",
+      "Repaint a tired kitchen for a fraction of the cost of a replacement. We hand-paint and spray-finish kitchen cabinets across Dublin using primer + 2K topcoat systems that stand up to daily family life — not the chip-prone DIY emulsion finishes you see on YouTube.",
     metaTitle: "Kitchen Cabinet Painting Dublin | Spray & Hand Painted – All Colours",
     metaDescription:
       "Professional kitchen cabinet painting & respraying in Dublin. Primer + 2K topcoat, hand-painted or sprayed finish, from €1,800. Fully insured, free quotes.",
