@@ -44,28 +44,34 @@ function AreasIndex() {
         </p>
 
         <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {AREAS.map((a) => (
-            <Link
-              key={a.slug}
-              to="/painters/$area"
-              params={{ area: a.slug }}
-              className="group block rounded-sm border border-border bg-card p-6 transition-all hover:-translate-y-1 hover:border-primary hover:shadow-lg"
-            >
-              <div className="font-display text-xs font-bold uppercase tracking-wider text-primary">
-                {a.postcode ?? "Dublin"}
-              </div>
-              <h2 className="mt-2 font-display text-xl font-bold uppercase text-foreground group-hover:text-primary">
-                Painters {a.name}
-              </h2>
-              <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-muted-foreground">
-                {a.blurb}
-              </p>
-              <div className="mt-5 font-display text-xs font-bold uppercase tracking-wider text-primary">
-                View {a.name} →
-              </div>
-            </Link>
-          ))}
+          {AREA_PATHS.map((a) => {
+            const meta = AREAS.find((x) => x.name === a.name);
+            const blurb = meta?.blurb;
+            return (
+              <a
+                key={a.path}
+                href={a.path}
+                className="group block rounded-sm border border-border bg-card p-6 transition-all hover:-translate-y-1 hover:border-primary hover:shadow-lg"
+              >
+                <div className="font-display text-xs font-bold uppercase tracking-wider text-primary">
+                  {meta?.postcode ?? "Dublin"}
+                </div>
+                <h2 className="mt-2 font-display text-xl font-bold uppercase text-foreground group-hover:text-primary">
+                  Painters {a.name}
+                </h2>
+                {blurb ? (
+                  <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-muted-foreground">
+                    {blurb}
+                  </p>
+                ) : null}
+                <div className="mt-5 font-display text-xs font-bold uppercase tracking-wider text-primary">
+                  View {a.name} →
+                </div>
+              </a>
+            );
+          })}
         </div>
+
       </section>
     </SiteLayout>
   );
