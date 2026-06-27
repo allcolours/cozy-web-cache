@@ -4,6 +4,7 @@ export const Route = createFileRoute("/api/admin/gallery-upload")({
   server: {
     handlers: {
       POST: async ({ request }) => {
+        let stage = "request";
         try {
           const authHeader = request.headers.get("authorization") || "";
           if (!authHeader.toLowerCase().startsWith("bearer ")) {
@@ -55,15 +56,18 @@ export const Route = createFileRoute("/api/admin/gallery-upload")({
             /ftyp(heic|heix|hevc|hevx|mif1|msf1|heim|heis)/i.test(head);
 
           if (isHeic) {
-            const heicConvert = (await import("heic-convert")).default;
-            const jpegBuf = await heicConvert({
-              buffer: bytes,
-              format: "JPEG",
-              quality: 0.9,
-            });
-            bytes = new Uint8Array(jpegBuf);
+            stage = "decode";
+            const [{ default: decodeHeic }, { PNG }] = await Promise.all([
+              import("heic-decode"),
+              import("pngjs"),
+            ]);
+            const decoded = await decodeHeic({ buffer: bytes });
+            const png = new PNG({ width: decoded.width, height: decoded.height });
+            png.data = Buffer.from(decoded.data.buffer, decoded.data.byteOffset, decoded.data.byteLength);
+            bytes = new Uint8Array(PNG.sync.write(png));
           }
 
+          stage = "encode";
           const { optimizeImage } = await import("wasm-image-optimization");
           const out = await optimizeImage({
             image: bytes,
@@ -73,10 +77,11 @@ export const Route = createFileRoute("/api/admin/gallery-upload")({
             format: "webp",
           });
           if (!out?.data) {
-            return Response.json({ error: "Image encode failed" }, { status: 500 });
+            return Response.json({ error: "encode failed: Image encode failed" }, { status: 500 });
           }
           const webpBytes = out.data as Uint8Array;
 
+          stage = "upload";
           const path = `projects/${projectId}/${crypto.randomUUID()}.webp`;
           const { error: upErr } = await supabaseAdmin.storage
             .from("gallery")
@@ -86,14 +91,14 @@ export const Route = createFileRoute("/api/admin/gallery-upload")({
               contentType: "image/webp",
             });
           if (upErr) {
-            return Response.json({ error: `Upload failed: ${upErr.message}` }, { status: 500 });
+            return Response.json({ error: `upload failed: ${upErr.message}` }, { status: 500 });
           }
 
           return Response.json({ path });
         } catch (err) {
           const msg = (err as Error)?.message || "Conversion failed";
           console.error("[gallery-upload] failed:", err);
-          return Response.json({ error: msg }, { status: 500 });
+          return Response.json({ error: `${stage} failed: ${msg}` }, { status: 500 });
         }
       },
     },
