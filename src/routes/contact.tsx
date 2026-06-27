@@ -130,6 +130,7 @@ function Contact() {
                 </div>
               ) : (
                 <>
+                  <FormBotTraps />
                   <h3 className="font-display text-lg font-bold uppercase tracking-wide text-[oklch(0.2_0_0)]">Request a quote</h3>
                   <div className="grid gap-4 sm:grid-cols-2">
                     <Field label="Name" name="name" required />
