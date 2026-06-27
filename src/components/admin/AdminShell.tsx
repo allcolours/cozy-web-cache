@@ -16,6 +16,7 @@ const NAV: { to: string; label: string; exact?: boolean; badgeKey?: "leads" }[] 
   { to: "/admin/analytics", label: "Analytics" },
   { to: "/admin/asset-errors", label: "Asset 404s" },
   { to: "/admin/asset-error-runs", label: "Check Runs" },
+  { to: "/admin/database", label: "Database" },
 ];
 
 export function AdminShell({ children, title }: { children: ReactNode; title: string }) {
