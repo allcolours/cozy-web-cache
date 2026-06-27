@@ -267,7 +267,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
           <div className="mx-auto max-w-7xl px-4 py-5 text-xs text-white/60 md:px-8">
             <div className="space-y-1 leading-relaxed">
               <div>All Colours Painting Contractor Limited · Registered in Ireland No. 810243 · VAT IE4706227DH</div>
-              <div>Registered office: Dublin 22, D22 X052, Ireland</div>
+              <div>Registered office: 22 Liscarne Court, Dublin 22, D22 X052, Ireland</div>
             </div>
           </div>
         </div>

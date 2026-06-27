@@ -18,6 +18,7 @@ export function SchemaOrg() {
     "identifier": { "@type": "PropertyValue", "name": "CRO", "value": "810243" },
     "address": {
       "@type": "PostalAddress",
+      "streetAddress": "22 Liscarne Court",
       "addressLocality": "Dublin 22",
       "postalCode": "D22 X052",
       "addressRegion": "Leinster",
