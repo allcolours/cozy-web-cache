@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { SiteLayout } from "../components/SiteLayout";
+import { FormBotTraps, readBotTraps } from "../components/FormBotTraps";
 import commercialAsset from "../assets/portfolio/service-commercial.webp.asset.json";
 
 export const Route = createFileRoute("/commercial-painting-dublin")({
@@ -90,6 +91,7 @@ function CommercialPage() {
     setSubmitting(true);
     setError(null);
     const form = new FormData(e.currentTarget);
+    const traps = readBotTraps(form);
     const payload = {
       name: String(form.get("contact_name") || "").trim().slice(0, 100),
       email: String(form.get("email") || "").trim().slice(0, 255),
@@ -111,7 +113,7 @@ function CommercialPage() {
       const res = await fetch("/api/public/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...payload, source: "commercial_form", service_type: "commercial" }),
+        body: JSON.stringify({ ...payload, source: "commercial_form", service_type: "commercial", ...traps }),
       });
       if (!res.ok) {
         setError("Sorry, we couldn't send that. Please try again or call us directly.");
@@ -260,6 +262,7 @@ function CommercialPage() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="grid gap-4">
+                <FormBotTraps />
                 <div className="grid gap-4 md:grid-cols-2">
                   <Field label="Company name" name="company" required />
                   <Field label="Contact name" name="contact_name" required />
