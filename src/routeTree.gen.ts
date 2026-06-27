@@ -90,6 +90,7 @@ import { Route as AuthenticatedAdminTestimonialsRouteImport } from './routes/_au
 import { Route as AuthenticatedAdminLeadsRouteImport } from './routes/_authenticated/admin.leads'
 import { Route as AuthenticatedAdminInquiriesRouteImport } from './routes/_authenticated/admin.inquiries'
 import { Route as AuthenticatedAdminGalleryRouteImport } from './routes/_authenticated/admin.gallery'
+import { Route as AuthenticatedAdminDatabaseRouteImport } from './routes/_authenticated/admin.database'
 import { Route as AuthenticatedAdminContentRouteImport } from './routes/_authenticated/admin.content'
 import { Route as AuthenticatedAdminCaseStudiesRouteImport } from './routes/_authenticated/admin.case-studies'
 import { Route as AuthenticatedAdminBlogRouteImport } from './routes/_authenticated/admin.blog'
@@ -516,6 +517,12 @@ const AuthenticatedAdminGalleryRoute =
     path: '/gallery',
     getParentRoute: () => AuthenticatedAdminRoute,
   } as any)
+const AuthenticatedAdminDatabaseRoute =
+  AuthenticatedAdminDatabaseRouteImport.update({
+    id: '/database',
+    path: '/database',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
 const AuthenticatedAdminContentRoute =
   AuthenticatedAdminContentRouteImport.update({
     id: '/content',
@@ -692,6 +699,7 @@ export interface FileRoutesByFullPath {
   '/admin/blog': typeof AuthenticatedAdminBlogRouteWithChildren
   '/admin/case-studies': typeof AuthenticatedAdminCaseStudiesRouteWithChildren
   '/admin/content': typeof AuthenticatedAdminContentRoute
+  '/admin/database': typeof AuthenticatedAdminDatabaseRoute
   '/admin/gallery': typeof AuthenticatedAdminGalleryRoute
   '/admin/inquiries': typeof AuthenticatedAdminInquiriesRoute
   '/admin/leads': typeof AuthenticatedAdminLeadsRoute
@@ -790,6 +798,7 @@ export interface FileRoutesByTo {
   '/admin/blog': typeof AuthenticatedAdminBlogRouteWithChildren
   '/admin/case-studies': typeof AuthenticatedAdminCaseStudiesRouteWithChildren
   '/admin/content': typeof AuthenticatedAdminContentRoute
+  '/admin/database': typeof AuthenticatedAdminDatabaseRoute
   '/admin/gallery': typeof AuthenticatedAdminGalleryRoute
   '/admin/inquiries': typeof AuthenticatedAdminInquiriesRoute
   '/admin/leads': typeof AuthenticatedAdminLeadsRoute
@@ -891,6 +900,7 @@ export interface FileRoutesById {
   '/_authenticated/admin/blog': typeof AuthenticatedAdminBlogRouteWithChildren
   '/_authenticated/admin/case-studies': typeof AuthenticatedAdminCaseStudiesRouteWithChildren
   '/_authenticated/admin/content': typeof AuthenticatedAdminContentRoute
+  '/_authenticated/admin/database': typeof AuthenticatedAdminDatabaseRoute
   '/_authenticated/admin/gallery': typeof AuthenticatedAdminGalleryRoute
   '/_authenticated/admin/inquiries': typeof AuthenticatedAdminInquiriesRoute
   '/_authenticated/admin/leads': typeof AuthenticatedAdminLeadsRoute
@@ -992,6 +1002,7 @@ export interface FileRouteTypes {
     | '/admin/blog'
     | '/admin/case-studies'
     | '/admin/content'
+    | '/admin/database'
     | '/admin/gallery'
     | '/admin/inquiries'
     | '/admin/leads'
@@ -1090,6 +1101,7 @@ export interface FileRouteTypes {
     | '/admin/blog'
     | '/admin/case-studies'
     | '/admin/content'
+    | '/admin/database'
     | '/admin/gallery'
     | '/admin/inquiries'
     | '/admin/leads'
@@ -1190,6 +1202,7 @@ export interface FileRouteTypes {
     | '/_authenticated/admin/blog'
     | '/_authenticated/admin/case-studies'
     | '/_authenticated/admin/content'
+    | '/_authenticated/admin/database'
     | '/_authenticated/admin/gallery'
     | '/_authenticated/admin/inquiries'
     | '/_authenticated/admin/leads'
@@ -1868,6 +1881,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminGalleryRouteImport
       parentRoute: typeof AuthenticatedAdminRoute
     }
+    '/_authenticated/admin/database': {
+      id: '/_authenticated/admin/database'
+      path: '/database'
+      fullPath: '/admin/database'
+      preLoaderRoute: typeof AuthenticatedAdminDatabaseRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
     '/_authenticated/admin/content': {
       id: '/_authenticated/admin/content'
       path: '/content'
@@ -2031,6 +2051,7 @@ interface AuthenticatedAdminRouteChildren {
   AuthenticatedAdminBlogRoute: typeof AuthenticatedAdminBlogRouteWithChildren
   AuthenticatedAdminCaseStudiesRoute: typeof AuthenticatedAdminCaseStudiesRouteWithChildren
   AuthenticatedAdminContentRoute: typeof AuthenticatedAdminContentRoute
+  AuthenticatedAdminDatabaseRoute: typeof AuthenticatedAdminDatabaseRoute
   AuthenticatedAdminGalleryRoute: typeof AuthenticatedAdminGalleryRoute
   AuthenticatedAdminInquiriesRoute: typeof AuthenticatedAdminInquiriesRoute
   AuthenticatedAdminLeadsRoute: typeof AuthenticatedAdminLeadsRoute
@@ -2046,6 +2067,7 @@ const AuthenticatedAdminRouteChildren: AuthenticatedAdminRouteChildren = {
   AuthenticatedAdminCaseStudiesRoute:
     AuthenticatedAdminCaseStudiesRouteWithChildren,
   AuthenticatedAdminContentRoute: AuthenticatedAdminContentRoute,
+  AuthenticatedAdminDatabaseRoute: AuthenticatedAdminDatabaseRoute,
   AuthenticatedAdminGalleryRoute: AuthenticatedAdminGalleryRoute,
   AuthenticatedAdminInquiriesRoute: AuthenticatedAdminInquiriesRoute,
   AuthenticatedAdminLeadsRoute: AuthenticatedAdminLeadsRoute,
