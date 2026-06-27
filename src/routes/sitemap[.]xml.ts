@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { supabase } from "@/integrations/supabase/client";
 
 const BASE_URL = "https://allcolourspainter.com";
 const LASTMOD = "2026-06-22";
@@ -7,6 +8,7 @@ interface SitemapEntry {
   path: string;
   changefreq: "weekly" | "monthly" | "yearly";
   priority: string;
+  lastmod?: string;
 }
 
 const ENTRIES: SitemapEntry[] = [
