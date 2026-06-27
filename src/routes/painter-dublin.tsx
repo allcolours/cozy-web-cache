@@ -88,11 +88,11 @@ const AREAS = [
   { name: "Rathfarnham", to: "/painter-rathfarnham" },
   { name: "Clondalkin", to: "/painter-clondalkin" },
   { name: "Blackrock", to: "/painter-blackrock" },
-  { name: "Dundrum", to: "/contact" },
-  { name: "Cabinteely", to: "/contact" },
-  { name: "Foxrock", to: "/contact" },
-  { name: "Dalkey", to: "/contact" },
-  { name: "Killiney", to: "/contact" },
+  { name: "Dundrum", to: "/painter-dundrum" },
+  { name: "Cabinteely", to: "/painter-cabinteely" },
+  { name: "Foxrock", to: "/painter-foxrock" },
+  { name: "Dalkey", to: "/painter-dalkey" },
+  { name: "Killiney", to: "/painter-killiney" },
 ] as const;
 
 const WHY = [
