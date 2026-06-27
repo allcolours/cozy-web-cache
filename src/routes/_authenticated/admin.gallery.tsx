@@ -167,6 +167,8 @@ function ProjectRow({ project, allProjects, isOpen, onToggle, onRefresh, canMove
   const [savedMsg, setSavedMsg] = useState("");
   const [uploads, setUploads] = useState<{name: string; progress: number; error?: string}[]>([]);
   const [lightboxUrl, setLightboxUrl] = useState<string | null>(null);
+  const [rotatingId, setRotatingId] = useState<string | null>(null);
+
 
   useEffect(() => {
     setTitle(project.title);
