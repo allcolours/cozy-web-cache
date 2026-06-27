@@ -171,9 +171,306 @@ export const AREA_CONTENT: Record<string, AreaContent> = {
       "Older & new-build homes",
     ],
   },
+  Cabra: {
+    intro:
+      "Straightforward interior and exterior repaints across Cabra's terraces and semis.",
+    localContext:
+      "Cabra (Dublin 7) is a north-inner suburb of traditional terraces, 1930s semis and family homes. We deliver clean interior repaints, woodwork and exterior maintenance at honest prices.",
+    highlights: [
+      "Terrace & semi repaints",
+      "Woodwork & trim",
+      "Exterior maintenance",
+    ],
+  },
+  Phibsborough: {
+    intro:
+      "Period interiors, feature walls and tidy exterior work across Phibsborough.",
+    localContext:
+      "Phibsborough (Dublin 7) is a north-inner area of Victorian terraces and modern apartment conversions close to the city. We handle interior repaints, period plasterwork and tidy exterior touch-ups in occupied homes.",
+    highlights: [
+      "Period interior repaints",
+      "Feature walls & detail",
+      "Apartment & conversion work",
+    ],
+  },
+  Drumcondra: {
+    intro:
+      "Period red-brick repaints and fast landlord turnarounds across Drumcondra.",
+    localContext:
+      "Drumcondra (Dublin 9) is a north-Dublin suburb of red-brick terraces and rental properties near the city. We handle interior and exterior repaints with quick turnarounds for landlords between tenancies.",
+    highlights: [
+      "Red-brick period interiors",
+      "Landlord turnarounds",
+      "Exterior repaints",
+    ],
+  },
+  Glasthule: {
+    intro:
+      "Careful interior and exterior work for Glasthule's coastal village homes.",
+    localContext:
+      "Glasthule (Co. Dublin, A96) sits between Dún Laoghaire and Sandycove, with Victorian and Edwardian properties and period detail. We work carefully on older homes and specify exteriors that suit the coastal setting.",
+    highlights: [
+      "Coastal exterior systems",
+      "Period interior work",
+      "Tidy, low-disruption crews",
+    ],
+  },
+  "Mount Merrion": {
+    intro:
+      "Full-house repaints and exterior upkeep for Mount Merrion's family homes.",
+    localContext:
+      "Mount Merrion (Co. Dublin, A94) is a mature south-Dublin suburb of detached and semi-detached family homes. We deliver full interior repaints, woodwork and exterior maintenance with a clean handover.",
+    highlights: [
+      "Full-house repaints",
+      "Woodwork & trim",
+      "Exterior maintenance",
+    ],
+  },
+  Cabinteely: {
+    intro:
+      "Repaints and exterior work across Cabinteely's family homes and estates.",
+    localContext:
+      "Cabinteely (Dublin 18) is a south-Dublin suburb of family homes and newer residential developments. We handle full interior repaints, woodwork and exterior maintenance with reliable scheduling.",
+    highlights: [
+      "Family-home repaints",
+      "New-build finishing",
+      "Exterior maintenance",
+    ],
+  },
+  Walkinstown: {
+    intro:
+      "Reliable residential and light commercial painting across Walkinstown.",
+    localContext:
+      "Walkinstown (Dublin 12) is a west-Dublin suburb of mid-century semis, terraces and small commercial units. We carry out tidy interior and exterior repaints for homeowners, landlords and small businesses.",
+    highlights: [
+      "Semi & terrace repaints",
+      "Light commercial work",
+      "Exterior maintenance",
+    ],
+  },
+  Terenure: {
+    intro:
+      "Full interior repaints and exterior maintenance for Terenure's period homes.",
+    localContext:
+      "Terenure (Dublin 6W) is a south-Dublin suburb of red-brick period houses and detached family homes. We handle interior repaints, period detail and exterior work with proper prep and trade-grade materials.",
+    highlights: [
+      "Period home repaints",
+      "Hallway & stairwell work",
+      "Exterior maintenance",
+    ],
+  },
+  Templeogue: {
+    intro:
+      "Clean interior and exterior repaints across Templeogue's family homes.",
+    localContext:
+      "Templeogue (Dublin 6W) is a well-established south-Dublin suburb of detached and semi-detached homes. We deliver full interior repaints, woodwork and exterior maintenance on reliable timelines.",
+    highlights: [
+      "Full house repaints",
+      "Woodwork & trim",
+      "Exterior maintenance",
+    ],
+  },
+  Milltown: {
+    intro:
+      "Period and semi-detached repaints with a clean finish across Milltown.",
+    localContext:
+      "Milltown (Dublin 6) is a quiet south-Dublin suburb of period homes and semi-detached houses near the Dodder. We deliver interior repaints, woodwork and exterior maintenance with thorough prep.",
+    highlights: [
+      "Period interior repaints",
+      "Woodwork & trim",
+      "Exterior maintenance",
+    ],
+  },
+  Monkstown: {
+    intro:
+      "Marine-grade exteriors and careful period interiors across Monkstown.",
+    localContext:
+      "Monkstown (Co. Dublin, A94) is a coastal south-Dublin suburb of Victorian and Edwardian seafront properties. Salt and wind mean exteriors need the right primers and finishes; interiors get careful period-appropriate work.",
+    highlights: [
+      "Marine-grade exterior systems",
+      "Period interior repaints",
+      "Seafront render & timber",
+    ],
+  },
+  Tallaght: {
+    intro:
+      "Residential and commercial painting at scale across Tallaght.",
+    localContext:
+      "Tallaght (Dublin 24) is a large west-Dublin town with residential estates and commercial premises. We handle full house repaints, tenancy turnarounds and commercial fit-outs with a large enough team to keep schedules.",
+    highlights: [
+      "Estate & semi repaints",
+      "Commercial premises",
+      "Tenancy turnarounds",
+    ],
+  },
+  Ballinteer: {
+    intro:
+      "Dust-controlled interiors and exterior masonry across Ballinteer.",
+    localContext:
+      "Ballinteer (Dublin 16) is a south-Dublin suburb of family homes and newer estates in the foothills. We deliver dust-controlled interior repaints, woodwork and exterior masonry work.",
+    highlights: [
+      "Dust-controlled interiors",
+      "Exterior masonry",
+      "New-build finishing",
+    ],
+  },
+  Lucan: {
+    intro:
+      "Interior and exterior painting for Lucan homeowners and developers.",
+    localContext:
+      "Lucan (Co. Dublin, K78) is a fast-growing west-Dublin area with a mix of new-build estates and older established homes. We work for owner-occupiers and developers across full repaints and new-build finishing.",
+    highlights: [
+      "New-build finishing",
+      "Family-home repaints",
+      "Exterior maintenance",
+    ],
+  },
+  Swords: {
+    intro:
+      "Residential and commercial painting across Swords and north Fingal.",
+    localContext:
+      "Swords (Co. Dublin, K67) is the largest town in Fingal, with residential estates and commercial premises. We handle full house repaints, exterior work and commercial fit-outs across the town.",
+    highlights: [
+      "Estate house repaints",
+      "Commercial premises",
+      "Exterior maintenance",
+    ],
+  },
+  Drimnagh: {
+    intro:
+      "Fast landlord turnarounds and full repaints across Drimnagh.",
+    localContext:
+      "Drimnagh (Dublin 12) is a west-Dublin suburb of traditional terraces and family homes. We deliver fast tenancy turnarounds for landlords and full interior and exterior repaints for owner-occupiers.",
+    highlights: [
+      "Tenancy turnarounds",
+      "Terrace repaints",
+      "Exterior maintenance",
+    ],
+  },
+  Balbriggan: {
+    intro:
+      "Interior and exterior painting across Balbriggan's homes and estates.",
+    localContext:
+      "Balbriggan (Co. Dublin, K32) is a coastal Fingal town in north Dublin, with older terraces and large newer estates. We handle interior repaints and exterior systems suited to the coastal exposure.",
+    highlights: [
+      "Coastal-ready exteriors",
+      "Estate & terrace repaints",
+      "Landlord turnarounds",
+    ],
+  },
+  Leopardstown: {
+    intro:
+      "Commercial and apartment-scheme painting around Leopardstown.",
+    localContext:
+      "Leopardstown (Dublin 18) sits in south Dublin near the racecourse and business district, with executive homes and apartment schemes. We deliver residential repaints and commercial work, out of hours where required.",
+    highlights: [
+      "Apartment-scheme common areas",
+      "Out-of-hours commercial",
+      "Executive home repaints",
+    ],
+  },
+  Knocklyon: {
+    intro:
+      "Full interior repaints and exterior upkeep across Knocklyon.",
+    localContext:
+      "Knocklyon (Dublin 16) is an established south-Dublin suburb of family homes and semis. We deliver full interior repaints, woodwork and exterior work delivered on schedule.",
+    highlights: [
+      "Full house repaints",
+      "Woodwork & trim",
+      "Exterior maintenance",
+    ],
+  },
+  Killiney: {
+    intro:
+      "Coastal-grade exteriors and high-spec interiors for Killiney homes.",
+    localContext:
+      "Killiney (Co. Dublin, A96) is an upmarket coastal area of high-value homes on the south Dublin coast. Exteriors need systems built for sea air; interiors are finished to a high spec.",
+    highlights: [
+      "Coastal exterior systems",
+      "High-spec interior finishes",
+      "Larger-property work",
+    ],
+  },
+  "Harold's Cross": {
+    intro:
+      "Period interiors and tight-access exterior work across Harold's Cross.",
+    localContext:
+      "Harold's Cross (Dublin 6W) is a south-inner suburb of Victorian terraces and modern apartment conversions. We work carefully in occupied homes, handling tight access and period plasterwork.",
+    highlights: [
+      "Period terrace interiors",
+      "Apartment conversions",
+      "Tight-access exteriors",
+    ],
+  },
+  Sallynoggin: {
+    intro:
+      "Weather-ready exteriors and full interior repaints across Sallynoggin.",
+    localContext:
+      "Sallynoggin (Co. Dublin, A96) is a coastal south-Dublin suburb with a mix of estate housing and semis. We specify exteriors suited to the marine environment and deliver clean interior repaints.",
+    highlights: [
+      "Coastal-ready exteriors",
+      "Full house repaints",
+      "Exterior maintenance",
+    ],
+  },
+  Crumlin: {
+    intro:
+      "Terrace and family-home repaints with exterior masonry across Crumlin.",
+    localContext:
+      "Crumlin (Dublin 12) is a south-west Dublin suburb of traditional terraces and family homes. We deliver interior repaints, ceiling work and exterior masonry at competitive rates.",
+    highlights: [
+      "Terrace repaints",
+      "Ceiling work",
+      "Exterior masonry",
+    ],
+  },
+  Goatstown: {
+    intro:
+      "Period and modern home repaints with careful exterior work in Goatstown.",
+    localContext:
+      "Goatstown (Dublin 14) is a quiet south-Dublin suburb with a mix of period and modern homes. We deliver interior repaints, woodwork and exterior masonry done properly.",
+    highlights: [
+      "Period & modern interiors",
+      "Woodwork & trim",
+      "Exterior masonry",
+    ],
+  },
+  Glenageary: {
+    intro:
+      "Coastal-grade exteriors and tidy interiors across Glenageary.",
+    localContext:
+      "Glenageary (Co. Dublin, A96) is a well-established coastal south-Dublin suburb with period and modern homes. We specify exterior systems suited to coastal conditions and deliver tidy interior work.",
+    highlights: [
+      "Coastal exterior systems",
+      "Full house repaints",
+      "Woodwork & trim",
+    ],
+  },
+  Portmarnock: {
+    intro:
+      "Coastal-ready exteriors and quality interiors across Portmarnock.",
+    localContext:
+      "Portmarnock (Co. Dublin, D13) is a coastal village in north Dublin with premium homes near the sea. We specify exterior systems suited to coastal exposure and deliver quality interior finishes.",
+    highlights: [
+      "Coastal exterior systems",
+      "Full-house interior repaints",
+      "Exterior timber & render",
+    ],
+  },
+  Clonskeagh: {
+    intro:
+      "Period and family-home repaints with careful exterior work in Clonskeagh.",
+    localContext:
+      "Clonskeagh (Dublin 14) is a mature south-Dublin area of period houses and family homes near UCD. We deliver interior repaints and exterior masonry with proper prep and tidy crews.",
+    highlights: [
+      "Period interior repaints",
+      "Family-home work",
+      "Exterior masonry",
+    ],
+  },
 };
 
-// Name → path map, for cross-linking between the 15 static area pages.
+// Name → path map, for cross-linking between the static area pages.
 export const AREA_PATHS: Array<{ name: string; path: string }> = [
   { name: "Ballsbridge", path: "/painter-ballsbridge" },
   { name: "Ranelagh", path: "/painter-ranelagh" },
@@ -190,4 +487,32 @@ export const AREA_PATHS: Array<{ name: string; path: string }> = [
   { name: "Rathfarnham", path: "/painter-rathfarnham" },
   { name: "Malahide", path: "/painter-malahide" },
   { name: "Clondalkin", path: "/painter-clondalkin" },
+  { name: "Cabra", path: "/painter-cabra" },
+  { name: "Phibsborough", path: "/painter-phibsborough" },
+  { name: "Drumcondra", path: "/painter-drumcondra" },
+  { name: "Glasthule", path: "/painter-glasthule" },
+  { name: "Mount Merrion", path: "/painter-mount-merrion" },
+  { name: "Cabinteely", path: "/painter-cabinteely" },
+  { name: "Walkinstown", path: "/painter-walkinstown" },
+  { name: "Terenure", path: "/painter-terenure" },
+  { name: "Templeogue", path: "/painter-templeogue" },
+  { name: "Milltown", path: "/painter-milltown" },
+  { name: "Monkstown", path: "/painter-monkstown" },
+  { name: "Tallaght", path: "/painter-tallaght" },
+  { name: "Ballinteer", path: "/painter-ballinteer" },
+  { name: "Lucan", path: "/painter-lucan" },
+  { name: "Swords", path: "/painter-swords" },
+  { name: "Drimnagh", path: "/painter-drimnagh" },
+  { name: "Balbriggan", path: "/painter-balbriggan" },
+  { name: "Leopardstown", path: "/painter-leopardstown" },
+  { name: "Knocklyon", path: "/painter-knocklyon" },
+  { name: "Killiney", path: "/painter-killiney" },
+  { name: "Harold's Cross", path: "/painter-harold-s-cross" },
+  { name: "Sallynoggin", path: "/painter-sallynoggin" },
+  { name: "Crumlin", path: "/painter-crumlin" },
+  { name: "Goatstown", path: "/painter-goatstown" },
+  { name: "Glenageary", path: "/painter-glenageary" },
+  { name: "Portmarnock", path: "/painter-portmarnock" },
+  { name: "Clonskeagh", path: "/painter-clonskeagh" },
 ];
+
