@@ -14,9 +14,18 @@ const ContactSchema = z.object({
   phone: z.string().trim().max(50).optional().nullable(),
   postcode: z.string().trim().max(50).optional().nullable(),
   message: z.string().trim().min(1).max(4000),
-  source: z.enum(['contact_form', 'commercial_form', 'website']).optional(),
+  source: z.enum(['contact_form', 'commercial_form', 'website', 'homepage_form']).optional(),
   service_type: z.string().trim().max(100).optional().nullable(),
+  // Anti-spam (optional; tolerated when absent for backwards compat)
+  company_website: z.string().max(500).optional().nullable(),
+  form_rendered_at: z.number().int().optional().nullable(),
 })
+
+function getClientIp(request: Request): string {
+  const h = request.headers
+  const fwd = h.get('cf-connecting-ip') || h.get('x-forwarded-for') || h.get('x-real-ip') || ''
+  return (fwd.split(',')[0] || 'unknown').trim()
+}
 
 export const Route = createFileRoute('/api/public/contact')({
   server: {
