@@ -148,20 +148,22 @@ export const SERVICES: ServiceInfo[] = [
     name: "Kitchen Cabinet & Press Repainting",
     h1: "Kitchen Cabinet & Press Repainting Dublin",
     intro:
-      "Brush-applied repainting of kitchen presses, cabinets and built-in joinery. Doors and frames are cleaned, sanded, primed where needed and finished in a hard-wearing satinwood — a practical refresh for a tired kitchen.",
-    metaTitle: "Kitchen Cabinet Painting Dublin | Brush-Painted Press Repaints",
+      "Hand-painted repainting of kitchen presses, cabinets and built-in joinery — brush-applied by hand, not sprayed. Doors and frames are cleaned, sanded, primed where needed and finished in a hard-wearing satinwood — a practical refresh for a tired kitchen.",
+    metaTitle: "Kitchen Cabinet Painting Dublin | Hand-Painted Press Repaints",
     metaDescription:
-      "Brush-applied repainting of kitchen presses, cabinets and built-in joinery in Dublin. Degrease, sand, prime and satinwood finish. Free quotes.",
+      "Hand-painted repainting of kitchen presses, cabinets and built-in joinery in Dublin. Brush-applied by hand, degreased, sanded, primed and satinwood finished. Free quotes.",
     features: [
       "Kitchen presses and cabinet doors",
       "Built-in joinery and cabinet boxes",
+      "Hand-painted, brush-applied finish",
       "Degrease, sand and prime",
       "Bonding primer on factory finishes",
       "Brush-applied satinwood top coats",
       "Hinges and handles removed and refitted",
     ],
     process:
-      "We remove handles and label hinges, degrease and sand every face, apply an adhesion primer where needed, then brush on two coats of a hard-wearing satinwood. Doors are reinstated and adjusted at the end of the job.",
+      "We remove handles and label hinges, degrease and sand every face, apply an adhesion primer where needed, then hand-paint two coats of a hard-wearing satinwood. Doors are reinstated and adjusted at the end of the job.",
+
   },
   {
     slug: "plaster-and-water-damage-repair",
