@@ -41,6 +41,7 @@ import { Route as PainterKnocklyonRouteImport } from './routes/painter-knocklyon
 import { Route as PainterKillineyRouteImport } from './routes/painter-killiney'
 import { Route as PainterHowthRouteImport } from './routes/painter-howth'
 import { Route as PainterHaroldSCrossRouteImport } from './routes/painter-harold-s-cross'
+import { Route as PainterGreystonesRouteImport } from './routes/painter-greystones'
 import { Route as PainterGoatstownRouteImport } from './routes/painter-goatstown'
 import { Route as PainterGlenagearyRouteImport } from './routes/painter-glenageary'
 import { Route as PainterGlasthuleRouteImport } from './routes/painter-glasthule'
@@ -274,6 +275,11 @@ const PainterHowthRoute = PainterHowthRouteImport.update({
 const PainterHaroldSCrossRoute = PainterHaroldSCrossRouteImport.update({
   id: '/painter-harold-s-cross',
   path: '/painter-harold-s-cross',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PainterGreystonesRoute = PainterGreystonesRouteImport.update({
+  id: '/painter-greystones',
+  path: '/painter-greystones',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PainterGoatstownRoute = PainterGoatstownRouteImport.update({
@@ -702,6 +708,7 @@ export interface FileRoutesByFullPath {
   '/painter-glasthule': typeof PainterGlasthuleRoute
   '/painter-glenageary': typeof PainterGlenagearyRoute
   '/painter-goatstown': typeof PainterGoatstownRoute
+  '/painter-greystones': typeof PainterGreystonesRoute
   '/painter-harold-s-cross': typeof PainterHaroldSCrossRoute
   '/painter-howth': typeof PainterHowthRoute
   '/painter-killiney': typeof PainterKillineyRoute
@@ -809,6 +816,7 @@ export interface FileRoutesByTo {
   '/painter-glasthule': typeof PainterGlasthuleRoute
   '/painter-glenageary': typeof PainterGlenagearyRoute
   '/painter-goatstown': typeof PainterGoatstownRoute
+  '/painter-greystones': typeof PainterGreystonesRoute
   '/painter-harold-s-cross': typeof PainterHaroldSCrossRoute
   '/painter-howth': typeof PainterHowthRoute
   '/painter-killiney': typeof PainterKillineyRoute
@@ -917,6 +925,7 @@ export interface FileRoutesById {
   '/painter-glasthule': typeof PainterGlasthuleRoute
   '/painter-glenageary': typeof PainterGlenagearyRoute
   '/painter-goatstown': typeof PainterGoatstownRoute
+  '/painter-greystones': typeof PainterGreystonesRoute
   '/painter-harold-s-cross': typeof PainterHaroldSCrossRoute
   '/painter-howth': typeof PainterHowthRoute
   '/painter-killiney': typeof PainterKillineyRoute
@@ -1026,6 +1035,7 @@ export interface FileRouteTypes {
     | '/painter-glasthule'
     | '/painter-glenageary'
     | '/painter-goatstown'
+    | '/painter-greystones'
     | '/painter-harold-s-cross'
     | '/painter-howth'
     | '/painter-killiney'
@@ -1133,6 +1143,7 @@ export interface FileRouteTypes {
     | '/painter-glasthule'
     | '/painter-glenageary'
     | '/painter-goatstown'
+    | '/painter-greystones'
     | '/painter-harold-s-cross'
     | '/painter-howth'
     | '/painter-killiney'
@@ -1240,6 +1251,7 @@ export interface FileRouteTypes {
     | '/painter-glasthule'
     | '/painter-glenageary'
     | '/painter-goatstown'
+    | '/painter-greystones'
     | '/painter-harold-s-cross'
     | '/painter-howth'
     | '/painter-killiney'
@@ -1349,6 +1361,7 @@ export interface RootRouteChildren {
   PainterGlasthuleRoute: typeof PainterGlasthuleRoute
   PainterGlenagearyRoute: typeof PainterGlenagearyRoute
   PainterGoatstownRoute: typeof PainterGoatstownRoute
+  PainterGreystonesRoute: typeof PainterGreystonesRoute
   PainterHaroldSCrossRoute: typeof PainterHaroldSCrossRoute
   PainterHowthRoute: typeof PainterHowthRoute
   PainterKillineyRoute: typeof PainterKillineyRoute
@@ -1627,6 +1640,13 @@ declare module '@tanstack/react-router' {
       path: '/painter-harold-s-cross'
       fullPath: '/painter-harold-s-cross'
       preLoaderRoute: typeof PainterHaroldSCrossRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/painter-greystones': {
+      id: '/painter-greystones'
+      path: '/painter-greystones'
+      fullPath: '/painter-greystones'
+      preLoaderRoute: typeof PainterGreystonesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/painter-goatstown': {
@@ -2267,6 +2287,7 @@ const rootRouteChildren: RootRouteChildren = {
   PainterGlasthuleRoute: PainterGlasthuleRoute,
   PainterGlenagearyRoute: PainterGlenagearyRoute,
   PainterGoatstownRoute: PainterGoatstownRoute,
+  PainterGreystonesRoute: PainterGreystonesRoute,
   PainterHaroldSCrossRoute: PainterHaroldSCrossRoute,
   PainterHowthRoute: PainterHowthRoute,
   PainterKillineyRoute: PainterKillineyRoute,
