@@ -77,6 +77,7 @@ const ENTRIES: SitemapEntry[] = [
   { path: "/painter-rathmines", changefreq: "monthly", priority: "0.7" },
   { path: "/painter-sallynoggin", changefreq: "monthly", priority: "0.7" },
   { path: "/painter-sandyford", changefreq: "monthly", priority: "0.7" },
+  { path: "/painter-sandymount", changefreq: "monthly", priority: "0.7" },
   { path: "/painter-stillorgan", changefreq: "monthly", priority: "0.7" },
   { path: "/painter-swords", changefreq: "monthly", priority: "0.7" },
   { path: "/painter-tallaght", changefreq: "monthly", priority: "0.7" },
