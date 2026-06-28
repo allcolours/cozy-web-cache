@@ -249,6 +249,27 @@ function CommercialContractors() {
         </div>
       </section>
 
+      {/* Selected commercial projects */}
+      <section className="mx-auto max-w-7xl px-4 py-20 md:px-8 md:py-28">
+        <span className="eyebrow text-primary">Selected projects</span>
+        <h2 className="mt-3 max-w-3xl font-display text-3xl font-extrabold uppercase tracking-tight md:text-4xl">
+          Selected commercial &amp; institutional projects
+        </h2>
+        <p className="mt-4 max-w-2xl text-sm leading-relaxed text-foreground/80">
+          Commercial and institutional projects have included work for:
+        </p>
+        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+          {SELECTED_PROJECTS.map((project) => (
+            <div
+              key={project}
+              className="flex items-center rounded-sm border border-border bg-background p-4"
+            >
+              <span className="text-sm font-medium text-[oklch(0.2_0_0)]">{project}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* Why contractors choose us */}
       <section className="mx-auto max-w-7xl px-4 py-20 md:px-8 md:py-28">
         <span className="eyebrow text-primary">Why contractors choose us</span>
