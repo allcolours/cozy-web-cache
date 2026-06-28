@@ -155,7 +155,7 @@ export const Route = createFileRoute("/api/public/contact")({
           const leadSource = data.source || "contact_form";
           const templateData = {
             name: data.name,
-            email: data.email,
+            email: emailValue,
             phone: data.phone,
             postcode: data.postcode,
             message: data.message,
