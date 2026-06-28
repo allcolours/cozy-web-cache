@@ -576,8 +576,10 @@ function Home() {
         </div>
       </section>
 
-      {/* Recent projects */}
-      <RecentProjects />
+      {/* Recent projects (lazy, below the fold) */}
+      <Suspense fallback={<div aria-hidden className="bg-secondary" style={{ minHeight: 720 }} />}>
+        <RecentProjects />
+      </Suspense>
 
       {/* Process */}
       <ProcessSteps background="background" />
