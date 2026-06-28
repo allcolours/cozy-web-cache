@@ -139,6 +139,7 @@ function RootComponent() {
       <PageViewTracker />
       <AssetErrorMonitor />
       <CookieBanner />
+      <AnalyticsLoader />
       <Outlet />
     </QueryClientProvider>
   );
