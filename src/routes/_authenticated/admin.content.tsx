@@ -18,6 +18,7 @@ const FIELDS: { key: string; label: string; multiline?: boolean }[] = [
   { key: "hero_title", label: "Home hero title", multiline: true },
   { key: "hero_subtitle", label: "Home hero subtitle", multiline: true },
   { key: "about_text", label: "About blurb", multiline: true },
+  { key: "ga4_measurement_id", label: "Google Analytics 4 Measurement ID (G-XXXXXXX)" },
 ];
 
 function ContentAdmin() {
