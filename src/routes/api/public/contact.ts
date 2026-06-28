@@ -14,7 +14,7 @@ const ContactSchema = z.object({
   phone: z.string().trim().max(50).optional().nullable(),
   postcode: z.string().trim().max(50).optional().nullable(),
   message: z.string().trim().min(1).max(4000),
-  source: z.enum(["contact_form", "commercial_form", "website", "homepage_form"]).optional(),
+  source: z.string().trim().max(64).optional(),
   service_type: z.string().trim().max(100).optional().nullable(),
   // Anti-spam (optional; tolerated when absent for backwards compat)
   company_website: z.string().max(500).optional().nullable(),
@@ -123,6 +123,7 @@ export const Route = createFileRoute("/api/public/contact")({
           const submittedAt = new Date(inserted.created_at).toLocaleString("en-IE", {
             timeZone: "Europe/Dublin",
           });
+          const leadSource = data.source || "contact_form";
           const templateData = {
             name: data.name,
             email: data.email,
@@ -130,6 +131,8 @@ export const Route = createFileRoute("/api/public/contact")({
             postcode: data.postcode,
             message: data.message,
             submittedAt,
+            source: leadSource,
+            serviceType: data.service_type ?? null,
           };
 
           const element = React.createElement(template.component, templateData);

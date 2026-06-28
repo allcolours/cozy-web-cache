@@ -19,6 +19,8 @@ interface Props {
   postcode?: string | null;
   message?: string;
   submittedAt?: string;
+  source?: string | null;
+  serviceType?: string | null;
 }
 
 const ContactInquiryEmail = ({
@@ -28,18 +30,21 @@ const ContactInquiryEmail = ({
   postcode,
   message = "",
   submittedAt,
+  source,
+  serviceType,
 }: Props) => (
   <Html lang="en" dir="ltr">
     <Head />
     <Preview>
-      New inquiry from {name} — {email}
+      New website lead — {source || "contact_form"} — {name}
     </Preview>
     <Body style={main}>
       <Container style={container}>
         <Section style={accent} />
-        <Heading style={h1}>New Inquiry</Heading>
+        <Heading style={h1}>New Website Lead</Heading>
         <Text style={subtitle}>
-          Someone just submitted the contact form on allcolourspainter.com.
+          Source: <strong>{source || "contact_form"}</strong>
+          {serviceType ? ` · Service: ${serviceType}` : ""}
         </Text>
 
         <Section style={card}>
@@ -47,6 +52,8 @@ const ContactInquiryEmail = ({
           <Row label="Email" value={email} />
           {phone ? <Row label="Phone" value={phone} /> : null}
           {postcode ? <Row label="Postcode" value={postcode} /> : null}
+          <Row label="Source" value={source || "contact_form"} />
+          {serviceType ? <Row label="Service" value={serviceType} /> : null}
           {submittedAt ? <Row label="Submitted" value={submittedAt} /> : null}
         </Section>
 
@@ -71,7 +78,8 @@ const Row = ({ label, value }: { label: string; value: string }) => (
 
 export const template = {
   component: ContactInquiryEmail,
-  subject: (data: Record<string, any>) => `New inquiry from ${data?.name || "website visitor"}`,
+  subject: (data: Record<string, any>) =>
+    `New website lead — ${data?.source || "contact_form"} — ${data?.name || "website visitor"}`,
   displayName: "Contact form inquiry (admin notification)",
   to: "info@allcolourspainter.com",
   previewData: {
