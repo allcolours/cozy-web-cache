@@ -39,7 +39,7 @@ export const Route = createFileRoute("/painter-blackrock")({
     <LocalAreaPage
       area="Blackrock"
       postcode="Co. Dublin"
-      intro="Victorian and period homes, modern extensions and coastal exteriors throughout Blackrock — heritage-safe paint systems and a 12-month guarantee."
+      intro="Victorian and period homes, modern extensions and exterior repaints throughout Blackrock — thorough prep, trade-grade finishes and a 12-month workmanship guarantee."
     />
   ),
 });
