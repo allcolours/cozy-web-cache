@@ -110,11 +110,11 @@ const headline = [
   {
     title: "Residential",
     img: heroAsset.url,
-    desc: "Period townhouses, family homes and apartments — interior, exterior, sash windows and feature walls.",
+    desc: "Period townhouses, family homes and apartments — interior, exterior, window and woodwork repaints and feature walls.",
     bullets: [
       "Interior repaints",
       "Exterior render & masonry",
-      "Sash window restoration",
+      "Window & woodwork repaints",
       "Feature walls & wallpapering",
     ],
   },
