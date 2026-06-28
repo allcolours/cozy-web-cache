@@ -221,10 +221,10 @@ export const AREA_CONTENT: Record<string, AreaContent> = {
     highlights: ["Estate & semi repaints", "Commercial premises", "Tenancy turnarounds"],
   },
   Ballinteer: {
-    intro: "Dust-controlled interiors and exterior masonry across Ballinteer.",
+    intro: "Interior repaints and exterior masonry across Ballinteer.",
     localContext:
-      "Ballinteer (Dublin 16) is a south-Dublin suburb of family homes and newer estates in the foothills. We deliver dust-controlled interior repaints, woodwork and exterior masonry work.",
-    highlights: ["Dust-controlled interiors", "Exterior masonry", "New-build finishing"],
+      "Ballinteer (Dublin 16) is a south-Dublin suburb of family homes and newer estates in the foothills. We deliver tidy interior repaints, woodwork and exterior masonry work in occupied homes.",
+    highlights: ["Tidy interior repaints", "Exterior masonry", "New-build finishing"],
   },
   Lucan: {
     intro: "Interior and exterior painting for Lucan homeowners and developers.",
