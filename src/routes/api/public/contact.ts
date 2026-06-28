@@ -128,20 +128,21 @@ export const Route = createFileRoute("/api/public/contact")({
           }
 
 
-        // Also record as a lead in the CRM (best-effort)
-        try {
-          await supabase.from("leads").insert({
-            name: data.name,
-            email: data.email,
-            phone: data.phone || null,
-            message: data.message,
-            service_type: data.service_type || null,
-            source: data.source || "contact_form",
-            status: "new",
-          });
-        } catch (e) {
-          console.error("Failed to insert lead", e);
-        }
+          // Also record as a lead in the CRM (best-effort)
+          try {
+            const { error: leadErr } = await supabase.from("leads").insert({
+              name: data.name,
+              email: emailValue || null,
+              phone: data.phone || null,
+              message: data.message,
+              service_type: data.service_type || null,
+              source: data.source || "contact_form",
+              status: "new",
+            });
+            if (leadErr) console.error("contact: leads insert returned error", leadErr);
+          } catch (e) {
+            console.error("contact: leads insert threw", e);
+          }
 
         // 2. Build & enqueue admin notification email (best-effort — inquiry already saved)
         try {
