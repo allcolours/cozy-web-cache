@@ -14,6 +14,7 @@ import {
 } from "../components/form-helpers";
 import ctaAsset from "../assets/portfolio/cta-bg.webp.asset.json";
 import { SITE } from "@/lib/site";
+import { track } from "@/lib/analytics";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
