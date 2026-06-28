@@ -1,6 +1,7 @@
 import { useSiteSettings } from "../hooks/useSiteSettings";
 import { COMPANY } from "./SiteLayout";
 import { WHATSAPP_URL } from "@/lib/site";
+import { track } from "@/lib/analytics";
 
 export function MobileBottomBar() {
   const settings = useSiteSettings();
@@ -11,6 +12,7 @@ export function MobileBottomBar() {
     <div className="fixed inset-x-0 bottom-0 z-50 flex h-16 md:hidden">
       <a
         href={`tel:${phonePlain}`}
+        onClick={() => track("click_to_call", { location: "mobile_bottom_bar" })}
         className="flex flex-1 items-center justify-center gap-2 bg-[oklch(0.25_0_0)] text-white transition-colors active:bg-black"
         aria-label={`Call ${phone}`}
       >
@@ -31,6 +33,7 @@ export function MobileBottomBar() {
         href={WHATSAPP_URL}
         target="_blank"
         rel="noopener noreferrer"
+        onClick={() => track("click_whatsapp", { location: "mobile_bottom_bar" })}
         className="flex flex-1 items-center justify-center gap-2 bg-[#25D366] text-white transition-colors active:bg-[#128C7E]"
         aria-label="Chat on WhatsApp"
       >

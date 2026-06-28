@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSiteSettings } from "../hooks/useSiteSettings";
 import { COMPANY } from "./SiteLayout";
+import { track } from "@/lib/analytics";
 
 /**
  * Floating contact widget — bottom-right.
@@ -34,6 +35,7 @@ export function FloatingContact() {
             href={waHref}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => track("click_whatsapp", { location: "floating_contact" })}
             className="flex items-center gap-3 rounded-full bg-[#25D366] px-4 py-3 font-display text-xs font-bold uppercase tracking-wider text-white shadow-lg transition-transform hover:scale-[1.02]"
             aria-label="Chat on WhatsApp"
           >
@@ -44,6 +46,7 @@ export function FloatingContact() {
           </a>
           <a
             href={telHref}
+            onClick={() => track("click_to_call", { location: "floating_contact" })}
             className="flex items-center gap-3 rounded-full bg-primary px-4 py-3 font-display text-xs font-bold uppercase tracking-wider text-primary-foreground shadow-lg transition-transform hover:scale-[1.02]"
             aria-label={`Call ${phone}`}
           >

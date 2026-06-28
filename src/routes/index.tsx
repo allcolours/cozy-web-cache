@@ -18,6 +18,7 @@ import sHospitalityAsset from "../assets/portfolio/service-hospitality.webp.asse
 import ctaAsset from "../assets/portfolio/cta-bg.webp.asset.json";
 import { FormBotTraps, readBotTraps } from "../components/FormBotTraps";
 import { SITE, WHATSAPP_URL } from "@/lib/site";
+import { track } from "@/lib/analytics";
 import {
   Spinner,
   validateContact,
@@ -248,7 +249,11 @@ function LeadCaptureForm() {
         </h3>
         <p className="mt-3 text-sm text-white/85">
           We'll reply within one working day. For something urgent, call{" "}
-          <a className="font-semibold text-white hover:underline" href={`tel:${SITE.phoneTel}`}>
+          <a
+            className="font-semibold text-white hover:underline"
+            href={`tel:${SITE.phoneTel}`}
+            onClick={() => track("click_to_call", { location: "homepage_form_success" })}
+          >
             {SITE.phoneDisplay}
           </a>
           .
@@ -259,6 +264,7 @@ function LeadCaptureForm() {
             href={WHATSAPP_URL}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => track("click_whatsapp", { location: "homepage_form_success" })}
             className="font-semibold text-white underline hover:text-primary"
           >
             Send them on WhatsApp
@@ -318,6 +324,7 @@ function LeadCaptureForm() {
         }
         setSubmitted(true);
         setSubmitting(false);
+        track("generate_lead", { form: "homepage" });
       }}
       className="mx-auto grid max-w-3xl gap-4 rounded-sm border border-white/10 bg-white/10 p-5 backdrop-blur sm:grid-cols-2 md:grid-cols-4 md:p-6"
     >

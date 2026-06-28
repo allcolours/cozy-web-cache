@@ -14,6 +14,7 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { SchemaOrg } from "../components/SchemaOrg";
 import { AssetErrorMonitor } from "../components/AssetErrorMonitor";
 import { CookieBanner } from "../components/CookieBanner";
+import { AnalyticsLoader } from "../components/AnalyticsLoader";
 import { supabase } from "../integrations/supabase/client";
 
 function NotFoundComponent() {
@@ -138,6 +139,7 @@ function RootComponent() {
       <PageViewTracker />
       <AssetErrorMonitor />
       <CookieBanner />
+      <AnalyticsLoader />
       <Outlet />
     </QueryClientProvider>
   );

@@ -1,4 +1,5 @@
 import { SITE, WHATSAPP_URL } from "@/lib/site";
+import { track } from "@/lib/analytics";
 
 /** Inline spinner (uses currentColor). */
 export function Spinner({ className = "h-4 w-4" }: { className?: string }) {
@@ -48,7 +49,11 @@ export function FormSuccess({
       </h3>
       <p className="mt-3 text-sm text-foreground">
         We'll reply within one working day. For something urgent, call{" "}
-        <a className="font-semibold text-primary hover:underline" href={`tel:${SITE.phoneTel}`}>
+        <a
+          className="font-semibold text-primary hover:underline"
+          href={`tel:${SITE.phoneTel}`}
+          onClick={() => track("click_to_call", { location: "form_success" })}
+        >
           {SITE.phoneDisplay}
         </a>
         .
@@ -60,6 +65,7 @@ export function FormSuccess({
           target="_blank"
           rel="noopener noreferrer"
           className="font-semibold text-primary hover:underline"
+          onClick={() => track("click_whatsapp", { location: "form_success" })}
         >
           Send them on WhatsApp
         </a>{" "}

@@ -14,6 +14,7 @@ import {
 } from "../components/form-helpers";
 import ctaAsset from "../assets/portfolio/cta-bg.webp.asset.json";
 import { SITE } from "@/lib/site";
+import { track } from "@/lib/analytics";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -144,6 +145,7 @@ function Contact() {
     }
     setSent(true);
     setSubmitting(false);
+    track("generate_lead", { form: "contact" });
   }
 
   return (
@@ -401,7 +403,15 @@ function ContactRow({
         </dt>
         <dd className="mt-1 text-sm text-foreground">
           {href ? (
-            <a className="hover:text-primary" href={href}>
+            <a
+              className="hover:text-primary"
+              href={href}
+              onClick={
+                href.startsWith("tel:")
+                  ? () => track("click_to_call", { location: "contact_page" })
+                  : undefined
+              }
+            >
               {value}
             </a>
           ) : (

@@ -12,6 +12,7 @@ import {
 } from "../components/form-helpers";
 import commercialAsset from "../assets/portfolio/service-commercial.webp.asset.json";
 import { SITE } from "@/lib/site";
+import { track } from "@/lib/analytics";
 
 export const Route = createFileRoute("/commercial-painting-dublin")({
   head: () => ({
@@ -234,6 +235,7 @@ function CommercialPage() {
     }
     setSent(true);
     setSubmitting(false);
+    track("generate_lead", { form: "commercial" });
   }
 
   return (
@@ -269,6 +271,7 @@ function CommercialPage() {
             </a>
             <a
               href={`tel:${SITE.phoneTel}`}
+              onClick={() => track("click_to_call", { location: "commercial_hero" })}
               className="inline-flex items-center rounded-sm border border-white/30 px-6 py-3 font-display text-xs font-bold uppercase tracking-wider text-white hover:border-primary hover:text-primary"
             >
               Call {SITE.phoneDisplay}
@@ -386,7 +389,11 @@ function CommercialPage() {
             <div className="mt-8 space-y-3 text-sm text-white/80">
               <div>
                 📞{" "}
-                <a href={`tel:${SITE.phoneTel}`} className="hover:text-primary">
+                <a
+                  href={`tel:${SITE.phoneTel}`}
+                  onClick={() => track("click_to_call", { location: "commercial_contact_block" })}
+                  className="hover:text-primary"
+                >
                   {SITE.phoneDisplay}
                 </a>
               </div>
