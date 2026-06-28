@@ -1,14 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useRef, useState } from "react";
+import { lazy, Suspense, useRef, useState } from "react";
 import { SiteLayout, COMPANY } from "../components/SiteLayout";
 import { MapEmbed } from "../components/MapEmbed";
 import { TestimonialsSection } from "../components/Testimonials";
 import { ProcessSteps } from "../components/ProcessSteps";
 import { FaqAccordion } from "../components/FaqAccordion";
 import { FAQS } from "../data/faqs";
-import { useQuery } from "@tanstack/react-query";
-import { supabase } from "@/integrations/supabase/client";
-import { resolveGalleryUrl } from "@/lib/galleryUrl";
 
 import heroAsset from "../assets/portfolio/hero-house.webp.asset.json";
 import aboutAsset from "../assets/portfolio/about-architecture.webp.asset.json";
@@ -25,6 +22,8 @@ import {
   focusFirstError,
   type FieldErrors,
 } from "../components/form-helpers";
+
+const RecentProjects = lazy(() => import("../components/RecentProjects"));
 
 export const Route = createFileRoute("/")({
   head: () => ({
