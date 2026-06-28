@@ -39,7 +39,7 @@ export const Route = createFileRoute("/painter-dun-laoghaire")({
     <LocalAreaPage
       area="Dún Laoghaire"
       postcode="South County Dublin"
-      intro="Seafront terraces and harbour-side properties — marine-grade exterior systems and traditional interior decorating done right."
+      intro="Seafront terraces and harbour-side properties — thorough exterior prep, weatherproof trade finishes and clean interior repaints."
     />
   ),
 });
