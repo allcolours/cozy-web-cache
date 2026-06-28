@@ -56,9 +56,11 @@ export const Route = createFileRoute("/services_/$service")({
             "@context": "https://schema.org",
             "@type": "Service",
             name: service?.name,
+            serviceType: service?.name,
             provider: {
               "@type": "LocalBusiness",
-              name: "All Colours Painting",
+              name: "All Colours Painting Contractor Limited",
+              url: "https://allcolourspainter.com",
               telephone: "+353 85 821 1870",
               address: {
                 "@type": "PostalAddress",
@@ -66,8 +68,20 @@ export const Route = createFileRoute("/services_/$service")({
                 addressCountry: "IE",
               },
             },
-            areaServed: { "@type": "City", name: "Dublin" },
+            areaServed: { "@type": "AdministrativeArea", name: "County Dublin, Ireland" },
             description,
+          }),
+        },
+        {
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: FAQS.slice(0, 6).map((f) => ({
+              "@type": "Question",
+              name: f.q,
+              acceptedAnswer: { "@type": "Answer", text: f.a },
+            })),
           }),
         },
       ],
