@@ -487,8 +487,8 @@ function Home() {
                 d: "We say what we'll do — and we do what we say. Honest quotes, honest timelines.",
               },
               {
-                t: "Clean & Dust-Free",
-                d: "Floors, furniture and belongings fully protected. Vacuum sanding keeps dust out of your home.",
+                t: "Clean & Tidy",
+                d: "Floors, furniture and belongings fully protected. Daily clean-down — no building-site mess.",
               },
               {
                 t: "Fully Insured",
