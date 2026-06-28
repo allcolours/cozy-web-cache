@@ -1,4 +1,5 @@
 import { SITE, WHATSAPP_URL } from "@/lib/site";
+import { track } from "@/lib/analytics";
 
 /** Inline spinner (uses currentColor). */
 export function Spinner({ className = "h-4 w-4" }: { className?: string }) {
