@@ -417,12 +417,17 @@ function Field({
   name,
   type = "text",
   required,
+  error,
+  onBlur,
 }: {
   label: string;
   name: string;
   type?: string;
   required?: boolean;
+  error?: string;
+  onBlur?: () => void;
 }) {
+  const errId = `${name}-err`;
   return (
     <div>
       <label
@@ -430,15 +435,23 @@ function Field({
         className="font-display text-xs font-bold uppercase tracking-wider text-[oklch(0.2_0_0)]"
       >
         {label}
-        {required && " *"}
+        {required && <span className="text-primary"> *</span>}
       </label>
       <input
         id={name}
         name={name}
         type={type}
-        required={required}
+        aria-required={required || undefined}
+        aria-invalid={error ? true : undefined}
+        aria-describedby={error ? errId : undefined}
+        onBlur={onBlur}
         className="mt-2 w-full border border-input bg-background px-3 py-2 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
       />
+      {error && (
+        <p id={errId} className="mt-1 text-xs text-destructive">
+          {error}
+        </p>
+      )}
     </div>
   );
 }
