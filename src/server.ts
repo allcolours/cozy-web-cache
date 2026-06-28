@@ -58,7 +58,8 @@ function shouldCacheMarketingResponse(request: Request, response: Response): boo
   const ct = response.headers.get("content-type") ?? "";
   if (!ct.toLowerCase().includes("text/html")) return false;
   if (response.headers.get("set-cookie")) return false;
-  if (response.headers.has("cache-control")) return false;
+  // Intentionally overwrite upstream `cache-control: no-cache` from TanStack Start
+  // SSR — marketing HTML is anonymous and safe to cache at the edge.
 
   const path = new URL(request.url).pathname;
   if (DENY_CACHE_EXACT.has(path)) return false;
