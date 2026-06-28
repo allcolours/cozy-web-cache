@@ -22,6 +22,7 @@ import { Route as PainterTempleogueRouteImport } from './routes/painter-templeog
 import { Route as PainterTallaghtRouteImport } from './routes/painter-tallaght'
 import { Route as PainterSwordsRouteImport } from './routes/painter-swords'
 import { Route as PainterStillorganRouteImport } from './routes/painter-stillorgan'
+import { Route as PainterSandymountRouteImport } from './routes/painter-sandymount'
 import { Route as PainterSandyfordRouteImport } from './routes/painter-sandyford'
 import { Route as PainterSallynogginRouteImport } from './routes/painter-sallynoggin'
 import { Route as PainterRathminesRouteImport } from './routes/painter-rathmines'
@@ -173,6 +174,11 @@ const PainterSwordsRoute = PainterSwordsRouteImport.update({
 const PainterStillorganRoute = PainterStillorganRouteImport.update({
   id: '/painter-stillorgan',
   path: '/painter-stillorgan',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PainterSandymountRoute = PainterSandymountRouteImport.update({
+  id: '/painter-sandymount',
+  path: '/painter-sandymount',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PainterSandyfordRoute = PainterSandyfordRouteImport.update({
@@ -679,6 +685,7 @@ export interface FileRoutesByFullPath {
   '/painter-rathmines': typeof PainterRathminesRoute
   '/painter-sallynoggin': typeof PainterSallynogginRoute
   '/painter-sandyford': typeof PainterSandyfordRoute
+  '/painter-sandymount': typeof PainterSandymountRoute
   '/painter-stillorgan': typeof PainterStillorganRoute
   '/painter-swords': typeof PainterSwordsRoute
   '/painter-tallaght': typeof PainterTallaghtRoute
@@ -780,6 +787,7 @@ export interface FileRoutesByTo {
   '/painter-rathmines': typeof PainterRathminesRoute
   '/painter-sallynoggin': typeof PainterSallynogginRoute
   '/painter-sandyford': typeof PainterSandyfordRoute
+  '/painter-sandymount': typeof PainterSandymountRoute
   '/painter-stillorgan': typeof PainterStillorganRoute
   '/painter-swords': typeof PainterSwordsRoute
   '/painter-tallaght': typeof PainterTallaghtRoute
@@ -882,6 +890,7 @@ export interface FileRoutesById {
   '/painter-rathmines': typeof PainterRathminesRoute
   '/painter-sallynoggin': typeof PainterSallynogginRoute
   '/painter-sandyford': typeof PainterSandyfordRoute
+  '/painter-sandymount': typeof PainterSandymountRoute
   '/painter-stillorgan': typeof PainterStillorganRoute
   '/painter-swords': typeof PainterSwordsRoute
   '/painter-tallaght': typeof PainterTallaghtRoute
@@ -985,6 +994,7 @@ export interface FileRouteTypes {
     | '/painter-rathmines'
     | '/painter-sallynoggin'
     | '/painter-sandyford'
+    | '/painter-sandymount'
     | '/painter-stillorgan'
     | '/painter-swords'
     | '/painter-tallaght'
@@ -1086,6 +1096,7 @@ export interface FileRouteTypes {
     | '/painter-rathmines'
     | '/painter-sallynoggin'
     | '/painter-sandyford'
+    | '/painter-sandymount'
     | '/painter-stillorgan'
     | '/painter-swords'
     | '/painter-tallaght'
@@ -1187,6 +1198,7 @@ export interface FileRouteTypes {
     | '/painter-rathmines'
     | '/painter-sallynoggin'
     | '/painter-sandyford'
+    | '/painter-sandymount'
     | '/painter-stillorgan'
     | '/painter-swords'
     | '/painter-tallaght'
@@ -1290,6 +1302,7 @@ export interface RootRouteChildren {
   PainterRathminesRoute: typeof PainterRathminesRoute
   PainterSallynogginRoute: typeof PainterSallynogginRoute
   PainterSandyfordRoute: typeof PainterSandyfordRoute
+  PainterSandymountRoute: typeof PainterSandymountRoute
   PainterStillorganRoute: typeof PainterStillorganRoute
   PainterSwordsRoute: typeof PainterSwordsRoute
   PainterTallaghtRoute: typeof PainterTallaghtRoute
@@ -1416,6 +1429,13 @@ declare module '@tanstack/react-router' {
       path: '/painter-stillorgan'
       fullPath: '/painter-stillorgan'
       preLoaderRoute: typeof PainterStillorganRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/painter-sandymount': {
+      id: '/painter-sandymount'
+      path: '/painter-sandymount'
+      fullPath: '/painter-sandymount'
+      preLoaderRoute: typeof PainterSandymountRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/painter-sandyford': {
@@ -2160,6 +2180,7 @@ const rootRouteChildren: RootRouteChildren = {
   PainterRathminesRoute: PainterRathminesRoute,
   PainterSallynogginRoute: PainterSallynogginRoute,
   PainterSandyfordRoute: PainterSandyfordRoute,
+  PainterSandymountRoute: PainterSandymountRoute,
   PainterStillorganRoute: PainterStillorganRoute,
   PainterSwordsRoute: PainterSwordsRoute,
   PainterTallaghtRoute: PainterTallaghtRoute,
