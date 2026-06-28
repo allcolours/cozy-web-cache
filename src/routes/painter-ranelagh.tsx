@@ -39,7 +39,7 @@ export const Route = createFileRoute("/painter-ranelagh")({
     <LocalAreaPage
       area="Ranelagh"
       postcode="Dublin 6"
-      intro="Bay-window redbricks, cottage extensions and designer-grade interior repaints — delivered to the standard Ranelagh expects."
+      intro="Bay-window redbricks, cottage extensions and clean interior repaints — delivered to the standard Ranelagh expects."
     />
   ),
 });
