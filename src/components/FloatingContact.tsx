@@ -46,6 +46,7 @@ export function FloatingContact() {
           </a>
           <a
             href={telHref}
+            onClick={() => track("click_to_call", { location: "floating_contact" })}
             className="flex items-center gap-3 rounded-full bg-primary px-4 py-3 font-display text-xs font-bold uppercase tracking-wider text-primary-foreground shadow-lg transition-transform hover:scale-[1.02]"
             aria-label={`Call ${phone}`}
           >
