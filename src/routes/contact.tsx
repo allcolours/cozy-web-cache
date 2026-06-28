@@ -1,9 +1,17 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { SiteLayout } from "../components/SiteLayout";
 import { MapEmbed } from "../components/MapEmbed";
 import { useSiteSettings } from "../hooks/useSiteSettings";
 import { FormBotTraps, readBotTraps } from "../components/FormBotTraps";
+import {
+  FormSuccess,
+  Spinner,
+  TrustMicrocopy,
+  focusFirstError,
+  validateContact,
+  type FieldErrors,
+} from "../components/form-helpers";
 import ctaAsset from "../assets/portfolio/cta-bg.webp.asset.json";
 import { SITE } from "@/lib/site";
 
