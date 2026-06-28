@@ -129,10 +129,10 @@ export const AREA_CONTENT: Record<string, AreaContent> = {
     highlights: ["Full house repaints", "Woodwork & trim", "Exterior maintenance"],
   },
   Malahide: {
-    intro: "Interiors and coastal-ready exteriors for Malahide's homes near the marina.",
+    intro: "Interior and exterior repaints for Malahide's homes near the marina.",
     localContext:
-      "Malahide (Co. Dublin, K36) is a coastal town in north Dublin with period and modern homes near the marina. We paint interiors and specify exterior finishes suited to coastal conditions.",
-    highlights: ["Coastal exterior finishes", "Period & modern interiors", "Full-house repaints"],
+      "Malahide (Co. Dublin, K36) is a coastal town in north Dublin with period and modern homes near the marina. We paint interiors and prep exteriors thoroughly using weatherproof trade systems suited to the coastal setting.",
+    highlights: ["Exterior repaints near the coast", "Period & modern interiors", "Full-house repaints"],
   },
   Clondalkin: {
     intro: "Repaints and quick tenancy turnarounds across Clondalkin's homes and estates.",
