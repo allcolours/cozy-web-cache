@@ -91,12 +91,12 @@ export const AREA_CONTENT: Record<string, AreaContent> = {
     ],
   },
   Foxrock: {
-    intro: "Full-house repaints and hand-painted kitchens for Foxrock's larger homes.",
+    intro: "Full-house repaints and exterior work for Foxrock's larger detached homes.",
     localContext:
-      "Foxrock (Dublin 18) is a quiet, leafy suburb of large detached homes. We carry out full-house interior repaints, hand-painted kitchen cabinetry and exterior work on bigger properties.",
+      "Foxrock (Dublin 18) is a quiet, leafy suburb of large detached homes. We carry out full-house interior repaints, woodwork and trim, and exterior work on bigger properties.",
     highlights: [
       "Full-house interior repaints",
-      "Hand-painted kitchen cabinetry",
+      "Woodwork & trim",
       "Large-property exterior work",
     ],
   },
