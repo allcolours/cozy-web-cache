@@ -253,47 +253,102 @@ function ProjectRow({
     if (!files?.length) return;
     const arr = Array.from(files).map((f) => ({ name: f.name, progress: 0 }));
     setUploads(arr);
-    const {
-      data: { session },
-    } = await supabase.auth.getSession();
-    const token = session?.access_token;
+    const setProgress = (idx: number, progress: number) =>
+      setUploads((u) => u.map((x, j) => (j === idx ? { ...x, progress } : x)));
+    const setError = (idx: number, message: string) =>
+      setUploads((u) =>
+        u.map((x, j) => (j === idx ? { ...x, error: message.slice(0, 120) } : x)),
+      );
+
     let i = 0;
     for (const file of Array.from(files)) {
+      const idx = i;
+      i++;
       try {
-        if (!token) throw new Error("Not signed in");
-        setUploads((u) => u.map((x, idx) => (idx === i ? { ...x, progress: 15 } : x)));
-        const fd = new FormData();
-        fd.append("file", file, file.name);
-        fd.append("projectId", project.id);
-        const res = await fetch("/api/admin/gallery-upload", {
-          method: "POST",
-          headers: { Authorization: `Bearer ${token}` },
-          body: fd,
-        });
-        setUploads((u) => u.map((x, idx) => (idx === i ? { ...x, progress: 70 } : x)));
-        const json = await res.json().catch(() => ({}));
-        if (!res.ok || !json?.path) {
-          throw new Error(json?.error || `Upload failed (${res.status})`);
+        let blob: Blob | null = null;
+        let storagePath: string | null = null;
+
+        // Try client-side decode + downscale + WebP encode
+        try {
+          const bmp = await createImageBitmap(file);
+          setProgress(idx, 20);
+
+          const MAX = 1600;
+          const longest = Math.max(bmp.width, bmp.height);
+          const scale = longest > MAX ? MAX / longest : 1;
+          const w = Math.round(bmp.width * scale);
+          const h = Math.round(bmp.height * scale);
+
+          const canvas = document.createElement("canvas");
+          canvas.width = w;
+          canvas.height = h;
+          const ctx = canvas.getContext("2d");
+          if (!ctx) throw new Error("Canvas not available");
+          ctx.drawImage(bmp, 0, 0, w, h);
+          bmp.close?.();
+
+          blob = await new Promise<Blob>((resolve, reject) => {
+            canvas.toBlob(
+              (b) => (b ? resolve(b) : reject(new Error("toBlob failed"))),
+              "image/webp",
+              0.82,
+            );
+          });
+          setProgress(idx, 60);
+        } catch (clientErr) {
+          // Fallback: server-side decode (e.g. desktop Chrome with HEIC)
+          console.warn("client decode failed, using server fallback", file.name, clientErr);
+          setProgress(idx, 20);
+          const {
+            data: { session },
+          } = await supabase.auth.getSession();
+          const token = session?.access_token;
+          if (!token) throw new Error("Not signed in");
+          const fd = new FormData();
+          fd.append("file", file, file.name);
+          fd.append("projectId", project.id);
+          const res = await fetch("/api/admin/gallery-upload", {
+            method: "POST",
+            headers: { Authorization: `Bearer ${token}` },
+            body: fd,
+          });
+          const json = await res.json().catch(() => ({}));
+          if (!res.ok || !json?.path) {
+            throw new Error(json?.error || `Upload failed (${res.status})`);
+          }
+          storagePath = json.path;
+          setProgress(idx, 85);
         }
-        const path: string = json.path;
-        await supabase.from("gallery_images").insert({
+
+        // Direct-to-storage upload for the client-encoded path
+        if (blob) {
+          const path = `projects/${project.id}/${crypto.randomUUID()}.webp`;
+          const { error: upErr } = await supabase.storage.from("gallery").upload(path, blob, {
+            contentType: "image/webp",
+            cacheControl: "31536000",
+            upsert: false,
+          });
+          if (upErr) throw upErr;
+          storagePath = path;
+          setProgress(idx, 85);
+        }
+
+        if (!storagePath) throw new Error("No storage path");
+
+        const { error: insErr } = await supabase.from("gallery_images").insert({
           project_id: project.id,
-          image_url: path,
-          storage_path: path,
+          image_url: storagePath,
+          storage_path: storagePath,
           alt_text: file.name.replace(/\.[^.]+$/, ""),
-          is_cover: images.length === 0 && i === 0,
-          sort_order: images.length + i,
+          is_cover: images.length === 0 && idx === 0,
+          sort_order: images.length + idx,
         });
-        setUploads((u) => u.map((x, idx) => (idx === i ? { ...x, progress: 100 } : x)));
+        if (insErr) throw insErr;
+        setProgress(idx, 100);
       } catch (err) {
         console.error("upload failed", file.name, err);
-        setUploads((u) =>
-          u.map((x, idx) =>
-            idx === i ? { ...x, error: (err as Error)?.message?.slice(0, 120) || "Failed" } : x,
-          ),
-        );
+        setError(idx, (err as Error)?.message || "Failed");
       }
-      i++;
     }
     refetchImages();
     setTimeout(() => setUploads((u) => u.filter((x) => x.error)), 4000);
