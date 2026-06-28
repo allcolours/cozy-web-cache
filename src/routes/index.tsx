@@ -127,60 +127,7 @@ const services = [
   },
 ];
 
-type HomeAlbum = {
-  id: string;
-  title: string;
-  location: string;
-  category: string;
-  cover_url: string;
-  photo_count: number;
-};
 
-const CATEGORY_LABEL: Record<string, string> = {
-  interior: "Interior",
-  exterior: "Exterior",
-  commercial: "Commercial",
-  epoxy: "Floor Coatings",
-  bespoke: "Bespoke",
-};
-
-async function fetchHomeAlbums(): Promise<HomeAlbum[]> {
-  const { data, error } = await supabase
-    .from("gallery_images")
-    .select(
-      "id, project_id, image_url, storage_path, is_cover, sort_order, gallery_projects!inner(id, title, location, category, sort_order, visible)",
-    )
-    .eq("gallery_projects.visible", true)
-    .order("sort_order", { foreignTable: "gallery_projects", ascending: true })
-    .order("is_cover", { ascending: false })
-    .order("sort_order", { ascending: true });
-  if (error) throw error;
-  const map = new Map<string, { project: any; rows: any[] }>();
-  for (const row of (data ?? []) as any[]) {
-    const pid = row.project_id as string;
-    if (!map.has(pid)) map.set(pid, { project: row.gallery_projects, rows: [] });
-    map.get(pid)!.rows.push(row);
-  }
-  const albums = await Promise.all(
-    Array.from(map.entries()).map(async ([pid, { project, rows }]) => {
-      const cover = rows.find((r) => r.is_cover) ?? rows[0];
-      return {
-        id: pid,
-        title: project.title as string,
-        location: (project.location as string) ?? "Dublin",
-        category: project.category as string,
-        cover_url: await resolveGalleryUrl(cover.image_url, cover.storage_path),
-        photo_count: rows.length,
-      } as HomeAlbum;
-    }),
-  );
-  albums.sort(
-    (a, b) =>
-      ((map.get(a.id)!.project.sort_order ?? 0) as number) -
-      ((map.get(b.id)!.project.sort_order ?? 0) as number),
-  );
-  return albums.slice(0, 6);
-}
 
 const stats = [
   { k: "15–30", v: "Painters mobilised to programme" },
