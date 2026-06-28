@@ -3,7 +3,7 @@ import { LocalAreaPage } from "../components/LocalAreaPage";
 import { SITE } from "@/lib/site";
 
 const TITLE = "Painter Dún Laoghaire Co. Dublin | All Colours Painting";
-const DESC = `Marine-grade exteriors and full interiors across Dún Laoghaire's harbour terraces. Free quotes, fully insured — call ${SITE.phoneDisplay}.`;
+const DESC = `Interior and exterior repaints across Dún Laoghaire's harbour terraces. Free quotes, fully insured — call ${SITE.phoneDisplay}.`;
 const URL = "https://allcolourspainter.com/painter-dun-laoghaire";
 
 export const Route = createFileRoute("/painter-dun-laoghaire")({
