@@ -34,6 +34,7 @@ import { Route as PainterPhibsboroughRouteImport } from './routes/painter-phibsb
 import { Route as PainterMountMerrionRouteImport } from './routes/painter-mount-merrion'
 import { Route as PainterMonkstownRouteImport } from './routes/painter-monkstown'
 import { Route as PainterMilltownRouteImport } from './routes/painter-milltown'
+import { Route as PainterMaynoothRouteImport } from './routes/painter-maynooth'
 import { Route as PainterMalahideRouteImport } from './routes/painter-malahide'
 import { Route as PainterLucanRouteImport } from './routes/painter-lucan'
 import { Route as PainterLeopardstownRouteImport } from './routes/painter-leopardstown'
@@ -240,6 +241,11 @@ const PainterMonkstownRoute = PainterMonkstownRouteImport.update({
 const PainterMilltownRoute = PainterMilltownRouteImport.update({
   id: '/painter-milltown',
   path: '/painter-milltown',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PainterMaynoothRoute = PainterMaynoothRouteImport.update({
+  id: '/painter-maynooth',
+  path: '/painter-maynooth',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PainterMalahideRoute = PainterMalahideRouteImport.update({
@@ -716,6 +722,7 @@ export interface FileRoutesByFullPath {
   '/painter-leopardstown': typeof PainterLeopardstownRoute
   '/painter-lucan': typeof PainterLucanRoute
   '/painter-malahide': typeof PainterMalahideRoute
+  '/painter-maynooth': typeof PainterMaynoothRoute
   '/painter-milltown': typeof PainterMilltownRoute
   '/painter-monkstown': typeof PainterMonkstownRoute
   '/painter-mount-merrion': typeof PainterMountMerrionRoute
@@ -824,6 +831,7 @@ export interface FileRoutesByTo {
   '/painter-leopardstown': typeof PainterLeopardstownRoute
   '/painter-lucan': typeof PainterLucanRoute
   '/painter-malahide': typeof PainterMalahideRoute
+  '/painter-maynooth': typeof PainterMaynoothRoute
   '/painter-milltown': typeof PainterMilltownRoute
   '/painter-monkstown': typeof PainterMonkstownRoute
   '/painter-mount-merrion': typeof PainterMountMerrionRoute
@@ -933,6 +941,7 @@ export interface FileRoutesById {
   '/painter-leopardstown': typeof PainterLeopardstownRoute
   '/painter-lucan': typeof PainterLucanRoute
   '/painter-malahide': typeof PainterMalahideRoute
+  '/painter-maynooth': typeof PainterMaynoothRoute
   '/painter-milltown': typeof PainterMilltownRoute
   '/painter-monkstown': typeof PainterMonkstownRoute
   '/painter-mount-merrion': typeof PainterMountMerrionRoute
@@ -1043,6 +1052,7 @@ export interface FileRouteTypes {
     | '/painter-leopardstown'
     | '/painter-lucan'
     | '/painter-malahide'
+    | '/painter-maynooth'
     | '/painter-milltown'
     | '/painter-monkstown'
     | '/painter-mount-merrion'
@@ -1151,6 +1161,7 @@ export interface FileRouteTypes {
     | '/painter-leopardstown'
     | '/painter-lucan'
     | '/painter-malahide'
+    | '/painter-maynooth'
     | '/painter-milltown'
     | '/painter-monkstown'
     | '/painter-mount-merrion'
@@ -1259,6 +1270,7 @@ export interface FileRouteTypes {
     | '/painter-leopardstown'
     | '/painter-lucan'
     | '/painter-malahide'
+    | '/painter-maynooth'
     | '/painter-milltown'
     | '/painter-monkstown'
     | '/painter-mount-merrion'
@@ -1369,6 +1381,7 @@ export interface RootRouteChildren {
   PainterLeopardstownRoute: typeof PainterLeopardstownRoute
   PainterLucanRoute: typeof PainterLucanRoute
   PainterMalahideRoute: typeof PainterMalahideRoute
+  PainterMaynoothRoute: typeof PainterMaynoothRoute
   PainterMilltownRoute: typeof PainterMilltownRoute
   PainterMonkstownRoute: typeof PainterMonkstownRoute
   PainterMountMerrionRoute: typeof PainterMountMerrionRoute
@@ -1591,6 +1604,13 @@ declare module '@tanstack/react-router' {
       path: '/painter-milltown'
       fullPath: '/painter-milltown'
       preLoaderRoute: typeof PainterMilltownRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/painter-maynooth': {
+      id: '/painter-maynooth'
+      path: '/painter-maynooth'
+      fullPath: '/painter-maynooth'
+      preLoaderRoute: typeof PainterMaynoothRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/painter-malahide': {
@@ -2295,6 +2315,7 @@ const rootRouteChildren: RootRouteChildren = {
   PainterLeopardstownRoute: PainterLeopardstownRoute,
   PainterLucanRoute: PainterLucanRoute,
   PainterMalahideRoute: PainterMalahideRoute,
+  PainterMaynoothRoute: PainterMaynoothRoute,
   PainterMilltownRoute: PainterMilltownRoute,
   PainterMonkstownRoute: PainterMonkstownRoute,
   PainterMountMerrionRoute: PainterMountMerrionRoute,
