@@ -64,20 +64,22 @@ export const SERVICES: ServiceInfo[] = [
     name: "Woodwork & Joinery",
     h1: "Woodwork & Joinery Painting Dublin",
     intro:
-      "Architraves, door frames, doors, skirting boards, staircases and banisters. Two-pack filler on knocks and joints, proper sanding between coats, and a choice of satinwood, eggshell, gloss or varnish to suit the room.",
+      "Architraves, door frames, doors, skirting boards, staircases and banisters in period and older properties as well as modern homes. Two-pack filler on knocks and joints, dust-free sanding with extraction to keep occupied rooms clean, and a choice of satinwood, eggshell, gloss or varnish to suit the room.",
     metaTitle: "Woodwork & Joinery Painting Dublin | Doors, Skirtings & Stairs",
     metaDescription:
-      "Painting of architraves, door frames, doors, skirtings, staircases and banisters in Dublin. Two-pack filler prep, satinwood, eggshell, gloss or varnish finishes.",
+      "Painting of architraves, door frames, doors, skirtings, staircases and banisters in Dublin. Two-pack filler prep, dust-free sanding, satinwood, eggshell, gloss or varnish finishes.",
     features: [
       "Architraves, frames and skirting",
       "Doors, staircases and banisters",
       "Two-pack filler on knocks and joints",
+      "Dust-free sanding with extraction",
       "Sanded between coats",
       "Satinwood, eggshell and gloss",
       "Varnish finishes on bare timber",
     ],
     process:
-      "We fill and sand back, prime bare or patched timber, then apply two coats of the chosen finish — typically a water-based satinwood or eggshell for a clean, hard-wearing result that does not yellow.",
+      "We fill and sand back with dust extraction, prime bare or patched timber, then apply two coats of the chosen finish — typically a water-based satinwood or eggshell for a clean, hard-wearing result that does not yellow.",
+
   },
   {
     slug: "sash-and-timber-windows",
