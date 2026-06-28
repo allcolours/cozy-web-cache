@@ -372,12 +372,12 @@ function Services() {
                 use: "Water-based satin and eggshell for skirting, doors and joinery — non-yellowing.",
               },
               {
-                brand: "Sikafloor Epoxy",
-                use: "Industrial floor coatings — anti-slip, chemical-resistant, fast-cure.",
+                brand: "Fleetwood",
+                use: "Irish-made trade emulsions and woodwork systems — reliable everyday finish for walls and joinery.",
               },
               {
-                brand: "Allback Linseed",
-                use: "Heritage and conservation work — traditional linseed paints and putty.",
+                brand: "Colourtrend",
+                use: "Irish heritage and contemporary colour palette in durable interior and exterior systems.",
               },
               {
                 brand: "Zinsser Primers",
