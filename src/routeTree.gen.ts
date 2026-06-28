@@ -59,6 +59,7 @@ import { Route as PainterBlackrockRouteImport } from './routes/painter-blackrock
 import { Route as PainterBallsbridgeRouteImport } from './routes/painter-ballsbridge'
 import { Route as PainterBallinteerRouteImport } from './routes/painter-ballinteer'
 import { Route as PainterBalbrigganRouteImport } from './routes/painter-balbriggan'
+import { Route as HousePaintingDublinRouteImport } from './routes/house-painting-dublin'
 import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as EstimateRouteImport } from './routes/estimate'
@@ -359,6 +360,11 @@ const PainterBalbrigganRoute = PainterBalbrigganRouteImport.update({
   path: '/painter-balbriggan',
   getParentRoute: () => rootRouteImport,
 } as any)
+const HousePaintingDublinRoute = HousePaintingDublinRouteImport.update({
+  id: '/house-painting-dublin',
+  path: '/house-painting-dublin',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const GalleryRoute = GalleryRouteImport.update({
   id: '/gallery',
   path: '/gallery',
@@ -635,6 +641,7 @@ export interface FileRoutesByFullPath {
   '/estimate': typeof EstimateRoute
   '/faq': typeof FaqRoute
   '/gallery': typeof GalleryRoute
+  '/house-painting-dublin': typeof HousePaintingDublinRoute
   '/painter-balbriggan': typeof PainterBalbrigganRoute
   '/painter-ballinteer': typeof PainterBallinteerRoute
   '/painter-ballsbridge': typeof PainterBallsbridgeRoute
@@ -735,6 +742,7 @@ export interface FileRoutesByTo {
   '/estimate': typeof EstimateRoute
   '/faq': typeof FaqRoute
   '/gallery': typeof GalleryRoute
+  '/house-painting-dublin': typeof HousePaintingDublinRoute
   '/painter-balbriggan': typeof PainterBalbrigganRoute
   '/painter-ballinteer': typeof PainterBallinteerRoute
   '/painter-ballsbridge': typeof PainterBallsbridgeRoute
@@ -836,6 +844,7 @@ export interface FileRoutesById {
   '/estimate': typeof EstimateRoute
   '/faq': typeof FaqRoute
   '/gallery': typeof GalleryRoute
+  '/house-painting-dublin': typeof HousePaintingDublinRoute
   '/painter-balbriggan': typeof PainterBalbrigganRoute
   '/painter-ballinteer': typeof PainterBallinteerRoute
   '/painter-ballsbridge': typeof PainterBallsbridgeRoute
@@ -938,6 +947,7 @@ export interface FileRouteTypes {
     | '/estimate'
     | '/faq'
     | '/gallery'
+    | '/house-painting-dublin'
     | '/painter-balbriggan'
     | '/painter-ballinteer'
     | '/painter-ballsbridge'
@@ -1038,6 +1048,7 @@ export interface FileRouteTypes {
     | '/estimate'
     | '/faq'
     | '/gallery'
+    | '/house-painting-dublin'
     | '/painter-balbriggan'
     | '/painter-ballinteer'
     | '/painter-ballsbridge'
@@ -1138,6 +1149,7 @@ export interface FileRouteTypes {
     | '/estimate'
     | '/faq'
     | '/gallery'
+    | '/house-painting-dublin'
     | '/painter-balbriggan'
     | '/painter-ballinteer'
     | '/painter-ballsbridge'
@@ -1240,6 +1252,7 @@ export interface RootRouteChildren {
   EstimateRoute: typeof EstimateRoute
   FaqRoute: typeof FaqRoute
   GalleryRoute: typeof GalleryRoute
+  HousePaintingDublinRoute: typeof HousePaintingDublinRoute
   PainterBalbrigganRoute: typeof PainterBalbrigganRoute
   PainterBallinteerRoute: typeof PainterBallinteerRoute
   PainterBallsbridgeRoute: typeof PainterBallsbridgeRoute
@@ -1662,6 +1675,13 @@ declare module '@tanstack/react-router' {
       path: '/painter-balbriggan'
       fullPath: '/painter-balbriggan'
       preLoaderRoute: typeof PainterBalbrigganRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/house-painting-dublin': {
+      id: '/house-painting-dublin'
+      path: '/house-painting-dublin'
+      fullPath: '/house-painting-dublin'
+      preLoaderRoute: typeof HousePaintingDublinRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/gallery': {
@@ -2102,6 +2122,7 @@ const rootRouteChildren: RootRouteChildren = {
   EstimateRoute: EstimateRoute,
   FaqRoute: FaqRoute,
   GalleryRoute: GalleryRoute,
+  HousePaintingDublinRoute: HousePaintingDublinRoute,
   PainterBalbrigganRoute: PainterBalbrigganRoute,
   PainterBallinteerRoute: PainterBallinteerRoute,
   PainterBallsbridgeRoute: PainterBallsbridgeRoute,
@@ -2176,13 +2197,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
