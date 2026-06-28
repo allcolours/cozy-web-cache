@@ -138,7 +138,7 @@ const WHY = [
   "We show up on time and finish on schedule — no chasing",
   "Crews of 15–30 painters — we scale to your project size",
   "Compliant with all standard FM procurement requirements",
-  "Painting works delivered on Cairn Homes, Bennett Construction and RCSI projects",
+  "Painting works delivered on Cairn Homes and Bennett Construction projects",
   "Single point of contact from first call to final sign-off",
 ];
 
