@@ -3,7 +3,7 @@ import { LocalAreaPage } from "../components/LocalAreaPage";
 import { SITE } from "@/lib/site";
 
 const TITLE = "Painter Blackrock Co. Dublin | All Colours Painting";
-const DESC = `Interiors and salt-resistant exterior finishes for Blackrock homes near the bay. Free quotes, fully insured — call ${SITE.phoneDisplay}.`;
+const DESC = `Interior and exterior repaints for Blackrock homes near the bay. Free quotes, fully insured — call ${SITE.phoneDisplay}.`;
 const URL = "https://allcolourspainter.com/painter-blackrock";
 
 export const Route = createFileRoute("/painter-blackrock")({
@@ -39,7 +39,7 @@ export const Route = createFileRoute("/painter-blackrock")({
     <LocalAreaPage
       area="Blackrock"
       postcode="Co. Dublin"
-      intro="Victorian and period homes, modern extensions and coastal exteriors throughout Blackrock — heritage-safe paint systems and a 12-month guarantee."
+      intro="Victorian and period homes, modern extensions and exterior repaints throughout Blackrock — thorough prep, trade-grade finishes and a 12-month workmanship guarantee."
     />
   ),
 });

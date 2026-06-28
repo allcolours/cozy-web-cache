@@ -110,11 +110,11 @@ const headline = [
   {
     title: "Residential",
     img: heroAsset.url,
-    desc: "Period townhouses, family homes and apartments — interior, exterior, sash windows and feature walls.",
+    desc: "Period townhouses, family homes and apartments — interior, exterior, window and woodwork repaints and feature walls.",
     bullets: [
       "Interior repaints",
       "Exterior render & masonry",
-      "Sash window restoration",
+      "Window & woodwork repaints",
       "Feature walls & wallpapering",
     ],
   },
@@ -198,12 +198,12 @@ const more = [
   {
     title: "Ceiling & Hallway Painting",
     img: heroAsset.url,
-    desc: "Ceiling painting, hallway and staircase repaints — covered, dust-controlled and finished without splatter.",
+    desc: "Ceiling painting, hallway and staircase repaints — floors and furniture protected and finished without splatter.",
   },
   {
     title: "Period & Georgian Homes",
     img: exteriorAsset.url,
-    desc: "Georgian house painting, sash windows, cornicing and heritage colour systems for period properties in Dublin.",
+    desc: "Period home repaints — interiors, exterior masonry, windows, cornicing and traditional colours for Georgian and Victorian properties in Dublin.",
   },
 ];
 

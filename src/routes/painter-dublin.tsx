@@ -81,7 +81,7 @@ const SERVICES = [
   },
   {
     title: "Bespoke Finishes",
-    desc: "Hand-painted kitchens, spray finishing, feature walls and specialist period-property decoration.",
+    desc: "Spray finishing, feature walls and full kitchen repaints for period and modern homes.",
   },
 ];
 

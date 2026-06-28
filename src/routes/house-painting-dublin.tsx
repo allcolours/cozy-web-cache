@@ -15,7 +15,7 @@ import { TestimonialsSection } from "../components/Testimonials";
 import heroAsset from "../assets/portfolio/hero-house.webp.asset.json";
 import { SITE, WHATSAPP_URL } from "@/lib/site";
 import { track } from "@/lib/analytics";
-import { AREAS } from "../data/areas";
+import { AREA_PATHS, ALSO_SERVING } from "../data/areaContent";
 
 const META_DESCRIPTION =
   "Clean, on-time, fully insured house painters in Dublin — interiors & exteriors. Free written quote within 48 hours. Crews of 15–30, 10+ years hands-on across Dublin.";
@@ -379,10 +379,10 @@ function HousePaintingPage() {
           We cover all of Dublin and surrounding counties.
         </h2>
         <ul className="mt-8 flex flex-wrap gap-2">
-          {AREAS.map((a) => (
-            <li key={a.slug}>
+          {AREA_PATHS.map((a) => (
+            <li key={a.path}>
               <a
-                href={`/painter-${a.slug}`}
+                href={a.path}
                 className="inline-flex items-center rounded-sm border border-border bg-background px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-[oklch(0.25_0_0)] hover:border-primary hover:text-primary"
               >
                 {a.name}
@@ -390,6 +390,10 @@ function HousePaintingPage() {
             </li>
           ))}
         </ul>
+        <p className="mt-6 text-sm leading-relaxed text-[oklch(0.4_0_0)]">
+          <span className="font-semibold text-foreground">Also serving:</span>{" "}
+          {ALSO_SERVING.join(" · ")}.
+        </p>
         <p className="mt-4 text-sm text-[oklch(0.4_0_0)]">
           Not listed?{" "}
           <a

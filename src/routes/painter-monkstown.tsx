@@ -3,7 +3,7 @@ import { LocalAreaPage } from "../components/LocalAreaPage";
 import { SITE } from "@/lib/site";
 
 const TITLE = "Painter Monkstown South County Dublin | All Colours Painting";
-const DESC = `Marine-grade exteriors and careful period interiors across Monkstown. Free quotes, fully insured — call ${SITE.phoneDisplay}.`;
+const DESC = `Careful interior and exterior repaints across Monkstown's seafront properties. Free quotes, fully insured — call ${SITE.phoneDisplay}.`;
 const URL = "https://allcolourspainter.com/painter-monkstown";
 
 export const Route = createFileRoute("/painter-monkstown")({
@@ -57,7 +57,7 @@ export const Route = createFileRoute("/painter-monkstown")({
     <LocalAreaPage
       area="Monkstown"
       postcode="South County Dublin"
-      intro="Seafront Victorian and Edwardian properties that need expert prep and marine-grade exterior systems to stand up to coastal conditions."
+      intro="Seafront Victorian and Edwardian properties — thorough exterior prep, weatherproof trade finishes and careful period interior repaints."
     />
   ),
 });

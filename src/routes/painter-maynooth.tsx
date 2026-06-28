@@ -2,11 +2,11 @@ import { createFileRoute } from "@tanstack/react-router";
 import { LocalAreaPage } from "../components/LocalAreaPage";
 import { SITE } from "@/lib/site";
 
-const TITLE = "Painter Dún Laoghaire Co. Dublin | All Colours Painting";
-const DESC = `Interior and exterior repaints across Dún Laoghaire's harbour terraces. Free quotes, fully insured — call ${SITE.phoneDisplay}.`;
-const URL = "https://allcolourspainter.com/painter-dun-laoghaire";
+const TITLE = "Painter Maynooth Co. Kildare | All Colours Painting";
+const DESC = `Family-home repaints and student-let turnarounds across Maynooth. Free quotes, fully insured — call ${SITE.phoneDisplay}.`;
+const URL = "https://allcolourspainter.com/painter-maynooth";
 
-export const Route = createFileRoute("/painter-dun-laoghaire")({
+export const Route = createFileRoute("/painter-maynooth")({
   head: () => ({
     meta: [
       { title: TITLE },
@@ -22,12 +22,7 @@ export const Route = createFileRoute("/painter-dun-laoghaire")({
           "@context": "https://schema.org",
           "@type": "BreadcrumbList",
           itemListElement: [
-            {
-              "@type": "ListItem",
-              position: 1,
-              name: "Home",
-              item: "https://allcolourspainter.com/",
-            },
+            { "@type": "ListItem", position: 1, name: "Home", item: "https://allcolourspainter.com/" },
             { "@type": "ListItem", position: 2, name: TITLE.split(" | ")[0], item: URL },
           ],
         }),
@@ -37,9 +32,9 @@ export const Route = createFileRoute("/painter-dun-laoghaire")({
   }),
   component: () => (
     <LocalAreaPage
-      area="Dún Laoghaire"
-      postcode="South County Dublin"
-      intro="Seafront terraces and harbour-side properties — thorough exterior prep, weatherproof trade finishes and clean interior repaints."
+      area="Maynooth"
+      postcode="Co. Kildare"
+      intro="University town with family homes, student rentals and newer estates — fast tenancy turnarounds for landlords and full repaints for owner-occupiers."
     />
   ),
 });

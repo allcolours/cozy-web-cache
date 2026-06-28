@@ -207,7 +207,7 @@ function PricingGuidePage() {
             external scaffolding.
           </li>
           <li>
-            <strong className="text-foreground">Finish level.</strong> Standard vs. designer-grade
+            <strong className="text-foreground">Finish level.</strong> Standard vs. premium
             hand-finished joinery.
           </li>
         </ul>

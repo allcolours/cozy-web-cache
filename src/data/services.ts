@@ -65,10 +65,10 @@ export const SERVICES: ServiceInfo[] = [
       "From a single room refresh to a full repaint between tenancies, our interior crews deliver a flawless finish with proper prep, durable paint and zero mess. We use Dulux Trade, Fleetwood and Colourtrend by default, and you can sleep in the room the same night.",
     metaTitle: "Interior House Painting Dublin | Rooms, Apartments & Whole Homes",
     metaDescription:
-      "Interior painters Dublin. Single rooms, apartments and full house repaints. Two coats, dustless sanding, water-based eggshell on woodwork. Free written quote.",
+      "Interior painters Dublin. Single rooms, apartments and full house repaints. Two coats, thorough sanding, water-based eggshell on woodwork. Free written quote.",
     features: [
       "Two coats throughout as standard",
-      "Dustless sanding on woodwork",
+      "Thorough sanding & filling on woodwork",
       "Water-based, low-odour systems",
       "Light filling & line-fix included",
       "ZipWall containment around occupied rooms",

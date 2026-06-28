@@ -382,6 +382,26 @@ export function SiteLayout({ children }: { children: ReactNode }) {
                 </Link>
               </li>
               <li>
+                <Link to="/painter-castleknock" className="hover:text-primary">
+                  Painter Castleknock
+                </Link>
+              </li>
+              <li>
+                <Link to="/painter-sandymount" className="hover:text-primary">
+                  Painter Sandymount
+                </Link>
+              </li>
+              <li>
+                <Link to="/painter-bray" className="hover:text-primary">
+                  Painter Bray
+                </Link>
+              </li>
+              <li>
+                <Link to="/painter-maynooth" className="hover:text-primary">
+                  Painter Maynooth
+                </Link>
+              </li>
+              <li>
                 <Link to="/painters" className="hover:text-primary font-medium">
                   View all areas →
                 </Link>

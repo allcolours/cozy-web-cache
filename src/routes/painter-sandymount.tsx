@@ -2,11 +2,11 @@ import { createFileRoute } from "@tanstack/react-router";
 import { LocalAreaPage } from "../components/LocalAreaPage";
 import { SITE } from "@/lib/site";
 
-const TITLE = "Painter Dún Laoghaire Co. Dublin | All Colours Painting";
-const DESC = `Interior and exterior repaints across Dún Laoghaire's harbour terraces. Free quotes, fully insured — call ${SITE.phoneDisplay}.`;
-const URL = "https://allcolourspainter.com/painter-dun-laoghaire";
+const TITLE = "Painter Sandymount Dublin 4 | All Colours Painting";
+const DESC = `Interior and exterior repaints across Sandymount's Victorian terraces and apartments. Free quotes, fully insured — call ${SITE.phoneDisplay}.`;
+const URL = "https://allcolourspainter.com/painter-sandymount";
 
-export const Route = createFileRoute("/painter-dun-laoghaire")({
+export const Route = createFileRoute("/painter-sandymount")({
   head: () => ({
     meta: [
       { title: TITLE },
@@ -22,12 +22,7 @@ export const Route = createFileRoute("/painter-dun-laoghaire")({
           "@context": "https://schema.org",
           "@type": "BreadcrumbList",
           itemListElement: [
-            {
-              "@type": "ListItem",
-              position: 1,
-              name: "Home",
-              item: "https://allcolourspainter.com/",
-            },
+            { "@type": "ListItem", position: 1, name: "Home", item: "https://allcolourspainter.com/" },
             { "@type": "ListItem", position: 2, name: TITLE.split(" | ")[0], item: URL },
           ],
         }),
@@ -37,9 +32,9 @@ export const Route = createFileRoute("/painter-dun-laoghaire")({
   }),
   component: () => (
     <LocalAreaPage
-      area="Dún Laoghaire"
-      postcode="South County Dublin"
-      intro="Seafront terraces and harbour-side properties — thorough exterior prep, weatherproof trade finishes and clean interior repaints."
+      area="Sandymount"
+      postcode="Dublin 4"
+      intro="Victorian terraces, cottages and apartments off the strand — clean interior repaints and weatherproof exterior work in occupied homes."
     />
   ),
 });
