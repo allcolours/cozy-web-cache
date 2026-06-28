@@ -3,7 +3,7 @@ import { SiteLayout, COMPANY } from "../components/SiteLayout";
 import { FaqAccordion } from "../components/FaqAccordion";
 import { FAQS } from "../data/faqs";
 import { SERVICES } from "../data/services";
-import { TESTIMONIALS } from "../data/testimonials";
+
 import heroAsset from "../assets/portfolio/hero-house.webp.asset.json";
 
 function serviceHeroImage(service?: { slug: string; name: string }) {
