@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSiteSettings } from "../hooks/useSiteSettings";
 import { COMPANY } from "./SiteLayout";
+import { track } from "@/lib/analytics";
 
 /**
  * Floating contact widget — bottom-right.
