@@ -18,6 +18,7 @@ import sHospitalityAsset from "../assets/portfolio/service-hospitality.webp.asse
 import ctaAsset from "../assets/portfolio/cta-bg.webp.asset.json";
 import { FormBotTraps, readBotTraps } from "../components/FormBotTraps";
 import { SITE, WHATSAPP_URL } from "@/lib/site";
+import { track } from "@/lib/analytics";
 import {
   Spinner,
   validateContact,
