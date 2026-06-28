@@ -297,7 +297,7 @@ function Services() {
                 <div className="aspect-[16/10] overflow-hidden">
                   <img
                     src={s.img}
-                    alt={s.alt ?? `${s.title} — ${s.desc.split(".")[0]}`}
+                    alt={`${s.title} — ${s.desc.split(".")[0]}`}
                     loading="lazy"
                     width={800}
                     height={500}
