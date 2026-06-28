@@ -21,13 +21,13 @@ export const AREA_CONTENT: Record<string, AreaContent> = {
   },
   Ranelagh: {
     intro:
-      "Period interiors, exterior timber and railing work across Ranelagh's red-brick streets.",
+      "Interior repaints, exterior timber and railing work across Ranelagh's red-brick streets.",
     localContext:
-      "Ranelagh (Dublin 6) is known for its Victorian and Edwardian red-brick terraces around the village. We repaint period interiors, hallways and stairwells, and restore exterior timber, railings and front doors.",
+      "Ranelagh (Dublin 6) is known for its Victorian and Edwardian red-brick terraces around the village. We repaint period interiors, hallways and stairwells, and repaint exterior timber, railings and front doors.",
     highlights: [
       "Period red-brick interiors",
       "Hallway & stairwell repaints",
-      "Exterior timber & railing restoration",
+      "Exterior timber & railing repaints",
     ],
   },
   Rathmines: {
