@@ -205,18 +205,13 @@ function Contact() {
             </div>
 
             <form
+              ref={formRef}
+              noValidate
               onSubmit={handleSubmit}
               className="space-y-4 border-t-[3px] border-primary bg-card p-6 md:col-span-3 md:p-10"
             >
               {sent ? (
-                <div className="bg-primary/10 p-8 text-center">
-                  <h3 className="font-display text-xl font-bold uppercase tracking-wide text-[oklch(0.2_0_0)]">
-                    Thanks — message received
-                  </h3>
-                  <p className="mt-3 text-sm text-foreground">
-                    We'll be in touch within one working day.
-                  </p>
-                </div>
+                <FormSuccess />
               ) : (
                 <>
                   <FormBotTraps />
@@ -224,54 +219,98 @@ function Contact() {
                     Request a quote
                   </h3>
                   <div className="grid gap-4 sm:grid-cols-2">
-                    <Field label="Name" name="name" required />
-                    <Field label="Phone" name="phone" type="tel" />
+                    <Field
+                      label="Name"
+                      name="name"
+                      required
+                      error={errors.name}
+                      onBlur={handleBlur("name")}
+                    />
+                    <Field
+                      label="Phone"
+                      name="phone"
+                      type="tel"
+                      error={errors.phone}
+                      onBlur={handleBlur("phone")}
+                    />
                   </div>
-                  <Field label="Email" name="email" type="email" required />
+                  <Field
+                    label="Email"
+                    name="email"
+                    type="email"
+                    error={errors.email}
+                    onBlur={handleBlur("email")}
+                  />
                   <Field label="Postcode" name="postcode" />
                   <div>
                     <label
                       htmlFor="project-details"
                       className="font-display text-xs font-bold uppercase tracking-wider text-[oklch(0.2_0_0)]"
                     >
-                      Project details
+                      Project details<span className="text-primary"> *</span>
                     </label>
                     <textarea
                       id="project-details"
                       name="message"
-                      required
                       rows={5}
+                      aria-required="true"
+                      aria-invalid={errors.message ? true : undefined}
+                      aria-describedby={errors.message ? "project-details-err" : undefined}
+                      onBlur={handleBlur("message")}
                       className="mt-2 w-full border border-input bg-background px-3 py-2 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
                     />
+                    {errors.message && (
+                      <p id="project-details-err" className="mt-1 text-xs text-destructive">
+                        {errors.message}
+                      </p>
+                    )}
                   </div>
-                  <label
-                    htmlFor="consent"
-                    className="flex items-start gap-3 pt-2 text-xs text-foreground/75"
-                  >
-                    <input
-                      id="consent"
-                      name="consent"
-                      type="checkbox"
-                      required
-                      className="mt-0.5 h-4 w-4 shrink-0 border-input accent-[oklch(0.55_0.17_158)]"
-                    />
-                    <span>
-                      I agree that my details may be used to respond to this enquiry, as described
-                      in the{" "}
-                      <Link to="/privacy" className="text-primary hover:underline">
-                        Privacy Policy
-                      </Link>
-                      .
-                    </span>
-                  </label>
-                  {error && <p className="text-sm text-destructive">{error}</p>}
-                  <button
-                    type="submit"
-                    disabled={submitting}
-                    className="w-full rounded-sm bg-primary px-6 py-3 font-display text-xs font-bold uppercase tracking-wider text-primary-foreground transition-colors hover:bg-[oklch(0.62_0.17_158)] disabled:opacity-50 sm:w-auto"
-                  >
-                    {submitting ? "Sending…" : "Request my free quote"}
-                  </button>
+                  <div>
+                    <label
+                      htmlFor="consent"
+                      className="flex items-start gap-3 pt-2 text-xs text-foreground/75"
+                    >
+                      <input
+                        id="consent"
+                        name="consent"
+                        type="checkbox"
+                        aria-required="true"
+                        aria-invalid={errors.consent ? true : undefined}
+                        aria-describedby={errors.consent ? "consent-err" : undefined}
+                        onBlur={handleBlur("consent")}
+                        className="mt-0.5 h-4 w-4 shrink-0 border-input accent-[oklch(0.55_0.17_158)]"
+                      />
+                      <span>
+                        I agree that my details may be used to respond to this enquiry, as
+                        described in the{" "}
+                        <Link to="/privacy" className="text-primary hover:underline">
+                          Privacy Policy
+                        </Link>
+                        .
+                      </span>
+                    </label>
+                    {errors.consent && (
+                      <p id="consent-err" className="mt-1 text-xs text-destructive">
+                        {errors.consent}
+                      </p>
+                    )}
+                  </div>
+                  {error && (
+                    <p role="alert" className="text-sm text-destructive">
+                      {error}
+                    </p>
+                  )}
+                  <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                    <button
+                      type="submit"
+                      disabled={submitting}
+                      className="inline-flex w-full items-center justify-center gap-2 rounded-sm bg-primary px-6 py-3 font-display text-xs font-bold uppercase tracking-wider text-primary-foreground transition-colors hover:bg-[oklch(0.62_0.17_158)] disabled:opacity-50 sm:w-auto"
+                    >
+                      {submitting && <Spinner />}
+                      {submitting ? "Sending…" : "Request my free quote"}
+                    </button>
+                    <TrustMicrocopy />
+                  </div>
                 </>
               )}
             </form>
