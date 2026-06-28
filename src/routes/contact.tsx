@@ -88,6 +88,7 @@ function Contact() {
       email: v.email,
       phone: v.phone,
       message: v.message,
+      requireEmail: true,
     });
     if (!v.consent) errs.consent = "Please accept the privacy policy to continue.";
     return errs;
