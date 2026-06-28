@@ -8,10 +8,8 @@ import heroAsset from "../assets/portfolio/hero-house.webp.asset.json";
 import commercialAsset from "../assets/portfolio/service-commercial.webp.asset.json";
 import hospitalityAsset from "../assets/portfolio/service-hospitality.webp.asset.json";
 import exteriorAsset from "../assets/portfolio/portfolio-exterior-1.webp.asset.json";
-import industrialAsset from "../assets/portfolio/service-industrial.webp.asset.json";
 
 const servicesHeroImg = exteriorAsset.url;
-const epoxyFloorImg = industrialAsset.url;
 
 export const Route = createFileRoute("/services")({
   head: () => ({
