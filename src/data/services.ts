@@ -190,13 +190,14 @@ export const SERVICES: ServiceInfo[] = [
     name: "Commercial & Institutional Painting",
     h1: "Commercial & Institutional Painters Dublin",
     intro:
-      "Schools, churches, clinics, offices and community and heritage venues. We work to a programme and out of hours where required, with a single point of contact from quote through to handover.",
+      "Schools, churches, clinics, offices and community venues, including period and older properties. We work to a programme and out of hours where required, with a single point of contact from quote through to handover.",
     metaTitle: "Commercial & Institutional Painters Dublin | Schools, Clinics, Offices",
     metaDescription:
-      "Commercial and institutional painting in Dublin — schools, churches, clinics, offices and community venues. Programme-driven, out-of-hours work available.",
+      "Commercial and institutional painting in Dublin — schools, churches, clinics, offices and community venues, including period and older properties. Programme-driven, out-of-hours work available.",
     features: [
       "Schools, churches and community venues",
       "Clinics, offices and retail",
+      "Period and older properties",
       "Out-of-hours and weekend working",
       "Programme-driven scheduling",
       "Single point of contact",
