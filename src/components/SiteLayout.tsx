@@ -14,7 +14,7 @@ import { FooterCTA } from "./FooterCTA";
 import { MobileBottomBar } from "./MobileBottomBar";
 import { WhatsAppButton } from "./WhatsAppButton";
 
-// Gallery temporarily hidden from nav (many albums empty). Route + data preserved.
+
 const NAV = [
   { to: "/", label: "Home" },
   { to: "/about", label: "About" },
@@ -22,6 +22,7 @@ const NAV = [
   { to: "/estimate", label: "Get Estimate" },
   { to: "/case-studies", label: "Case Studies" },
   { to: "/projects", label: "Projects" },
+  { to: "/gallery", label: "Our Work (Gallery)" },
   { to: "/blog", label: "Blog" },
   { to: "/faq", label: "FAQ" },
   { to: "/contact", label: "Contact" },
@@ -32,6 +33,7 @@ const DESKTOP_NAV = [
   { to: "/about", label: "About" },
   { to: "/services", label: "Services" },
   { to: "/projects", label: "Projects" },
+  { to: "/gallery", label: "Our Work (Gallery)" },
   { to: "/case-studies", label: "Case Studies" },
   { to: "/blog", label: "Blog" },
   { to: "/faq", label: "FAQ" },
@@ -51,6 +53,7 @@ const MOBILE_NAV = [
   { to: "/services", label: "Services" },
   { to: "/case-studies", label: "Case Studies" },
   { to: "/projects", label: "Projects" },
+  { to: "/gallery", label: "Our Work (Gallery)" },
   { to: "/blog", label: "Blog" },
   { to: "/faq", label: "FAQ" },
   { to: "/commercial-painting-dublin", label: "Commercial" },
