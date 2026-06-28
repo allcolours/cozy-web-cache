@@ -35,7 +35,7 @@ const SERVICES = [
     title: "Epoxy Floors",
     desc: "Hard-wearing resin floors for garages, workshops and commercial units.",
   },
-  { title: "Bespoke Finishes", desc: "Spray finishing, feature walls and hand-painted kitchens." },
+  { title: "Bespoke Finishes", desc: "Spray finishing, feature walls and full kitchen repaints." },
 ];
 
 const WHY_FALLBACK = [
