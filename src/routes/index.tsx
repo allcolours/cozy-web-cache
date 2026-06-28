@@ -195,18 +195,69 @@ const NEED_OPTIONS = [
 ];
 
 function LeadCaptureForm() {
+  const formRef = useRef<HTMLFormElement>(null);
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [errors, setErrors] = useState<FieldErrors>({});
+
+  function readValues(form: HTMLFormElement) {
+    const fd = new FormData(form);
+    return {
+      name: String(fd.get("name") || "").trim(),
+      phone: String(fd.get("phone") || "").trim(),
+      need: String(fd.get("need") || "").trim(),
+    };
+  }
+
+  function validateAll(form: HTMLFormElement): FieldErrors {
+    const v = readValues(form);
+    const base = validateContact({
+      name: v.name,
+      phone: v.phone,
+      requirePhone: true,
+      minMessage: 0,
+    });
+    if (!v.need) base.need = "Please choose what you need.";
+    return base;
+  }
+
+  function handleBlur(name: string) {
+    return () => {
+      if (!formRef.current) return;
+      const all = validateAll(formRef.current);
+      setErrors((prev) => ({ ...prev, [name]: all[name] }));
+    };
+  }
 
   if (submitted) {
     return (
-      <div className="rounded-sm border border-white/10 bg-white/10 px-6 py-10 backdrop-blur">
+      <div
+        role="status"
+        aria-live="polite"
+        className="mx-auto max-w-3xl rounded-sm border border-white/10 bg-white/10 px-6 py-10 text-white backdrop-blur"
+      >
         <h3 className="font-display text-xl font-bold uppercase text-primary">
-          Thanks! We'll be in touch within 24 hours.
+          Thanks — we've got your request
         </h3>
-        <p className="mt-2 text-sm text-white/80">
-          One of our team will call or email to arrange your free site visit.
+        <p className="mt-3 text-sm text-white/85">
+          We'll reply within one working day. For something urgent, call{" "}
+          <a className="font-semibold text-white hover:underline" href={`tel:${SITE.phoneTel}`}>
+            {SITE.phoneDisplay}
+          </a>
+          .
+        </p>
+        <p className="mt-3 text-sm text-white/85">
+          Have photos of the job?{" "}
+          <a
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-semibold text-white underline hover:text-primary"
+          >
+            Send them on WhatsApp
+          </a>{" "}
+          — it speeds up your quote.
         </p>
       </div>
     );
@@ -214,47 +265,48 @@ function LeadCaptureForm() {
 
   return (
     <form
+      ref={formRef}
+      noValidate
       onSubmit={async (e) => {
         e.preventDefault();
-        setSubmitting(true);
-        setError(null);
-        const fd = new FormData(e.currentTarget);
-        const traps = readBotTraps(fd);
-        const name = String(fd.get("name") || "")
-          .trim()
-          .slice(0, 100);
-        const phone = String(fd.get("phone") || "")
-          .trim()
-          .slice(0, 50);
-        const service_type = String(fd.get("need") || "")
-          .trim()
-          .slice(0, 100);
-        if (!name || !phone || !service_type) {
-          setError("Please fill in all fields.");
-          setSubmitting(false);
+        const formEl = e.currentTarget;
+        const fieldErrors = validateAll(formEl);
+        const hasError = Object.values(fieldErrors).some(Boolean);
+        setErrors(fieldErrors);
+        if (hasError) {
+          focusFirstError(formEl, fieldErrors);
           return;
         }
+        setSubmitting(true);
+        setError(null);
+        const fd = new FormData(formEl);
+        const traps = readBotTraps(fd);
+        const v = readValues(formEl);
         try {
           const res = await fetch("/api/public/contact", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
-              name,
+              name: v.name.slice(0, 100),
               email: "no-reply@homepage-lead.local",
-              phone,
-              message: `Homepage quick quote — service requested: ${service_type}`,
+              phone: v.phone.slice(0, 50),
+              message: `Homepage quick quote — service requested: ${v.need.slice(0, 100)}`,
               source: "homepage_form",
-              service_type,
+              service_type: v.need.slice(0, 100),
               ...traps,
             }),
           });
           if (!res.ok) {
-            setError("Sorry, something went wrong. Please call us directly.");
+            setError(
+              `Sorry, we couldn't send that. Please try again or call us on ${SITE.phoneDisplay}.`,
+            );
             setSubmitting(false);
             return;
           }
         } catch {
-          setError("Sorry, something went wrong. Please call us directly.");
+          setError(
+            `Sorry, we couldn't send that. Please try again or call us on ${SITE.phoneDisplay}.`,
+          );
           setSubmitting(false);
           return;
         }
@@ -264,60 +316,95 @@ function LeadCaptureForm() {
       className="mx-auto grid max-w-3xl gap-4 rounded-sm border border-white/10 bg-white/10 p-5 backdrop-blur sm:grid-cols-2 md:grid-cols-4 md:p-6"
     >
       <FormBotTraps />
-      <label htmlFor="lead-name" className="sr-only">
-        Your name
-      </label>
-      <input
-        id="lead-name"
-        type="text"
-        name="name"
-        placeholder="Your name"
-        aria-label="Your name"
-        autoComplete="name"
-        required
-        className="w-full rounded-sm border border-white/20 bg-white px-3 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none"
-      />
-      <label htmlFor="lead-phone" className="sr-only">
-        Your phone number
-      </label>
-      <input
-        id="lead-phone"
-        type="tel"
-        name="phone"
-        placeholder="Your phone number"
-        aria-label="Your phone number"
-        autoComplete="tel"
-        required
-        className="w-full rounded-sm border border-white/20 bg-white px-3 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none"
-      />
-      <label htmlFor="lead-need" className="sr-only">
-        What service do you need?
-      </label>
-      <select
-        id="lead-need"
-        name="need"
-        required
-        defaultValue=""
-        aria-label="What service do you need?"
-        className="w-full rounded-sm border border-white/20 bg-white px-3 py-3 text-sm text-foreground focus:border-primary focus:outline-none sm:col-span-2 md:col-span-1"
-      >
-        <option value="" disabled>
-          What do you need?
-        </option>
-        {NEED_OPTIONS.map((o) => (
-          <option key={o} value={o}>
-            {o}
+      <div className="sm:col-span-1">
+        <label htmlFor="lead-name" className="sr-only">
+          Your name
+        </label>
+        <input
+          id="lead-name"
+          type="text"
+          name="name"
+          placeholder="Your name *"
+          autoComplete="name"
+          aria-required="true"
+          aria-invalid={errors.name ? true : undefined}
+          aria-describedby={errors.name ? "lead-name-err" : undefined}
+          onBlur={handleBlur("name")}
+          className="w-full rounded-sm border border-white/20 bg-white px-3 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none"
+        />
+        {errors.name && (
+          <p id="lead-name-err" className="mt-1 text-xs text-red-200">
+            {errors.name}
+          </p>
+        )}
+      </div>
+      <div className="sm:col-span-1">
+        <label htmlFor="lead-phone" className="sr-only">
+          Your phone number
+        </label>
+        <input
+          id="lead-phone"
+          type="tel"
+          name="phone"
+          placeholder="Your phone number *"
+          autoComplete="tel"
+          aria-required="true"
+          aria-invalid={errors.phone ? true : undefined}
+          aria-describedby={errors.phone ? "lead-phone-err" : undefined}
+          onBlur={handleBlur("phone")}
+          className="w-full rounded-sm border border-white/20 bg-white px-3 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none"
+        />
+        {errors.phone && (
+          <p id="lead-phone-err" className="mt-1 text-xs text-red-200">
+            {errors.phone}
+          </p>
+        )}
+      </div>
+      <div className="sm:col-span-2 md:col-span-1">
+        <label htmlFor="lead-need" className="sr-only">
+          What service do you need?
+        </label>
+        <select
+          id="lead-need"
+          name="need"
+          defaultValue=""
+          aria-required="true"
+          aria-invalid={errors.need ? true : undefined}
+          aria-describedby={errors.need ? "lead-need-err" : undefined}
+          onBlur={handleBlur("need")}
+          className="w-full rounded-sm border border-white/20 bg-white px-3 py-3 text-sm text-foreground focus:border-primary focus:outline-none"
+        >
+          <option value="" disabled>
+            What do you need? *
           </option>
-        ))}
-      </select>
+          {NEED_OPTIONS.map((o) => (
+            <option key={o} value={o}>
+              {o}
+            </option>
+          ))}
+        </select>
+        {errors.need && (
+          <p id="lead-need-err" className="mt-1 text-xs text-red-200">
+            {errors.need}
+          </p>
+        )}
+      </div>
       <button
         type="submit"
         disabled={submitting}
-        className="inline-flex w-full items-center justify-center rounded-sm bg-primary px-5 py-3 font-display text-xs font-bold uppercase tracking-wider text-primary-foreground transition-colors hover:bg-[oklch(0.62_0.17_158)] disabled:opacity-50 sm:col-span-2 md:col-span-4"
+        className="inline-flex w-full items-center justify-center gap-2 rounded-sm bg-primary px-5 py-3 font-display text-xs font-bold uppercase tracking-wider text-primary-foreground transition-colors hover:bg-[oklch(0.62_0.17_158)] disabled:opacity-50 sm:col-span-2 md:col-span-1"
       >
+        {submitting && <Spinner />}
         {submitting ? "Sending…" : "Request a Free Quote →"}
       </button>
-      {error && <p className="text-xs text-red-200 sm:col-span-2 md:col-span-4">{error}</p>}
+      <p className="text-xs text-white/70 sm:col-span-2 md:col-span-4">
+        Fully insured · Written quote within 48 hours · No obligation.
+      </p>
+      {error && (
+        <p role="alert" className="text-xs text-red-200 sm:col-span-2 md:col-span-4">
+          {error}
+        </p>
+      )}
     </form>
   );
 }
