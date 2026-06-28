@@ -403,7 +403,15 @@ function ContactRow({
         </dt>
         <dd className="mt-1 text-sm text-foreground">
           {href ? (
-            <a className="hover:text-primary" href={href}>
+            <a
+              className="hover:text-primary"
+              href={href}
+              onClick={
+                href.startsWith("tel:")
+                  ? () => track("click_to_call", { location: "contact_page" })
+                  : undefined
+              }
+            >
               {value}
             </a>
           ) : (
