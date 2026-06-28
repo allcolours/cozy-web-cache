@@ -77,6 +77,8 @@ const ENTRIES: SitemapEntry[] = [
   // Commercial landing pages
   { path: "/commercial-contractors", changefreq: "monthly", priority: "0.8" },
   { path: "/commercial-painting-dublin", changefreq: "monthly", priority: "0.8" },
+  // Residential landing page
+  { path: "/house-painting-dublin", changefreq: "monthly", priority: "0.9" },
   // Legal
   { path: "/privacy", changefreq: "yearly", priority: "0.3" },
   { path: "/terms", changefreq: "yearly", priority: "0.3" },
