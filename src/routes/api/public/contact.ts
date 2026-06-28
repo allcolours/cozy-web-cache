@@ -221,7 +221,7 @@ export const Route = createFileRoute("/api/public/contact")({
                 message_id: messageId,
                 to: recipient,
                 from: `${SITE_NAME} <noreply@${FROM_DOMAIN}>`,
-                reply_to: data.email,
+                ...(emailValue ? { reply_to: emailValue } : {}),
                 sender_domain: SENDER_DOMAIN,
                 subject,
                 html,
