@@ -137,7 +137,6 @@ export function TestimonialsSection({
               {[
                 "Cairn Homes",
                 "Bennett Construction",
-                "RCSI",
                 "Elliott Group",
                 "Clancy Construction",
               ].map((name) => (
