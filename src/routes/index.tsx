@@ -249,7 +249,11 @@ function LeadCaptureForm() {
         </h3>
         <p className="mt-3 text-sm text-white/85">
           We'll reply within one working day. For something urgent, call{" "}
-          <a className="font-semibold text-white hover:underline" href={`tel:${SITE.phoneTel}`}>
+          <a
+            className="font-semibold text-white hover:underline"
+            href={`tel:${SITE.phoneTel}`}
+            onClick={() => track("click_to_call", { location: "homepage_form_success" })}
+          >
             {SITE.phoneDisplay}
           </a>
           .
@@ -260,6 +264,7 @@ function LeadCaptureForm() {
             href={WHATSAPP_URL}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => track("click_whatsapp", { location: "homepage_form_success" })}
             className="font-semibold text-white underline hover:text-primary"
           >
             Send them on WhatsApp
