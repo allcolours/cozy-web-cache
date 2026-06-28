@@ -389,7 +389,11 @@ function CommercialPage() {
             <div className="mt-8 space-y-3 text-sm text-white/80">
               <div>
                 📞{" "}
-                <a href={`tel:${SITE.phoneTel}`} className="hover:text-primary">
+                <a
+                  href={`tel:${SITE.phoneTel}`}
+                  onClick={() => track("click_to_call", { location: "commercial_contact_block" })}
+                  className="hover:text-primary"
+                >
                   {SITE.phoneDisplay}
                 </a>
               </div>
