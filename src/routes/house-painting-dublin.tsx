@@ -11,7 +11,7 @@ import {
   type FieldErrors,
 } from "../components/form-helpers";
 import { FaqAccordion } from "../components/FaqAccordion";
-import { Testimonials } from "../components/Testimonials";
+import { TestimonialsSection } from "../components/Testimonials";
 import heroAsset from "../assets/portfolio/hero-house.webp.asset.json";
 import { SITE, WHATSAPP_URL } from "@/lib/site";
 import { track } from "@/lib/analytics";
