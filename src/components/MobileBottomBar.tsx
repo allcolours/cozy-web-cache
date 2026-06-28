@@ -33,6 +33,7 @@ export function MobileBottomBar() {
         href={WHATSAPP_URL}
         target="_blank"
         rel="noopener noreferrer"
+        onClick={() => track("click_whatsapp", { location: "mobile_bottom_bar" })}
         className="flex flex-1 items-center justify-center gap-2 bg-[#25D366] text-white transition-colors active:bg-[#128C7E]"
         aria-label="Chat on WhatsApp"
       >
