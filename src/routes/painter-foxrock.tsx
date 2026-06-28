@@ -57,7 +57,7 @@ export const Route = createFileRoute("/painter-foxrock")({
     <LocalAreaPage
       area="Foxrock"
       postcode="Dublin 18"
-      intro="Detached family homes and luxury developments — showroom-grade interiors, hand-painted kitchens and full-house repaints with zero mess."
+      intro="Detached family homes and larger properties — full-house interior repaints, woodwork and exterior work, delivered cleanly in occupied homes."
     />
   ),
 });
