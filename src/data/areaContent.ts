@@ -165,8 +165,8 @@ export const AREA_CONTENT: Record<string, AreaContent> = {
   Glasthule: {
     intro: "Careful interior and exterior work for Glasthule's coastal village homes.",
     localContext:
-      "Glasthule (Co. Dublin, A96) sits between Dún Laoghaire and Sandycove, with Victorian and Edwardian properties and period detail. We work carefully on older homes and specify exteriors that suit the coastal setting.",
-    highlights: ["Coastal exterior systems", "Period interior work", "Tidy, low-disruption crews"],
+      "Glasthule (Co. Dublin, A96) sits between Dún Laoghaire and Sandycove, with Victorian and Edwardian properties and period detail. We work carefully on older homes and use weatherproof trade systems on exterior elevations.",
+    highlights: ["Exterior repaints near the coast", "Period interior work", "Tidy, low-disruption crews"],
   },
   "Mount Merrion": {
     intro: "Full-house repaints and exterior upkeep for Mount Merrion's family homes.",
