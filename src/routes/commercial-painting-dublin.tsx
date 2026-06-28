@@ -134,46 +134,78 @@ const WHY = [
 ];
 
 function CommercialPage() {
+  const formRef = useRef<HTMLFormElement>(null);
   const [sent, setSent] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [errors, setErrors] = useState<FieldErrors>({});
+
+  function readValues(form: HTMLFormElement) {
+    const fd = new FormData(form);
+    return {
+      company: String(fd.get("company") || "").trim(),
+      contact_name: String(fd.get("contact_name") || "").trim(),
+      email: String(fd.get("email") || "").trim(),
+      phone: String(fd.get("phone") || "").trim(),
+      work_type: String(fd.get("work_type") || "").trim(),
+      timeline: String(fd.get("timeline") || "").trim(),
+      details: String(fd.get("details") || "").trim(),
+    };
+  }
+
+  function validateAll(form: HTMLFormElement): FieldErrors {
+    const v = readValues(form);
+    const errs = validateContact({
+      name: v.contact_name,
+      email: v.email,
+      phone: v.phone,
+      message: v.details,
+      nameLabel: "contact name",
+      messageField: "details",
+    });
+    // Map name error onto the actual field key.
+    if (errs.name) {
+      errs.contact_name = errs.name;
+      delete errs.name;
+    }
+    if (!v.company) errs.company = "Please enter your company name.";
+    if (!v.work_type) errs.work_type = "Please choose the type of work.";
+    return errs;
+  }
+
+  function handleBlur(name: string) {
+    return () => {
+      if (!formRef.current) return;
+      const all = validateAll(formRef.current);
+      setErrors((prev) => ({ ...prev, [name]: all[name] }));
+    };
+  }
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setSubmitting(true);
-    setError(null);
-    const form = new FormData(e.currentTarget);
-    const traps = readBotTraps(form);
-    const payload = {
-      name: String(form.get("contact_name") || "")
-        .trim()
-        .slice(0, 100),
-      email: String(form.get("email") || "")
-        .trim()
-        .slice(0, 255),
-      phone:
-        String(form.get("phone") || "")
-          .trim()
-          .slice(0, 50) || null,
-      postcode: null,
-      message: [
-        `Company: ${String(form.get("company") || "")
-          .trim()
-          .slice(0, 150)}`,
-        `Type of work: ${String(form.get("work_type") || "").trim()}`,
-        `Project timeline: ${String(form.get("timeline") || "")
-          .trim()
-          .slice(0, 200)}`,
-        `Details: ${String(form.get("details") || "")
-          .trim()
-          .slice(0, 2000)}`,
-      ].join("\n"),
-    };
-    if (!payload.name || !payload.email || !payload.message) {
-      setError("Please fill in your name, email and project details.");
-      setSubmitting(false);
+    const formEl = e.currentTarget;
+    const fieldErrors = validateAll(formEl);
+    setErrors(fieldErrors);
+    if (Object.values(fieldErrors).some(Boolean)) {
+      focusFirstError(formEl, fieldErrors);
       return;
     }
+    setSubmitting(true);
+    setError(null);
+    const v = readValues(formEl);
+    const traps = readBotTraps(new FormData(formEl));
+    const payload = {
+      name: v.contact_name.slice(0, 100),
+      email: v.email.slice(0, 255),
+      phone: v.phone.slice(0, 50) || null,
+      postcode: null,
+      message: [
+        `Company: ${v.company.slice(0, 150)}`,
+        `Type of work: ${v.work_type}`,
+        `Project timeline: ${v.timeline.slice(0, 200)}`,
+        `Details: ${v.details.slice(0, 2000)}`,
+      ].join("\n"),
+    };
     try {
       const res = await fetch("/api/public/contact", {
         method: "POST",
@@ -186,12 +218,16 @@ function CommercialPage() {
         }),
       });
       if (!res.ok) {
-        setError("Sorry, we couldn't send that. Please try again or call us directly.");
+        setError(
+          `Sorry, we couldn't send that. Please try again or call us on ${SITE.phoneDisplay}.`,
+        );
         setSubmitting(false);
         return;
       }
     } catch {
-      setError("Sorry, we couldn't send that. Please try again or call us directly.");
+      setError(
+        `Sorry, we couldn't send that. Please try again or call us on ${SITE.phoneDisplay}.`,
+      );
       setSubmitting(false);
       return;
     }
