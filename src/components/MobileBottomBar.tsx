@@ -1,6 +1,7 @@
 import { useSiteSettings } from "../hooks/useSiteSettings";
 import { COMPANY } from "./SiteLayout";
 import { WHATSAPP_URL } from "@/lib/site";
+import { track } from "@/lib/analytics";
 
 export function MobileBottomBar() {
   const settings = useSiteSettings();
