@@ -142,6 +142,14 @@ const WHY = [
   "Single point of contact from first call to final sign-off",
 ];
 
+const SELECTED_PROJECTS = [
+  "Coláiste Íosagáin, Booterstown",
+  "St Attracta's National School, Dundrum",
+  "Dergvale Hotel, Dublin 1",
+  "ICS Mortgages",
+  "Olive's Room, St Anne's Park",
+];
+
 function CommercialContractors() {
   return (
     <SiteLayout>
