@@ -249,7 +249,11 @@ export const Route = createFileRoute("/api/public/contact")({
           console.error("Contact email send failed (inquiry was saved)", e);
         }
 
-        return Response.json({ success: true });
+          return Response.json({ success: true });
+        } catch (e) {
+          console.error("contact: unhandled error in POST handler", e);
+          return Response.json({ error: "Internal error" }, { status: 500 });
+        }
       },
     },
   },
