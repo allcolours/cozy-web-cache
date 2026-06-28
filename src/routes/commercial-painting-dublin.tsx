@@ -235,6 +235,7 @@ function CommercialPage() {
     }
     setSent(true);
     setSubmitting(false);
+    track("generate_lead", { form: "commercial" });
   }
 
   return (
