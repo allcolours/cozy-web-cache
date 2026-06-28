@@ -15,7 +15,7 @@ import { SchemaOrg } from "../components/SchemaOrg";
 import { AssetErrorMonitor } from "../components/AssetErrorMonitor";
 import { CookieBanner } from "../components/CookieBanner";
 import { AnalyticsLoader } from "../components/AnalyticsLoader";
-import { supabase } from "../integrations/supabase/client";
+
 
 function NotFoundComponent() {
   return (
@@ -151,10 +151,12 @@ function PageViewTracker() {
   useEffect(() => {
     if (typeof window === "undefined") return;
     if (path.startsWith("/admin") || path.startsWith("/auth")) return;
-    void supabase.from("page_views").insert({
-      path,
-      referrer: document.referrer || null,
-      user_agent: navigator.userAgent.slice(0, 500),
+    void import("../integrations/supabase/client").then(({ supabase }) => {
+      void supabase.from("page_views").insert({
+        path,
+        referrer: document.referrer || null,
+        user_agent: navigator.userAgent.slice(0, 500),
+      });
     });
   }, [path]);
   return null;
