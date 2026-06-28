@@ -366,17 +366,11 @@ function HousePaintingPage() {
       </section>
 
       {/* Reviews */}
-      <section className="bg-secondary">
-        <div className="mx-auto max-w-7xl px-4 py-20 md:px-8">
-          <span className="eyebrow text-primary">What homeowners say</span>
-          <h2 className="mt-3 max-w-3xl font-display text-3xl font-extrabold uppercase tracking-tight md:text-4xl">
-            Rated by homeowners across Dublin.
-          </h2>
-          <div className="mt-10">
-            <Testimonials />
-          </div>
-        </div>
-      </section>
+      <TestimonialsSection
+        title="Rated by homeowners across Dublin."
+        eyebrow="What homeowners say"
+      />
+
 
       {/* Areas */}
       <section className="mx-auto max-w-7xl px-4 py-20 md:px-8">
