@@ -5,15 +5,8 @@ import { FAQS } from "../data/faqs";
 import { SERVICES } from "../data/services";
 import { TESTIMONIALS } from "../data/testimonials";
 import heroAsset from "../assets/portfolio/hero-house.webp.asset.json";
-import newBuildAsset from "../assets/portfolio/gen-exterior-modern.jpg.asset.json";
 
 function serviceHeroImage(service?: { slug: string; name: string }) {
-  if (service?.slug === "new-build-painting") {
-    return {
-      src: newBuildAsset.url,
-      alt: "New build exterior painting in Dublin — All Colours Painting",
-    };
-  }
   return {
     src: heroAsset.url,
     alt: `${service?.name ?? "Painting service"} in Dublin — All Colours Painting`,
