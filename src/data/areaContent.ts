@@ -267,10 +267,10 @@ export const AREA_CONTENT: Record<string, AreaContent> = {
     highlights: ["Full house repaints", "Woodwork & trim", "Exterior maintenance"],
   },
   Killiney: {
-    intro: "Coastal-grade exteriors and high-spec interiors for Killiney homes.",
+    intro: "Interior and exterior repaints for Killiney homes on the south Dublin coast.",
     localContext:
-      "Killiney (Co. Dublin, A96) is an upmarket coastal area of high-value homes on the south Dublin coast. Exteriors need systems built for sea air; interiors are finished to a high spec.",
-    highlights: ["Coastal exterior systems", "High-spec interior finishes", "Larger-property work"],
+      "Killiney (Co. Dublin, A96) is an upmarket coastal area of high-value homes on the south Dublin coast. Exteriors get thorough prep and weatherproof trade finishes; interiors are finished to a high standard.",
+    highlights: ["Exterior repaints near the coast", "Careful interior finishes", "Larger-property work"],
   },
   "Harold's Cross": {
     intro: "Period interiors and tight-access exterior work across Harold's Cross.",
