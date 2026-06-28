@@ -145,6 +145,7 @@ function Contact() {
     }
     setSent(true);
     setSubmitting(false);
+    track("generate_lead", { form: "contact" });
   }
 
   return (
