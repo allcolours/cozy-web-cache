@@ -1,7 +1,15 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { SiteLayout } from "../components/SiteLayout";
 import { FormBotTraps, readBotTraps } from "../components/FormBotTraps";
+import {
+  FormSuccess,
+  Spinner,
+  TrustMicrocopy,
+  focusFirstError,
+  validateContact,
+  type FieldErrors,
+} from "../components/form-helpers";
 import commercialAsset from "../assets/portfolio/service-commercial.webp.asset.json";
 import { SITE } from "@/lib/site";
 
