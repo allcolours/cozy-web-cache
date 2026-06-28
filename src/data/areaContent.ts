@@ -205,11 +205,11 @@ export const AREA_CONTENT: Record<string, AreaContent> = {
     highlights: ["Period interior repaints", "Woodwork & trim", "Exterior maintenance"],
   },
   Monkstown: {
-    intro: "Marine-grade exteriors and careful period interiors across Monkstown.",
+    intro: "Careful interior and exterior repaints across Monkstown's seafront properties.",
     localContext:
-      "Monkstown (Co. Dublin, A94) is a coastal south-Dublin suburb of Victorian and Edwardian seafront properties. Salt and wind mean exteriors need the right primers and finishes; interiors get careful period-appropriate work.",
+      "Monkstown (Co. Dublin, A94) is a coastal south-Dublin suburb of Victorian and Edwardian seafront properties. Exteriors here need thorough prep and weatherproof trade systems; interiors get careful, period-appropriate repaints.",
     highlights: [
-      "Marine-grade exterior systems",
+      "Exterior repaints near the coast",
       "Period interior repaints",
       "Seafront render & timber",
     ],
