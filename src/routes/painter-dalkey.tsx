@@ -57,7 +57,7 @@ export const Route = createFileRoute("/painter-dalkey")({
     <LocalAreaPage
       area="Dalkey"
       postcode="South County Dublin"
-      intro="Granite coastal villas and modern extensions — Dalkey weather is brutal on exterior paint so we use breathable salt-resistant systems that last longer by the sea."
+      intro="Granite coastal villas and modern extensions — Dalkey weather is hard on exterior paint, so we focus on thorough prep and weatherproof trade finishes that last longer by the sea."
     />
   ),
 });
