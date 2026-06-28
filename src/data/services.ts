@@ -20,7 +20,7 @@ export const SERVICES: ServiceInfo[] = [
     name: "Interior Painting & Decorating",
     h1: "Interior Painting & Decorating Dublin",
     intro:
-      "Walls, ceilings and full repaints in occupied homes and offices. Two coats as standard on prepared surfaces, water-based trade emulsions on walls and ceilings, careful masking, and a clean tidy-down at the end of every day.",
+      "Walls, ceilings and full repaints in occupied homes and offices. Two coats as standard on prepared surfaces, water-based trade emulsions on walls and ceilings, dust-free sanding with extraction, careful masking, and a clean tidy-down at the end of every day.",
     metaTitle: "Interior Painters Dublin | Walls, Ceilings & Full Repaints – All Colours",
     metaDescription:
       "Interior painting and decorating in Dublin — walls, ceilings, single rooms and full repaints. Clean work in occupied homes. Free written quote.",
@@ -28,19 +28,20 @@ export const SERVICES: ServiceInfo[] = [
       "Walls, ceilings and full house repaints",
       "Two coats as standard on prepared surfaces",
       "Filling, sanding and line-fix on walls",
+      "Dust-free sanding with extraction",
       "Trade-grade emulsion and water-based finishes",
       "Floors and furniture protected daily",
       "Clean, tidy work in occupied homes",
     ],
     process:
-      "We protect floors and furniture, mask cleanly, fill and sand, then apply two coats of trade emulsion on walls and ceilings. Every job finishes with a walk-through and snag list — nothing is signed off until you're happy.",
+      "We protect floors and furniture, mask cleanly, fill and sand with dust extraction, then apply two coats of trade emulsion on walls and ceilings. Every job finishes with a walk-through and snag list — nothing is signed off until you're happy.",
   },
   {
     slug: "exterior-painting",
     name: "Exterior Painting & Weatherproofing",
     h1: "Exterior Painting & Weatherproofing Dublin",
     intro:
-      "Render, pebbledash, masonry, brickwork and timber fascias and soffits. We power-wash, treat for algae and mould, stabilise chalky surfaces and apply weather-resistant exterior systems built for the Irish climate.",
+      "Render, pebbledash, masonry, brickwork and timber fascias and soffits. We power-wash, treat for algae and mould, stabilise chalky surfaces and apply weather-resistant exterior systems, including salt- and weather-resistant coastal systems on exposed and seafront properties.",
     metaTitle: "Exterior Painters Dublin | Render, Masonry & Weatherproofing – All Colours",
     metaDescription:
       "Exterior house painting in Dublin — render, pebbledash, masonry and timber. Power-washing, antifungal treatment and weather-resistant exterior systems.",
@@ -49,6 +50,7 @@ export const SERVICES: ServiceInfo[] = [
       "Antifungal and biocidal treatment",
       "Stabiliser on chalky or powdery render",
       "Weather-resistant masonry top coats",
+      "Salt- and weather-resistant coastal systems on exposed and seafront properties",
       "Fascia, soffit and exterior timber",
       "Crack and render patch repairs",
     ],
@@ -60,20 +62,21 @@ export const SERVICES: ServiceInfo[] = [
     name: "Woodwork & Joinery",
     h1: "Woodwork & Joinery Painting Dublin",
     intro:
-      "Architraves, door frames, doors, skirting boards, staircases and banisters. Two-pack filler on knocks and joints, proper sanding between coats, and a choice of satinwood, eggshell, gloss or varnish to suit the room.",
+      "Architraves, door frames, doors, skirting boards, staircases and banisters in period and older properties as well as modern homes. Two-pack filler on knocks and joints, dust-free sanding with extraction to keep occupied rooms clean, and a choice of satinwood, eggshell, gloss or varnish to suit the room.",
     metaTitle: "Woodwork & Joinery Painting Dublin | Doors, Skirtings & Stairs",
     metaDescription:
-      "Painting of architraves, door frames, doors, skirtings, staircases and banisters in Dublin. Two-pack filler prep, satinwood, eggshell, gloss or varnish finishes.",
+      "Painting of architraves, door frames, doors, skirtings, staircases and banisters in Dublin. Two-pack filler prep, dust-free sanding, satinwood, eggshell, gloss or varnish finishes.",
     features: [
       "Architraves, frames and skirting",
       "Doors, staircases and banisters",
       "Two-pack filler on knocks and joints",
+      "Dust-free sanding with extraction",
       "Sanded between coats",
       "Satinwood, eggshell and gloss",
       "Varnish finishes on bare timber",
     ],
     process:
-      "We fill and sand back, prime bare or patched timber, then apply two coats of the chosen finish — typically a water-based satinwood or eggshell for a clean, hard-wearing result that does not yellow.",
+      "We fill and sand back with dust extraction, prime bare or patched timber, then apply two coats of the chosen finish — typically a water-based satinwood or eggshell for a clean, hard-wearing result that does not yellow.",
   },
   {
     slug: "sash-and-timber-windows",
@@ -142,20 +145,21 @@ export const SERVICES: ServiceInfo[] = [
     name: "Kitchen Cabinet & Press Repainting",
     h1: "Kitchen Cabinet & Press Repainting Dublin",
     intro:
-      "Brush-applied repainting of kitchen presses, cabinets and built-in joinery. Doors and frames are cleaned, sanded, primed where needed and finished in a hard-wearing satinwood — a practical refresh for a tired kitchen.",
-    metaTitle: "Kitchen Cabinet Painting Dublin | Brush-Painted Press Repaints",
+      "Hand-painted repainting of kitchen presses, cabinets and built-in joinery — brush-applied by hand, not sprayed. Doors and frames are cleaned, sanded, primed where needed and finished in a hard-wearing satinwood — a practical refresh for a tired kitchen.",
+    metaTitle: "Kitchen Cabinet Painting Dublin | Hand-Painted Press Repaints",
     metaDescription:
-      "Brush-applied repainting of kitchen presses, cabinets and built-in joinery in Dublin. Degrease, sand, prime and satinwood finish. Free quotes.",
+      "Hand-painted repainting of kitchen presses, cabinets and built-in joinery in Dublin. Brush-applied by hand, degreased, sanded, primed and satinwood finished. Free quotes.",
     features: [
       "Kitchen presses and cabinet doors",
       "Built-in joinery and cabinet boxes",
+      "Hand-painted, brush-applied finish",
       "Degrease, sand and prime",
       "Bonding primer on factory finishes",
       "Brush-applied satinwood top coats",
       "Hinges and handles removed and refitted",
     ],
     process:
-      "We remove handles and label hinges, degrease and sand every face, apply an adhesion primer where needed, then brush on two coats of a hard-wearing satinwood. Doors are reinstated and adjusted at the end of the job.",
+      "We remove handles and label hinges, degrease and sand every face, apply an adhesion primer where needed, then hand-paint two coats of a hard-wearing satinwood. Doors are reinstated and adjusted at the end of the job.",
   },
   {
     slug: "plaster-and-water-damage-repair",
@@ -182,13 +186,14 @@ export const SERVICES: ServiceInfo[] = [
     name: "Commercial & Institutional Painting",
     h1: "Commercial & Institutional Painters Dublin",
     intro:
-      "Schools, churches, clinics, offices and community and heritage venues. We work to a programme and out of hours where required, with a single point of contact from quote through to handover.",
+      "Schools, churches, clinics, offices and community venues, including period and older properties. We work to a programme and out of hours where required, with a single point of contact from quote through to handover.",
     metaTitle: "Commercial & Institutional Painters Dublin | Schools, Clinics, Offices",
     metaDescription:
-      "Commercial and institutional painting in Dublin — schools, churches, clinics, offices and community venues. Programme-driven, out-of-hours work available.",
+      "Commercial and institutional painting in Dublin — schools, churches, clinics, offices and community venues, including period and older properties. Programme-driven, out-of-hours work available.",
     features: [
       "Schools, churches and community venues",
       "Clinics, offices and retail",
+      "Period and older properties",
       "Out-of-hours and weekend working",
       "Programme-driven scheduling",
       "Single point of contact",
