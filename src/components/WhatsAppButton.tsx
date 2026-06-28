@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { WHATSAPP_URL } from "@/lib/site";
+import { track } from "@/lib/analytics";
 
 export function WhatsAppButton() {
   const [mounted, setMounted] = useState(false);
