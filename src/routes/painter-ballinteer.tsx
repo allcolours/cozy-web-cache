@@ -3,7 +3,7 @@ import { LocalAreaPage } from "../components/LocalAreaPage";
 import { SITE } from "@/lib/site";
 
 const TITLE = "Painter Ballinteer Dublin 16 | All Colours Painting";
-const DESC = `Dust-controlled interiors and exterior masonry across Ballinteer. Free quotes, fully insured — call ${SITE.phoneDisplay}.`;
+const DESC = `Interior repaints and exterior masonry across Ballinteer. Free quotes, fully insured — call ${SITE.phoneDisplay}.`;
 const URL = "https://allcolourspainter.com/painter-ballinteer";
 
 export const Route = createFileRoute("/painter-ballinteer")({
