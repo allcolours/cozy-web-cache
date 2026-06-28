@@ -63,46 +63,64 @@ export const Route = createFileRoute("/contact")({
 
 function Contact() {
   const settings = useSiteSettings();
+  const formRef = useRef<HTMLFormElement>(null);
   const [sent, setSent] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [errors, setErrors] = useState<FieldErrors>({});
+
+  function readValues(form: HTMLFormElement) {
+    const fd = new FormData(form);
+    return {
+      name: String(fd.get("name") || "").trim(),
+      email: String(fd.get("email") || "").trim(),
+      phone: String(fd.get("phone") || "").trim(),
+      postcode: String(fd.get("postcode") || "").trim(),
+      message: String(fd.get("message") || "").trim(),
+      consent: fd.get("consent") === "on",
+    };
+  }
+
+  function validateAll(form: HTMLFormElement): FieldErrors {
+    const v = readValues(form);
+    const errs = validateContact({
+      name: v.name,
+      email: v.email,
+      phone: v.phone,
+      message: v.message,
+    });
+    if (!v.consent) errs.consent = "Please accept the privacy policy to continue.";
+    return errs;
+  }
+
+  function handleBlur(name: string) {
+    return () => {
+      if (!formRef.current) return;
+      const all = validateAll(formRef.current);
+      setErrors((prev) => ({ ...prev, [name]: all[name] }));
+    };
+  }
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    const formEl = e.currentTarget;
+    const fieldErrors = validateAll(formEl);
+    setErrors(fieldErrors);
+    if (Object.values(fieldErrors).some(Boolean)) {
+      focusFirstError(formEl, fieldErrors);
+      return;
+    }
     setSubmitting(true);
     setError(null);
-    const form = new FormData(e.currentTarget);
-    const traps = readBotTraps(form);
+    const v = readValues(formEl);
+    const traps = readBotTraps(new FormData(formEl));
     const payload = {
-      name: String(form.get("name") || "")
-        .trim()
-        .slice(0, 100),
-      email: String(form.get("email") || "")
-        .trim()
-        .slice(0, 255),
-      phone:
-        String(form.get("phone") || "")
-          .trim()
-          .slice(0, 50) || null,
-      postcode:
-        String(form.get("postcode") || "")
-          .trim()
-          .slice(0, 50) || null,
-      message: String(form.get("message") || "")
-        .trim()
-        .slice(0, 4000),
+      name: v.name.slice(0, 100),
+      email: v.email.slice(0, 255),
+      phone: v.phone.slice(0, 50) || null,
+      postcode: v.postcode.slice(0, 50) || null,
+      message: v.message.slice(0, 4000),
     };
-    const consent = form.get("consent") === "on";
-    if (!payload.name || !payload.email || !payload.message) {
-      setError("Please fill in your name, email, and a short message.");
-      setSubmitting(false);
-      return;
-    }
-    if (!consent) {
-      setError("Please accept the privacy policy to continue.");
-      setSubmitting(false);
-      return;
-    }
     try {
       const res = await fetch("/api/public/contact", {
         method: "POST",
@@ -110,12 +128,16 @@ function Contact() {
         body: JSON.stringify({ ...payload, source: "contact_form", ...traps }),
       });
       if (!res.ok) {
-        setError("Sorry, we couldn't send that. Please try again or call us directly.");
+        setError(
+          `Sorry, we couldn't send that. Please try again or call us on ${SITE.phoneDisplay}.`,
+        );
         setSubmitting(false);
         return;
       }
     } catch {
-      setError("Sorry, we couldn't send that. Please try again or call us directly.");
+      setError(
+        `Sorry, we couldn't send that. Please try again or call us on ${SITE.phoneDisplay}.`,
+      );
       setSubmitting(false);
       return;
     }
