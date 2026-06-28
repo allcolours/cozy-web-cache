@@ -1,7 +1,15 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { SiteLayout } from "../components/SiteLayout";
 import { FormBotTraps, readBotTraps } from "../components/FormBotTraps";
+import {
+  FormSuccess,
+  Spinner,
+  TrustMicrocopy,
+  focusFirstError,
+  validateContact,
+  type FieldErrors,
+} from "../components/form-helpers";
 import commercialAsset from "../assets/portfolio/service-commercial.webp.asset.json";
 import { SITE } from "@/lib/site";
 
@@ -126,46 +134,79 @@ const WHY = [
 ];
 
 function CommercialPage() {
+  const formRef = useRef<HTMLFormElement>(null);
   const [sent, setSent] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [errors, setErrors] = useState<FieldErrors>({});
+
+  function readValues(form: HTMLFormElement) {
+    const fd = new FormData(form);
+    return {
+      company: String(fd.get("company") || "").trim(),
+      contact_name: String(fd.get("contact_name") || "").trim(),
+      email: String(fd.get("email") || "").trim(),
+      phone: String(fd.get("phone") || "").trim(),
+      work_type: String(fd.get("work_type") || "").trim(),
+      timeline: String(fd.get("timeline") || "").trim(),
+      details: String(fd.get("details") || "").trim(),
+    };
+  }
+
+  function validateAll(form: HTMLFormElement): FieldErrors {
+    const v = readValues(form);
+    const errs = validateContact({
+      name: v.contact_name,
+      email: v.email,
+      phone: v.phone,
+      message: v.details,
+      requireEmail: true,
+      nameLabel: "contact name",
+      messageField: "details",
+    });
+    // Map name error onto the actual field key.
+    if (errs.name) {
+      errs.contact_name = errs.name;
+      delete errs.name;
+    }
+    if (!v.company) errs.company = "Please enter your company name.";
+    if (!v.work_type) errs.work_type = "Please choose the type of work.";
+    return errs;
+  }
+
+  function handleBlur(name: string) {
+    return () => {
+      if (!formRef.current) return;
+      const all = validateAll(formRef.current);
+      setErrors((prev) => ({ ...prev, [name]: all[name] }));
+    };
+  }
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setSubmitting(true);
-    setError(null);
-    const form = new FormData(e.currentTarget);
-    const traps = readBotTraps(form);
-    const payload = {
-      name: String(form.get("contact_name") || "")
-        .trim()
-        .slice(0, 100),
-      email: String(form.get("email") || "")
-        .trim()
-        .slice(0, 255),
-      phone:
-        String(form.get("phone") || "")
-          .trim()
-          .slice(0, 50) || null,
-      postcode: null,
-      message: [
-        `Company: ${String(form.get("company") || "")
-          .trim()
-          .slice(0, 150)}`,
-        `Type of work: ${String(form.get("work_type") || "").trim()}`,
-        `Project timeline: ${String(form.get("timeline") || "")
-          .trim()
-          .slice(0, 200)}`,
-        `Details: ${String(form.get("details") || "")
-          .trim()
-          .slice(0, 2000)}`,
-      ].join("\n"),
-    };
-    if (!payload.name || !payload.email || !payload.message) {
-      setError("Please fill in your name, email and project details.");
-      setSubmitting(false);
+    const formEl = e.currentTarget;
+    const fieldErrors = validateAll(formEl);
+    setErrors(fieldErrors);
+    if (Object.values(fieldErrors).some(Boolean)) {
+      focusFirstError(formEl, fieldErrors);
       return;
     }
+    setSubmitting(true);
+    setError(null);
+    const v = readValues(formEl);
+    const traps = readBotTraps(new FormData(formEl));
+    const payload = {
+      name: v.contact_name.slice(0, 100),
+      email: v.email.slice(0, 255),
+      phone: v.phone.slice(0, 50) || null,
+      postcode: null,
+      message: [
+        `Company: ${v.company.slice(0, 150)}`,
+        `Type of work: ${v.work_type}`,
+        `Project timeline: ${v.timeline.slice(0, 200)}`,
+        `Details: ${v.details.slice(0, 2000)}`,
+      ].join("\n"),
+    };
     try {
       const res = await fetch("/api/public/contact", {
         method: "POST",
@@ -178,12 +219,16 @@ function CommercialPage() {
         }),
       });
       if (!res.ok) {
-        setError("Sorry, we couldn't send that. Please try again or call us directly.");
+        setError(
+          `Sorry, we couldn't send that. Please try again or call us on ${SITE.phoneDisplay}.`,
+        );
         setSubmitting(false);
         return;
       }
     } catch {
-      setError("Sorry, we couldn't send that. Please try again or call us directly.");
+      setError(
+        `Sorry, we couldn't send that. Please try again or call us on ${SITE.phoneDisplay}.`,
+      );
       setSubmitting(false);
       return;
     }
@@ -357,31 +402,56 @@ function CommercialPage() {
 
           <div className="rounded-sm bg-background p-6 text-foreground md:p-8">
             {sent ? (
-              <div className="py-8 text-center">
-                <h3 className="font-display text-xl font-bold uppercase text-primary">
-                  Thanks — message received
-                </h3>
-                <p className="mt-3 text-sm text-[oklch(0.35_0_0)]">
-                  We'll reply within one working day. For urgent jobs, call {SITE.phoneDisplay}.
-                </p>
-              </div>
+              <FormSuccess />
             ) : (
-              <form onSubmit={handleSubmit} className="grid gap-4">
+              <form ref={formRef} noValidate onSubmit={handleSubmit} className="grid gap-4">
                 <FormBotTraps />
                 <div className="grid gap-4 md:grid-cols-2">
-                  <Field label="Company name" name="company" required />
-                  <Field label="Contact name" name="contact_name" required />
-                  <Field label="Phone" name="phone" type="tel" />
-                  <Field label="Email" name="email" type="email" required />
+                  <Field
+                    label="Company name"
+                    name="company"
+                    required
+                    error={errors.company}
+                    onBlur={handleBlur("company")}
+                  />
+                  <Field
+                    label="Contact name"
+                    name="contact_name"
+                    required
+                    error={errors.contact_name}
+                    onBlur={handleBlur("contact_name")}
+                  />
+                  <Field
+                    label="Phone"
+                    name="phone"
+                    type="tel"
+                    error={errors.phone}
+                    onBlur={handleBlur("phone")}
+                  />
+                  <Field
+                    label="Email"
+                    name="email"
+                    type="email"
+                    required
+                    error={errors.email}
+                    onBlur={handleBlur("email")}
+                  />
                 </div>
                 <div>
-                  <label className="block font-display text-xs font-semibold uppercase tracking-wider text-[oklch(0.3_0_0)]">
-                    Type of work
+                  <label
+                    htmlFor="work_type"
+                    className="block font-display text-xs font-semibold uppercase tracking-wider text-[oklch(0.3_0_0)]"
+                  >
+                    Type of work<span className="text-primary"> *</span>
                   </label>
                   <select
+                    id="work_type"
                     name="work_type"
-                    required
                     defaultValue=""
+                    aria-required="true"
+                    aria-invalid={errors.work_type ? true : undefined}
+                    aria-describedby={errors.work_type ? "work_type-err" : undefined}
+                    onBlur={handleBlur("work_type")}
                     className="mt-2 w-full rounded-sm border border-border bg-background px-3 py-2.5 text-sm"
                   >
                     <option value="" disabled>
@@ -393,6 +463,11 @@ function CommercialPage() {
                     <option>Industrial / Floors</option>
                     <option>Other</option>
                   </select>
+                  {errors.work_type && (
+                    <p id="work_type-err" className="mt-1 text-xs text-destructive">
+                      {errors.work_type}
+                    </p>
+                  )}
                 </div>
                 <Field
                   label="Project timeline"
@@ -400,24 +475,45 @@ function CommercialPage() {
                   placeholder="e.g. Start in 4 weeks, 3-week programme"
                 />
                 <div>
-                  <label className="block font-display text-xs font-semibold uppercase tracking-wider text-[oklch(0.3_0_0)]">
-                    Additional details
+                  <label
+                    htmlFor="details"
+                    className="block font-display text-xs font-semibold uppercase tracking-wider text-[oklch(0.3_0_0)]"
+                  >
+                    Additional details<span className="text-primary"> *</span>
                   </label>
                   <textarea
+                    id="details"
                     name="details"
                     rows={4}
+                    aria-required="true"
+                    aria-invalid={errors.details ? true : undefined}
+                    aria-describedby={errors.details ? "details-err" : undefined}
+                    onBlur={handleBlur("details")}
                     className="mt-2 w-full rounded-sm border border-border bg-background px-3 py-2.5 text-sm"
                     placeholder="Location, scope, access, anything we should know."
                   />
+                  {errors.details && (
+                    <p id="details-err" className="mt-1 text-xs text-destructive">
+                      {errors.details}
+                    </p>
+                  )}
                 </div>
-                {error && <p className="text-sm text-red-600">{error}</p>}
-                <button
-                  type="submit"
-                  disabled={submitting}
-                  className="inline-flex items-center justify-center rounded-sm bg-primary px-6 py-3 font-display text-xs font-bold uppercase tracking-wider text-primary-foreground hover:bg-[oklch(0.62_0.17_158)] disabled:opacity-60"
-                >
-                  {submitting ? "Sending…" : "Get a commercial quote"}
-                </button>
+                {error && (
+                  <p role="alert" className="text-sm text-red-600">
+                    {error}
+                  </p>
+                )}
+                <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                  <button
+                    type="submit"
+                    disabled={submitting}
+                    className="inline-flex items-center justify-center gap-2 rounded-sm bg-primary px-6 py-3 font-display text-xs font-bold uppercase tracking-wider text-primary-foreground hover:bg-[oklch(0.62_0.17_158)] disabled:opacity-60"
+                  >
+                    {submitting && <Spinner />}
+                    {submitting ? "Sending…" : "Get a commercial quote"}
+                  </button>
+                  <TrustMicrocopy />
+                </div>
                 <p className="text-xs text-[oklch(0.5_0_0)]">
                   By submitting, you agree to our{" "}
                   <Link to="/privacy" className="underline hover:text-primary">
@@ -440,26 +536,43 @@ function Field({
   type = "text",
   required,
   placeholder,
+  error,
+  onBlur,
 }: {
   label: string;
   name: string;
   type?: string;
   required?: boolean;
   placeholder?: string;
+  error?: string;
+  onBlur?: () => void;
 }) {
+  const errId = `${name}-err`;
   return (
     <div>
-      <label className="block font-display text-xs font-semibold uppercase tracking-wider text-[oklch(0.3_0_0)]">
+      <label
+        htmlFor={name}
+        className="block font-display text-xs font-semibold uppercase tracking-wider text-[oklch(0.3_0_0)]"
+      >
         {label}
         {required && <span className="text-primary"> *</span>}
       </label>
       <input
+        id={name}
         name={name}
         type={type}
-        required={required}
         placeholder={placeholder}
+        aria-required={required || undefined}
+        aria-invalid={error ? true : undefined}
+        aria-describedby={error ? errId : undefined}
+        onBlur={onBlur}
         className="mt-2 w-full rounded-sm border border-border bg-background px-3 py-2.5 text-sm"
       />
+      {error && (
+        <p id={errId} className="mt-1 text-xs text-destructive">
+          {error}
+        </p>
+      )}
     </div>
   );
 }
