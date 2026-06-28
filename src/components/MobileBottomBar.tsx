@@ -14,7 +14,7 @@ export function MobileBottomBar() {
         href={`tel:${phonePlain}`}
         onClick={() => track("click_to_call", { location: "mobile_bottom_bar" })}
         className="flex flex-1 items-center justify-center gap-2 bg-[oklch(0.25_0_0)] text-white transition-colors active:bg-black"
-        aria-label={`Call ${phone}`}
+        aria-label={`Call Us — ${phone}`}
       >
         <svg
           width="20"

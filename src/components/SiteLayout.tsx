@@ -254,9 +254,9 @@ export function SiteLayout({ children }: { children: ReactNode }) {
           </div>
 
           <div>
-            <h4 className="font-display text-sm font-bold uppercase tracking-wider text-white">
+            <h3 className="font-display text-sm font-bold uppercase tracking-wider text-white">
               Explore
-            </h4>
+            </h3>
             <div className="mt-3 h-[2px] w-10 bg-primary" />
             <ul className="mt-4 space-y-2 text-sm text-white/80">
               <li>
@@ -298,9 +298,9 @@ export function SiteLayout({ children }: { children: ReactNode }) {
           </div>
 
           <div>
-            <h4 className="font-display text-sm font-bold uppercase tracking-wider text-white">
+            <h3 className="font-display text-sm font-bold uppercase tracking-wider text-white">
               Areas We Cover
-            </h4>
+            </h3>
             <div className="mt-3 h-[2px] w-10 bg-primary" />
             <ul className="mt-4 space-y-2 text-sm text-white/80">
               <li>
@@ -387,9 +387,9 @@ export function SiteLayout({ children }: { children: ReactNode }) {
           </div>
 
           <div>
-            <h4 className="font-display text-sm font-bold uppercase tracking-wider text-white">
+            <h3 className="font-display text-sm font-bold uppercase tracking-wider text-white">
               Commercial
-            </h4>
+            </h3>
             <div className="mt-3 h-[2px] w-10 bg-primary" />
             <ul className="mt-4 space-y-2 text-sm text-white/80">
               <li>
@@ -421,9 +421,9 @@ export function SiteLayout({ children }: { children: ReactNode }) {
           </div>
 
           <div>
-            <h4 className="font-display text-sm font-bold uppercase tracking-wider text-white">
+            <h3 className="font-display text-sm font-bold uppercase tracking-wider text-white">
               Contact
-            </h4>
+            </h3>
             <div className="mt-3 h-[2px] w-10 bg-primary" />
             <ul className="mt-4 space-y-2 text-sm text-white/80">
               <li>
