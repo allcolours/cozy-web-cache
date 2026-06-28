@@ -3,7 +3,7 @@ import { LocalAreaPage } from "../components/LocalAreaPage";
 import { SITE } from "@/lib/site";
 
 const TITLE = "Painter Blackrock Co. Dublin | All Colours Painting";
-const DESC = `Interiors and salt-resistant exterior finishes for Blackrock homes near the bay. Free quotes, fully insured — call ${SITE.phoneDisplay}.`;
+const DESC = `Interior and exterior repaints for Blackrock homes near the bay. Free quotes, fully insured — call ${SITE.phoneDisplay}.`;
 const URL = "https://allcolourspainter.com/painter-blackrock";
 
 export const Route = createFileRoute("/painter-blackrock")({
