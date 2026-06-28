@@ -297,17 +297,17 @@ export const AREA_CONTENT: Record<string, AreaContent> = {
     highlights: ["Period & modern interiors", "Woodwork & trim", "Exterior masonry"],
   },
   Glenageary: {
-    intro: "Coastal-grade exteriors and tidy interiors across Glenageary.",
+    intro: "Interior and exterior repaints across Glenageary.",
     localContext:
-      "Glenageary (Co. Dublin, A96) is a well-established coastal south-Dublin suburb with period and modern homes. We specify exterior systems suited to coastal conditions and deliver tidy interior work.",
-    highlights: ["Coastal exterior systems", "Full house repaints", "Woodwork & trim"],
+      "Glenageary (Co. Dublin, A96) is a well-established coastal south-Dublin suburb with period and modern homes. We prep and repaint exteriors with weatherproof trade systems and deliver tidy interior work.",
+    highlights: ["Exterior repaints near the coast", "Full house repaints", "Woodwork & trim"],
   },
   Portmarnock: {
-    intro: "Coastal-ready exteriors and quality interiors across Portmarnock.",
+    intro: "Interior and exterior repaints across Portmarnock.",
     localContext:
-      "Portmarnock (Co. Dublin, D13) is a coastal village in north Dublin with premium homes near the sea. We specify exterior systems suited to coastal exposure and deliver quality interior finishes.",
+      "Portmarnock (Co. Dublin, D13) is a coastal village in north Dublin with premium homes near the sea. We prep and repaint exteriors with weatherproof trade systems and deliver quality interior finishes.",
     highlights: [
-      "Coastal exterior systems",
+      "Exterior repaints near the coast",
       "Full-house interior repaints",
       "Exterior timber & render",
     ],
