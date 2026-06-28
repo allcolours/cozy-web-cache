@@ -31,6 +31,7 @@ import { Route as PainterRanelaghRouteImport } from './routes/painter-ranelagh'
 import { Route as PainterRahenyRouteImport } from './routes/painter-raheny'
 import { Route as PainterPortmarnockRouteImport } from './routes/painter-portmarnock'
 import { Route as PainterPhibsboroughRouteImport } from './routes/painter-phibsborough'
+import { Route as PainterNavanRouteImport } from './routes/painter-navan'
 import { Route as PainterNaasRouteImport } from './routes/painter-naas'
 import { Route as PainterMountMerrionRouteImport } from './routes/painter-mount-merrion'
 import { Route as PainterMonkstownRouteImport } from './routes/painter-monkstown'
@@ -227,6 +228,11 @@ const PainterPortmarnockRoute = PainterPortmarnockRouteImport.update({
 const PainterPhibsboroughRoute = PainterPhibsboroughRouteImport.update({
   id: '/painter-phibsborough',
   path: '/painter-phibsborough',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PainterNavanRoute = PainterNavanRouteImport.update({
+  id: '/painter-navan',
+  path: '/painter-navan',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PainterNaasRoute = PainterNaasRouteImport.update({
@@ -733,6 +739,7 @@ export interface FileRoutesByFullPath {
   '/painter-monkstown': typeof PainterMonkstownRoute
   '/painter-mount-merrion': typeof PainterMountMerrionRoute
   '/painter-naas': typeof PainterNaasRoute
+  '/painter-navan': typeof PainterNavanRoute
   '/painter-phibsborough': typeof PainterPhibsboroughRoute
   '/painter-portmarnock': typeof PainterPortmarnockRoute
   '/painter-raheny': typeof PainterRahenyRoute
@@ -843,6 +850,7 @@ export interface FileRoutesByTo {
   '/painter-monkstown': typeof PainterMonkstownRoute
   '/painter-mount-merrion': typeof PainterMountMerrionRoute
   '/painter-naas': typeof PainterNaasRoute
+  '/painter-navan': typeof PainterNavanRoute
   '/painter-phibsborough': typeof PainterPhibsboroughRoute
   '/painter-portmarnock': typeof PainterPortmarnockRoute
   '/painter-raheny': typeof PainterRahenyRoute
@@ -954,6 +962,7 @@ export interface FileRoutesById {
   '/painter-monkstown': typeof PainterMonkstownRoute
   '/painter-mount-merrion': typeof PainterMountMerrionRoute
   '/painter-naas': typeof PainterNaasRoute
+  '/painter-navan': typeof PainterNavanRoute
   '/painter-phibsborough': typeof PainterPhibsboroughRoute
   '/painter-portmarnock': typeof PainterPortmarnockRoute
   '/painter-raheny': typeof PainterRahenyRoute
@@ -1066,6 +1075,7 @@ export interface FileRouteTypes {
     | '/painter-monkstown'
     | '/painter-mount-merrion'
     | '/painter-naas'
+    | '/painter-navan'
     | '/painter-phibsborough'
     | '/painter-portmarnock'
     | '/painter-raheny'
@@ -1176,6 +1186,7 @@ export interface FileRouteTypes {
     | '/painter-monkstown'
     | '/painter-mount-merrion'
     | '/painter-naas'
+    | '/painter-navan'
     | '/painter-phibsborough'
     | '/painter-portmarnock'
     | '/painter-raheny'
@@ -1286,6 +1297,7 @@ export interface FileRouteTypes {
     | '/painter-monkstown'
     | '/painter-mount-merrion'
     | '/painter-naas'
+    | '/painter-navan'
     | '/painter-phibsborough'
     | '/painter-portmarnock'
     | '/painter-raheny'
@@ -1398,6 +1410,7 @@ export interface RootRouteChildren {
   PainterMonkstownRoute: typeof PainterMonkstownRoute
   PainterMountMerrionRoute: typeof PainterMountMerrionRoute
   PainterNaasRoute: typeof PainterNaasRoute
+  PainterNavanRoute: typeof PainterNavanRoute
   PainterPhibsboroughRoute: typeof PainterPhibsboroughRoute
   PainterPortmarnockRoute: typeof PainterPortmarnockRoute
   PainterRahenyRoute: typeof PainterRahenyRoute
@@ -1596,6 +1609,13 @@ declare module '@tanstack/react-router' {
       path: '/painter-phibsborough'
       fullPath: '/painter-phibsborough'
       preLoaderRoute: typeof PainterPhibsboroughRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/painter-navan': {
+      id: '/painter-navan'
+      path: '/painter-navan'
+      fullPath: '/painter-navan'
+      preLoaderRoute: typeof PainterNavanRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/painter-naas': {
@@ -2340,6 +2360,7 @@ const rootRouteChildren: RootRouteChildren = {
   PainterMonkstownRoute: PainterMonkstownRoute,
   PainterMountMerrionRoute: PainterMountMerrionRoute,
   PainterNaasRoute: PainterNaasRoute,
+  PainterNavanRoute: PainterNavanRoute,
   PainterPhibsboroughRoute: PainterPhibsboroughRoute,
   PainterPortmarnockRoute: PainterPortmarnockRoute,
   PainterRahenyRoute: PainterRahenyRoute,
