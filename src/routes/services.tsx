@@ -255,7 +255,7 @@ function Services() {
                 <div className="aspect-[4/3] overflow-hidden">
                   <img
                     src={s.img}
-                    alt={s.alt ?? `${s.title} painting services`}
+                    alt={`${s.title} painting services`}
                     loading="lazy"
                     width={1000}
                     height={750}
