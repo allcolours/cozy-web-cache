@@ -65,6 +65,7 @@ export function FormSuccess({
           target="_blank"
           rel="noopener noreferrer"
           className="font-semibold text-primary hover:underline"
+          onClick={() => track("click_whatsapp", { location: "form_success" })}
         >
           Send them on WhatsApp
         </a>{" "}
