@@ -12,6 +12,7 @@ import {
 } from "../components/form-helpers";
 import commercialAsset from "../assets/portfolio/service-commercial.webp.asset.json";
 import { SITE } from "@/lib/site";
+import { track } from "@/lib/analytics";
 
 export const Route = createFileRoute("/commercial-painting-dublin")({
   head: () => ({
