@@ -35,7 +35,6 @@ export const SERVICES: ServiceInfo[] = [
     ],
     process:
       "We protect floors and furniture, mask cleanly, fill and sand with dust extraction, then apply two coats of trade emulsion on walls and ceilings. Every job finishes with a walk-through and snag list — nothing is signed off until you're happy.",
-
   },
   {
     slug: "exterior-painting",
@@ -57,7 +56,6 @@ export const SERVICES: ServiceInfo[] = [
     ],
     process:
       "We wash the surface and allow it to dry, repair cracks and failed sections, stabilise chalky areas and prime bare timber. Two finish coats are applied in a suitable weather window so the system has the best chance of a long life.",
-
   },
   {
     slug: "woodwork-and-joinery",
@@ -79,7 +77,6 @@ export const SERVICES: ServiceInfo[] = [
     ],
     process:
       "We fill and sand back with dust extraction, prime bare or patched timber, then apply two coats of the chosen finish — typically a water-based satinwood or eggshell for a clean, hard-wearing result that does not yellow.",
-
   },
   {
     slug: "sash-and-timber-windows",
@@ -163,7 +160,6 @@ export const SERVICES: ServiceInfo[] = [
     ],
     process:
       "We remove handles and label hinges, degrease and sand every face, apply an adhesion primer where needed, then hand-paint two coats of a hard-wearing satinwood. Doors are reinstated and adjusted at the end of the job.",
-
   },
   {
     slug: "plaster-and-water-damage-repair",
