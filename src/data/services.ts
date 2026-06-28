@@ -42,7 +42,7 @@ export const SERVICES: ServiceInfo[] = [
     name: "Exterior Painting & Weatherproofing",
     h1: "Exterior Painting & Weatherproofing Dublin",
     intro:
-      "Render, pebbledash, masonry, brickwork and timber fascias and soffits. We power-wash, treat for algae and mould, stabilise chalky surfaces and apply weather-resistant exterior systems built for the Irish climate.",
+      "Render, pebbledash, masonry, brickwork and timber fascias and soffits. We power-wash, treat for algae and mould, stabilise chalky surfaces and apply weather-resistant exterior systems, including salt- and weather-resistant coastal systems on exposed and seafront properties.",
     metaTitle: "Exterior Painters Dublin | Render, Masonry & Weatherproofing – All Colours",
     metaDescription:
       "Exterior house painting in Dublin — render, pebbledash, masonry and timber. Power-washing, antifungal treatment and weather-resistant exterior systems.",
@@ -51,11 +51,13 @@ export const SERVICES: ServiceInfo[] = [
       "Antifungal and biocidal treatment",
       "Stabiliser on chalky or powdery render",
       "Weather-resistant masonry top coats",
+      "Salt- and weather-resistant coastal systems on exposed and seafront properties",
       "Fascia, soffit and exterior timber",
       "Crack and render patch repairs",
     ],
     process:
       "We wash the surface and allow it to dry, repair cracks and failed sections, stabilise chalky areas and prime bare timber. Two finish coats are applied in a suitable weather window so the system has the best chance of a long life.",
+
   },
   {
     slug: "woodwork-and-joinery",
