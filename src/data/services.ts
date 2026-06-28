@@ -20,7 +20,7 @@ export const SERVICES: ServiceInfo[] = [
     name: "Interior Painting & Decorating",
     h1: "Interior Painting & Decorating Dublin",
     intro:
-      "Walls, ceilings and full repaints in occupied homes and offices. Two coats as standard on prepared surfaces, water-based trade emulsions on walls and ceilings, careful masking, and a clean tidy-down at the end of every day.",
+      "Walls, ceilings and full repaints in occupied homes and offices. Two coats as standard on prepared surfaces, water-based trade emulsions on walls and ceilings, dust-free sanding with extraction, careful masking, and a clean tidy-down at the end of every day.",
     metaTitle: "Interior Painters Dublin | Walls, Ceilings & Full Repaints – All Colours",
     metaDescription:
       "Interior painting and decorating in Dublin — walls, ceilings, single rooms and full repaints. Clean work in occupied homes. Free written quote.",
@@ -28,12 +28,14 @@ export const SERVICES: ServiceInfo[] = [
       "Walls, ceilings and full house repaints",
       "Two coats as standard on prepared surfaces",
       "Filling, sanding and line-fix on walls",
+      "Dust-free sanding with extraction",
       "Trade-grade emulsion and water-based finishes",
       "Floors and furniture protected daily",
       "Clean, tidy work in occupied homes",
     ],
     process:
-      "We protect floors and furniture, mask cleanly, fill and sand, then apply two coats of trade emulsion on walls and ceilings. Every job finishes with a walk-through and snag list — nothing is signed off until you're happy.",
+      "We protect floors and furniture, mask cleanly, fill and sand with dust extraction, then apply two coats of trade emulsion on walls and ceilings. Every job finishes with a walk-through and snag list — nothing is signed off until you're happy.",
+
   },
   {
     slug: "exterior-painting",
