@@ -3,17 +3,10 @@ import { SiteLayout, COMPANY } from "../components/SiteLayout";
 import { FaqAccordion } from "../components/FaqAccordion";
 import { FAQS } from "../data/faqs";
 import { SERVICES } from "../data/services";
-import { TESTIMONIALS } from "../data/testimonials";
+
 import heroAsset from "../assets/portfolio/hero-house.webp.asset.json";
-import newBuildAsset from "../assets/portfolio/gen-exterior-modern.jpg.asset.json";
 
 function serviceHeroImage(service?: { slug: string; name: string }) {
-  if (service?.slug === "new-build-painting") {
-    return {
-      src: newBuildAsset.url,
-      alt: "New build exterior painting in Dublin — All Colours Painting",
-    };
-  }
   return {
     src: heroAsset.url,
     alt: `${service?.name ?? "Painting service"} in Dublin — All Colours Painting`,
@@ -175,25 +168,25 @@ function ServicePage() {
           </div>
 
           <div className="rounded-sm border border-border bg-card p-8">
-            <p className="font-display text-xs font-bold uppercase tracking-wider text-muted-foreground">
-              Typical price
-            </p>
-            <p className="mt-2 font-display text-3xl font-bold text-primary md:text-4xl">
-              {service.priceFrom}
-            </p>
-            <p className="mt-4 text-sm text-muted-foreground">
-              Every project is different — we'll come out, measure up and give you a free written
-              quote within 48 hours.
-            </p>
-
-            <h3 className="mt-8 font-display text-sm font-bold uppercase tracking-wider text-foreground">
+            <h3 className="font-display text-sm font-bold uppercase tracking-wider text-foreground">
               Our process
             </h3>
             <div className="mt-2 h-[2px] w-10 bg-primary" />
             <p className="mt-4 text-sm leading-relaxed text-foreground">{service.process}</p>
 
+            {service.caveat ? (
+              <p className="mt-6 rounded-sm border border-border bg-secondary p-4 text-xs leading-relaxed text-muted-foreground">
+                {service.caveat}
+              </p>
+            ) : null}
+
+            <p className="mt-6 text-sm text-muted-foreground">
+              Every project is different — we'll come out, take a look and give you a free written
+              quote.
+            </p>
+
             <div className="mt-6 rounded-sm bg-secondary p-4 text-xs text-muted-foreground">
-              15–30 painters · 300+ projects · Fully insured · Dublin based
+              Dublin based · Fully insured · Residential & commercial
             </div>
           </div>
         </div>

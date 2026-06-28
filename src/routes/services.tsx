@@ -8,10 +8,8 @@ import heroAsset from "../assets/portfolio/hero-house.webp.asset.json";
 import commercialAsset from "../assets/portfolio/service-commercial.webp.asset.json";
 import hospitalityAsset from "../assets/portfolio/service-hospitality.webp.asset.json";
 import exteriorAsset from "../assets/portfolio/portfolio-exterior-1.webp.asset.json";
-import industrialAsset from "../assets/portfolio/service-industrial.webp.asset.json";
 
 const servicesHeroImg = exteriorAsset.url;
-const epoxyFloorImg = industrialAsset.url;
 
 export const Route = createFileRoute("/services")({
   head: () => ({
@@ -20,13 +18,13 @@ export const Route = createFileRoute("/services")({
       {
         name: "description",
         content:
-          "Full range of painting services in Dublin: interior, exterior, commercial, industrial epoxy floors, kitchen painting, spray finishing and wallpapering. Free estimates.",
+          "Full range of painting and decorating services in Dublin — interior and exterior, woodwork and joinery, sash windows, railings, decking, kitchen presses, plaster repair and commercial work.",
       },
       { property: "og:title", content: "Painting & Decorating Services Dublin | All Colours" },
       {
         property: "og:description",
         content:
-          "Full range of painting services in Dublin: interior, exterior, commercial, industrial epoxy floors, kitchen painting, spray finishing and wallpapering. Free estimates.",
+          "Interior, exterior, woodwork, sash windows, railings, decking, kitchen presses, plaster repair and commercial painting across Dublin.",
       },
       { property: "og:url", content: "https://allcolourspainter.com/services" },
       { property: "og:type", content: "website" },
@@ -52,16 +50,15 @@ export const Route = createFileRoute("/services")({
             "@type": "OfferCatalog",
             name: "Painting & Decorating Services",
             itemListElement: [
-              "Residential interior & exterior painting",
-              "Commercial fit-out painting",
-              "Industrial floor coatings & line-marking",
-              "Epoxy floor painting",
-              "Kitchen painting & cabinet refinishing",
-              "Spray painting & spray finish",
-              "Furniture painting & varnish painting",
-              "Railings painting",
-              "Wallpapering",
-              "Plastering & repairs",
+              "Interior painting & decorating",
+              "Exterior painting & weatherproofing",
+              "Woodwork & joinery painting",
+              "Sash & timber window repainting",
+              "Metal railings & exterior metalwork",
+              "Decking & exterior timber treatment",
+              "Kitchen cabinet & press repainting",
+              "Plaster & water-damage repair",
+              "Commercial & institutional painting",
             ].map((n) => ({ "@type": "Offer", itemOffered: { "@type": "Service", name: n } })),
           },
         }),
@@ -110,100 +107,83 @@ const headline = [
   {
     title: "Residential",
     img: heroAsset.url,
-    desc: "Period townhouses, family homes and apartments — interior, exterior, window and woodwork repaints and feature walls.",
+    desc: "Interior and exterior painting for family homes and apartments — walls, ceilings, woodwork, sash windows, kitchen presses and exterior render.",
     bullets: [
       "Interior repaints",
       "Exterior render & masonry",
-      "Window & woodwork repaints",
-      "Feature walls & wallpapering",
+      "Sash & timber windows",
+      "Kitchen cabinet & press repainting",
     ],
   },
   {
-    title: "Commercial",
+    title: "Commercial & Institutional",
     img: commercialAsset.url,
-    desc: "Offices, retail, hospitality and education — scheduled out of hours so your business never stops.",
+    desc: "Schools, churches, clinics, offices and community and heritage venues — programme-driven work, out of hours where required.",
     bullets: [
-      "Office repaints",
-      "Retail & hospitality fit-out",
+      "Schools, clinics & community venues",
+      "Offices and retail",
       "Out-of-hours scheduling",
-      "Insurance & compliance",
+      "Single point of contact",
     ],
   },
   {
-    title: "Industrial",
-    img: epoxyFloorImg,
-    alt: "Industrial epoxy floor coating Dublin storage facility",
-    desc: "Warehouse floors, epoxy floors, line-marking, plant-room repaints and heavy-traffic protective coatings with two-pack paints.",
-    bullets: ["Epoxy floor coatings", "Line marking", "Warehouse repaints", "Anti-slip systems"],
+    title: "Exteriors & Woodwork",
+    img: exteriorAsset.url,
+    desc: "Weather-resistant exterior systems on render and masonry, plus woodwork, railings and decking — prepared, treated and finished for Irish conditions.",
+    bullets: [
+      "Render & masonry repaints",
+      "Fascia, soffit & exterior timber",
+      "Metal railings & gates",
+      "Decking wash, treat & oil",
+    ],
   },
 ];
 
 const more = [
   {
-    title: "Interior Painting",
+    title: "Interior Painting & Decorating",
     img: heroAsset.url,
-    desc: "Walls, ceilings, woodwork and skirting in premium emulsion, eggshell and satin finishes. Water based and oil based paint systems available.",
+    desc: "Walls, ceilings, single rooms and full repaints. Two coats as standard, clean work in occupied homes.",
   },
   {
-    title: "Exterior Painting",
+    title: "Exterior Painting & Weatherproofing",
     img: exteriorAsset.url,
-    desc: "Render, masonry, brick, soffits and fascias with weatherproof Sandtex and Dulux Weathershield systems.",
+    desc: "Power-washing, antifungal treatment, stabiliser on chalky render and weather-resistant exterior systems on masonry, fascia and soffit.",
   },
   {
-    title: "Kitchen Painting",
-    img: heroAsset.url,
-    desc: "Cabinet refinishing, kitchen spraying and hand-painting with durable kitchen-grade finishes.",
-  },
-  {
-    title: "Spray Painting",
-    img: heroAsset.url,
-    desc: "Airless and HVLP spray painting for kitchens, doors, joinery and ceilings — factory-grade spray finish on site.",
-  },
-  {
-    title: "Floor Painting",
-    img: epoxyFloorImg,
-    alt: "Industrial epoxy floor coating Dublin storage facility",
-    desc: "Epoxy floor painting, two-pack floor paints and industrial floor coatings for warehouses, garages and commercial spaces.",
-  },
-  {
-    title: "Furniture Painting",
+    title: "Woodwork & Joinery",
     img: hospitalityAsset.url,
-    desc: "Bespoke furniture painting and varnish painting for tables, chairs, built-ins and cabinetry.",
+    desc: "Architraves, frames, doors, skirting, staircases and banisters. Two-pack filler preparation; satinwood, eggshell, gloss or varnish finishes.",
   },
   {
-    title: "Railings Painting",
+    title: "Sash & Timber Window Repainting",
+    img: heroAsset.url,
+    desc: "Sash windows, shutters and glazing frames repainted to look as close as possible to original. Repainting and refurbishment — not a full conservation restoration.",
+  },
+  {
+    title: "Metal Railings & Metalwork",
     img: exteriorAsset.url,
-    desc: "Metal railings, gates and wrought-iron painting with rust-inhibiting primers and long-life top coats.",
+    desc: "Metal railings, gates and exterior metalwork — wire-brushed, rust-treated, primed and finished with durable exterior top coats.",
   },
   {
-    title: "Wallpapering",
-    img: hospitalityAsset.url,
-    desc: "Lining paper, standard wallcoverings, hand-printed and feature wall installs with mitre-perfect seams.",
+    title: "Decking & Exterior Timber",
+    img: exteriorAsset.url,
+    desc: "Power-washing, antifungal treatment and oiling of timber decking and exterior timber to restore colour and protection.",
   },
   {
-    title: "Plastering & Repairs",
+    title: "Kitchen Cabinet & Press Repainting",
+    img: heroAsset.url,
+    desc: "Brush-applied repainting of kitchen presses, cabinets and built-in joinery. Degrease, sand, prime and satinwood finish.",
+  },
+  {
+    title: "Plaster & Water-Damage Repair",
     img: commercialAsset.url,
-    desc: "Skim, patch and full re-plasters, crack stitching and surface prep so every finish has a flawless base.",
+    desc: "Replacing damaged plasterboard, taping and jointing, stain-blocking primer and repainting ceilings and walls after leaks.",
   },
   {
-    title: "Property Maintenance",
-    img: heroAsset.url,
-    desc: "Annual repaint contracts for landlords, letting agents and managed property portfolios.",
-  },
-  {
-    title: "Apartment Painting",
-    img: heroAsset.url,
-    desc: "Full apartment repaints across Dublin city and South Dublin — fast turnaround for owners, tenants and lettings.",
-  },
-  {
-    title: "Ceiling & Hallway Painting",
-    img: heroAsset.url,
-    desc: "Ceiling painting, hallway and staircase repaints — floors and furniture protected and finished without splatter.",
-  },
-  {
-    title: "Period & Georgian Homes",
-    img: exteriorAsset.url,
-    desc: "Period home repaints — interiors, exterior masonry, windows, cornicing and traditional colours for Georgian and Victorian properties in Dublin.",
+    title: "Commercial & Institutional Painting",
+    img: commercialAsset.url,
+    desc: "Schools, churches, clinics, offices and community and heritage venues. Programme-driven, out-of-hours work available.",
   },
 ];
 
@@ -273,7 +253,7 @@ function Services() {
                 <div className="aspect-[4/3] overflow-hidden">
                   <img
                     src={s.img}
-                    alt={s.alt ?? `${s.title} painting services`}
+                    alt={`${s.title} painting services`}
                     loading="lazy"
                     width={1000}
                     height={750}
@@ -315,7 +295,7 @@ function Services() {
                 <div className="aspect-[16/10] overflow-hidden">
                   <img
                     src={s.img}
-                    alt={s.alt ?? `${s.title} — ${s.desc.split(".")[0]}`}
+                    alt={`${s.title} — ${s.desc.split(".")[0]}`}
                     loading="lazy"
                     width={800}
                     height={500}
@@ -390,12 +370,12 @@ function Services() {
                 use: "Water-based satin and eggshell for skirting, doors and joinery — non-yellowing.",
               },
               {
-                brand: "Sikafloor Epoxy",
-                use: "Industrial floor coatings — anti-slip, chemical-resistant, fast-cure.",
+                brand: "Fleetwood",
+                use: "Irish-made trade emulsions and woodwork systems — reliable everyday finish for walls and joinery.",
               },
               {
-                brand: "Allback Linseed",
-                use: "Heritage and conservation work — traditional linseed paints and putty.",
+                brand: "Colourtrend",
+                use: "Irish heritage and contemporary colour palette in durable interior and exterior systems.",
               },
               {
                 brand: "Zinsser Primers",
