@@ -59,6 +59,7 @@ import { Route as PainterClondalkinRouteImport } from './routes/painter-clondalk
 import { Route as PainterCastleknockRouteImport } from './routes/painter-castleknock'
 import { Route as PainterCabraRouteImport } from './routes/painter-cabra'
 import { Route as PainterCabinteelyRouteImport } from './routes/painter-cabinteely'
+import { Route as PainterBlanchardstownRouteImport } from './routes/painter-blanchardstown'
 import { Route as PainterBlackrockRouteImport } from './routes/painter-blackrock'
 import { Route as PainterBallsbridgeRouteImport } from './routes/painter-ballsbridge'
 import { Route as PainterBallinteerRouteImport } from './routes/painter-ballinteer'
@@ -362,6 +363,11 @@ const PainterCabraRoute = PainterCabraRouteImport.update({
 const PainterCabinteelyRoute = PainterCabinteelyRouteImport.update({
   id: '/painter-cabinteely',
   path: '/painter-cabinteely',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PainterBlanchardstownRoute = PainterBlanchardstownRouteImport.update({
+  id: '/painter-blanchardstown',
+  path: '/painter-blanchardstown',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PainterBlackrockRoute = PainterBlackrockRouteImport.update({
@@ -670,6 +676,7 @@ export interface FileRoutesByFullPath {
   '/painter-ballinteer': typeof PainterBallinteerRoute
   '/painter-ballsbridge': typeof PainterBallsbridgeRoute
   '/painter-blackrock': typeof PainterBlackrockRoute
+  '/painter-blanchardstown': typeof PainterBlanchardstownRoute
   '/painter-cabinteely': typeof PainterCabinteelyRoute
   '/painter-cabra': typeof PainterCabraRoute
   '/painter-castleknock': typeof PainterCastleknockRoute
@@ -775,6 +782,7 @@ export interface FileRoutesByTo {
   '/painter-ballinteer': typeof PainterBallinteerRoute
   '/painter-ballsbridge': typeof PainterBallsbridgeRoute
   '/painter-blackrock': typeof PainterBlackrockRoute
+  '/painter-blanchardstown': typeof PainterBlanchardstownRoute
   '/painter-cabinteely': typeof PainterCabinteelyRoute
   '/painter-cabra': typeof PainterCabraRoute
   '/painter-castleknock': typeof PainterCastleknockRoute
@@ -881,6 +889,7 @@ export interface FileRoutesById {
   '/painter-ballinteer': typeof PainterBallinteerRoute
   '/painter-ballsbridge': typeof PainterBallsbridgeRoute
   '/painter-blackrock': typeof PainterBlackrockRoute
+  '/painter-blanchardstown': typeof PainterBlanchardstownRoute
   '/painter-cabinteely': typeof PainterCabinteelyRoute
   '/painter-cabra': typeof PainterCabraRoute
   '/painter-castleknock': typeof PainterCastleknockRoute
@@ -988,6 +997,7 @@ export interface FileRouteTypes {
     | '/painter-ballinteer'
     | '/painter-ballsbridge'
     | '/painter-blackrock'
+    | '/painter-blanchardstown'
     | '/painter-cabinteely'
     | '/painter-cabra'
     | '/painter-castleknock'
@@ -1093,6 +1103,7 @@ export interface FileRouteTypes {
     | '/painter-ballinteer'
     | '/painter-ballsbridge'
     | '/painter-blackrock'
+    | '/painter-blanchardstown'
     | '/painter-cabinteely'
     | '/painter-cabra'
     | '/painter-castleknock'
@@ -1198,6 +1209,7 @@ export interface FileRouteTypes {
     | '/painter-ballinteer'
     | '/painter-ballsbridge'
     | '/painter-blackrock'
+    | '/painter-blanchardstown'
     | '/painter-cabinteely'
     | '/painter-cabra'
     | '/painter-castleknock'
@@ -1305,6 +1317,7 @@ export interface RootRouteChildren {
   PainterBallinteerRoute: typeof PainterBallinteerRoute
   PainterBallsbridgeRoute: typeof PainterBallsbridgeRoute
   PainterBlackrockRoute: typeof PainterBlackrockRoute
+  PainterBlanchardstownRoute: typeof PainterBlanchardstownRoute
   PainterCabinteelyRoute: typeof PainterCabinteelyRoute
   PainterCabraRoute: typeof PainterCabraRoute
   PainterCastleknockRoute: typeof PainterCastleknockRoute
@@ -1727,6 +1740,13 @@ declare module '@tanstack/react-router' {
       path: '/painter-cabinteely'
       fullPath: '/painter-cabinteely'
       preLoaderRoute: typeof PainterCabinteelyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/painter-blanchardstown': {
+      id: '/painter-blanchardstown'
+      path: '/painter-blanchardstown'
+      fullPath: '/painter-blanchardstown'
+      preLoaderRoute: typeof PainterBlanchardstownRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/painter-blackrock': {
@@ -2207,6 +2227,7 @@ const rootRouteChildren: RootRouteChildren = {
   PainterBallinteerRoute: PainterBallinteerRoute,
   PainterBallsbridgeRoute: PainterBallsbridgeRoute,
   PainterBlackrockRoute: PainterBlackrockRoute,
+  PainterBlanchardstownRoute: PainterBlanchardstownRoute,
   PainterCabinteelyRoute: PainterCabinteelyRoute,
   PainterCabraRoute: PainterCabraRoute,
   PainterCastleknockRoute: PainterCastleknockRoute,
