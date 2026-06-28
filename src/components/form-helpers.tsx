@@ -49,7 +49,11 @@ export function FormSuccess({
       </h3>
       <p className="mt-3 text-sm text-foreground">
         We'll reply within one working day. For something urgent, call{" "}
-        <a className="font-semibold text-primary hover:underline" href={`tel:${SITE.phoneTel}`}>
+        <a
+          className="font-semibold text-primary hover:underline"
+          href={`tel:${SITE.phoneTel}`}
+          onClick={() => track("click_to_call", { location: "form_success" })}
+        >
           {SITE.phoneDisplay}
         </a>
         .
