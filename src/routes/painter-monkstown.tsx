@@ -57,7 +57,7 @@ export const Route = createFileRoute("/painter-monkstown")({
     <LocalAreaPage
       area="Monkstown"
       postcode="South County Dublin"
-      intro="Seafront Victorian and Edwardian properties that need expert prep and marine-grade exterior systems to stand up to coastal conditions."
+      intro="Seafront Victorian and Edwardian properties — thorough exterior prep, weatherproof trade finishes and careful period interior repaints."
     />
   ),
 });
