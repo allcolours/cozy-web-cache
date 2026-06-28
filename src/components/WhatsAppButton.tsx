@@ -17,6 +17,7 @@ export function WhatsAppButton() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat on WhatsApp"
+      onClick={() => track("click_whatsapp", { location: "floating_button" })}
       style={{ zIndex: 9999 }}
       className="group fixed bottom-24 right-5 inline-flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg shadow-black/25 ring-4 ring-[#25D366]/30 transition-transform duration-200 hover:scale-110 md:bottom-6 md:h-12 md:w-12 motion-safe:animate-pulse"
     >
