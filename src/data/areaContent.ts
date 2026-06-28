@@ -10,13 +10,13 @@ export interface AreaContent {
 export const AREA_CONTENT: Record<string, AreaContent> = {
   Ballsbridge: {
     intro:
-      "Careful, low-dust painting for Ballsbridge's period red-brick homes, embassy properties and modern apartments.",
+      "Careful interior and exterior repaints for Ballsbridge's period red-brick homes and apartments.",
     localContext:
-      "Ballsbridge (Dublin 4) is mostly Victorian and Edwardian red-brick houses, embassy buildings and newer apartment blocks. We work on period interiors, sash windows and exterior masonry, keeping occupied homes clean and disruption low.",
+      "Ballsbridge (Dublin 4) is mostly Victorian and Edwardian red-brick houses and newer apartment blocks. We work on period interiors, woodwork and exterior masonry, keeping occupied homes clean and disruption low.",
     highlights: [
       "Period interior repaints",
-      "Sash window & timber repair",
-      "Low-dust work in occupied homes",
+      "Exterior masonry & timber repaints",
+      "Tidy work in occupied homes",
     ],
   },
   Ranelagh: {
