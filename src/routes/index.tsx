@@ -319,6 +319,7 @@ function LeadCaptureForm() {
         }
         setSubmitted(true);
         setSubmitting(false);
+        track("generate_lead", { form: "homepage" });
       }}
       className="mx-auto grid max-w-3xl gap-4 rounded-sm border border-white/10 bg-white/10 p-5 backdrop-blur sm:grid-cols-2 md:grid-cols-4 md:p-6"
     >
