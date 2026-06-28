@@ -3,7 +3,7 @@ import { LocalAreaPage } from "../components/LocalAreaPage";
 import { SITE } from "@/lib/site";
 
 const TITLE = "Painter Foxrock Dublin 18 | All Colours Painting";
-const DESC = `Full-house repaints and hand-painted kitchens for Foxrock's larger homes. Free quotes, fully insured — call ${SITE.phoneDisplay}.`;
+const DESC = `Full-house repaints and exterior work for Foxrock's larger detached homes. Free quotes, fully insured — call ${SITE.phoneDisplay}.`;
 const URL = "https://allcolourspainter.com/painter-foxrock";
 
 export const Route = createFileRoute("/painter-foxrock")({
