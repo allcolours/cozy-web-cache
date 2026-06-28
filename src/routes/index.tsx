@@ -17,7 +17,13 @@ import sIndustrialAsset from "../assets/portfolio/service-industrial.webp.asset.
 import sHospitalityAsset from "../assets/portfolio/service-hospitality.webp.asset.json";
 import ctaAsset from "../assets/portfolio/cta-bg.webp.asset.json";
 import { FormBotTraps, readBotTraps } from "../components/FormBotTraps";
-import { SITE } from "@/lib/site";
+import { SITE, WHATSAPP_URL } from "@/lib/site";
+import {
+  Spinner,
+  validateContact,
+  focusFirstError,
+  type FieldErrors,
+} from "../components/form-helpers";
 
 export const Route = createFileRoute("/")({
   head: () => ({
