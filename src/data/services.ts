@@ -8,138 +8,194 @@ export interface ServiceInfo {
   metaDescription: string;
   /** Bullet list shown on the page */
   features: string[];
-  /** Typical price range (string, displayed) */
-  priceFrom: string;
   /** Short paragraph on process */
   process: string;
+  /** Optional honest caveat shown beneath the service description */
+  caveat?: string;
 }
 
 export const SERVICES: ServiceInfo[] = [
   {
-    slug: "kitchen-cabinet-painting",
-    name: "Kitchen Cabinet Painting",
-    h1: "Kitchen Cabinet Painting Dublin",
+    slug: "interior-painting",
+    name: "Interior Painting & Decorating",
+    h1: "Interior Painting & Decorating Dublin",
     intro:
-      "Repaint a tired kitchen for a fraction of the cost of a replacement. We hand-paint and spray-finish kitchen cabinets across Dublin using primer + 2K topcoat systems that stand up to daily family life — not the chip-prone DIY emulsion finishes you see on YouTube.",
-    metaTitle: "Kitchen Cabinet Painting Dublin | Spray & Hand Painted – All Colours",
+      "Walls, ceilings and full repaints in occupied homes and offices. Two coats as standard on prepared surfaces, water-based trade emulsions on walls and ceilings, careful masking, and a clean tidy-down at the end of every day.",
+    metaTitle: "Interior Painters Dublin | Walls, Ceilings & Full Repaints – All Colours",
     metaDescription:
-      "Professional kitchen cabinet painting & respraying in Dublin. Primer + 2K topcoat, hand-painted or sprayed finish, from €1,800. Fully insured, free quotes.",
+      "Interior painting and decorating in Dublin — walls, ceilings, single rooms and full repaints. Clean work in occupied homes. Free written quote.",
     features: [
-      "Hand-painted or spray-finished",
-      "Primer + 2K polyurethane topcoat",
-      "All doors removed, sprayed off-site",
-      "Cabinet boxes hand-painted in-place",
-      "Tulip, Otex or Zinsser bonding primer",
-      "Colour match to any Farrow & Ball / Colourtrend / Fleetwood shade",
+      "Walls, ceilings and full house repaints",
+      "Two coats as standard on prepared surfaces",
+      "Filling, sanding and line-fix on walls",
+      "Trade-grade emulsion and water-based finishes",
+      "Floors and furniture protected daily",
+      "Clean, tidy work in occupied homes",
     ],
-    priceFrom: "€1,800 – €3,800",
     process:
-      "Day 1 we remove and label every door and drawer front, then bring them back to our workshop for degrease, sand, prime and two-coat spray. While they're curing we hand-paint the cabinet boxes in-place. Doors come back 4–5 days later, fully cured, and we re-hang and adjust everything.",
+      "We protect floors and furniture, mask cleanly, fill and sand, then apply two coats of trade emulsion on walls and ceilings. Every job finishes with a walk-through and snag list — nothing is signed off until you're happy.",
   },
   {
     slug: "exterior-painting",
-    name: "Exterior Painting",
-    h1: "Exterior House Painting Dublin",
+    name: "Exterior Painting & Weatherproofing",
+    h1: "Exterior Painting & Weatherproofing Dublin",
     intro:
-      "Render, pebbledash, masonry, render-board, timber fascias and soffits — our exterior systems are specified for the Irish climate. We pressure-wash, treat algae, fix the moisture path, then apply a full Sandtex, Dulux Weathershield or Zinsser system that lasts 8–10 years, not 18 months.",
-    metaTitle: "Exterior House Painting Dublin | Render & Masonry – All Colours",
+      "Render, pebbledash, masonry, brickwork and timber fascias and soffits. We power-wash, treat for algae and mould, stabilise chalky surfaces and apply weather-resistant exterior systems built for the Irish climate.",
+    metaTitle: "Exterior Painters Dublin | Render, Masonry & Weatherproofing – All Colours",
     metaDescription:
-      "Exterior house painting in Dublin — render, pebbledash, masonry & timber. Sandtex / Weathershield systems built for Irish weather. Free quotes, fully insured.",
+      "Exterior house painting in Dublin — render, pebbledash, masonry and timber. Power-washing, antifungal treatment and weather-resistant exterior systems.",
     features: [
-      "Pressure-wash + biocidal treatment",
-      "Crack repair & render patching",
-      "Masonry stabiliser on chalky render",
-      "Two top coats of Sandtex / Weathershield",
-      "Flexible exterior wood system on fascias",
-      "Scaffold or access tower included",
+      "Power-washing and surface preparation",
+      "Antifungal and biocidal treatment",
+      "Stabiliser on chalky or powdery render",
+      "Weather-resistant masonry top coats",
+      "Fascia, soffit and exterior timber",
+      "Crack and render patch repairs",
     ],
-    priceFrom: "€2,500 – €5,500",
     process:
-      "We start with a proper wash and a 48-hour dry, then repair any crazed render, failed sealant and rotten timber. Stabiliser on chalky areas, primer on bare timber, then two top coats. Painted in the right weather window (April–September) for maximum life.",
+      "We wash the surface and allow it to dry, repair cracks and failed sections, stabilise chalky areas and prime bare timber. Two finish coats are applied in a suitable weather window so the system has the best chance of a long life.",
   },
   {
-    slug: "interior-painting",
-    name: "Interior Painting",
-    h1: "Interior House Painting Dublin",
+    slug: "woodwork-and-joinery",
+    name: "Woodwork & Joinery",
+    h1: "Woodwork & Joinery Painting Dublin",
     intro:
-      "From a single room refresh to a full repaint between tenancies, our interior crews deliver a flawless finish with proper prep, durable paint and zero mess. We use Dulux Trade, Fleetwood and Colourtrend by default, and you can sleep in the room the same night.",
-    metaTitle: "Interior House Painting Dublin | Rooms, Apartments & Whole Homes",
+      "Architraves, door frames, doors, skirting boards, staircases and banisters. Two-pack filler on knocks and joints, proper sanding between coats, and a choice of satinwood, eggshell, gloss or varnish to suit the room.",
+    metaTitle: "Woodwork & Joinery Painting Dublin | Doors, Skirtings & Stairs",
     metaDescription:
-      "Interior painters Dublin. Single rooms, apartments and full house repaints. Two coats, thorough sanding, water-based eggshell on woodwork. Free written quote.",
+      "Painting of architraves, door frames, doors, skirtings, staircases and banisters in Dublin. Two-pack filler prep, satinwood, eggshell, gloss or varnish finishes.",
     features: [
-      "Two coats throughout as standard",
-      "Thorough sanding & filling on woodwork",
-      "Water-based, low-odour systems",
-      "Light filling & line-fix included",
-      "ZipWall containment around occupied rooms",
-      "Daily clean-down — no building-site mess",
+      "Architraves, frames and skirting",
+      "Doors, staircases and banisters",
+      "Two-pack filler on knocks and joints",
+      "Sanded between coats",
+      "Satinwood, eggshell and gloss",
+      "Varnish finishes on bare timber",
     ],
-    priceFrom: "€280 – €5,500",
     process:
-      "We protect floors and furniture, mask cleanly, sand and fill, then apply two coats of trade-grade emulsion to walls and ceilings and water-based eggshell on woodwork. Every job ends with a walk-through and a snag list — nothing's signed off until you're happy.",
+      "We fill and sand back, prime bare or patched timber, then apply two coats of the chosen finish — typically a water-based satinwood or eggshell for a clean, hard-wearing result that does not yellow.",
+  },
+  {
+    slug: "sash-and-timber-windows",
+    name: "Sash & Timber Window Repainting",
+    h1: "Sash & Timber Window Repainting Dublin",
+    intro:
+      "Preparation and repainting of sash windows, shutters and glazing frames. We sand back flaking paint, fill open joints, prime bare timber and finish with a suitable exterior or interior wood system.",
+    caveat:
+      "This is repainting and refurbishment — we bring windows back as close as possible to their original appearance, but it is not a brand-new window or a full conservation restoration.",
+    metaTitle: "Sash Window Painters Dublin | Repainting Sashes, Shutters & Frames",
+    metaDescription:
+      "Repainting of sash windows, shutters and glazing frames in Dublin. Honest refurbishment — surfaces refreshed to look as close as possible to original.",
+    features: [
+      "Sash windows, shutters and glazing frames",
+      "Sanded back and filled where needed",
+      "Bare timber primed before painting",
+      "Interior and exterior systems",
+      "Careful masking around glass",
+      "Repainting and refurbishment, not full restoration",
+    ],
+    process:
+      "We open and prepare each sash or frame, sand back loose paint, fill open joints, prime bare timber and apply finish coats. The aim is a clean, refreshed look that respects the original profile of the window.",
+  },
+  {
+    slug: "metal-railings-and-metalwork",
+    name: "Metal Railings & Exterior Metalwork",
+    h1: "Metal Railings & Exterior Metalwork Painting Dublin",
+    intro:
+      "Preparation, priming and finishing of metal railings, gates and exterior metalwork. Rust spots are wire-brushed back, treated and primed before a durable top coat is applied.",
+    metaTitle: "Railings & Metalwork Painting Dublin | Gates & Exterior Metal",
+    metaDescription:
+      "Painting of metal railings, gates and exterior metalwork in Dublin. Rust treatment, priming and durable top coats for exterior conditions.",
+    features: [
+      "Metal railings and gates",
+      "Wire-brushing and rust treatment",
+      "Rust-inhibiting primers",
+      "Durable exterior top coats",
+      "Brush and roller application",
+      "Surrounding surfaces protected",
+    ],
+    process:
+      "We mask off adjacent walls and ground, wire-brush and treat rust, spot-prime bare metal, then apply finish coats suited to exterior exposure.",
+  },
+  {
+    slug: "decking-and-exterior-timber",
+    name: "Decking & Exterior Timber",
+    h1: "Decking & Exterior Timber Treatment Dublin",
+    intro:
+      "Power-washing, antifungal treatment and oiling of timber decking, garden joinery and exterior timber surfaces. We clean the timber back, treat for algae and mould, then re-oil to restore colour and protection.",
+    metaTitle: "Decking & Exterior Timber Treatment Dublin | Wash, Treat & Oil",
+    metaDescription:
+      "Decking and exterior timber treatment in Dublin — power-washing, antifungal treatment and oiling to restore and protect timber surfaces.",
+    features: [
+      "Decking, garden joinery and exterior timber",
+      "Power-washing back to clean timber",
+      "Antifungal and algae treatment",
+      "Decking oil to restore colour",
+      "Two coats where required",
+      "Surrounding planting protected",
+    ],
+    process:
+      "We power-wash the timber, allow it to dry, treat for algae and mould, then apply decking oil in even coats to restore appearance and weather protection.",
+  },
+  {
+    slug: "kitchen-cabinet-painting",
+    name: "Kitchen Cabinet & Press Repainting",
+    h1: "Kitchen Cabinet & Press Repainting Dublin",
+    intro:
+      "Brush-applied repainting of kitchen presses, cabinets and built-in joinery. Doors and frames are cleaned, sanded, primed where needed and finished in a hard-wearing satinwood — a practical refresh for a tired kitchen.",
+    metaTitle: "Kitchen Cabinet Painting Dublin | Brush-Painted Press Repaints",
+    metaDescription:
+      "Brush-applied repainting of kitchen presses, cabinets and built-in joinery in Dublin. Degrease, sand, prime and satinwood finish. Free quotes.",
+    features: [
+      "Kitchen presses and cabinet doors",
+      "Built-in joinery and cabinet boxes",
+      "Degrease, sand and prime",
+      "Bonding primer on factory finishes",
+      "Brush-applied satinwood top coats",
+      "Hinges and handles removed and refitted",
+    ],
+    process:
+      "We remove handles and label hinges, degrease and sand every face, apply an adhesion primer where needed, then brush on two coats of a hard-wearing satinwood. Doors are reinstated and adjusted at the end of the job.",
+  },
+  {
+    slug: "plaster-and-water-damage-repair",
+    name: "Plaster & Water-Damage Repair",
+    h1: "Plaster & Water-Damage Repair Dublin",
+    intro:
+      "Replacing damaged plasterboard, taping and jointing, priming and repainting — typically on ceilings and walls after leaks, or where the surface is no longer sound enough to take paint on its own.",
+    metaTitle: "Plaster & Water-Damage Repair Dublin | Ceiling Leak Repaints",
+    metaDescription:
+      "Plaster and water-damage repair in Dublin — replace damaged plasterboard, tape and joint, prime and repaint ceilings and walls after leaks.",
+    features: [
+      "Damaged plasterboard replaced",
+      "Taping and jointing of new boards",
+      "Stain-block primer on water marks",
+      "Skim repairs on cracked plaster",
+      "Ceiling and wall repaints after leaks",
+      "Surfaces brought back ready for finish",
+    ],
+    process:
+      "We cut out and replace damaged board where needed, tape and joint the joins, prime the repair with a stain-blocking primer and repaint the ceiling or wall so the repair is no longer visible.",
   },
   {
     slug: "commercial-painting",
-    name: "Commercial Painting",
-    h1: "Commercial Painters Dublin",
+    name: "Commercial & Institutional Painting",
+    h1: "Commercial & Institutional Painters Dublin",
     intro:
-      "Offices, retail units, restaurants, hotels and apartment-block common areas — we work out-of-hours so your business never stops. Safe Pass certified crews, full RAMS, fully insured and a single point of contact for the whole job.",
-    metaTitle: "Commercial Painters Dublin | Offices, Retail & Hotels – All Colours",
+      "Schools, churches, clinics, offices and community and heritage venues. We work to a programme and out of hours where required, with a single point of contact from quote through to handover.",
+    metaTitle: "Commercial & Institutional Painters Dublin | Schools, Clinics, Offices",
     metaDescription:
-      "Commercial painting contractors in Dublin. Out-of-hours offices, retail fit-outs, hotels, restaurants & apartment blocks. Safe Pass certified, fully insured.",
+      "Commercial and institutional painting in Dublin — schools, churches, clinics, offices and community venues. Programme-driven, out-of-hours work available.",
     features: [
-      "Out-of-hours & weekend working",
-      "Safe Pass + Manual Handling certified crews",
-      "Full RAMS and method statements",
-      "Fully insured",
-      "Apartment-block common areas",
-      "Tenant-friendly scheduling",
-    ],
-    priceFrom: "Quoted per project",
-    process:
-      "We walk the site with the facilities or property manager, agree access windows, then schedule crews to fit your operating hours. Daily sign-off, photo updates and a single project lead from quote to handover.",
-  },
-  {
-    slug: "new-build-painting",
-    name: "New Build Painting",
-    h1: "New Build Painting & Snag List Specialists Dublin",
-    intro:
-      "We're a go-to subcontractor for developers across Dublin — apartment blocks, housing schemes and one-off luxury new builds. Spray-applied mist coats, finish coats to spec, and a snag-list crew that closes out the punch list quickly so units can hand over.",
-    metaTitle: "New Build Painters Dublin | Developer & Snag List Crews – All Colours",
-    metaDescription:
-      "New build painting contractors Dublin. Apartment blocks, housing schemes, snag lists. Spray mist coats, finish coats, fast snag close-out. Fully insured.",
-    features: [
-      "Spray-applied mist coats",
-      "Finish coats to architect's spec",
-      "Snag list close-out crews",
-      "Working alongside other trades",
+      "Schools, churches and community venues",
+      "Clinics, offices and retail",
+      "Out-of-hours and weekend working",
       "Programme-driven scheduling",
-      "Developer references on request",
+      "Single point of contact",
+      "Fully insured",
     ],
-    priceFrom: "Quoted per project",
     process:
-      "We price from drawings and a finishes schedule. On site we spray mist coats once first-fix is complete, then return for finish coats after second-fix. A separate snag crew picks up the punch list per unit so handover dates don't slip.",
-  },
-  {
-    slug: "wallpapering",
-    name: "Wallpapering",
-    h1: "Professional Wallpaper Hanging Dublin",
-    intro:
-      "Feature walls, full rooms, period restoration and tricky paste-the-wall papers — our paperhangers are trained for the difficult stuff. Pattern matching, lining paper on poor plaster, and proper prep on freshly skimmed walls.",
-    metaTitle: "Wallpaper Hanging Dublin | Feature Walls & Period Papers",
-    metaDescription:
-      "Professional wallpaper hangers in Dublin. Feature walls, period restoration, paste-the-wall, lining paper. Pattern-matched finish. Free quotes.",
-    features: [
-      "Paste-the-paper and paste-the-wall",
-      "Lining paper for difficult walls",
-      "Pattern matching at every drop",
-      "Designer & heritage papers",
-      "Strip & prep included in quote",
-      "Cole & Son, Sanderson, Farrow & Ball trained",
-    ],
-    priceFrom: "€55 – €120 per roll hung",
-    process:
-      "We strip the old paper, repair the wall, line if needed, then hang the new paper plumb with pattern-matched seams. A typical feature wall is half a day; a full room is 1–2 days depending on pattern repeat.",
+      "We walk the site with the facilities or property manager, agree access windows and a programme, then schedule crews to fit your operating hours with daily sign-off and a clear handover.",
   },
 ];
 
