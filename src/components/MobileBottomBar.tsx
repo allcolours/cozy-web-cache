@@ -12,6 +12,7 @@ export function MobileBottomBar() {
     <div className="fixed inset-x-0 bottom-0 z-50 flex h-16 md:hidden">
       <a
         href={`tel:${phonePlain}`}
+        onClick={() => track("click_to_call", { location: "mobile_bottom_bar" })}
         className="flex flex-1 items-center justify-center gap-2 bg-[oklch(0.25_0_0)] text-white transition-colors active:bg-black"
         aria-label={`Call ${phone}`}
       >
