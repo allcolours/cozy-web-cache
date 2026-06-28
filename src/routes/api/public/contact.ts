@@ -8,18 +8,25 @@ const SITE_NAME = "All Colours Painting";
 const SENDER_DOMAIN = "notify.allcolourspainter.com";
 const FROM_DOMAIN = "notify.allcolourspainter.com";
 
-const ContactSchema = z.object({
-  name: z.string().trim().min(1).max(100),
-  email: z.string().trim().email().max(255),
-  phone: z.string().trim().max(50).optional().nullable(),
-  postcode: z.string().trim().max(50).optional().nullable(),
-  message: z.string().trim().min(1).max(4000),
-  source: z.string().trim().max(64).optional(),
-  service_type: z.string().trim().max(100).optional().nullable(),
-  // Anti-spam (optional; tolerated when absent for backwards compat)
-  company_website: z.string().max(500).optional().nullable(),
-  form_rendered_at: z.number().int().optional().nullable(),
-});
+const ContactSchema = z
+  .object({
+    name: z.string().trim().min(1).max(100),
+    // Email is optional — some landing-page forms (e.g. /house-painting-dublin)
+    // only collect phone + address. Accept missing, null, "", or a valid email.
+    email: z
+      .union([z.string().trim().email().max(255), z.literal("")])
+      .optional()
+      .nullable(),
+    phone: z.string().trim().max(50).optional().nullable(),
+    postcode: z.string().trim().max(100).optional().nullable(),
+    message: z.string().trim().min(1).max(4000),
+    source: z.string().trim().max(64).optional().nullable(),
+    service_type: z.string().trim().max(100).optional().nullable(),
+    // Anti-spam (optional; tolerated when absent for backwards compat)
+    company_website: z.string().max(500).optional().nullable(),
+    form_rendered_at: z.number().int().optional().nullable(),
+  })
+  .passthrough();
 
 function getClientIp(request: Request): string {
   const h = request.headers;
