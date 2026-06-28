@@ -198,12 +198,12 @@ const more = [
   {
     title: "Ceiling & Hallway Painting",
     img: heroAsset.url,
-    desc: "Ceiling painting, hallway and staircase repaints — covered, dust-controlled and finished without splatter.",
+    desc: "Ceiling painting, hallway and staircase repaints — floors and furniture protected and finished without splatter.",
   },
   {
     title: "Period & Georgian Homes",
     img: exteriorAsset.url,
-    desc: "Georgian house painting, sash windows, cornicing and heritage colour systems for period properties in Dublin.",
+    desc: "Period home repaints — interiors, exterior masonry, windows, cornicing and traditional colours for Georgian and Victorian properties in Dublin.",
   },
 ];
 
