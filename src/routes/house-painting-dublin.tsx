@@ -15,7 +15,7 @@ import { TestimonialsSection } from "../components/Testimonials";
 import heroAsset from "../assets/portfolio/hero-house.webp.asset.json";
 import { SITE, WHATSAPP_URL } from "@/lib/site";
 import { track } from "@/lib/analytics";
-import { AREAS } from "../data/areas";
+import { AREA_PATHS, ALSO_SERVING } from "../data/areaContent";
 
 const META_DESCRIPTION =
   "Clean, on-time, fully insured house painters in Dublin — interiors & exteriors. Free written quote within 48 hours. Crews of 15–30, 10+ years hands-on across Dublin.";
