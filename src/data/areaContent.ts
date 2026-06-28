@@ -51,43 +51,43 @@ export const AREA_CONTENT: Record<string, AreaContent> = {
     ],
   },
   Clontarf: {
-    intro: "Coastal-ready exterior systems and full interiors along the Clontarf seafront.",
+    intro: "Interior and exterior repaints along the Clontarf seafront.",
     localContext:
-      "Clontarf (Dublin 3) runs along the north coast, with red-brick period houses and 1930s semis near the seafront. Salt and wind are hard on exterior paint, so we specify primers and finishes that last by the sea.",
+      "Clontarf (Dublin 3) runs along the north coast, with red-brick period houses and 1930s semis near the seafront. Exteriors here see plenty of weather, so we focus on thorough prep and trade-grade weatherproof finishes.",
     highlights: [
-      "Coastal-grade exterior systems",
-      "Seafront render & masonry",
+      "Exterior repaints near the coast",
+      "Render & masonry preparation",
       "Full interior repaints",
     ],
   },
   Blackrock: {
-    intro: "Interiors and salt-resistant exterior finishes for Blackrock homes near the bay.",
+    intro: "Interior and exterior repaints for Blackrock homes near the bay.",
     localContext:
-      "Blackrock (Co. Dublin, A94) mixes Victorian period houses with modern coastal properties. We paint interiors, exterior masonry and timber, using systems built for the salt air near the bay.",
+      "Blackrock (Co. Dublin, A94) mixes Victorian period houses with modern coastal properties. We repaint interiors, exterior masonry and timber, using trade-grade weatherproof systems on exposed elevations.",
     highlights: [
-      "Salt-resistant exterior finishes",
+      "Exterior repaints near the bay",
       "Period & modern interiors",
       "Render & timber maintenance",
     ],
   },
   "Dún Laoghaire": {
-    intro: "Marine-grade exteriors and full interiors across Dún Laoghaire's harbour terraces.",
+    intro: "Interior and exterior repaints across Dún Laoghaire's harbour terraces.",
     localContext:
-      "Dún Laoghaire (Co. Dublin, A96) is a Victorian harbour town of seafront terraces and apartments. Paint near the coast needs the right system, so we prime and finish exteriors to handle marine exposure.",
+      "Dún Laoghaire (Co. Dublin, A96) is a Victorian harbour town of seafront terraces and apartments. We prep and repaint exteriors with weatherproof trade systems and deliver clean interior work in occupied homes.",
     highlights: [
-      "Marine-grade exterior coatings",
+      "Exterior repaints near the harbour",
       "Seafront terrace repaints",
       "Commercial & residential crews",
     ],
   },
   Dalkey: {
-    intro: "High-standard interiors and weather-tough exteriors for Dalkey's coastal homes.",
+    intro: "Careful interior and exterior repaints for Dalkey's coastal and period homes.",
     localContext:
-      "Dalkey (Co. Dublin, A96) is an upmarket coastal village of granite and period homes. We deliver careful interior finishes and exterior systems that stand up to wind and sea spray.",
+      "Dalkey (Co. Dublin, A96) is an upmarket coastal village of granite and period homes. We deliver careful interior finishes and weatherproof exterior repaints with thorough prep.",
     highlights: [
-      "Coastal exterior systems",
-      "Granite & period property work",
-      "High-standard interior finishes",
+      "Exterior repaints near the coast",
+      "Period & granite property work",
+      "Careful interior finishes",
     ],
   },
   Foxrock: {
