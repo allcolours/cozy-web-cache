@@ -160,6 +160,7 @@ function CommercialPage() {
       email: v.email,
       phone: v.phone,
       message: v.details,
+      requireEmail: true,
       nameLabel: "contact name",
       messageField: "details",
     });
