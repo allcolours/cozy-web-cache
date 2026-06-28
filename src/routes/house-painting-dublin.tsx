@@ -381,12 +381,12 @@ function HousePaintingPage() {
         <ul className="mt-8 flex flex-wrap gap-2">
           {AREAS.map((a) => (
             <li key={a.slug}>
-              <Link
-                to={`/painter-${a.slug}` as string}
+              <a
+                href={`/painter-${a.slug}`}
                 className="inline-flex items-center rounded-sm border border-border bg-background px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-[oklch(0.25_0_0)] hover:border-primary hover:text-primary"
               >
                 {a.name}
-              </Link>
+              </a>
             </li>
           ))}
         </ul>
