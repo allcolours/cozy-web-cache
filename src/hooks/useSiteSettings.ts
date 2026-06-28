@@ -12,6 +12,7 @@ export const SETTING_DEFAULTS: Record<string, string> = {
   hero_subtitle: "Professional interior, exterior and commercial painting across Dublin.",
   about_text:
     "All Colours Painting Contractor Limited delivers professional painting and decorating across Dublin and surrounding areas.",
+  ga4_measurement_id: "",
 };
 
 export function useSiteSettings() {
