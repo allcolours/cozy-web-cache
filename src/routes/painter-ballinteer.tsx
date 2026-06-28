@@ -57,7 +57,7 @@ export const Route = createFileRoute("/painter-ballinteer")({
     <LocalAreaPage
       area="Ballinteer"
       postcode="Dublin 16"
-      intro="Family homes and new-build estates in the foothills — clean, dust-controlled interior repaints and exterior masonry work."
+      intro="Family homes and new-build estates in the foothills — tidy interior repaints and exterior masonry work in occupied homes."
     />
   ),
 });
