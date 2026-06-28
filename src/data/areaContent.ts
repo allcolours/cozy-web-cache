@@ -318,6 +318,74 @@ export const AREA_CONTENT: Record<string, AreaContent> = {
       "Clonskeagh (Dublin 14) is a mature south-Dublin area of period houses and family homes near UCD. We deliver interior repaints and exterior masonry with proper prep and tidy crews.",
     highlights: ["Period interior repaints", "Family-home work", "Exterior masonry"],
   },
+  Sandymount: {
+    intro: "Interior and exterior repaints across Sandymount's Victorian terraces and apartments.",
+    localContext:
+      "Sandymount (Dublin 4) is a coastal village of Victorian terraces, cottages and apartments off the strand. We work cleanly in occupied homes and use weatherproof trade finishes on exposed exterior elevations.",
+    highlights: ["Period terrace interiors", "Exterior repaints near the strand", "Apartment repaints"],
+  },
+  Raheny: {
+    intro: "Interior and exterior repaints for Raheny's 1930s semis and family homes.",
+    localContext:
+      "Raheny (Dublin 5) is a north-Dublin suburb of 1930s semis, period homes and newer estates near the coast. We deliver full house repaints, woodwork and exterior maintenance with thorough prep.",
+    highlights: ["Full house repaints", "Woodwork & trim", "Exterior maintenance"],
+  },
+  Howth: {
+    intro: "Interior and exterior repaints for Howth's coastal and village homes.",
+    localContext:
+      "Howth (Dublin 13) is an exposed coastal peninsula of period houses, modern builds and village properties. Exteriors take a beating from weather, so we focus on proper prep and weatherproof trade systems.",
+    highlights: [
+      "Exterior repaints near the coast",
+      "Render & timber maintenance",
+      "Careful interior finishes",
+    ],
+  },
+  Castleknock: {
+    intro: "Interior and exterior repaints for Castleknock's detached and semi-detached homes.",
+    localContext:
+      "Castleknock (Dublin 15) is a leafy west-Dublin suburb of detached and semi-detached family homes near the Phoenix Park. We handle full repaints, woodwork and exterior maintenance with a tidy handover.",
+    highlights: ["Full house repaints", "Woodwork & trim", "Exterior maintenance"],
+  },
+  Blanchardstown: {
+    intro: "Residential and commercial painting across Blanchardstown.",
+    localContext:
+      "Blanchardstown (Dublin 15) is a large west-Dublin town with residential estates, apartment blocks and commercial parks. We deliver full house repaints, tenancy turnarounds and commercial work at scale.",
+    highlights: ["Estate house repaints", "Apartment-block common areas", "Commercial premises"],
+  },
+  Bray: {
+    intro: "Interior and exterior repaints across Bray's seafront terraces and estate housing.",
+    localContext:
+      "Bray (Co. Wicklow) is a coastal commuter town of Victorian seafront terraces, semis and newer estates. We prep and repaint exteriors with weatherproof trade systems and deliver clean interior work.",
+    highlights: [
+      "Exterior repaints near the seafront",
+      "Period terrace interiors",
+      "Estate & family-home repaints",
+    ],
+  },
+  Greystones: {
+    intro: "Interior and exterior repaints for Greystones' coastal and estate homes.",
+    localContext:
+      "Greystones (Co. Wicklow) is a coastal commuter town with growing residential estates and older village homes. We handle full repaints and exterior maintenance with thorough prep.",
+    highlights: ["Full house repaints", "Exterior repaints near the coast", "New-build finishing"],
+  },
+  Maynooth: {
+    intro: "Family-home repaints and student-let turnarounds across Maynooth.",
+    localContext:
+      "Maynooth (Co. Kildare) is a university town with a mix of family homes, student rentals and newer estates. We deliver fast tenancy turnarounds for landlords and full repaints for owner-occupiers.",
+    highlights: ["Tenancy turnarounds", "Full house repaints", "Exterior maintenance"],
+  },
+  Naas: {
+    intro: "Residential and commercial painting across Naas.",
+    localContext:
+      "Naas (Co. Kildare) is a large commuter town with residential estates, town-centre properties and commercial premises. We handle full house repaints, exterior work and commercial fit-outs.",
+    highlights: ["Estate house repaints", "Commercial premises", "Exterior maintenance"],
+  },
+  Navan: {
+    intro: "Residential and commercial painting across Navan.",
+    localContext:
+      "Navan (Co. Meath) is the main Meath town with residential estates and commercial premises. We deliver full house repaints, tenancy turnarounds and commercial work on reliable timelines.",
+    highlights: ["Full house repaints", "Tenancy turnarounds", "Commercial premises"],
+  },
 };
 
 // Name → path map, for cross-linking between the static area pages.
