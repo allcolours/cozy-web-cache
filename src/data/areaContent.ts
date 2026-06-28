@@ -279,10 +279,10 @@ export const AREA_CONTENT: Record<string, AreaContent> = {
     highlights: ["Period terrace interiors", "Apartment conversions", "Tight-access exteriors"],
   },
   Sallynoggin: {
-    intro: "Weather-ready exteriors and full interior repaints across Sallynoggin.",
+    intro: "Weather-ready exterior repaints and full interior work across Sallynoggin.",
     localContext:
-      "Sallynoggin (Co. Dublin, A96) is a coastal south-Dublin suburb with a mix of estate housing and semis. We specify exteriors suited to the marine environment and deliver clean interior repaints.",
-    highlights: ["Coastal-ready exteriors", "Full house repaints", "Exterior maintenance"],
+      "Sallynoggin (Co. Dublin, A96) is a coastal south-Dublin suburb with a mix of estate housing and semis. We prep and repaint exteriors with weatherproof trade systems and deliver clean interior repaints.",
+    highlights: ["Exterior repaints near the coast", "Full house repaints", "Exterior maintenance"],
   },
   Crumlin: {
     intro: "Terrace and family-home repaints with exterior masonry across Crumlin.",
