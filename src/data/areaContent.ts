@@ -432,4 +432,43 @@ export const AREA_PATHS: Array<{ name: string; path: string }> = [
   { name: "Glenageary", path: "/painter-glenageary" },
   { name: "Portmarnock", path: "/painter-portmarnock" },
   { name: "Clonskeagh", path: "/painter-clonskeagh" },
+  { name: "Sandymount", path: "/painter-sandymount" },
+  { name: "Raheny", path: "/painter-raheny" },
+  { name: "Howth", path: "/painter-howth" },
+  { name: "Castleknock", path: "/painter-castleknock" },
+  { name: "Blanchardstown", path: "/painter-blanchardstown" },
+  { name: "Bray", path: "/painter-bray" },
+  { name: "Greystones", path: "/painter-greystones" },
+  { name: "Maynooth", path: "/painter-maynooth" },
+  { name: "Naas", path: "/painter-naas" },
+  { name: "Navan", path: "/painter-navan" },
+];
+
+// Towns we cover by van within our normal service radius but without a
+// dedicated landing page. Shown as a plain-text coverage list on the
+// residential landing page and other "areas" sections.
+export const ALSO_SERVING: string[] = [
+  "Sutton",
+  "Baldoyle",
+  "Marino",
+  "Glasnevin",
+  "Santry",
+  "Finglas",
+  "Artane",
+  "Coolock",
+  "Rathgar",
+  "Churchtown",
+  "Firhouse",
+  "Booterstown",
+  "Palmerstown",
+  "Inchicore",
+  "Kilmainham",
+  "Skerries",
+  "Celbridge",
+  "Leixlip",
+  "Kilcock",
+  "Dunboyne",
+  "Ashbourne",
+  "Ratoath",
+  "Delgany",
 ];
