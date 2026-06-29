@@ -56,7 +56,14 @@ export const Route = createFileRoute("/")({
     ],
     links: [
       { rel: "canonical", href: "https://allcolourspainter.com/" },
-      { rel: "preload", as: "image", href: heroAsset.url, fetchPriority: "high" },
+      {
+        rel: "preload",
+        as: "image",
+        href: hero960.url,
+        imagesrcset: HERO_SRCSET,
+        imagesizes: HERO_SIZES,
+        fetchPriority: "high",
+      },
     ],
     scripts: [
       {
