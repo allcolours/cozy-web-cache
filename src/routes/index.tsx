@@ -122,7 +122,7 @@ const services = [
   },
   {
     title: "Bespoke Finishes",
-    desc: "Kitchen painting, furniture painting, railings painting, hand-painted joinery, varnish painting, wallpapering and specialist coatings on request.",
+    desc: "Kitchen painting, furniture painting, railings painting, spray-finished or hand-painted joinery, varnish painting, wallpapering and specialist coatings on request.",
     img: sHospitalityAsset.url,
   },
 ];
