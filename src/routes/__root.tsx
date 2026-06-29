@@ -7,14 +7,19 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
-import { useEffect, type ReactNode } from "react";
+import { lazy, Suspense, useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { SchemaOrg } from "../components/SchemaOrg";
 import { AssetErrorMonitor } from "../components/AssetErrorMonitor";
-import { CookieBanner } from "../components/CookieBanner";
-import { AnalyticsLoader } from "../components/AnalyticsLoader";
+
+const CookieBanner = lazy(() =>
+  import("../components/CookieBanner").then((m) => ({ default: m.CookieBanner })),
+);
+const AnalyticsLoader = lazy(() =>
+  import("../components/AnalyticsLoader").then((m) => ({ default: m.AnalyticsLoader })),
+);
 
 
 function NotFoundComponent() {
@@ -98,12 +103,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     ],
 
     links: [
-      { rel: "preconnect", href: "https://fonts.googleapis.com" },
-      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      {
-        rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Hind:wght@300;400;500;600;700&display=swap",
-      },
       {
         rel: "stylesheet",
         href: appCss,
@@ -138,8 +137,10 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       <PageViewTracker />
       <AssetErrorMonitor />
-      <CookieBanner />
-      <AnalyticsLoader />
+      <Suspense fallback={null}>
+        <CookieBanner />
+        <AnalyticsLoader />
+      </Suspense>
       <Outlet />
     </QueryClientProvider>
   );
