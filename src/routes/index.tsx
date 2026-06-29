@@ -512,7 +512,7 @@ function Home() {
                 d: "Fully insured and tax-compliant. Every job covered from first prep to final coat.",
               },
               {
-                t: "12-Month Warranty",
+                t: "12-Month Workmanship guarantee",
                 d: "If anything's not right within 12 months of completion, we come back and put it right — no quibble. Workmanship guarantee on every job.",
               },
             ].map((v, i) => (
@@ -743,7 +743,7 @@ function Home() {
           <div className="mt-10 flex flex-wrap justify-center gap-6 text-sm text-white/80 md:gap-10">
             <span className="flex items-center gap-2">✓ Free site visit</span>
             <span className="flex items-center gap-2">✓ Written quote in 48hrs</span>
-            <span className="flex items-center gap-2">✓ 12-month guarantee</span>
+            <span className="flex items-center gap-2">✓ 12-month workmanship guarantee</span>
           </div>
         </div>
       </section>

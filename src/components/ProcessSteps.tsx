@@ -26,7 +26,7 @@ const STEPS = [
   },
   {
     n: "06",
-    t: "Sign-off & guarantee",
+    t: "Sign-off & 12-month workmanship guarantee",
     d: "We walk the job with you, fix any snags on the spot, leave labelled touch-up paint, and back the whole job with a 12-month workmanship guarantee.",
   },
 ];
