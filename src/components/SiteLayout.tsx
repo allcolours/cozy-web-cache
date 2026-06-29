@@ -428,11 +428,6 @@ export function SiteLayout({ children }: { children: ReactNode }) {
                 </Link>
               </li>
               <li>
-                <Link to="/estimate" className="hover:text-primary">
-                  Get Estimate
-                </Link>
-              </li>
-              <li>
                 <Link to="/contact" className="hover:text-primary">
                   Request a Tender
                 </Link>
