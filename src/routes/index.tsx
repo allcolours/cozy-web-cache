@@ -467,6 +467,7 @@ function Home() {
               src={aboutAsset.url}
               alt="Close-up of clean architectural painting detail on interior moulding"
               loading="lazy"
+              decoding="async"
               width={1200}
               height={800}
               className="aspect-[4/5] w-full object-cover"
