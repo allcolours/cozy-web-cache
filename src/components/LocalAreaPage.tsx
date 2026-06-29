@@ -42,7 +42,7 @@ const WHY_FALLBACK = [
   "Crews with 10+ years' hands-on experience on Dublin sites",
   "Reliable scheduling and tidy daily handover",
   "Fully insured",
-  "12-month written workmanship guarantee",
+  "12-month workmanship guarantee",
 ];
 
 const LOCAL_CONTEXT_FALLBACK =
