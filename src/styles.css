@@ -2,6 +2,13 @@
 @source "../src";
 @import "tw-animate-css";
 
+/* Self-hosted fonts (replaces Google Fonts to remove render-blocking request).
+ * Montserrat variable covers all display weights in one file.
+ * Hind is used only at 400 (body) and 600 (semibold). */
+@import "@fontsource-variable/montserrat/wght.css";
+@import "@fontsource/hind/latin-400.css";
+@import "@fontsource/hind/latin-600.css";
+
 @custom-variant dark (&:is(.dark *));
 
 /*
