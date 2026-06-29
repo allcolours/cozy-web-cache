@@ -8,11 +8,18 @@ import { FaqAccordion } from "../components/FaqAccordion";
 import { FAQS } from "../data/faqs";
 
 import heroAsset from "../assets/portfolio/hero-house.webp.asset.json";
+import hero640 from "../assets/portfolio/hero-house-640.webp.asset.json";
+import hero960 from "../assets/portfolio/hero-house-960.webp.asset.json";
+import hero1280 from "../assets/portfolio/hero-house-1280.webp.asset.json";
+import hero1536 from "../assets/portfolio/hero-house-1536.webp.asset.json";
 import aboutAsset from "../assets/portfolio/about-architecture.webp.asset.json";
 import sCommercialAsset from "../assets/portfolio/service-commercial.webp.asset.json";
 import sIndustrialAsset from "../assets/portfolio/service-industrial.webp.asset.json";
 import sHospitalityAsset from "../assets/portfolio/service-hospitality.webp.asset.json";
 import ctaAsset from "../assets/portfolio/cta-bg.webp.asset.json";
+
+const HERO_SRCSET = `${hero640.url} 640w, ${hero960.url} 960w, ${hero1280.url} 1280w, ${hero1536.url} 1536w`;
+const HERO_SIZES = "100vw";
 import { FormBotTraps, readBotTraps } from "../components/FormBotTraps";
 import { SITE, WHATSAPP_URL } from "@/lib/site";
 import { track } from "@/lib/analytics";
