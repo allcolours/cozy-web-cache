@@ -20,7 +20,6 @@ const NAV = [
   { to: "/about", label: "About" },
   { to: "/services", label: "Services" },
   { to: "/estimate", label: "Get Estimate" },
-  { to: "/case-studies", label: "Case Studies" },
   { to: "/projects", label: "Projects" },
   { to: "/gallery", label: "Our Work (Gallery)" },
   { to: "/blog", label: "Blog" },
@@ -34,7 +33,6 @@ const DESKTOP_NAV = [
   { to: "/services", label: "Services" },
   { to: "/projects", label: "Projects" },
   { to: "/gallery", label: "Our Work (Gallery)" },
-  { to: "/case-studies", label: "Case Studies" },
   { to: "/blog", label: "Blog" },
   { to: "/faq", label: "FAQ" },
 ] as const;
@@ -51,7 +49,6 @@ const MOBILE_NAV = [
   { to: "/", label: "Home" },
   { to: "/about", label: "About" },
   { to: "/services", label: "Services" },
-  { to: "/case-studies", label: "Case Studies" },
   { to: "/projects", label: "Projects" },
   { to: "/gallery", label: "Our Work (Gallery)" },
   { to: "/blog", label: "Blog" },
@@ -423,11 +420,6 @@ export function SiteLayout({ children }: { children: ReactNode }) {
               <li>
                 <Link to="/commercial-painting-dublin" className="hover:text-primary">
                   Commercial Painting Dublin
-                </Link>
-              </li>
-              <li>
-                <Link to="/case-studies" className="hover:text-primary">
-                  Case Studies
                 </Link>
               </li>
               <li>
