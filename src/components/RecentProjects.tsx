@@ -94,6 +94,7 @@ export default function RecentProjects() {
                     src={p.cover_url}
                     alt={p.title}
                     loading="lazy"
+                    decoding="async"
                     width={1200}
                     height={825}
                     className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"

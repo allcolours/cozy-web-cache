@@ -8,11 +8,18 @@ import { FaqAccordion } from "../components/FaqAccordion";
 import { FAQS } from "../data/faqs";
 
 import heroAsset from "../assets/portfolio/hero-house.webp.asset.json";
+import hero640 from "../assets/portfolio/hero-house-640.webp.asset.json";
+import hero960 from "../assets/portfolio/hero-house-960.webp.asset.json";
+import hero1280 from "../assets/portfolio/hero-house-1280.webp.asset.json";
+import hero1536 from "../assets/portfolio/hero-house-1536.webp.asset.json";
 import aboutAsset from "../assets/portfolio/about-architecture.webp.asset.json";
 import sCommercialAsset from "../assets/portfolio/service-commercial.webp.asset.json";
 import sIndustrialAsset from "../assets/portfolio/service-industrial.webp.asset.json";
 import sHospitalityAsset from "../assets/portfolio/service-hospitality.webp.asset.json";
 import ctaAsset from "../assets/portfolio/cta-bg.webp.asset.json";
+
+const HERO_SRCSET = `${hero640.url} 640w, ${hero960.url} 960w, ${hero1280.url} 1280w, ${hero1536.url} 1536w`;
+const HERO_SIZES = "100vw";
 import { FormBotTraps, readBotTraps } from "../components/FormBotTraps";
 import { SITE, WHATSAPP_URL } from "@/lib/site";
 import { track } from "@/lib/analytics";
@@ -49,7 +56,14 @@ export const Route = createFileRoute("/")({
     ],
     links: [
       { rel: "canonical", href: "https://allcolourspainter.com/" },
-      { rel: "preload", as: "image", href: heroAsset.url, fetchPriority: "high" },
+      {
+        rel: "preload",
+        as: "image",
+        href: hero960.url,
+        imagesrcset: HERO_SRCSET,
+        imagesizes: HERO_SIZES,
+        fetchPriority: "high",
+      },
     ],
     scripts: [
       {
@@ -374,10 +388,12 @@ function Home() {
       {/* Hero */}
       <section className="relative isolate w-full overflow-hidden">
         <img
-          src={heroAsset.url}
+          src={hero960.url}
+          srcSet={HERO_SRCSET}
+          sizes={HERO_SIZES}
           alt="Freshly painted Dublin home exterior by All Colours Painting"
-          width={1920}
-          height={1280}
+          width={1536}
+          height={1152}
           fetchPriority="high"
           decoding="async"
           className="absolute inset-0 -z-10 h-full w-full object-cover"
@@ -451,6 +467,7 @@ function Home() {
               src={aboutAsset.url}
               alt="Close-up of clean architectural painting detail on interior moulding"
               loading="lazy"
+              decoding="async"
               width={1200}
               height={800}
               className="aspect-[4/5] w-full object-cover"
@@ -550,6 +567,7 @@ function Home() {
                     src={s.img}
                     alt={`${s.title} painting & decorating in Dublin`}
                     loading="lazy"
+                    decoding="async"
                     width={800}
                     height={600}
                     className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
@@ -704,6 +722,7 @@ function Home() {
           src={ctaAsset.url}
           alt="Freshly painted Dublin home exterior"
           loading="lazy"
+          decoding="async"
           width={1920}
           height={600}
           className="absolute inset-0 -z-10 h-full w-full object-cover"
