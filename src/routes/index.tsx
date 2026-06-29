@@ -722,6 +722,7 @@ function Home() {
           src={ctaAsset.url}
           alt="Freshly painted Dublin home exterior"
           loading="lazy"
+          decoding="async"
           width={1920}
           height={600}
           className="absolute inset-0 -z-10 h-full w-full object-cover"
