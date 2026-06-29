@@ -53,6 +53,7 @@ export const Route = createFileRoute("/case-studies_/$slug")({
     return {
       meta: [
         { title: `${s.title} | Case Study | All Colours Painting` },
+        { name: "robots", content: "noindex, follow" },
         { name: "description", content: desc },
         { property: "og:title", content: s.title },
         { property: "og:description", content: desc },
