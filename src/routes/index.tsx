@@ -388,10 +388,12 @@ function Home() {
       {/* Hero */}
       <section className="relative isolate w-full overflow-hidden">
         <img
-          src={heroAsset.url}
+          src={hero960.url}
+          srcSet={HERO_SRCSET}
+          sizes={HERO_SIZES}
           alt="Freshly painted Dublin home exterior by All Colours Painting"
-          width={1920}
-          height={1280}
+          width={1536}
+          height={1152}
           fetchPriority="high"
           decoding="async"
           className="absolute inset-0 -z-10 h-full w-full object-cover"
