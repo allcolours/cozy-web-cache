@@ -137,8 +137,10 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       <PageViewTracker />
       <AssetErrorMonitor />
-      <CookieBanner />
-      <AnalyticsLoader />
+      <Suspense fallback={null}>
+        <CookieBanner />
+        <AnalyticsLoader />
+      </Suspense>
       <Outlet />
     </QueryClientProvider>
   );
