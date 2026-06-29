@@ -118,20 +118,21 @@ export const Route = createFileRoute("/sitemap.xml")({
           }
         }
 
-        const { data: csRows } = await supabase
-          .from("case_studies")
-          .select("slug, created_at")
-          .eq("visible", true);
-        if (csRows) {
-          for (const r of csRows) {
-            dynamicEntries.push({
-              path: `/case-studies/${r.slug}`,
-              changefreq: "monthly",
-              priority: "0.7",
-              lastmod: (r.created_at || LASTMOD).slice(0, 10),
-            });
-          }
-        }
+        // Case studies hidden from sitemap until the section is re-enabled publicly.
+        // const { data: csRows } = await supabase
+        //   .from("case_studies")
+        //   .select("slug, created_at")
+        //   .eq("visible", true);
+        // if (csRows) {
+        //   for (const r of csRows) {
+        //     dynamicEntries.push({
+        //       path: `/case-studies/${r.slug}`,
+        //       changefreq: "monthly",
+        //       priority: "0.7",
+        //       lastmod: (r.created_at || LASTMOD).slice(0, 10),
+        //     });
+        //   }
+        // }
 
         const all = [...ENTRIES, ...dynamicEntries];
         const urls = all.map(
