@@ -423,8 +423,8 @@ export function SiteLayout({ children }: { children: ReactNode }) {
                 </Link>
               </li>
               <li>
-                <Link to="/case-studies" className="hover:text-primary">
-                  Case Studies
+                <Link to="/estimate" className="hover:text-primary">
+                  Get Estimate
                 </Link>
               </li>
               <li>
