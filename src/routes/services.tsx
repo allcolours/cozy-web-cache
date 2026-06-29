@@ -173,7 +173,7 @@ const more = [
   {
     title: "Kitchen Cabinet & Press Repainting",
     img: heroAsset.url,
-    desc: "Brush-applied repainting of kitchen presses, cabinets and built-in joinery. Degrease, sand, prime and satinwood finish.",
+    desc: "Repainting of kitchen presses, cabinets and built-in joinery — hand-painted or spray-finished. Degrease, sand, prime and satinwood finish.",
   },
   {
     title: "Plaster & Water-Damage Repair",
