@@ -59,7 +59,8 @@ export const Route = createFileRoute("/")({
       {
         rel: "preload",
         as: "image",
-        href: hero960.url,
+        href: hero640.url,
+        type: "image/webp",
         imagesrcset: HERO_SRCSET,
         imagesizes: HERO_SIZES,
         fetchPriority: "high",
