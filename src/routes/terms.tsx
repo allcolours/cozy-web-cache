@@ -82,10 +82,10 @@ function TermsPage() {
 
             <div>
               <h2 className="font-display text-xl font-bold uppercase tracking-wide">
-                3. Workmanship guarantee
+                3. 12-month workmanship guarantee
               </h2>
               <p className="mt-3">
-                We provide a workmanship guarantee on completed jobs. Specifics (duration
+                We provide a 12-month workmanship guarantee on completed jobs. Specifics (duration
                 and scope) are stated on the quote and invoice for each project.
               </p>
             </div>

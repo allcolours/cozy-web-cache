@@ -247,8 +247,8 @@ export function SiteLayout({ children }: { children: ReactNode }) {
             </div>
             <p className="mt-5 max-w-md text-sm leading-relaxed text-white/80">
               Professional interior, exterior and commercial painting & decorating across {area}.
-              Quality finishes, tidy workmanship, fully insured — backed by a 12-month written
-              workmanship guarantee.
+              Quality finishes, tidy workmanship, fully insured — backed by a 12-month workmanship
+              guarantee.
             </p>
             <div className="mt-5 h-[3px] w-16 bg-primary" />
           </div>
@@ -479,7 +479,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
                 Terms
               </Link>
               <span className="text-white/30">·</span>
-              <span>Fully insured · Workmanship guaranteed</span>
+              <span>Fully insured · 12-month workmanship guarantee</span>
             </div>
           </div>
         </div>
