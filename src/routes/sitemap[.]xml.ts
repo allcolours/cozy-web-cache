@@ -26,7 +26,7 @@ const ENTRIES: SitemapEntry[] = [
   { path: "/services/commercial-painting", changefreq: "monthly", priority: "0.8" },
   // { path: "/gallery", changefreq: "weekly", priority: "0.8" }, // hidden until populated
   { path: "/blog", changefreq: "weekly", priority: "0.8" },
-  { path: "/case-studies", changefreq: "weekly", priority: "0.7" },
+  // { path: "/case-studies", changefreq: "weekly", priority: "0.7" }, // hidden until populated
   { path: "/painters", changefreq: "monthly", priority: "0.8" },
   { path: "/pricing-guide", changefreq: "monthly", priority: "0.8" },
   { path: "/faq", changefreq: "monthly", priority: "0.7" },
