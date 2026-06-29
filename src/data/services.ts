@@ -21,7 +21,7 @@ export const SERVICES: ServiceInfo[] = [
     h1: "Interior Painting & Decorating Dublin",
     intro:
       "Walls, ceilings and full repaints in occupied homes and offices. Two coats as standard on prepared surfaces, water-based trade emulsions on walls and ceilings, dust-free sanding with extraction, careful masking, and a clean tidy-down at the end of every day.",
-    metaTitle: "Interior Painters Dublin | Walls, Ceilings & Full Repaints – All Colours",
+    metaTitle: "Interior Painters Dublin | Walls, Ceilings & Repaints",
     metaDescription:
       "Interior painting and decorating in Dublin — walls, ceilings, single rooms and full repaints. Clean work in occupied homes. Free written quote.",
     features: [
@@ -42,7 +42,7 @@ export const SERVICES: ServiceInfo[] = [
     h1: "Exterior Painting & Weatherproofing Dublin",
     intro:
       "Render, pebbledash, masonry, brickwork and timber fascias and soffits. We power-wash, treat for algae and mould, stabilise chalky surfaces and apply weather-resistant exterior systems, including salt- and weather-resistant coastal systems on exposed and seafront properties.",
-    metaTitle: "Exterior Painters Dublin | Render, Masonry & Weatherproofing – All Colours",
+    metaTitle: "Exterior Painters Dublin | Render & Weatherproofing",
     metaDescription:
       "Exterior house painting in Dublin — render, pebbledash, masonry and timber. Power-washing, antifungal treatment and weather-resistant exterior systems.",
     features: [
@@ -63,9 +63,9 @@ export const SERVICES: ServiceInfo[] = [
     h1: "Woodwork & Joinery Painting Dublin",
     intro:
       "Architraves, door frames, doors, skirting boards, staircases and banisters in period and older properties as well as modern homes. Two-pack filler on knocks and joints, dust-free sanding with extraction to keep occupied rooms clean, and a choice of satinwood, eggshell, gloss or varnish to suit the room.",
-    metaTitle: "Woodwork & Joinery Painting Dublin | Doors, Skirtings & Stairs",
+    metaTitle: "Woodwork & Joinery Painting Dublin | Doors & Skirtings",
     metaDescription:
-      "Painting of architraves, door frames, doors, skirtings, staircases and banisters in Dublin. Two-pack filler prep, dust-free sanding, satinwood, eggshell, gloss or varnish finishes.",
+      "Painting of doors, frames, skirtings, stairs and banisters in Dublin. Two-pack filler prep, dust-free sanding; satinwood, eggshell, gloss or varnish finishes.",
     features: [
       "Architraves, frames and skirting",
       "Doors, staircases and banisters",
@@ -86,7 +86,7 @@ export const SERVICES: ServiceInfo[] = [
       "Preparation and repainting of sash windows, shutters and glazing frames. We sand back flaking paint, fill open joints, prime bare timber and finish with a suitable exterior or interior wood system.",
     caveat:
       "This is repainting and refurbishment — we bring windows back as close as possible to their original appearance, but it is not a brand-new window or a full conservation restoration.",
-    metaTitle: "Sash Window Painters Dublin | Repainting Sashes, Shutters & Frames",
+    metaTitle: "Sash Window Painters Dublin | Sashes & Frames",
     metaDescription:
       "Repainting of sash windows, shutters and glazing frames in Dublin. Honest refurbishment — surfaces refreshed to look as close as possible to original.",
     features: [
@@ -106,7 +106,7 @@ export const SERVICES: ServiceInfo[] = [
     h1: "Metal Railings & Exterior Metalwork Painting Dublin",
     intro:
       "Preparation, priming and finishing of metal railings, gates and exterior metalwork. Rust spots are wire-brushed back, treated and primed before a durable top coat is applied.",
-    metaTitle: "Railings & Metalwork Painting Dublin | Gates & Exterior Metal",
+    metaTitle: "Railings & Metalwork Painting Dublin | Gates & Metal",
     metaDescription:
       "Painting of metal railings, gates and exterior metalwork in Dublin. Rust treatment, priming and durable top coats for exterior conditions.",
     features: [
@@ -126,7 +126,7 @@ export const SERVICES: ServiceInfo[] = [
     h1: "Decking & Exterior Timber Treatment Dublin",
     intro:
       "Power-washing, antifungal treatment and oiling of timber decking, garden joinery and exterior timber surfaces. We clean the timber back, treat for algae and mould, then re-oil to restore colour and protection.",
-    metaTitle: "Decking & Exterior Timber Treatment Dublin | Wash, Treat & Oil",
+    metaTitle: "Decking & Exterior Timber Painting Dublin",
     metaDescription:
       "Decking and exterior timber treatment in Dublin — power-washing, antifungal treatment and oiling to restore and protect timber surfaces.",
     features: [
@@ -146,7 +146,7 @@ export const SERVICES: ServiceInfo[] = [
     h1: "Kitchen Cabinet & Press Repainting Dublin",
     intro:
       "Repainting of kitchen presses, cabinets and built-in joinery — hand-painted (brush) or spray-finished, depending on the project and the finish you want. Doors and frames are cleaned, degreased, sanded, primed where needed and finished in a hard-wearing satinwood or topcoat.",
-    metaTitle: "Kitchen Cabinet Painting Dublin | Hand-Painted Press Repaints",
+    metaTitle: "Kitchen Cabinet Painting Dublin | Press Repaints",
     metaDescription:
       "Kitchen cabinet and press repainting in Dublin — hand-painted or spray-finished. Degreased, sanded, primed and finished in hard-wearing satinwood. Free quotes.",
     features: [
@@ -187,9 +187,9 @@ export const SERVICES: ServiceInfo[] = [
     h1: "Commercial & Institutional Painters Dublin",
     intro:
       "Schools, churches, clinics, offices and community venues, including period and older properties. We work to a programme and out of hours where required, with a single point of contact from quote through to handover.",
-    metaTitle: "Commercial & Institutional Painters Dublin | Schools, Clinics, Offices",
+    metaTitle: "Commercial Painters Dublin | Schools, Offices & Clinics",
     metaDescription:
-      "Commercial and institutional painting in Dublin — schools, churches, clinics, offices and community venues, including period and older properties. Programme-driven, out-of-hours work available.",
+      "Commercial and institutional painting in Dublin — schools, churches, clinics, offices and community venues. Programme-driven, out-of-hours work available.",
     features: [
       "Schools, churches and community venues",
       "Clinics, offices and retail",
