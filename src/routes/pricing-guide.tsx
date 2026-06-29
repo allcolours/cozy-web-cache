@@ -135,7 +135,7 @@ const PRICING_FAQ: { q: string; a: string }[] = [
   },
   {
     q: "Are you fully insured?",
-    a: "Yes. Fully insured, Safe Pass certified crews, and a written workmanship guarantee on every job.",
+    a: "Yes. Fully insured, Safe Pass certified crews, and a workmanship guarantee on every job.",
   },
 ];
 

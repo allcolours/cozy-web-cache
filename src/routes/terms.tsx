@@ -85,7 +85,7 @@ function TermsPage() {
                 3. Workmanship guarantee
               </h2>
               <p className="mt-3">
-                We provide a written workmanship guarantee on completed jobs. Specifics (duration
+                We provide a workmanship guarantee on completed jobs. Specifics (duration
                 and scope) are stated on the quote and invoice for each project.
               </p>
             </div>

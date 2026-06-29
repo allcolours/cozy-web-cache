@@ -103,7 +103,7 @@ const AREAS = [
 const WHY = [
   "Crews with 10+ years' hands-on experience on Dublin sites",
   "Tax Clearance compliant and fully insured",
-  "12-month written workmanship guarantee on every job",
+  "12-month workmanship guarantee on every job",
   "Tidy daily handover — vacuum sanding, dust control, furniture protected",
   "Honest written quotes — line-by-line, no surprises",
   "Single point of contact from first call to final sign-off",
@@ -128,7 +128,7 @@ const FAQS = [
   },
   {
     q: "Do you offer a guarantee?",
-    a: "Every job comes with a 12-month written workmanship guarantee. If anything isn't right, we come back and fix it.",
+    a: "Every job comes with a 12-month workmanship guarantee. If anything isn't right, we come back and fix it.",
   },
 ];
 

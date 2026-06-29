@@ -63,7 +63,7 @@ export const FAQS: Faq[] = [
   {
     category: "Aftercare",
     q: "What guarantee do you offer?",
-    a: "A 12-month written workmanship guarantee on every job. If a properly prepared surface fails — flaking, peeling, blistering — we come back and fix it free of charge. We are also fully insured.",
+    a: "A 12-month workmanship guarantee on every job. If a properly prepared surface fails — flaking, peeling, blistering — we come back and fix it free of charge. We are also fully insured.",
   },
   {
     category: "Aftercare",

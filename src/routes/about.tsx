@@ -80,7 +80,7 @@ const values = [
     t: "Honest pricing",
     d: "Detailed written quotes with no surprises — what you're quoted is what you pay.",
   },
-  { t: "Fully insured", d: "A written workmanship guarantee on every job." },
+  { t: "Fully insured", d: "A workmanship guarantee on every job." },
 ];
 
 function About() {

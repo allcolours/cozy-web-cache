@@ -122,7 +122,7 @@ const services = [
   },
   {
     title: "Bespoke Finishes",
-    desc: "Kitchen painting, furniture painting, railings painting, spray-finished joinery, varnish painting, wallpapering and specialist coatings on request.",
+    desc: "Kitchen painting, furniture painting, railings painting, hand-painted joinery, varnish painting, wallpapering and specialist coatings on request.",
     img: sHospitalityAsset.url,
   },
 ];
@@ -496,7 +496,7 @@ function Home() {
               },
               {
                 t: "12-Month Warranty",
-                d: "If anything's not right within 12 months of completion, we come back and put it right — no quibble. Written workmanship guarantee on every job.",
+                d: "If anything's not right within 12 months of completion, we come back and put it right — no quibble. Workmanship guarantee on every job.",
               },
             ].map((v, i) => (
               <div key={v.t} className="border-t-[3px] border-primary bg-card p-7">
