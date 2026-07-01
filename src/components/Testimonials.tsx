@@ -127,29 +127,20 @@ export function TestimonialsSection({
           </span>
         </div>
 
-        {/* As seen on / trust bar */}
+        {/* Developments we've worked on */}
         <div className="mt-16 border-t border-border pt-10">
           <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center">
             <span className="whitespace-nowrap font-display text-xs font-bold uppercase tracking-wider text-foreground/70">
-              Projects delivered for:
+              Developments we've worked on
             </span>
-            <div className="flex flex-wrap gap-2">
-              {[
-                "Cairn Homes",
-                "Bennett Construction",
-                "Elliott Group",
-                "Clancy Construction",
-              ].map((name) => (
-                <span
-                  key={name}
-                  className="rounded-full bg-secondary px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-foreground/80"
-                >
-                  {name}
-                </span>
-              ))}
-            </div>
+            <p className="max-w-3xl text-sm text-foreground/80">
+              Our teams have completed painting works on Dublin developments including Hawkins
+              Wood, Seven Mills, Marshall's Yard, Adamstown, 118 Cork Street and Ronald McDonald
+              House (St James's).
+            </p>
           </div>
         </div>
+
       </div>
     </section>
   );
