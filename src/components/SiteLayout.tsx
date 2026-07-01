@@ -488,7 +488,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
       <FloatingContact />
       <WhatsAppButton />
       <MobileBottomBar />
-      <CookieBanner />
+      
     </div>
   );
 }
