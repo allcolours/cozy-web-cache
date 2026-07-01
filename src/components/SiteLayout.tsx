@@ -8,7 +8,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
-import { CookieBanner } from "./CookieBanner";
+
 import { FloatingContact } from "./FloatingContact";
 import { FooterCTA } from "./FooterCTA";
 import { MobileBottomBar } from "./MobileBottomBar";
