@@ -44,8 +44,10 @@ export const getGalleryCovers = createServerFn({ method: "GET" }).handler(
 
     const covers: GalleryCoverMap = {};
     for (const row of data ?? []) {
-      const project = (row as { gallery_projects: { category: GalleryCategory } }).gallery_projects;
-      const cat = project.category;
+      const projectRel = (row as unknown as { gallery_projects: { category: GalleryCategory } | { category: GalleryCategory }[] }).gallery_projects;
+      const project = Array.isArray(projectRel) ? projectRel[0] : projectRel;
+      const cat = project?.category as GalleryCategory | undefined;
+      if (!cat) continue;
       if (covers[cat]) continue;
 
       const raw = (row.image_url ?? "") as string;
