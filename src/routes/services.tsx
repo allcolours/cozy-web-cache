@@ -131,10 +131,14 @@ export const Route = createFileRoute("/services")({
   component: Services,
 });
 
-const headline = [
+type ServiceCard = { title: string; img: string; desc: string; cat: GalleryCategory };
+type HeadlineCard = ServiceCard & { bullets: string[] };
+
+const headline: HeadlineCard[] = [
   {
     title: "Residential",
     img: heroAsset.url,
+    cat: "interior",
     desc: "Interior and exterior painting for family homes and apartments — walls, ceilings, woodwork, sash windows, kitchen presses and exterior render.",
     bullets: [
       "Interior repaints",
@@ -146,6 +150,7 @@ const headline = [
   {
     title: "Commercial & Institutional",
     img: commercialAsset.url,
+    cat: "commercial",
     desc: "Schools, churches, clinics, offices and community and heritage venues — programme-driven work, out of hours where required.",
     bullets: [
       "Schools, clinics & community venues",
@@ -157,6 +162,7 @@ const headline = [
   {
     title: "Exteriors & Woodwork",
     img: exteriorAsset.url,
+    cat: "exterior",
     desc: "Weather-resistant exterior systems on render and masonry, plus woodwork, railings and decking — prepared, treated and finished for Irish conditions.",
     bullets: [
       "Render & masonry repaints",
@@ -167,55 +173,69 @@ const headline = [
   },
 ];
 
-const more = [
+const more: ServiceCard[] = [
   {
     title: "Interior Painting & Decorating",
     img: heroAsset.url,
+    cat: "interior",
     desc: "Walls, ceilings, single rooms and full repaints. Two coats as standard, clean work in occupied homes.",
   },
   {
     title: "Exterior Painting & Weatherproofing",
     img: exteriorAsset.url,
+    cat: "exterior",
     desc: "Power-washing, antifungal treatment, stabiliser on chalky render and weather-resistant exterior systems on masonry, fascia and soffit.",
   },
   {
     title: "Woodwork & Joinery",
     img: hospitalityAsset.url,
+    cat: "woodwork",
     desc: "Architraves, frames, doors, skirting, staircases and banisters. Two-pack filler preparation; satinwood, eggshell, gloss or varnish finishes.",
   },
   {
     title: "Sash & Timber Window Repainting",
     img: heroAsset.url,
+    cat: "exterior",
     desc: "Sash windows, shutters and glazing frames repainted to look as close as possible to original. Repainting and refurbishment — not a full conservation restoration.",
   },
   {
     title: "Metal Railings & Metalwork",
     img: exteriorAsset.url,
+    cat: "metalwork",
     desc: "Metal railings, gates and exterior metalwork — wire-brushed, rust-treated, primed and finished with durable exterior top coats.",
   },
   {
     title: "Decking & Exterior Timber",
     img: exteriorAsset.url,
+    cat: "exterior",
     desc: "Power-washing, antifungal treatment and oiling of timber decking and exterior timber to restore colour and protection.",
   },
   {
     title: "Kitchen Cabinet & Press Repainting",
     img: heroAsset.url,
+    cat: "kitchens",
     desc: "Repainting of kitchen presses, cabinets and built-in joinery — hand-painted or spray-finished. Degrease, sand, prime and satinwood finish.",
   },
   {
     title: "Plaster & Water-Damage Repair",
     img: commercialAsset.url,
+    cat: "plaster",
     desc: "Replacing damaged plasterboard, taping and jointing, stain-blocking primer and repainting ceilings and walls after leaks.",
   },
   {
     title: "Commercial & Institutional Painting",
     img: commercialAsset.url,
+    cat: "commercial",
     desc: "Schools, churches, clinics, offices and community and heritage venues. Programme-driven, out-of-hours work available.",
   },
 ];
 
+function pickImg(card: ServiceCard, covers: GalleryCoverMap): string {
+  return covers[card.cat] ?? card.img;
+}
+
 function Services() {
+  const { covers } = Route.useLoaderData();
   return (
     <SiteLayout>
       {/* Hero band */}
