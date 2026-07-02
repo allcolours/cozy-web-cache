@@ -8,10 +8,38 @@ import heroAsset from "../assets/portfolio/hero-house.webp.asset.json";
 import commercialAsset from "../assets/portfolio/service-commercial.webp.asset.json";
 import hospitalityAsset from "../assets/portfolio/service-hospitality.webp.asset.json";
 import exteriorAsset from "../assets/portfolio/portfolio-exterior-1.webp.asset.json";
+import {
+  getGalleryCovers,
+  type GalleryCategory,
+  type GalleryCoverMap,
+} from "@/lib/gallery-covers.functions";
 
 const servicesHeroImg = exteriorAsset.url;
 
 export const Route = createFileRoute("/services")({
+  loader: async (): Promise<{ covers: GalleryCoverMap }> => {
+    try {
+      const covers = await getGalleryCovers();
+      return { covers };
+    } catch {
+      return { covers: {} };
+    }
+  },
+  errorComponent: () => (
+    <SiteLayout>
+      <div className="mx-auto max-w-3xl px-4 py-24 text-center">
+        <h1 className="font-display text-2xl font-bold uppercase">Services unavailable</h1>
+        <p className="mt-4 text-muted-foreground">Please try again shortly.</p>
+      </div>
+    </SiteLayout>
+  ),
+  notFoundComponent: () => (
+    <SiteLayout>
+      <div className="mx-auto max-w-3xl px-4 py-24 text-center">
+        <h1 className="font-display text-2xl font-bold uppercase">Not found</h1>
+      </div>
+    </SiteLayout>
+  ),
   head: () => ({
     meta: [
       { title: "Painting & Decorating Services Dublin | All Colours" },
