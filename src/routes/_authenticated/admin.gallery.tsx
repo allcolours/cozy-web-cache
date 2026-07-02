@@ -9,13 +9,25 @@ export const Route = createFileRoute("/_authenticated/admin/gallery")({
   component: GalleryAdmin,
 });
 
-const CATEGORIES = ["interior", "exterior", "commercial", "epoxy", "bespoke"] as const;
+const CATEGORIES = [
+  "interior",
+  "exterior",
+  "woodwork",
+  "metalwork",
+  "kitchens",
+  "plaster",
+  "commercial",
+  "epoxy",
+] as const;
 const CATEGORY_LABEL: Record<string, string> = {
-  interior: "Interior",
-  exterior: "Exterior",
-  commercial: "Commercial",
-  epoxy: "Floor Coatings",
-  bespoke: "Bespoke",
+  interior: "Interior Painting & Decorating",
+  exterior: "Exteriors & Woodwork",
+  woodwork: "Woodwork & Joinery",
+  metalwork: "Metal Railings & Metalwork",
+  kitchens: "Kitchen Cabinet & Press Repainting",
+  plaster: "Plaster & Water-Damage Repair",
+  commercial: "Commercial & Institutional Painting",
+  epoxy: "Floor Coatings & Epoxy",
 };
 
 type Project = {
@@ -440,9 +452,12 @@ function ProjectRow({
   const BADGE: Record<string, string> = {
     interior: "bg-blue-100 text-blue-800",
     exterior: "bg-amber-100 text-amber-800",
+    woodwork: "bg-orange-100 text-orange-800",
+    metalwork: "bg-zinc-200 text-zinc-800",
+    kitchens: "bg-rose-100 text-rose-800",
+    plaster: "bg-emerald-100 text-emerald-800",
     commercial: "bg-purple-100 text-purple-800",
     epoxy: "bg-slate-200 text-slate-800",
-    bespoke: "bg-pink-100 text-pink-800",
   };
 
   const otherProjects = allProjects.filter((p) => p.id !== project.id);

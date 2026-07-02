@@ -13,11 +13,14 @@ type HomeAlbum = {
 };
 
 const CATEGORY_LABEL: Record<string, string> = {
-  interior: "Interior",
-  exterior: "Exterior",
-  commercial: "Commercial",
-  epoxy: "Floor Coatings",
-  bespoke: "Bespoke",
+  interior: "Interior Painting & Decorating",
+  exterior: "Exteriors & Woodwork",
+  woodwork: "Woodwork & Joinery",
+  metalwork: "Metal Railings & Metalwork",
+  kitchens: "Kitchen Cabinet & Press Repainting",
+  plaster: "Plaster & Water-Damage Repair",
+  commercial: "Commercial & Institutional Painting",
+  epoxy: "Floor Coatings & Epoxy",
 };
 
 async function fetchHomeAlbums(): Promise<HomeAlbum[]> {

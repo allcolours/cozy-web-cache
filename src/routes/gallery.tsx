@@ -8,23 +8,37 @@ import { resolveGalleryUrl } from "@/lib/galleryUrl";
 import heroAsset from "../assets/portfolio/hero-house.webp.asset.json";
 import exteriorAsset from "../assets/portfolio/portfolio-exterior-1.webp.asset.json";
 
-type CategoryValue = "interior" | "exterior" | "commercial" | "epoxy" | "bespoke";
+type CategoryValue =
+  | "interior"
+  | "exterior"
+  | "woodwork"
+  | "metalwork"
+  | "kitchens"
+  | "plaster"
+  | "commercial"
+  | "epoxy";
 
 const CATEGORIES: { value: "all" | CategoryValue; label: string }[] = [
   { value: "all", label: "All" },
-  { value: "interior", label: "Interior" },
-  { value: "exterior", label: "Exterior" },
-  { value: "commercial", label: "Commercial" },
-  { value: "epoxy", label: "Floor Coatings" },
-  { value: "bespoke", label: "Bespoke" },
+  { value: "interior", label: "Interior Painting & Decorating" },
+  { value: "exterior", label: "Exteriors & Woodwork" },
+  { value: "woodwork", label: "Woodwork & Joinery" },
+  { value: "metalwork", label: "Metal Railings & Metalwork" },
+  { value: "kitchens", label: "Kitchen Cabinet & Press Repainting" },
+  { value: "plaster", label: "Plaster & Water-Damage Repair" },
+  { value: "commercial", label: "Commercial & Institutional Painting" },
+  { value: "epoxy", label: "Floor Coatings & Epoxy" },
 ];
 
 const CATEGORY_LABEL: Record<CategoryValue, string> = {
-  interior: "Interior",
-  exterior: "Exterior",
-  commercial: "Commercial",
-  epoxy: "Floor Coatings",
-  bespoke: "Bespoke",
+  interior: "Interior Painting & Decorating",
+  exterior: "Exteriors & Woodwork",
+  woodwork: "Woodwork & Joinery",
+  metalwork: "Metal Railings & Metalwork",
+  kitchens: "Kitchen Cabinet & Press Repainting",
+  plaster: "Plaster & Water-Damage Repair",
+  commercial: "Commercial & Institutional Painting",
+  epoxy: "Floor Coatings & Epoxy",
 };
 
 type Photo = {
@@ -167,7 +181,7 @@ function Gallery() {
   const counts = CATEGORIES.map((cat) => ({
     ...cat,
     count: cat.value === "all" ? all.length : all.filter((p) => p.category === cat.value).length,
-  }));
+  })).filter((cat) => cat.value === "all" || cat.count > 0);
 
   const openAlbum = useMemo(
     () => (openAlbumId ? (all.find((a) => a.id === openAlbumId) ?? null) : null),
