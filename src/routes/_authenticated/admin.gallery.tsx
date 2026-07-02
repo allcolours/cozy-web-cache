@@ -452,9 +452,12 @@ function ProjectRow({
   const BADGE: Record<string, string> = {
     interior: "bg-blue-100 text-blue-800",
     exterior: "bg-amber-100 text-amber-800",
+    woodwork: "bg-orange-100 text-orange-800",
+    metalwork: "bg-zinc-200 text-zinc-800",
+    kitchens: "bg-rose-100 text-rose-800",
+    plaster: "bg-emerald-100 text-emerald-800",
     commercial: "bg-purple-100 text-purple-800",
     epoxy: "bg-slate-200 text-slate-800",
-    bespoke: "bg-pink-100 text-pink-800",
   };
 
   const otherProjects = allProjects.filter((p) => p.id !== project.id);
