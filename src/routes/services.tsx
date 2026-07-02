@@ -300,7 +300,7 @@ function Services() {
               <article key={s.title} className="flex flex-col bg-card">
                 <div className="aspect-[4/3] overflow-hidden">
                   <img
-                    src={s.img}
+                    src={pickImg(s, covers)}
                     alt={`${s.title} painting services`}
                     loading="lazy"
                     width={1000}
@@ -342,7 +342,7 @@ function Services() {
               <div key={s.title} className="group overflow-hidden bg-card">
                 <div className="aspect-[16/10] overflow-hidden">
                   <img
-                    src={s.img}
+                    src={pickImg(s, covers)}
                     alt={`${s.title} — ${s.desc.split(".")[0]}`}
                     loading="lazy"
                     width={800}
