@@ -181,7 +181,7 @@ function Gallery() {
   const counts = CATEGORIES.map((cat) => ({
     ...cat,
     count: cat.value === "all" ? all.length : all.filter((p) => p.category === cat.value).length,
-  }));
+  })).filter((cat) => cat.value === "all" || cat.count > 0);
 
   const openAlbum = useMemo(
     () => (openAlbumId ? (all.find((a) => a.id === openAlbumId) ?? null) : null),
