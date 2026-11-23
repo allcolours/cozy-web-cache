@@ -83,3 +83,34 @@ export const TESTIMONIALS: Testimonial[] = [
     project: "Exterior painting & deck replacement",
   },
 ];
+
+// Real Google reviews, copied from the Google Business Profile on 23 Nov 2026.
+// 7 reviews total, all 5 stars. Update the count in Testimonials.tsx when it changes.
+export const GOOGLE_REVIEWS: Testimonial[] = [
+  {
+    name: "Fionnuala March",
+    location: "",
+    role: "Google review",
+    rating: 5,
+    quote: "Top class The boss is a brilliant organiser What a team of decorators also The best",
+    project: "",
+  },
+  {
+    name: "D H",
+    location: "",
+    role: "Google review",
+    rating: 5,
+    quote:
+      "Many thanks to Ika, Costa and the team for a fantastic job painting our living room. The work quality was great, efficient and clean and the team were all very professional and polite. They finished the job quickly and were a pleasure to have working in our home. Highly recommend!",
+    project: "",
+  },
+  {
+    name: "Karen Kenny",
+    location: "",
+    role: "Google review",
+    rating: 5,
+    quote:
+      "Great company to work with. The team showed up on time. They covered all floors and furnishings. They were very professional. Would have no problem recommending them.",
+    project: "",
+  },
+];

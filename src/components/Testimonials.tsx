@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
-import { TESTIMONIALS, type Testimonial } from "../data/testimonials";
+import { GOOGLE_REVIEWS, TESTIMONIALS, type Testimonial } from "../data/testimonials";
 
 function Stars({ n, className = "text-accent" }: { n: number; className?: string }) {
   return (
@@ -27,10 +27,12 @@ export function TestimonialCard({ t }: { t: Testimonial }) {
         <div className="font-display text-sm font-bold uppercase tracking-wide text-[oklch(0.2_0_0)]">
           {t.name}
         </div>
-        <div className="mt-1 text-xs uppercase tracking-[0.14em] text-foreground/70">
-          {t.role} · {t.location}
-        </div>
-        <div className="mt-2 text-xs text-primary">{t.project}</div>
+        {(t.role || t.location) && (
+          <div className="mt-1 text-xs uppercase tracking-[0.14em] text-foreground/70">
+            {t.role && t.location ? `${t.role} · ${t.location}` : t.role || t.location}
+          </div>
+        )}
+        {t.project && <div className="mt-2 text-xs text-primary">{t.project}</div>}
       </footer>
     </article>
   );
@@ -79,6 +81,31 @@ export function TestimonialsSection({
             <p className="mt-3 text-sm text-foreground/70">
               Real client feedback from our Facebook page
             </p>
+          </div>
+        </div>
+
+        {/* Google reviews — real reviews from our Google Business Profile */}
+        <div className="mt-10">
+          <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+            <div className="inline-flex items-center gap-2.5 border-[2px] border-primary px-4 py-2.5">
+              <Stars n={5} />
+              <span className="font-display text-xs font-bold uppercase tracking-wider text-[oklch(0.2_0_0)]">
+                Google reviews: 5.0 ★ · 7 reviews
+              </span>
+            </div>
+            <a
+              href="https://www.google.com/search?q=All+Colours+Painting+Contractor+Limited+Dublin"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 font-display text-xs font-bold uppercase tracking-wider text-primary hover:text-[oklch(0.2_0_0)]"
+            >
+              See our reviews on Google →
+            </a>
+          </div>
+          <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {GOOGLE_REVIEWS.map((t) => (
+              <TestimonialCard key={t.name} t={t} />
+            ))}
           </div>
         </div>
 
