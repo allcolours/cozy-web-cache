@@ -10,7 +10,6 @@ const FROM_DOMAIN = "notify.allcolourspainter.com";
 
 const ADMIN_RECIPIENTS = [
   "info@allcolourspainter.com",
-  "info@painterdublin.eu",
   "dubdsltd@gmail.com",
 ];
 
