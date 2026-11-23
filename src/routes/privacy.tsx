@@ -1,3 +1,4 @@
+import { HERO_SOCIAL_META } from "@/lib/hero-image";
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteLayout, COMPANY } from "../components/SiteLayout";
 import { useSiteSettings } from "../hooks/useSiteSettings";
@@ -5,6 +6,8 @@ import { useSiteSettings } from "../hooks/useSiteSettings";
 export const Route = createFileRoute("/privacy")({
   head: () => ({
     meta: [
+      ...HERO_SOCIAL_META,
+      { name: "twitter:card", content: "summary_large_image" },
       { title: "Privacy Policy | All Colours Painting Contractor Limited" },
       {
         name: "description",

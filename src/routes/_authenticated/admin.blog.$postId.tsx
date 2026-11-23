@@ -1,3 +1,4 @@
+import { privatePageHead } from "@/lib/page-head";
 import { createFileRoute } from "@tanstack/react-router";
 import { AdminShell } from "@/components/admin/AdminShell";
 import { BlogPostForm, type BlogPostInput } from "@/components/admin/BlogPostForm";
@@ -5,6 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/_authenticated/admin/blog/$postId")({
+  head: () => privatePageHead("Edit Blog Post", "Edit Blog Post administration for All Colours Painting."),
   component: EditPost,
 });
 

@@ -40,6 +40,11 @@
   --color-popover-foreground: var(--popover-foreground);
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
+  --color-brand-ink: var(--brand-ink);
+  --color-contact-action: var(--contact-action);
+  --color-contact-action-foreground: var(--contact-action-foreground);
+  --color-whatsapp: var(--whatsapp);
+  --color-whatsapp-foreground: var(--whatsapp-foreground);
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
   --color-muted: var(--muted);
@@ -86,6 +91,11 @@
   /* Brand — green */
   --primary: oklch(0.69 0.165 158); /* ~#18b26f */
   --primary-foreground: oklch(1 0 0);
+  --brand-ink: oklch(0.45 0.1 158);
+  --contact-action: oklch(0.45 0.1 158);
+  --contact-action-foreground: oklch(1 0 0);
+  --whatsapp: oklch(0.76 0.2 150);
+  --whatsapp-foreground: oklch(0.18 0 0);
 
   /* Secondary surface — very light grey */
   --secondary: oklch(0.97 0 0); /* ~#f7f7f7 */
@@ -126,6 +136,7 @@
 }
 
 .dark {
+  --brand-ink: oklch(0.78 0.14 158);
   --background: oklch(0.16 0 0);
   --foreground: oklch(0.95 0 0);
   --card: oklch(0.2 0 0);
@@ -212,6 +223,15 @@
   font-size: 0.75rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
+  color: var(--color-brand-ink);
+}
+
+/* Text on light surfaces needs darker green than decorative brand borders. */
+.text-primary:not(.bg-primary), .eyebrow.text-primary {
+  color: var(--color-brand-ink);
+}
+section.text-white .eyebrow.text-primary,
+section.text-\[var\(--color-surface-dark-foreground\)\] .eyebrow.text-primary {
   color: var(--color-primary);
 }
 

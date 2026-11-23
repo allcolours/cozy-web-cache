@@ -1,3 +1,4 @@
+import { privatePageHead } from "@/lib/page-head";
 import { createFileRoute, useSearch } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { SiteLayout } from "../components/SiteLayout";
@@ -6,6 +7,7 @@ export const Route = createFileRoute("/unsubscribe")({
   validateSearch: (search: Record<string, unknown>) => ({
     token: typeof search.token === "string" ? search.token : "",
   }),
+  head: () => privatePageHead("Unsubscribe", "Manage your All Colours Painting email subscription."),
   component: UnsubscribePage,
 });
 

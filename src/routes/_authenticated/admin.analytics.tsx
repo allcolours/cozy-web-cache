@@ -1,3 +1,4 @@
+import { privatePageHead } from "@/lib/page-head";
 import { createFileRoute } from "@tanstack/react-router";
 import { AdminShell } from "@/components/admin/AdminShell";
 import { useQuery } from "@tanstack/react-query";
@@ -5,6 +6,7 @@ import { useServerFn } from "@tanstack/react-start";
 import { getAnalytics } from "@/lib/analytics.functions";
 
 export const Route = createFileRoute("/_authenticated/admin/analytics")({
+  head: () => privatePageHead("Analytics", "Analytics administration for All Colours Painting."),
   component: AnalyticsPage,
 });
 

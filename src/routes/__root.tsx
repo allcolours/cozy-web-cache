@@ -4,6 +4,7 @@ import {
   Link,
   createRootRouteWithContext,
   useRouter,
+  useRouterState,
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
@@ -13,6 +14,7 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { SchemaOrg } from "../components/SchemaOrg";
 import { AssetErrorMonitor } from "../components/AssetErrorMonitor";
+import { pageViewPayload } from "@/lib/page-view-payload";
 
 const CookieBanner = lazy(() =>
   import("../components/CookieBanner").then((m) => ({ default: m.CookieBanner })),
@@ -88,6 +90,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Painter Dublin | All Colours Painting & Decorating" },
+      { property: "og:title", content: "Painter Dublin | All Colours Painting & Decorating" },
+      { property: "og:description", content: "Interior and exterior painting across South Dublin, Dublin city and surrounding areas." },
       {
         name: "description",
         content:
@@ -103,6 +107,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     ],
 
     links: [
+      { rel: "icon", type: "image/png", href: "/favicon.png" },
       {
         rel: "stylesheet",
         href: appCss,
@@ -147,18 +152,15 @@ function RootComponent() {
 }
 
 function PageViewTracker() {
-  const router = useRouter();
-  const path = router.state.location.pathname;
+  const path = useRouterState({ select: (state) => state.location.pathname });
   useEffect(() => {
     if (typeof window === "undefined") return;
-    if (path.startsWith("/admin") || path.startsWith("/auth")) return;
-    void import("../integrations/supabase/client").then(({ supabase }) => {
-      void supabase.from("page_views").insert({
-        path,
-        referrer: document.referrer || null,
-        user_agent: navigator.userAgent.slice(0, 500),
-      });
-    });
+    const payload = pageViewPayload(path, document.referrer, navigator.userAgent);
+    if (!payload) return;
+    void import("../integrations/supabase/client").then(async ({ supabase }) => {
+      const { error } = await supabase.from("page_views").insert(payload);
+      if (error) console.error("Page view could not be recorded", error.message);
+    }).catch((error: unknown) => console.error("Page view tracking failed", error));
   }, [path]);
   return null;
 }

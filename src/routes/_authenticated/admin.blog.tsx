@@ -1,9 +1,11 @@
+import { privatePageHead } from "@/lib/page-head";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { AdminShell } from "@/components/admin/AdminShell";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/_authenticated/admin/blog")({
+  head: () => privatePageHead("Manage Blog", "Manage Blog administration for All Colours Painting."),
   component: BlogAdmin,
 });
 

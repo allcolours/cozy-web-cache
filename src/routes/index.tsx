@@ -1,3 +1,4 @@
+import { HERO_IMAGE, HERO_SOCIAL_META } from "@/lib/hero-image";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { lazy, Suspense, useRef, useState } from "react";
 import { SiteLayout, COMPANY } from "../components/SiteLayout";
@@ -8,18 +9,12 @@ import { FaqAccordion } from "../components/FaqAccordion";
 import { FAQS } from "../data/faqs";
 
 import heroAsset from "../assets/portfolio/hero-house.webp.asset.json";
-import hero640 from "../assets/portfolio/hero-house-640.webp.asset.json";
-import hero960 from "../assets/portfolio/hero-house-960.webp.asset.json";
-import hero1280 from "../assets/portfolio/hero-house-1280.webp.asset.json";
-import hero1536 from "../assets/portfolio/hero-house-1536.webp.asset.json";
 import aboutAsset from "../assets/portfolio/about-architecture.webp.asset.json";
 import sCommercialAsset from "../assets/portfolio/service-commercial.webp.asset.json";
 import sIndustrialAsset from "../assets/portfolio/service-industrial.webp.asset.json";
 import sHospitalityAsset from "../assets/portfolio/service-hospitality.webp.asset.json";
 import ctaAsset from "../assets/portfolio/cta-bg.webp.asset.json";
 
-const HERO_SRCSET = `${hero640.url} 640w, ${hero960.url} 960w, ${hero1280.url} 1280w, ${hero1536.url} 1536w`;
-const HERO_SIZES = "100vw";
 import { FormBotTraps, readBotTraps } from "../components/FormBotTraps";
 import { SITE, WHATSAPP_URL } from "@/lib/site";
 import { track } from "@/lib/analytics";
@@ -35,23 +30,23 @@ const RecentProjects = lazy(() => import("../components/RecentProjects"));
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Painters Dublin — Interior, Exterior & Commercial | All Colours Painting" },
+        { name: "twitter:card", content: "summary_large_image" },
+      ...HERO_SOCIAL_META,
+      { title: "Painters Dublin | Interior & Exterior | All Colours" },
       {
         name: "description",
-        content: `Professional painter and decorator in Dublin. Interior & exterior painting, epoxy floors, spray painting for houses, apartments & commercial. Free quotes — call ${SITE.phoneDisplay}.`,
+        content: `Interior, exterior and commercial painting in Dublin. Houses, apartments, epoxy floors and spray painting. Free quotes — call ${SITE.phoneDisplay}.`,
       },
       {
         property: "og:title",
-        content: "Painters Dublin — Interior, Exterior & Commercial | All Colours Painting",
+        content: "Painters Dublin | Interior & Exterior | All Colours",
       },
       {
         property: "og:description",
-        content: `Professional painter and decorator in Dublin. Interior & exterior painting, epoxy floors, spray painting for houses, apartments & commercial. Free quotes — call ${SITE.phoneDisplay}.`,
+        content: `Interior, exterior and commercial painting in Dublin. Houses, apartments, epoxy floors and spray painting. Free quotes — call ${SITE.phoneDisplay}.`,
       },
       { property: "og:url", content: "https://allcolourspainter.com/" },
       { property: "og:type", content: "website" },
-      { property: "og:image", content: `https://allcolourspainter.com${heroAsset.url}` },
-      { name: "twitter:image", content: `https://allcolourspainter.com${heroAsset.url}` },
       { name: "google-site-verification", content: "TpNVR-l0heZM7pJ-asHG3AOc33fsISO-tctP4ns_Z5w" },
     ],
     links: [
@@ -59,10 +54,10 @@ export const Route = createFileRoute("/")({
       {
         rel: "preload",
         as: "image",
-        href: hero640.url,
+        href: HERO_IMAGE.src,
         type: "image/webp",
-        imagesrcset: HERO_SRCSET,
-        imagesizes: HERO_SIZES,
+        imagesrcset: HERO_IMAGE.srcSet,
+        imagesizes: HERO_IMAGE.sizes,
         fetchPriority: "high",
       },
     ],
@@ -413,12 +408,8 @@ function Home() {
       {/* Hero */}
       <section className="relative isolate w-full overflow-hidden">
         <img
-          src={hero960.url}
-          srcSet={HERO_SRCSET}
-          sizes={HERO_SIZES}
+          {...HERO_IMAGE}
           alt="Freshly painted Dublin home exterior by All Colours Painting"
-          width={1536}
-          height={1152}
           fetchPriority="high"
           decoding="async"
           className="absolute inset-0 -z-10 h-full w-full object-cover"
@@ -534,7 +525,7 @@ function Home() {
               },
               {
                 t: "Fully Insured",
-                d: "Fully insured and tax-compliant. Every job covered from first prep to final coat.",
+                d: "Fully insured. Every job covered from first prep to final coat.",
               },
               {
                 t: "12-Month Workmanship guarantee",

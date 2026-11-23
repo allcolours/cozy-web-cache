@@ -21,11 +21,13 @@ export const Route = createFileRoute("/blog")({
       .from("blog_posts")
       .select("id, slug, title, excerpt, intro, cover_image_url, category, read_time, published_at")
       .eq("published", true)
+      .neq("slug", "cost-of-painting-a-house-dublin-2025")
       .order("published_at", { ascending: false });
     return { posts: (data ?? []) as ListPost[] };
   },
   head: () => ({
     meta: [
+        { name: "twitter:card", content: "summary_large_image" },
       { title: "Painting Tips & Advice Blog | All Colours Dublin" },
       {
         name: "description",

@@ -1,3 +1,4 @@
+import { HERO_IMAGE, HERO_SOCIAL_META } from "@/lib/hero-image";
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { SiteLayout, COMPANY } from "../components/SiteLayout";
 import { FaqAccordion } from "../components/FaqAccordion";
@@ -26,20 +27,14 @@ export const Route = createFileRoute("/services_/$service")({
     const url = `https://allcolourspainter.com/services/${params.service}`;
     return {
       meta: [
+        { name: "twitter:card", content: "summary_large_image" },
+      ...HERO_SOCIAL_META,
         { title },
         { name: "description", content: description },
         { property: "og:title", content: title },
         { property: "og:description", content: description },
         { property: "og:url", content: url },
         { property: "og:type", content: "website" },
-        {
-          property: "og:image",
-          content: `https://allcolourspainter.com${serviceHeroImage(service).src}`,
-        },
-        {
-          property: "twitter:image",
-          content: `https://allcolourspainter.com${serviceHeroImage(service).src}`,
-        },
       ],
       links: [{ rel: "canonical", href: url }],
       scripts: [
@@ -116,12 +111,10 @@ function ServicePage() {
       {/* Hero */}
       <section className="relative isolate overflow-hidden bg-[var(--color-surface-dark)] text-white">
         <img
-          src={heroImage.src}
+          {...HERO_IMAGE}
           alt={heroImage.alt}
           fetchPriority="high"
           decoding="async"
-          width={1920}
-          height={900}
           className="absolute inset-0 -z-10 h-full w-full object-cover"
         />
         <div className="absolute inset-0 -z-10 bg-black/70" />

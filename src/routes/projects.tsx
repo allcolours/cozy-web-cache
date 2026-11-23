@@ -83,7 +83,7 @@ export const Route = createFileRoute("/projects")({
       {
         name: "description",
         content:
-          "Notable Dublin construction projects we've delivered painting & decorating works on as a specialist subcontractor — including Premier Inn North Wall, Cairn Homes, Elliott Group and more.",
+          "Selected Dublin painting projects across residential developments, hotels, student accommodation and healthcare. Specialist subcontracting works.",
       },
       { property: "og:title", content: "Major Dublin Projects — All Colours Painting" },
       {

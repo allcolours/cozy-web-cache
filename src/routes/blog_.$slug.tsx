@@ -1,4 +1,5 @@
-import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { blogMetaTitle, limitMeta, correctHousePaintingPrice } from "@/lib/blog-content-corrections";
+import { createFileRoute, Link, notFound, redirect } from "@tanstack/react-router";
 import { SiteLayout } from "../components/SiteLayout";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -21,6 +22,7 @@ type Post = {
 
 export const Route = createFileRoute("/blog_/$slug")({
   loader: async ({ params }) => {
+    if (params.slug === "cost-of-painting-a-house-dublin-2025") throw redirect({ to: "/blog/$slug", params: { slug: "cost-to-paint-house-dublin-2025" }, statusCode: 301 });
     const { data: post } = await supabase
       .from("blog_posts")
       .select(
@@ -35,19 +37,29 @@ export const Route = createFileRoute("/blog_/$slug")({
       .select("id, slug, title, cover_image_url, category")
       .eq("published", true)
       .neq("slug", params.slug)
+      .neq("slug", "cost-of-painting-a-house-dublin-2025")
       .limit(3);
-    return { post: post as Post, others: others ?? [] };
+    const corrected = post as Post;
+    return { post: {
+      ...corrected,
+      excerpt: correctHousePaintingPrice(params.slug, corrected.excerpt),
+      intro: correctHousePaintingPrice(params.slug, corrected.intro),
+      meta_description: correctHousePaintingPrice(params.slug, corrected.meta_description),
+      content: Array.isArray(corrected.content) ? corrected.content.map((section) => ({ ...section, ...(section.body ? { body: correctHousePaintingPrice(params.slug, section.body) ?? "" } : {}) })) : [],
+    }, others: others ?? [] };
   },
   head: ({ loaderData }) => {
     const p = loaderData?.post;
-    if (!p) return {};
+    if (!p) return { meta: [{ title: "Article unavailable | All Colours Painting" }, { name: "description", content: "This painting article is unavailable." }, { property: "og:title", content: "Article unavailable | All Colours Painting" }, { property: "og:description", content: "This painting article is unavailable." }, { property: "og:type", content: "article" }, { name: "twitter:card", content: "summary_large_image" }, { name: "robots", content: "noindex" }] };
     const url = `https://allcolourspainter.com/blog/${p.slug}`;
-    const desc = p.meta_description ?? p.excerpt ?? p.intro ?? "";
+    const desc = limitMeta(p.meta_description ?? p.excerpt ?? p.intro ?? "", 160);
+    const title = blogMetaTitle(p.slug, p.meta_title ?? p.title);
     return {
       meta: [
-        { title: `${p.meta_title ?? p.title} | All Colours Painting Blog` },
+        { name: "twitter:card", content: "summary_large_image" },
+        { title },
         { name: "description", content: desc },
-        { property: "og:title", content: p.meta_title ?? p.title },
+        { property: "og:title", content: title },
         { property: "og:description", content: desc },
         { property: "og:url", content: url },
         { property: "og:type", content: "article" },

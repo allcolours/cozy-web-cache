@@ -5,11 +5,12 @@ import commercialAsset from "../assets/portfolio/service-commercial.webp.asset.j
 export const Route = createFileRoute("/commercial-contractors")({
   head: () => ({
     meta: [
+        { name: "twitter:card", content: "summary_large_image" },
       { title: "Commercial Painting Contractor Dublin | All Colours" },
       {
         name: "description",
         content:
-          "Painting subcontractor for property management & facilities management companies in Dublin. Tax Clearance, fully insured, RAMS, Safe Pass. Free tender — 085 821 1870.",
+          "Painting subcontractor for Dublin property and facilities managers. Fully insured, RCT registered, Safe Pass, RAMS on request. Call 085 821 1870.",
       },
       {
         property: "og:title",
@@ -18,7 +19,7 @@ export const Route = createFileRoute("/commercial-contractors")({
       {
         property: "og:description",
         content:
-          "Painting subcontractor for property management & facilities management companies in Dublin. Tax Clearance, fully insured, RAMS, Safe Pass. Free tender — 085 821 1870.",
+          "Painting subcontractor for Dublin property and facilities managers. Fully insured, RCT registered, Safe Pass, RAMS on request. Call 085 821 1870.",
       },
       { property: "og:url", content: "https://allcolourspainter.com/commercial-contractors" },
       { property: "og:type", content: "website" },
@@ -81,11 +82,10 @@ export const Route = createFileRoute("/commercial-contractors")({
 });
 
 const COMPLIANCE = [
-  "Tax Clearance Certificate",
   "Fully Insured",
   "Safe Pass & Manual Handling",
   "RAMS on request",
-  "RCT Compliant",
+  "RCT registered",
 ];
 
 const CLIENTS = [

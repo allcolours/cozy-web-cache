@@ -1,3 +1,4 @@
+import { contactFallbackResponse } from "@/lib/contact-fallback";
 import * as React from "react";
 import { render } from "@react-email/components";
 import { createFileRoute } from "@tanstack/react-router";
@@ -112,7 +113,7 @@ export const Route = createFileRoute("/api/public/contact")({
             console.error("contact: failed to insert contact_submissions", insertError);
             // Still try to record as a lead so we don't lose the customer.
             try {
-              await supabase.from("leads").insert({
+              const { error: fallbackError } = await supabase.from("leads").insert({
                 name: data.name,
                 email: emailValue || null,
                 phone: data.phone || null,
@@ -121,6 +122,8 @@ export const Route = createFileRoute("/api/public/contact")({
                 source: data.source || "contact_form",
                 status: "new",
               });
+              if (fallbackError) console.error("contact: leads fallback insert returned error", fallbackError);
+              return contactFallbackResponse(fallbackError);
             } catch (e) {
               console.error("contact: leads fallback insert failed", e);
             }

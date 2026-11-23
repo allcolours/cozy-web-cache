@@ -1,3 +1,4 @@
+import { privatePageHead } from "@/lib/page-head";
 import { createFileRoute } from "@tanstack/react-router";
 import { AdminShell } from "@/components/admin/AdminShell";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
@@ -6,6 +7,7 @@ import { getAssetErrors, clearAssetErrors, runAssetErrorCheck } from "@/lib/asse
 import { useState } from "react";
 
 export const Route = createFileRoute("/_authenticated/admin/asset-errors")({
+  head: () => privatePageHead("Asset Errors", "Asset Errors administration for All Colours Painting."),
   component: AssetErrorsPage,
 });
 

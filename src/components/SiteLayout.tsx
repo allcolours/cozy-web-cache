@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useState, type ReactNode } from "react";
-import logo from "../assets/logo.webp";
+import logoAsset from "../assets/logo-display.webp.asset.json";
+const logo = logoAsset.url;
 import { useSiteSettings } from "../hooks/useSiteSettings";
 import {
   DropdownMenu,

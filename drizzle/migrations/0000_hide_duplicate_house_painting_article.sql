@@ -1,0 +1,1 @@
+CREATE POLICY "Hide duplicate house-price article publicly" ON public.blog_posts AS RESTRICTIVE FOR SELECT TO anon USING (slug <> 'cost-of-painting-a-house-dublin-2025');

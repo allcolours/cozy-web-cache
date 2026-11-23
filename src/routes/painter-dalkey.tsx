@@ -1,3 +1,4 @@
+import { HERO_SOCIAL_META } from "@/lib/hero-image";
 import { createFileRoute } from "@tanstack/react-router";
 import { LocalAreaPage } from "../components/LocalAreaPage";
 import { SITE } from "@/lib/site";
@@ -9,11 +10,14 @@ const URL = "https://allcolourspainter.com/painter-dalkey";
 export const Route = createFileRoute("/painter-dalkey")({
   head: () => ({
     meta: [
+      ...HERO_SOCIAL_META,
+      { name: "twitter:card", content: "summary_large_image" },
       { title: TITLE },
       { name: "description", content: DESC },
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESC },
       { property: "og:url", content: URL },
+      { property: "og:type", content: "website" },
     ],
     links: [{ rel: "canonical", href: URL }],
     scripts: [

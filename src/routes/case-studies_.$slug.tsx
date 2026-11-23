@@ -1,3 +1,4 @@
+import { privatePageHead } from "@/lib/page-head";
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { SiteLayout } from "../components/SiteLayout";
 import { supabase } from "@/integrations/supabase/client";
@@ -41,7 +42,7 @@ export const Route = createFileRoute("/case-studies_/$slug")({
   },
   head: ({ loaderData }) => {
     const s = loaderData?.study;
-    if (!s) return {};
+    if (!s) return privatePageHead("Case Study Unavailable", "This All Colours Painting case study is unavailable.");
     const url = `https://allcolourspainter.com/case-studies/${s.slug}`;
     const desc =
       s.subtitle ?? s.intro ?? `${s.title} — painting case study in ${s.location ?? "Dublin"}.`;
@@ -52,6 +53,7 @@ export const Route = createFileRoute("/case-studies_/$slug")({
       : undefined;
     return {
       meta: [
+        { name: "twitter:card", content: "summary_large_image" },
         { title: `${s.title} | Case Study | All Colours Painting` },
         { name: "robots", content: "noindex, follow" },
         { name: "description", content: desc },

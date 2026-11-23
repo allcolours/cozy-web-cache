@@ -1,8 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { supabase } from "@/integrations/supabase/client";
+import { createClient } from "@supabase/supabase-js";
 
 const BASE_URL = "https://allcolourspainter.com";
-const LASTMOD = "2026-06-22";
 
 interface SitemapEntry {
   path: string;
@@ -24,7 +23,7 @@ const ENTRIES: SitemapEntry[] = [
   { path: "/services/kitchen-cabinet-painting", changefreq: "monthly", priority: "0.8" },
   { path: "/services/plaster-and-water-damage-repair", changefreq: "monthly", priority: "0.7" },
   { path: "/services/commercial-painting", changefreq: "monthly", priority: "0.8" },
-  // { path: "/gallery", changefreq: "weekly", priority: "0.8" }, // hidden until populated
+  { path: "/gallery", changefreq: "weekly", priority: "0.8" },
   { path: "/blog", changefreq: "weekly", priority: "0.8" },
   // { path: "/case-studies", changefreq: "weekly", priority: "0.7" }, // hidden until populated
   { path: "/painters", changefreq: "monthly", priority: "0.8" },
@@ -35,7 +34,6 @@ const ENTRIES: SitemapEntry[] = [
   { path: "/projects", changefreq: "monthly", priority: "0.7" },
   // Local area pages
   { path: "/painter-dublin", changefreq: "monthly", priority: "0.9" },
-  { path: "/painter-balbriggan", changefreq: "monthly", priority: "0.7" },
   { path: "/painter-ballinteer", changefreq: "monthly", priority: "0.7" },
   { path: "/painter-ballsbridge", changefreq: "monthly", priority: "0.7" },
   { path: "/painter-blanchardstown", changefreq: "monthly", priority: "0.7" },
@@ -66,12 +64,9 @@ const ENTRIES: SitemapEntry[] = [
   { path: "/painter-leopardstown", changefreq: "monthly", priority: "0.7" },
   { path: "/painter-lucan", changefreq: "monthly", priority: "0.7" },
   { path: "/painter-malahide", changefreq: "monthly", priority: "0.7" },
-  { path: "/painter-maynooth", changefreq: "monthly", priority: "0.7" },
   { path: "/painter-milltown", changefreq: "monthly", priority: "0.7" },
   { path: "/painter-monkstown", changefreq: "monthly", priority: "0.7" },
   { path: "/painter-mount-merrion", changefreq: "monthly", priority: "0.7" },
-  { path: "/painter-naas", changefreq: "monthly", priority: "0.7" },
-  { path: "/painter-navan", changefreq: "monthly", priority: "0.7" },
   { path: "/painter-phibsborough", changefreq: "monthly", priority: "0.7" },
   { path: "/painter-portmarnock", changefreq: "monthly", priority: "0.7" },
   { path: "/painter-raheny", changefreq: "monthly", priority: "0.7" },
@@ -103,41 +98,40 @@ export const Route = createFileRoute("/sitemap.xml")({
       GET: async () => {
         const dynamicEntries: SitemapEntry[] = [];
 
-        const { data: blogRows } = await supabase
-          .from("blog_posts")
-          .select("slug, published_at, updated_at")
-          .eq("published", true);
-        if (blogRows) {
-          for (const r of blogRows) {
+        const url = process.env['SUPABASE_URL'];
+        const key = process.env['SUPABASE_PUBLISHABLE_KEY'];
+        if (!url || !key) return new Response("Sitemap unavailable", { status: 503 });
+        const supabase = createClient(url, key, {
+          auth: { persistSession: false, autoRefreshToken: false },
+          global: { fetch: (input, init) => {
+            const headers = new Headers(init?.headers);
+            if (key.startsWith("sb_") && headers.get("Authorization") === `Bearer ${key}`) headers.delete("Authorization");
+            headers.set("apikey", key);
+            return fetch(input, { ...init, headers });
+          } },
+        });
+        // Paginate public posts; never return silently incomplete XML on failure.
+        for (let offset = 0; ; offset += 500) {
+          const { data: blogRows, error } = await supabase
+            .from("blog_posts").select("slug, updated_at")
+            .eq("published", true)
+            .neq("slug", "cost-of-painting-a-house-dublin-2025")
+            .order("slug").range(offset, offset + 499);
+          if (error || !blogRows) return new Response("Sitemap unavailable", { status: 503 });
+          for (const row of blogRows) {
             dynamicEntries.push({
-              path: `/blog/${r.slug}`,
-              changefreq: "monthly",
-              priority: "0.7",
-              lastmod: (r.updated_at || r.published_at || LASTMOD).slice(0, 10),
+              path: `/blog/${row.slug}`,
+              changefreq: "monthly", priority: "0.7",
+              ...(row.updated_at ? { lastmod: row.updated_at.slice(0, 10) } : {}),
             });
           }
+          if (blogRows.length < 500) break;
         }
-
-        // Case studies hidden from sitemap until the section is re-enabled publicly.
-        // const { data: csRows } = await supabase
-        //   .from("case_studies")
-        //   .select("slug, created_at")
-        //   .eq("visible", true);
-        // if (csRows) {
-        //   for (const r of csRows) {
-        //     dynamicEntries.push({
-        //       path: `/case-studies/${r.slug}`,
-        //       changefreq: "monthly",
-        //       priority: "0.7",
-        //       lastmod: (r.created_at || LASTMOD).slice(0, 10),
-        //     });
-        //   }
-        // }
 
         const all = [...ENTRIES, ...dynamicEntries];
         const urls = all.map(
           (e) =>
-            `  <url>\n    <loc>${BASE_URL}${e.path}</loc>\n    <lastmod>${e.lastmod || LASTMOD}</lastmod>\n    <changefreq>${e.changefreq}</changefreq>\n    <priority>${e.priority}</priority>\n  </url>`,
+            `  <url>\n    <loc>${BASE_URL}${e.path}</loc>\n    ${e.lastmod ? `<lastmod>${e.lastmod}</lastmod>\n    ` : ""}<changefreq>${e.changefreq}</changefreq>\n    <priority>${e.priority}</priority>\n  </url>`,
         );
         const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.join("\n")}\n</urlset>`;
         return new Response(xml, {

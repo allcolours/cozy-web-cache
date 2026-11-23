@@ -1,3 +1,4 @@
+import { HERO_IMAGE, HERO_SOCIAL_META } from "@/lib/hero-image";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout, COMPANY } from "../components/SiteLayout";
 import { TestimonialsSection } from "../components/Testimonials";
@@ -7,24 +8,24 @@ import heroAsset from "../assets/portfolio/hero-house.webp.asset.json";
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
+        { name: "twitter:card", content: "summary_large_image" },
+      ...HERO_SOCIAL_META,
       { title: "About Us | All Colours Painting Contractor Dublin" },
       {
         name: "description",
         content:
-          "Meet the team behind All Colours Painting. 10+ years hands-on experience, 300+ projects completed across Dublin, fully insured with 12-month workmanship guarantee.",
+          "Meet All Colours Painting: 10+ years hands-on experience and 300+ Dublin projects. Fully insured with a 12-month workmanship guarantee.",
       },
       { property: "og:title", content: "About Us | All Colours Painting Contractor Dublin" },
       {
         property: "og:description",
         content:
-          "Meet the team behind All Colours Painting. 10+ years hands-on experience, 300+ projects completed across Dublin, fully insured with 12-month workmanship guarantee.",
+          "Meet All Colours Painting: 10+ years hands-on experience and 300+ Dublin projects. Fully insured with a 12-month workmanship guarantee.",
       },
       { property: "og:url", content: "https://allcolourspainter.com/about" },
       { property: "og:type", content: "website" },
-      { property: "og:image", content: `https://allcolourspainter.com${heroAsset.url}` },
-      { name: "twitter:image", content: `https://allcolourspainter.com${heroAsset.url}` },
     ],
-    links: [{ rel: "canonical", href: "https://allcolourspainter.com/about" }],
+    links: [{ rel: "preload", as: "image", href: HERO_IMAGE.src, imagesrcset: HERO_IMAGE.srcSet, imagesizes: HERO_IMAGE.sizes, fetchPriority: "high" }, { rel: "canonical", href: "https://allcolourspainter.com/about" }],
     scripts: [
       {
         type: "application/ld+json",
@@ -89,12 +90,10 @@ function About() {
       {/* Hero band */}
       <section className="relative isolate overflow-hidden">
         <img
-          src={heroAsset.url}
+          {...HERO_IMAGE}
           alt="Period home exterior repainted in sage green by All Colours Painting, Dublin"
           fetchPriority="high"
           decoding="async"
-          width={1920}
-          height={900}
           className="absolute inset-0 -z-10 h-full w-full object-cover"
         />
         <div className="absolute inset-0 -z-10 bg-[oklch(0.2_0_0)]/75" />

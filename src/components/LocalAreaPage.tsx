@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { SiteLayout } from "./SiteLayout";
 import { TESTIMONIALS } from "../data/testimonials";
 import { TestimonialCard } from "./Testimonials";
-import heroAsset from "../assets/portfolio/hero-house.webp.asset.json";
+import { HERO_IMAGE } from "@/lib/hero-image";
 import { AREA_CONTENT, AREA_PATHS } from "../data/areaContent";
 
 const STATS = [
@@ -69,15 +69,7 @@ export function LocalAreaPage({ area, postcode, intro }: LocalAreaPageProps) {
     <SiteLayout>
       {/* Hero */}
       <section className="relative overflow-hidden bg-[var(--color-surface-dark)] text-white">
-        <div
-          className="absolute inset-0 opacity-30"
-          style={{
-            backgroundImage: `url(${heroAsset.url})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
-          aria-hidden
-        />
+        <img {...HERO_IMAGE} alt="" aria-hidden="true" fetchPriority="high" decoding="async" className="absolute inset-0 h-full w-full object-cover opacity-30" />
         <div className="relative mx-auto max-w-7xl px-4 py-20 md:px-8 md:py-28">
           <span className="eyebrow text-primary">{postcode ?? "Dublin"}</span>
           <h1 className="mt-3 font-display text-4xl font-bold uppercase tracking-tight md:text-6xl">

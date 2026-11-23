@@ -1,3 +1,4 @@
+import { privatePageHead } from "@/lib/page-head";
 import { createFileRoute } from "@tanstack/react-router";
 import { AdminShell } from "@/components/admin/AdminShell";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
@@ -6,6 +7,7 @@ import { useState, useEffect } from "react";
 import { resolveGalleryUrl } from "@/lib/galleryUrl";
 
 export const Route = createFileRoute("/_authenticated/admin/gallery")({
+  head: () => privatePageHead("Manage Gallery", "Manage Gallery administration for All Colours Painting."),
   component: GalleryAdmin,
 });
 

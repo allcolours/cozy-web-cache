@@ -1,3 +1,4 @@
+import { privatePageHead } from "@/lib/page-head";
 import { createFileRoute } from "@tanstack/react-router";
 import { AdminShell } from "@/components/admin/AdminShell";
 import { useQuery } from "@tanstack/react-query";
@@ -19,6 +20,7 @@ const RANGES: { id: Range; label: string }[] = [
 const PER_PAGE_OPTIONS = [10, 20, 50];
 
 export const Route = createFileRoute("/_authenticated/admin/asset-error-runs")({
+  head: () => privatePageHead("Asset Check Runs", "Asset Check Runs administration for All Colours Painting."),
   component: CheckRunsPage,
 });
 

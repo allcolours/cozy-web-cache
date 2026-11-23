@@ -1,9 +1,11 @@
+import { privatePageHead } from "@/lib/page-head";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { AdminShell } from "@/components/admin/AdminShell";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/_authenticated/admin/case-studies")({
+  head: () => privatePageHead("Manage Case Studies", "Manage Case Studies administration for All Colours Painting."),
   component: CaseStudiesAdmin,
 });
 

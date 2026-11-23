@@ -172,20 +172,4 @@ export const AREAS: AreaInfo[] = [
       "Repaints for Greystones' coastal homes and newer residential developments — interior and exterior.",
     highlights: DEFAULT_HIGHLIGHTS,
   },
-  {
-    slug: "naas",
-    name: "Naas",
-    postcode: "Co. Kildare",
-    blurb:
-      "Interior and exterior painting across Naas — residential estates, town-centre properties and commercial premises.",
-    highlights: DEFAULT_HIGHLIGHTS,
-  },
-  {
-    slug: "navan",
-    name: "Navan",
-    postcode: "Co. Meath",
-    blurb:
-      "Residential repaints and commercial painting across Navan — full-house interiors, exteriors and tenancy turnarounds.",
-    highlights: DEFAULT_HIGHLIGHTS,
-  },
 ];

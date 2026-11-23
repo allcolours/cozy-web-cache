@@ -1,9 +1,11 @@
+import { privatePageHead } from "@/lib/page-head";
 import { createFileRoute } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { AdminShell } from "@/components/admin/AdminShell";
 import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/_authenticated/admin/database")({
+  head: () => privatePageHead("Database Overview", "Database Overview administration for All Colours Painting."),
   component: DatabasePage,
 });
 

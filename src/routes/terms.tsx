@@ -1,9 +1,12 @@
+import { HERO_SOCIAL_META } from "@/lib/hero-image";
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteLayout, COMPANY } from "../components/SiteLayout";
 
 export const Route = createFileRoute("/terms")({
   head: () => ({
     meta: [
+      ...HERO_SOCIAL_META,
+      { name: "twitter:card", content: "summary_large_image" },
       { title: "Terms of Service | All Colours Painting Contractor Limited" },
       {
         name: "description",

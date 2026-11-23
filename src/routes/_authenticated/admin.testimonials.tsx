@@ -1,3 +1,4 @@
+import { privatePageHead } from "@/lib/page-head";
 import { createFileRoute } from "@tanstack/react-router";
 import { AdminShell } from "@/components/admin/AdminShell";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
@@ -5,6 +6,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useState } from "react";
 
 export const Route = createFileRoute("/_authenticated/admin/testimonials")({
+  head: () => privatePageHead("Manage Testimonials", "Manage Testimonials administration for All Colours Painting."),
   component: TestimonialsAdmin,
 });
 

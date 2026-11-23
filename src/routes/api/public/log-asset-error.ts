@@ -1,13 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { z } from "zod";
-
-const PayloadSchema = z.object({
-  asset_url: z.string().min(1).max(2048),
-  page_url: z.string().max(2048).optional().nullable(),
-  user_agent: z.string().max(500).optional().nullable(),
-  status: z.number().int().optional().nullable(),
-  referrer: z.string().max(2048).optional().nullable(),
-});
+import { AssetErrorPayloadSchema, ASSET_ERROR_WINDOW_MS, assetErrorLimitReached } from "@/lib/asset-error-validation";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -22,7 +14,7 @@ export const Route = createFileRoute("/api/public/log-asset-error")({
       POST: async ({ request }) => {
         try {
           const body = await request.json();
-          const parsed = PayloadSchema.safeParse(body);
+          const parsed = AssetErrorPayloadSchema.safeParse(body);
           if (!parsed.success) {
             return new Response(JSON.stringify({ error: "invalid payload" }), {
               status: 400,
@@ -30,6 +22,16 @@ export const Route = createFileRoute("/api/public/log-asset-error")({
             });
           }
           const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+          const forwarded = request.headers.get("cf-connecting-ip") || request.headers.get("x-forwarded-for") || request.headers.get("x-real-ip") || "unknown";
+          const ip = (forwarded.split(",")[0] || "unknown").trim();
+          const { count, error: limitError } = await supabaseAdmin.from("rate_limits")
+            .select("id", { count: "exact", head: true })
+            .eq("bucket", "asset_error").eq("ip", ip)
+            .gte("created_at", new Date(Date.now() - ASSET_ERROR_WINDOW_MS).toISOString());
+          if (limitError) return Response.json({ error: "Unable to check request limit" }, { status: 503, headers: corsHeaders });
+          if (assetErrorLimitReached(count ?? 0)) return Response.json({ error: "Too many requests" }, { status: 429, headers: corsHeaders });
+          const { error: recordError } = await supabaseAdmin.from("rate_limits").insert({ bucket: "asset_error", ip });
+          if (recordError) return Response.json({ error: "Unable to record request limit" }, { status: 503, headers: corsHeaders });
           const { error } = await supabaseAdmin.from("asset_errors").insert({
             asset_url: parsed.data.asset_url,
             page_url: parsed.data.page_url ?? null,

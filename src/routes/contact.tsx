@@ -19,15 +19,16 @@ import { track } from "@/lib/analytics";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
+        { name: "twitter:card", content: "summary_large_image" },
       { title: "Get a Free Quote | All Colours Painting Dublin" },
       {
         name: "description",
-        content: `Request a free painting quote in Dublin. Call ${SITE.phoneDisplay} or email ${SITE.email}. We respond within 24 hours. No obligation estimates.`,
+        content: `Request a free painting quote in Dublin. Call ${SITE.phoneDisplay}. We reply within one working day.`,
       },
       { property: "og:title", content: "Get a Free Quote | All Colours Painting Dublin" },
       {
         property: "og:description",
-        content: `Request a free painting quote in Dublin. Call ${SITE.phoneDisplay} or email ${SITE.email}. We respond within 24 hours. No obligation estimates.`,
+        content: `Request a free painting quote in Dublin. Call ${SITE.phoneDisplay}. We reply within one working day.`,
       },
       { property: "og:url", content: "https://allcolourspainter.com/contact" },
       { property: "og:type", content: "website" },
@@ -154,7 +155,7 @@ function Contact() {
         <img
           src={ctaAsset.url}
           alt="Freshly painted Dublin home exterior by All Colours Painting"
-          loading="lazy"
+          fetchPriority="high"
           width={1920}
           height={900}
           className="absolute inset-0 -z-10 h-full w-full object-cover"
@@ -167,8 +168,8 @@ function Contact() {
           </h1>
           <div className="mt-6 h-[3px] w-[170px] bg-primary" />
           <p className="mt-6 max-w-2xl text-base text-white/85 md:text-lg">
-            Whether it's a single room or a full commercial fit-out, we'll come back to you within
-            one working day with a clear, written quote.
+            Whether it's a single room or a full commercial fit-out, we'll reply within one working
+            day and provide a written quote within 48 hours after the site visit.
           </p>
         </div>
       </section>
@@ -286,7 +287,7 @@ function Contact() {
                       <span>
                         I agree that my details may be used to respond to this enquiry, as
                         described in the{" "}
-                        <Link to="/privacy" className="text-primary hover:underline">
+                        <Link to="/privacy" className="text-primary underline underline-offset-2">
                           Privacy Policy
                         </Link>
                         .
@@ -327,9 +328,9 @@ function Contact() {
           <h2 className="section-title mt-3 text-3xl">Serving Dublin & surrounding areas</h2>
           <hr className="section-rule" />
           <p className="mt-4 max-w-2xl text-sm text-foreground/80">
-            We cover all of Dublin city and county — including Ballsbridge, Donnybrook, Rathmines,
-            Ranelagh, Dundrum, Dún Laoghaire and Blackrock — plus parts of Wicklow, Kildare and
-            Meath.
+            We cover South Dublin, Dublin city and surrounding areas — including Ballsbridge,
+            Donnybrook, Rathmines, Ranelagh, Dundrum, Dún Laoghaire and Blackrock — plus Bray,
+            Greystones and Delgany in Wicklow.
           </p>
           <MapEmbed
             title="All Colours Painting service area — Dublin"
@@ -393,15 +394,12 @@ function ContactRow({
     }
   };
   return (
-    <div className="flex items-start gap-4">
-      <div className="inline-flex h-10 w-10 flex-shrink-0 items-center justify-center bg-primary text-primary-foreground">
-        <Icon />
-      </div>
-      <div>
-        <dt className="font-display text-[11px] font-bold uppercase tracking-[0.18em] text-primary">
-          {label}
+    <div className="grid grid-cols-[40px_1fr] items-start gap-x-4">
+        <dt className="contents font-display text-[11px] font-bold uppercase tracking-[0.18em] text-primary">
+          <span aria-hidden="true" className="row-span-2 inline-flex h-10 w-10 items-center justify-center bg-contact-action text-contact-action-foreground"><Icon /></span>
+          <span>{label}</span>
         </dt>
-        <dd className="mt-1 text-sm text-foreground">
+        <dd className="col-start-2 mt-1 text-sm text-foreground">
           {href ? (
             <a
               className="hover:text-primary"
@@ -418,7 +416,6 @@ function ContactRow({
             value
           )}
         </dd>
-      </div>
     </div>
   );
 }

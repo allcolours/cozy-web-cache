@@ -1,3 +1,4 @@
+import { HERO_SOCIAL_URL } from "@/lib/hero-image";
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteLayout } from "../components/SiteLayout";
 import { AREAS } from "../data/areas";
@@ -7,10 +8,11 @@ export const Route = createFileRoute("/painters/")({
   head: () => {
     const title = "Painters Dublin – Areas We Cover | All Colours Painting";
     const description =
-      "Professional painters & decorators serving every part of Dublin: Ballsbridge, Dalkey, Foxrock, Rathmines, Sandyford, Dún Laoghaire, Dundrum, Ranelagh and more.";
+      "Painters and decorators serving South Dublin, Dublin city and surrounding areas, including Bray and Greystones. Find your area and request a free quote.";
     const url = "https://allcolourspainter.com/painters";
     return {
       meta: [
+        { name: "twitter:card", content: "summary_large_image" },
         { title },
         { name: "description", content: description },
         { property: "og:title", content: title },
@@ -20,12 +22,12 @@ export const Route = createFileRoute("/painters/")({
         {
           property: "og:image",
           content:
-            "https://allcolourspainter.com/__l5e/assets-v1/2a395495-c4ec-4903-a41b-667de034b2ab/hero-house.webp",
+            HERO_SOCIAL_URL,
         },
         {
           name: "twitter:image",
           content:
-            "https://allcolourspainter.com/__l5e/assets-v1/2a395495-c4ec-4903-a41b-667de034b2ab/hero-house.webp",
+            HERO_SOCIAL_URL,
         },
       ],
       links: [{ rel: "canonical", href: url }],
@@ -45,9 +47,9 @@ function AreasIndex() {
           Painters across Dublin
         </h1>
         <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground">
-          We work in every Dublin postcode — from period homes in Ballsbridge to coastal villas in
-          Dalkey and busy office blocks in Sandyford. Pick your area for local examples, services
-          and a free quote.
+          We serve South Dublin, Dublin city and surrounding areas, including Bray and Greystones.
+          From period homes in Ballsbridge to coastal homes in Dalkey and offices in Sandyford,
+          pick your area for services and a free quote.
         </p>
 
         <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">

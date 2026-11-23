@@ -1,3 +1,4 @@
+import { privatePageHead } from "@/lib/page-head";
 import { createFileRoute } from "@tanstack/react-router";
 import { AdminShell } from "@/components/admin/AdminShell";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
@@ -6,6 +7,7 @@ import { useEffect, useState } from "react";
 import { SETTING_DEFAULTS } from "@/hooks/useSiteSettings";
 
 export const Route = createFileRoute("/_authenticated/admin/content")({
+  head: () => privatePageHead("Site Content", "Site Content administration for All Colours Painting."),
   component: ContentAdmin,
 });
 

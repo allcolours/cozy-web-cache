@@ -1,10 +1,15 @@
+import { HERO_SOCIAL_META } from "@/lib/hero-image";
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { SiteLayout } from "../components/SiteLayout";
+import { calculateEstimate, type WorkType } from "@/lib/estimate-pricing";
+import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/estimate")({
   head: () => ({
     meta: [
+      ...HERO_SOCIAL_META,
+      { name: "twitter:card", content: "summary_large_image" },
       { title: "Free Painting Estimate Dublin | All Colours" },
       {
         name: "description",
@@ -48,13 +53,11 @@ export const Route = createFileRoute("/estimate")({
   component: EstimatePage,
 });
 
-type WorkType = "interior" | "exterior" | "interior-exterior" | "commercial";
-
-const WORK_TYPES: { id: WorkType; label: string; rate: number }[] = [
-  { id: "interior", label: "Interior", rate: 12 },
-  { id: "exterior", label: "Exterior", rate: 18 },
-  { id: "interior-exterior", label: "Interior + Exterior", rate: 28 },
-  { id: "commercial", label: "Commercial", rate: 22 },
+const WORK_TYPES: { id: WorkType; label: string }[] = [
+  { id: "interior", label: "Interior" },
+  { id: "exterior", label: "Exterior" },
+  { id: "interior-exterior", label: "Interior + Exterior" },
+  { id: "commercial", label: "Commercial" },
 ];
 
 const EXTRAS = [
@@ -72,10 +75,6 @@ const TRUST_POINTS = [
   { title: "12-month workmanship guarantee", body: "On every job, every time" },
 ];
 
-function roundTo50(n: number) {
-  return Math.round(n / 50) * 50;
-}
-
 function formatCurrency(n: number) {
   return new Intl.NumberFormat("en-IE", {
     style: "currency",
@@ -90,16 +89,12 @@ function EstimatePage() {
   const [rooms, setRooms] = useState<number>(4);
   const [selectedExtras, setSelectedExtras] = useState<Set<string>>(new Set());
 
-  const rate = useMemo(() => WORK_TYPES.find((w) => w.id === workType)?.rate ?? 12, [workType]);
-
-  const baseCost = area * rate;
   const extrasCost = useMemo(() => {
     return EXTRAS.filter((e) => selectedExtras.has(e.id)).reduce((sum, e) => sum + e.price, 0);
   }, [selectedExtras]);
 
-  const total = baseCost + extrasCost;
-  const low = roundTo50(total * 0.9);
-  const high = roundTo50(total * 1.25);
+  const estimate = calculateEstimate(workType, area, extrasCost);
+  const workLabel = WORK_TYPES.find((w) => w.id === workType)?.label;
 
   function handleRoomsChange(value: number) {
     setRooms(value);
@@ -148,18 +143,20 @@ function EstimatePage() {
                   {WORK_TYPES.map((w) => {
                     const active = workType === w.id;
                     return (
-                      <button
+                      <Button
                         key={w.id}
                         type="button"
+                        variant="outline"
+                        aria-pressed={active}
                         onClick={() => setWorkType(w.id)}
-                        className={`rounded-sm border px-4 py-3 text-center font-display text-xs font-bold uppercase tracking-wider transition-colors ${
+                        className={`h-auto whitespace-normal rounded-sm border px-4 py-3 text-center font-display text-xs font-bold uppercase tracking-wider transition-colors ${
                           active
                             ? "border-primary bg-primary text-primary-foreground"
                             : "border-border bg-background text-foreground hover:border-primary hover:text-primary"
                         }`}
                       >
                         {w.label}
-                      </button>
+                      </Button>
                     );
                   })}
                 </div>
@@ -192,7 +189,7 @@ function EstimatePage() {
                       onChange={(e) => setArea(Number(e.target.value))}
                       className="mt-3 w-full accent-primary"
                     />
-                    <div className="mt-1 flex justify-between text-xs text-muted-foreground">
+                    <div className="mt-2 flex justify-between gap-6 text-xs text-muted-foreground">
                       <span>20 m²</span>
                       <span>400 m²</span>
                     </div>
@@ -218,7 +215,7 @@ function EstimatePage() {
                       onChange={(e) => handleRoomsChange(Number(e.target.value))}
                       className="mt-3 w-full accent-primary"
                     />
-                    <div className="mt-1 flex justify-between text-xs text-muted-foreground">
+                    <div className="mt-2 flex justify-between gap-6 text-xs text-muted-foreground">
                       <span>1</span>
                       <span>12</span>
                     </div>
@@ -227,7 +224,7 @@ function EstimatePage() {
               </div>
 
               {/* Extras */}
-              <div className="border-t-[3px] border-primary bg-card p-6 md:p-8">
+              {estimate && <div className="border-t-[3px] border-primary bg-card p-6 md:p-8">
                 <h2 className="font-display text-lg font-bold uppercase tracking-wide text-[oklch(0.2_0_0)]">
                   3. Extras
                 </h2>
@@ -235,11 +232,13 @@ function EstimatePage() {
                   {EXTRAS.map((e) => {
                     const active = selectedExtras.has(e.id);
                     return (
-                      <button
+                      <Button
                         key={e.id}
                         type="button"
+                        variant="outline"
+                        aria-pressed={active}
                         onClick={() => toggleExtra(e.id)}
-                        className={`flex items-center justify-between rounded-sm border px-4 py-3 text-left transition-colors ${
+                        className={`h-auto flex items-center justify-between gap-3 rounded-sm border px-4 py-3 text-left transition-colors ${
                           active
                             ? "border-primary bg-primary/5"
                             : "border-border bg-background hover:border-primary/50"
@@ -253,20 +252,23 @@ function EstimatePage() {
                         <span className="text-sm font-semibold text-foreground">
                           +{formatCurrency(e.price)}
                         </span>
-                      </button>
+                      </Button>
                     );
                   })}
                 </div>
-              </div>
+              </div>}
             </div>
 
             {/* Result */}
             <div className="lg:col-span-2">
               <div className="sticky top-24 border-t-[3px] border-primary bg-card p-6 md:p-8">
                 <span className="eyebrow text-primary">Your estimate</span>
-                <div className="mt-4 font-display text-4xl font-extrabold text-[oklch(0.2_0_0)] md:text-5xl">
-                  {formatCurrency(low)} – {formatCurrency(high)}
-                </div>
+                {estimate ? <div className="mt-4 font-display text-3xl font-extrabold text-foreground break-words">
+                  {formatCurrency(estimate.low)} – {formatCurrency(estimate.high)}
+                </div> : <div className="mt-4 space-y-3">
+                  <h2 className="font-display text-xl font-bold text-foreground">{workLabel} painting</h2>
+                  <p className="text-foreground">This type of job is priced after a site visit. Send photos on WhatsApp or call us for a free written quote.</p>
+                </div>}
                 <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
                   Guide estimate only — free on-site quote within 48 hours
                 </p>
@@ -282,16 +284,16 @@ function EstimatePage() {
                     href="https://wa.me/353858211870?text=Hi%20All%20Colours%2C%20I%27d%20like%20a%20quote.%20Here%20are%20photos%20of%20the%20job%3A"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center rounded-sm bg-[#25D366] px-5 py-3 font-display text-xs font-bold uppercase tracking-wider text-white transition-colors hover:opacity-90"
+                    className="inline-flex items-center justify-center rounded-sm bg-whatsapp px-5 py-3 font-display text-xs font-bold uppercase tracking-wider text-whatsapp-foreground transition-colors hover:opacity-90"
                   >
                     💬 Send photos on WhatsApp
                   </a>
                 </div>
 
                 {/* Breakdown */}
-                <div className="mt-8 border-t border-border pt-6">
+                {estimate && <div className="mt-8 border-t border-border pt-6">
                   <h3 className="font-display text-xs font-bold uppercase tracking-wider text-[oklch(0.3_0_0)]">
-                    Cost breakdown
+                    {workLabel} painting cost breakdown
                   </h3>
                   <ul className="mt-4 space-y-3 text-sm">
                     <li className="flex items-center justify-between">
@@ -299,7 +301,7 @@ function EstimatePage() {
                         {WORK_TYPES.find((w) => w.id === workType)?.label} painting
                       </span>
                       <span className="font-medium text-foreground">
-                        {formatCurrency(baseCost)}
+                        {formatCurrency(estimate.base)}
                       </span>
                     </li>
                     {selectedExtrasList.map((e) => (
@@ -312,16 +314,16 @@ function EstimatePage() {
                     ))}
                     <li className="flex items-center justify-between border-t border-border pt-3">
                       <span className="font-semibold text-[oklch(0.2_0_0)]">Estimated total</span>
-                      <span className="font-bold text-primary">{formatCurrency(total)}</span>
+                      <span className="font-bold text-primary">{formatCurrency(estimate.total)}</span>
                     </li>
                     <li className="flex items-center justify-between text-xs text-muted-foreground">
                       <span>Guide range</span>
                       <span>
-                        {formatCurrency(low)} – {formatCurrency(high)}
+                        {formatCurrency(estimate.low)} – {formatCurrency(estimate.high)}
                       </span>
                     </li>
                   </ul>
-                </div>
+                </div>}
               </div>
             </div>
           </div>

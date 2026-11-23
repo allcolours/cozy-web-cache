@@ -27,6 +27,7 @@ export const Route = createFileRoute("/case-studies")({
   },
   head: () => ({
     meta: [
+        { name: "twitter:card", content: "summary_large_image" },
       { title: "Painting Case Studies Dublin | All Colours Painting" },
       { name: "robots", content: "noindex, follow" },
       {

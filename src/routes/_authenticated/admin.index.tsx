@@ -1,3 +1,4 @@
+import { privatePageHead } from "@/lib/page-head";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { AdminShell } from "@/components/admin/AdminShell";
@@ -5,6 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/_authenticated/admin/")({
+  head: () => privatePageHead("Admin Dashboard", "Admin Dashboard administration for All Colours Painting."),
   component: Dashboard,
 });
 

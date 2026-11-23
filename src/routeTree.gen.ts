@@ -31,12 +31,9 @@ import { Route as PainterRanelaghRouteImport } from './routes/painter-ranelagh'
 import { Route as PainterRahenyRouteImport } from './routes/painter-raheny'
 import { Route as PainterPortmarnockRouteImport } from './routes/painter-portmarnock'
 import { Route as PainterPhibsboroughRouteImport } from './routes/painter-phibsborough'
-import { Route as PainterNavanRouteImport } from './routes/painter-navan'
-import { Route as PainterNaasRouteImport } from './routes/painter-naas'
 import { Route as PainterMountMerrionRouteImport } from './routes/painter-mount-merrion'
 import { Route as PainterMonkstownRouteImport } from './routes/painter-monkstown'
 import { Route as PainterMilltownRouteImport } from './routes/painter-milltown'
-import { Route as PainterMaynoothRouteImport } from './routes/painter-maynooth'
 import { Route as PainterMalahideRouteImport } from './routes/painter-malahide'
 import { Route as PainterLucanRouteImport } from './routes/painter-lucan'
 import { Route as PainterLeopardstownRouteImport } from './routes/painter-leopardstown'
@@ -68,7 +65,6 @@ import { Route as PainterBlanchardstownRouteImport } from './routes/painter-blan
 import { Route as PainterBlackrockRouteImport } from './routes/painter-blackrock'
 import { Route as PainterBallsbridgeRouteImport } from './routes/painter-ballsbridge'
 import { Route as PainterBallinteerRouteImport } from './routes/painter-ballinteer'
-import { Route as PainterBalbrigganRouteImport } from './routes/painter-balbriggan'
 import { Route as HousePaintingDublinRouteImport } from './routes/house-painting-dublin'
 import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as FaqRouteImport } from './routes/faq'
@@ -230,16 +226,6 @@ const PainterPhibsboroughRoute = PainterPhibsboroughRouteImport.update({
   path: '/painter-phibsborough',
   getParentRoute: () => rootRouteImport,
 } as any)
-const PainterNavanRoute = PainterNavanRouteImport.update({
-  id: '/painter-navan',
-  path: '/painter-navan',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PainterNaasRoute = PainterNaasRouteImport.update({
-  id: '/painter-naas',
-  path: '/painter-naas',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const PainterMountMerrionRoute = PainterMountMerrionRouteImport.update({
   id: '/painter-mount-merrion',
   path: '/painter-mount-merrion',
@@ -253,11 +239,6 @@ const PainterMonkstownRoute = PainterMonkstownRouteImport.update({
 const PainterMilltownRoute = PainterMilltownRouteImport.update({
   id: '/painter-milltown',
   path: '/painter-milltown',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PainterMaynoothRoute = PainterMaynoothRouteImport.update({
-  id: '/painter-maynooth',
-  path: '/painter-maynooth',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PainterMalahideRoute = PainterMalahideRouteImport.update({
@@ -413,11 +394,6 @@ const PainterBallsbridgeRoute = PainterBallsbridgeRouteImport.update({
 const PainterBallinteerRoute = PainterBallinteerRouteImport.update({
   id: '/painter-ballinteer',
   path: '/painter-ballinteer',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PainterBalbrigganRoute = PainterBalbrigganRouteImport.update({
-  id: '/painter-balbriggan',
-  path: '/painter-balbriggan',
   getParentRoute: () => rootRouteImport,
 } as any)
 const HousePaintingDublinRoute = HousePaintingDublinRouteImport.update({
@@ -702,7 +678,6 @@ export interface FileRoutesByFullPath {
   '/faq': typeof FaqRoute
   '/gallery': typeof GalleryRoute
   '/house-painting-dublin': typeof HousePaintingDublinRoute
-  '/painter-balbriggan': typeof PainterBalbrigganRoute
   '/painter-ballinteer': typeof PainterBallinteerRoute
   '/painter-ballsbridge': typeof PainterBallsbridgeRoute
   '/painter-blackrock': typeof PainterBlackrockRoute
@@ -734,12 +709,9 @@ export interface FileRoutesByFullPath {
   '/painter-leopardstown': typeof PainterLeopardstownRoute
   '/painter-lucan': typeof PainterLucanRoute
   '/painter-malahide': typeof PainterMalahideRoute
-  '/painter-maynooth': typeof PainterMaynoothRoute
   '/painter-milltown': typeof PainterMilltownRoute
   '/painter-monkstown': typeof PainterMonkstownRoute
   '/painter-mount-merrion': typeof PainterMountMerrionRoute
-  '/painter-naas': typeof PainterNaasRoute
-  '/painter-navan': typeof PainterNavanRoute
   '/painter-phibsborough': typeof PainterPhibsboroughRoute
   '/painter-portmarnock': typeof PainterPortmarnockRoute
   '/painter-raheny': typeof PainterRahenyRoute
@@ -813,7 +785,6 @@ export interface FileRoutesByTo {
   '/faq': typeof FaqRoute
   '/gallery': typeof GalleryRoute
   '/house-painting-dublin': typeof HousePaintingDublinRoute
-  '/painter-balbriggan': typeof PainterBalbrigganRoute
   '/painter-ballinteer': typeof PainterBallinteerRoute
   '/painter-ballsbridge': typeof PainterBallsbridgeRoute
   '/painter-blackrock': typeof PainterBlackrockRoute
@@ -845,12 +816,9 @@ export interface FileRoutesByTo {
   '/painter-leopardstown': typeof PainterLeopardstownRoute
   '/painter-lucan': typeof PainterLucanRoute
   '/painter-malahide': typeof PainterMalahideRoute
-  '/painter-maynooth': typeof PainterMaynoothRoute
   '/painter-milltown': typeof PainterMilltownRoute
   '/painter-monkstown': typeof PainterMonkstownRoute
   '/painter-mount-merrion': typeof PainterMountMerrionRoute
-  '/painter-naas': typeof PainterNaasRoute
-  '/painter-navan': typeof PainterNavanRoute
   '/painter-phibsborough': typeof PainterPhibsboroughRoute
   '/painter-portmarnock': typeof PainterPortmarnockRoute
   '/painter-raheny': typeof PainterRahenyRoute
@@ -925,7 +893,6 @@ export interface FileRoutesById {
   '/faq': typeof FaqRoute
   '/gallery': typeof GalleryRoute
   '/house-painting-dublin': typeof HousePaintingDublinRoute
-  '/painter-balbriggan': typeof PainterBalbrigganRoute
   '/painter-ballinteer': typeof PainterBallinteerRoute
   '/painter-ballsbridge': typeof PainterBallsbridgeRoute
   '/painter-blackrock': typeof PainterBlackrockRoute
@@ -957,12 +924,9 @@ export interface FileRoutesById {
   '/painter-leopardstown': typeof PainterLeopardstownRoute
   '/painter-lucan': typeof PainterLucanRoute
   '/painter-malahide': typeof PainterMalahideRoute
-  '/painter-maynooth': typeof PainterMaynoothRoute
   '/painter-milltown': typeof PainterMilltownRoute
   '/painter-monkstown': typeof PainterMonkstownRoute
   '/painter-mount-merrion': typeof PainterMountMerrionRoute
-  '/painter-naas': typeof PainterNaasRoute
-  '/painter-navan': typeof PainterNavanRoute
   '/painter-phibsborough': typeof PainterPhibsboroughRoute
   '/painter-portmarnock': typeof PainterPortmarnockRoute
   '/painter-raheny': typeof PainterRahenyRoute
@@ -1038,7 +1002,6 @@ export interface FileRouteTypes {
     | '/faq'
     | '/gallery'
     | '/house-painting-dublin'
-    | '/painter-balbriggan'
     | '/painter-ballinteer'
     | '/painter-ballsbridge'
     | '/painter-blackrock'
@@ -1070,12 +1033,9 @@ export interface FileRouteTypes {
     | '/painter-leopardstown'
     | '/painter-lucan'
     | '/painter-malahide'
-    | '/painter-maynooth'
     | '/painter-milltown'
     | '/painter-monkstown'
     | '/painter-mount-merrion'
-    | '/painter-naas'
-    | '/painter-navan'
     | '/painter-phibsborough'
     | '/painter-portmarnock'
     | '/painter-raheny'
@@ -1149,7 +1109,6 @@ export interface FileRouteTypes {
     | '/faq'
     | '/gallery'
     | '/house-painting-dublin'
-    | '/painter-balbriggan'
     | '/painter-ballinteer'
     | '/painter-ballsbridge'
     | '/painter-blackrock'
@@ -1181,12 +1140,9 @@ export interface FileRouteTypes {
     | '/painter-leopardstown'
     | '/painter-lucan'
     | '/painter-malahide'
-    | '/painter-maynooth'
     | '/painter-milltown'
     | '/painter-monkstown'
     | '/painter-mount-merrion'
-    | '/painter-naas'
-    | '/painter-navan'
     | '/painter-phibsborough'
     | '/painter-portmarnock'
     | '/painter-raheny'
@@ -1260,7 +1216,6 @@ export interface FileRouteTypes {
     | '/faq'
     | '/gallery'
     | '/house-painting-dublin'
-    | '/painter-balbriggan'
     | '/painter-ballinteer'
     | '/painter-ballsbridge'
     | '/painter-blackrock'
@@ -1292,12 +1247,9 @@ export interface FileRouteTypes {
     | '/painter-leopardstown'
     | '/painter-lucan'
     | '/painter-malahide'
-    | '/painter-maynooth'
     | '/painter-milltown'
     | '/painter-monkstown'
     | '/painter-mount-merrion'
-    | '/painter-naas'
-    | '/painter-navan'
     | '/painter-phibsborough'
     | '/painter-portmarnock'
     | '/painter-raheny'
@@ -1373,7 +1325,6 @@ export interface RootRouteChildren {
   FaqRoute: typeof FaqRoute
   GalleryRoute: typeof GalleryRoute
   HousePaintingDublinRoute: typeof HousePaintingDublinRoute
-  PainterBalbrigganRoute: typeof PainterBalbrigganRoute
   PainterBallinteerRoute: typeof PainterBallinteerRoute
   PainterBallsbridgeRoute: typeof PainterBallsbridgeRoute
   PainterBlackrockRoute: typeof PainterBlackrockRoute
@@ -1405,12 +1356,9 @@ export interface RootRouteChildren {
   PainterLeopardstownRoute: typeof PainterLeopardstownRoute
   PainterLucanRoute: typeof PainterLucanRoute
   PainterMalahideRoute: typeof PainterMalahideRoute
-  PainterMaynoothRoute: typeof PainterMaynoothRoute
   PainterMilltownRoute: typeof PainterMilltownRoute
   PainterMonkstownRoute: typeof PainterMonkstownRoute
   PainterMountMerrionRoute: typeof PainterMountMerrionRoute
-  PainterNaasRoute: typeof PainterNaasRoute
-  PainterNavanRoute: typeof PainterNavanRoute
   PainterPhibsboroughRoute: typeof PainterPhibsboroughRoute
   PainterPortmarnockRoute: typeof PainterPortmarnockRoute
   PainterRahenyRoute: typeof PainterRahenyRoute
@@ -1611,20 +1559,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PainterPhibsboroughRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/painter-navan': {
-      id: '/painter-navan'
-      path: '/painter-navan'
-      fullPath: '/painter-navan'
-      preLoaderRoute: typeof PainterNavanRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/painter-naas': {
-      id: '/painter-naas'
-      path: '/painter-naas'
-      fullPath: '/painter-naas'
-      preLoaderRoute: typeof PainterNaasRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/painter-mount-merrion': {
       id: '/painter-mount-merrion'
       path: '/painter-mount-merrion'
@@ -1644,13 +1578,6 @@ declare module '@tanstack/react-router' {
       path: '/painter-milltown'
       fullPath: '/painter-milltown'
       preLoaderRoute: typeof PainterMilltownRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/painter-maynooth': {
-      id: '/painter-maynooth'
-      path: '/painter-maynooth'
-      fullPath: '/painter-maynooth'
-      preLoaderRoute: typeof PainterMaynoothRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/painter-malahide': {
@@ -1868,13 +1795,6 @@ declare module '@tanstack/react-router' {
       path: '/painter-ballinteer'
       fullPath: '/painter-ballinteer'
       preLoaderRoute: typeof PainterBallinteerRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/painter-balbriggan': {
-      id: '/painter-balbriggan'
-      path: '/painter-balbriggan'
-      fullPath: '/painter-balbriggan'
-      preLoaderRoute: typeof PainterBalbrigganRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/house-painting-dublin': {
@@ -2323,7 +2243,6 @@ const rootRouteChildren: RootRouteChildren = {
   FaqRoute: FaqRoute,
   GalleryRoute: GalleryRoute,
   HousePaintingDublinRoute: HousePaintingDublinRoute,
-  PainterBalbrigganRoute: PainterBalbrigganRoute,
   PainterBallinteerRoute: PainterBallinteerRoute,
   PainterBallsbridgeRoute: PainterBallsbridgeRoute,
   PainterBlackrockRoute: PainterBlackrockRoute,
@@ -2355,12 +2274,9 @@ const rootRouteChildren: RootRouteChildren = {
   PainterLeopardstownRoute: PainterLeopardstownRoute,
   PainterLucanRoute: PainterLucanRoute,
   PainterMalahideRoute: PainterMalahideRoute,
-  PainterMaynoothRoute: PainterMaynoothRoute,
   PainterMilltownRoute: PainterMilltownRoute,
   PainterMonkstownRoute: PainterMonkstownRoute,
   PainterMountMerrionRoute: PainterMountMerrionRoute,
-  PainterNaasRoute: PainterNaasRoute,
-  PainterNavanRoute: PainterNavanRoute,
   PainterPhibsboroughRoute: PainterPhibsboroughRoute,
   PainterPortmarnockRoute: PainterPortmarnockRoute,
   PainterRahenyRoute: PainterRahenyRoute,

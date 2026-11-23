@@ -1,3 +1,4 @@
+import { HERO_SOCIAL_META, HERO_IMAGE } from "@/lib/hero-image";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { SiteLayout } from "../components/SiteLayout";
@@ -13,14 +14,14 @@ const URL = "https://allcolourspainter.com/painter-dublin";
 export const Route = createFileRoute("/painter-dublin")({
   head: () => ({
     meta: [
+      ...HERO_SOCIAL_META,
+      { name: "twitter:card", content: "summary_large_image" },
       { title: TITLE },
       { name: "description", content: DESC },
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESC },
       { property: "og:url", content: URL },
       { property: "og:type", content: "website" },
-      { property: "og:image", content: `https://allcolourspainter.com${heroAsset.url}` },
-      { name: "twitter:image", content: `https://allcolourspainter.com${heroAsset.url}` },
     ],
     links: [{ rel: "canonical", href: URL }],
     scripts: [
@@ -102,7 +103,7 @@ const AREAS = [
 
 const WHY = [
   "Crews with 10+ years' hands-on experience on Dublin sites",
-  "Tax Clearance compliant and fully insured",
+  "RCT registered and fully insured",
   "12-month workmanship guarantee on every job",
   "Tidy daily handover — vacuum sanding, dust control, furniture protected",
   "Honest written quotes — line-by-line, no surprises",
@@ -120,7 +121,7 @@ const FAQS = [
   },
   {
     q: "Are you fully insured?",
-    a: "Yes — fully insured and Tax Clearance compliant.",
+    a: "Yes — fully insured.",
   },
   {
     q: "Do you paint while we're living in the house?",
@@ -140,15 +141,7 @@ function PainterDublinPage() {
     <SiteLayout>
       {/* Hero */}
       <section className="relative overflow-hidden bg-[var(--color-surface-dark)] text-white">
-        <div
-          className="absolute inset-0 opacity-30"
-          style={{
-            backgroundImage: `url(${heroAsset.url})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
-          aria-hidden
-        />
+        <img {...HERO_IMAGE} alt="" aria-hidden="true" fetchPriority="high" decoding="async" className="absolute inset-0 h-full w-full object-cover opacity-30" />
         <div className="relative mx-auto max-w-7xl px-4 py-24 md:px-8 md:py-32">
           <span className="eyebrow text-primary">Dublin's Trusted Painting Contractor</span>
           <h1 className="mt-3 max-w-4xl font-display text-4xl font-extrabold uppercase leading-[1.05] tracking-tight md:text-6xl">

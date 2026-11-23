@@ -1,3 +1,4 @@
+import { HERO_IMAGE, HERO_SOCIAL_META } from "@/lib/hero-image";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useRef, useState } from "react";
 import { SiteLayout } from "../components/SiteLayout";
@@ -23,6 +24,8 @@ const META_DESCRIPTION =
 export const Route = createFileRoute("/house-painting-dublin")({
   head: () => ({
     meta: [
+        { name: "twitter:card", content: "summary_large_image" },
+      ...HERO_SOCIAL_META,
       { title: "House Painters Dublin | Interiors & Exteriors | Free 48hr Quote" },
       { name: "description", content: META_DESCRIPTION },
       {
@@ -34,10 +37,9 @@ export const Route = createFileRoute("/house-painting-dublin")({
       { property: "og:description", content: META_DESCRIPTION },
       { property: "og:url", content: "https://allcolourspainter.com/house-painting-dublin" },
       { property: "og:type", content: "website" },
-      { property: "og:image", content: `https://allcolourspainter.com${heroAsset.url}` },
-      { name: "twitter:image", content: `https://allcolourspainter.com${heroAsset.url}` },
     ],
     links: [
+      { rel: "preload", as: "image", href: HERO_IMAGE.src, imagesrcset: HERO_IMAGE.srcSet, imagesizes: HERO_IMAGE.sizes, fetchPriority: "high" },
       { rel: "canonical", href: "https://allcolourspainter.com/house-painting-dublin" },
     ],
     scripts: [
@@ -251,12 +253,10 @@ function HousePaintingPage() {
       {/* Hero */}
       <section className="relative isolate overflow-hidden">
         <img
-          src={heroAsset.url}
+          {...HERO_IMAGE}
           alt="Freshly painted Dublin family home interior"
           fetchPriority="high"
           decoding="async"
-          width={1920}
-          height={900}
           className="absolute inset-0 -z-10 h-full w-full object-cover"
         />
         <div className="absolute inset-0 -z-10 bg-[oklch(0.18_0_0)]/75" />

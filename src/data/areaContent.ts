@@ -244,12 +244,6 @@ export const AREA_CONTENT: Record<string, AreaContent> = {
       "Drimnagh (Dublin 12) is a west-Dublin suburb of traditional terraces and family homes. We deliver fast tenancy turnarounds for landlords and full interior and exterior repaints for owner-occupiers.",
     highlights: ["Tenancy turnarounds", "Terrace repaints", "Exterior maintenance"],
   },
-  Balbriggan: {
-    intro: "Interior and exterior painting across Balbriggan's homes and estates.",
-    localContext:
-      "Balbriggan (Co. Dublin, K32) is a coastal Fingal town in north Dublin, with older terraces and large newer estates. We handle interior repaints and exterior systems suited to the coastal exposure.",
-    highlights: ["Coastal-ready exteriors", "Estate & terrace repaints", "Landlord turnarounds"],
-  },
   Leopardstown: {
     intro: "Commercial and apartment-scheme painting around Leopardstown.",
     localContext:
@@ -368,24 +362,6 @@ export const AREA_CONTENT: Record<string, AreaContent> = {
       "Greystones (Co. Wicklow) is a coastal commuter town with growing residential estates and older village homes. We handle full repaints and exterior maintenance with thorough prep.",
     highlights: ["Full house repaints", "Exterior repaints near the coast", "New-build finishing"],
   },
-  Maynooth: {
-    intro: "Family-home repaints and student-let turnarounds across Maynooth.",
-    localContext:
-      "Maynooth (Co. Kildare) is a university town with a mix of family homes, student rentals and newer estates. We deliver fast tenancy turnarounds for landlords and full repaints for owner-occupiers.",
-    highlights: ["Tenancy turnarounds", "Full house repaints", "Exterior maintenance"],
-  },
-  Naas: {
-    intro: "Residential and commercial painting across Naas.",
-    localContext:
-      "Naas (Co. Kildare) is a large commuter town with residential estates, town-centre properties and commercial premises. We handle full house repaints, exterior work and commercial fit-outs.",
-    highlights: ["Estate house repaints", "Commercial premises", "Exterior maintenance"],
-  },
-  Navan: {
-    intro: "Residential and commercial painting across Navan.",
-    localContext:
-      "Navan (Co. Meath) is the main Meath town with residential estates and commercial premises. We deliver full house repaints, tenancy turnarounds and commercial work on reliable timelines.",
-    highlights: ["Full house repaints", "Tenancy turnarounds", "Commercial premises"],
-  },
 };
 
 // Name → path map, for cross-linking between the static area pages.
@@ -421,7 +397,6 @@ export const AREA_PATHS: Array<{ name: string; path: string }> = [
   { name: "Lucan", path: "/painter-lucan" },
   { name: "Swords", path: "/painter-swords" },
   { name: "Drimnagh", path: "/painter-drimnagh" },
-  { name: "Balbriggan", path: "/painter-balbriggan" },
   { name: "Leopardstown", path: "/painter-leopardstown" },
   { name: "Knocklyon", path: "/painter-knocklyon" },
   { name: "Killiney", path: "/painter-killiney" },
@@ -439,8 +414,6 @@ export const AREA_PATHS: Array<{ name: string; path: string }> = [
   { name: "Blanchardstown", path: "/painter-blanchardstown" },
   { name: "Bray", path: "/painter-bray" },
   { name: "Greystones", path: "/painter-greystones" },
-  { name: "Naas", path: "/painter-naas" },
-  { name: "Navan", path: "/painter-navan" },
 ];
 
 // Towns we cover by van within our normal service radius but without a
@@ -462,12 +435,5 @@ export const ALSO_SERVING: string[] = [
   "Palmerstown",
   "Inchicore",
   "Kilmainham",
-  "Skerries",
-  "Celbridge",
-  "Leixlip",
-  "Kilcock",
-  "Dunboyne",
-  "Ashbourne",
-  "Ratoath",
   "Delgany",
 ];

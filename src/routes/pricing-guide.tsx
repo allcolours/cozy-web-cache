@@ -1,9 +1,10 @@
+import { HERO_SOCIAL_URL } from "@/lib/hero-image";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout } from "../components/SiteLayout";
 
 export const Route = createFileRoute("/pricing-guide")({
   head: () => {
-    const title = "Painting Cost in Dublin 2026 | Price Guide – All Colours Painting";
+    const title = "Painting Costs Dublin 2026 | Price Guide | All Colours";
     const description =
       "How much does it cost to paint a house in Dublin? Honest 2026 price ranges for interior, exterior, kitchen and apartment painting — plus what changes the price.";
     const url = "https://allcolourspainter.com/pricing-guide";
@@ -18,13 +19,13 @@ export const Route = createFileRoute("/pricing-guide")({
         {
           property: "og:image",
           content:
-            "https://allcolourspainter.com/__l5e/assets-v1/2a395495-c4ec-4903-a41b-667de034b2ab/hero-house.webp",
+            HERO_SOCIAL_URL,
         },
         { name: "twitter:card", content: "summary_large_image" },
         {
           name: "twitter:image",
           content:
-            "https://allcolourspainter.com/__l5e/assets-v1/2a395495-c4ec-4903-a41b-667de034b2ab/hero-house.webp",
+            HERO_SOCIAL_URL,
         },
       ],
       links: [{ rel: "canonical", href: url }],

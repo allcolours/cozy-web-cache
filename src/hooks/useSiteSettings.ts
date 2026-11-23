@@ -5,7 +5,7 @@ import { SITE } from "@/lib/site";
 export const SETTING_DEFAULTS: Record<string, string> = {
   phone: `${SITE.phoneDisplay}`,
   email: SITE.email,
-  area: "Dublin & surrounding areas",
+  area: SITE.area,
   hours: "Mon–Sat · 8:00 – 18:00",
   tagline: "Painting & decorating, done properly.",
   hero_title: "Painting & decorating, done properly.",

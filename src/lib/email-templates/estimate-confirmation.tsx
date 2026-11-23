@@ -17,7 +17,6 @@ interface Props {
   name?: string;
   estimateMin?: number;
   estimateMax?: number;
-  description?: string;
 }
 
 const fmt = (n: number) =>
@@ -31,7 +30,6 @@ const EstimateConfirmationEmail = ({
   name = "there",
   estimateMin = 0,
   estimateMax = 0,
-  description = "",
 }: Props) => (
   <Html lang="en" dir="ltr">
     <Head />
@@ -52,15 +50,6 @@ const EstimateConfirmationEmail = ({
           </Text>
           <Text style={totalNote}>Indicative only — final price confirmed on-site.</Text>
         </Section>
-
-        {description && (
-          <>
-            <Heading as="h2" style={h2}>
-              Your project
-            </Heading>
-            <Text style={messageText}>{description}</Text>
-          </>
-        )}
 
         <Heading as="h2" style={h2}>
           What happens next
@@ -95,7 +84,6 @@ export const template = {
     name: "Jane",
     estimateMin: 2400,
     estimateMax: 3600,
-    description: "3-bed semi, full repaint inside.",
   },
 } satisfies TemplateEntry;
 
@@ -124,15 +112,6 @@ const totalLabel = {
 const totalValue = { fontSize: "24px", color: "#ffffff", fontWeight: 800 as const, margin: 0 };
 const totalNote = { fontSize: "12px", color: "#e8f5ec", margin: "8px 0 0" };
 const para = { fontSize: "14px", color: "#1a1a1a", lineHeight: "1.7", margin: "8px 0" };
-const messageText = {
-  fontSize: "14px",
-  color: "#1a1a1a",
-  lineHeight: "1.6",
-  whiteSpace: "pre-wrap" as const,
-  padding: "12px 16px",
-  backgroundColor: "#fafafa",
-  border: "1px solid #ececec",
-};
 const hr = { borderColor: "#ececec", margin: "28px 0 14px" };
 const footer = { fontSize: "12px", color: "#888", lineHeight: "1.6" };
 const link = { color: "#16a34a", textDecoration: "none", fontWeight: 700 as const };

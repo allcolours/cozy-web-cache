@@ -1,12 +1,11 @@
+import { privatePageHead } from "@/lib/page-head";
 import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/auth")({
   ssr: false,
-  head: () => ({
-    meta: [{ name: "robots", content: "noindex, nofollow" }],
-  }),
+  head: () => privatePageHead("Admin Sign In", "Sign in to the All Colours Painting administration area."),
   component: AuthPage,
 });
 

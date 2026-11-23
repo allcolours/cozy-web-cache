@@ -240,7 +240,6 @@ export const Route = createFileRoute("/api/public/estimate")({
               name: data.name,
               estimateMin: data.estimateMin,
               estimateMax: data.estimateMax,
-              description: data.description,
             };
             const clientElement = React.createElement(clientTemplate.component, clientTemplateData);
             const clientHtml = await render(clientElement);

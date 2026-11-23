@@ -62,6 +62,7 @@ type Album = {
 export const Route = createFileRoute("/gallery")({
   head: () => ({
     meta: [
+        { name: "twitter:card", content: "summary_large_image" },
       { title: "Painting Portfolio Dublin | All Colours Painting Gallery" },
       {
         name: "description",
@@ -76,8 +77,8 @@ export const Route = createFileRoute("/gallery")({
       },
       { property: "og:url", content: "https://allcolourspainter.com/gallery" },
       { property: "og:type", content: "website" },
-      { property: "og:image", content: `https://allcolourspainter.com${heroAsset.url}` },
-      { name: "twitter:image", content: `https://allcolourspainter.com${heroAsset.url}` },
+      { property: "og:image", content: `https://allcolourspainter.com${exteriorAsset.url}` },
+      { name: "twitter:image", content: `https://allcolourspainter.com${exteriorAsset.url}` },
     ],
     links: [{ rel: "canonical", href: "https://allcolourspainter.com/gallery" }],
     scripts: [

@@ -15,7 +15,7 @@ export const SITE = {
   // Email
   email: "info@allcolourspainter.com",
   // Locale copy
-  area: "Dublin & surrounding areas",
+  area: "South Dublin, Dublin city and surrounding areas",
   hours: "Mon–Sat · 8:00 – 18:00",
   tagline: "Painting & decorating, done properly.",
   // Registered company details (already shown in footer / contact / JSON-LD)

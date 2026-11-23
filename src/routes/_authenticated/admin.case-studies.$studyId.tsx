@@ -1,3 +1,4 @@
+import { privatePageHead } from "@/lib/page-head";
 import { createFileRoute } from "@tanstack/react-router";
 import { AdminShell } from "@/components/admin/AdminShell";
 import { CaseStudyForm } from "@/components/admin/CaseStudyForm";
@@ -5,6 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/_authenticated/admin/case-studies/$studyId")({
+  head: () => privatePageHead("Edit Case Study", "Edit Case Study administration for All Colours Painting."),
   component: EditCaseStudy,
 });
 

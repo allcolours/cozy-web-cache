@@ -42,11 +42,12 @@ export const Route = createFileRoute("/services")({
   ),
   head: () => ({
     meta: [
+        { name: "twitter:card", content: "summary_large_image" },
       { title: "Painting & Decorating Services Dublin | All Colours" },
       {
         name: "description",
         content:
-          "Full range of painting and decorating services in Dublin — interior and exterior, woodwork and joinery, sash windows, railings, decking, kitchen presses, plaster repair and commercial work.",
+          "Dublin painting services: interiors, exteriors, joinery, sash windows, railings, decking, kitchen cabinets, plaster repair and commercial work.",
       },
       { property: "og:title", content: "Painting & Decorating Services Dublin | All Colours" },
       {

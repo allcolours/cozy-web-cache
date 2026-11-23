@@ -17,11 +17,12 @@ import { track } from "@/lib/analytics";
 export const Route = createFileRoute("/commercial-painting-dublin")({
   head: () => ({
     meta: [
-      { title: "Commercial Painting Dublin | Painting Contractor & Subcontractor" },
+        { name: "twitter:card", content: "summary_large_image" },
+      { title: "Commercial Painting Dublin | All Colours Painting" },
       {
         name: "description",
         content:
-          "Dublin commercial painting contractor. 15–30 painters, out-of-hours scheduling, RCT compliant, fully insured. Painting works delivered on developments including projects for Cairn, Bennett, Elliott and Clancy.",
+          "Commercial painting for Dublin property managers and contractors. Out-of-hours scheduling, RCT registered and fully insured. Request a quote.",
       },
       {
         name: "keywords",
@@ -383,8 +384,7 @@ function CommercialPage() {
             </h2>
             <p className="mt-5 max-w-md text-sm leading-relaxed text-white/70">
               Send us the basics and we'll come back within one working day with availability,
-              programme fit and a budget guide. For tenders, we can return RAMS, insurance certs and
-              tax clearance on request.
+              programme fit and a budget guide. For tenders, RAMS and insurance certs are available on request.
             </p>
             <div className="mt-8 space-y-3 text-sm text-white/80">
               <div>

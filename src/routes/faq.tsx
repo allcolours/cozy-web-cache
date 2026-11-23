@@ -9,6 +9,7 @@ const CATEGORIES = ["Booking", "Pricing", "Process", "Materials", "Aftercare"] a
 export const Route = createFileRoute("/faq")({
   head: () => ({
     meta: [
+        { name: "twitter:card", content: "summary_large_image" },
       { title: "Painting FAQ Dublin | All Colours Painting" },
       {
         name: "description",
