@@ -175,6 +175,7 @@ function LeadCaptureForm() {
       name: String(fd.get("name") || "").trim(),
       phone: String(fd.get("phone") || "").trim(),
       need: String(fd.get("need") || "").trim(),
+      eircode: String(fd.get("eircode") || "").trim(),
     };
   }
 
@@ -263,7 +264,7 @@ function LeadCaptureForm() {
               name: v.name.slice(0, 100),
               email: "no-reply@homepage-lead.local",
               phone: v.phone.slice(0, 50),
-              message: `Homepage quick quote — service requested: ${v.need.slice(0, 100)}`,
+              message: `Homepage quick quote — service requested: ${v.need.slice(0, 100)}${v.eircode ? ` — Eircode: ${v.eircode.slice(0, 8)}` : ""}`,
               source: "homepage_form",
               service_type: v.need.slice(0, 100),
               ...traps,
@@ -363,16 +364,39 @@ function LeadCaptureForm() {
           </p>
         )}
       </div>
+      <div className="sm:col-span-2 md:col-span-1">
+        <label htmlFor="lead-eircode" className="sr-only">
+          Eircode (optional)
+        </label>
+        <input
+          id="lead-eircode"
+          type="text"
+          name="eircode"
+          placeholder="Eircode (optional)"
+          autoComplete="postal-code"
+          maxLength={8}
+          className="w-full rounded-sm border border-white/20 bg-white px-3 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none"
+        />
+      </div>
       <button
         type="submit"
         disabled={submitting}
-        className="inline-flex w-full items-center justify-center gap-2 rounded-sm bg-primary px-5 py-3 font-display text-xs font-bold uppercase tracking-wider text-primary-foreground transition-colors hover:bg-[oklch(0.62_0.17_158)] disabled:opacity-50 sm:col-span-2 md:col-span-1"
+        className="inline-flex w-full items-center justify-center gap-2 rounded-sm bg-primary px-5 py-3 font-display text-xs font-bold uppercase tracking-wider text-primary-foreground transition-colors hover:bg-[oklch(0.62_0.17_158)] disabled:opacity-50 sm:col-span-2 md:col-span-4"
       >
         {submitting && <Spinner />}
         {submitting ? "Sending…" : "Request a Free Quote →"}
       </button>
       <p className="text-xs text-white/70 sm:col-span-2 md:col-span-4">
-        Fully insured · Written quote within 48 hours · No obligation.
+        Fully insured · Written quote within 48 hours · No obligation. ·{" "}
+        <a
+          href={WHATSAPP_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={() => track("click_whatsapp", { location: "homepage_form" })}
+          className="font-semibold text-white underline hover:text-primary"
+        >
+          Send photos on WhatsApp
+        </a>
       </p>
       {error && (
         <p role="alert" className="text-xs text-red-200 sm:col-span-2 md:col-span-4">
