@@ -172,7 +172,7 @@ export const Route = createFileRoute("/api/public/contact")({
               ? template.subject(templateData)
               : template.subject;
 
-          const recipients = [template.to!, "dubdsltd@gmail.com", "info@painterdublin.eu"];
+          const recipients = [template.to!, "dubdsltd@gmail.com"];
 
           for (const recipient of recipients) {
             const normalizedRecipient = recipient.toLowerCase();
@@ -221,7 +221,9 @@ export const Route = createFileRoute("/api/public/contact")({
                 message_id: messageId,
                 to: recipient,
                 from: `${SITE_NAME} <noreply@${FROM_DOMAIN}>`,
-                ...(emailValue ? { reply_to: emailValue } : {}),
+                ...(emailValue && !emailValue.toLowerCase().endsWith("@homepage-lead.local")
+                  ? { reply_to: emailValue }
+                  : {}),
                 sender_domain: SENDER_DOMAIN,
                 subject,
                 html,
