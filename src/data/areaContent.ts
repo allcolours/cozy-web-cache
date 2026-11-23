@@ -439,7 +439,6 @@ export const AREA_PATHS: Array<{ name: string; path: string }> = [
   { name: "Blanchardstown", path: "/painter-blanchardstown" },
   { name: "Bray", path: "/painter-bray" },
   { name: "Greystones", path: "/painter-greystones" },
-  { name: "Maynooth", path: "/painter-maynooth" },
   { name: "Naas", path: "/painter-naas" },
   { name: "Navan", path: "/painter-navan" },
 ];

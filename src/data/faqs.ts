@@ -18,7 +18,7 @@ export const FAQS: Faq[] = [
   {
     category: "Booking",
     q: "What areas do you cover?",
-    a: "All of Dublin city and county, plus surrounding areas in Wicklow, Kildare and Meath. For larger commercial or industrial contracts we travel further — just ask.",
+    a: "Dublin city and South Dublin, plus nearby parts of Wicklow, for houses and apartments. For larger commercial or industrial contracts we travel further — just ask.",
   },
   {
     category: "Pricing",

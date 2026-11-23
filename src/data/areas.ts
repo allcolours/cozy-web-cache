@@ -173,14 +173,6 @@ export const AREAS: AreaInfo[] = [
     highlights: DEFAULT_HIGHLIGHTS,
   },
   {
-    slug: "maynooth",
-    name: "Maynooth",
-    postcode: "Co. Kildare",
-    blurb:
-      "Family-home repaints, student-let turnarounds and exterior work across Maynooth and surrounds.",
-    highlights: DEFAULT_HIGHLIGHTS,
-  },
-  {
     slug: "naas",
     name: "Naas",
     postcode: "Co. Kildare",

@@ -394,11 +394,6 @@ export function SiteLayout({ children }: { children: ReactNode }) {
                 </Link>
               </li>
               <li>
-                <Link to="/painter-maynooth" className="hover:text-primary">
-                  Painter Maynooth
-                </Link>
-              </li>
-              <li>
                 <Link to="/painters" className="hover:text-primary font-medium">
                   View all areas →
                 </Link>

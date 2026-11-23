@@ -21,6 +21,7 @@ export function TestimonialCard({ t }: { t: Testimonial }) {
       <blockquote className="mt-4 flex-1 text-base leading-relaxed text-[oklch(0.25_0_0)]">
         <span className="text-3xl leading-none text-primary/40">“</span>
         {t.quote}
+        <span className="text-3xl leading-none text-primary/40">”</span>
       </blockquote>
       <footer className="mt-6 border-t border-border pt-4">
         <div className="font-display text-sm font-bold uppercase tracking-wide text-[oklch(0.2_0_0)]">
@@ -76,7 +77,7 @@ export function TestimonialsSection({
             <h2 className="section-title mt-3 text-3xl md:text-4xl">{title}</h2>
             <hr className="section-rule" />
             <p className="mt-3 text-sm text-foreground/70">
-              Real client feedback — Facebook &amp; word of mouth
+              Real client feedback from our Facebook page
             </p>
           </div>
         </div>
@@ -104,7 +105,7 @@ export function TestimonialsSection({
             Read more reviews on Facebook →
           </a>
           <a
-            href="https://g.page/r/allcolourspainting/review"
+            href="https://g.page/r/CR0qb8bY5RKFEBM/review"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1.5 font-display text-xs font-bold uppercase tracking-wider text-primary hover:text-[oklch(0.2_0_0)]"

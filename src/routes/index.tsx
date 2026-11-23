@@ -677,7 +677,7 @@ function Home() {
                 style={{ aspectRatio: "920 / 680" }}
               />
               <p className="mt-3 text-xs uppercase tracking-[0.18em] text-muted-foreground">
-                We cover all of County Dublin
+                South Dublin, Dublin city and surrounding areas
               </p>
             </div>
 
