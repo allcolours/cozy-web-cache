@@ -7,6 +7,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { resolveGalleryUrl } from "@/lib/galleryUrl";
 import heroAsset from "../assets/portfolio/hero-house.webp.asset.json";
 import exteriorAsset from "../assets/portfolio/portfolio-exterior-1.webp.asset.json";
+import { imageRenditions } from "@/lib/image-renditions";
 
 type CategoryValue =
   | "interior"
@@ -229,7 +230,8 @@ function Gallery() {
     <SiteLayout>
       <section className="relative isolate overflow-hidden">
         <img
-          src={exteriorAsset.url}
+          {...imageRenditions(exteriorAsset.url)}
+          sizes="100vw"
           alt="Gallery of painting & decorating projects completed across Dublin"
           fetchPriority="high"
           decoding="async"
@@ -312,14 +314,15 @@ function Gallery() {
                     setLightboxIndex(null);
                   }}
                   className="group relative block overflow-hidden bg-card text-left"
-                  aria-label={`Open ${album.title} album (${album.photos.length} photos)`}
                 >
                   <div className="relative aspect-[4/3] overflow-hidden bg-muted">
                     {album.cover_url && (
                       <img
-                        src={album.cover_url}
+                        {...imageRenditions(album.cover_url)}
+                        sizes="(min-width: 1024px) 400px, (min-width: 640px) 50vw, 100vw"
                         alt={`${album.title} — ${album.location} — All Colours Painting Dublin`}
                         loading="lazy"
+                        decoding="async"
                         className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                       />
                     )}
@@ -448,15 +451,17 @@ function Gallery() {
                     }
                   }}
                 >
-                  <img
-                    src={p.image_url}
+                  {p.image_url && <img
+                    {...imageRenditions(p.image_url)}
+                    sizes="(min-width: 1024px) 400px, (min-width: 768px) 50vw, 100vw"
                     alt={
                       p.alt_text ||
                       `${openAlbum.title} — ${openAlbum.location} — All Colours Painting Dublin`
                     }
                     loading="lazy"
+                    decoding="async"
                     className="block h-auto w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
+                  />}
                 </figure>
               ))}
             </div>
@@ -550,14 +555,17 @@ function Gallery() {
             className="flex max-h-full max-w-5xl flex-col items-center"
             onClick={(e) => e.stopPropagation()}
           >
-            <img
-              src={activePhoto.image_url}
+            {activePhoto.image_url && <img
+              {...imageRenditions(activePhoto.image_url)}
+              sizes="(min-width: 1024px) 1000px, 100vw"
+              loading="lazy"
+              decoding="async"
               alt={
                 activePhoto.alt_text ||
                 `${openAlbum.title} — ${openAlbum.location} — All Colours Painting Dublin`
               }
               className="max-h-[75vh] max-w-full rounded-sm object-contain shadow-2xl"
-            />
+            />}
             <div className="mt-4 text-center">
               <span className="inline-block bg-primary px-2 py-0.5 font-display text-[10px] font-bold uppercase tracking-wider text-primary-foreground">
                 {CATEGORY_LABEL[openAlbum.category]}

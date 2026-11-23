@@ -1,4 +1,5 @@
 import { HERO_IMAGE, HERO_SOCIAL_META } from "@/lib/hero-image";
+import { imageRenditions } from "@/lib/image-renditions";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { lazy, Suspense, useRef, useState } from "react";
 import { SiteLayout, COMPANY } from "../components/SiteLayout";
@@ -56,8 +57,8 @@ export const Route = createFileRoute("/")({
         as: "image",
         href: HERO_IMAGE.src,
         type: "image/webp",
-        imagesrcset: HERO_IMAGE.srcSet,
-        imagesizes: HERO_IMAGE.sizes,
+        imageSrcSet: HERO_IMAGE.srcSet,
+        imageSizes: HERO_IMAGE.sizes,
         fetchPriority: "high",
       },
     ],
@@ -480,7 +481,8 @@ function Home() {
           </div>
           <div className="relative">
             <img
-              src={aboutAsset.url}
+              {...imageRenditions(aboutAsset.url)}
+              sizes="(min-width: 768px) 560px, 100vw"
               alt="Close-up of clean architectural painting detail on interior moulding"
               loading="lazy"
               decoding="async"
@@ -580,7 +582,8 @@ function Home() {
               <div key={s.title} className="group overflow-hidden bg-card">
                 <div className="aspect-[4/3] overflow-hidden">
                   <img
-                    src={s.img}
+                    {...imageRenditions(s.img)}
+                    sizes="(min-width: 1024px) 300px, (min-width: 640px) 50vw, 100vw"
                     alt={`${s.title} painting & decorating in Dublin`}
                     loading="lazy"
                     decoding="async"
@@ -735,7 +738,8 @@ function Home() {
       {/* Lead capture — Get a Free Quote */}
       <section id="quote" className="relative isolate overflow-hidden scroll-mt-24">
         <img
-          src={ctaAsset.url}
+          {...imageRenditions(ctaAsset.url)}
+          sizes="100vw"
           alt="Freshly painted Dublin home exterior"
           loading="lazy"
           decoding="async"

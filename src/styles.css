@@ -90,10 +90,12 @@
 
   /* Brand — green */
   --primary: oklch(0.69 0.165 158); /* ~#18b26f */
-  --primary-foreground: oklch(1 0 0);
+  --primary-foreground: oklch(0.18 0 0);
   --brand-ink: oklch(0.45 0.1 158);
   --contact-action: oklch(0.45 0.1 158);
   --contact-action-foreground: oklch(1 0 0);
+  --action-hover: oklch(0.4 0.09 158);
+  --brand-on-dark: oklch(0.78 0.14 158);
   --whatsapp: oklch(0.76 0.2 150);
   --whatsapp-foreground: oklch(0.18 0 0);
 
@@ -144,7 +146,7 @@
   --popover: oklch(0.2 0 0);
   --popover-foreground: oklch(0.95 0 0);
   --primary: oklch(0.69 0.165 158);
-  --primary-foreground: oklch(1 0 0);
+  --primary-foreground: oklch(0.18 0 0);
   --secondary: oklch(0.22 0 0);
   --secondary-foreground: oklch(0.95 0 0);
   --muted: oklch(0.22 0 0);
@@ -232,7 +234,24 @@
 }
 section.text-white .eyebrow.text-primary,
 section.text-\[var\(--color-surface-dark-foreground\)\] .eyebrow.text-primary {
-  color: var(--color-primary);
+  color: var(--brand-on-dark);
+}
+
+/* Explicit accent labels retain the yellow ink on hero and dark surfaces. */
+.eyebrow.text-accent { color: var(--accent); }
+
+/* Preserve decorative green; use its accessible darker rendition for actions. */
+:is(a, button).bg-primary {
+  background-color: var(--contact-action);
+  color: var(--contact-action-foreground);
+}
+:is(a, button).bg-primary:hover {
+  background-color: var(--action-hover);
+  color: var(--contact-action-foreground);
+}
+:is(section.text-white, footer) :is(a, button).text-primary:not(.bg-primary),
+section :is(.text-white) .text-primary:not(.bg-primary) {
+  color: var(--brand-on-dark);
 }
 
 @keyframes fadeIn {

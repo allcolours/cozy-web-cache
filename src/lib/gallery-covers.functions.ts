@@ -1,5 +1,6 @@
 import { createServerFn } from "@tanstack/react-start";
 import { createClient } from "@supabase/supabase-js";
+import { isUnavailableGalleryMedia } from "./gallery-media";
 
 export type GalleryCategory =
   | "interior"
@@ -23,16 +24,26 @@ export type GalleryCoverMap = Partial<Record<GalleryCategory, string>>;
  */
 export const getGalleryCovers = createServerFn({ method: "GET" }).handler(
   async (): Promise<GalleryCoverMap> => {
-    const supabase = createClient(
-      process.env.SUPABASE_URL!,
-      process.env.SUPABASE_PUBLISHABLE_KEY!,
-      { auth: { storage: undefined, persistSession: false, autoRefreshToken: false } },
-    );
+    const url = process.env["SUPABASE_URL"];
+    const key = process.env["SUPABASE_PUBLISHABLE_KEY"];
+    if (!url || !key) throw new Error("Gallery configuration unavailable");
+    const supabase = createClient(url, key, {
+      auth: { persistSession: false, autoRefreshToken: false },
+      global: {
+        fetch: (input, init) => {
+          const headers = new Headers(init?.headers);
+          if (key.startsWith("sb_") && headers.get("Authorization") === `Bearer ${key}`)
+            headers.delete("Authorization");
+          headers.set("apikey", key);
+          return fetch(input, { ...init, headers });
+        },
+      },
+    });
 
     const { data, error } = await supabase
       .from("gallery_images")
       .select(
-        "image_url, storage_path, is_cover, sort_order, gallery_projects!inner(category, sort_order, visible)",
+        "image_url, storage_path, gallery_projects!inner(category, sort_order, visible)",
       )
       .eq("gallery_projects.visible", true)
       .not("image_url", "is", null)
@@ -43,25 +54,41 @@ export const getGalleryCovers = createServerFn({ method: "GET" }).handler(
     if (error) throw error;
 
     const covers: GalleryCoverMap = {};
+    const selected = new Set<GalleryCategory>();
+    const paths: { cat: GalleryCategory; path: string }[] = [];
     for (const row of data ?? []) {
-      const projectRel = (row as unknown as { gallery_projects: { category: GalleryCategory } | { category: GalleryCategory }[] }).gallery_projects;
+      const projectRel = (
+        row as unknown as {
+          gallery_projects: { category: GalleryCategory } | { category: GalleryCategory }[];
+        }
+      ).gallery_projects;
       const project = Array.isArray(projectRel) ? projectRel[0] : projectRel;
       const cat = project?.category as GalleryCategory | undefined;
       if (!cat) continue;
-      if (covers[cat]) continue;
+      if (selected.has(cat)) continue;
+      selected.add(cat);
 
       const raw = (row.image_url ?? "") as string;
-      if (!raw) continue;
+      if (!raw || isUnavailableGalleryMedia(raw)) continue;
 
       let url = raw;
       if (!/^https?:\/\//.test(raw) && !raw.startsWith("/")) {
         const path = ((row as { storage_path?: string | null }).storage_path || raw) as string;
-        const { data: signed } = await supabase.storage
-          .from("gallery")
-          .createSignedUrl(path, 60 * 60 * 24 * 7);
-        if (signed?.signedUrl) url = signed.signedUrl;
+        paths.push({ cat, path });
+        continue;
       }
       covers[cat] = url;
+    }
+    // One signing request replaces up to eight sequential storage requests.
+    if (paths.length) {
+      const { data: signed } = await supabase.storage.from("gallery").createSignedUrls(
+        paths.map(({ path }) => path),
+        60 * 60 * 24 * 7,
+      );
+      for (const item of signed ?? []) {
+        const match = paths.find(({ path }) => path === item.path);
+        if (match && item.signedUrl) covers[match.cat] = item.signedUrl;
+      }
     }
     return covers;
   },

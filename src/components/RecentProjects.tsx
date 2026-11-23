@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Link } from "@tanstack/react-router";
 import { supabase } from "@/integrations/supabase/client";
 import { resolveGalleryUrl } from "@/lib/galleryUrl";
+import { imageRenditions } from "@/lib/image-renditions";
 
 type HomeAlbum = {
   id: string;
@@ -94,7 +95,8 @@ export default function RecentProjects() {
               <div className="aspect-[16/11] overflow-hidden">
                 {p.cover_url ? (
                   <img
-                    src={p.cover_url}
+                    {...imageRenditions(p.cover_url)}
+                    sizes="(min-width: 1024px) 400px, (min-width: 640px) 50vw, 100vw"
                     alt={p.title}
                     loading="lazy"
                     decoding="async"

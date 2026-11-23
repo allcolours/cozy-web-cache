@@ -3,6 +3,7 @@ import { SiteLayout } from "../components/SiteLayout";
 import { FAQS } from "../data/faqs";
 import { FaqAccordion } from "../components/FaqAccordion";
 import heroAsset from "../assets/portfolio/service-commercial.webp.asset.json";
+import { imageRenditions } from "@/lib/image-renditions";
 
 const CATEGORIES = ["Booking", "Pricing", "Process", "Materials", "Aftercare"] as const;
 
@@ -72,9 +73,12 @@ function FaqPage() {
     <SiteLayout>
       <section className="relative isolate overflow-hidden">
         <img
-          src={heroAsset.url}
+          {...imageRenditions(heroAsset.url)}
+          sizes="100vw"
           alt="Interior painting and decorating by All Colours Painting Dublin"
-          loading="lazy"
+          loading="eager"
+          fetchPriority="high"
+          decoding="async"
           width={1920}
           height={900}
           className="absolute inset-0 -z-10 h-full w-full object-cover"

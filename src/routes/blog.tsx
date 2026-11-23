@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout } from "../components/SiteLayout";
 import { supabase } from "@/integrations/supabase/client";
 import heroAsset from "../assets/portfolio/hero-house.webp.asset.json";
+import { imageRenditions } from "@/lib/image-renditions";
 
 type ListPost = {
   id: string;
@@ -113,9 +114,11 @@ function BlogIndex() {
               {first.cover_image_url && (
                 <div className="aspect-[16/10] overflow-hidden lg:aspect-auto lg:h-full">
                   <img
-                    src={first.cover_image_url}
+                    {...imageRenditions(first.cover_image_url)}
+                    sizes="(min-width: 1024px) 720px, 100vw"
                     alt={first.title}
                     loading="lazy"
+                    decoding="async"
                     width={1400}
                     height={900}
                     className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
@@ -158,9 +161,11 @@ function BlogIndex() {
                   {p.cover_image_url && (
                     <div className="aspect-[16/10] overflow-hidden">
                       <img
-                        src={p.cover_image_url}
+                        {...imageRenditions(p.cover_image_url)}
+                        sizes="(min-width: 768px) 400px, 100vw"
                         alt={p.title}
                         loading="lazy"
+                        decoding="async"
                         width={800}
                         height={500}
                         className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"

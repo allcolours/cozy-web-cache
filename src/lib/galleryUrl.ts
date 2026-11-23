@@ -1,4 +1,5 @@
 import { supabase } from "@/integrations/supabase/client";
+import { isUnavailableGalleryMedia } from "./gallery-media";
 
 // In-memory cache so we don't re-sign the same path repeatedly during a page view.
 const cache = new Map<string, { url: string; expiresAt: number }>();
@@ -13,6 +14,8 @@ export async function resolveGalleryUrl(
   imageUrl: string,
   storagePath?: string | null,
 ): Promise<string> {
+  // Legacy example paths have no matching files; do not request known missing media.
+  if (isUnavailableGalleryMedia(imageUrl)) return "";
   if (/^https?:\/\//.test(imageUrl) || imageUrl.startsWith("/")) return imageUrl;
   const path = storagePath || imageUrl;
   const cached = cache.get(path);

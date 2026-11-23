@@ -1,4 +1,4 @@
-import { contactFallbackResponse } from "@/lib/contact-fallback";
+import { completeContactInquiry } from "@/lib/contact-delivery";
 import * as React from "react";
 import { render } from "@react-email/components";
 import { createFileRoute } from "@tanstack/react-router";
@@ -111,150 +111,136 @@ export const Route = createFileRoute("/api/public/contact")({
 
           if (insertError || !inserted) {
             console.error("contact: failed to insert contact_submissions", insertError);
-            // Still try to record as a lead so we don't lose the customer.
-            try {
-              const { error: fallbackError } = await supabase.from("leads").insert({
-                name: data.name,
-                email: emailValue || null,
-                phone: data.phone || null,
-                message: data.message,
-                service_type: data.service_type || null,
-                source: data.source || "contact_form",
-                status: "new",
-              });
-              if (fallbackError) console.error("contact: leads fallback insert returned error", fallbackError);
-              return contactFallbackResponse(fallbackError);
-            } catch (e) {
-              console.error("contact: leads fallback insert failed", e);
-            }
-            return Response.json({ error: "Failed to save inquiry" }, { status: 500 });
           }
 
+          return completeContactInquiry({
+            inbox: { data: inserted, error: insertError },
+            logError: (message, error) => console.error(message, error),
+            saveLead: async () => {
+              return await supabase
+                .from("leads")
+                .insert({
+                  name: data.name,
+                  email: emailValue || null,
+                  phone: data.phone || null,
+                  message: data.message,
+                  service_type: data.service_type || null,
+                  source: data.source || "contact_form",
+                  status: "new",
+                })
+                .select("id, created_at")
+                .single();
+            },
+            notify: async (inserted) => {
+              // 2. Build & enqueue admin notification email (best-effort — inquiry already saved)
+              try {
+                const template = TEMPLATES["contact-inquiry"];
+                if (!template) throw new Error("contact-inquiry template not registered");
 
-          // Also record as a lead in the CRM (best-effort)
-          try {
-            const { error: leadErr } = await supabase.from("leads").insert({
-              name: data.name,
-              email: emailValue || null,
-              phone: data.phone || null,
-              message: data.message,
-              service_type: data.service_type || null,
-              source: data.source || "contact_form",
-              status: "new",
-            });
-            if (leadErr) console.error("contact: leads insert returned error", leadErr);
-          } catch (e) {
-            console.error("contact: leads insert threw", e);
-          }
+                const submittedAt = new Date(inserted.created_at).toLocaleString("en-IE", {
+                  timeZone: "Europe/Dublin",
+                });
+                const leadSource = data.source || "contact_form";
+                const templateData = {
+                  name: data.name,
+                  email: emailValue,
+                  phone: data.phone,
+                  postcode: data.postcode,
+                  message: data.message,
+                  submittedAt,
+                  source: leadSource,
+                  serviceType: data.service_type ?? null,
+                };
 
-        // 2. Build & enqueue admin notification email (best-effort — inquiry already saved)
-        try {
-          const template = TEMPLATES["contact-inquiry"];
-          if (!template) throw new Error("contact-inquiry template not registered");
+                const element = React.createElement(template.component, templateData);
+                const html = await render(element);
+                const text = await render(element, { plainText: true });
+                const subject =
+                  typeof template.subject === "function"
+                    ? template.subject(templateData)
+                    : template.subject;
 
-          const submittedAt = new Date(inserted.created_at).toLocaleString("en-IE", {
-            timeZone: "Europe/Dublin",
+                if (!template.to) throw new Error("contact-inquiry recipient not configured");
+                const recipients = [template.to, "dubdsltd@gmail.com"];
+
+                for (const recipient of recipients) {
+                  const normalizedRecipient = recipient.toLowerCase();
+                  const messageId = `contact-${inserted.id}-${normalizedRecipient}`;
+
+                  // Get or create unsubscribe token (required by email API)
+                  let unsubscribeToken: string;
+                  const { data: existingToken } = await supabase
+                    .from("email_unsubscribe_tokens")
+                    .select("token, used_at")
+                    .eq("email", normalizedRecipient)
+                    .maybeSingle();
+
+                  if (existingToken && !existingToken.used_at) {
+                    unsubscribeToken = existingToken.token;
+                  } else {
+                    const bytes = new Uint8Array(32);
+                    crypto.getRandomValues(bytes);
+                    const newToken = Array.from(bytes)
+                      .map((b) => b.toString(16).padStart(2, "0"))
+                      .join("");
+                    await supabase
+                      .from("email_unsubscribe_tokens")
+                      .upsert(
+                        { token: newToken, email: normalizedRecipient },
+                        { onConflict: "email", ignoreDuplicates: true },
+                      );
+                    const { data: storedToken } = await supabase
+                      .from("email_unsubscribe_tokens")
+                      .select("token")
+                      .eq("email", normalizedRecipient)
+                      .maybeSingle();
+                    unsubscribeToken = storedToken?.token ?? newToken;
+                  }
+
+                  await supabase.from("email_send_log").insert({
+                    message_id: messageId,
+                    template_name: "contact-inquiry",
+                    recipient_email: recipient,
+                    status: "pending",
+                  });
+
+                  const { error: enqueueError } = await supabase.rpc("enqueue_email", {
+                    queue_name: "transactional_emails",
+                    payload: {
+                      message_id: messageId,
+                      to: recipient,
+                      from: `${SITE_NAME} <noreply@${FROM_DOMAIN}>`,
+                      ...(emailValue && !emailValue.toLowerCase().endsWith("@homepage-lead.local")
+                        ? { reply_to: emailValue }
+                        : {}),
+                      sender_domain: SENDER_DOMAIN,
+                      subject,
+                      html,
+                      text,
+                      purpose: "transactional",
+                      label: "contact-inquiry",
+                      idempotency_key: messageId,
+                      unsubscribe_token: unsubscribeToken,
+                      queued_at: new Date().toISOString(),
+                    },
+                  });
+
+                  if (enqueueError) {
+                    console.error("Failed to enqueue contact email", enqueueError);
+                    await supabase.from("email_send_log").insert({
+                      message_id: messageId,
+                      template_name: "contact-inquiry",
+                      recipient_email: recipient,
+                      status: "failed",
+                      error_message: "Failed to enqueue: " + enqueueError.message,
+                    });
+                  }
+                }
+              } catch (e) {
+                console.error("Contact email send failed (inquiry was saved)", e);
+              }
+            },
           });
-          const leadSource = data.source || "contact_form";
-          const templateData = {
-            name: data.name,
-            email: emailValue,
-            phone: data.phone,
-            postcode: data.postcode,
-            message: data.message,
-            submittedAt,
-            source: leadSource,
-            serviceType: data.service_type ?? null,
-          };
-
-          const element = React.createElement(template.component, templateData);
-          const html = await render(element);
-          const text = await render(element, { plainText: true });
-          const subject =
-            typeof template.subject === "function"
-              ? template.subject(templateData)
-              : template.subject;
-
-          const recipients = [template.to!, "dubdsltd@gmail.com"];
-
-          for (const recipient of recipients) {
-            const normalizedRecipient = recipient.toLowerCase();
-            const messageId = `contact-${inserted.id}-${normalizedRecipient}`;
-
-            // Get or create unsubscribe token (required by email API)
-            let unsubscribeToken: string;
-            const { data: existingToken } = await supabase
-              .from("email_unsubscribe_tokens")
-              .select("token, used_at")
-              .eq("email", normalizedRecipient)
-              .maybeSingle();
-
-            if (existingToken && !existingToken.used_at) {
-              unsubscribeToken = existingToken.token;
-            } else {
-              const bytes = new Uint8Array(32);
-              crypto.getRandomValues(bytes);
-              const newToken = Array.from(bytes)
-                .map((b) => b.toString(16).padStart(2, "0"))
-                .join("");
-              await supabase
-                .from("email_unsubscribe_tokens")
-                .upsert(
-                  { token: newToken, email: normalizedRecipient },
-                  { onConflict: "email", ignoreDuplicates: true },
-                );
-              const { data: storedToken } = await supabase
-                .from("email_unsubscribe_tokens")
-                .select("token")
-                .eq("email", normalizedRecipient)
-                .maybeSingle();
-              unsubscribeToken = storedToken?.token ?? newToken;
-            }
-
-            await supabase.from("email_send_log").insert({
-              message_id: messageId,
-              template_name: "contact-inquiry",
-              recipient_email: recipient,
-              status: "pending",
-            });
-
-            const { error: enqueueError } = await supabase.rpc("enqueue_email", {
-              queue_name: "transactional_emails",
-              payload: {
-                message_id: messageId,
-                to: recipient,
-                from: `${SITE_NAME} <noreply@${FROM_DOMAIN}>`,
-                ...(emailValue && !emailValue.toLowerCase().endsWith("@homepage-lead.local")
-                  ? { reply_to: emailValue }
-                  : {}),
-                sender_domain: SENDER_DOMAIN,
-                subject,
-                html,
-                text,
-                purpose: "transactional",
-                label: "contact-inquiry",
-                idempotency_key: messageId,
-                unsubscribe_token: unsubscribeToken,
-                queued_at: new Date().toISOString(),
-              },
-            });
-
-            if (enqueueError) {
-              console.error("Failed to enqueue contact email", enqueueError);
-              await supabase.from("email_send_log").insert({
-                message_id: messageId,
-                template_name: "contact-inquiry",
-                recipient_email: recipient,
-                status: "failed",
-                error_message: "Failed to enqueue: " + enqueueError.message,
-              });
-            }
-          }
-        } catch (e) {
-          console.error("Contact email send failed (inquiry was saved)", e);
-        }
-
-          return Response.json({ success: true });
         } catch (e) {
           console.error("contact: unhandled error in POST handler", e);
           return Response.json({ error: "Internal error" }, { status: 500 });

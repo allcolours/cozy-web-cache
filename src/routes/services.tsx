@@ -8,6 +8,7 @@ import heroAsset from "../assets/portfolio/hero-house.webp.asset.json";
 import commercialAsset from "../assets/portfolio/service-commercial.webp.asset.json";
 import hospitalityAsset from "../assets/portfolio/service-hospitality.webp.asset.json";
 import exteriorAsset from "../assets/portfolio/portfolio-exterior-1.webp.asset.json";
+import { imageRenditions } from "@/lib/image-renditions";
 import {
   getGalleryCovers,
   type GalleryCategory,
@@ -242,7 +243,8 @@ function Services() {
       {/* Hero band */}
       <section className="relative isolate overflow-hidden">
         <img
-          src={servicesHeroImg}
+          {...imageRenditions(servicesHeroImg)}
+          sizes="100vw"
           alt="Exterior painting project completed by All Colours Painting, Dublin"
           fetchPriority="high"
           decoding="async"
@@ -301,9 +303,11 @@ function Services() {
               <article key={s.title} className="flex flex-col bg-card">
                 <div className="aspect-[4/3] overflow-hidden">
                   <img
-                    src={pickImg(s, covers)}
+                    {...imageRenditions(pickImg(s, covers))}
+                    sizes="(min-width: 1024px) 400px, (min-width: 768px) 80vw, 100vw"
                     alt={`${s.title} painting services`}
                     loading="lazy"
+                    decoding="async"
                     width={1000}
                     height={750}
                     className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
@@ -343,9 +347,11 @@ function Services() {
               <div key={s.title} className="group overflow-hidden bg-card">
                 <div className="aspect-[16/10] overflow-hidden">
                   <img
-                    src={pickImg(s, covers)}
+                    {...imageRenditions(pickImg(s, covers))}
+                    sizes="(min-width: 1024px) 400px, (min-width: 640px) 50vw, 100vw"
                     alt={`${s.title} — ${s.desc.split(".")[0]}`}
                     loading="lazy"
+                    decoding="async"
                     width={800}
                     height={500}
                     className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"

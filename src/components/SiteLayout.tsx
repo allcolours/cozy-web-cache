@@ -134,6 +134,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
               width={56}
               height={56}
               loading="eager"
+              decoding="async"
               className="h-12 w-12 shrink-0 object-contain sm:h-14 sm:w-14"
             />
             <span className="hidden whitespace-nowrap font-display text-sm font-bold uppercase tracking-wide text-[oklch(0.25_0_0)] sm:block">
@@ -240,6 +241,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
                 width={64}
                 height={64}
                 loading="lazy"
+                decoding="async"
                 className="h-16 w-16 object-contain"
               />
               <span className="font-display text-lg font-bold uppercase tracking-wide text-white">

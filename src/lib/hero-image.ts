@@ -1,4 +1,4 @@
-import desktop from "@/assets/portfolio/hero-house-1200.webp.asset.json";
+import desktop from "@/assets/optimized/hero-house-1200.webp.asset.json";
 import mobile from "@/assets/portfolio/hero-house-800.webp.asset.json";
 import social from "@/assets/portfolio/hero-house-social.webp.asset.json";
 

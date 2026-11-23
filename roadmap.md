@@ -1,3 +1,12 @@
+# Draft polish
+
+- [x] Resize 97 portfolio/gallery images; add 291 CDN card renditions/loading hints, all under 150 KB.
+- [x] Regenerate favicon and Apple touch icon from existing logo; both URLs return 200.
+- [x] Fix shared contrast, gallery accessible names and owned network errors; Supabase-owned BroadcastChannel left unchanged to preserve auth subscribers.
+- [x] Preserve admin notifications after successful lead fallback; four regression tests and isolated endpoint check pass.
+- [x] Inspect FAQ/services blocking reads: FAQ has no loader; batch service cover signing without changing gallery selection.
+- [x] Run all 22 existing/new tests and verify mobile/desktop pages; automatic build OK. No publishing.
+
 # Audit fixes
 
 - [x] Remove unsupported tax claims; inspect CMS rows without editing those claims.

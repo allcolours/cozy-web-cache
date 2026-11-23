@@ -7,3 +7,5 @@
 - Await Supabase mutations and inspect their errors; query builders are lazy thenables and an unawaited insert sends no request.
 - Private content pages use `privatePageHead` for unique metadata and noindex; layouts keep only sitewide defaults.
 - Keep anonymous duplicate-blog access exclusions in recorded migrations so draft acceptance carries the public-read restriction into the app.
+- Route saved contact inquiries through the shared delivery orchestrator so successful CRM fallbacks still notify the existing recipients.
+- Map immutable original photo URLs to optimized CDN renditions at render time so gallery records and visual framing remain unchanged.
